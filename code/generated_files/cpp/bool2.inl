@@ -25,37 +25,37 @@ bool2::bool2( const bool32_t x, const bool32_t y )
 {
 }
 
-bool2::bool2( const bool2& vec )
+bool2::bool2( const bool2 &vec )
 	: x( vec.x )
 	, y( vec.y )
 {
 }
 
-bool2::bool2( const int2& vec )
+bool2::bool2( const int2 &vec )
 	: x( (bool32_t) vec.x )
 	, y( (bool32_t) vec.y )
 {
 }
 
-bool2::bool2( const uint2& vec )
+bool2::bool2( const uint2 &vec )
 	: x( (bool32_t) vec.x )
 	, y( (bool32_t) vec.y )
 {
 }
 
-bool2::bool2( const float2& vec )
+bool2::bool2( const float2 &vec )
 	: x( (bool32_t) vec.x )
 	, y( (bool32_t) vec.y )
 {
 }
 
-bool2::bool2( const double2& vec )
+bool2::bool2( const double2 &vec )
 	: x( (bool32_t) vec.x )
 	, y( (bool32_t) vec.y )
 {
 }
 
-bool2 bool2::operator=( const bool2& other )
+bool2 bool2::operator=( const bool2 &other )
 {
 	this->x = other.x;
 	this->y = other.y;
@@ -63,13 +63,13 @@ bool2 bool2::operator=( const bool2& other )
 	return *this;
 }
 
-bool32_t& bool2::operator[]( const int32_t index )
+bool32_t &bool2::operator[]( const int32_t index )
 {
 	HLML_ASSERT( index >= 0 && index < 2 );
 	return v[index];
 }
 
-const bool32_t& bool2::operator[]( const int32_t index ) const
+const bool32_t &bool2::operator[]( const int32_t index ) const
 {
 	HLML_ASSERT( index >= 0 && index < 2 );
 	return v[index];

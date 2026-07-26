@@ -39,13 +39,31 @@ SOFTWARE.
 #include <stdio.h>
 #include <assert.h>
 
-static void UpdateStringsFromFlags( const generatorFlags_t flags, generatorStrings_t *outStrings ) {
+// Returns 'op' (a bare declarator operator, e.g. "*" or "&") with a single separating space attached on
+// the side appropriate for GENERATOR_FLAG_REFERENCE_OPERATOR_ATTACH_TO_VARIABLE - trailing (attached to
+// the type, e.g. "* ") by default, or leading (attached to the variable/function name, e.g. " *") if set.
+// Callers embed the result directly against a type name with no space of their own, e.g. "float3" + "* ".
+static const char *GetDeclaratorOpStr( allocatorLinear_t *allocator, const char *op, const generatorFlags_t flags ) {
+	assert( allocator );
+	assert( op );
+
+	if ( flags & GENERATOR_FLAG_REFERENCE_OPERATOR_ATTACH_TO_VARIABLE ) {
+		return String_TPrintf( allocator, " %s", op );
+	} else {
+		return String_TPrintf( allocator, "%s ", op );
+	}
+}
+
+static void UpdateStringsFromFlags( allocatorLinear_t *allocator, const generatorFlags_t flags, generatorStrings_t *outStrings ) {
+	assert( allocator );
 	assert( outStrings );
 
-	outStrings->parmPassByStr = ( flags & GENERATOR_FLAG_PARMS_ARE_POINTERS ) ? "*" : "&";
+	outStrings->parmPassByStr = GetDeclaratorOpStr( allocator, ( flags & GENERATOR_FLAG_PARMS_ARE_POINTERS ) ? "*" : "&", flags );
 	outStrings->parmAccessOperatorStr = ( flags & GENERATOR_FLAG_PARMS_ARE_POINTERS ) ? "->" : ".";
 	outStrings->parmReferenceStr = ( flags & GENERATOR_FLAG_PARMS_ARE_POINTERS ) ? "&" : "";
 	outStrings->parmDereferenceStr = ( flags & GENERATOR_FLAG_PARMS_ARE_POINTERS ) ? "*" : "";
+	outStrings->refDeclStr = GetDeclaratorOpStr( allocator, "&", flags );
+	outStrings->ptrDeclStr = GetDeclaratorOpStr( allocator, "*", flags );
 }
 
 int main( int argc, char **argv ) {
@@ -111,7 +129,7 @@ int main( int argc, char **argv ) {
 	const char *languageName = ( config.language == GEN_LANGUAGE_C ) ? "c" : "cpp";
 
 	generatorStrings_t generatorStrings = { 0 };
-	UpdateStringsFromFlags( config.flags, &generatorStrings );
+	UpdateStringsFromFlags( allocator, config.flags, &generatorStrings );
 
 	Gen_GenerateAPIFiles( tempStorage, config.outputPath, languageName, vectorTypeInfos, vectorTypeInfosCount, quaternionTypeInfos, quaternionTypeInfosCount, matrixTypeInfos, matrixTypeInfosCount, &generatorStrings, config.flags, componentCountMin, componentCountMax );
 	Gen_GenerateTests( tempStorage, config.outputPath, languageName, vectorTypeInfos, vectorTypeInfosCount, quaternionTypeInfos, quaternionTypeInfosCount, matrixTypeInfos, matrixTypeInfosCount, &generatorStrings, config.flags, componentCountMin, componentCountMax );

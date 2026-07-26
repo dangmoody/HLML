@@ -150,6 +150,7 @@ typedef enum generatorFlagBits_t {
 	GENERATOR_FLAG_GENERATE_ASSIGNMENT_OPERATOR	= GEN_BIT( 13 ),	// generate operator= for vectors and matrices; only meaningful when GENERATOR_FLAG_GENERATE_OPERATORS is also set
 	GENERATOR_FLAG_SUPPRESS_ANONYMOUS_STRUCT_WARNINGS	= GEN_BIT( 14 ),	// wrap vector types' anonymous struct/union members in a push/pop of Clang/GCC's -Wpedantic and MSVC's C4201, since anonymous structs/unions are a nonstandard extension; only meaningful when GENERATOR_FLAG_VECTOR_UNIONS is also set, since that's the only place vectors use anonymous structs/unions
 	GENERATOR_FLAG_BRACES_SAME_LINE					= GEN_BIT( 15 ),	// put opening scope braces (functions, structs, namespace blocks, control-flow) on the same line as the preceding statement instead of on their own line; does not affect aggregate-initializer braces (e.g. HLML_CONSTRUCT( type ) { ... })
+	GENERATOR_FLAG_REFERENCE_OPERATOR_ATTACH_TO_VARIABLE	= GEN_BIT( 16 ),	// attach declarator '*'/'&' to the variable/function name (e.g. "float3 *vec", "float3 &vec") instead of the type (e.g. "float3* vec", "float3& vec"); only affects declarators (function parameters, reference return types, constructors, operator=/operator[], swizzle operators) - never expression-level unary '*'/'&' (dereference/address-of)
 
 	GENERATOR_FLAG_ALL
 } generatorFlagBits_t;
@@ -160,6 +161,8 @@ typedef struct generatorStrings_t {
 	const char *parmAccessOperatorStr;
 	const char *parmReferenceStr;
 	const char *parmDereferenceStr;
+	const char *refDeclStr;	// '&' declarator (C++ reference syntax) with spacing already applied per GENERATOR_FLAG_REFERENCE_OPERATOR_ATTACH_TO_VARIABLE - always '&', regardless of GENERATOR_FLAG_PARMS_ARE_POINTERS, since these are C++-only constructs (copy constructors, operator=, operator[], swizzle operators) that are never pointer-based
+	const char *ptrDeclStr;	// '*' declarator with spacing already applied per GENERATOR_FLAG_REFERENCE_OPERATOR_ATTACH_TO_VARIABLE - always '*', regardless of GENERATOR_FLAG_PARMS_ARE_POINTERS, for the handful of functions (equals/not-equals/all/any) that always take a pointer parameter regardless of language
 } generatorStrings_t;
 
 typedef enum operatorSingleParmType_t {

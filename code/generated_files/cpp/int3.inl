@@ -27,56 +27,56 @@ int3::int3( const int32_t x, const int32_t y, const int32_t z )
 {
 }
 
-int3::int3( const int3& vec )
+int3::int3( const int3 &vec )
 	: x( vec.x )
 	, y( vec.y )
 	, z( vec.z )
 {
 }
 
-int3::int3( const bool3& vec )
+int3::int3( const bool3 &vec )
 	: x( (int32_t) vec.x )
 	, y( (int32_t) vec.y )
 	, z( (int32_t) vec.z )
 {
 }
 
-int3::int3( const uint3& vec )
+int3::int3( const uint3 &vec )
 	: x( (int32_t) vec.x )
 	, y( (int32_t) vec.y )
 	, z( (int32_t) vec.z )
 {
 }
 
-int3::int3( const float3& vec )
+int3::int3( const float3 &vec )
 	: x( (int32_t) vec.x )
 	, y( (int32_t) vec.y )
 	, z( (int32_t) vec.z )
 {
 }
 
-int3::int3( const double3& vec )
+int3::int3( const double3 &vec )
 	: x( (int32_t) vec.x )
 	, y( (int32_t) vec.y )
 	, z( (int32_t) vec.z )
 {
 }
 
-int3::int3( const int2& xy, const int32_t z )
+int3::int3( const int2 &xy, const int32_t z )
 	: x( xy.x )
 	, y( xy.y )
 	, z( z )
 {
 }
 
-int3::int3( const int32_t x, const int2& zw )
+int3::int3( const int32_t x, const int2 &zw )
 	: x( x )
 	, y( zw.x )
 	, z( zw.y )
 {
 }
 
-int3 int3::operator=( const int2& other )
+int3 int3::operator=( const int2 &other )
 {
 	this->x = other.x;
 	this->y = other.y;
@@ -84,7 +84,7 @@ int3 int3::operator=( const int2& other )
 	return *this;
 }
 
-int3 int3::operator=( const int3& other )
+int3 int3::operator=( const int3 &other )
 {
 	this->x = other.x;
 	this->y = other.y;
@@ -93,13 +93,13 @@ int3 int3::operator=( const int3& other )
 	return *this;
 }
 
-int32_t& int3::operator[]( const int32_t index )
+int32_t &int3::operator[]( const int32_t index )
 {
 	HLML_ASSERT( index >= 0 && index < 3 );
 	return v[index];
 }
 
-const int32_t& int3::operator[]( const int32_t index ) const
+const int32_t &int3::operator[]( const int32_t index ) const
 {
 	HLML_ASSERT( index >= 0 && index < 3 );
 	return v[index];

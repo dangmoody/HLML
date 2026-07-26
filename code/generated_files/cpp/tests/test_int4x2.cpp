@@ -10,7 +10,7 @@
 using namespace hlml;
 #endif
 
-TEMPER_TEST_PARAMETRIC( Test_int4x2_less_than, TEMPER_FLAG_SHOULD_RUN, const int4x2& lhs, const int4x2& rhs, const bool4x2& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_int4x2_less_than, TEMPER_FLAG_SHOULD_RUN, const int4x2 &lhs, const int4x2 &rhs, const bool4x2 &expectedAnswer )
 {
 	bool4x2 actualResult = lhs < rhs;
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -100,7 +100,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4x2_less_than,
 	)
 );
 
-TEMPER_TEST_PARAMETRIC( Test_int4x2_less_than_equal, TEMPER_FLAG_SHOULD_RUN, const int4x2& lhs, const int4x2& rhs, const bool4x2& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_int4x2_less_than_equal, TEMPER_FLAG_SHOULD_RUN, const int4x2 &lhs, const int4x2 &rhs, const bool4x2 &expectedAnswer )
 {
 	bool4x2 actualResult = lhs <= rhs;
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -190,7 +190,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4x2_less_than_equal,
 	)
 );
 
-TEMPER_TEST_PARAMETRIC( Test_int4x2_greater_than, TEMPER_FLAG_SHOULD_RUN, const int4x2& lhs, const int4x2& rhs, const bool4x2& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_int4x2_greater_than, TEMPER_FLAG_SHOULD_RUN, const int4x2 &lhs, const int4x2 &rhs, const bool4x2 &expectedAnswer )
 {
 	bool4x2 actualResult = lhs > rhs;
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -280,7 +280,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4x2_greater_than,
 	)
 );
 
-TEMPER_TEST_PARAMETRIC( Test_int4x2_greater_than_equal, TEMPER_FLAG_SHOULD_RUN, const int4x2& lhs, const int4x2& rhs, const bool4x2& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_int4x2_greater_than_equal, TEMPER_FLAG_SHOULD_RUN, const int4x2 &lhs, const int4x2 &rhs, const bool4x2 &expectedAnswer )
 {
 	bool4x2 actualResult = lhs >= rhs;
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -370,7 +370,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4x2_greater_than_equal,
 	)
 );
 
-TEMPER_TEST_PARAMETRIC( Test_int4x2_cadds, TEMPER_FLAG_SHOULD_RUN, const int4x2& lhs, const int32_t& rhs, const int4x2& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_int4x2_cadds, TEMPER_FLAG_SHOULD_RUN, const int4x2 &lhs, const int32_t &rhs, const int4x2 &expectedAnswer )
 {
 	int4x2 actualResult = lhs + rhs;
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -440,7 +440,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4x2_cadds,
 	)
 );
 
-TEMPER_TEST_PARAMETRIC( Test_int4x2_csubs, TEMPER_FLAG_SHOULD_RUN, const int4x2& lhs, const int32_t& rhs, const int4x2& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_int4x2_csubs, TEMPER_FLAG_SHOULD_RUN, const int4x2 &lhs, const int32_t &rhs, const int4x2 &expectedAnswer )
 {
 	int4x2 actualResult = lhs - rhs;
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -510,7 +510,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4x2_csubs,
 	)
 );
 
-TEMPER_TEST_PARAMETRIC( Test_int4x2_cmuls, TEMPER_FLAG_SHOULD_RUN, const int4x2& lhs, const int32_t& rhs, const int4x2& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_int4x2_cmuls, TEMPER_FLAG_SHOULD_RUN, const int4x2 &lhs, const int32_t &rhs, const int4x2 &expectedAnswer )
 {
 	int4x2 actualResult = lhs * rhs;
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -580,7 +580,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4x2_cmuls,
 	)
 );
 
-TEMPER_TEST_PARAMETRIC( Test_int4x2_cdivs, TEMPER_FLAG_SHOULD_RUN, const int4x2& lhs, const int32_t& rhs, const int4x2& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_int4x2_cdivs, TEMPER_FLAG_SHOULD_RUN, const int4x2 &lhs, const int32_t &rhs, const int4x2 &expectedAnswer )
 {
 	int4x2 actualResult = lhs / rhs;
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -650,7 +650,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4x2_cdivs,
 	)
 );
 
-TEMPER_TEST_PARAMETRIC( Test_int4x2_caddm, TEMPER_FLAG_SHOULD_RUN, const int4x2& lhs, const int4x2& rhs, const int4x2& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_int4x2_caddm, TEMPER_FLAG_SHOULD_RUN, const int4x2 &lhs, const int4x2 &rhs, const int4x2 &expectedAnswer )
 {
 	int4x2 actualResult = lhs + rhs;
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -740,7 +740,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4x2_caddm,
 	)
 );
 
-TEMPER_TEST_PARAMETRIC( Test_int4x2_csubm, TEMPER_FLAG_SHOULD_RUN, const int4x2& lhs, const int4x2& rhs, const int4x2& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_int4x2_csubm, TEMPER_FLAG_SHOULD_RUN, const int4x2 &lhs, const int4x2 &rhs, const int4x2 &expectedAnswer )
 {
 	int4x2 actualResult = lhs - rhs;
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -830,7 +830,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4x2_csubm,
 	)
 );
 
-TEMPER_TEST_PARAMETRIC( Test_int4x2_cmulm, TEMPER_FLAG_SHOULD_RUN, const int4x2& lhs, const int4x2& rhs, const int4x2& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_int4x2_cmulm, TEMPER_FLAG_SHOULD_RUN, const int4x2 &lhs, const int4x2 &rhs, const int4x2 &expectedAnswer )
 {
 	int4x2 actualResult = lhs * rhs;
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -920,7 +920,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4x2_cmulm,
 	)
 );
 
-TEMPER_TEST_PARAMETRIC( Test_int4x2_cdivm, TEMPER_FLAG_SHOULD_RUN, const int4x2& lhs, const int4x2& rhs, const int4x2& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_int4x2_cdivm, TEMPER_FLAG_SHOULD_RUN, const int4x2 &lhs, const int4x2 &rhs, const int4x2 &expectedAnswer )
 {
 	int4x2 actualResult = lhs / rhs;
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -1015,7 +1015,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4x2_cdivm,
 #pragma GCC diagnostic ignored "-Wcast-qual"
 #endif
 
-TEMPER_TEST_PARAMETRIC( Test_int4x2_increment_prefix, TEMPER_FLAG_SHOULD_RUN, const int4x2& x, const int4x2& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_int4x2_increment_prefix, TEMPER_FLAG_SHOULD_RUN, const int4x2 &x, const int4x2 &expectedAnswer )
 {
 	// make local copy of x and use that because we cant do increment or decrement operations on a const reference
 	// and MSVC throws warnings if we just make the parameter a non-const reference
@@ -1084,7 +1084,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4x2_increment_prefix,
 	)
 );
 
-TEMPER_TEST_PARAMETRIC( Test_int4x2_increment_postfix, TEMPER_FLAG_SHOULD_RUN, const int4x2& x, const int4x2& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_int4x2_increment_postfix, TEMPER_FLAG_SHOULD_RUN, const int4x2 &x, const int4x2 &expectedAnswer )
 {
 	// make local copy of x and use that because we cant do increment or decrement operations on a const reference
 	// and MSVC throws warnings if we just make the parameter a non-const reference
@@ -1153,7 +1153,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4x2_increment_postfix,
 	)
 );
 
-TEMPER_TEST_PARAMETRIC( Test_int4x2_decrement_prefix, TEMPER_FLAG_SHOULD_RUN, const int4x2& x, const int4x2& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_int4x2_decrement_prefix, TEMPER_FLAG_SHOULD_RUN, const int4x2 &x, const int4x2 &expectedAnswer )
 {
 	// make local copy of x and use that because we cant do increment or decrement operations on a const reference
 	// and MSVC throws warnings if we just make the parameter a non-const reference
@@ -1222,7 +1222,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4x2_decrement_prefix,
 	)
 );
 
-TEMPER_TEST_PARAMETRIC( Test_int4x2_decrement_postfix, TEMPER_FLAG_SHOULD_RUN, const int4x2& x, const int4x2& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_int4x2_decrement_postfix, TEMPER_FLAG_SHOULD_RUN, const int4x2 &x, const int4x2 &expectedAnswer )
 {
 	// make local copy of x and use that because we cant do increment or decrement operations on a const reference
 	// and MSVC throws warnings if we just make the parameter a non-const reference
@@ -1298,7 +1298,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4x2_decrement_postfix,
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wcast-qual"
 #endif
-TEMPER_TEST_PARAMETRIC( Test_int4x2_negate_prefix, TEMPER_FLAG_SHOULD_RUN, const int4x2& x, const int4x2& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_int4x2_negate_prefix, TEMPER_FLAG_SHOULD_RUN, const int4x2 &x, const int4x2 &expectedAnswer )
 {
 	// make local copy of x and use that because we cant do increment or decrement operations on a const reference
 	// and MSVC throws warnings if we just make the parameter a non-const reference
@@ -1390,7 +1390,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4x2_negate_prefix,
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wcast-qual"
 #endif
-TEMPER_TEST_PARAMETRIC( Test_int4x2_not_prefix, TEMPER_FLAG_SHOULD_RUN, const int4x2& x, const int4x2& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_int4x2_not_prefix, TEMPER_FLAG_SHOULD_RUN, const int4x2 &x, const int4x2 &expectedAnswer )
 {
 	// make local copy of x and use that because we cant do increment or decrement operations on a const reference
 	// and MSVC throws warnings if we just make the parameter a non-const reference
@@ -1418,7 +1418,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4x2_not_prefix,
 #pragma GCC diagnostic pop
 #endif
 
-TEMPER_TEST_PARAMETRIC( Test_int4x2_cands, TEMPER_FLAG_SHOULD_RUN, const int4x2& lhs, const int32_t& rhs, const int4x2& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_int4x2_cands, TEMPER_FLAG_SHOULD_RUN, const int4x2 &lhs, const int32_t &rhs, const int4x2 &expectedAnswer )
 {
 	int4x2 actualResult = lhs & rhs;
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -1488,7 +1488,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4x2_cands,
 	)
 );
 
-TEMPER_TEST_PARAMETRIC( Test_int4x2_cors, TEMPER_FLAG_SHOULD_RUN, const int4x2& lhs, const int32_t& rhs, const int4x2& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_int4x2_cors, TEMPER_FLAG_SHOULD_RUN, const int4x2 &lhs, const int32_t &rhs, const int4x2 &expectedAnswer )
 {
 	int4x2 actualResult = lhs | rhs;
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -1558,7 +1558,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4x2_cors,
 	)
 );
 
-TEMPER_TEST_PARAMETRIC( Test_int4x2_cxors, TEMPER_FLAG_SHOULD_RUN, const int4x2& lhs, const int32_t& rhs, const int4x2& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_int4x2_cxors, TEMPER_FLAG_SHOULD_RUN, const int4x2 &lhs, const int32_t &rhs, const int4x2 &expectedAnswer )
 {
 	int4x2 actualResult = lhs ^ rhs;
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -1628,7 +1628,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4x2_cxors,
 	)
 );
 
-TEMPER_TEST_PARAMETRIC( Test_int4x2_cshift_lefts, TEMPER_FLAG_SHOULD_RUN, const int4x2& lhs, const int32_t& rhs, const int4x2& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_int4x2_cshift_lefts, TEMPER_FLAG_SHOULD_RUN, const int4x2 &lhs, const int32_t &rhs, const int4x2 &expectedAnswer )
 {
 	int4x2 actualResult = lhs << rhs;
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -1698,7 +1698,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4x2_cshift_lefts,
 	)
 );
 
-TEMPER_TEST_PARAMETRIC( Test_int4x2_cshift_rights, TEMPER_FLAG_SHOULD_RUN, const int4x2& lhs, const int32_t& rhs, const int4x2& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_int4x2_cshift_rights, TEMPER_FLAG_SHOULD_RUN, const int4x2 &lhs, const int32_t &rhs, const int4x2 &expectedAnswer )
 {
 	int4x2 actualResult = lhs >> rhs;
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -1768,7 +1768,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4x2_cshift_rights,
 	)
 );
 
-TEMPER_TEST_PARAMETRIC( Test_int4x2_candm, TEMPER_FLAG_SHOULD_RUN, const int4x2& lhs, const int4x2& rhs, const int4x2& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_int4x2_candm, TEMPER_FLAG_SHOULD_RUN, const int4x2 &lhs, const int4x2 &rhs, const int4x2 &expectedAnswer )
 {
 	int4x2 actualResult = lhs & rhs;
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -1858,7 +1858,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4x2_candm,
 	)
 );
 
-TEMPER_TEST_PARAMETRIC( Test_int4x2_corm, TEMPER_FLAG_SHOULD_RUN, const int4x2& lhs, const int4x2& rhs, const int4x2& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_int4x2_corm, TEMPER_FLAG_SHOULD_RUN, const int4x2 &lhs, const int4x2 &rhs, const int4x2 &expectedAnswer )
 {
 	int4x2 actualResult = lhs | rhs;
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -1948,7 +1948,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4x2_corm,
 	)
 );
 
-TEMPER_TEST_PARAMETRIC( Test_int4x2_cxorm, TEMPER_FLAG_SHOULD_RUN, const int4x2& lhs, const int4x2& rhs, const int4x2& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_int4x2_cxorm, TEMPER_FLAG_SHOULD_RUN, const int4x2 &lhs, const int4x2 &rhs, const int4x2 &expectedAnswer )
 {
 	int4x2 actualResult = lhs ^ rhs;
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -2038,7 +2038,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4x2_cxorm,
 	)
 );
 
-TEMPER_TEST_PARAMETRIC( Test_int4x2_cshift_leftm, TEMPER_FLAG_SHOULD_RUN, const int4x2& lhs, const int4x2& rhs, const int4x2& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_int4x2_cshift_leftm, TEMPER_FLAG_SHOULD_RUN, const int4x2 &lhs, const int4x2 &rhs, const int4x2 &expectedAnswer )
 {
 	int4x2 actualResult = lhs << rhs;
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -2128,7 +2128,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4x2_cshift_leftm,
 	)
 );
 
-TEMPER_TEST_PARAMETRIC( Test_int4x2_cshift_rightm, TEMPER_FLAG_SHOULD_RUN, const int4x2& lhs, const int4x2& rhs, const int4x2& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_int4x2_cshift_rightm, TEMPER_FLAG_SHOULD_RUN, const int4x2 &lhs, const int4x2 &rhs, const int4x2 &expectedAnswer )
 {
 	int4x2 actualResult = lhs >> rhs;
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -2218,7 +2218,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4x2_cshift_rightm,
 	)
 );
 
-TEMPER_TEST_PARAMETRIC( Test_int4x2_min, TEMPER_FLAG_SHOULD_RUN, const int4x2& lhs, const int4x2& rhs, const int4x2& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_int4x2_min, TEMPER_FLAG_SHOULD_RUN, const int4x2 &lhs, const int4x2 &rhs, const int4x2 &expectedAnswer )
 {
 	int4x2 actualResult = min( lhs, rhs );
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -2287,7 +2287,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4x2_min,
 	)
 );
 
-TEMPER_TEST_PARAMETRIC( Test_int4x2_max, TEMPER_FLAG_SHOULD_RUN, const int4x2& lhs, const int4x2& rhs, const int4x2& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_int4x2_max, TEMPER_FLAG_SHOULD_RUN, const int4x2 &lhs, const int4x2 &rhs, const int4x2 &expectedAnswer )
 {
 	int4x2 actualResult = max( lhs, rhs );
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -2356,7 +2356,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4x2_max,
 	)
 );
 
-TEMPER_TEST_PARAMETRIC( Test_int4x2_saturate, TEMPER_FLAG_SHOULD_RUN, const int4x2& x, const int4x2& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_int4x2_saturate, TEMPER_FLAG_SHOULD_RUN, const int4x2 &x, const int4x2 &expectedAnswer )
 {
 	int4x2 actualResult = saturate( x );
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -2437,7 +2437,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4x2_saturate,
 	)
 );
 
-TEMPER_TEST_PARAMETRIC( Test_int4x2_sign, TEMPER_FLAG_SHOULD_RUN, const int4x2& x, const int4x2& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_int4x2_sign, TEMPER_FLAG_SHOULD_RUN, const int4x2 &x, const int4x2 &expectedAnswer )
 {
 	int4x2 actualResult = sign( x );
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -2548,7 +2548,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4x2_sign,
 	)
 );
 
-TEMPER_TEST_PARAMETRIC( Test_int4x2_int4x2, TEMPER_FLAG_SHOULD_RUN, const int4x2& convertFrom, const int4x2& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_int4x2_int4x2, TEMPER_FLAG_SHOULD_RUN, const int4x2 &convertFrom, const int4x2 &expectedAnswer )
 {
 	int4x2 actualAnswer = int4x2( convertFrom );
 
@@ -2626,7 +2626,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4x2_int4x2,
 	)
 );
 
-TEMPER_TEST_PARAMETRIC( Test_int4x2_uint4x2, TEMPER_FLAG_SHOULD_RUN, const uint4x2& convertFrom, const int4x2& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_int4x2_uint4x2, TEMPER_FLAG_SHOULD_RUN, const uint4x2 &convertFrom, const int4x2 &expectedAnswer )
 {
 	int4x2 actualAnswer = int4x2( convertFrom );
 
@@ -2704,7 +2704,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4x2_uint4x2,
 	)
 );
 
-TEMPER_TEST_PARAMETRIC( Test_int4x2_float4x2, TEMPER_FLAG_SHOULD_RUN, const float4x2& convertFrom, const int4x2& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_int4x2_float4x2, TEMPER_FLAG_SHOULD_RUN, const float4x2 &convertFrom, const int4x2 &expectedAnswer )
 {
 	int4x2 actualAnswer = int4x2( convertFrom );
 
@@ -2782,7 +2782,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4x2_float4x2,
 	)
 );
 
-TEMPER_TEST_PARAMETRIC( Test_int4x2_double4x2, TEMPER_FLAG_SHOULD_RUN, const double4x2& convertFrom, const int4x2& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_int4x2_double4x2, TEMPER_FLAG_SHOULD_RUN, const double4x2 &convertFrom, const int4x2 &expectedAnswer )
 {
 	int4x2 actualAnswer = int4x2( convertFrom );
 
@@ -2860,7 +2860,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4x2_double4x2,
 	)
 );
 
-TEMPER_TEST_PARAMETRIC( Test_int4x2_identity, TEMPER_FLAG_SHOULD_RUN, const int4x2& matrix, const bool expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_int4x2_identity, TEMPER_FLAG_SHOULD_RUN, const int4x2 &matrix, const bool expectedAnswer )
 {
 	int4x2 identityMat;
 	identity( identityMat );
@@ -2908,7 +2908,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4x2_identity,
 	false
 );
 
-TEMPER_TEST_PARAMETRIC( Test_int4x2_transpose, TEMPER_FLAG_SHOULD_RUN, const int4x2& matrix, const int2x4& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_int4x2_transpose, TEMPER_FLAG_SHOULD_RUN, const int4x2 &matrix, const int2x4 &expectedAnswer )
 {
 	int2x4 actualResult = transpose( matrix );
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -2940,7 +2940,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4x2_transpose,
 	)
 );
 
-TEMPER_TEST_PARAMETRIC( Test_int4x2_mulm, TEMPER_FLAG_SHOULD_RUN, const int4x2& lhs, const int2x4& rhs, const int4x4& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_int4x2_mulm, TEMPER_FLAG_SHOULD_RUN, const int4x2 &lhs, const int2x4 &rhs, const int4x4 &expectedAnswer )
 {
 	int4x4 actualResult = mul( lhs, rhs );
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );

@@ -738,52 +738,52 @@ struct bool4
 	HLML_INLINE bool4( const bool32_t x, const bool32_t y, const bool32_t z, const bool32_t w );
 
 	// Copy constructor.  Copies all elements of 'other' into the vector.
-	HLML_INLINE bool4( const bool4& other );
+	HLML_INLINE bool4( const bool4 &other );
 
 	// Conversion constructor.  Casts all components of 'vec' from type int32_t to type bool32_t.
-	HLML_INLINE explicit bool4( const int4& vec );
+	HLML_INLINE explicit bool4( const int4 &vec );
 
 	// Conversion constructor.  Casts all components of 'vec' from type uint32_t to type bool32_t.
-	HLML_INLINE explicit bool4( const uint4& vec );
+	HLML_INLINE explicit bool4( const uint4 &vec );
 
 	// Conversion constructor.  Casts all components of 'vec' from type float to type bool32_t.
-	HLML_INLINE explicit bool4( const float4& vec );
+	HLML_INLINE explicit bool4( const float4 &vec );
 
 	// Conversion constructor.  Casts all components of 'vec' from type double to type bool32_t.
-	HLML_INLINE explicit bool4( const double4& vec );
+	HLML_INLINE explicit bool4( const double4 &vec );
 
 	// Sets the xy components of the vector to that of the corresponding input vector.  Sets the other corresponding vectors to the given scalars.
-	HLML_INLINE bool4( const bool2& xy, const bool32_t z, const bool32_t w );
+	HLML_INLINE bool4( const bool2 &xy, const bool32_t z, const bool32_t w );
 
 	// Sets the zw components of the vector to that of the corresponding input vector.  Sets the other corresponding vectors to the given scalars.
-	HLML_INLINE bool4( const bool32_t x, const bool32_t y, const bool2& zw );
+	HLML_INLINE bool4( const bool32_t x, const bool32_t y, const bool2 &zw );
 
 	// Sets the xyz components of the vector to that of the corresponding input vector.  Sets the other corresponding vectors to the given scalars.
-	HLML_INLINE bool4( const bool3& xyz, const bool32_t w );
+	HLML_INLINE bool4( const bool3 &xyz, const bool32_t w );
 
 	// Sets the yzw components of the vector to that of the corresponding input vector.  Sets the other corresponding vectors to the given scalars.
-	HLML_INLINE bool4( const bool32_t x, const bool3& yzw );
+	HLML_INLINE bool4( const bool32_t x, const bool3 &yzw );
 
-	HLML_INLINE bool4( const bool2& xy, const bool2& zw );
+	HLML_INLINE bool4( const bool2 &xy, const bool2 &zw );
 
 	~bool4() {}
 
 	// Copies all elements of 'other' into the vector.
-	HLML_INLINE bool4 operator=( const bool2& other );
+	HLML_INLINE bool4 operator=( const bool2 &other );
 
 	// Copies all elements of 'other' into the vector.
-	HLML_INLINE bool4 operator=( const bool3& other );
+	HLML_INLINE bool4 operator=( const bool3 &other );
 
 	// Copies all elements of 'other' into the vector.
-	HLML_INLINE bool4 operator=( const bool4& other );
+	HLML_INLINE bool4 operator=( const bool4 &other );
 
 	// Returns the vector component at the given index.
 	// Index CANNOT be lower than 0 or greater than 3.
-	HLML_INLINE bool32_t& operator[]( const int32_t index );
+	HLML_INLINE bool32_t &operator[]( const int32_t index );
 
 	// Returns the vector component at the given index.
 	// Index CANNOT be lower than 0 or greater than 3.
-	HLML_INLINE const bool32_t& operator[]( const int32_t index ) const;
+	HLML_INLINE const bool32_t &operator[]( const int32_t index ) const;
 };
 
 #if defined( __clang__ ) || defined( __GNUC__ )

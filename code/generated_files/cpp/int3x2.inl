@@ -19,7 +19,7 @@ int3x2::int3x2( const int32_t diagonal )
 	rows[2][2] = diagonal;
 }
 
-int3x2::int3x2( const int2& diagonal )
+int3x2::int3x2( const int2 &diagonal )
 {
 	rows[0][0] = diagonal[0];
 	rows[1][1] = diagonal[1];
@@ -27,7 +27,7 @@ int3x2::int3x2( const int2& diagonal )
 }
 
 // Sets each row of the matrix to the corresponding vector.
-int3x2::int3x2( const int2& row0, const int2& row1, const int2& row2 )
+int3x2::int3x2( const int2 &row0, const int2 &row1, const int2 &row2 )
 {
 	rows[0] = row0;
 	rows[1] = row1;
@@ -44,42 +44,42 @@ int3x2::int3x2( const int32_t m00, const int32_t m01,
 	rows[2] = int2( m20, m21 );
 }
 
-int3x2::int3x2( const int3x2& mat )
+int3x2::int3x2( const int3x2 &mat )
 {
 	rows[0] = mat[0];
 	rows[1] = mat[1];
 	rows[2] = mat[2];
 }
 
-int3x2::int3x2( const bool3x2& mat )
+int3x2::int3x2( const bool3x2 &mat )
 {
 	rows[0] = int2( mat[0] );
 	rows[1] = int2( mat[1] );
 	rows[2] = int2( mat[2] );
 }
 
-int3x2::int3x2( const uint3x2& mat )
+int3x2::int3x2( const uint3x2 &mat )
 {
 	rows[0] = int2( mat[0] );
 	rows[1] = int2( mat[1] );
 	rows[2] = int2( mat[2] );
 }
 
-int3x2::int3x2( const float3x2& mat )
+int3x2::int3x2( const float3x2 &mat )
 {
 	rows[0] = int2( mat[0] );
 	rows[1] = int2( mat[1] );
 	rows[2] = int2( mat[2] );
 }
 
-int3x2::int3x2( const double3x2& mat )
+int3x2::int3x2( const double3x2 &mat )
 {
 	rows[0] = int2( mat[0] );
 	rows[1] = int2( mat[1] );
 	rows[2] = int2( mat[2] );
 }
 
-int3x2 int3x2::operator=( const int3x2& other )
+int3x2 int3x2::operator=( const int3x2 &other )
 {
 	rows[0] = other[0];
 	rows[1] = other[1];
@@ -88,13 +88,13 @@ int3x2 int3x2::operator=( const int3x2& other )
 	return *this;
 }
 
-int2& int3x2::operator[]( const int32_t index )
+int2 &int3x2::operator[]( const int32_t index )
 {
 	HLML_ASSERT( index >= 0 && index < 3 );
 	return rows[index];
 }
 
-const int2& int3x2::operator[]( const int32_t index ) const
+const int2 &int3x2::operator[]( const int32_t index ) const
 {
 	HLML_ASSERT( index >= 0 && index < 3 );
 	return rows[index];

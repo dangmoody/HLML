@@ -25,37 +25,37 @@ uint2::uint2( const uint32_t x, const uint32_t y )
 {
 }
 
-uint2::uint2( const uint2& vec )
+uint2::uint2( const uint2 &vec )
 	: x( vec.x )
 	, y( vec.y )
 {
 }
 
-uint2::uint2( const bool2& vec )
+uint2::uint2( const bool2 &vec )
 	: x( (uint32_t) vec.x )
 	, y( (uint32_t) vec.y )
 {
 }
 
-uint2::uint2( const int2& vec )
+uint2::uint2( const int2 &vec )
 	: x( (uint32_t) vec.x )
 	, y( (uint32_t) vec.y )
 {
 }
 
-uint2::uint2( const float2& vec )
+uint2::uint2( const float2 &vec )
 	: x( (uint32_t) vec.x )
 	, y( (uint32_t) vec.y )
 {
 }
 
-uint2::uint2( const double2& vec )
+uint2::uint2( const double2 &vec )
 	: x( (uint32_t) vec.x )
 	, y( (uint32_t) vec.y )
 {
 }
 
-uint2 uint2::operator=( const uint2& other )
+uint2 uint2::operator=( const uint2 &other )
 {
 	this->x = other.x;
 	this->y = other.y;
@@ -63,13 +63,13 @@ uint2 uint2::operator=( const uint2& other )
 	return *this;
 }
 
-uint32_t& uint2::operator[]( const int32_t index )
+uint32_t &uint2::operator[]( const int32_t index )
 {
 	HLML_ASSERT( index >= 0 && index < 2 );
 	return v[index];
 }
 
-const uint32_t& uint2::operator[]( const int32_t index ) const
+const uint32_t &uint2::operator[]( const int32_t index ) const
 {
 	HLML_ASSERT( index >= 0 && index < 2 );
 	return v[index];

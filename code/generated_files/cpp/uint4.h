@@ -738,52 +738,52 @@ struct uint4
 	HLML_INLINE uint4( const uint32_t x, const uint32_t y, const uint32_t z, const uint32_t w );
 
 	// Copy constructor.  Copies all elements of 'other' into the vector.
-	HLML_INLINE uint4( const uint4& other );
+	HLML_INLINE uint4( const uint4 &other );
 
 	// Conversion constructor.  Casts all components of 'vec' from type bool32_t to type uint32_t.
-	HLML_INLINE explicit uint4( const bool4& vec );
+	HLML_INLINE explicit uint4( const bool4 &vec );
 
 	// Conversion constructor.  Casts all components of 'vec' from type int32_t to type uint32_t.
-	HLML_INLINE explicit uint4( const int4& vec );
+	HLML_INLINE explicit uint4( const int4 &vec );
 
 	// Conversion constructor.  Casts all components of 'vec' from type float to type uint32_t.
-	HLML_INLINE explicit uint4( const float4& vec );
+	HLML_INLINE explicit uint4( const float4 &vec );
 
 	// Conversion constructor.  Casts all components of 'vec' from type double to type uint32_t.
-	HLML_INLINE explicit uint4( const double4& vec );
+	HLML_INLINE explicit uint4( const double4 &vec );
 
 	// Sets the xy components of the vector to that of the corresponding input vector.  Sets the other corresponding vectors to the given scalars.
-	HLML_INLINE uint4( const uint2& xy, const uint32_t z, const uint32_t w );
+	HLML_INLINE uint4( const uint2 &xy, const uint32_t z, const uint32_t w );
 
 	// Sets the zw components of the vector to that of the corresponding input vector.  Sets the other corresponding vectors to the given scalars.
-	HLML_INLINE uint4( const uint32_t x, const uint32_t y, const uint2& zw );
+	HLML_INLINE uint4( const uint32_t x, const uint32_t y, const uint2 &zw );
 
 	// Sets the xyz components of the vector to that of the corresponding input vector.  Sets the other corresponding vectors to the given scalars.
-	HLML_INLINE uint4( const uint3& xyz, const uint32_t w );
+	HLML_INLINE uint4( const uint3 &xyz, const uint32_t w );
 
 	// Sets the yzw components of the vector to that of the corresponding input vector.  Sets the other corresponding vectors to the given scalars.
-	HLML_INLINE uint4( const uint32_t x, const uint3& yzw );
+	HLML_INLINE uint4( const uint32_t x, const uint3 &yzw );
 
-	HLML_INLINE uint4( const uint2& xy, const uint2& zw );
+	HLML_INLINE uint4( const uint2 &xy, const uint2 &zw );
 
 	~uint4() {}
 
 	// Copies all elements of 'other' into the vector.
-	HLML_INLINE uint4 operator=( const uint2& other );
+	HLML_INLINE uint4 operator=( const uint2 &other );
 
 	// Copies all elements of 'other' into the vector.
-	HLML_INLINE uint4 operator=( const uint3& other );
+	HLML_INLINE uint4 operator=( const uint3 &other );
 
 	// Copies all elements of 'other' into the vector.
-	HLML_INLINE uint4 operator=( const uint4& other );
+	HLML_INLINE uint4 operator=( const uint4 &other );
 
 	// Returns the vector component at the given index.
 	// Index CANNOT be lower than 0 or greater than 3.
-	HLML_INLINE uint32_t& operator[]( const int32_t index );
+	HLML_INLINE uint32_t &operator[]( const int32_t index );
 
 	// Returns the vector component at the given index.
 	// Index CANNOT be lower than 0 or greater than 3.
-	HLML_INLINE const uint32_t& operator[]( const int32_t index ) const;
+	HLML_INLINE const uint32_t &operator[]( const int32_t index ) const;
 };
 
 #if defined( __clang__ ) || defined( __GNUC__ )

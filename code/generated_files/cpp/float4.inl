@@ -29,7 +29,7 @@ float4::float4( const float x, const float y, const float z, const float w )
 {
 }
 
-float4::float4( const float4& vec )
+float4::float4( const float4 &vec )
 	: x( vec.x )
 	, y( vec.y )
 	, z( vec.z )
@@ -37,7 +37,7 @@ float4::float4( const float4& vec )
 {
 }
 
-float4::float4( const bool4& vec )
+float4::float4( const bool4 &vec )
 	: x( (float) vec.x )
 	, y( (float) vec.y )
 	, z( (float) vec.z )
@@ -45,7 +45,7 @@ float4::float4( const bool4& vec )
 {
 }
 
-float4::float4( const int4& vec )
+float4::float4( const int4 &vec )
 	: x( (float) vec.x )
 	, y( (float) vec.y )
 	, z( (float) vec.z )
@@ -53,7 +53,7 @@ float4::float4( const int4& vec )
 {
 }
 
-float4::float4( const uint4& vec )
+float4::float4( const uint4 &vec )
 	: x( (float) vec.x )
 	, y( (float) vec.y )
 	, z( (float) vec.z )
@@ -61,7 +61,7 @@ float4::float4( const uint4& vec )
 {
 }
 
-float4::float4( const double4& vec )
+float4::float4( const double4 &vec )
 	: x( (float) vec.x )
 	, y( (float) vec.y )
 	, z( (float) vec.z )
@@ -69,7 +69,7 @@ float4::float4( const double4& vec )
 {
 }
 
-float4::float4( const float2& xy, const float z, const float w )
+float4::float4( const float2 &xy, const float z, const float w )
 	: x( xy.x )
 	, y( xy.y )
 	, z( z )
@@ -77,7 +77,7 @@ float4::float4( const float2& xy, const float z, const float w )
 {
 }
 
-float4::float4( const float x, const float y, const float2& zw )
+float4::float4( const float x, const float y, const float2 &zw )
 	: x( x )
 	, y( y )
 	, z( zw.x )
@@ -85,7 +85,7 @@ float4::float4( const float x, const float y, const float2& zw )
 {
 }
 
-float4::float4( const float3& xyz, const float w )
+float4::float4( const float3 &xyz, const float w )
 	: x( xyz.x )
 	, y( xyz.y )
 	, z( xyz.z )
@@ -93,7 +93,7 @@ float4::float4( const float3& xyz, const float w )
 {
 }
 
-float4::float4( const float x, const float3& w )
+float4::float4( const float x, const float3 &w )
 	: x( x )
 	, y( w.x )
 	, z( w.y )
@@ -101,7 +101,7 @@ float4::float4( const float x, const float3& w )
 {
 }
 
-float4::float4( const float2& xy, const float2& zw )
+float4::float4( const float2 &xy, const float2 &zw )
 	: x( xy.x )
 	, y( xy.y )
 	, z( zw.x )
@@ -109,7 +109,7 @@ float4::float4( const float2& xy, const float2& zw )
 {
 }
 
-float4 float4::operator=( const float2& other )
+float4 float4::operator=( const float2 &other )
 {
 	this->x = other.x;
 	this->y = other.y;
@@ -117,7 +117,7 @@ float4 float4::operator=( const float2& other )
 	return *this;
 }
 
-float4 float4::operator=( const float3& other )
+float4 float4::operator=( const float3 &other )
 {
 	this->x = other.x;
 	this->y = other.y;
@@ -126,7 +126,7 @@ float4 float4::operator=( const float3& other )
 	return *this;
 }
 
-float4 float4::operator=( const float4& other )
+float4 float4::operator=( const float4 &other )
 {
 	this->x = other.x;
 	this->y = other.y;
@@ -136,13 +136,13 @@ float4 float4::operator=( const float4& other )
 	return *this;
 }
 
-float& float4::operator[]( const int32_t index )
+float &float4::operator[]( const int32_t index )
 {
 	HLML_ASSERT( index >= 0 && index < 4 );
 	return v[index];
 }
 
-const float& float4::operator[]( const int32_t index ) const
+const float &float4::operator[]( const int32_t index ) const
 {
 	HLML_ASSERT( index >= 0 && index < 4 );
 	return v[index];

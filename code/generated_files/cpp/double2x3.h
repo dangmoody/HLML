@@ -67,42 +67,42 @@ struct double2x3
 	HLML_INLINE explicit double2x3( const double diagonal );
 
 	// Sets each diagonal component of the matrix to the corresponding vector component.
-	HLML_INLINE double2x3( const double3& diagonal );
+	HLML_INLINE double2x3( const double3 &diagonal );
 
 	// Sets each row of the matrix to the corresponding vector.
-	HLML_INLINE double2x3( const double3& row0, const double3& row1 );
+	HLML_INLINE double2x3( const double3 &row0, const double3 &row1 );
 
 	// Sets each component of the matrix to the corresponding scalar value.
 	HLML_INLINE double2x3( const double m00, const double m01, const double m02,
 					const double m10, const double m11, const double m12 );
 
 	// Copy constructor.
-	HLML_INLINE double2x3( const double2x3& mat );
+	HLML_INLINE double2x3( const double2x3 &mat );
 
 	// Conversion constructor.  Casts all components of 'mat' from type bool32_t to type double.
-	HLML_INLINE explicit double2x3( const bool2x3& mat );
+	HLML_INLINE explicit double2x3( const bool2x3 &mat );
 
 	// Conversion constructor.  Casts all components of 'mat' from type int32_t to type double.
-	HLML_INLINE explicit double2x3( const int2x3& mat );
+	HLML_INLINE explicit double2x3( const int2x3 &mat );
 
 	// Conversion constructor.  Casts all components of 'mat' from type uint32_t to type double.
-	HLML_INLINE explicit double2x3( const uint2x3& mat );
+	HLML_INLINE explicit double2x3( const uint2x3 &mat );
 
 	// Conversion constructor.  Casts all components of 'mat' from type float to type double.
-	HLML_INLINE explicit double2x3( const float2x3& mat );
+	HLML_INLINE explicit double2x3( const float2x3 &mat );
 
 	HLML_INLINE ~double2x3() {}
 
 	// Sets each row of the matrix to be the same as the parameter.
-	HLML_INLINE double2x3 operator=( const double2x3& mat );
+	HLML_INLINE double2x3 operator=( const double2x3 &mat );
 
 	// Returns the row vector at the given index of the matrix.
 	// Index CANNOT be lower than 0 or higher than 2.
-	HLML_INLINE double3& operator[]( const int32_t index );
+	HLML_INLINE double3 &operator[]( const int32_t index );
 
 	// Returns the row vector at the given index of the matrix.
 	// Index CANNOT be lower than 0 or higher than 2.
-	HLML_INLINE const double3& operator[]( const int32_t index ) const;
+	HLML_INLINE const double3 &operator[]( const int32_t index ) const;
 };
 
 #ifdef HLML_NAMESPACE

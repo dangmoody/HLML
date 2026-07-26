@@ -27,56 +27,56 @@ float3::float3( const float x, const float y, const float z )
 {
 }
 
-float3::float3( const float3& vec )
+float3::float3( const float3 &vec )
 	: x( vec.x )
 	, y( vec.y )
 	, z( vec.z )
 {
 }
 
-float3::float3( const bool3& vec )
+float3::float3( const bool3 &vec )
 	: x( (float) vec.x )
 	, y( (float) vec.y )
 	, z( (float) vec.z )
 {
 }
 
-float3::float3( const int3& vec )
+float3::float3( const int3 &vec )
 	: x( (float) vec.x )
 	, y( (float) vec.y )
 	, z( (float) vec.z )
 {
 }
 
-float3::float3( const uint3& vec )
+float3::float3( const uint3 &vec )
 	: x( (float) vec.x )
 	, y( (float) vec.y )
 	, z( (float) vec.z )
 {
 }
 
-float3::float3( const double3& vec )
+float3::float3( const double3 &vec )
 	: x( (float) vec.x )
 	, y( (float) vec.y )
 	, z( (float) vec.z )
 {
 }
 
-float3::float3( const float2& xy, const float z )
+float3::float3( const float2 &xy, const float z )
 	: x( xy.x )
 	, y( xy.y )
 	, z( z )
 {
 }
 
-float3::float3( const float x, const float2& zw )
+float3::float3( const float x, const float2 &zw )
 	: x( x )
 	, y( zw.x )
 	, z( zw.y )
 {
 }
 
-float3 float3::operator=( const float2& other )
+float3 float3::operator=( const float2 &other )
 {
 	this->x = other.x;
 	this->y = other.y;
@@ -84,7 +84,7 @@ float3 float3::operator=( const float2& other )
 	return *this;
 }
 
-float3 float3::operator=( const float3& other )
+float3 float3::operator=( const float3 &other )
 {
 	this->x = other.x;
 	this->y = other.y;
@@ -93,13 +93,13 @@ float3 float3::operator=( const float3& other )
 	return *this;
 }
 
-float& float3::operator[]( const int32_t index )
+float &float3::operator[]( const int32_t index )
 {
 	HLML_ASSERT( index >= 0 && index < 3 );
 	return v[index];
 }
 
-const float& float3::operator[]( const int32_t index ) const
+const float &float3::operator[]( const int32_t index ) const
 {
 	HLML_ASSERT( index >= 0 && index < 3 );
 	return v[index];

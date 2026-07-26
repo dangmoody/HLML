@@ -19,7 +19,7 @@ double3x4::double3x4( const double diagonal )
 	rows[2][2] = diagonal;
 }
 
-double3x4::double3x4( const double4& diagonal )
+double3x4::double3x4( const double4 &diagonal )
 {
 	rows[0][0] = diagonal[0];
 	rows[1][1] = diagonal[1];
@@ -27,7 +27,7 @@ double3x4::double3x4( const double4& diagonal )
 }
 
 // Sets each row of the matrix to the corresponding vector.
-double3x4::double3x4( const double4& row0, const double4& row1, const double4& row2 )
+double3x4::double3x4( const double4 &row0, const double4 &row1, const double4 &row2 )
 {
 	rows[0] = row0;
 	rows[1] = row1;
@@ -44,42 +44,42 @@ double3x4::double3x4( const double m00, const double m01, const double m02, cons
 	rows[2] = double4( m20, m21, m22, m23 );
 }
 
-double3x4::double3x4( const double3x4& mat )
+double3x4::double3x4( const double3x4 &mat )
 {
 	rows[0] = mat[0];
 	rows[1] = mat[1];
 	rows[2] = mat[2];
 }
 
-double3x4::double3x4( const bool3x4& mat )
+double3x4::double3x4( const bool3x4 &mat )
 {
 	rows[0] = double4( mat[0] );
 	rows[1] = double4( mat[1] );
 	rows[2] = double4( mat[2] );
 }
 
-double3x4::double3x4( const int3x4& mat )
+double3x4::double3x4( const int3x4 &mat )
 {
 	rows[0] = double4( mat[0] );
 	rows[1] = double4( mat[1] );
 	rows[2] = double4( mat[2] );
 }
 
-double3x4::double3x4( const uint3x4& mat )
+double3x4::double3x4( const uint3x4 &mat )
 {
 	rows[0] = double4( mat[0] );
 	rows[1] = double4( mat[1] );
 	rows[2] = double4( mat[2] );
 }
 
-double3x4::double3x4( const float3x4& mat )
+double3x4::double3x4( const float3x4 &mat )
 {
 	rows[0] = double4( mat[0] );
 	rows[1] = double4( mat[1] );
 	rows[2] = double4( mat[2] );
 }
 
-double3x4 double3x4::operator=( const double3x4& other )
+double3x4 double3x4::operator=( const double3x4 &other )
 {
 	rows[0] = other[0];
 	rows[1] = other[1];
@@ -88,13 +88,13 @@ double3x4 double3x4::operator=( const double3x4& other )
 	return *this;
 }
 
-double4& double3x4::operator[]( const int32_t index )
+double4 &double3x4::operator[]( const int32_t index )
 {
 	HLML_ASSERT( index >= 0 && index < 3 );
 	return rows[index];
 }
 
-const double4& double3x4::operator[]( const int32_t index ) const
+const double4 &double3x4::operator[]( const int32_t index ) const
 {
 	HLML_ASSERT( index >= 0 && index < 3 );
 	return rows[index];

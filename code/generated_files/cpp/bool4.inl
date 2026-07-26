@@ -29,7 +29,7 @@ bool4::bool4( const bool32_t x, const bool32_t y, const bool32_t z, const bool32
 {
 }
 
-bool4::bool4( const bool4& vec )
+bool4::bool4( const bool4 &vec )
 	: x( vec.x )
 	, y( vec.y )
 	, z( vec.z )
@@ -37,7 +37,7 @@ bool4::bool4( const bool4& vec )
 {
 }
 
-bool4::bool4( const int4& vec )
+bool4::bool4( const int4 &vec )
 	: x( (bool32_t) vec.x )
 	, y( (bool32_t) vec.y )
 	, z( (bool32_t) vec.z )
@@ -45,7 +45,7 @@ bool4::bool4( const int4& vec )
 {
 }
 
-bool4::bool4( const uint4& vec )
+bool4::bool4( const uint4 &vec )
 	: x( (bool32_t) vec.x )
 	, y( (bool32_t) vec.y )
 	, z( (bool32_t) vec.z )
@@ -53,7 +53,7 @@ bool4::bool4( const uint4& vec )
 {
 }
 
-bool4::bool4( const float4& vec )
+bool4::bool4( const float4 &vec )
 	: x( (bool32_t) vec.x )
 	, y( (bool32_t) vec.y )
 	, z( (bool32_t) vec.z )
@@ -61,7 +61,7 @@ bool4::bool4( const float4& vec )
 {
 }
 
-bool4::bool4( const double4& vec )
+bool4::bool4( const double4 &vec )
 	: x( (bool32_t) vec.x )
 	, y( (bool32_t) vec.y )
 	, z( (bool32_t) vec.z )
@@ -69,7 +69,7 @@ bool4::bool4( const double4& vec )
 {
 }
 
-bool4::bool4( const bool2& xy, const bool32_t z, const bool32_t w )
+bool4::bool4( const bool2 &xy, const bool32_t z, const bool32_t w )
 	: x( xy.x )
 	, y( xy.y )
 	, z( z )
@@ -77,7 +77,7 @@ bool4::bool4( const bool2& xy, const bool32_t z, const bool32_t w )
 {
 }
 
-bool4::bool4( const bool32_t x, const bool32_t y, const bool2& zw )
+bool4::bool4( const bool32_t x, const bool32_t y, const bool2 &zw )
 	: x( x )
 	, y( y )
 	, z( zw.x )
@@ -85,7 +85,7 @@ bool4::bool4( const bool32_t x, const bool32_t y, const bool2& zw )
 {
 }
 
-bool4::bool4( const bool3& xyz, const bool32_t w )
+bool4::bool4( const bool3 &xyz, const bool32_t w )
 	: x( xyz.x )
 	, y( xyz.y )
 	, z( xyz.z )
@@ -93,7 +93,7 @@ bool4::bool4( const bool3& xyz, const bool32_t w )
 {
 }
 
-bool4::bool4( const bool32_t x, const bool3& w )
+bool4::bool4( const bool32_t x, const bool3 &w )
 	: x( x )
 	, y( w.x )
 	, z( w.y )
@@ -101,7 +101,7 @@ bool4::bool4( const bool32_t x, const bool3& w )
 {
 }
 
-bool4::bool4( const bool2& xy, const bool2& zw )
+bool4::bool4( const bool2 &xy, const bool2 &zw )
 	: x( xy.x )
 	, y( xy.y )
 	, z( zw.x )
@@ -109,7 +109,7 @@ bool4::bool4( const bool2& xy, const bool2& zw )
 {
 }
 
-bool4 bool4::operator=( const bool2& other )
+bool4 bool4::operator=( const bool2 &other )
 {
 	this->x = other.x;
 	this->y = other.y;
@@ -117,7 +117,7 @@ bool4 bool4::operator=( const bool2& other )
 	return *this;
 }
 
-bool4 bool4::operator=( const bool3& other )
+bool4 bool4::operator=( const bool3 &other )
 {
 	this->x = other.x;
 	this->y = other.y;
@@ -126,7 +126,7 @@ bool4 bool4::operator=( const bool3& other )
 	return *this;
 }
 
-bool4 bool4::operator=( const bool4& other )
+bool4 bool4::operator=( const bool4 &other )
 {
 	this->x = other.x;
 	this->y = other.y;
@@ -136,13 +136,13 @@ bool4 bool4::operator=( const bool4& other )
 	return *this;
 }
 
-bool32_t& bool4::operator[]( const int32_t index )
+bool32_t &bool4::operator[]( const int32_t index )
 {
 	HLML_ASSERT( index >= 0 && index < 4 );
 	return v[index];
 }
 
-const bool32_t& bool4::operator[]( const int32_t index ) const
+const bool32_t &bool4::operator[]( const int32_t index ) const
 {
 	HLML_ASSERT( index >= 0 && index < 4 );
 	return v[index];

@@ -6,7 +6,7 @@
 
 #include "../hlml.h"
 
-TEMPER_TEST_PARAMETRIC( Test_uint2_less_than, TEMPER_FLAG_SHOULD_RUN, const uint2* lhs, const uint2* rhs, const bool2* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_uint2_less_than, TEMPER_FLAG_SHOULD_RUN, const uint2 *lhs, const uint2 *rhs, const bool2 *expectedAnswer )
 {
 	bool2 actualResult = uint2_less_than( lhs, rhs );
 	TEMPER_CHECK_TRUE( bool2_equals( &actualResult, expectedAnswer ) );
@@ -36,7 +36,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_less_than,
 	&(bool2) { false, false }
 );
 
-TEMPER_TEST_PARAMETRIC( Test_uint2_less_than_equal, TEMPER_FLAG_SHOULD_RUN, const uint2* lhs, const uint2* rhs, const bool2* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_uint2_less_than_equal, TEMPER_FLAG_SHOULD_RUN, const uint2 *lhs, const uint2 *rhs, const bool2 *expectedAnswer )
 {
 	bool2 actualResult = uint2_less_than_equal( lhs, rhs );
 	TEMPER_CHECK_TRUE( bool2_equals( &actualResult, expectedAnswer ) );
@@ -66,7 +66,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_less_than_equal,
 	&(bool2) { false, false }
 );
 
-TEMPER_TEST_PARAMETRIC( Test_uint2_greater_than, TEMPER_FLAG_SHOULD_RUN, const uint2* lhs, const uint2* rhs, const bool2* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_uint2_greater_than, TEMPER_FLAG_SHOULD_RUN, const uint2 *lhs, const uint2 *rhs, const bool2 *expectedAnswer )
 {
 	bool2 actualResult = uint2_greater_than( lhs, rhs );
 	TEMPER_CHECK_TRUE( bool2_equals( &actualResult, expectedAnswer ) );
@@ -96,7 +96,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_greater_than,
 	&(bool2) { true, true }
 );
 
-TEMPER_TEST_PARAMETRIC( Test_uint2_greater_than_equal, TEMPER_FLAG_SHOULD_RUN, const uint2* lhs, const uint2* rhs, const bool2* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_uint2_greater_than_equal, TEMPER_FLAG_SHOULD_RUN, const uint2 *lhs, const uint2 *rhs, const bool2 *expectedAnswer )
 {
 	bool2 actualResult = uint2_greater_than_equal( lhs, rhs );
 	TEMPER_CHECK_TRUE( bool2_equals( &actualResult, expectedAnswer ) );
@@ -126,7 +126,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_greater_than_equal,
 	&(bool2) { true, true }
 );
 
-TEMPER_TEST_PARAMETRIC( Test_uint2_cadds, TEMPER_FLAG_SHOULD_RUN, const uint2* lhs, const uint32_t rhs, const uint2* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_uint2_cadds, TEMPER_FLAG_SHOULD_RUN, const uint2 *lhs, const uint32_t rhs, const uint2 *expectedAnswer )
 {
 	uint2 actualResult = uint2_cadds( lhs, rhs );
 	TEMPER_CHECK_TRUE( uint2_equals( &actualResult, expectedAnswer ) );
@@ -156,7 +156,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_cadds,
 	&(uint2) { 12U, 12U }
 );
 
-TEMPER_TEST_PARAMETRIC( Test_uint2_csubs, TEMPER_FLAG_SHOULD_RUN, const uint2* lhs, const uint32_t rhs, const uint2* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_uint2_csubs, TEMPER_FLAG_SHOULD_RUN, const uint2 *lhs, const uint32_t rhs, const uint2 *expectedAnswer )
 {
 	uint2 actualResult = uint2_csubs( lhs, rhs );
 	TEMPER_CHECK_TRUE( uint2_equals( &actualResult, expectedAnswer ) );
@@ -186,7 +186,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_csubs,
 	&(uint2) { 4U, 4U }
 );
 
-TEMPER_TEST_PARAMETRIC( Test_uint2_cmuls, TEMPER_FLAG_SHOULD_RUN, const uint2* lhs, const uint32_t rhs, const uint2* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_uint2_cmuls, TEMPER_FLAG_SHOULD_RUN, const uint2 *lhs, const uint32_t rhs, const uint2 *expectedAnswer )
 {
 	uint2 actualResult = uint2_cmuls( lhs, rhs );
 	TEMPER_CHECK_TRUE( uint2_equals( &actualResult, expectedAnswer ) );
@@ -216,7 +216,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_cmuls,
 	&(uint2) { 32U, 32U }
 );
 
-TEMPER_TEST_PARAMETRIC( Test_uint2_cdivs, TEMPER_FLAG_SHOULD_RUN, const uint2* lhs, const uint32_t rhs, const uint2* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_uint2_cdivs, TEMPER_FLAG_SHOULD_RUN, const uint2 *lhs, const uint32_t rhs, const uint2 *expectedAnswer )
 {
 	uint2 actualResult = uint2_cdivs( lhs, rhs );
 	TEMPER_CHECK_TRUE( uint2_equals( &actualResult, expectedAnswer ) );
@@ -246,7 +246,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_cdivs,
 	&(uint2) { 2U, 2U }
 );
 
-TEMPER_TEST_PARAMETRIC( Test_uint2_caddv, TEMPER_FLAG_SHOULD_RUN, const uint2* lhs, const uint2* rhs, const uint2* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_uint2_caddv, TEMPER_FLAG_SHOULD_RUN, const uint2 *lhs, const uint2 *rhs, const uint2 *expectedAnswer )
 {
 	uint2 actualResult = uint2_caddv( lhs, rhs );
 	TEMPER_CHECK_TRUE( uint2_equals( &actualResult, expectedAnswer ) );
@@ -276,7 +276,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_caddv,
 	&(uint2) { 12U, 12U }
 );
 
-TEMPER_TEST_PARAMETRIC( Test_uint2_csubv, TEMPER_FLAG_SHOULD_RUN, const uint2* lhs, const uint2* rhs, const uint2* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_uint2_csubv, TEMPER_FLAG_SHOULD_RUN, const uint2 *lhs, const uint2 *rhs, const uint2 *expectedAnswer )
 {
 	uint2 actualResult = uint2_csubv( lhs, rhs );
 	TEMPER_CHECK_TRUE( uint2_equals( &actualResult, expectedAnswer ) );
@@ -306,7 +306,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_csubv,
 	&(uint2) { 4U, 4U }
 );
 
-TEMPER_TEST_PARAMETRIC( Test_uint2_cmulv, TEMPER_FLAG_SHOULD_RUN, const uint2* lhs, const uint2* rhs, const uint2* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_uint2_cmulv, TEMPER_FLAG_SHOULD_RUN, const uint2 *lhs, const uint2 *rhs, const uint2 *expectedAnswer )
 {
 	uint2 actualResult = uint2_cmulv( lhs, rhs );
 	TEMPER_CHECK_TRUE( uint2_equals( &actualResult, expectedAnswer ) );
@@ -336,7 +336,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_cmulv,
 	&(uint2) { 32U, 32U }
 );
 
-TEMPER_TEST_PARAMETRIC( Test_uint2_cdivv, TEMPER_FLAG_SHOULD_RUN, const uint2* lhs, const uint2* rhs, const uint2* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_uint2_cdivv, TEMPER_FLAG_SHOULD_RUN, const uint2 *lhs, const uint2 *rhs, const uint2 *expectedAnswer )
 {
 	uint2 actualResult = uint2_cdivv( lhs, rhs );
 	TEMPER_CHECK_TRUE( uint2_equals( &actualResult, expectedAnswer ) );
@@ -370,7 +370,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_cdivv,
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wcast-qual"
 #endif
-TEMPER_TEST_PARAMETRIC( Test_uint2_negate_prefix, TEMPER_FLAG_SHOULD_RUN, const uint2* x, const uint2* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_uint2_negate_prefix, TEMPER_FLAG_SHOULD_RUN, const uint2 *x, const uint2 *expectedAnswer )
 {
 	// make local copy of x and use that because we cant do increment or decrement operations on a const reference
 	// and MSVC throws warnings if we just make the parameter a non-const reference
@@ -412,7 +412,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_negate_prefix,
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wcast-qual"
 #endif
-TEMPER_TEST_PARAMETRIC( Test_uint2_not_prefix, TEMPER_FLAG_SHOULD_RUN, const uint2* x, const uint2* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_uint2_not_prefix, TEMPER_FLAG_SHOULD_RUN, const uint2 *x, const uint2 *expectedAnswer )
 {
 	// make local copy of x and use that because we cant do increment or decrement operations on a const reference
 	// and MSVC throws warnings if we just make the parameter a non-const reference
@@ -430,7 +430,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_not_prefix,
 #pragma GCC diagnostic pop
 #endif
 
-TEMPER_TEST_PARAMETRIC( Test_uint2_cands, TEMPER_FLAG_SHOULD_RUN, const uint2* lhs, const uint32_t rhs, const uint2* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_uint2_cands, TEMPER_FLAG_SHOULD_RUN, const uint2 *lhs, const uint32_t rhs, const uint2 *expectedAnswer )
 {
 	uint2 actualResult = uint2_cands( lhs, rhs );
 	TEMPER_CHECK_TRUE( uint2_equals( &actualResult, expectedAnswer ) );
@@ -460,7 +460,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_cands,
 	&(uint2) { 1U, 1U }
 );
 
-TEMPER_TEST_PARAMETRIC( Test_uint2_cors, TEMPER_FLAG_SHOULD_RUN, const uint2* lhs, const uint32_t rhs, const uint2* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_uint2_cors, TEMPER_FLAG_SHOULD_RUN, const uint2 *lhs, const uint32_t rhs, const uint2 *expectedAnswer )
 {
 	uint2 actualResult = uint2_cors( lhs, rhs );
 	TEMPER_CHECK_TRUE( uint2_equals( &actualResult, expectedAnswer ) );
@@ -490,7 +490,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_cors,
 	&(uint2) { 1U, 1U }
 );
 
-TEMPER_TEST_PARAMETRIC( Test_uint2_cxors, TEMPER_FLAG_SHOULD_RUN, const uint2* lhs, const uint32_t rhs, const uint2* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_uint2_cxors, TEMPER_FLAG_SHOULD_RUN, const uint2 *lhs, const uint32_t rhs, const uint2 *expectedAnswer )
 {
 	uint2 actualResult = uint2_cxors( lhs, rhs );
 	TEMPER_CHECK_TRUE( uint2_equals( &actualResult, expectedAnswer ) );
@@ -520,7 +520,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_cxors,
 	&(uint2) { 0U, 0U }
 );
 
-TEMPER_TEST_PARAMETRIC( Test_uint2_cshift_lefts, TEMPER_FLAG_SHOULD_RUN, const uint2* lhs, const uint32_t rhs, const uint2* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_uint2_cshift_lefts, TEMPER_FLAG_SHOULD_RUN, const uint2 *lhs, const uint32_t rhs, const uint2 *expectedAnswer )
 {
 	uint2 actualResult = uint2_cshift_lefts( lhs, rhs );
 	TEMPER_CHECK_TRUE( uint2_equals( &actualResult, expectedAnswer ) );
@@ -550,7 +550,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_cshift_lefts,
 	&(uint2) { 2U, 2U }
 );
 
-TEMPER_TEST_PARAMETRIC( Test_uint2_cshift_rights, TEMPER_FLAG_SHOULD_RUN, const uint2* lhs, const uint32_t rhs, const uint2* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_uint2_cshift_rights, TEMPER_FLAG_SHOULD_RUN, const uint2 *lhs, const uint32_t rhs, const uint2 *expectedAnswer )
 {
 	uint2 actualResult = uint2_cshift_rights( lhs, rhs );
 	TEMPER_CHECK_TRUE( uint2_equals( &actualResult, expectedAnswer ) );
@@ -580,7 +580,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_cshift_rights,
 	&(uint2) { 0U, 0U }
 );
 
-TEMPER_TEST_PARAMETRIC( Test_uint2_candv, TEMPER_FLAG_SHOULD_RUN, const uint2* lhs, const uint2* rhs, const uint2* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_uint2_candv, TEMPER_FLAG_SHOULD_RUN, const uint2 *lhs, const uint2 *rhs, const uint2 *expectedAnswer )
 {
 	uint2 actualResult = uint2_candv( lhs, rhs );
 	TEMPER_CHECK_TRUE( uint2_equals( &actualResult, expectedAnswer ) );
@@ -610,7 +610,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_candv,
 	&(uint2) { 1U, 1U }
 );
 
-TEMPER_TEST_PARAMETRIC( Test_uint2_corv, TEMPER_FLAG_SHOULD_RUN, const uint2* lhs, const uint2* rhs, const uint2* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_uint2_corv, TEMPER_FLAG_SHOULD_RUN, const uint2 *lhs, const uint2 *rhs, const uint2 *expectedAnswer )
 {
 	uint2 actualResult = uint2_corv( lhs, rhs );
 	TEMPER_CHECK_TRUE( uint2_equals( &actualResult, expectedAnswer ) );
@@ -640,7 +640,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_corv,
 	&(uint2) { 1U, 1U }
 );
 
-TEMPER_TEST_PARAMETRIC( Test_uint2_cxorv, TEMPER_FLAG_SHOULD_RUN, const uint2* lhs, const uint2* rhs, const uint2* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_uint2_cxorv, TEMPER_FLAG_SHOULD_RUN, const uint2 *lhs, const uint2 *rhs, const uint2 *expectedAnswer )
 {
 	uint2 actualResult = uint2_cxorv( lhs, rhs );
 	TEMPER_CHECK_TRUE( uint2_equals( &actualResult, expectedAnswer ) );
@@ -670,7 +670,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_cxorv,
 	&(uint2) { 0U, 0U }
 );
 
-TEMPER_TEST_PARAMETRIC( Test_uint2_cshift_leftv, TEMPER_FLAG_SHOULD_RUN, const uint2* lhs, const uint2* rhs, const uint2* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_uint2_cshift_leftv, TEMPER_FLAG_SHOULD_RUN, const uint2 *lhs, const uint2 *rhs, const uint2 *expectedAnswer )
 {
 	uint2 actualResult = uint2_cshift_leftv( lhs, rhs );
 	TEMPER_CHECK_TRUE( uint2_equals( &actualResult, expectedAnswer ) );
@@ -700,7 +700,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_cshift_leftv,
 	&(uint2) { 2U, 2U }
 );
 
-TEMPER_TEST_PARAMETRIC( Test_uint2_cshift_rightv, TEMPER_FLAG_SHOULD_RUN, const uint2* lhs, const uint2* rhs, const uint2* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_uint2_cshift_rightv, TEMPER_FLAG_SHOULD_RUN, const uint2 *lhs, const uint2 *rhs, const uint2 *expectedAnswer )
 {
 	uint2 actualResult = uint2_cshift_rightv( lhs, rhs );
 	TEMPER_CHECK_TRUE( uint2_equals( &actualResult, expectedAnswer ) );
@@ -730,7 +730,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_cshift_rightv,
 	&(uint2) { 0U, 0U }
 );
 
-TEMPER_TEST_PARAMETRIC( Test_uint2_min, TEMPER_FLAG_SHOULD_RUN, const uint2* lhs, const uint2* rhs, const uint2* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_uint2_min, TEMPER_FLAG_SHOULD_RUN, const uint2 *lhs, const uint2 *rhs, const uint2 *expectedAnswer )
 {
 	uint2 actualResult = uint2_min( lhs, rhs );
 	TEMPER_CHECK_TRUE( uint2_equals( &actualResult, expectedAnswer ) );
@@ -754,7 +754,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_min,
 	&(uint2) { 69U, 69U }
 );
 
-TEMPER_TEST_PARAMETRIC( Test_uint2_max, TEMPER_FLAG_SHOULD_RUN, const uint2* lhs, const uint2* rhs, const uint2* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_uint2_max, TEMPER_FLAG_SHOULD_RUN, const uint2 *lhs, const uint2 *rhs, const uint2 *expectedAnswer )
 {
 	uint2 actualResult = uint2_max( lhs, rhs );
 	TEMPER_CHECK_TRUE( uint2_equals( &actualResult, expectedAnswer ) );
@@ -778,7 +778,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_max,
 	&(uint2) { 420U, 420U }
 );
 
-TEMPER_TEST_PARAMETRIC( Test_uint2_saturate, TEMPER_FLAG_SHOULD_RUN, const uint2* x, const uint2* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_uint2_saturate, TEMPER_FLAG_SHOULD_RUN, const uint2 *x, const uint2 *expectedAnswer )
 {
 	uint2 actualResult = uint2_saturate( x );
 	TEMPER_CHECK_TRUE( uint2_equals( &actualResult, expectedAnswer ) );
@@ -809,7 +809,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_saturate,
 	&(uint2) { 1U, 1U }
 );
 
-TEMPER_TEST_PARAMETRIC( Test_uint2_lengthsq, TEMPER_FLAG_SHOULD_RUN, const uint2* vec, const float expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_uint2_lengthsq, TEMPER_FLAG_SHOULD_RUN, const uint2 *vec, const float expectedAnswer )
 {
 	float actualResult = uint2_lengthsq( vec );
 	TEMPER_CHECK_TRUE( floateq( actualResult, expectedAnswer ) );
@@ -830,7 +830,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_lengthsq,
 	8.000000f
 );
 
-TEMPER_TEST_PARAMETRIC( Test_uint2_length, TEMPER_FLAG_SHOULD_RUN, const uint2* vec, const float expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_uint2_length, TEMPER_FLAG_SHOULD_RUN, const uint2 *vec, const float expectedAnswer )
 {
 	float actualResult = uint2_length( vec );
 	TEMPER_CHECK_TRUE( floateq( actualResult, expectedAnswer ) );
@@ -851,7 +851,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_length,
 	2.828427f
 );
 
-TEMPER_TEST_PARAMETRIC( Test_uint2_dot, TEMPER_FLAG_SHOULD_RUN, const uint2* lhs, const uint2* rhs, const uint32_t expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_uint2_dot, TEMPER_FLAG_SHOULD_RUN, const uint2 *lhs, const uint2 *rhs, const uint32_t expectedAnswer )
 {
 	uint32_t actualResult = uint2_dot( lhs, rhs );
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -875,7 +875,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_dot,
 	4294967294U
 );
 
-TEMPER_TEST_PARAMETRIC( Test_uint2_distancesq, TEMPER_FLAG_SHOULD_RUN, const uint2* lhs, const uint2* rhs, const float expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_uint2_distancesq, TEMPER_FLAG_SHOULD_RUN, const uint2 *lhs, const uint2 *rhs, const float expectedAnswer )
 {
 	float actualResult = uint2_distancesq( lhs, rhs );
 	TEMPER_CHECK_TRUE( floateq( actualResult, expectedAnswer ) );
@@ -899,7 +899,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_distancesq,
 	8.000000f
 );
 
-TEMPER_TEST_PARAMETRIC( Test_uint2_distance, TEMPER_FLAG_SHOULD_RUN, const uint2* lhs, const uint2* rhs, const float expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_uint2_distance, TEMPER_FLAG_SHOULD_RUN, const uint2 *lhs, const uint2 *rhs, const float expectedAnswer )
 {
 	float actualResult = uint2_distance( lhs, rhs );
 	TEMPER_CHECK_TRUE( floateq( actualResult, expectedAnswer ) );

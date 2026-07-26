@@ -6,7 +6,7 @@
 
 #include "../hlml.h"
 
-TEMPER_TEST_PARAMETRIC( Test_bool4x3_all, TEMPER_FLAG_SHOULD_RUN, const bool4x3* x, const bool32_t expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool4x3_all, TEMPER_FLAG_SHOULD_RUN, const bool4x3 *x, const bool32_t expectedAnswer )
 {
 	bool32_t actualResult = bool4x3_all( x );
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -67,7 +67,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool4x3_all,
 	false
 );
 
-TEMPER_TEST_PARAMETRIC( Test_bool4x3_any, TEMPER_FLAG_SHOULD_RUN, const bool4x3* x, const bool32_t expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool4x3_any, TEMPER_FLAG_SHOULD_RUN, const bool4x3 *x, const bool32_t expectedAnswer )
 {
 	bool32_t actualResult = bool4x3_any( x );
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -128,7 +128,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool4x3_any,
 	false
 );
 
-TEMPER_TEST_PARAMETRIC( Test_bool4x3_identity, TEMPER_FLAG_SHOULD_RUN, const bool4x3* matrix, const bool expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool4x3_identity, TEMPER_FLAG_SHOULD_RUN, const bool4x3 *matrix, const bool expectedAnswer )
 {
 	bool4x3 identityMat;
 	bool4x3_identity( &identityMat );
@@ -180,7 +180,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool4x3_identity,
 	false
 );
 
-TEMPER_TEST_PARAMETRIC( Test_bool4x3_transpose, TEMPER_FLAG_SHOULD_RUN, const bool4x3* matrix, const bool3x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool4x3_transpose, TEMPER_FLAG_SHOULD_RUN, const bool4x3 *matrix, const bool3x4 *expectedAnswer )
 {
 	bool3x4 actualResult = bool4x3_transpose( matrix );
 	TEMPER_CHECK_TRUE( bool3x4_equals( &actualResult, expectedAnswer ) );

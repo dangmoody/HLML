@@ -67,10 +67,10 @@ struct uint4x4
 	HLML_INLINE explicit uint4x4( const uint32_t diagonal );
 
 	// Sets each diagonal component of the matrix to the corresponding vector component.
-	HLML_INLINE uint4x4( const uint4& diagonal );
+	HLML_INLINE uint4x4( const uint4 &diagonal );
 
 	// Sets each row of the matrix to the corresponding vector.
-	HLML_INLINE uint4x4( const uint4& row0, const uint4& row1, const uint4& row2, const uint4& row3 );
+	HLML_INLINE uint4x4( const uint4 &row0, const uint4 &row1, const uint4 &row2, const uint4 &row3 );
 
 	// Sets each component of the matrix to the corresponding scalar value.
 	HLML_INLINE uint4x4( const uint32_t m00, const uint32_t m01, const uint32_t m02, const uint32_t m03,
@@ -79,32 +79,32 @@ struct uint4x4
 					const uint32_t m30, const uint32_t m31, const uint32_t m32, const uint32_t m33 );
 
 	// Copy constructor.
-	HLML_INLINE uint4x4( const uint4x4& mat );
+	HLML_INLINE uint4x4( const uint4x4 &mat );
 
 	// Conversion constructor.  Casts all components of 'mat' from type bool32_t to type uint32_t.
-	HLML_INLINE explicit uint4x4( const bool4x4& mat );
+	HLML_INLINE explicit uint4x4( const bool4x4 &mat );
 
 	// Conversion constructor.  Casts all components of 'mat' from type int32_t to type uint32_t.
-	HLML_INLINE explicit uint4x4( const int4x4& mat );
+	HLML_INLINE explicit uint4x4( const int4x4 &mat );
 
 	// Conversion constructor.  Casts all components of 'mat' from type float to type uint32_t.
-	HLML_INLINE explicit uint4x4( const float4x4& mat );
+	HLML_INLINE explicit uint4x4( const float4x4 &mat );
 
 	// Conversion constructor.  Casts all components of 'mat' from type double to type uint32_t.
-	HLML_INLINE explicit uint4x4( const double4x4& mat );
+	HLML_INLINE explicit uint4x4( const double4x4 &mat );
 
 	HLML_INLINE ~uint4x4() {}
 
 	// Sets each row of the matrix to be the same as the parameter.
-	HLML_INLINE uint4x4 operator=( const uint4x4& mat );
+	HLML_INLINE uint4x4 operator=( const uint4x4 &mat );
 
 	// Returns the row vector at the given index of the matrix.
 	// Index CANNOT be lower than 0 or higher than 4.
-	HLML_INLINE uint4& operator[]( const int32_t index );
+	HLML_INLINE uint4 &operator[]( const int32_t index );
 
 	// Returns the row vector at the given index of the matrix.
 	// Index CANNOT be lower than 0 or higher than 4.
-	HLML_INLINE const uint4& operator[]( const int32_t index ) const;
+	HLML_INLINE const uint4 &operator[]( const int32_t index ) const;
 };
 
 #ifdef HLML_NAMESPACE

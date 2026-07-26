@@ -67,42 +67,42 @@ struct bool2x2
 	HLML_INLINE explicit bool2x2( const bool32_t diagonal );
 
 	// Sets each diagonal component of the matrix to the corresponding vector component.
-	HLML_INLINE bool2x2( const bool2& diagonal );
+	HLML_INLINE bool2x2( const bool2 &diagonal );
 
 	// Sets each row of the matrix to the corresponding vector.
-	HLML_INLINE bool2x2( const bool2& row0, const bool2& row1 );
+	HLML_INLINE bool2x2( const bool2 &row0, const bool2 &row1 );
 
 	// Sets each component of the matrix to the corresponding scalar value.
 	HLML_INLINE bool2x2( const bool32_t m00, const bool32_t m01,
 					const bool32_t m10, const bool32_t m11 );
 
 	// Copy constructor.
-	HLML_INLINE bool2x2( const bool2x2& mat );
+	HLML_INLINE bool2x2( const bool2x2 &mat );
 
 	// Conversion constructor.  Casts all components of 'mat' from type int32_t to type bool32_t.
-	HLML_INLINE explicit bool2x2( const int2x2& mat );
+	HLML_INLINE explicit bool2x2( const int2x2 &mat );
 
 	// Conversion constructor.  Casts all components of 'mat' from type uint32_t to type bool32_t.
-	HLML_INLINE explicit bool2x2( const uint2x2& mat );
+	HLML_INLINE explicit bool2x2( const uint2x2 &mat );
 
 	// Conversion constructor.  Casts all components of 'mat' from type float to type bool32_t.
-	HLML_INLINE explicit bool2x2( const float2x2& mat );
+	HLML_INLINE explicit bool2x2( const float2x2 &mat );
 
 	// Conversion constructor.  Casts all components of 'mat' from type double to type bool32_t.
-	HLML_INLINE explicit bool2x2( const double2x2& mat );
+	HLML_INLINE explicit bool2x2( const double2x2 &mat );
 
 	HLML_INLINE ~bool2x2() {}
 
 	// Sets each row of the matrix to be the same as the parameter.
-	HLML_INLINE bool2x2 operator=( const bool2x2& mat );
+	HLML_INLINE bool2x2 operator=( const bool2x2 &mat );
 
 	// Returns the row vector at the given index of the matrix.
 	// Index CANNOT be lower than 0 or higher than 2.
-	HLML_INLINE bool2& operator[]( const int32_t index );
+	HLML_INLINE bool2 &operator[]( const int32_t index );
 
 	// Returns the row vector at the given index of the matrix.
 	// Index CANNOT be lower than 0 or higher than 2.
-	HLML_INLINE const bool2& operator[]( const int32_t index ) const;
+	HLML_INLINE const bool2 &operator[]( const int32_t index ) const;
 };
 
 #ifdef HLML_NAMESPACE

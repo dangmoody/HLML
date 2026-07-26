@@ -18,14 +18,14 @@ int2x3::int2x3( const int32_t diagonal )
 	rows[1][1] = diagonal;
 }
 
-int2x3::int2x3( const int3& diagonal )
+int2x3::int2x3( const int3 &diagonal )
 {
 	rows[0][0] = diagonal[0];
 	rows[1][1] = diagonal[1];
 }
 
 // Sets each row of the matrix to the corresponding vector.
-int2x3::int2x3( const int3& row0, const int3& row1 )
+int2x3::int2x3( const int3 &row0, const int3 &row1 )
 {
 	rows[0] = row0;
 	rows[1] = row1;
@@ -39,37 +39,37 @@ int2x3::int2x3( const int32_t m00, const int32_t m01, const int32_t m02,
 	rows[1] = int3( m10, m11, m12 );
 }
 
-int2x3::int2x3( const int2x3& mat )
+int2x3::int2x3( const int2x3 &mat )
 {
 	rows[0] = mat[0];
 	rows[1] = mat[1];
 }
 
-int2x3::int2x3( const bool2x3& mat )
+int2x3::int2x3( const bool2x3 &mat )
 {
 	rows[0] = int3( mat[0] );
 	rows[1] = int3( mat[1] );
 }
 
-int2x3::int2x3( const uint2x3& mat )
+int2x3::int2x3( const uint2x3 &mat )
 {
 	rows[0] = int3( mat[0] );
 	rows[1] = int3( mat[1] );
 }
 
-int2x3::int2x3( const float2x3& mat )
+int2x3::int2x3( const float2x3 &mat )
 {
 	rows[0] = int3( mat[0] );
 	rows[1] = int3( mat[1] );
 }
 
-int2x3::int2x3( const double2x3& mat )
+int2x3::int2x3( const double2x3 &mat )
 {
 	rows[0] = int3( mat[0] );
 	rows[1] = int3( mat[1] );
 }
 
-int2x3 int2x3::operator=( const int2x3& other )
+int2x3 int2x3::operator=( const int2x3 &other )
 {
 	rows[0] = other[0];
 	rows[1] = other[1];
@@ -77,13 +77,13 @@ int2x3 int2x3::operator=( const int2x3& other )
 	return *this;
 }
 
-int3& int2x3::operator[]( const int32_t index )
+int3 &int2x3::operator[]( const int32_t index )
 {
 	HLML_ASSERT( index >= 0 && index < 2 );
 	return rows[index];
 }
 
-const int3& int2x3::operator[]( const int32_t index ) const
+const int3 &int2x3::operator[]( const int32_t index ) const
 {
 	HLML_ASSERT( index >= 0 && index < 2 );
 	return rows[index];

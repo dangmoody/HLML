@@ -19,7 +19,7 @@ double3x2::double3x2( const double diagonal )
 	rows[2][2] = diagonal;
 }
 
-double3x2::double3x2( const double2& diagonal )
+double3x2::double3x2( const double2 &diagonal )
 {
 	rows[0][0] = diagonal[0];
 	rows[1][1] = diagonal[1];
@@ -27,7 +27,7 @@ double3x2::double3x2( const double2& diagonal )
 }
 
 // Sets each row of the matrix to the corresponding vector.
-double3x2::double3x2( const double2& row0, const double2& row1, const double2& row2 )
+double3x2::double3x2( const double2 &row0, const double2 &row1, const double2 &row2 )
 {
 	rows[0] = row0;
 	rows[1] = row1;
@@ -44,42 +44,42 @@ double3x2::double3x2( const double m00, const double m01,
 	rows[2] = double2( m20, m21 );
 }
 
-double3x2::double3x2( const double3x2& mat )
+double3x2::double3x2( const double3x2 &mat )
 {
 	rows[0] = mat[0];
 	rows[1] = mat[1];
 	rows[2] = mat[2];
 }
 
-double3x2::double3x2( const bool3x2& mat )
+double3x2::double3x2( const bool3x2 &mat )
 {
 	rows[0] = double2( mat[0] );
 	rows[1] = double2( mat[1] );
 	rows[2] = double2( mat[2] );
 }
 
-double3x2::double3x2( const int3x2& mat )
+double3x2::double3x2( const int3x2 &mat )
 {
 	rows[0] = double2( mat[0] );
 	rows[1] = double2( mat[1] );
 	rows[2] = double2( mat[2] );
 }
 
-double3x2::double3x2( const uint3x2& mat )
+double3x2::double3x2( const uint3x2 &mat )
 {
 	rows[0] = double2( mat[0] );
 	rows[1] = double2( mat[1] );
 	rows[2] = double2( mat[2] );
 }
 
-double3x2::double3x2( const float3x2& mat )
+double3x2::double3x2( const float3x2 &mat )
 {
 	rows[0] = double2( mat[0] );
 	rows[1] = double2( mat[1] );
 	rows[2] = double2( mat[2] );
 }
 
-double3x2 double3x2::operator=( const double3x2& other )
+double3x2 double3x2::operator=( const double3x2 &other )
 {
 	rows[0] = other[0];
 	rows[1] = other[1];
@@ -88,13 +88,13 @@ double3x2 double3x2::operator=( const double3x2& other )
 	return *this;
 }
 
-double2& double3x2::operator[]( const int32_t index )
+double2 &double3x2::operator[]( const int32_t index )
 {
 	HLML_ASSERT( index >= 0 && index < 3 );
 	return rows[index];
 }
 
-const double2& double3x2::operator[]( const int32_t index ) const
+const double2 &double3x2::operator[]( const int32_t index ) const
 {
 	HLML_ASSERT( index >= 0 && index < 3 );
 	return rows[index];

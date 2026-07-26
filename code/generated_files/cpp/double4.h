@@ -738,52 +738,52 @@ struct double4
 	HLML_INLINE double4( const double x, const double y, const double z, const double w );
 
 	// Copy constructor.  Copies all elements of 'other' into the vector.
-	HLML_INLINE double4( const double4& other );
+	HLML_INLINE double4( const double4 &other );
 
 	// Conversion constructor.  Casts all components of 'vec' from type bool32_t to type double.
-	HLML_INLINE explicit double4( const bool4& vec );
+	HLML_INLINE explicit double4( const bool4 &vec );
 
 	// Conversion constructor.  Casts all components of 'vec' from type int32_t to type double.
-	HLML_INLINE explicit double4( const int4& vec );
+	HLML_INLINE explicit double4( const int4 &vec );
 
 	// Conversion constructor.  Casts all components of 'vec' from type uint32_t to type double.
-	HLML_INLINE explicit double4( const uint4& vec );
+	HLML_INLINE explicit double4( const uint4 &vec );
 
 	// Conversion constructor.  Casts all components of 'vec' from type float to type double.
-	HLML_INLINE explicit double4( const float4& vec );
+	HLML_INLINE explicit double4( const float4 &vec );
 
 	// Sets the xy components of the vector to that of the corresponding input vector.  Sets the other corresponding vectors to the given scalars.
-	HLML_INLINE double4( const double2& xy, const double z, const double w );
+	HLML_INLINE double4( const double2 &xy, const double z, const double w );
 
 	// Sets the zw components of the vector to that of the corresponding input vector.  Sets the other corresponding vectors to the given scalars.
-	HLML_INLINE double4( const double x, const double y, const double2& zw );
+	HLML_INLINE double4( const double x, const double y, const double2 &zw );
 
 	// Sets the xyz components of the vector to that of the corresponding input vector.  Sets the other corresponding vectors to the given scalars.
-	HLML_INLINE double4( const double3& xyz, const double w );
+	HLML_INLINE double4( const double3 &xyz, const double w );
 
 	// Sets the yzw components of the vector to that of the corresponding input vector.  Sets the other corresponding vectors to the given scalars.
-	HLML_INLINE double4( const double x, const double3& yzw );
+	HLML_INLINE double4( const double x, const double3 &yzw );
 
-	HLML_INLINE double4( const double2& xy, const double2& zw );
+	HLML_INLINE double4( const double2 &xy, const double2 &zw );
 
 	~double4() {}
 
 	// Copies all elements of 'other' into the vector.
-	HLML_INLINE double4 operator=( const double2& other );
+	HLML_INLINE double4 operator=( const double2 &other );
 
 	// Copies all elements of 'other' into the vector.
-	HLML_INLINE double4 operator=( const double3& other );
+	HLML_INLINE double4 operator=( const double3 &other );
 
 	// Copies all elements of 'other' into the vector.
-	HLML_INLINE double4 operator=( const double4& other );
+	HLML_INLINE double4 operator=( const double4 &other );
 
 	// Returns the vector component at the given index.
 	// Index CANNOT be lower than 0 or greater than 3.
-	HLML_INLINE double& operator[]( const int32_t index );
+	HLML_INLINE double &operator[]( const int32_t index );
 
 	// Returns the vector component at the given index.
 	// Index CANNOT be lower than 0 or greater than 3.
-	HLML_INLINE const double& operator[]( const int32_t index ) const;
+	HLML_INLINE const double &operator[]( const int32_t index ) const;
 };
 
 #if defined( __clang__ ) || defined( __GNUC__ )

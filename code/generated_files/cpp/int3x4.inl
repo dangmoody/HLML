@@ -19,7 +19,7 @@ int3x4::int3x4( const int32_t diagonal )
 	rows[2][2] = diagonal;
 }
 
-int3x4::int3x4( const int4& diagonal )
+int3x4::int3x4( const int4 &diagonal )
 {
 	rows[0][0] = diagonal[0];
 	rows[1][1] = diagonal[1];
@@ -27,7 +27,7 @@ int3x4::int3x4( const int4& diagonal )
 }
 
 // Sets each row of the matrix to the corresponding vector.
-int3x4::int3x4( const int4& row0, const int4& row1, const int4& row2 )
+int3x4::int3x4( const int4 &row0, const int4 &row1, const int4 &row2 )
 {
 	rows[0] = row0;
 	rows[1] = row1;
@@ -44,42 +44,42 @@ int3x4::int3x4( const int32_t m00, const int32_t m01, const int32_t m02, const i
 	rows[2] = int4( m20, m21, m22, m23 );
 }
 
-int3x4::int3x4( const int3x4& mat )
+int3x4::int3x4( const int3x4 &mat )
 {
 	rows[0] = mat[0];
 	rows[1] = mat[1];
 	rows[2] = mat[2];
 }
 
-int3x4::int3x4( const bool3x4& mat )
+int3x4::int3x4( const bool3x4 &mat )
 {
 	rows[0] = int4( mat[0] );
 	rows[1] = int4( mat[1] );
 	rows[2] = int4( mat[2] );
 }
 
-int3x4::int3x4( const uint3x4& mat )
+int3x4::int3x4( const uint3x4 &mat )
 {
 	rows[0] = int4( mat[0] );
 	rows[1] = int4( mat[1] );
 	rows[2] = int4( mat[2] );
 }
 
-int3x4::int3x4( const float3x4& mat )
+int3x4::int3x4( const float3x4 &mat )
 {
 	rows[0] = int4( mat[0] );
 	rows[1] = int4( mat[1] );
 	rows[2] = int4( mat[2] );
 }
 
-int3x4::int3x4( const double3x4& mat )
+int3x4::int3x4( const double3x4 &mat )
 {
 	rows[0] = int4( mat[0] );
 	rows[1] = int4( mat[1] );
 	rows[2] = int4( mat[2] );
 }
 
-int3x4 int3x4::operator=( const int3x4& other )
+int3x4 int3x4::operator=( const int3x4 &other )
 {
 	rows[0] = other[0];
 	rows[1] = other[1];
@@ -88,13 +88,13 @@ int3x4 int3x4::operator=( const int3x4& other )
 	return *this;
 }
 
-int4& int3x4::operator[]( const int32_t index )
+int4 &int3x4::operator[]( const int32_t index )
 {
 	HLML_ASSERT( index >= 0 && index < 3 );
 	return rows[index];
 }
 
-const int4& int3x4::operator[]( const int32_t index ) const
+const int4 &int3x4::operator[]( const int32_t index ) const
 {
 	HLML_ASSERT( index >= 0 && index < 3 );
 	return rows[index];

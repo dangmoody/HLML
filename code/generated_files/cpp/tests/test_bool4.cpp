@@ -10,7 +10,7 @@
 using namespace hlml;
 #endif
 
-TEMPER_TEST_PARAMETRIC( Test_bool4_all, TEMPER_FLAG_SHOULD_RUN, const bool4& x, const bool32_t expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool4_all, TEMPER_FLAG_SHOULD_RUN, const bool4 &x, const bool32_t expectedAnswer )
 {
 	bool32_t actualResult = all( x );
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -41,7 +41,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool4_all,
 	false
 );
 
-TEMPER_TEST_PARAMETRIC( Test_bool4_any, TEMPER_FLAG_SHOULD_RUN, const bool4& x, const bool32_t expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool4_any, TEMPER_FLAG_SHOULD_RUN, const bool4 &x, const bool32_t expectedAnswer )
 {
 	bool32_t actualResult = any( x );
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -72,7 +72,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool4_any,
 	false
 );
 
-TEMPER_TEST_PARAMETRIC( Test_bool4_int4, TEMPER_FLAG_SHOULD_RUN, const int4& convertFrom, const bool4& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool4_int4, TEMPER_FLAG_SHOULD_RUN, const int4 &convertFrom, const bool4 &expectedAnswer )
 {
 	bool4 actualAnswer = bool4( convertFrom );
 
@@ -102,7 +102,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool4_int4,
 	bool4( true, true, true, true )
 );
 
-TEMPER_TEST_PARAMETRIC( Test_bool4_uint4, TEMPER_FLAG_SHOULD_RUN, const uint4& convertFrom, const bool4& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool4_uint4, TEMPER_FLAG_SHOULD_RUN, const uint4 &convertFrom, const bool4 &expectedAnswer )
 {
 	bool4 actualAnswer = bool4( convertFrom );
 
@@ -132,7 +132,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool4_uint4,
 	bool4( true, true, true, true )
 );
 
-TEMPER_TEST_PARAMETRIC( Test_bool4_float4, TEMPER_FLAG_SHOULD_RUN, const float4& convertFrom, const bool4& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool4_float4, TEMPER_FLAG_SHOULD_RUN, const float4 &convertFrom, const bool4 &expectedAnswer )
 {
 	bool4 actualAnswer = bool4( convertFrom );
 
@@ -162,7 +162,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool4_float4,
 	bool4( true, true, true, true )
 );
 
-TEMPER_TEST_PARAMETRIC( Test_bool4_double4, TEMPER_FLAG_SHOULD_RUN, const double4& convertFrom, const bool4& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool4_double4, TEMPER_FLAG_SHOULD_RUN, const double4 &convertFrom, const bool4 &expectedAnswer )
 {
 	bool4 actualAnswer = bool4( convertFrom );
 
@@ -336,7 +336,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool4_composite_ctor_1_vec_after_with_3_left
 	bool4( true, true, true, true )
 );
 
-TEMPER_TEST_PARAMETRIC( Test_bool4_composite_ctor_2_vecs, TEMPER_FLAG_SHOULD_RUN, const bool2& vec0, const bool2& vec1, const bool4& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool4_composite_ctor_2_vecs, TEMPER_FLAG_SHOULD_RUN, const bool2 &vec0, const bool2 &vec1, const bool4 &expectedAnswer )
 {
 	bool4 actualAnswer = bool4( vec0, vec1 );
 

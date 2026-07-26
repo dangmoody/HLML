@@ -45,10 +45,11 @@ SOFTWARE.
 #endif
 
 // not really a "component-wise" function in the common sense, just so happens to use touch all of them
-static void GenerateFunction_All( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorFlags_t flags ) {
+static void GenerateFunction_All( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( code );
+	assert( strings );
 
 	if ( typeInfo->type != GEN_TYPE_BOOL ) {
 		return;
@@ -57,7 +58,7 @@ static void GenerateFunction_All( allocatorLinear_t *tempStorage, const typeInfo
 	const char *allFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_ALL );
 
 	StringBuilder_Append(  code, "// Returns true if ALL components of the 'x' are true, otherwise returns false.\n" );
-	StringBuilder_Appendf( code, "HLML_INLINE bool %s( const %s *x )\n", allFuncStr, typeInfo->fullTypeName );
+	StringBuilder_Appendf( code, "HLML_INLINE bool %s( const %s%sx )\n", allFuncStr, typeInfo->fullTypeName, strings->ptrDeclStr );
 	Gen_AppendOpenBrace( code, flags, "" );
 	StringBuilder_Append(  code, "\treturn " );
 
@@ -72,10 +73,11 @@ static void GenerateFunction_All( allocatorLinear_t *tempStorage, const typeInfo
 	StringBuilder_Append( code, ";\n}\n\n" );
 }
 
-static void GenerateFunction_Any( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorFlags_t flags ) {
+static void GenerateFunction_Any( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( code );
+	assert( strings );
 
 	if ( typeInfo->type != GEN_TYPE_BOOL ) {
 		return;
@@ -84,7 +86,7 @@ static void GenerateFunction_Any( allocatorLinear_t *tempStorage, const typeInfo
 	const char *anyFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_ANY );
 
 	StringBuilder_Append(  code, "// Returns true if ANY one component of 'x' is true, otherwise returns false.\n" );
-	StringBuilder_Appendf( code, "HLML_INLINE bool %s( const %s *x )\n", anyFuncStr, typeInfo->fullTypeName );
+	StringBuilder_Appendf( code, "HLML_INLINE bool %s( const %s%sx )\n", anyFuncStr, typeInfo->fullTypeName, strings->ptrDeclStr );
 	Gen_AppendOpenBrace( code, flags, "" );
 	StringBuilder_Append(  code, "\treturn " );
 
@@ -118,7 +120,7 @@ static void GenerateFunction_LengthSqr( allocatorLinear_t *tempStorage, const ty
 	bool32 shouldTypecast = !Gen_TypeIsFloatingPoint( typeInfo->type );
 
 	StringBuilder_Append(  code, "// Returns the magnitude of vector squared.\n" );
-	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%s vec )\n", returnTypeName, lengthsqrFuncStr, typeInfo->fullTypeName, strings->parmPassByStr );
+	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%svec )\n", returnTypeName, lengthsqrFuncStr, typeInfo->fullTypeName, strings->parmPassByStr );
 	Gen_AppendOpenBrace( code, flags, "" );
 	StringBuilder_Append(  code, "\treturn " );
 
@@ -164,7 +166,7 @@ static void GenerateFunction_Length( allocatorLinear_t *tempStorage, const typeI
 	const char *sqrtFuncStr = Gen_GetBuiltinFunction( tempStorage, typeInfo->type, GEN_BUILTIN_FUNCTION_NAME_SQRT );
 
 	StringBuilder_Append(  code, "// Returns the magnitude of the vector.\n" );
-	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%s vec )\n", returnTypeName, lengthFuncStr, typeInfo->fullTypeName, strings->parmPassByStr );
+	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%svec )\n", returnTypeName, lengthFuncStr, typeInfo->fullTypeName, strings->parmPassByStr );
 	Gen_AppendOpenBrace( code, flags, "" );
 	StringBuilder_Appendf( code, "\treturn %s( %s( vec ) );\n", sqrtFuncStr, lengthsqFuncStr );
 	StringBuilder_Append(  code, "}\n\n" );
@@ -190,7 +192,7 @@ static void GenerateFunction_Normalize( allocatorLinear_t *tempStorage, const ty
 	const char *oneStr = Gen_GetNumericLiteral( tempStorage, typeInfo->type, 1.0f, 1 );
 
 	StringBuilder_Append(  code, "// Normalizes the vector.\n" );
-	StringBuilder_Appendf( code, "HLML_INLINE void %s( %s%s vec )\n", normalizeFuncStr, typeInfo->fullTypeName, strings->parmPassByStr );
+	StringBuilder_Appendf( code, "HLML_INLINE void %s( %s%svec )\n", normalizeFuncStr, typeInfo->fullTypeName, strings->parmPassByStr );
 	Gen_AppendOpenBrace( code, flags, "" );
 	StringBuilder_Appendf( code, "\t%s invlen = %s / %s( vec );\n", memberTypeString, oneStr, lengthFuncStr );
 	StringBuilder_Append(  code, "\n" );
@@ -222,7 +224,7 @@ static void GenerateFunction_Normalized( allocatorLinear_t *tempStorage, const t
 	const char *mulStr = Gen_GetFuncName_VectorArithmeticScalar( tempStorage, typeInfo, GEN_OP_ARITHMETIC_MUL );
 
 	StringBuilder_Append(  code, "// Returns a normalized copy of the vector.\n" );
-	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%s vec )\n", typeInfo->fullTypeName, normalizedFuncStr, typeInfo->fullTypeName, strings->parmPassByStr );
+	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%svec )\n", typeInfo->fullTypeName, normalizedFuncStr, typeInfo->fullTypeName, strings->parmPassByStr );
 	Gen_AppendOpenBrace( code, flags, "" );
 	StringBuilder_Appendf( code, "\t%s invlen = %s / %s( vec );\n", memberTypeString, oneStr, lengthFuncStr );
 	StringBuilder_Append(  code, "\n" );
@@ -257,7 +259,7 @@ static void GenerateFunction_Dot( allocatorLinear_t *tempStorage, const typeInfo
 	const char *dotFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_DOT );
 
 	StringBuilder_Append(  code, "// Returns the dot product of the two vectors.\n" );
-	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%s lhs, const %s%s rhs )\n", returnTypeString, dotFuncStr, typeInfo->fullTypeName, strings->parmPassByStr, typeInfo->fullTypeName, strings->parmPassByStr );
+	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%slhs, const %s%srhs )\n", returnTypeString, dotFuncStr, typeInfo->fullTypeName, strings->parmPassByStr, typeInfo->fullTypeName, strings->parmPassByStr );
 	Gen_AppendOpenBrace( code, flags, "" );
 	StringBuilder_Append(  code, "\treturn " );
 
@@ -300,7 +302,7 @@ static void GenerateFunction_Cross( allocatorLinear_t *tempStorage, const typeIn
 	const char *crossFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_CROSS );
 
 	StringBuilder_Append(  code, "// Returns a vector perpendicular to the two vectors.\n" );
-	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%s lhs, const %s%s rhs )\n", typeInfo->fullTypeName, crossFuncStr, typeInfo->fullTypeName, strings->parmPassByStr, typeInfo->fullTypeName, strings->parmPassByStr );
+	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%slhs, const %s%srhs )\n", typeInfo->fullTypeName, crossFuncStr, typeInfo->fullTypeName, strings->parmPassByStr, typeInfo->fullTypeName, strings->parmPassByStr );
 	Gen_AppendOpenBrace( code, flags, "" );
 	StringBuilder_Appendf( code, "\treturn HLML_CONSTRUCT( %s )\n", typeInfo->fullTypeName );
 	Gen_AppendOpenBrace( code, flags, "\t" );
@@ -337,7 +339,7 @@ static void GenerateFunction_Angle( allocatorLinear_t *tempStorage, const typeIn
 	const char *acosFuncStr = Gen_GetBuiltinFunction( tempStorage, typeInfo->type, GEN_BUILTIN_FUNCTION_NAME_ACOS );
 
 	StringBuilder_Append(  code, "// Returns the angle (in degrees) between the two vectors.\n" );
-	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%s lhs, const %s%s rhs )\n", returnTypeString, angleFuncStr, typeInfo->fullTypeName, strings->parmPassByStr, typeInfo->fullTypeName, strings->parmPassByStr );
+	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%slhs, const %s%srhs )\n", returnTypeString, angleFuncStr, typeInfo->fullTypeName, strings->parmPassByStr, typeInfo->fullTypeName, strings->parmPassByStr );
 	Gen_AppendOpenBrace( code, flags, "" );
 	if ( flags & GENERATOR_FLAG_PARMS_ARE_POINTERS ) {
 		StringBuilder_Appendf( code, "\t%s lhs_unit = %s( lhs );\n", typeInfo->fullTypeName, normalizedFuncStr );
@@ -369,7 +371,7 @@ static void GenerateFunction_Distancesq( allocatorLinear_t *tempStorage, const t
 	const char *lengthsqFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_LENGTHSQ );
 
 	StringBuilder_Append(  code, "// Returns the squared distance between the two vectors.\n" );
-	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%s lhs, const %s%s rhs )\n", returnTypeName, distancesqFuncStr, typeInfo->fullTypeName, strings->parmPassByStr, typeInfo->fullTypeName, strings->parmPassByStr );
+	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%slhs, const %s%srhs )\n", returnTypeName, distancesqFuncStr, typeInfo->fullTypeName, strings->parmPassByStr, typeInfo->fullTypeName, strings->parmPassByStr );
 	Gen_AppendOpenBrace( code, flags, "" );
 	if ( flags & GENERATOR_FLAG_GENERATE_OPERATORS ) {
 		StringBuilder_Appendf( code, "\treturn %s( lhs - rhs );\n", lengthsqFuncStr );
@@ -402,7 +404,7 @@ static void GenerateFunction_Distance( allocatorLinear_t *tempStorage, const typ
 	const char *lengthFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_LENGTH );
 
 	StringBuilder_Append(  code, "// Returns the distance between the two vectors.\n" );
-	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%s lhs, const %s%s rhs )\n", returnTypeName, distancesqFuncStr, typeInfo->fullTypeName, strings->parmPassByStr, typeInfo->fullTypeName, strings->parmPassByStr );
+	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%slhs, const %s%srhs )\n", returnTypeName, distancesqFuncStr, typeInfo->fullTypeName, strings->parmPassByStr, typeInfo->fullTypeName, strings->parmPassByStr );
 	Gen_AppendOpenBrace( code, flags, "" );
 	if ( flags & GENERATOR_FLAG_GENERATE_OPERATORS ) {
 		StringBuilder_Appendf( code, "\treturn %s( lhs - rhs );\n", lengthFuncStr );
@@ -434,7 +436,7 @@ static void GenerateFunction_Pack( allocatorLinear_t *tempStorage, const typeInf
 	const char *packFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_PACK );
 
 	StringBuilder_Append(  code, "// Returns a 32 bit integer containing each component of the vector at each byte (where the X component contains the left-most byte).\n" );
-	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%s vec )\n", memberTypeString, packFuncStr, typeInfo->fullTypeName, strings->parmPassByStr );
+	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%svec )\n", memberTypeString, packFuncStr, typeInfo->fullTypeName, strings->parmPassByStr );
 	Gen_AppendOpenBrace( code, flags, "" );
 	StringBuilder_Appendf( code, "\treturn ( vec%sx << 24 ) | ( vec%sy << 16 ) | ( vec%sz << 8 ) | ( vec%sw );\n", strings->parmAccessOperatorStr, strings->parmAccessOperatorStr, strings->parmAccessOperatorStr, strings->parmAccessOperatorStr );
 	StringBuilder_Append(  code, "}\n\n" );
@@ -520,7 +522,7 @@ static void GenerateSwizzleFunc_Type( allocatorLinear_t *tempStorage, stringBuil
 	StringBuilder_Append(  code, "\n" );
 
 	if ( isWritable ) {
-		StringBuilder_Appendf( code, "\tHLML_INLINE %s operator=( const %s%s vec );\n", swizzleTypeName, swizzleTypeName, strings->parmPassByStr );
+		StringBuilder_Appendf( code, "\tHLML_INLINE %s operator=( const %s%svec );\n", swizzleTypeName, swizzleTypeName, strings->parmPassByStr );
 		StringBuilder_Append(  code, "\n" );
 	}
 
@@ -589,7 +591,7 @@ static void GenerateSwizzleFunc_OperatorDefinitions( allocatorLinear_t *tempStor
 	// assignment operator
 	if ( isWritable ) {
 		StringBuilder_Append( code, "\n" );
-		StringBuilder_Appendf( code, "%s %s_swizzle_%d_to_%d_%s_t::operator=( const %s%s vec )\n", swizzleTypeName, typeInfo->fullTypeName, typeInfo->numCols, numSwizzleComponents, swizzleStr, swizzleTypeName, strings->parmPassByStr );
+		StringBuilder_Appendf( code, "%s %s_swizzle_%d_to_%d_%s_t::operator=( const %s%svec )\n", swizzleTypeName, typeInfo->fullTypeName, typeInfo->numCols, numSwizzleComponents, swizzleStr, swizzleTypeName, strings->parmPassByStr );
 		Gen_AppendOpenBrace( code, flags, "" );
 		StringBuilder_Appendf( code, "\treturn %s(\n", swizzleTypeName );
 		for ( u32 componentIndex = 0; componentIndex < numSwizzleComponents; componentIndex++ ) {
@@ -879,7 +881,7 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 
 				// copy ctors
 				StringBuilder_Append(  codeHeader, "\t// Copy constructor.  Copies all elements of 'other' into the vector.\n" );
-				StringBuilder_Appendf( codeHeader, "\tHLML_INLINE %s( const %s& other );\n\n", typeInfo->fullTypeName, typeInfo->fullTypeName );
+				StringBuilder_Appendf( codeHeader, "\tHLML_INLINE %s( const %s%sother );\n\n", typeInfo->fullTypeName, typeInfo->fullTypeName, strings->refDeclStr );
 
 				// conversion ctors
 				for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
@@ -899,7 +901,7 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 					const char *otherMemberTypeString = Gen_GetMemberTypeString( otherType );
 
 					StringBuilder_Appendf( codeHeader, "\t// Conversion constructor.  Casts all components of 'vec' from type %s to type %s.\n", otherMemberTypeString, memberTypeString );
-					StringBuilder_Appendf( codeHeader, "\tHLML_INLINE explicit %s( const %s%d& vec );\n\n", typeInfo->fullTypeName, otherTypeString, typeInfo->numCols );
+					StringBuilder_Appendf( codeHeader, "\tHLML_INLINE explicit %s( const %s%d%svec );\n\n", typeInfo->fullTypeName, otherTypeString, typeInfo->numCols, strings->refDeclStr );
 				}
 
 				// scalar/vector composite ctors
@@ -926,7 +928,7 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 
 						// vector before
 						StringBuilder_Appendf( codeHeader, "\t// Sets the %s components of the vector to that of the corresponding input vector.  Sets the other corresponding vectors to the given scalars.\n", subVecStr );
-						StringBuilder_Appendf( codeHeader, "\tHLML_INLINE %s( const %s%d& %s, ", typeInfo->fullTypeName, typeString, componentIndex, subVecStr );
+						StringBuilder_Appendf( codeHeader, "\tHLML_INLINE %s( const %s%d%s%s, ", typeInfo->fullTypeName, typeString, componentIndex, strings->refDeclStr, subVecStr );
 						for ( u32 i = 0; i < leftoverOnes; i++ ) {
 							const u32 componentNameIndex = componentIndex + i;
 
@@ -952,7 +954,7 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 							StringBuilder_Appendf( codeHeader, "const %s %c, ", memberTypeString, componentName );
 						}
 
-						StringBuilder_Appendf( codeHeader, "const %s%d& %s );\n\n", typeString, componentIndex, subVecStr );
+						StringBuilder_Appendf( codeHeader, "const %s%d%s%s );\n\n", typeString, componentIndex, strings->refDeclStr, subVecStr );
 					}
 
 					// if we can also have a ctors consisting of two input vectors then generate that one now
@@ -970,7 +972,7 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 							memcpy( subVecStr, GEN_COMPONENT_NAMES_VECTOR + subVecStrOffset, numVectorParmComponents * sizeof( char ) );
 							subVecStr[numVectorParmComponents] = 0;
 
-							StringBuilder_Appendf( codeHeader, "const %s%d& %s", typeString, numVectorParmComponents, subVecStr );
+							StringBuilder_Appendf( codeHeader, "const %s%d%s%s", typeString, numVectorParmComponents, strings->refDeclStr, subVecStr );
 
 							if ( i != numVectorParms - 1 ) {
 								StringBuilder_Append( codeHeader, ", " );
@@ -991,7 +993,7 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 						const char *otherTypeName = String_TPrintf( tempStorage, "%s%d", Gen_GetTypeString( typeInfo->type ), componentIndex );
 
 						StringBuilder_Append(  codeHeader, "\t// Copies all elements of 'other' into the vector.\n" );
-						StringBuilder_Appendf( codeHeader, "\tHLML_INLINE %s operator=( const %s& other );\n\n", typeInfo->fullTypeName, otherTypeName );
+						StringBuilder_Appendf( codeHeader, "\tHLML_INLINE %s operator=( const %s%sother );\n\n", typeInfo->fullTypeName, otherTypeName, strings->refDeclStr );
 					}
 				}
 
@@ -1000,11 +1002,11 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 				// array operators
 				StringBuilder_Append(  codeHeader, "\t// Returns the vector component at the given index.\n" );
 				StringBuilder_Appendf( codeHeader, "\t// Index CANNOT be lower than 0 or greater than %d.\n", typeInfo->numCols - 1 );
-				StringBuilder_Appendf( codeHeader, "\tHLML_INLINE %s& operator[]( const %s index );\n\n", memberTypeString, returnTypeName );
+				StringBuilder_Appendf( codeHeader, "\tHLML_INLINE %s%soperator[]( const %s index );\n\n", memberTypeString, strings->refDeclStr, returnTypeName );
 
 				StringBuilder_Append(  codeHeader, "\t// Returns the vector component at the given index.\n" );
 				StringBuilder_Appendf( codeHeader, "\t// Index CANNOT be lower than 0 or greater than %d.\n", typeInfo->numCols - 1 );
-				StringBuilder_Appendf( codeHeader, "\tHLML_INLINE const %s& operator[]( const %s index ) const;\n", memberTypeString, returnTypeName );
+				StringBuilder_Appendf( codeHeader, "\tHLML_INLINE const %s%soperator[]( const %s index ) const;\n", memberTypeString, strings->refDeclStr, returnTypeName );
 			}
 
 			// struct end
@@ -1106,7 +1108,7 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 				StringBuilder_Append( codeInl, "}\n\n" );
 
 				// copy ctors
-				StringBuilder_Appendf( codeInl, "%s::%s( const %s& vec )\n", typeInfo->fullTypeName, typeInfo->fullTypeName, typeInfo->fullTypeName );
+				StringBuilder_Appendf( codeInl, "%s::%s( const %s%svec )\n", typeInfo->fullTypeName, typeInfo->fullTypeName, typeInfo->fullTypeName, strings->refDeclStr );
 				StringBuilder_Append( codeInl, "\t: x( vec.x )\n" );
 
 				for ( u32 componentIndex = 1; componentIndex < typeInfo->numCols; componentIndex++ ) {
@@ -1134,7 +1136,7 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 
 					const char *otherTypeString = Gen_GetTypeString( otherType );
 
-					StringBuilder_Appendf( codeInl, "%s::%s( const %s%d& vec )\n", typeInfo->fullTypeName, typeInfo->fullTypeName, otherTypeString, typeInfo->numCols );
+					StringBuilder_Appendf( codeInl, "%s::%s( const %s%d%svec )\n", typeInfo->fullTypeName, typeInfo->fullTypeName, otherTypeString, typeInfo->numCols, strings->refDeclStr );
 
 					if ( otherType != typeInfo->type ) {
 						StringBuilder_Appendf( codeInl, "\t: x( (%s) vec.x )\n", memberTypeString );
@@ -1176,7 +1178,7 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 						subVecStr[componentIndex] = 0;
 
 						// vector before
-						StringBuilder_Appendf( codeInl, "%s::%s( const %s%d& %s, ", typeInfo->fullTypeName, typeInfo->fullTypeName, typeString, componentIndex, subVecStr );
+						StringBuilder_Appendf( codeInl, "%s::%s( const %s%d%s%s, ", typeInfo->fullTypeName, typeInfo->fullTypeName, typeString, componentIndex, strings->refDeclStr, subVecStr );
 						for ( u32 i = 0; i < leftoverOnes; i++ ) {
 							const u32 componentNameIndex = componentIndex + i;
 
@@ -1218,7 +1220,7 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 						memcpy( subVecStr, GEN_COMPONENT_NAMES_VECTOR + componentIndex, componentIndex * sizeof( char ) );
 						subVecStr[componentIndex] = 0;
 
-						StringBuilder_Appendf( codeInl, "const %s%d& %s )\n", typeString, componentIndex, subVecStr );
+						StringBuilder_Appendf( codeInl, "const %s%d%s%s )\n", typeString, componentIndex, strings->refDeclStr, subVecStr );
 						StringBuilder_Append(  codeInl, "\t: x( x )\n" );
 						for ( u32 i = 1; i < leftoverOnes; i++ ) {
 							const char componentName = GEN_COMPONENT_NAMES_VECTOR[i];
@@ -1255,7 +1257,7 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 							memcpy( subVecStr, GEN_COMPONENT_NAMES_VECTOR + subVecStrOffset, numVectorParmComponents * sizeof( char ) );
 							subVecStr[numVectorParmComponents] = 0;
 
-							StringBuilder_Appendf( codeInl, "const %s%d& %s", typeString, numVectorParmComponents, subVecStr );
+							StringBuilder_Appendf( codeInl, "const %s%d%s%s", typeString, numVectorParmComponents, strings->refDeclStr, subVecStr );
 
 							if ( parmIndex != numVectorParms - 1 ) {
 								StringBuilder_Append( codeInl, ", " );
@@ -1301,7 +1303,7 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 					for ( u32 otherVecComponentIndex = componentCountMin; otherVecComponentIndex <= typeInfo->numCols; otherVecComponentIndex++ ) {
 						const char *otherTypeName = String_TPrintf( tempStorage, "%s%d", Gen_GetTypeString( typeInfo->type ), otherVecComponentIndex );
 
-						StringBuilder_Appendf( codeInl, "%s %s::operator=( const %s& other )\n", typeInfo->fullTypeName, typeInfo->fullTypeName, otherTypeName );
+						StringBuilder_Appendf( codeInl, "%s %s::operator=( const %s%sother )\n", typeInfo->fullTypeName, typeInfo->fullTypeName, otherTypeName, strings->refDeclStr );
 						Gen_AppendOpenBrace( codeInl, flags, "" );
 						for ( u32 componentIndex = 0; componentIndex < otherVecComponentIndex; componentIndex++ ) {
 							const char componentName = GEN_COMPONENT_NAMES_VECTOR[componentIndex];
@@ -1315,13 +1317,13 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 				}
 
 				// array operators
-				StringBuilder_Appendf( codeInl, "%s& %s::operator[]( const %s index )\n", memberTypeString, typeInfo->fullTypeName, Gen_GetMemberTypeString( GEN_TYPE_INT ) );
+				StringBuilder_Appendf( codeInl, "%s%s%s::operator[]( const %s index )\n", memberTypeString, strings->refDeclStr, typeInfo->fullTypeName, Gen_GetMemberTypeString( GEN_TYPE_INT ) );
 				Gen_AppendOpenBrace( codeInl, flags, "" );
 				StringBuilder_Appendf( codeInl, "\tHLML_ASSERT( index >= 0 && index < %d );\n", typeInfo->numCols );
 				StringBuilder_Append(  codeInl, "\treturn v[index];\n" );
 				StringBuilder_Append(  codeInl, "}\n\n" );
 
-				StringBuilder_Appendf( codeInl, "const %s& %s::operator[]( const %s index ) const\n", memberTypeString, typeInfo->fullTypeName, Gen_GetMemberTypeString( GEN_TYPE_INT ) );
+				StringBuilder_Appendf( codeInl, "const %s%s%s::operator[]( const %s index ) const\n", memberTypeString, strings->refDeclStr, typeInfo->fullTypeName, Gen_GetMemberTypeString( GEN_TYPE_INT ) );
 				Gen_AppendOpenBrace( codeInl, flags, "" );
 				StringBuilder_Appendf( codeInl, "\tHLML_ASSERT( index >= 0 && index < %d );\n", typeInfo->numCols );
 				StringBuilder_Append(  codeInl, "\treturn v[index];\n" );
@@ -1463,7 +1465,7 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 					StringBuilder_Appendf( codeHeader, "\tScalarType v[%d];\n", numComponents );
 					StringBuilder_Append(  codeHeader, "\n" );
 
-					StringBuilder_Append(  codeHeader, "\tHLML_INLINE ReturnType operator=( const ReturnType& vec )\n" );
+					StringBuilder_Appendf( codeHeader, "\tHLML_INLINE ReturnType operator=( const ReturnType%svec )\n", strings->refDeclStr );
 					Gen_AppendOpenBrace( codeHeader, flags, "\t" );
 					StringBuilder_Append(  codeHeader, "\t\treturn ReturnType(\n" );
 					for ( u32 i = 0; i < numSwizzleComponents; i++ ) {
@@ -1599,8 +1601,8 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 
 			GenerateComponentWiseFunctions( tempStorage, typeInfo, &scalarMemberType, code, strings, flags, scalarTypeEnabled );
 
-			GenerateFunction_All( tempStorage, typeInfo, code, flags );
-			GenerateFunction_Any( tempStorage, typeInfo, code, flags );
+			GenerateFunction_All( tempStorage, typeInfo, code, strings, flags );
+			GenerateFunction_Any( tempStorage, typeInfo, code, strings, flags );
 
 			GenerateFunction_LengthSqr( tempStorage, typeInfo, code, strings, flags );
 			GenerateFunction_Length( tempStorage, typeInfo, code, strings, flags );

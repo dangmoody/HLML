@@ -25,37 +25,37 @@ float2::float2( const float x, const float y )
 {
 }
 
-float2::float2( const float2& vec )
+float2::float2( const float2 &vec )
 	: x( vec.x )
 	, y( vec.y )
 {
 }
 
-float2::float2( const bool2& vec )
+float2::float2( const bool2 &vec )
 	: x( (float) vec.x )
 	, y( (float) vec.y )
 {
 }
 
-float2::float2( const int2& vec )
+float2::float2( const int2 &vec )
 	: x( (float) vec.x )
 	, y( (float) vec.y )
 {
 }
 
-float2::float2( const uint2& vec )
+float2::float2( const uint2 &vec )
 	: x( (float) vec.x )
 	, y( (float) vec.y )
 {
 }
 
-float2::float2( const double2& vec )
+float2::float2( const double2 &vec )
 	: x( (float) vec.x )
 	, y( (float) vec.y )
 {
 }
 
-float2 float2::operator=( const float2& other )
+float2 float2::operator=( const float2 &other )
 {
 	this->x = other.x;
 	this->y = other.y;
@@ -63,13 +63,13 @@ float2 float2::operator=( const float2& other )
 	return *this;
 }
 
-float& float2::operator[]( const int32_t index )
+float &float2::operator[]( const int32_t index )
 {
 	HLML_ASSERT( index >= 0 && index < 2 );
 	return v[index];
 }
 
-const float& float2::operator[]( const int32_t index ) const
+const float &float2::operator[]( const int32_t index ) const
 {
 	HLML_ASSERT( index >= 0 && index < 2 );
 	return v[index];

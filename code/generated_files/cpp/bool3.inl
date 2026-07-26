@@ -27,56 +27,56 @@ bool3::bool3( const bool32_t x, const bool32_t y, const bool32_t z )
 {
 }
 
-bool3::bool3( const bool3& vec )
+bool3::bool3( const bool3 &vec )
 	: x( vec.x )
 	, y( vec.y )
 	, z( vec.z )
 {
 }
 
-bool3::bool3( const int3& vec )
+bool3::bool3( const int3 &vec )
 	: x( (bool32_t) vec.x )
 	, y( (bool32_t) vec.y )
 	, z( (bool32_t) vec.z )
 {
 }
 
-bool3::bool3( const uint3& vec )
+bool3::bool3( const uint3 &vec )
 	: x( (bool32_t) vec.x )
 	, y( (bool32_t) vec.y )
 	, z( (bool32_t) vec.z )
 {
 }
 
-bool3::bool3( const float3& vec )
+bool3::bool3( const float3 &vec )
 	: x( (bool32_t) vec.x )
 	, y( (bool32_t) vec.y )
 	, z( (bool32_t) vec.z )
 {
 }
 
-bool3::bool3( const double3& vec )
+bool3::bool3( const double3 &vec )
 	: x( (bool32_t) vec.x )
 	, y( (bool32_t) vec.y )
 	, z( (bool32_t) vec.z )
 {
 }
 
-bool3::bool3( const bool2& xy, const bool32_t z )
+bool3::bool3( const bool2 &xy, const bool32_t z )
 	: x( xy.x )
 	, y( xy.y )
 	, z( z )
 {
 }
 
-bool3::bool3( const bool32_t x, const bool2& zw )
+bool3::bool3( const bool32_t x, const bool2 &zw )
 	: x( x )
 	, y( zw.x )
 	, z( zw.y )
 {
 }
 
-bool3 bool3::operator=( const bool2& other )
+bool3 bool3::operator=( const bool2 &other )
 {
 	this->x = other.x;
 	this->y = other.y;
@@ -84,7 +84,7 @@ bool3 bool3::operator=( const bool2& other )
 	return *this;
 }
 
-bool3 bool3::operator=( const bool3& other )
+bool3 bool3::operator=( const bool3 &other )
 {
 	this->x = other.x;
 	this->y = other.y;
@@ -93,13 +93,13 @@ bool3 bool3::operator=( const bool3& other )
 	return *this;
 }
 
-bool32_t& bool3::operator[]( const int32_t index )
+bool32_t &bool3::operator[]( const int32_t index )
 {
 	HLML_ASSERT( index >= 0 && index < 3 );
 	return v[index];
 }
 
-const bool32_t& bool3::operator[]( const int32_t index ) const
+const bool32_t &bool3::operator[]( const int32_t index ) const
 {
 	HLML_ASSERT( index >= 0 && index < 3 );
 	return v[index];

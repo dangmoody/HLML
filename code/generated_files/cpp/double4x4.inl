@@ -20,7 +20,7 @@ double4x4::double4x4( const double diagonal )
 	rows[3][3] = diagonal;
 }
 
-double4x4::double4x4( const double4& diagonal )
+double4x4::double4x4( const double4 &diagonal )
 {
 	rows[0][0] = diagonal[0];
 	rows[1][1] = diagonal[1];
@@ -29,7 +29,7 @@ double4x4::double4x4( const double4& diagonal )
 }
 
 // Sets each row of the matrix to the corresponding vector.
-double4x4::double4x4( const double4& row0, const double4& row1, const double4& row2, const double4& row3 )
+double4x4::double4x4( const double4 &row0, const double4 &row1, const double4 &row2, const double4 &row3 )
 {
 	rows[0] = row0;
 	rows[1] = row1;
@@ -49,7 +49,7 @@ double4x4::double4x4( const double m00, const double m01, const double m02, cons
 	rows[3] = double4( m30, m31, m32, m33 );
 }
 
-double4x4::double4x4( const double4x4& mat )
+double4x4::double4x4( const double4x4 &mat )
 {
 	rows[0] = mat[0];
 	rows[1] = mat[1];
@@ -57,7 +57,7 @@ double4x4::double4x4( const double4x4& mat )
 	rows[3] = mat[3];
 }
 
-double4x4::double4x4( const bool4x4& mat )
+double4x4::double4x4( const bool4x4 &mat )
 {
 	rows[0] = double4( mat[0] );
 	rows[1] = double4( mat[1] );
@@ -65,7 +65,7 @@ double4x4::double4x4( const bool4x4& mat )
 	rows[3] = double4( mat[3] );
 }
 
-double4x4::double4x4( const int4x4& mat )
+double4x4::double4x4( const int4x4 &mat )
 {
 	rows[0] = double4( mat[0] );
 	rows[1] = double4( mat[1] );
@@ -73,7 +73,7 @@ double4x4::double4x4( const int4x4& mat )
 	rows[3] = double4( mat[3] );
 }
 
-double4x4::double4x4( const uint4x4& mat )
+double4x4::double4x4( const uint4x4 &mat )
 {
 	rows[0] = double4( mat[0] );
 	rows[1] = double4( mat[1] );
@@ -81,7 +81,7 @@ double4x4::double4x4( const uint4x4& mat )
 	rows[3] = double4( mat[3] );
 }
 
-double4x4::double4x4( const float4x4& mat )
+double4x4::double4x4( const float4x4 &mat )
 {
 	rows[0] = double4( mat[0] );
 	rows[1] = double4( mat[1] );
@@ -89,7 +89,7 @@ double4x4::double4x4( const float4x4& mat )
 	rows[3] = double4( mat[3] );
 }
 
-double4x4 double4x4::operator=( const double4x4& other )
+double4x4 double4x4::operator=( const double4x4 &other )
 {
 	rows[0] = other[0];
 	rows[1] = other[1];
@@ -99,13 +99,13 @@ double4x4 double4x4::operator=( const double4x4& other )
 	return *this;
 }
 
-double4& double4x4::operator[]( const int32_t index )
+double4 &double4x4::operator[]( const int32_t index )
 {
 	HLML_ASSERT( index >= 0 && index < 4 );
 	return rows[index];
 }
 
-const double4& double4x4::operator[]( const int32_t index ) const
+const double4 &double4x4::operator[]( const int32_t index ) const
 {
 	HLML_ASSERT( index >= 0 && index < 4 );
 	return rows[index];

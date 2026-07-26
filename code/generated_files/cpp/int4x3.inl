@@ -20,7 +20,7 @@ int4x3::int4x3( const int32_t diagonal )
 	rows[3][3] = diagonal;
 }
 
-int4x3::int4x3( const int3& diagonal )
+int4x3::int4x3( const int3 &diagonal )
 {
 	rows[0][0] = diagonal[0];
 	rows[1][1] = diagonal[1];
@@ -29,7 +29,7 @@ int4x3::int4x3( const int3& diagonal )
 }
 
 // Sets each row of the matrix to the corresponding vector.
-int4x3::int4x3( const int3& row0, const int3& row1, const int3& row2, const int3& row3 )
+int4x3::int4x3( const int3 &row0, const int3 &row1, const int3 &row2, const int3 &row3 )
 {
 	rows[0] = row0;
 	rows[1] = row1;
@@ -49,7 +49,7 @@ int4x3::int4x3( const int32_t m00, const int32_t m01, const int32_t m02,
 	rows[3] = int3( m30, m31, m32 );
 }
 
-int4x3::int4x3( const int4x3& mat )
+int4x3::int4x3( const int4x3 &mat )
 {
 	rows[0] = mat[0];
 	rows[1] = mat[1];
@@ -57,7 +57,7 @@ int4x3::int4x3( const int4x3& mat )
 	rows[3] = mat[3];
 }
 
-int4x3::int4x3( const bool4x3& mat )
+int4x3::int4x3( const bool4x3 &mat )
 {
 	rows[0] = int3( mat[0] );
 	rows[1] = int3( mat[1] );
@@ -65,7 +65,7 @@ int4x3::int4x3( const bool4x3& mat )
 	rows[3] = int3( mat[3] );
 }
 
-int4x3::int4x3( const uint4x3& mat )
+int4x3::int4x3( const uint4x3 &mat )
 {
 	rows[0] = int3( mat[0] );
 	rows[1] = int3( mat[1] );
@@ -73,7 +73,7 @@ int4x3::int4x3( const uint4x3& mat )
 	rows[3] = int3( mat[3] );
 }
 
-int4x3::int4x3( const float4x3& mat )
+int4x3::int4x3( const float4x3 &mat )
 {
 	rows[0] = int3( mat[0] );
 	rows[1] = int3( mat[1] );
@@ -81,7 +81,7 @@ int4x3::int4x3( const float4x3& mat )
 	rows[3] = int3( mat[3] );
 }
 
-int4x3::int4x3( const double4x3& mat )
+int4x3::int4x3( const double4x3 &mat )
 {
 	rows[0] = int3( mat[0] );
 	rows[1] = int3( mat[1] );
@@ -89,7 +89,7 @@ int4x3::int4x3( const double4x3& mat )
 	rows[3] = int3( mat[3] );
 }
 
-int4x3 int4x3::operator=( const int4x3& other )
+int4x3 int4x3::operator=( const int4x3 &other )
 {
 	rows[0] = other[0];
 	rows[1] = other[1];
@@ -99,13 +99,13 @@ int4x3 int4x3::operator=( const int4x3& other )
 	return *this;
 }
 
-int3& int4x3::operator[]( const int32_t index )
+int3 &int4x3::operator[]( const int32_t index )
 {
 	HLML_ASSERT( index >= 0 && index < 4 );
 	return rows[index];
 }
 
-const int3& int4x3::operator[]( const int32_t index ) const
+const int3 &int4x3::operator[]( const int32_t index ) const
 {
 	HLML_ASSERT( index >= 0 && index < 4 );
 	return rows[index];

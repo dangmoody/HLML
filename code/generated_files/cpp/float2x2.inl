@@ -18,14 +18,14 @@ float2x2::float2x2( const float diagonal )
 	rows[1][1] = diagonal;
 }
 
-float2x2::float2x2( const float2& diagonal )
+float2x2::float2x2( const float2 &diagonal )
 {
 	rows[0][0] = diagonal[0];
 	rows[1][1] = diagonal[1];
 }
 
 // Sets each row of the matrix to the corresponding vector.
-float2x2::float2x2( const float2& row0, const float2& row1 )
+float2x2::float2x2( const float2 &row0, const float2 &row1 )
 {
 	rows[0] = row0;
 	rows[1] = row1;
@@ -39,37 +39,37 @@ float2x2::float2x2( const float m00, const float m01,
 	rows[1] = float2( m10, m11 );
 }
 
-float2x2::float2x2( const float2x2& mat )
+float2x2::float2x2( const float2x2 &mat )
 {
 	rows[0] = mat[0];
 	rows[1] = mat[1];
 }
 
-float2x2::float2x2( const bool2x2& mat )
+float2x2::float2x2( const bool2x2 &mat )
 {
 	rows[0] = float2( mat[0] );
 	rows[1] = float2( mat[1] );
 }
 
-float2x2::float2x2( const int2x2& mat )
+float2x2::float2x2( const int2x2 &mat )
 {
 	rows[0] = float2( mat[0] );
 	rows[1] = float2( mat[1] );
 }
 
-float2x2::float2x2( const uint2x2& mat )
+float2x2::float2x2( const uint2x2 &mat )
 {
 	rows[0] = float2( mat[0] );
 	rows[1] = float2( mat[1] );
 }
 
-float2x2::float2x2( const double2x2& mat )
+float2x2::float2x2( const double2x2 &mat )
 {
 	rows[0] = float2( mat[0] );
 	rows[1] = float2( mat[1] );
 }
 
-float2x2 float2x2::operator=( const float2x2& other )
+float2x2 float2x2::operator=( const float2x2 &other )
 {
 	rows[0] = other[0];
 	rows[1] = other[1];
@@ -77,13 +77,13 @@ float2x2 float2x2::operator=( const float2x2& other )
 	return *this;
 }
 
-float2& float2x2::operator[]( const int32_t index )
+float2 &float2x2::operator[]( const int32_t index )
 {
 	HLML_ASSERT( index >= 0 && index < 2 );
 	return rows[index];
 }
 
-const float2& float2x2::operator[]( const int32_t index ) const
+const float2 &float2x2::operator[]( const int32_t index ) const
 {
 	HLML_ASSERT( index >= 0 && index < 2 );
 	return rows[index];

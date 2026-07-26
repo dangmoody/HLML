@@ -118,32 +118,32 @@ struct uint2
 	HLML_INLINE uint2( const uint32_t x, const uint32_t y );
 
 	// Copy constructor.  Copies all elements of 'other' into the vector.
-	HLML_INLINE uint2( const uint2& other );
+	HLML_INLINE uint2( const uint2 &other );
 
 	// Conversion constructor.  Casts all components of 'vec' from type bool32_t to type uint32_t.
-	HLML_INLINE explicit uint2( const bool2& vec );
+	HLML_INLINE explicit uint2( const bool2 &vec );
 
 	// Conversion constructor.  Casts all components of 'vec' from type int32_t to type uint32_t.
-	HLML_INLINE explicit uint2( const int2& vec );
+	HLML_INLINE explicit uint2( const int2 &vec );
 
 	// Conversion constructor.  Casts all components of 'vec' from type float to type uint32_t.
-	HLML_INLINE explicit uint2( const float2& vec );
+	HLML_INLINE explicit uint2( const float2 &vec );
 
 	// Conversion constructor.  Casts all components of 'vec' from type double to type uint32_t.
-	HLML_INLINE explicit uint2( const double2& vec );
+	HLML_INLINE explicit uint2( const double2 &vec );
 
 	~uint2() {}
 
 	// Copies all elements of 'other' into the vector.
-	HLML_INLINE uint2 operator=( const uint2& other );
+	HLML_INLINE uint2 operator=( const uint2 &other );
 
 	// Returns the vector component at the given index.
 	// Index CANNOT be lower than 0 or greater than 1.
-	HLML_INLINE uint32_t& operator[]( const int32_t index );
+	HLML_INLINE uint32_t &operator[]( const int32_t index );
 
 	// Returns the vector component at the given index.
 	// Index CANNOT be lower than 0 or greater than 1.
-	HLML_INLINE const uint32_t& operator[]( const int32_t index ) const;
+	HLML_INLINE const uint32_t &operator[]( const int32_t index ) const;
 };
 
 #if defined( __clang__ ) || defined( __GNUC__ )

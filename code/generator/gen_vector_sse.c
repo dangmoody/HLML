@@ -103,7 +103,7 @@ static void MakeSSEParmList( stringBuilder_t *code, const u32 numComponents, con
 		}
 
 		for ( u32 i = 0; i < numComponents; i++ ) {
-			StringBuilder_Appendf( code, "%s__m128%s out_%c", whitespacePaddingOut, strings->parmPassByStr, GEN_COMPONENT_NAMES_VECTOR[i] );
+			StringBuilder_Appendf( code, "%s__m128%sout_%c", whitespacePaddingOut, strings->parmPassByStr, GEN_COMPONENT_NAMES_VECTOR[i] );
 
 			if ( i < numComponents - 1 ) {
 				StringBuilder_Append( code, ", " );

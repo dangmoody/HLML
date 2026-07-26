@@ -18,14 +18,14 @@ double2x4::double2x4( const double diagonal )
 	rows[1][1] = diagonal;
 }
 
-double2x4::double2x4( const double4& diagonal )
+double2x4::double2x4( const double4 &diagonal )
 {
 	rows[0][0] = diagonal[0];
 	rows[1][1] = diagonal[1];
 }
 
 // Sets each row of the matrix to the corresponding vector.
-double2x4::double2x4( const double4& row0, const double4& row1 )
+double2x4::double2x4( const double4 &row0, const double4 &row1 )
 {
 	rows[0] = row0;
 	rows[1] = row1;
@@ -39,37 +39,37 @@ double2x4::double2x4( const double m00, const double m01, const double m02, cons
 	rows[1] = double4( m10, m11, m12, m13 );
 }
 
-double2x4::double2x4( const double2x4& mat )
+double2x4::double2x4( const double2x4 &mat )
 {
 	rows[0] = mat[0];
 	rows[1] = mat[1];
 }
 
-double2x4::double2x4( const bool2x4& mat )
+double2x4::double2x4( const bool2x4 &mat )
 {
 	rows[0] = double4( mat[0] );
 	rows[1] = double4( mat[1] );
 }
 
-double2x4::double2x4( const int2x4& mat )
+double2x4::double2x4( const int2x4 &mat )
 {
 	rows[0] = double4( mat[0] );
 	rows[1] = double4( mat[1] );
 }
 
-double2x4::double2x4( const uint2x4& mat )
+double2x4::double2x4( const uint2x4 &mat )
 {
 	rows[0] = double4( mat[0] );
 	rows[1] = double4( mat[1] );
 }
 
-double2x4::double2x4( const float2x4& mat )
+double2x4::double2x4( const float2x4 &mat )
 {
 	rows[0] = double4( mat[0] );
 	rows[1] = double4( mat[1] );
 }
 
-double2x4 double2x4::operator=( const double2x4& other )
+double2x4 double2x4::operator=( const double2x4 &other )
 {
 	rows[0] = other[0];
 	rows[1] = other[1];
@@ -77,13 +77,13 @@ double2x4 double2x4::operator=( const double2x4& other )
 	return *this;
 }
 
-double4& double2x4::operator[]( const int32_t index )
+double4 &double2x4::operator[]( const int32_t index )
 {
 	HLML_ASSERT( index >= 0 && index < 2 );
 	return rows[index];
 }
 
-const double4& double2x4::operator[]( const int32_t index ) const
+const double4 &double2x4::operator[]( const int32_t index ) const
 {
 	HLML_ASSERT( index >= 0 && index < 2 );
 	return rows[index];

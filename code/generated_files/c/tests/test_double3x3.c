@@ -6,7 +6,7 @@
 
 #include "../hlml.h"
 
-TEMPER_TEST_PARAMETRIC( Test_double3x3_less_than, TEMPER_FLAG_SHOULD_RUN, const double3x3* lhs, const double3x3* rhs, const bool3x3* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double3x3_less_than, TEMPER_FLAG_SHOULD_RUN, const double3x3 *lhs, const double3x3 *rhs, const bool3x3 *expectedAnswer )
 {
 	bool3x3 actualResult = double3x3_less_than( lhs, rhs );
 	TEMPER_CHECK_TRUE( bool3x3_equals( &actualResult, expectedAnswer ) );
@@ -96,7 +96,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3x3_less_than,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double3x3_less_than_equal, TEMPER_FLAG_SHOULD_RUN, const double3x3* lhs, const double3x3* rhs, const bool3x3* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double3x3_less_than_equal, TEMPER_FLAG_SHOULD_RUN, const double3x3 *lhs, const double3x3 *rhs, const bool3x3 *expectedAnswer )
 {
 	bool3x3 actualResult = double3x3_less_than_equal( lhs, rhs );
 	TEMPER_CHECK_TRUE( bool3x3_equals( &actualResult, expectedAnswer ) );
@@ -186,7 +186,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3x3_less_than_equal,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double3x3_greater_than, TEMPER_FLAG_SHOULD_RUN, const double3x3* lhs, const double3x3* rhs, const bool3x3* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double3x3_greater_than, TEMPER_FLAG_SHOULD_RUN, const double3x3 *lhs, const double3x3 *rhs, const bool3x3 *expectedAnswer )
 {
 	bool3x3 actualResult = double3x3_greater_than( lhs, rhs );
 	TEMPER_CHECK_TRUE( bool3x3_equals( &actualResult, expectedAnswer ) );
@@ -276,7 +276,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3x3_greater_than,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double3x3_greater_than_equal, TEMPER_FLAG_SHOULD_RUN, const double3x3* lhs, const double3x3* rhs, const bool3x3* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double3x3_greater_than_equal, TEMPER_FLAG_SHOULD_RUN, const double3x3 *lhs, const double3x3 *rhs, const bool3x3 *expectedAnswer )
 {
 	bool3x3 actualResult = double3x3_greater_than_equal( lhs, rhs );
 	TEMPER_CHECK_TRUE( bool3x3_equals( &actualResult, expectedAnswer ) );
@@ -366,7 +366,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3x3_greater_than_equal,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double3x3_cadds, TEMPER_FLAG_SHOULD_RUN, const double3x3* lhs, const double rhs, const double3x3* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double3x3_cadds, TEMPER_FLAG_SHOULD_RUN, const double3x3 *lhs, const double rhs, const double3x3 *expectedAnswer )
 {
 	double3x3 actualResult = double3x3_cadds( lhs, rhs );
 	TEMPER_CHECK_TRUE( double3x3_equals( &actualResult, expectedAnswer ) );
@@ -436,7 +436,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3x3_cadds,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double3x3_csubs, TEMPER_FLAG_SHOULD_RUN, const double3x3* lhs, const double rhs, const double3x3* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double3x3_csubs, TEMPER_FLAG_SHOULD_RUN, const double3x3 *lhs, const double rhs, const double3x3 *expectedAnswer )
 {
 	double3x3 actualResult = double3x3_csubs( lhs, rhs );
 	TEMPER_CHECK_TRUE( double3x3_equals( &actualResult, expectedAnswer ) );
@@ -506,7 +506,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3x3_csubs,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double3x3_cmuls, TEMPER_FLAG_SHOULD_RUN, const double3x3* lhs, const double rhs, const double3x3* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double3x3_cmuls, TEMPER_FLAG_SHOULD_RUN, const double3x3 *lhs, const double rhs, const double3x3 *expectedAnswer )
 {
 	double3x3 actualResult = double3x3_cmuls( lhs, rhs );
 	TEMPER_CHECK_TRUE( double3x3_equals( &actualResult, expectedAnswer ) );
@@ -576,7 +576,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3x3_cmuls,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double3x3_cdivs, TEMPER_FLAG_SHOULD_RUN, const double3x3* lhs, const double rhs, const double3x3* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double3x3_cdivs, TEMPER_FLAG_SHOULD_RUN, const double3x3 *lhs, const double rhs, const double3x3 *expectedAnswer )
 {
 	double3x3 actualResult = double3x3_cdivs( lhs, rhs );
 	TEMPER_CHECK_TRUE( double3x3_equals( &actualResult, expectedAnswer ) );
@@ -646,7 +646,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3x3_cdivs,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double3x3_caddm, TEMPER_FLAG_SHOULD_RUN, const double3x3* lhs, const double3x3* rhs, const double3x3* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double3x3_caddm, TEMPER_FLAG_SHOULD_RUN, const double3x3 *lhs, const double3x3 *rhs, const double3x3 *expectedAnswer )
 {
 	double3x3 actualResult = double3x3_caddm( lhs, rhs );
 	TEMPER_CHECK_TRUE( double3x3_equals( &actualResult, expectedAnswer ) );
@@ -736,7 +736,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3x3_caddm,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double3x3_csubm, TEMPER_FLAG_SHOULD_RUN, const double3x3* lhs, const double3x3* rhs, const double3x3* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double3x3_csubm, TEMPER_FLAG_SHOULD_RUN, const double3x3 *lhs, const double3x3 *rhs, const double3x3 *expectedAnswer )
 {
 	double3x3 actualResult = double3x3_csubm( lhs, rhs );
 	TEMPER_CHECK_TRUE( double3x3_equals( &actualResult, expectedAnswer ) );
@@ -826,7 +826,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3x3_csubm,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double3x3_cmulm, TEMPER_FLAG_SHOULD_RUN, const double3x3* lhs, const double3x3* rhs, const double3x3* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double3x3_cmulm, TEMPER_FLAG_SHOULD_RUN, const double3x3 *lhs, const double3x3 *rhs, const double3x3 *expectedAnswer )
 {
 	double3x3 actualResult = double3x3_cmulm( lhs, rhs );
 	TEMPER_CHECK_TRUE( double3x3_equals( &actualResult, expectedAnswer ) );
@@ -916,7 +916,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3x3_cmulm,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double3x3_cdivm, TEMPER_FLAG_SHOULD_RUN, const double3x3* lhs, const double3x3* rhs, const double3x3* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double3x3_cdivm, TEMPER_FLAG_SHOULD_RUN, const double3x3 *lhs, const double3x3 *rhs, const double3x3 *expectedAnswer )
 {
 	double3x3 actualResult = double3x3_cdivm( lhs, rhs );
 	TEMPER_CHECK_TRUE( double3x3_equals( &actualResult, expectedAnswer ) );
@@ -1010,7 +1010,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3x3_cdivm,
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wcast-qual"
 #endif
-TEMPER_TEST_PARAMETRIC( Test_double3x3_negate_prefix, TEMPER_FLAG_SHOULD_RUN, const double3x3* x, const double3x3* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double3x3_negate_prefix, TEMPER_FLAG_SHOULD_RUN, const double3x3 *x, const double3x3 *expectedAnswer )
 {
 	// make local copy of x and use that because we cant do increment or decrement operations on a const reference
 	// and MSVC throws warnings if we just make the parameter a non-const reference
@@ -1098,7 +1098,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3x3_negate_prefix,
 #pragma GCC diagnostic pop
 #endif
 
-TEMPER_TEST_PARAMETRIC( Test_double3x3_min, TEMPER_FLAG_SHOULD_RUN, const double3x3* lhs, const double3x3* rhs, const double3x3* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double3x3_min, TEMPER_FLAG_SHOULD_RUN, const double3x3 *lhs, const double3x3 *rhs, const double3x3 *expectedAnswer )
 {
 	double3x3 actualResult = double3x3_min( lhs, rhs );
 	TEMPER_CHECK_TRUE( double3x3_equals( &actualResult, expectedAnswer ) );
@@ -1167,7 +1167,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3x3_min,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double3x3_max, TEMPER_FLAG_SHOULD_RUN, const double3x3* lhs, const double3x3* rhs, const double3x3* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double3x3_max, TEMPER_FLAG_SHOULD_RUN, const double3x3 *lhs, const double3x3 *rhs, const double3x3 *expectedAnswer )
 {
 	double3x3 actualResult = double3x3_max( lhs, rhs );
 	TEMPER_CHECK_TRUE( double3x3_equals( &actualResult, expectedAnswer ) );
@@ -1236,7 +1236,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3x3_max,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double3x3_saturate, TEMPER_FLAG_SHOULD_RUN, const double3x3* x, const double3x3* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double3x3_saturate, TEMPER_FLAG_SHOULD_RUN, const double3x3 *x, const double3x3 *expectedAnswer )
 {
 	double3x3 actualResult = double3x3_saturate( x );
 	TEMPER_CHECK_TRUE( double3x3_equals( &actualResult, expectedAnswer ) );
@@ -1317,7 +1317,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3x3_saturate,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double3x3_sign, TEMPER_FLAG_SHOULD_RUN, const double3x3* x, const int3x3* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double3x3_sign, TEMPER_FLAG_SHOULD_RUN, const double3x3 *x, const int3x3 *expectedAnswer )
 {
 	int3x3 actualResult = double3x3_sign( x );
 	TEMPER_CHECK_TRUE( int3x3_equals( &actualResult, expectedAnswer ) );
@@ -1428,7 +1428,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3x3_sign,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double3x3_lerp, TEMPER_FLAG_SHOULD_RUN, const double3x3* lhs, const double3x3* rhs, const double t, const double3x3* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double3x3_lerp, TEMPER_FLAG_SHOULD_RUN, const double3x3 *lhs, const double3x3 *rhs, const double t, const double3x3 *expectedAnswer )
 {
 	double3x3 actualResult = double3x3_lerp( lhs, rhs, t );
 	TEMPER_CHECK_TRUE( double3x3_equals( &actualResult, expectedAnswer ) );
@@ -1478,7 +1478,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3x3_lerp,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double3x3_identity, TEMPER_FLAG_SHOULD_RUN, const double3x3* matrix, const bool expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double3x3_identity, TEMPER_FLAG_SHOULD_RUN, const double3x3 *matrix, const bool expectedAnswer )
 {
 	double3x3 identityMat;
 	double3x3_identity( &identityMat );
@@ -1526,7 +1526,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3x3_identity,
 	false
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double3x3_transpose, TEMPER_FLAG_SHOULD_RUN, const double3x3* matrix, const double3x3* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double3x3_transpose, TEMPER_FLAG_SHOULD_RUN, const double3x3 *matrix, const double3x3 *expectedAnswer )
 {
 	double3x3 actualResult = double3x3_transpose( matrix );
 	TEMPER_CHECK_TRUE( double3x3_equals( &actualResult, expectedAnswer ) );
@@ -1562,7 +1562,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3x3_transpose,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double3x3_mulm, TEMPER_FLAG_SHOULD_RUN, const double3x3* lhs, const double3x3* rhs, const double3x3* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double3x3_mulm, TEMPER_FLAG_SHOULD_RUN, const double3x3 *lhs, const double3x3 *rhs, const double3x3 *expectedAnswer )
 {
 	double3x3 actualResult = double3x3_mulm( lhs, rhs );
 	TEMPER_CHECK_TRUE( double3x3_equals( &actualResult, expectedAnswer ) );
@@ -1610,7 +1610,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3x3_mulm,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double3x3_mulv, TEMPER_FLAG_SHOULD_RUN, const double3* vec, const double3x3* mat, const double3* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double3x3_mulv, TEMPER_FLAG_SHOULD_RUN, const double3 *vec, const double3x3 *mat, const double3 *expectedAnswer )
 {
 	double3 actualResult = double3x3_mulv( vec, mat );
 	TEMPER_CHECK_TRUE( double3_equals( &actualResult, expectedAnswer ) );
@@ -1640,7 +1640,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3x3_mulv,
  }
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double3x3_determinant, TEMPER_FLAG_SHOULD_RUN, const double3x3* matrix, const double expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double3x3_determinant, TEMPER_FLAG_SHOULD_RUN, const double3x3 *matrix, const double expectedAnswer )
 {
 	double actualResult = double3x3_determinant( matrix );
 	TEMPER_CHECK_TRUE( doubleeq( actualResult, expectedAnswer ) );
@@ -1656,7 +1656,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3x3_determinant,
 	113.000000f
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double3x3_inverse, TEMPER_FLAG_SHOULD_RUN, const double3x3* mat, const double3x3* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double3x3_inverse, TEMPER_FLAG_SHOULD_RUN, const double3x3 *mat, const double3x3 *expectedAnswer )
 {
 	double3x3 inversed = double3x3_inverse( mat );
 	TEMPER_CHECK_TRUE( double3x3_equals( &inversed, expectedAnswer ) );

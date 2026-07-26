@@ -6,7 +6,7 @@
 
 #include "../hlml.h"
 
-TEMPER_TEST_PARAMETRIC( Test_bool2_all, TEMPER_FLAG_SHOULD_RUN, const bool2* x, const bool32_t expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool2_all, TEMPER_FLAG_SHOULD_RUN, const bool2 *x, const bool32_t expectedAnswer )
 {
 	bool32_t actualResult = bool2_all( x );
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -37,7 +37,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2_all,
 	false
 );
 
-TEMPER_TEST_PARAMETRIC( Test_bool2_any, TEMPER_FLAG_SHOULD_RUN, const bool2* x, const bool32_t expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool2_any, TEMPER_FLAG_SHOULD_RUN, const bool2 *x, const bool32_t expectedAnswer )
 {
 	bool32_t actualResult = bool2_any( x );
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );

@@ -6,7 +6,7 @@
 
 #include "../hlml.h"
 
-TEMPER_TEST_PARAMETRIC( Test_double4x4_less_than, TEMPER_FLAG_SHOULD_RUN, const double4x4* lhs, const double4x4* rhs, const bool4x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double4x4_less_than, TEMPER_FLAG_SHOULD_RUN, const double4x4 *lhs, const double4x4 *rhs, const bool4x4 *expectedAnswer )
 {
 	bool4x4 actualResult = double4x4_less_than( lhs, rhs );
 	TEMPER_CHECK_TRUE( bool4x4_equals( &actualResult, expectedAnswer ) );
@@ -108,7 +108,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x4_less_than,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double4x4_less_than_equal, TEMPER_FLAG_SHOULD_RUN, const double4x4* lhs, const double4x4* rhs, const bool4x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double4x4_less_than_equal, TEMPER_FLAG_SHOULD_RUN, const double4x4 *lhs, const double4x4 *rhs, const bool4x4 *expectedAnswer )
 {
 	bool4x4 actualResult = double4x4_less_than_equal( lhs, rhs );
 	TEMPER_CHECK_TRUE( bool4x4_equals( &actualResult, expectedAnswer ) );
@@ -210,7 +210,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x4_less_than_equal,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double4x4_greater_than, TEMPER_FLAG_SHOULD_RUN, const double4x4* lhs, const double4x4* rhs, const bool4x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double4x4_greater_than, TEMPER_FLAG_SHOULD_RUN, const double4x4 *lhs, const double4x4 *rhs, const bool4x4 *expectedAnswer )
 {
 	bool4x4 actualResult = double4x4_greater_than( lhs, rhs );
 	TEMPER_CHECK_TRUE( bool4x4_equals( &actualResult, expectedAnswer ) );
@@ -312,7 +312,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x4_greater_than,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double4x4_greater_than_equal, TEMPER_FLAG_SHOULD_RUN, const double4x4* lhs, const double4x4* rhs, const bool4x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double4x4_greater_than_equal, TEMPER_FLAG_SHOULD_RUN, const double4x4 *lhs, const double4x4 *rhs, const bool4x4 *expectedAnswer )
 {
 	bool4x4 actualResult = double4x4_greater_than_equal( lhs, rhs );
 	TEMPER_CHECK_TRUE( bool4x4_equals( &actualResult, expectedAnswer ) );
@@ -414,7 +414,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x4_greater_than_equal,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double4x4_cadds, TEMPER_FLAG_SHOULD_RUN, const double4x4* lhs, const double rhs, const double4x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double4x4_cadds, TEMPER_FLAG_SHOULD_RUN, const double4x4 *lhs, const double rhs, const double4x4 *expectedAnswer )
 {
 	double4x4 actualResult = double4x4_cadds( lhs, rhs );
 	TEMPER_CHECK_TRUE( double4x4_equals( &actualResult, expectedAnswer ) );
@@ -492,7 +492,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x4_cadds,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double4x4_csubs, TEMPER_FLAG_SHOULD_RUN, const double4x4* lhs, const double rhs, const double4x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double4x4_csubs, TEMPER_FLAG_SHOULD_RUN, const double4x4 *lhs, const double rhs, const double4x4 *expectedAnswer )
 {
 	double4x4 actualResult = double4x4_csubs( lhs, rhs );
 	TEMPER_CHECK_TRUE( double4x4_equals( &actualResult, expectedAnswer ) );
@@ -570,7 +570,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x4_csubs,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double4x4_cmuls, TEMPER_FLAG_SHOULD_RUN, const double4x4* lhs, const double rhs, const double4x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double4x4_cmuls, TEMPER_FLAG_SHOULD_RUN, const double4x4 *lhs, const double rhs, const double4x4 *expectedAnswer )
 {
 	double4x4 actualResult = double4x4_cmuls( lhs, rhs );
 	TEMPER_CHECK_TRUE( double4x4_equals( &actualResult, expectedAnswer ) );
@@ -648,7 +648,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x4_cmuls,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double4x4_cdivs, TEMPER_FLAG_SHOULD_RUN, const double4x4* lhs, const double rhs, const double4x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double4x4_cdivs, TEMPER_FLAG_SHOULD_RUN, const double4x4 *lhs, const double rhs, const double4x4 *expectedAnswer )
 {
 	double4x4 actualResult = double4x4_cdivs( lhs, rhs );
 	TEMPER_CHECK_TRUE( double4x4_equals( &actualResult, expectedAnswer ) );
@@ -726,7 +726,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x4_cdivs,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double4x4_caddm, TEMPER_FLAG_SHOULD_RUN, const double4x4* lhs, const double4x4* rhs, const double4x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double4x4_caddm, TEMPER_FLAG_SHOULD_RUN, const double4x4 *lhs, const double4x4 *rhs, const double4x4 *expectedAnswer )
 {
 	double4x4 actualResult = double4x4_caddm( lhs, rhs );
 	TEMPER_CHECK_TRUE( double4x4_equals( &actualResult, expectedAnswer ) );
@@ -828,7 +828,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x4_caddm,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double4x4_csubm, TEMPER_FLAG_SHOULD_RUN, const double4x4* lhs, const double4x4* rhs, const double4x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double4x4_csubm, TEMPER_FLAG_SHOULD_RUN, const double4x4 *lhs, const double4x4 *rhs, const double4x4 *expectedAnswer )
 {
 	double4x4 actualResult = double4x4_csubm( lhs, rhs );
 	TEMPER_CHECK_TRUE( double4x4_equals( &actualResult, expectedAnswer ) );
@@ -930,7 +930,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x4_csubm,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double4x4_cmulm, TEMPER_FLAG_SHOULD_RUN, const double4x4* lhs, const double4x4* rhs, const double4x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double4x4_cmulm, TEMPER_FLAG_SHOULD_RUN, const double4x4 *lhs, const double4x4 *rhs, const double4x4 *expectedAnswer )
 {
 	double4x4 actualResult = double4x4_cmulm( lhs, rhs );
 	TEMPER_CHECK_TRUE( double4x4_equals( &actualResult, expectedAnswer ) );
@@ -1032,7 +1032,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x4_cmulm,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double4x4_cdivm, TEMPER_FLAG_SHOULD_RUN, const double4x4* lhs, const double4x4* rhs, const double4x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double4x4_cdivm, TEMPER_FLAG_SHOULD_RUN, const double4x4 *lhs, const double4x4 *rhs, const double4x4 *expectedAnswer )
 {
 	double4x4 actualResult = double4x4_cdivm( lhs, rhs );
 	TEMPER_CHECK_TRUE( double4x4_equals( &actualResult, expectedAnswer ) );
@@ -1138,7 +1138,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x4_cdivm,
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wcast-qual"
 #endif
-TEMPER_TEST_PARAMETRIC( Test_double4x4_negate_prefix, TEMPER_FLAG_SHOULD_RUN, const double4x4* x, const double4x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double4x4_negate_prefix, TEMPER_FLAG_SHOULD_RUN, const double4x4 *x, const double4x4 *expectedAnswer )
 {
 	// make local copy of x and use that because we cant do increment or decrement operations on a const reference
 	// and MSVC throws warnings if we just make the parameter a non-const reference
@@ -1236,7 +1236,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x4_negate_prefix,
 #pragma GCC diagnostic pop
 #endif
 
-TEMPER_TEST_PARAMETRIC( Test_double4x4_min, TEMPER_FLAG_SHOULD_RUN, const double4x4* lhs, const double4x4* rhs, const double4x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double4x4_min, TEMPER_FLAG_SHOULD_RUN, const double4x4 *lhs, const double4x4 *rhs, const double4x4 *expectedAnswer )
 {
 	double4x4 actualResult = double4x4_min( lhs, rhs );
 	TEMPER_CHECK_TRUE( double4x4_equals( &actualResult, expectedAnswer ) );
@@ -1314,7 +1314,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x4_min,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double4x4_max, TEMPER_FLAG_SHOULD_RUN, const double4x4* lhs, const double4x4* rhs, const double4x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double4x4_max, TEMPER_FLAG_SHOULD_RUN, const double4x4 *lhs, const double4x4 *rhs, const double4x4 *expectedAnswer )
 {
 	double4x4 actualResult = double4x4_max( lhs, rhs );
 	TEMPER_CHECK_TRUE( double4x4_equals( &actualResult, expectedAnswer ) );
@@ -1392,7 +1392,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x4_max,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double4x4_saturate, TEMPER_FLAG_SHOULD_RUN, const double4x4* x, const double4x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double4x4_saturate, TEMPER_FLAG_SHOULD_RUN, const double4x4 *x, const double4x4 *expectedAnswer )
 {
 	double4x4 actualResult = double4x4_saturate( x );
 	TEMPER_CHECK_TRUE( double4x4_equals( &actualResult, expectedAnswer ) );
@@ -1483,7 +1483,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x4_saturate,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double4x4_sign, TEMPER_FLAG_SHOULD_RUN, const double4x4* x, const int4x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double4x4_sign, TEMPER_FLAG_SHOULD_RUN, const double4x4 *x, const int4x4 *expectedAnswer )
 {
 	int4x4 actualResult = double4x4_sign( x );
 	TEMPER_CHECK_TRUE( int4x4_equals( &actualResult, expectedAnswer ) );
@@ -1608,7 +1608,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x4_sign,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double4x4_lerp, TEMPER_FLAG_SHOULD_RUN, const double4x4* lhs, const double4x4* rhs, const double t, const double4x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double4x4_lerp, TEMPER_FLAG_SHOULD_RUN, const double4x4 *lhs, const double4x4 *rhs, const double t, const double4x4 *expectedAnswer )
 {
 	double4x4 actualResult = double4x4_lerp( lhs, rhs, t );
 	TEMPER_CHECK_TRUE( double4x4_equals( &actualResult, expectedAnswer ) );
@@ -1664,7 +1664,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x4_lerp,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double4x4_identity, TEMPER_FLAG_SHOULD_RUN, const double4x4* matrix, const bool expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double4x4_identity, TEMPER_FLAG_SHOULD_RUN, const double4x4 *matrix, const bool expectedAnswer )
 {
 	double4x4 identityMat;
 	double4x4_identity( &identityMat );
@@ -1716,7 +1716,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x4_identity,
 	false
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double4x4_transpose, TEMPER_FLAG_SHOULD_RUN, const double4x4* matrix, const double4x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double4x4_transpose, TEMPER_FLAG_SHOULD_RUN, const double4x4 *matrix, const double4x4 *expectedAnswer )
 {
 	double4x4 actualResult = double4x4_transpose( matrix );
 	TEMPER_CHECK_TRUE( double4x4_equals( &actualResult, expectedAnswer ) );
@@ -1756,7 +1756,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x4_transpose,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double4x4_mulm, TEMPER_FLAG_SHOULD_RUN, const double4x4* lhs, const double4x4* rhs, const double4x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double4x4_mulm, TEMPER_FLAG_SHOULD_RUN, const double4x4 *lhs, const double4x4 *rhs, const double4x4 *expectedAnswer )
 {
 	double4x4 actualResult = double4x4_mulm( lhs, rhs );
 	TEMPER_CHECK_TRUE( double4x4_equals( &actualResult, expectedAnswer ) );
@@ -1810,7 +1810,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x4_mulm,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double4x4_mulv, TEMPER_FLAG_SHOULD_RUN, const double4* vec, const double4x4* mat, const double4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double4x4_mulv, TEMPER_FLAG_SHOULD_RUN, const double4 *vec, const double4x4 *mat, const double4 *expectedAnswer )
 {
 	double4 actualResult = double4x4_mulv( vec, mat );
 	TEMPER_CHECK_TRUE( double4_equals( &actualResult, expectedAnswer ) );
@@ -1842,7 +1842,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x4_mulv,
  }
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double4x4_determinant, TEMPER_FLAG_SHOULD_RUN, const double4x4* matrix, const double expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double4x4_determinant, TEMPER_FLAG_SHOULD_RUN, const double4x4 *matrix, const double expectedAnswer )
 {
 	double actualResult = double4x4_determinant( matrix );
 	TEMPER_CHECK_TRUE( doubleeq( actualResult, expectedAnswer ) );
@@ -1859,7 +1859,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x4_determinant,
 	285.000000f
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double4x4_inverse, TEMPER_FLAG_SHOULD_RUN, const double4x4* mat, const double4x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double4x4_inverse, TEMPER_FLAG_SHOULD_RUN, const double4x4 *mat, const double4x4 *expectedAnswer )
 {
 	double4x4 inversed = double4x4_inverse( mat );
 	TEMPER_CHECK_TRUE( double4x4_equals( &inversed, expectedAnswer ) );
@@ -1906,7 +1906,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x4_inverse,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double4x4_translate, TEMPER_FLAG_SHOULD_RUN, const double4x4* startMatrix, const double3* translateVec, const double4x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double4x4_translate, TEMPER_FLAG_SHOULD_RUN, const double4x4 *startMatrix, const double3 *translateVec, const double4x4 *expectedAnswer )
 {
 	double4x4 actualResult = double4x4_translate( startMatrix, translateVec );
 	TEMPER_CHECK_TRUE( double4x4_equals( &actualResult, expectedAnswer ) );
@@ -1966,7 +1966,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x4_translate,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double4x4_rotate, TEMPER_FLAG_SHOULD_RUN, const double4x4* startMatrix, const double rotationDegrees, const double3* axisAngle, const double4x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double4x4_rotate, TEMPER_FLAG_SHOULD_RUN, const double4x4 *startMatrix, const double rotationDegrees, const double3 *axisAngle, const double4x4 *expectedAnswer )
 {
 	double4x4 actualResult = double4x4_rotate( startMatrix, rotationDegrees, axisAngle );
 	TEMPER_CHECK_TRUE( double4x4_equals( &actualResult, expectedAnswer ) );
@@ -2029,7 +2029,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x4_rotate,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double4x4_scale, TEMPER_FLAG_SHOULD_RUN, const double4x4* startMatrix, const double3* scaleVec, const double4x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double4x4_scale, TEMPER_FLAG_SHOULD_RUN, const double4x4 *startMatrix, const double3 *scaleVec, const double4x4 *expectedAnswer )
 {
 	double4x4 actualResult = double4x4_scale( startMatrix, scaleVec );
 	TEMPER_CHECK_TRUE( double4x4_equals( &actualResult, expectedAnswer ) );
@@ -2107,7 +2107,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x4_scale,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double4x4_ortho_lh_zo, TEMPER_FLAG_SHOULD_RUN, const double left, const double right, const double top, const double bottom, const double znear, const double zfar, const double4x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double4x4_ortho_lh_zo, TEMPER_FLAG_SHOULD_RUN, const double left, const double right, const double top, const double bottom, const double znear, const double zfar, const double4x4 *expectedAnswer )
 {
 	double4x4 actualResult = double4x4_ortho_lh_zo( left, right, top, bottom, znear, zfar );
 	TEMPER_CHECK_TRUE( double4x4_equals( &actualResult, expectedAnswer ) );
@@ -2129,7 +2129,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x4_ortho_lh_zo,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double4x4_ortho_lh_no, TEMPER_FLAG_SHOULD_RUN, const double left, const double right, const double top, const double bottom, const double znear, const double zfar, const double4x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double4x4_ortho_lh_no, TEMPER_FLAG_SHOULD_RUN, const double left, const double right, const double top, const double bottom, const double znear, const double zfar, const double4x4 *expectedAnswer )
 {
 	double4x4 actualResult = double4x4_ortho_lh_no( left, right, top, bottom, znear, zfar );
 	TEMPER_CHECK_TRUE( double4x4_equals( &actualResult, expectedAnswer ) );
@@ -2151,7 +2151,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x4_ortho_lh_no,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double4x4_ortho_rh_zo, TEMPER_FLAG_SHOULD_RUN, const double left, const double right, const double top, const double bottom, const double znear, const double zfar, const double4x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double4x4_ortho_rh_zo, TEMPER_FLAG_SHOULD_RUN, const double left, const double right, const double top, const double bottom, const double znear, const double zfar, const double4x4 *expectedAnswer )
 {
 	double4x4 actualResult = double4x4_ortho_rh_zo( left, right, top, bottom, znear, zfar );
 	TEMPER_CHECK_TRUE( double4x4_equals( &actualResult, expectedAnswer ) );
@@ -2173,7 +2173,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x4_ortho_rh_zo,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double4x4_ortho_rh_no, TEMPER_FLAG_SHOULD_RUN, const double left, const double right, const double top, const double bottom, const double znear, const double zfar, const double4x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double4x4_ortho_rh_no, TEMPER_FLAG_SHOULD_RUN, const double left, const double right, const double top, const double bottom, const double znear, const double zfar, const double4x4 *expectedAnswer )
 {
 	double4x4 actualResult = double4x4_ortho_rh_no( left, right, top, bottom, znear, zfar );
 	TEMPER_CHECK_TRUE( double4x4_equals( &actualResult, expectedAnswer ) );
@@ -2195,7 +2195,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x4_ortho_rh_no,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double4x4_perspective_lh_zo, TEMPER_FLAG_SHOULD_RUN, const double fov, const double aspect, const double znear, const double zfar, const double4x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double4x4_perspective_lh_zo, TEMPER_FLAG_SHOULD_RUN, const double fov, const double aspect, const double znear, const double zfar, const double4x4 *expectedAnswer )
 {
 	double4x4 actualResult = double4x4_perspective_lh_zo( fov, aspect, znear, zfar );
 	TEMPER_CHECK_TRUE( double4x4_equals( &actualResult, expectedAnswer ) );
@@ -2215,7 +2215,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x4_perspective_lh_zo,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double4x4_perspective_lh_no, TEMPER_FLAG_SHOULD_RUN, const double fov, const double aspect, const double znear, const double zfar, const double4x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double4x4_perspective_lh_no, TEMPER_FLAG_SHOULD_RUN, const double fov, const double aspect, const double znear, const double zfar, const double4x4 *expectedAnswer )
 {
 	double4x4 actualResult = double4x4_perspective_lh_no( fov, aspect, znear, zfar );
 	TEMPER_CHECK_TRUE( double4x4_equals( &actualResult, expectedAnswer ) );
@@ -2235,7 +2235,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x4_perspective_lh_no,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double4x4_perspective_rh_zo, TEMPER_FLAG_SHOULD_RUN, const double fov, const double aspect, const double znear, const double zfar, const double4x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double4x4_perspective_rh_zo, TEMPER_FLAG_SHOULD_RUN, const double fov, const double aspect, const double znear, const double zfar, const double4x4 *expectedAnswer )
 {
 	double4x4 actualResult = double4x4_perspective_rh_zo( fov, aspect, znear, zfar );
 	TEMPER_CHECK_TRUE( double4x4_equals( &actualResult, expectedAnswer ) );
@@ -2255,7 +2255,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x4_perspective_rh_zo,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double4x4_perspective_rh_no, TEMPER_FLAG_SHOULD_RUN, const double fov, const double aspect, const double znear, const double zfar, const double4x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double4x4_perspective_rh_no, TEMPER_FLAG_SHOULD_RUN, const double fov, const double aspect, const double znear, const double zfar, const double4x4 *expectedAnswer )
 {
 	double4x4 actualResult = double4x4_perspective_rh_no( fov, aspect, znear, zfar );
 	TEMPER_CHECK_TRUE( double4x4_equals( &actualResult, expectedAnswer ) );
@@ -2275,7 +2275,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x4_perspective_rh_no,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double4x4_look_at_lh, TEMPER_FLAG_SHOULD_RUN, const double3* eye, const double3* target, const double3* up, const double4x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double4x4_look_at_lh, TEMPER_FLAG_SHOULD_RUN, const double3 *eye, const double3 *target, const double3 *up, const double4x4 *expectedAnswer )
 {
 	double4x4 actualResult = double4x4_look_at_lh( eye, target, up );
 	TEMPER_CHECK_TRUE( double4x4_equals( &actualResult, expectedAnswer ) );
@@ -2294,7 +2294,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x4_look_at_lh,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_double4x4_look_at_rh, TEMPER_FLAG_SHOULD_RUN, const double3* eye, const double3* target, const double3* up, const double4x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double4x4_look_at_rh, TEMPER_FLAG_SHOULD_RUN, const double3 *eye, const double3 *target, const double3 *up, const double4x4 *expectedAnswer )
 {
 	double4x4 actualResult = double4x4_look_at_rh( eye, target, up );
 	TEMPER_CHECK_TRUE( double4x4_equals( &actualResult, expectedAnswer ) );

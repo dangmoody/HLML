@@ -59,7 +59,7 @@ namespace hlml
 
 // bool2x2
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator==( const bool2x2& lhs, const bool2x2& rhs )
+HLML_INLINE bool operator==( const bool2x2 &lhs, const bool2x2 &rhs )
 {
 	return
 		lhs[0] == rhs[0] &&
@@ -67,13 +67,13 @@ HLML_INLINE bool operator==( const bool2x2& lhs, const bool2x2& rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator!=( const bool2x2& lhs, const bool2x2& rhs )
+HLML_INLINE bool operator!=( const bool2x2 &lhs, const bool2x2 &rhs )
 {
 	return !( lhs == rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool2x2 operator<( const bool2x2& lhs, const bool2x2& rhs )
+HLML_INLINE bool2x2 operator<( const bool2x2 &lhs, const bool2x2 &rhs )
 {
 	return bool2x2(
 		lhs[0] < rhs[0],
@@ -82,7 +82,7 @@ HLML_INLINE bool2x2 operator<( const bool2x2& lhs, const bool2x2& rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool2x2 operator<=( const bool2x2& lhs, const bool2x2& rhs )
+HLML_INLINE bool2x2 operator<=( const bool2x2 &lhs, const bool2x2 &rhs )
 {
 	return bool2x2(
 		lhs[0] <= rhs[0],
@@ -91,7 +91,7 @@ HLML_INLINE bool2x2 operator<=( const bool2x2& lhs, const bool2x2& rhs )
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool2x2 operator>( const bool2x2& lhs, const bool2x2& rhs )
+HLML_INLINE bool2x2 operator>( const bool2x2 &lhs, const bool2x2 &rhs )
 {
 	return bool2x2(
 		lhs[0] > rhs[0],
@@ -100,7 +100,7 @@ HLML_INLINE bool2x2 operator>( const bool2x2& lhs, const bool2x2& rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool2x2 operator>=( const bool2x2& lhs, const bool2x2& rhs )
+HLML_INLINE bool2x2 operator>=( const bool2x2 &lhs, const bool2x2 &rhs )
 {
 	return bool2x2(
 		lhs[0] >= rhs[0],
@@ -109,7 +109,7 @@ HLML_INLINE bool2x2 operator>=( const bool2x2& lhs, const bool2x2& rhs )
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE bool2x2 operator+( const bool2x2& lhs, const bool32_t rhs )
+HLML_INLINE bool2x2 operator+( const bool2x2 &lhs, const bool32_t rhs )
 {
 	return bool2x2(
 		lhs[0] + rhs,
@@ -118,13 +118,13 @@ HLML_INLINE bool2x2 operator+( const bool2x2& lhs, const bool32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been +'d against the scalar.
-HLML_INLINE bool2x2 operator+=( bool2x2& lhs, const bool32_t rhs )
+HLML_INLINE bool2x2 operator+=( bool2x2 &lhs, const bool32_t rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE bool2x2 operator+( const bool2x2& lhs, const bool2x2& rhs )
+HLML_INLINE bool2x2 operator+( const bool2x2 &lhs, const bool2x2 &rhs )
 {
 	return bool2x2(
 		lhs[0] + rhs[0],
@@ -133,13 +133,13 @@ HLML_INLINE bool2x2 operator+( const bool2x2& lhs, const bool2x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise +'d against 'rhs'.
-HLML_INLINE bool2x2 operator+=( bool2x2& lhs, const bool2x2& rhs )
+HLML_INLINE bool2x2 operator+=( bool2x2 &lhs, const bool2x2 &rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE bool2x2 operator-( const bool2x2& lhs, const bool32_t rhs )
+HLML_INLINE bool2x2 operator-( const bool2x2 &lhs, const bool32_t rhs )
 {
 	return bool2x2(
 		lhs[0] - rhs,
@@ -148,13 +148,13 @@ HLML_INLINE bool2x2 operator-( const bool2x2& lhs, const bool32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been -'d against the scalar.
-HLML_INLINE bool2x2 operator-=( bool2x2& lhs, const bool32_t rhs )
+HLML_INLINE bool2x2 operator-=( bool2x2 &lhs, const bool32_t rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE bool2x2 operator-( const bool2x2& lhs, const bool2x2& rhs )
+HLML_INLINE bool2x2 operator-( const bool2x2 &lhs, const bool2x2 &rhs )
 {
 	return bool2x2(
 		lhs[0] - rhs[0],
@@ -163,13 +163,13 @@ HLML_INLINE bool2x2 operator-( const bool2x2& lhs, const bool2x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise -'d against 'rhs'.
-HLML_INLINE bool2x2 operator-=( bool2x2& lhs, const bool2x2& rhs )
+HLML_INLINE bool2x2 operator-=( bool2x2 &lhs, const bool2x2 &rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE bool2x2 operator*( const bool2x2& lhs, const bool32_t rhs )
+HLML_INLINE bool2x2 operator*( const bool2x2 &lhs, const bool32_t rhs )
 {
 	return bool2x2(
 		lhs[0] * rhs,
@@ -178,13 +178,13 @@ HLML_INLINE bool2x2 operator*( const bool2x2& lhs, const bool32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been *'d against the scalar.
-HLML_INLINE bool2x2 operator*=( bool2x2& lhs, const bool32_t rhs )
+HLML_INLINE bool2x2 operator*=( bool2x2 &lhs, const bool32_t rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE bool2x2 operator*( const bool2x2& lhs, const bool2x2& rhs )
+HLML_INLINE bool2x2 operator*( const bool2x2 &lhs, const bool2x2 &rhs )
 {
 	return bool2x2(
 		lhs[0] * rhs[0],
@@ -193,13 +193,13 @@ HLML_INLINE bool2x2 operator*( const bool2x2& lhs, const bool2x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise *'d against 'rhs'.
-HLML_INLINE bool2x2 operator*=( bool2x2& lhs, const bool2x2& rhs )
+HLML_INLINE bool2x2 operator*=( bool2x2 &lhs, const bool2x2 &rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE bool2x2 operator/( const bool2x2& lhs, const bool32_t rhs )
+HLML_INLINE bool2x2 operator/( const bool2x2 &lhs, const bool32_t rhs )
 {
 	return bool2x2(
 		lhs[0] / rhs,
@@ -208,13 +208,13 @@ HLML_INLINE bool2x2 operator/( const bool2x2& lhs, const bool32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been /'d against the scalar.
-HLML_INLINE bool2x2 operator/=( bool2x2& lhs, const bool32_t rhs )
+HLML_INLINE bool2x2 operator/=( bool2x2 &lhs, const bool32_t rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE bool2x2 operator/( const bool2x2& lhs, const bool2x2& rhs )
+HLML_INLINE bool2x2 operator/( const bool2x2 &lhs, const bool2x2 &rhs )
 {
 	return bool2x2(
 		lhs[0] / rhs[0],
@@ -223,13 +223,13 @@ HLML_INLINE bool2x2 operator/( const bool2x2& lhs, const bool2x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise /'d against 'rhs'.
-HLML_INLINE bool2x2 operator/=( bool2x2& lhs, const bool2x2& rhs )
+HLML_INLINE bool2x2 operator/=( bool2x2 &lhs, const bool2x2 &rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // ++s each component of the matrix and returns the result.
-HLML_INLINE bool2x2 operator++( bool2x2& x )
+HLML_INLINE bool2x2 operator++( bool2x2 &x )
 {
 	++x[0];
 	++x[1];
@@ -238,7 +238,7 @@ HLML_INLINE bool2x2 operator++( bool2x2& x )
 
 // ++s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE bool2x2 operator++( bool2x2& x, const int32_t )
+HLML_INLINE bool2x2 operator++( bool2x2 &x, const int32_t )
 {
 	x[0]++;
 	x[1]++;
@@ -246,7 +246,7 @@ HLML_INLINE bool2x2 operator++( bool2x2& x, const int32_t )
 }
 
 // --s each component of the matrix and returns the result.
-HLML_INLINE bool2x2 operator--( bool2x2& x )
+HLML_INLINE bool2x2 operator--( bool2x2 &x )
 {
 	--x[0];
 	--x[1];
@@ -255,7 +255,7 @@ HLML_INLINE bool2x2 operator--( bool2x2& x )
 
 // --s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE bool2x2 operator--( bool2x2& x, const int32_t )
+HLML_INLINE bool2x2 operator--( bool2x2 &x, const int32_t )
 {
 	x[0]--;
 	x[1]--;
@@ -279,14 +279,14 @@ HLML_INLINE bool any( const bool2x2 *x )
 }
 
 // Sets the matrix to an identity matrix.
-HLML_INLINE void identity( bool2x2& mat )
+HLML_INLINE void identity( bool2x2 &mat )
 {
 	mat.rows[0] = HLML_CONSTRUCT( bool2 ) { true, false };
 	mat.rows[1] = HLML_CONSTRUCT( bool2 ) { false, true };
 }
 
 // Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-HLML_INLINE bool2x2 transpose( const bool2x2& mat )
+HLML_INLINE bool2x2 transpose( const bool2x2 &mat )
 {
 	return HLML_CONSTRUCT( bool2x2 )
 	{
@@ -297,7 +297,7 @@ HLML_INLINE bool2x2 transpose( const bool2x2& mat )
 
 // bool2x3
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator==( const bool2x3& lhs, const bool2x3& rhs )
+HLML_INLINE bool operator==( const bool2x3 &lhs, const bool2x3 &rhs )
 {
 	return
 		lhs[0] == rhs[0] &&
@@ -305,13 +305,13 @@ HLML_INLINE bool operator==( const bool2x3& lhs, const bool2x3& rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator!=( const bool2x3& lhs, const bool2x3& rhs )
+HLML_INLINE bool operator!=( const bool2x3 &lhs, const bool2x3 &rhs )
 {
 	return !( lhs == rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool2x3 operator<( const bool2x3& lhs, const bool2x3& rhs )
+HLML_INLINE bool2x3 operator<( const bool2x3 &lhs, const bool2x3 &rhs )
 {
 	return bool2x3(
 		lhs[0] < rhs[0],
@@ -320,7 +320,7 @@ HLML_INLINE bool2x3 operator<( const bool2x3& lhs, const bool2x3& rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool2x3 operator<=( const bool2x3& lhs, const bool2x3& rhs )
+HLML_INLINE bool2x3 operator<=( const bool2x3 &lhs, const bool2x3 &rhs )
 {
 	return bool2x3(
 		lhs[0] <= rhs[0],
@@ -329,7 +329,7 @@ HLML_INLINE bool2x3 operator<=( const bool2x3& lhs, const bool2x3& rhs )
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool2x3 operator>( const bool2x3& lhs, const bool2x3& rhs )
+HLML_INLINE bool2x3 operator>( const bool2x3 &lhs, const bool2x3 &rhs )
 {
 	return bool2x3(
 		lhs[0] > rhs[0],
@@ -338,7 +338,7 @@ HLML_INLINE bool2x3 operator>( const bool2x3& lhs, const bool2x3& rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool2x3 operator>=( const bool2x3& lhs, const bool2x3& rhs )
+HLML_INLINE bool2x3 operator>=( const bool2x3 &lhs, const bool2x3 &rhs )
 {
 	return bool2x3(
 		lhs[0] >= rhs[0],
@@ -347,7 +347,7 @@ HLML_INLINE bool2x3 operator>=( const bool2x3& lhs, const bool2x3& rhs )
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE bool2x3 operator+( const bool2x3& lhs, const bool32_t rhs )
+HLML_INLINE bool2x3 operator+( const bool2x3 &lhs, const bool32_t rhs )
 {
 	return bool2x3(
 		lhs[0] + rhs,
@@ -356,13 +356,13 @@ HLML_INLINE bool2x3 operator+( const bool2x3& lhs, const bool32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been +'d against the scalar.
-HLML_INLINE bool2x3 operator+=( bool2x3& lhs, const bool32_t rhs )
+HLML_INLINE bool2x3 operator+=( bool2x3 &lhs, const bool32_t rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE bool2x3 operator+( const bool2x3& lhs, const bool2x3& rhs )
+HLML_INLINE bool2x3 operator+( const bool2x3 &lhs, const bool2x3 &rhs )
 {
 	return bool2x3(
 		lhs[0] + rhs[0],
@@ -371,13 +371,13 @@ HLML_INLINE bool2x3 operator+( const bool2x3& lhs, const bool2x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise +'d against 'rhs'.
-HLML_INLINE bool2x3 operator+=( bool2x3& lhs, const bool2x3& rhs )
+HLML_INLINE bool2x3 operator+=( bool2x3 &lhs, const bool2x3 &rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE bool2x3 operator-( const bool2x3& lhs, const bool32_t rhs )
+HLML_INLINE bool2x3 operator-( const bool2x3 &lhs, const bool32_t rhs )
 {
 	return bool2x3(
 		lhs[0] - rhs,
@@ -386,13 +386,13 @@ HLML_INLINE bool2x3 operator-( const bool2x3& lhs, const bool32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been -'d against the scalar.
-HLML_INLINE bool2x3 operator-=( bool2x3& lhs, const bool32_t rhs )
+HLML_INLINE bool2x3 operator-=( bool2x3 &lhs, const bool32_t rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE bool2x3 operator-( const bool2x3& lhs, const bool2x3& rhs )
+HLML_INLINE bool2x3 operator-( const bool2x3 &lhs, const bool2x3 &rhs )
 {
 	return bool2x3(
 		lhs[0] - rhs[0],
@@ -401,13 +401,13 @@ HLML_INLINE bool2x3 operator-( const bool2x3& lhs, const bool2x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise -'d against 'rhs'.
-HLML_INLINE bool2x3 operator-=( bool2x3& lhs, const bool2x3& rhs )
+HLML_INLINE bool2x3 operator-=( bool2x3 &lhs, const bool2x3 &rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE bool2x3 operator*( const bool2x3& lhs, const bool32_t rhs )
+HLML_INLINE bool2x3 operator*( const bool2x3 &lhs, const bool32_t rhs )
 {
 	return bool2x3(
 		lhs[0] * rhs,
@@ -416,13 +416,13 @@ HLML_INLINE bool2x3 operator*( const bool2x3& lhs, const bool32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been *'d against the scalar.
-HLML_INLINE bool2x3 operator*=( bool2x3& lhs, const bool32_t rhs )
+HLML_INLINE bool2x3 operator*=( bool2x3 &lhs, const bool32_t rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE bool2x3 operator*( const bool2x3& lhs, const bool2x3& rhs )
+HLML_INLINE bool2x3 operator*( const bool2x3 &lhs, const bool2x3 &rhs )
 {
 	return bool2x3(
 		lhs[0] * rhs[0],
@@ -431,13 +431,13 @@ HLML_INLINE bool2x3 operator*( const bool2x3& lhs, const bool2x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise *'d against 'rhs'.
-HLML_INLINE bool2x3 operator*=( bool2x3& lhs, const bool2x3& rhs )
+HLML_INLINE bool2x3 operator*=( bool2x3 &lhs, const bool2x3 &rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE bool2x3 operator/( const bool2x3& lhs, const bool32_t rhs )
+HLML_INLINE bool2x3 operator/( const bool2x3 &lhs, const bool32_t rhs )
 {
 	return bool2x3(
 		lhs[0] / rhs,
@@ -446,13 +446,13 @@ HLML_INLINE bool2x3 operator/( const bool2x3& lhs, const bool32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been /'d against the scalar.
-HLML_INLINE bool2x3 operator/=( bool2x3& lhs, const bool32_t rhs )
+HLML_INLINE bool2x3 operator/=( bool2x3 &lhs, const bool32_t rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE bool2x3 operator/( const bool2x3& lhs, const bool2x3& rhs )
+HLML_INLINE bool2x3 operator/( const bool2x3 &lhs, const bool2x3 &rhs )
 {
 	return bool2x3(
 		lhs[0] / rhs[0],
@@ -461,13 +461,13 @@ HLML_INLINE bool2x3 operator/( const bool2x3& lhs, const bool2x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise /'d against 'rhs'.
-HLML_INLINE bool2x3 operator/=( bool2x3& lhs, const bool2x3& rhs )
+HLML_INLINE bool2x3 operator/=( bool2x3 &lhs, const bool2x3 &rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // ++s each component of the matrix and returns the result.
-HLML_INLINE bool2x3 operator++( bool2x3& x )
+HLML_INLINE bool2x3 operator++( bool2x3 &x )
 {
 	++x[0];
 	++x[1];
@@ -476,7 +476,7 @@ HLML_INLINE bool2x3 operator++( bool2x3& x )
 
 // ++s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE bool2x3 operator++( bool2x3& x, const int32_t )
+HLML_INLINE bool2x3 operator++( bool2x3 &x, const int32_t )
 {
 	x[0]++;
 	x[1]++;
@@ -484,7 +484,7 @@ HLML_INLINE bool2x3 operator++( bool2x3& x, const int32_t )
 }
 
 // --s each component of the matrix and returns the result.
-HLML_INLINE bool2x3 operator--( bool2x3& x )
+HLML_INLINE bool2x3 operator--( bool2x3 &x )
 {
 	--x[0];
 	--x[1];
@@ -493,7 +493,7 @@ HLML_INLINE bool2x3 operator--( bool2x3& x )
 
 // --s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE bool2x3 operator--( bool2x3& x, const int32_t )
+HLML_INLINE bool2x3 operator--( bool2x3 &x, const int32_t )
 {
 	x[0]--;
 	x[1]--;
@@ -517,14 +517,14 @@ HLML_INLINE bool any( const bool2x3 *x )
 }
 
 // Sets the matrix to an identity matrix.
-HLML_INLINE void identity( bool2x3& mat )
+HLML_INLINE void identity( bool2x3 &mat )
 {
 	mat.rows[0] = HLML_CONSTRUCT( bool3 ) { true, false, false };
 	mat.rows[1] = HLML_CONSTRUCT( bool3 ) { false, true, false };
 }
 
 // Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-HLML_INLINE bool3x2 transpose( const bool2x3& mat )
+HLML_INLINE bool3x2 transpose( const bool2x3 &mat )
 {
 	return HLML_CONSTRUCT( bool3x2 )
 	{
@@ -536,7 +536,7 @@ HLML_INLINE bool3x2 transpose( const bool2x3& mat )
 
 // bool2x4
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator==( const bool2x4& lhs, const bool2x4& rhs )
+HLML_INLINE bool operator==( const bool2x4 &lhs, const bool2x4 &rhs )
 {
 	return
 		lhs[0] == rhs[0] &&
@@ -544,13 +544,13 @@ HLML_INLINE bool operator==( const bool2x4& lhs, const bool2x4& rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator!=( const bool2x4& lhs, const bool2x4& rhs )
+HLML_INLINE bool operator!=( const bool2x4 &lhs, const bool2x4 &rhs )
 {
 	return !( lhs == rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool2x4 operator<( const bool2x4& lhs, const bool2x4& rhs )
+HLML_INLINE bool2x4 operator<( const bool2x4 &lhs, const bool2x4 &rhs )
 {
 	return bool2x4(
 		lhs[0] < rhs[0],
@@ -559,7 +559,7 @@ HLML_INLINE bool2x4 operator<( const bool2x4& lhs, const bool2x4& rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool2x4 operator<=( const bool2x4& lhs, const bool2x4& rhs )
+HLML_INLINE bool2x4 operator<=( const bool2x4 &lhs, const bool2x4 &rhs )
 {
 	return bool2x4(
 		lhs[0] <= rhs[0],
@@ -568,7 +568,7 @@ HLML_INLINE bool2x4 operator<=( const bool2x4& lhs, const bool2x4& rhs )
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool2x4 operator>( const bool2x4& lhs, const bool2x4& rhs )
+HLML_INLINE bool2x4 operator>( const bool2x4 &lhs, const bool2x4 &rhs )
 {
 	return bool2x4(
 		lhs[0] > rhs[0],
@@ -577,7 +577,7 @@ HLML_INLINE bool2x4 operator>( const bool2x4& lhs, const bool2x4& rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool2x4 operator>=( const bool2x4& lhs, const bool2x4& rhs )
+HLML_INLINE bool2x4 operator>=( const bool2x4 &lhs, const bool2x4 &rhs )
 {
 	return bool2x4(
 		lhs[0] >= rhs[0],
@@ -586,7 +586,7 @@ HLML_INLINE bool2x4 operator>=( const bool2x4& lhs, const bool2x4& rhs )
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE bool2x4 operator+( const bool2x4& lhs, const bool32_t rhs )
+HLML_INLINE bool2x4 operator+( const bool2x4 &lhs, const bool32_t rhs )
 {
 	return bool2x4(
 		lhs[0] + rhs,
@@ -595,13 +595,13 @@ HLML_INLINE bool2x4 operator+( const bool2x4& lhs, const bool32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been +'d against the scalar.
-HLML_INLINE bool2x4 operator+=( bool2x4& lhs, const bool32_t rhs )
+HLML_INLINE bool2x4 operator+=( bool2x4 &lhs, const bool32_t rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE bool2x4 operator+( const bool2x4& lhs, const bool2x4& rhs )
+HLML_INLINE bool2x4 operator+( const bool2x4 &lhs, const bool2x4 &rhs )
 {
 	return bool2x4(
 		lhs[0] + rhs[0],
@@ -610,13 +610,13 @@ HLML_INLINE bool2x4 operator+( const bool2x4& lhs, const bool2x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise +'d against 'rhs'.
-HLML_INLINE bool2x4 operator+=( bool2x4& lhs, const bool2x4& rhs )
+HLML_INLINE bool2x4 operator+=( bool2x4 &lhs, const bool2x4 &rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE bool2x4 operator-( const bool2x4& lhs, const bool32_t rhs )
+HLML_INLINE bool2x4 operator-( const bool2x4 &lhs, const bool32_t rhs )
 {
 	return bool2x4(
 		lhs[0] - rhs,
@@ -625,13 +625,13 @@ HLML_INLINE bool2x4 operator-( const bool2x4& lhs, const bool32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been -'d against the scalar.
-HLML_INLINE bool2x4 operator-=( bool2x4& lhs, const bool32_t rhs )
+HLML_INLINE bool2x4 operator-=( bool2x4 &lhs, const bool32_t rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE bool2x4 operator-( const bool2x4& lhs, const bool2x4& rhs )
+HLML_INLINE bool2x4 operator-( const bool2x4 &lhs, const bool2x4 &rhs )
 {
 	return bool2x4(
 		lhs[0] - rhs[0],
@@ -640,13 +640,13 @@ HLML_INLINE bool2x4 operator-( const bool2x4& lhs, const bool2x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise -'d against 'rhs'.
-HLML_INLINE bool2x4 operator-=( bool2x4& lhs, const bool2x4& rhs )
+HLML_INLINE bool2x4 operator-=( bool2x4 &lhs, const bool2x4 &rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE bool2x4 operator*( const bool2x4& lhs, const bool32_t rhs )
+HLML_INLINE bool2x4 operator*( const bool2x4 &lhs, const bool32_t rhs )
 {
 	return bool2x4(
 		lhs[0] * rhs,
@@ -655,13 +655,13 @@ HLML_INLINE bool2x4 operator*( const bool2x4& lhs, const bool32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been *'d against the scalar.
-HLML_INLINE bool2x4 operator*=( bool2x4& lhs, const bool32_t rhs )
+HLML_INLINE bool2x4 operator*=( bool2x4 &lhs, const bool32_t rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE bool2x4 operator*( const bool2x4& lhs, const bool2x4& rhs )
+HLML_INLINE bool2x4 operator*( const bool2x4 &lhs, const bool2x4 &rhs )
 {
 	return bool2x4(
 		lhs[0] * rhs[0],
@@ -670,13 +670,13 @@ HLML_INLINE bool2x4 operator*( const bool2x4& lhs, const bool2x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise *'d against 'rhs'.
-HLML_INLINE bool2x4 operator*=( bool2x4& lhs, const bool2x4& rhs )
+HLML_INLINE bool2x4 operator*=( bool2x4 &lhs, const bool2x4 &rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE bool2x4 operator/( const bool2x4& lhs, const bool32_t rhs )
+HLML_INLINE bool2x4 operator/( const bool2x4 &lhs, const bool32_t rhs )
 {
 	return bool2x4(
 		lhs[0] / rhs,
@@ -685,13 +685,13 @@ HLML_INLINE bool2x4 operator/( const bool2x4& lhs, const bool32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been /'d against the scalar.
-HLML_INLINE bool2x4 operator/=( bool2x4& lhs, const bool32_t rhs )
+HLML_INLINE bool2x4 operator/=( bool2x4 &lhs, const bool32_t rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE bool2x4 operator/( const bool2x4& lhs, const bool2x4& rhs )
+HLML_INLINE bool2x4 operator/( const bool2x4 &lhs, const bool2x4 &rhs )
 {
 	return bool2x4(
 		lhs[0] / rhs[0],
@@ -700,13 +700,13 @@ HLML_INLINE bool2x4 operator/( const bool2x4& lhs, const bool2x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise /'d against 'rhs'.
-HLML_INLINE bool2x4 operator/=( bool2x4& lhs, const bool2x4& rhs )
+HLML_INLINE bool2x4 operator/=( bool2x4 &lhs, const bool2x4 &rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // ++s each component of the matrix and returns the result.
-HLML_INLINE bool2x4 operator++( bool2x4& x )
+HLML_INLINE bool2x4 operator++( bool2x4 &x )
 {
 	++x[0];
 	++x[1];
@@ -715,7 +715,7 @@ HLML_INLINE bool2x4 operator++( bool2x4& x )
 
 // ++s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE bool2x4 operator++( bool2x4& x, const int32_t )
+HLML_INLINE bool2x4 operator++( bool2x4 &x, const int32_t )
 {
 	x[0]++;
 	x[1]++;
@@ -723,7 +723,7 @@ HLML_INLINE bool2x4 operator++( bool2x4& x, const int32_t )
 }
 
 // --s each component of the matrix and returns the result.
-HLML_INLINE bool2x4 operator--( bool2x4& x )
+HLML_INLINE bool2x4 operator--( bool2x4 &x )
 {
 	--x[0];
 	--x[1];
@@ -732,7 +732,7 @@ HLML_INLINE bool2x4 operator--( bool2x4& x )
 
 // --s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE bool2x4 operator--( bool2x4& x, const int32_t )
+HLML_INLINE bool2x4 operator--( bool2x4 &x, const int32_t )
 {
 	x[0]--;
 	x[1]--;
@@ -756,14 +756,14 @@ HLML_INLINE bool any( const bool2x4 *x )
 }
 
 // Sets the matrix to an identity matrix.
-HLML_INLINE void identity( bool2x4& mat )
+HLML_INLINE void identity( bool2x4 &mat )
 {
 	mat.rows[0] = HLML_CONSTRUCT( bool4 ) { true, false, false, false };
 	mat.rows[1] = HLML_CONSTRUCT( bool4 ) { false, true, false, false };
 }
 
 // Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-HLML_INLINE bool4x2 transpose( const bool2x4& mat )
+HLML_INLINE bool4x2 transpose( const bool2x4 &mat )
 {
 	return HLML_CONSTRUCT( bool4x2 )
 	{
@@ -776,7 +776,7 @@ HLML_INLINE bool4x2 transpose( const bool2x4& mat )
 
 // bool3x2
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator==( const bool3x2& lhs, const bool3x2& rhs )
+HLML_INLINE bool operator==( const bool3x2 &lhs, const bool3x2 &rhs )
 {
 	return
 		lhs[0] == rhs[0] &&
@@ -785,13 +785,13 @@ HLML_INLINE bool operator==( const bool3x2& lhs, const bool3x2& rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator!=( const bool3x2& lhs, const bool3x2& rhs )
+HLML_INLINE bool operator!=( const bool3x2 &lhs, const bool3x2 &rhs )
 {
 	return !( lhs == rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool3x2 operator<( const bool3x2& lhs, const bool3x2& rhs )
+HLML_INLINE bool3x2 operator<( const bool3x2 &lhs, const bool3x2 &rhs )
 {
 	return bool3x2(
 		lhs[0] < rhs[0],
@@ -801,7 +801,7 @@ HLML_INLINE bool3x2 operator<( const bool3x2& lhs, const bool3x2& rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool3x2 operator<=( const bool3x2& lhs, const bool3x2& rhs )
+HLML_INLINE bool3x2 operator<=( const bool3x2 &lhs, const bool3x2 &rhs )
 {
 	return bool3x2(
 		lhs[0] <= rhs[0],
@@ -811,7 +811,7 @@ HLML_INLINE bool3x2 operator<=( const bool3x2& lhs, const bool3x2& rhs )
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool3x2 operator>( const bool3x2& lhs, const bool3x2& rhs )
+HLML_INLINE bool3x2 operator>( const bool3x2 &lhs, const bool3x2 &rhs )
 {
 	return bool3x2(
 		lhs[0] > rhs[0],
@@ -821,7 +821,7 @@ HLML_INLINE bool3x2 operator>( const bool3x2& lhs, const bool3x2& rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool3x2 operator>=( const bool3x2& lhs, const bool3x2& rhs )
+HLML_INLINE bool3x2 operator>=( const bool3x2 &lhs, const bool3x2 &rhs )
 {
 	return bool3x2(
 		lhs[0] >= rhs[0],
@@ -831,7 +831,7 @@ HLML_INLINE bool3x2 operator>=( const bool3x2& lhs, const bool3x2& rhs )
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE bool3x2 operator+( const bool3x2& lhs, const bool32_t rhs )
+HLML_INLINE bool3x2 operator+( const bool3x2 &lhs, const bool32_t rhs )
 {
 	return bool3x2(
 		lhs[0] + rhs,
@@ -841,13 +841,13 @@ HLML_INLINE bool3x2 operator+( const bool3x2& lhs, const bool32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been +'d against the scalar.
-HLML_INLINE bool3x2 operator+=( bool3x2& lhs, const bool32_t rhs )
+HLML_INLINE bool3x2 operator+=( bool3x2 &lhs, const bool32_t rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE bool3x2 operator+( const bool3x2& lhs, const bool3x2& rhs )
+HLML_INLINE bool3x2 operator+( const bool3x2 &lhs, const bool3x2 &rhs )
 {
 	return bool3x2(
 		lhs[0] + rhs[0],
@@ -857,13 +857,13 @@ HLML_INLINE bool3x2 operator+( const bool3x2& lhs, const bool3x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise +'d against 'rhs'.
-HLML_INLINE bool3x2 operator+=( bool3x2& lhs, const bool3x2& rhs )
+HLML_INLINE bool3x2 operator+=( bool3x2 &lhs, const bool3x2 &rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE bool3x2 operator-( const bool3x2& lhs, const bool32_t rhs )
+HLML_INLINE bool3x2 operator-( const bool3x2 &lhs, const bool32_t rhs )
 {
 	return bool3x2(
 		lhs[0] - rhs,
@@ -873,13 +873,13 @@ HLML_INLINE bool3x2 operator-( const bool3x2& lhs, const bool32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been -'d against the scalar.
-HLML_INLINE bool3x2 operator-=( bool3x2& lhs, const bool32_t rhs )
+HLML_INLINE bool3x2 operator-=( bool3x2 &lhs, const bool32_t rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE bool3x2 operator-( const bool3x2& lhs, const bool3x2& rhs )
+HLML_INLINE bool3x2 operator-( const bool3x2 &lhs, const bool3x2 &rhs )
 {
 	return bool3x2(
 		lhs[0] - rhs[0],
@@ -889,13 +889,13 @@ HLML_INLINE bool3x2 operator-( const bool3x2& lhs, const bool3x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise -'d against 'rhs'.
-HLML_INLINE bool3x2 operator-=( bool3x2& lhs, const bool3x2& rhs )
+HLML_INLINE bool3x2 operator-=( bool3x2 &lhs, const bool3x2 &rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE bool3x2 operator*( const bool3x2& lhs, const bool32_t rhs )
+HLML_INLINE bool3x2 operator*( const bool3x2 &lhs, const bool32_t rhs )
 {
 	return bool3x2(
 		lhs[0] * rhs,
@@ -905,13 +905,13 @@ HLML_INLINE bool3x2 operator*( const bool3x2& lhs, const bool32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been *'d against the scalar.
-HLML_INLINE bool3x2 operator*=( bool3x2& lhs, const bool32_t rhs )
+HLML_INLINE bool3x2 operator*=( bool3x2 &lhs, const bool32_t rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE bool3x2 operator*( const bool3x2& lhs, const bool3x2& rhs )
+HLML_INLINE bool3x2 operator*( const bool3x2 &lhs, const bool3x2 &rhs )
 {
 	return bool3x2(
 		lhs[0] * rhs[0],
@@ -921,13 +921,13 @@ HLML_INLINE bool3x2 operator*( const bool3x2& lhs, const bool3x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise *'d against 'rhs'.
-HLML_INLINE bool3x2 operator*=( bool3x2& lhs, const bool3x2& rhs )
+HLML_INLINE bool3x2 operator*=( bool3x2 &lhs, const bool3x2 &rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE bool3x2 operator/( const bool3x2& lhs, const bool32_t rhs )
+HLML_INLINE bool3x2 operator/( const bool3x2 &lhs, const bool32_t rhs )
 {
 	return bool3x2(
 		lhs[0] / rhs,
@@ -937,13 +937,13 @@ HLML_INLINE bool3x2 operator/( const bool3x2& lhs, const bool32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been /'d against the scalar.
-HLML_INLINE bool3x2 operator/=( bool3x2& lhs, const bool32_t rhs )
+HLML_INLINE bool3x2 operator/=( bool3x2 &lhs, const bool32_t rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE bool3x2 operator/( const bool3x2& lhs, const bool3x2& rhs )
+HLML_INLINE bool3x2 operator/( const bool3x2 &lhs, const bool3x2 &rhs )
 {
 	return bool3x2(
 		lhs[0] / rhs[0],
@@ -953,13 +953,13 @@ HLML_INLINE bool3x2 operator/( const bool3x2& lhs, const bool3x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise /'d against 'rhs'.
-HLML_INLINE bool3x2 operator/=( bool3x2& lhs, const bool3x2& rhs )
+HLML_INLINE bool3x2 operator/=( bool3x2 &lhs, const bool3x2 &rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // ++s each component of the matrix and returns the result.
-HLML_INLINE bool3x2 operator++( bool3x2& x )
+HLML_INLINE bool3x2 operator++( bool3x2 &x )
 {
 	++x[0];
 	++x[1];
@@ -969,7 +969,7 @@ HLML_INLINE bool3x2 operator++( bool3x2& x )
 
 // ++s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE bool3x2 operator++( bool3x2& x, const int32_t )
+HLML_INLINE bool3x2 operator++( bool3x2 &x, const int32_t )
 {
 	x[0]++;
 	x[1]++;
@@ -978,7 +978,7 @@ HLML_INLINE bool3x2 operator++( bool3x2& x, const int32_t )
 }
 
 // --s each component of the matrix and returns the result.
-HLML_INLINE bool3x2 operator--( bool3x2& x )
+HLML_INLINE bool3x2 operator--( bool3x2 &x )
 {
 	--x[0];
 	--x[1];
@@ -988,7 +988,7 @@ HLML_INLINE bool3x2 operator--( bool3x2& x )
 
 // --s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE bool3x2 operator--( bool3x2& x, const int32_t )
+HLML_INLINE bool3x2 operator--( bool3x2 &x, const int32_t )
 {
 	x[0]--;
 	x[1]--;
@@ -1015,7 +1015,7 @@ HLML_INLINE bool any( const bool3x2 *x )
 }
 
 // Sets the matrix to an identity matrix.
-HLML_INLINE void identity( bool3x2& mat )
+HLML_INLINE void identity( bool3x2 &mat )
 {
 	mat.rows[0] = HLML_CONSTRUCT( bool2 ) { true, false };
 	mat.rows[1] = HLML_CONSTRUCT( bool2 ) { false, true };
@@ -1023,7 +1023,7 @@ HLML_INLINE void identity( bool3x2& mat )
 }
 
 // Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-HLML_INLINE bool2x3 transpose( const bool3x2& mat )
+HLML_INLINE bool2x3 transpose( const bool3x2 &mat )
 {
 	return HLML_CONSTRUCT( bool2x3 )
 	{
@@ -1034,7 +1034,7 @@ HLML_INLINE bool2x3 transpose( const bool3x2& mat )
 
 // bool3x3
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator==( const bool3x3& lhs, const bool3x3& rhs )
+HLML_INLINE bool operator==( const bool3x3 &lhs, const bool3x3 &rhs )
 {
 	return
 		lhs[0] == rhs[0] &&
@@ -1043,13 +1043,13 @@ HLML_INLINE bool operator==( const bool3x3& lhs, const bool3x3& rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator!=( const bool3x3& lhs, const bool3x3& rhs )
+HLML_INLINE bool operator!=( const bool3x3 &lhs, const bool3x3 &rhs )
 {
 	return !( lhs == rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool3x3 operator<( const bool3x3& lhs, const bool3x3& rhs )
+HLML_INLINE bool3x3 operator<( const bool3x3 &lhs, const bool3x3 &rhs )
 {
 	return bool3x3(
 		lhs[0] < rhs[0],
@@ -1059,7 +1059,7 @@ HLML_INLINE bool3x3 operator<( const bool3x3& lhs, const bool3x3& rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool3x3 operator<=( const bool3x3& lhs, const bool3x3& rhs )
+HLML_INLINE bool3x3 operator<=( const bool3x3 &lhs, const bool3x3 &rhs )
 {
 	return bool3x3(
 		lhs[0] <= rhs[0],
@@ -1069,7 +1069,7 @@ HLML_INLINE bool3x3 operator<=( const bool3x3& lhs, const bool3x3& rhs )
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool3x3 operator>( const bool3x3& lhs, const bool3x3& rhs )
+HLML_INLINE bool3x3 operator>( const bool3x3 &lhs, const bool3x3 &rhs )
 {
 	return bool3x3(
 		lhs[0] > rhs[0],
@@ -1079,7 +1079,7 @@ HLML_INLINE bool3x3 operator>( const bool3x3& lhs, const bool3x3& rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool3x3 operator>=( const bool3x3& lhs, const bool3x3& rhs )
+HLML_INLINE bool3x3 operator>=( const bool3x3 &lhs, const bool3x3 &rhs )
 {
 	return bool3x3(
 		lhs[0] >= rhs[0],
@@ -1089,7 +1089,7 @@ HLML_INLINE bool3x3 operator>=( const bool3x3& lhs, const bool3x3& rhs )
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE bool3x3 operator+( const bool3x3& lhs, const bool32_t rhs )
+HLML_INLINE bool3x3 operator+( const bool3x3 &lhs, const bool32_t rhs )
 {
 	return bool3x3(
 		lhs[0] + rhs,
@@ -1099,13 +1099,13 @@ HLML_INLINE bool3x3 operator+( const bool3x3& lhs, const bool32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been +'d against the scalar.
-HLML_INLINE bool3x3 operator+=( bool3x3& lhs, const bool32_t rhs )
+HLML_INLINE bool3x3 operator+=( bool3x3 &lhs, const bool32_t rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE bool3x3 operator+( const bool3x3& lhs, const bool3x3& rhs )
+HLML_INLINE bool3x3 operator+( const bool3x3 &lhs, const bool3x3 &rhs )
 {
 	return bool3x3(
 		lhs[0] + rhs[0],
@@ -1115,13 +1115,13 @@ HLML_INLINE bool3x3 operator+( const bool3x3& lhs, const bool3x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise +'d against 'rhs'.
-HLML_INLINE bool3x3 operator+=( bool3x3& lhs, const bool3x3& rhs )
+HLML_INLINE bool3x3 operator+=( bool3x3 &lhs, const bool3x3 &rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE bool3x3 operator-( const bool3x3& lhs, const bool32_t rhs )
+HLML_INLINE bool3x3 operator-( const bool3x3 &lhs, const bool32_t rhs )
 {
 	return bool3x3(
 		lhs[0] - rhs,
@@ -1131,13 +1131,13 @@ HLML_INLINE bool3x3 operator-( const bool3x3& lhs, const bool32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been -'d against the scalar.
-HLML_INLINE bool3x3 operator-=( bool3x3& lhs, const bool32_t rhs )
+HLML_INLINE bool3x3 operator-=( bool3x3 &lhs, const bool32_t rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE bool3x3 operator-( const bool3x3& lhs, const bool3x3& rhs )
+HLML_INLINE bool3x3 operator-( const bool3x3 &lhs, const bool3x3 &rhs )
 {
 	return bool3x3(
 		lhs[0] - rhs[0],
@@ -1147,13 +1147,13 @@ HLML_INLINE bool3x3 operator-( const bool3x3& lhs, const bool3x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise -'d against 'rhs'.
-HLML_INLINE bool3x3 operator-=( bool3x3& lhs, const bool3x3& rhs )
+HLML_INLINE bool3x3 operator-=( bool3x3 &lhs, const bool3x3 &rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE bool3x3 operator*( const bool3x3& lhs, const bool32_t rhs )
+HLML_INLINE bool3x3 operator*( const bool3x3 &lhs, const bool32_t rhs )
 {
 	return bool3x3(
 		lhs[0] * rhs,
@@ -1163,13 +1163,13 @@ HLML_INLINE bool3x3 operator*( const bool3x3& lhs, const bool32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been *'d against the scalar.
-HLML_INLINE bool3x3 operator*=( bool3x3& lhs, const bool32_t rhs )
+HLML_INLINE bool3x3 operator*=( bool3x3 &lhs, const bool32_t rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE bool3x3 operator*( const bool3x3& lhs, const bool3x3& rhs )
+HLML_INLINE bool3x3 operator*( const bool3x3 &lhs, const bool3x3 &rhs )
 {
 	return bool3x3(
 		lhs[0] * rhs[0],
@@ -1179,13 +1179,13 @@ HLML_INLINE bool3x3 operator*( const bool3x3& lhs, const bool3x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise *'d against 'rhs'.
-HLML_INLINE bool3x3 operator*=( bool3x3& lhs, const bool3x3& rhs )
+HLML_INLINE bool3x3 operator*=( bool3x3 &lhs, const bool3x3 &rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE bool3x3 operator/( const bool3x3& lhs, const bool32_t rhs )
+HLML_INLINE bool3x3 operator/( const bool3x3 &lhs, const bool32_t rhs )
 {
 	return bool3x3(
 		lhs[0] / rhs,
@@ -1195,13 +1195,13 @@ HLML_INLINE bool3x3 operator/( const bool3x3& lhs, const bool32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been /'d against the scalar.
-HLML_INLINE bool3x3 operator/=( bool3x3& lhs, const bool32_t rhs )
+HLML_INLINE bool3x3 operator/=( bool3x3 &lhs, const bool32_t rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE bool3x3 operator/( const bool3x3& lhs, const bool3x3& rhs )
+HLML_INLINE bool3x3 operator/( const bool3x3 &lhs, const bool3x3 &rhs )
 {
 	return bool3x3(
 		lhs[0] / rhs[0],
@@ -1211,13 +1211,13 @@ HLML_INLINE bool3x3 operator/( const bool3x3& lhs, const bool3x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise /'d against 'rhs'.
-HLML_INLINE bool3x3 operator/=( bool3x3& lhs, const bool3x3& rhs )
+HLML_INLINE bool3x3 operator/=( bool3x3 &lhs, const bool3x3 &rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // ++s each component of the matrix and returns the result.
-HLML_INLINE bool3x3 operator++( bool3x3& x )
+HLML_INLINE bool3x3 operator++( bool3x3 &x )
 {
 	++x[0];
 	++x[1];
@@ -1227,7 +1227,7 @@ HLML_INLINE bool3x3 operator++( bool3x3& x )
 
 // ++s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE bool3x3 operator++( bool3x3& x, const int32_t )
+HLML_INLINE bool3x3 operator++( bool3x3 &x, const int32_t )
 {
 	x[0]++;
 	x[1]++;
@@ -1236,7 +1236,7 @@ HLML_INLINE bool3x3 operator++( bool3x3& x, const int32_t )
 }
 
 // --s each component of the matrix and returns the result.
-HLML_INLINE bool3x3 operator--( bool3x3& x )
+HLML_INLINE bool3x3 operator--( bool3x3 &x )
 {
 	--x[0];
 	--x[1];
@@ -1246,7 +1246,7 @@ HLML_INLINE bool3x3 operator--( bool3x3& x )
 
 // --s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE bool3x3 operator--( bool3x3& x, const int32_t )
+HLML_INLINE bool3x3 operator--( bool3x3 &x, const int32_t )
 {
 	x[0]--;
 	x[1]--;
@@ -1273,7 +1273,7 @@ HLML_INLINE bool any( const bool3x3 *x )
 }
 
 // Sets the matrix to an identity matrix.
-HLML_INLINE void identity( bool3x3& mat )
+HLML_INLINE void identity( bool3x3 &mat )
 {
 	mat.rows[0] = HLML_CONSTRUCT( bool3 ) { true, false, false };
 	mat.rows[1] = HLML_CONSTRUCT( bool3 ) { false, true, false };
@@ -1281,7 +1281,7 @@ HLML_INLINE void identity( bool3x3& mat )
 }
 
 // Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-HLML_INLINE bool3x3 transpose( const bool3x3& mat )
+HLML_INLINE bool3x3 transpose( const bool3x3 &mat )
 {
 	return HLML_CONSTRUCT( bool3x3 )
 	{
@@ -1293,7 +1293,7 @@ HLML_INLINE bool3x3 transpose( const bool3x3& mat )
 
 // bool3x4
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator==( const bool3x4& lhs, const bool3x4& rhs )
+HLML_INLINE bool operator==( const bool3x4 &lhs, const bool3x4 &rhs )
 {
 	return
 		lhs[0] == rhs[0] &&
@@ -1302,13 +1302,13 @@ HLML_INLINE bool operator==( const bool3x4& lhs, const bool3x4& rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator!=( const bool3x4& lhs, const bool3x4& rhs )
+HLML_INLINE bool operator!=( const bool3x4 &lhs, const bool3x4 &rhs )
 {
 	return !( lhs == rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool3x4 operator<( const bool3x4& lhs, const bool3x4& rhs )
+HLML_INLINE bool3x4 operator<( const bool3x4 &lhs, const bool3x4 &rhs )
 {
 	return bool3x4(
 		lhs[0] < rhs[0],
@@ -1318,7 +1318,7 @@ HLML_INLINE bool3x4 operator<( const bool3x4& lhs, const bool3x4& rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool3x4 operator<=( const bool3x4& lhs, const bool3x4& rhs )
+HLML_INLINE bool3x4 operator<=( const bool3x4 &lhs, const bool3x4 &rhs )
 {
 	return bool3x4(
 		lhs[0] <= rhs[0],
@@ -1328,7 +1328,7 @@ HLML_INLINE bool3x4 operator<=( const bool3x4& lhs, const bool3x4& rhs )
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool3x4 operator>( const bool3x4& lhs, const bool3x4& rhs )
+HLML_INLINE bool3x4 operator>( const bool3x4 &lhs, const bool3x4 &rhs )
 {
 	return bool3x4(
 		lhs[0] > rhs[0],
@@ -1338,7 +1338,7 @@ HLML_INLINE bool3x4 operator>( const bool3x4& lhs, const bool3x4& rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool3x4 operator>=( const bool3x4& lhs, const bool3x4& rhs )
+HLML_INLINE bool3x4 operator>=( const bool3x4 &lhs, const bool3x4 &rhs )
 {
 	return bool3x4(
 		lhs[0] >= rhs[0],
@@ -1348,7 +1348,7 @@ HLML_INLINE bool3x4 operator>=( const bool3x4& lhs, const bool3x4& rhs )
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE bool3x4 operator+( const bool3x4& lhs, const bool32_t rhs )
+HLML_INLINE bool3x4 operator+( const bool3x4 &lhs, const bool32_t rhs )
 {
 	return bool3x4(
 		lhs[0] + rhs,
@@ -1358,13 +1358,13 @@ HLML_INLINE bool3x4 operator+( const bool3x4& lhs, const bool32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been +'d against the scalar.
-HLML_INLINE bool3x4 operator+=( bool3x4& lhs, const bool32_t rhs )
+HLML_INLINE bool3x4 operator+=( bool3x4 &lhs, const bool32_t rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE bool3x4 operator+( const bool3x4& lhs, const bool3x4& rhs )
+HLML_INLINE bool3x4 operator+( const bool3x4 &lhs, const bool3x4 &rhs )
 {
 	return bool3x4(
 		lhs[0] + rhs[0],
@@ -1374,13 +1374,13 @@ HLML_INLINE bool3x4 operator+( const bool3x4& lhs, const bool3x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise +'d against 'rhs'.
-HLML_INLINE bool3x4 operator+=( bool3x4& lhs, const bool3x4& rhs )
+HLML_INLINE bool3x4 operator+=( bool3x4 &lhs, const bool3x4 &rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE bool3x4 operator-( const bool3x4& lhs, const bool32_t rhs )
+HLML_INLINE bool3x4 operator-( const bool3x4 &lhs, const bool32_t rhs )
 {
 	return bool3x4(
 		lhs[0] - rhs,
@@ -1390,13 +1390,13 @@ HLML_INLINE bool3x4 operator-( const bool3x4& lhs, const bool32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been -'d against the scalar.
-HLML_INLINE bool3x4 operator-=( bool3x4& lhs, const bool32_t rhs )
+HLML_INLINE bool3x4 operator-=( bool3x4 &lhs, const bool32_t rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE bool3x4 operator-( const bool3x4& lhs, const bool3x4& rhs )
+HLML_INLINE bool3x4 operator-( const bool3x4 &lhs, const bool3x4 &rhs )
 {
 	return bool3x4(
 		lhs[0] - rhs[0],
@@ -1406,13 +1406,13 @@ HLML_INLINE bool3x4 operator-( const bool3x4& lhs, const bool3x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise -'d against 'rhs'.
-HLML_INLINE bool3x4 operator-=( bool3x4& lhs, const bool3x4& rhs )
+HLML_INLINE bool3x4 operator-=( bool3x4 &lhs, const bool3x4 &rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE bool3x4 operator*( const bool3x4& lhs, const bool32_t rhs )
+HLML_INLINE bool3x4 operator*( const bool3x4 &lhs, const bool32_t rhs )
 {
 	return bool3x4(
 		lhs[0] * rhs,
@@ -1422,13 +1422,13 @@ HLML_INLINE bool3x4 operator*( const bool3x4& lhs, const bool32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been *'d against the scalar.
-HLML_INLINE bool3x4 operator*=( bool3x4& lhs, const bool32_t rhs )
+HLML_INLINE bool3x4 operator*=( bool3x4 &lhs, const bool32_t rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE bool3x4 operator*( const bool3x4& lhs, const bool3x4& rhs )
+HLML_INLINE bool3x4 operator*( const bool3x4 &lhs, const bool3x4 &rhs )
 {
 	return bool3x4(
 		lhs[0] * rhs[0],
@@ -1438,13 +1438,13 @@ HLML_INLINE bool3x4 operator*( const bool3x4& lhs, const bool3x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise *'d against 'rhs'.
-HLML_INLINE bool3x4 operator*=( bool3x4& lhs, const bool3x4& rhs )
+HLML_INLINE bool3x4 operator*=( bool3x4 &lhs, const bool3x4 &rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE bool3x4 operator/( const bool3x4& lhs, const bool32_t rhs )
+HLML_INLINE bool3x4 operator/( const bool3x4 &lhs, const bool32_t rhs )
 {
 	return bool3x4(
 		lhs[0] / rhs,
@@ -1454,13 +1454,13 @@ HLML_INLINE bool3x4 operator/( const bool3x4& lhs, const bool32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been /'d against the scalar.
-HLML_INLINE bool3x4 operator/=( bool3x4& lhs, const bool32_t rhs )
+HLML_INLINE bool3x4 operator/=( bool3x4 &lhs, const bool32_t rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE bool3x4 operator/( const bool3x4& lhs, const bool3x4& rhs )
+HLML_INLINE bool3x4 operator/( const bool3x4 &lhs, const bool3x4 &rhs )
 {
 	return bool3x4(
 		lhs[0] / rhs[0],
@@ -1470,13 +1470,13 @@ HLML_INLINE bool3x4 operator/( const bool3x4& lhs, const bool3x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise /'d against 'rhs'.
-HLML_INLINE bool3x4 operator/=( bool3x4& lhs, const bool3x4& rhs )
+HLML_INLINE bool3x4 operator/=( bool3x4 &lhs, const bool3x4 &rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // ++s each component of the matrix and returns the result.
-HLML_INLINE bool3x4 operator++( bool3x4& x )
+HLML_INLINE bool3x4 operator++( bool3x4 &x )
 {
 	++x[0];
 	++x[1];
@@ -1486,7 +1486,7 @@ HLML_INLINE bool3x4 operator++( bool3x4& x )
 
 // ++s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE bool3x4 operator++( bool3x4& x, const int32_t )
+HLML_INLINE bool3x4 operator++( bool3x4 &x, const int32_t )
 {
 	x[0]++;
 	x[1]++;
@@ -1495,7 +1495,7 @@ HLML_INLINE bool3x4 operator++( bool3x4& x, const int32_t )
 }
 
 // --s each component of the matrix and returns the result.
-HLML_INLINE bool3x4 operator--( bool3x4& x )
+HLML_INLINE bool3x4 operator--( bool3x4 &x )
 {
 	--x[0];
 	--x[1];
@@ -1505,7 +1505,7 @@ HLML_INLINE bool3x4 operator--( bool3x4& x )
 
 // --s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE bool3x4 operator--( bool3x4& x, const int32_t )
+HLML_INLINE bool3x4 operator--( bool3x4 &x, const int32_t )
 {
 	x[0]--;
 	x[1]--;
@@ -1532,7 +1532,7 @@ HLML_INLINE bool any( const bool3x4 *x )
 }
 
 // Sets the matrix to an identity matrix.
-HLML_INLINE void identity( bool3x4& mat )
+HLML_INLINE void identity( bool3x4 &mat )
 {
 	mat.rows[0] = HLML_CONSTRUCT( bool4 ) { true, false, false, false };
 	mat.rows[1] = HLML_CONSTRUCT( bool4 ) { false, true, false, false };
@@ -1540,7 +1540,7 @@ HLML_INLINE void identity( bool3x4& mat )
 }
 
 // Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-HLML_INLINE bool4x3 transpose( const bool3x4& mat )
+HLML_INLINE bool4x3 transpose( const bool3x4 &mat )
 {
 	return HLML_CONSTRUCT( bool4x3 )
 	{
@@ -1553,7 +1553,7 @@ HLML_INLINE bool4x3 transpose( const bool3x4& mat )
 
 // bool4x2
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator==( const bool4x2& lhs, const bool4x2& rhs )
+HLML_INLINE bool operator==( const bool4x2 &lhs, const bool4x2 &rhs )
 {
 	return
 		lhs[0] == rhs[0] &&
@@ -1563,13 +1563,13 @@ HLML_INLINE bool operator==( const bool4x2& lhs, const bool4x2& rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator!=( const bool4x2& lhs, const bool4x2& rhs )
+HLML_INLINE bool operator!=( const bool4x2 &lhs, const bool4x2 &rhs )
 {
 	return !( lhs == rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool4x2 operator<( const bool4x2& lhs, const bool4x2& rhs )
+HLML_INLINE bool4x2 operator<( const bool4x2 &lhs, const bool4x2 &rhs )
 {
 	return bool4x2(
 		lhs[0] < rhs[0],
@@ -1580,7 +1580,7 @@ HLML_INLINE bool4x2 operator<( const bool4x2& lhs, const bool4x2& rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool4x2 operator<=( const bool4x2& lhs, const bool4x2& rhs )
+HLML_INLINE bool4x2 operator<=( const bool4x2 &lhs, const bool4x2 &rhs )
 {
 	return bool4x2(
 		lhs[0] <= rhs[0],
@@ -1591,7 +1591,7 @@ HLML_INLINE bool4x2 operator<=( const bool4x2& lhs, const bool4x2& rhs )
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool4x2 operator>( const bool4x2& lhs, const bool4x2& rhs )
+HLML_INLINE bool4x2 operator>( const bool4x2 &lhs, const bool4x2 &rhs )
 {
 	return bool4x2(
 		lhs[0] > rhs[0],
@@ -1602,7 +1602,7 @@ HLML_INLINE bool4x2 operator>( const bool4x2& lhs, const bool4x2& rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool4x2 operator>=( const bool4x2& lhs, const bool4x2& rhs )
+HLML_INLINE bool4x2 operator>=( const bool4x2 &lhs, const bool4x2 &rhs )
 {
 	return bool4x2(
 		lhs[0] >= rhs[0],
@@ -1613,7 +1613,7 @@ HLML_INLINE bool4x2 operator>=( const bool4x2& lhs, const bool4x2& rhs )
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE bool4x2 operator+( const bool4x2& lhs, const bool32_t rhs )
+HLML_INLINE bool4x2 operator+( const bool4x2 &lhs, const bool32_t rhs )
 {
 	return bool4x2(
 		lhs[0] + rhs,
@@ -1624,13 +1624,13 @@ HLML_INLINE bool4x2 operator+( const bool4x2& lhs, const bool32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been +'d against the scalar.
-HLML_INLINE bool4x2 operator+=( bool4x2& lhs, const bool32_t rhs )
+HLML_INLINE bool4x2 operator+=( bool4x2 &lhs, const bool32_t rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE bool4x2 operator+( const bool4x2& lhs, const bool4x2& rhs )
+HLML_INLINE bool4x2 operator+( const bool4x2 &lhs, const bool4x2 &rhs )
 {
 	return bool4x2(
 		lhs[0] + rhs[0],
@@ -1641,13 +1641,13 @@ HLML_INLINE bool4x2 operator+( const bool4x2& lhs, const bool4x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise +'d against 'rhs'.
-HLML_INLINE bool4x2 operator+=( bool4x2& lhs, const bool4x2& rhs )
+HLML_INLINE bool4x2 operator+=( bool4x2 &lhs, const bool4x2 &rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE bool4x2 operator-( const bool4x2& lhs, const bool32_t rhs )
+HLML_INLINE bool4x2 operator-( const bool4x2 &lhs, const bool32_t rhs )
 {
 	return bool4x2(
 		lhs[0] - rhs,
@@ -1658,13 +1658,13 @@ HLML_INLINE bool4x2 operator-( const bool4x2& lhs, const bool32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been -'d against the scalar.
-HLML_INLINE bool4x2 operator-=( bool4x2& lhs, const bool32_t rhs )
+HLML_INLINE bool4x2 operator-=( bool4x2 &lhs, const bool32_t rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE bool4x2 operator-( const bool4x2& lhs, const bool4x2& rhs )
+HLML_INLINE bool4x2 operator-( const bool4x2 &lhs, const bool4x2 &rhs )
 {
 	return bool4x2(
 		lhs[0] - rhs[0],
@@ -1675,13 +1675,13 @@ HLML_INLINE bool4x2 operator-( const bool4x2& lhs, const bool4x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise -'d against 'rhs'.
-HLML_INLINE bool4x2 operator-=( bool4x2& lhs, const bool4x2& rhs )
+HLML_INLINE bool4x2 operator-=( bool4x2 &lhs, const bool4x2 &rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE bool4x2 operator*( const bool4x2& lhs, const bool32_t rhs )
+HLML_INLINE bool4x2 operator*( const bool4x2 &lhs, const bool32_t rhs )
 {
 	return bool4x2(
 		lhs[0] * rhs,
@@ -1692,13 +1692,13 @@ HLML_INLINE bool4x2 operator*( const bool4x2& lhs, const bool32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been *'d against the scalar.
-HLML_INLINE bool4x2 operator*=( bool4x2& lhs, const bool32_t rhs )
+HLML_INLINE bool4x2 operator*=( bool4x2 &lhs, const bool32_t rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE bool4x2 operator*( const bool4x2& lhs, const bool4x2& rhs )
+HLML_INLINE bool4x2 operator*( const bool4x2 &lhs, const bool4x2 &rhs )
 {
 	return bool4x2(
 		lhs[0] * rhs[0],
@@ -1709,13 +1709,13 @@ HLML_INLINE bool4x2 operator*( const bool4x2& lhs, const bool4x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise *'d against 'rhs'.
-HLML_INLINE bool4x2 operator*=( bool4x2& lhs, const bool4x2& rhs )
+HLML_INLINE bool4x2 operator*=( bool4x2 &lhs, const bool4x2 &rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE bool4x2 operator/( const bool4x2& lhs, const bool32_t rhs )
+HLML_INLINE bool4x2 operator/( const bool4x2 &lhs, const bool32_t rhs )
 {
 	return bool4x2(
 		lhs[0] / rhs,
@@ -1726,13 +1726,13 @@ HLML_INLINE bool4x2 operator/( const bool4x2& lhs, const bool32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been /'d against the scalar.
-HLML_INLINE bool4x2 operator/=( bool4x2& lhs, const bool32_t rhs )
+HLML_INLINE bool4x2 operator/=( bool4x2 &lhs, const bool32_t rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE bool4x2 operator/( const bool4x2& lhs, const bool4x2& rhs )
+HLML_INLINE bool4x2 operator/( const bool4x2 &lhs, const bool4x2 &rhs )
 {
 	return bool4x2(
 		lhs[0] / rhs[0],
@@ -1743,13 +1743,13 @@ HLML_INLINE bool4x2 operator/( const bool4x2& lhs, const bool4x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise /'d against 'rhs'.
-HLML_INLINE bool4x2 operator/=( bool4x2& lhs, const bool4x2& rhs )
+HLML_INLINE bool4x2 operator/=( bool4x2 &lhs, const bool4x2 &rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // ++s each component of the matrix and returns the result.
-HLML_INLINE bool4x2 operator++( bool4x2& x )
+HLML_INLINE bool4x2 operator++( bool4x2 &x )
 {
 	++x[0];
 	++x[1];
@@ -1760,7 +1760,7 @@ HLML_INLINE bool4x2 operator++( bool4x2& x )
 
 // ++s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE bool4x2 operator++( bool4x2& x, const int32_t )
+HLML_INLINE bool4x2 operator++( bool4x2 &x, const int32_t )
 {
 	x[0]++;
 	x[1]++;
@@ -1770,7 +1770,7 @@ HLML_INLINE bool4x2 operator++( bool4x2& x, const int32_t )
 }
 
 // --s each component of the matrix and returns the result.
-HLML_INLINE bool4x2 operator--( bool4x2& x )
+HLML_INLINE bool4x2 operator--( bool4x2 &x )
 {
 	--x[0];
 	--x[1];
@@ -1781,7 +1781,7 @@ HLML_INLINE bool4x2 operator--( bool4x2& x )
 
 // --s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE bool4x2 operator--( bool4x2& x, const int32_t )
+HLML_INLINE bool4x2 operator--( bool4x2 &x, const int32_t )
 {
 	x[0]--;
 	x[1]--;
@@ -1811,7 +1811,7 @@ HLML_INLINE bool any( const bool4x2 *x )
 }
 
 // Sets the matrix to an identity matrix.
-HLML_INLINE void identity( bool4x2& mat )
+HLML_INLINE void identity( bool4x2 &mat )
 {
 	mat.rows[0] = HLML_CONSTRUCT( bool2 ) { true, false };
 	mat.rows[1] = HLML_CONSTRUCT( bool2 ) { false, true };
@@ -1820,7 +1820,7 @@ HLML_INLINE void identity( bool4x2& mat )
 }
 
 // Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-HLML_INLINE bool2x4 transpose( const bool4x2& mat )
+HLML_INLINE bool2x4 transpose( const bool4x2 &mat )
 {
 	return HLML_CONSTRUCT( bool2x4 )
 	{
@@ -1831,7 +1831,7 @@ HLML_INLINE bool2x4 transpose( const bool4x2& mat )
 
 // bool4x3
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator==( const bool4x3& lhs, const bool4x3& rhs )
+HLML_INLINE bool operator==( const bool4x3 &lhs, const bool4x3 &rhs )
 {
 	return
 		lhs[0] == rhs[0] &&
@@ -1841,13 +1841,13 @@ HLML_INLINE bool operator==( const bool4x3& lhs, const bool4x3& rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator!=( const bool4x3& lhs, const bool4x3& rhs )
+HLML_INLINE bool operator!=( const bool4x3 &lhs, const bool4x3 &rhs )
 {
 	return !( lhs == rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool4x3 operator<( const bool4x3& lhs, const bool4x3& rhs )
+HLML_INLINE bool4x3 operator<( const bool4x3 &lhs, const bool4x3 &rhs )
 {
 	return bool4x3(
 		lhs[0] < rhs[0],
@@ -1858,7 +1858,7 @@ HLML_INLINE bool4x3 operator<( const bool4x3& lhs, const bool4x3& rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool4x3 operator<=( const bool4x3& lhs, const bool4x3& rhs )
+HLML_INLINE bool4x3 operator<=( const bool4x3 &lhs, const bool4x3 &rhs )
 {
 	return bool4x3(
 		lhs[0] <= rhs[0],
@@ -1869,7 +1869,7 @@ HLML_INLINE bool4x3 operator<=( const bool4x3& lhs, const bool4x3& rhs )
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool4x3 operator>( const bool4x3& lhs, const bool4x3& rhs )
+HLML_INLINE bool4x3 operator>( const bool4x3 &lhs, const bool4x3 &rhs )
 {
 	return bool4x3(
 		lhs[0] > rhs[0],
@@ -1880,7 +1880,7 @@ HLML_INLINE bool4x3 operator>( const bool4x3& lhs, const bool4x3& rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool4x3 operator>=( const bool4x3& lhs, const bool4x3& rhs )
+HLML_INLINE bool4x3 operator>=( const bool4x3 &lhs, const bool4x3 &rhs )
 {
 	return bool4x3(
 		lhs[0] >= rhs[0],
@@ -1891,7 +1891,7 @@ HLML_INLINE bool4x3 operator>=( const bool4x3& lhs, const bool4x3& rhs )
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE bool4x3 operator+( const bool4x3& lhs, const bool32_t rhs )
+HLML_INLINE bool4x3 operator+( const bool4x3 &lhs, const bool32_t rhs )
 {
 	return bool4x3(
 		lhs[0] + rhs,
@@ -1902,13 +1902,13 @@ HLML_INLINE bool4x3 operator+( const bool4x3& lhs, const bool32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been +'d against the scalar.
-HLML_INLINE bool4x3 operator+=( bool4x3& lhs, const bool32_t rhs )
+HLML_INLINE bool4x3 operator+=( bool4x3 &lhs, const bool32_t rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE bool4x3 operator+( const bool4x3& lhs, const bool4x3& rhs )
+HLML_INLINE bool4x3 operator+( const bool4x3 &lhs, const bool4x3 &rhs )
 {
 	return bool4x3(
 		lhs[0] + rhs[0],
@@ -1919,13 +1919,13 @@ HLML_INLINE bool4x3 operator+( const bool4x3& lhs, const bool4x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise +'d against 'rhs'.
-HLML_INLINE bool4x3 operator+=( bool4x3& lhs, const bool4x3& rhs )
+HLML_INLINE bool4x3 operator+=( bool4x3 &lhs, const bool4x3 &rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE bool4x3 operator-( const bool4x3& lhs, const bool32_t rhs )
+HLML_INLINE bool4x3 operator-( const bool4x3 &lhs, const bool32_t rhs )
 {
 	return bool4x3(
 		lhs[0] - rhs,
@@ -1936,13 +1936,13 @@ HLML_INLINE bool4x3 operator-( const bool4x3& lhs, const bool32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been -'d against the scalar.
-HLML_INLINE bool4x3 operator-=( bool4x3& lhs, const bool32_t rhs )
+HLML_INLINE bool4x3 operator-=( bool4x3 &lhs, const bool32_t rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE bool4x3 operator-( const bool4x3& lhs, const bool4x3& rhs )
+HLML_INLINE bool4x3 operator-( const bool4x3 &lhs, const bool4x3 &rhs )
 {
 	return bool4x3(
 		lhs[0] - rhs[0],
@@ -1953,13 +1953,13 @@ HLML_INLINE bool4x3 operator-( const bool4x3& lhs, const bool4x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise -'d against 'rhs'.
-HLML_INLINE bool4x3 operator-=( bool4x3& lhs, const bool4x3& rhs )
+HLML_INLINE bool4x3 operator-=( bool4x3 &lhs, const bool4x3 &rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE bool4x3 operator*( const bool4x3& lhs, const bool32_t rhs )
+HLML_INLINE bool4x3 operator*( const bool4x3 &lhs, const bool32_t rhs )
 {
 	return bool4x3(
 		lhs[0] * rhs,
@@ -1970,13 +1970,13 @@ HLML_INLINE bool4x3 operator*( const bool4x3& lhs, const bool32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been *'d against the scalar.
-HLML_INLINE bool4x3 operator*=( bool4x3& lhs, const bool32_t rhs )
+HLML_INLINE bool4x3 operator*=( bool4x3 &lhs, const bool32_t rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE bool4x3 operator*( const bool4x3& lhs, const bool4x3& rhs )
+HLML_INLINE bool4x3 operator*( const bool4x3 &lhs, const bool4x3 &rhs )
 {
 	return bool4x3(
 		lhs[0] * rhs[0],
@@ -1987,13 +1987,13 @@ HLML_INLINE bool4x3 operator*( const bool4x3& lhs, const bool4x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise *'d against 'rhs'.
-HLML_INLINE bool4x3 operator*=( bool4x3& lhs, const bool4x3& rhs )
+HLML_INLINE bool4x3 operator*=( bool4x3 &lhs, const bool4x3 &rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE bool4x3 operator/( const bool4x3& lhs, const bool32_t rhs )
+HLML_INLINE bool4x3 operator/( const bool4x3 &lhs, const bool32_t rhs )
 {
 	return bool4x3(
 		lhs[0] / rhs,
@@ -2004,13 +2004,13 @@ HLML_INLINE bool4x3 operator/( const bool4x3& lhs, const bool32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been /'d against the scalar.
-HLML_INLINE bool4x3 operator/=( bool4x3& lhs, const bool32_t rhs )
+HLML_INLINE bool4x3 operator/=( bool4x3 &lhs, const bool32_t rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE bool4x3 operator/( const bool4x3& lhs, const bool4x3& rhs )
+HLML_INLINE bool4x3 operator/( const bool4x3 &lhs, const bool4x3 &rhs )
 {
 	return bool4x3(
 		lhs[0] / rhs[0],
@@ -2021,13 +2021,13 @@ HLML_INLINE bool4x3 operator/( const bool4x3& lhs, const bool4x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise /'d against 'rhs'.
-HLML_INLINE bool4x3 operator/=( bool4x3& lhs, const bool4x3& rhs )
+HLML_INLINE bool4x3 operator/=( bool4x3 &lhs, const bool4x3 &rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // ++s each component of the matrix and returns the result.
-HLML_INLINE bool4x3 operator++( bool4x3& x )
+HLML_INLINE bool4x3 operator++( bool4x3 &x )
 {
 	++x[0];
 	++x[1];
@@ -2038,7 +2038,7 @@ HLML_INLINE bool4x3 operator++( bool4x3& x )
 
 // ++s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE bool4x3 operator++( bool4x3& x, const int32_t )
+HLML_INLINE bool4x3 operator++( bool4x3 &x, const int32_t )
 {
 	x[0]++;
 	x[1]++;
@@ -2048,7 +2048,7 @@ HLML_INLINE bool4x3 operator++( bool4x3& x, const int32_t )
 }
 
 // --s each component of the matrix and returns the result.
-HLML_INLINE bool4x3 operator--( bool4x3& x )
+HLML_INLINE bool4x3 operator--( bool4x3 &x )
 {
 	--x[0];
 	--x[1];
@@ -2059,7 +2059,7 @@ HLML_INLINE bool4x3 operator--( bool4x3& x )
 
 // --s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE bool4x3 operator--( bool4x3& x, const int32_t )
+HLML_INLINE bool4x3 operator--( bool4x3 &x, const int32_t )
 {
 	x[0]--;
 	x[1]--;
@@ -2089,7 +2089,7 @@ HLML_INLINE bool any( const bool4x3 *x )
 }
 
 // Sets the matrix to an identity matrix.
-HLML_INLINE void identity( bool4x3& mat )
+HLML_INLINE void identity( bool4x3 &mat )
 {
 	mat.rows[0] = HLML_CONSTRUCT( bool3 ) { true, false, false };
 	mat.rows[1] = HLML_CONSTRUCT( bool3 ) { false, true, false };
@@ -2098,7 +2098,7 @@ HLML_INLINE void identity( bool4x3& mat )
 }
 
 // Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-HLML_INLINE bool3x4 transpose( const bool4x3& mat )
+HLML_INLINE bool3x4 transpose( const bool4x3 &mat )
 {
 	return HLML_CONSTRUCT( bool3x4 )
 	{
@@ -2110,7 +2110,7 @@ HLML_INLINE bool3x4 transpose( const bool4x3& mat )
 
 // bool4x4
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator==( const bool4x4& lhs, const bool4x4& rhs )
+HLML_INLINE bool operator==( const bool4x4 &lhs, const bool4x4 &rhs )
 {
 	return
 		lhs[0] == rhs[0] &&
@@ -2120,13 +2120,13 @@ HLML_INLINE bool operator==( const bool4x4& lhs, const bool4x4& rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator!=( const bool4x4& lhs, const bool4x4& rhs )
+HLML_INLINE bool operator!=( const bool4x4 &lhs, const bool4x4 &rhs )
 {
 	return !( lhs == rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool4x4 operator<( const bool4x4& lhs, const bool4x4& rhs )
+HLML_INLINE bool4x4 operator<( const bool4x4 &lhs, const bool4x4 &rhs )
 {
 	return bool4x4(
 		lhs[0] < rhs[0],
@@ -2137,7 +2137,7 @@ HLML_INLINE bool4x4 operator<( const bool4x4& lhs, const bool4x4& rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool4x4 operator<=( const bool4x4& lhs, const bool4x4& rhs )
+HLML_INLINE bool4x4 operator<=( const bool4x4 &lhs, const bool4x4 &rhs )
 {
 	return bool4x4(
 		lhs[0] <= rhs[0],
@@ -2148,7 +2148,7 @@ HLML_INLINE bool4x4 operator<=( const bool4x4& lhs, const bool4x4& rhs )
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool4x4 operator>( const bool4x4& lhs, const bool4x4& rhs )
+HLML_INLINE bool4x4 operator>( const bool4x4 &lhs, const bool4x4 &rhs )
 {
 	return bool4x4(
 		lhs[0] > rhs[0],
@@ -2159,7 +2159,7 @@ HLML_INLINE bool4x4 operator>( const bool4x4& lhs, const bool4x4& rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool4x4 operator>=( const bool4x4& lhs, const bool4x4& rhs )
+HLML_INLINE bool4x4 operator>=( const bool4x4 &lhs, const bool4x4 &rhs )
 {
 	return bool4x4(
 		lhs[0] >= rhs[0],
@@ -2170,7 +2170,7 @@ HLML_INLINE bool4x4 operator>=( const bool4x4& lhs, const bool4x4& rhs )
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE bool4x4 operator+( const bool4x4& lhs, const bool32_t rhs )
+HLML_INLINE bool4x4 operator+( const bool4x4 &lhs, const bool32_t rhs )
 {
 	return bool4x4(
 		lhs[0] + rhs,
@@ -2181,13 +2181,13 @@ HLML_INLINE bool4x4 operator+( const bool4x4& lhs, const bool32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been +'d against the scalar.
-HLML_INLINE bool4x4 operator+=( bool4x4& lhs, const bool32_t rhs )
+HLML_INLINE bool4x4 operator+=( bool4x4 &lhs, const bool32_t rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE bool4x4 operator+( const bool4x4& lhs, const bool4x4& rhs )
+HLML_INLINE bool4x4 operator+( const bool4x4 &lhs, const bool4x4 &rhs )
 {
 	return bool4x4(
 		lhs[0] + rhs[0],
@@ -2198,13 +2198,13 @@ HLML_INLINE bool4x4 operator+( const bool4x4& lhs, const bool4x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise +'d against 'rhs'.
-HLML_INLINE bool4x4 operator+=( bool4x4& lhs, const bool4x4& rhs )
+HLML_INLINE bool4x4 operator+=( bool4x4 &lhs, const bool4x4 &rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE bool4x4 operator-( const bool4x4& lhs, const bool32_t rhs )
+HLML_INLINE bool4x4 operator-( const bool4x4 &lhs, const bool32_t rhs )
 {
 	return bool4x4(
 		lhs[0] - rhs,
@@ -2215,13 +2215,13 @@ HLML_INLINE bool4x4 operator-( const bool4x4& lhs, const bool32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been -'d against the scalar.
-HLML_INLINE bool4x4 operator-=( bool4x4& lhs, const bool32_t rhs )
+HLML_INLINE bool4x4 operator-=( bool4x4 &lhs, const bool32_t rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE bool4x4 operator-( const bool4x4& lhs, const bool4x4& rhs )
+HLML_INLINE bool4x4 operator-( const bool4x4 &lhs, const bool4x4 &rhs )
 {
 	return bool4x4(
 		lhs[0] - rhs[0],
@@ -2232,13 +2232,13 @@ HLML_INLINE bool4x4 operator-( const bool4x4& lhs, const bool4x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise -'d against 'rhs'.
-HLML_INLINE bool4x4 operator-=( bool4x4& lhs, const bool4x4& rhs )
+HLML_INLINE bool4x4 operator-=( bool4x4 &lhs, const bool4x4 &rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE bool4x4 operator*( const bool4x4& lhs, const bool32_t rhs )
+HLML_INLINE bool4x4 operator*( const bool4x4 &lhs, const bool32_t rhs )
 {
 	return bool4x4(
 		lhs[0] * rhs,
@@ -2249,13 +2249,13 @@ HLML_INLINE bool4x4 operator*( const bool4x4& lhs, const bool32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been *'d against the scalar.
-HLML_INLINE bool4x4 operator*=( bool4x4& lhs, const bool32_t rhs )
+HLML_INLINE bool4x4 operator*=( bool4x4 &lhs, const bool32_t rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE bool4x4 operator*( const bool4x4& lhs, const bool4x4& rhs )
+HLML_INLINE bool4x4 operator*( const bool4x4 &lhs, const bool4x4 &rhs )
 {
 	return bool4x4(
 		lhs[0] * rhs[0],
@@ -2266,13 +2266,13 @@ HLML_INLINE bool4x4 operator*( const bool4x4& lhs, const bool4x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise *'d against 'rhs'.
-HLML_INLINE bool4x4 operator*=( bool4x4& lhs, const bool4x4& rhs )
+HLML_INLINE bool4x4 operator*=( bool4x4 &lhs, const bool4x4 &rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE bool4x4 operator/( const bool4x4& lhs, const bool32_t rhs )
+HLML_INLINE bool4x4 operator/( const bool4x4 &lhs, const bool32_t rhs )
 {
 	return bool4x4(
 		lhs[0] / rhs,
@@ -2283,13 +2283,13 @@ HLML_INLINE bool4x4 operator/( const bool4x4& lhs, const bool32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been /'d against the scalar.
-HLML_INLINE bool4x4 operator/=( bool4x4& lhs, const bool32_t rhs )
+HLML_INLINE bool4x4 operator/=( bool4x4 &lhs, const bool32_t rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE bool4x4 operator/( const bool4x4& lhs, const bool4x4& rhs )
+HLML_INLINE bool4x4 operator/( const bool4x4 &lhs, const bool4x4 &rhs )
 {
 	return bool4x4(
 		lhs[0] / rhs[0],
@@ -2300,13 +2300,13 @@ HLML_INLINE bool4x4 operator/( const bool4x4& lhs, const bool4x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise /'d against 'rhs'.
-HLML_INLINE bool4x4 operator/=( bool4x4& lhs, const bool4x4& rhs )
+HLML_INLINE bool4x4 operator/=( bool4x4 &lhs, const bool4x4 &rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // ++s each component of the matrix and returns the result.
-HLML_INLINE bool4x4 operator++( bool4x4& x )
+HLML_INLINE bool4x4 operator++( bool4x4 &x )
 {
 	++x[0];
 	++x[1];
@@ -2317,7 +2317,7 @@ HLML_INLINE bool4x4 operator++( bool4x4& x )
 
 // ++s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE bool4x4 operator++( bool4x4& x, const int32_t )
+HLML_INLINE bool4x4 operator++( bool4x4 &x, const int32_t )
 {
 	x[0]++;
 	x[1]++;
@@ -2327,7 +2327,7 @@ HLML_INLINE bool4x4 operator++( bool4x4& x, const int32_t )
 }
 
 // --s each component of the matrix and returns the result.
-HLML_INLINE bool4x4 operator--( bool4x4& x )
+HLML_INLINE bool4x4 operator--( bool4x4 &x )
 {
 	--x[0];
 	--x[1];
@@ -2338,7 +2338,7 @@ HLML_INLINE bool4x4 operator--( bool4x4& x )
 
 // --s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE bool4x4 operator--( bool4x4& x, const int32_t )
+HLML_INLINE bool4x4 operator--( bool4x4 &x, const int32_t )
 {
 	x[0]--;
 	x[1]--;
@@ -2368,7 +2368,7 @@ HLML_INLINE bool any( const bool4x4 *x )
 }
 
 // Sets the matrix to an identity matrix.
-HLML_INLINE void identity( bool4x4& mat )
+HLML_INLINE void identity( bool4x4 &mat )
 {
 	mat.rows[0] = HLML_CONSTRUCT( bool4 ) { true, false, false, false };
 	mat.rows[1] = HLML_CONSTRUCT( bool4 ) { false, true, false, false };
@@ -2377,7 +2377,7 @@ HLML_INLINE void identity( bool4x4& mat )
 }
 
 // Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-HLML_INLINE bool4x4 transpose( const bool4x4& mat )
+HLML_INLINE bool4x4 transpose( const bool4x4 &mat )
 {
 	return HLML_CONSTRUCT( bool4x4 )
 	{
@@ -2390,7 +2390,7 @@ HLML_INLINE bool4x4 transpose( const bool4x4& mat )
 
 // int2x2
 // Performs a sign function on each row of the matrix.
-HLML_INLINE int2x2 sign( const int2x2& x )
+HLML_INLINE int2x2 sign( const int2x2 &x )
 {
 	return int2x2(
 		sign( x[0] ),
@@ -2399,7 +2399,7 @@ HLML_INLINE int2x2 sign( const int2x2& x )
 }
 
 // Performs a min function on each row of the matrix.
-HLML_INLINE int2x2 min( const int2x2& x, const int2x2& y )
+HLML_INLINE int2x2 min( const int2x2 &x, const int2x2 &y )
 {
 	return int2x2(
 		min( x[0], y[0] ),
@@ -2408,7 +2408,7 @@ HLML_INLINE int2x2 min( const int2x2& x, const int2x2& y )
 }
 
 // Performs a max function on each row of the matrix.
-HLML_INLINE int2x2 max( const int2x2& x, const int2x2& y )
+HLML_INLINE int2x2 max( const int2x2 &x, const int2x2 &y )
 {
 	return int2x2(
 		max( x[0], y[0] ),
@@ -2417,7 +2417,7 @@ HLML_INLINE int2x2 max( const int2x2& x, const int2x2& y )
 }
 
 // Performs a clamp function on each row of the matrix.
-HLML_INLINE int2x2 clamp( const int2x2& x, const int2x2& low, const int2x2& high )
+HLML_INLINE int2x2 clamp( const int2x2 &x, const int2x2 &low, const int2x2 &high )
 {
 	return int2x2(
 		clamp( x[0], low[0], high[0] ),
@@ -2426,7 +2426,7 @@ HLML_INLINE int2x2 clamp( const int2x2& x, const int2x2& low, const int2x2& high
 }
 
 // Performs a saturate function on each row of the matrix.
-HLML_INLINE int2x2 saturate( const int2x2& x )
+HLML_INLINE int2x2 saturate( const int2x2 &x )
 {
 	return int2x2(
 		saturate( x[0] ),
@@ -2435,7 +2435,7 @@ HLML_INLINE int2x2 saturate( const int2x2& x )
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator==( const int2x2& lhs, const int2x2& rhs )
+HLML_INLINE bool operator==( const int2x2 &lhs, const int2x2 &rhs )
 {
 	return
 		lhs[0] == rhs[0] &&
@@ -2443,13 +2443,13 @@ HLML_INLINE bool operator==( const int2x2& lhs, const int2x2& rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator!=( const int2x2& lhs, const int2x2& rhs )
+HLML_INLINE bool operator!=( const int2x2 &lhs, const int2x2 &rhs )
 {
 	return !( lhs == rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool2x2 operator<( const int2x2& lhs, const int2x2& rhs )
+HLML_INLINE bool2x2 operator<( const int2x2 &lhs, const int2x2 &rhs )
 {
 	return bool2x2(
 		lhs[0] < rhs[0],
@@ -2458,7 +2458,7 @@ HLML_INLINE bool2x2 operator<( const int2x2& lhs, const int2x2& rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool2x2 operator<=( const int2x2& lhs, const int2x2& rhs )
+HLML_INLINE bool2x2 operator<=( const int2x2 &lhs, const int2x2 &rhs )
 {
 	return bool2x2(
 		lhs[0] <= rhs[0],
@@ -2467,7 +2467,7 @@ HLML_INLINE bool2x2 operator<=( const int2x2& lhs, const int2x2& rhs )
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool2x2 operator>( const int2x2& lhs, const int2x2& rhs )
+HLML_INLINE bool2x2 operator>( const int2x2 &lhs, const int2x2 &rhs )
 {
 	return bool2x2(
 		lhs[0] > rhs[0],
@@ -2476,7 +2476,7 @@ HLML_INLINE bool2x2 operator>( const int2x2& lhs, const int2x2& rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool2x2 operator>=( const int2x2& lhs, const int2x2& rhs )
+HLML_INLINE bool2x2 operator>=( const int2x2 &lhs, const int2x2 &rhs )
 {
 	return bool2x2(
 		lhs[0] >= rhs[0],
@@ -2485,7 +2485,7 @@ HLML_INLINE bool2x2 operator>=( const int2x2& lhs, const int2x2& rhs )
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE int2x2 operator+( const int2x2& lhs, const int32_t rhs )
+HLML_INLINE int2x2 operator+( const int2x2 &lhs, const int32_t rhs )
 {
 	return int2x2(
 		lhs[0] + rhs,
@@ -2494,13 +2494,13 @@ HLML_INLINE int2x2 operator+( const int2x2& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been +'d against the scalar.
-HLML_INLINE int2x2 operator+=( int2x2& lhs, const int32_t rhs )
+HLML_INLINE int2x2 operator+=( int2x2 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE int2x2 operator+( const int2x2& lhs, const int2x2& rhs )
+HLML_INLINE int2x2 operator+( const int2x2 &lhs, const int2x2 &rhs )
 {
 	return int2x2(
 		lhs[0] + rhs[0],
@@ -2509,13 +2509,13 @@ HLML_INLINE int2x2 operator+( const int2x2& lhs, const int2x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise +'d against 'rhs'.
-HLML_INLINE int2x2 operator+=( int2x2& lhs, const int2x2& rhs )
+HLML_INLINE int2x2 operator+=( int2x2 &lhs, const int2x2 &rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE int2x2 operator-( const int2x2& lhs, const int32_t rhs )
+HLML_INLINE int2x2 operator-( const int2x2 &lhs, const int32_t rhs )
 {
 	return int2x2(
 		lhs[0] - rhs,
@@ -2524,13 +2524,13 @@ HLML_INLINE int2x2 operator-( const int2x2& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been -'d against the scalar.
-HLML_INLINE int2x2 operator-=( int2x2& lhs, const int32_t rhs )
+HLML_INLINE int2x2 operator-=( int2x2 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE int2x2 operator-( const int2x2& lhs, const int2x2& rhs )
+HLML_INLINE int2x2 operator-( const int2x2 &lhs, const int2x2 &rhs )
 {
 	return int2x2(
 		lhs[0] - rhs[0],
@@ -2539,13 +2539,13 @@ HLML_INLINE int2x2 operator-( const int2x2& lhs, const int2x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise -'d against 'rhs'.
-HLML_INLINE int2x2 operator-=( int2x2& lhs, const int2x2& rhs )
+HLML_INLINE int2x2 operator-=( int2x2 &lhs, const int2x2 &rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE int2x2 operator*( const int2x2& lhs, const int32_t rhs )
+HLML_INLINE int2x2 operator*( const int2x2 &lhs, const int32_t rhs )
 {
 	return int2x2(
 		lhs[0] * rhs,
@@ -2554,13 +2554,13 @@ HLML_INLINE int2x2 operator*( const int2x2& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been *'d against the scalar.
-HLML_INLINE int2x2 operator*=( int2x2& lhs, const int32_t rhs )
+HLML_INLINE int2x2 operator*=( int2x2 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE int2x2 operator*( const int2x2& lhs, const int2x2& rhs )
+HLML_INLINE int2x2 operator*( const int2x2 &lhs, const int2x2 &rhs )
 {
 	return int2x2(
 		lhs[0] * rhs[0],
@@ -2569,13 +2569,13 @@ HLML_INLINE int2x2 operator*( const int2x2& lhs, const int2x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise *'d against 'rhs'.
-HLML_INLINE int2x2 operator*=( int2x2& lhs, const int2x2& rhs )
+HLML_INLINE int2x2 operator*=( int2x2 &lhs, const int2x2 &rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE int2x2 operator/( const int2x2& lhs, const int32_t rhs )
+HLML_INLINE int2x2 operator/( const int2x2 &lhs, const int32_t rhs )
 {
 	return int2x2(
 		lhs[0] / rhs,
@@ -2584,13 +2584,13 @@ HLML_INLINE int2x2 operator/( const int2x2& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been /'d against the scalar.
-HLML_INLINE int2x2 operator/=( int2x2& lhs, const int32_t rhs )
+HLML_INLINE int2x2 operator/=( int2x2 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE int2x2 operator/( const int2x2& lhs, const int2x2& rhs )
+HLML_INLINE int2x2 operator/( const int2x2 &lhs, const int2x2 &rhs )
 {
 	return int2x2(
 		lhs[0] / rhs[0],
@@ -2599,13 +2599,13 @@ HLML_INLINE int2x2 operator/( const int2x2& lhs, const int2x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise /'d against 'rhs'.
-HLML_INLINE int2x2 operator/=( int2x2& lhs, const int2x2& rhs )
+HLML_INLINE int2x2 operator/=( int2x2 &lhs, const int2x2 &rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // ++s each component of the matrix and returns the result.
-HLML_INLINE int2x2 operator++( int2x2& x )
+HLML_INLINE int2x2 operator++( int2x2 &x )
 {
 	++x[0];
 	++x[1];
@@ -2614,7 +2614,7 @@ HLML_INLINE int2x2 operator++( int2x2& x )
 
 // ++s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE int2x2 operator++( int2x2& x, const int32_t )
+HLML_INLINE int2x2 operator++( int2x2 &x, const int32_t )
 {
 	x[0]++;
 	x[1]++;
@@ -2622,7 +2622,7 @@ HLML_INLINE int2x2 operator++( int2x2& x, const int32_t )
 }
 
 // --s each component of the matrix and returns the result.
-HLML_INLINE int2x2 operator--( int2x2& x )
+HLML_INLINE int2x2 operator--( int2x2 &x )
 {
 	--x[0];
 	--x[1];
@@ -2631,7 +2631,7 @@ HLML_INLINE int2x2 operator--( int2x2& x )
 
 // --s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE int2x2 operator--( int2x2& x, const int32_t )
+HLML_INLINE int2x2 operator--( int2x2 &x, const int32_t )
 {
 	x[0]--;
 	x[1]--;
@@ -2640,7 +2640,7 @@ HLML_INLINE int2x2 operator--( int2x2& x, const int32_t )
 
 // Returns a copy of the matrix that has been negated.
 // pre-fix
-HLML_INLINE int2x2 operator-( const int2x2& x )
+HLML_INLINE int2x2 operator-( const int2x2 &x )
 {
 	return int2x2(
 		-x[0],
@@ -2650,7 +2650,7 @@ HLML_INLINE int2x2 operator-( const int2x2& x )
 
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
 // pre-fix
-HLML_INLINE int2x2 operator~( const int2x2& x )
+HLML_INLINE int2x2 operator~( const int2x2 &x )
 {
 	return int2x2(
 		~x[0],
@@ -2659,7 +2659,7 @@ HLML_INLINE int2x2 operator~( const int2x2& x )
 }
 
 // Performs a component-wise bitwise & on the matrix by the scalar and returns the result.
-HLML_INLINE int2x2 operator&( const int2x2& lhs, const int32_t rhs )
+HLML_INLINE int2x2 operator&( const int2x2 &lhs, const int32_t rhs )
 {
 	return int2x2(
 		lhs[0] & rhs,
@@ -2668,13 +2668,13 @@ HLML_INLINE int2x2 operator&( const int2x2& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise &'d against the scalar.
-HLML_INLINE int2x2 operator&=( int2x2& lhs, const int32_t rhs )
+HLML_INLINE int2x2 operator&=( int2x2 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs & rhs );
 }
 
 // Performs a component-wise bitwise & against the two matrices and returns the result.
-HLML_INLINE int2x2 operator&( const int2x2& lhs, const int2x2& rhs )
+HLML_INLINE int2x2 operator&( const int2x2 &lhs, const int2x2 &rhs )
 {
 	return int2x2(
 		lhs[0] & rhs[0],
@@ -2683,13 +2683,13 @@ HLML_INLINE int2x2 operator&( const int2x2& lhs, const int2x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise &'d against 'rhs'.
-HLML_INLINE int2x2 operator&=( int2x2& lhs, const int2x2& rhs )
+HLML_INLINE int2x2 operator&=( int2x2 &lhs, const int2x2 &rhs )
 {
 	return ( lhs = lhs & rhs );
 }
 
 // Performs a component-wise bitwise | on the matrix by the scalar and returns the result.
-HLML_INLINE int2x2 operator|( const int2x2& lhs, const int32_t rhs )
+HLML_INLINE int2x2 operator|( const int2x2 &lhs, const int32_t rhs )
 {
 	return int2x2(
 		lhs[0] | rhs,
@@ -2698,13 +2698,13 @@ HLML_INLINE int2x2 operator|( const int2x2& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise |'d against the scalar.
-HLML_INLINE int2x2 operator|=( int2x2& lhs, const int32_t rhs )
+HLML_INLINE int2x2 operator|=( int2x2 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs | rhs );
 }
 
 // Performs a component-wise bitwise | against the two matrices and returns the result.
-HLML_INLINE int2x2 operator|( const int2x2& lhs, const int2x2& rhs )
+HLML_INLINE int2x2 operator|( const int2x2 &lhs, const int2x2 &rhs )
 {
 	return int2x2(
 		lhs[0] | rhs[0],
@@ -2713,13 +2713,13 @@ HLML_INLINE int2x2 operator|( const int2x2& lhs, const int2x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise |'d against 'rhs'.
-HLML_INLINE int2x2 operator|=( int2x2& lhs, const int2x2& rhs )
+HLML_INLINE int2x2 operator|=( int2x2 &lhs, const int2x2 &rhs )
 {
 	return ( lhs = lhs | rhs );
 }
 
 // Performs a component-wise bitwise ^ on the matrix by the scalar and returns the result.
-HLML_INLINE int2x2 operator^( const int2x2& lhs, const int32_t rhs )
+HLML_INLINE int2x2 operator^( const int2x2 &lhs, const int32_t rhs )
 {
 	return int2x2(
 		lhs[0] ^ rhs,
@@ -2728,13 +2728,13 @@ HLML_INLINE int2x2 operator^( const int2x2& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise ^'d against the scalar.
-HLML_INLINE int2x2 operator^=( int2x2& lhs, const int32_t rhs )
+HLML_INLINE int2x2 operator^=( int2x2 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs ^ rhs );
 }
 
 // Performs a component-wise bitwise ^ against the two matrices and returns the result.
-HLML_INLINE int2x2 operator^( const int2x2& lhs, const int2x2& rhs )
+HLML_INLINE int2x2 operator^( const int2x2 &lhs, const int2x2 &rhs )
 {
 	return int2x2(
 		lhs[0] ^ rhs[0],
@@ -2743,13 +2743,13 @@ HLML_INLINE int2x2 operator^( const int2x2& lhs, const int2x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise ^'d against 'rhs'.
-HLML_INLINE int2x2 operator^=( int2x2& lhs, const int2x2& rhs )
+HLML_INLINE int2x2 operator^=( int2x2 &lhs, const int2x2 &rhs )
 {
 	return ( lhs = lhs ^ rhs );
 }
 
 // Performs a component-wise bitwise << on the matrix by the scalar and returns the result.
-HLML_INLINE int2x2 operator<<( const int2x2& lhs, const int32_t rhs )
+HLML_INLINE int2x2 operator<<( const int2x2 &lhs, const int32_t rhs )
 {
 	return int2x2(
 		lhs[0] << rhs,
@@ -2758,13 +2758,13 @@ HLML_INLINE int2x2 operator<<( const int2x2& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise <<'d against the scalar.
-HLML_INLINE int2x2 operator<<=( int2x2& lhs, const int32_t rhs )
+HLML_INLINE int2x2 operator<<=( int2x2 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs << rhs );
 }
 
 // Performs a component-wise bitwise << against the two matrices and returns the result.
-HLML_INLINE int2x2 operator<<( const int2x2& lhs, const int2x2& rhs )
+HLML_INLINE int2x2 operator<<( const int2x2 &lhs, const int2x2 &rhs )
 {
 	return int2x2(
 		lhs[0] << rhs[0],
@@ -2773,13 +2773,13 @@ HLML_INLINE int2x2 operator<<( const int2x2& lhs, const int2x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise <<'d against 'rhs'.
-HLML_INLINE int2x2 operator<<=( int2x2& lhs, const int2x2& rhs )
+HLML_INLINE int2x2 operator<<=( int2x2 &lhs, const int2x2 &rhs )
 {
 	return ( lhs = lhs << rhs );
 }
 
 // Performs a component-wise bitwise >> on the matrix by the scalar and returns the result.
-HLML_INLINE int2x2 operator>>( const int2x2& lhs, const int32_t rhs )
+HLML_INLINE int2x2 operator>>( const int2x2 &lhs, const int32_t rhs )
 {
 	return int2x2(
 		lhs[0] >> rhs,
@@ -2788,13 +2788,13 @@ HLML_INLINE int2x2 operator>>( const int2x2& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise >>'d against the scalar.
-HLML_INLINE int2x2 operator>>=( int2x2& lhs, const int32_t rhs )
+HLML_INLINE int2x2 operator>>=( int2x2 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs >> rhs );
 }
 
 // Performs a component-wise bitwise >> against the two matrices and returns the result.
-HLML_INLINE int2x2 operator>>( const int2x2& lhs, const int2x2& rhs )
+HLML_INLINE int2x2 operator>>( const int2x2 &lhs, const int2x2 &rhs )
 {
 	return int2x2(
 		lhs[0] >> rhs[0],
@@ -2803,20 +2803,20 @@ HLML_INLINE int2x2 operator>>( const int2x2& lhs, const int2x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise >>'d against 'rhs'.
-HLML_INLINE int2x2 operator>>=( int2x2& lhs, const int2x2& rhs )
+HLML_INLINE int2x2 operator>>=( int2x2 &lhs, const int2x2 &rhs )
 {
 	return ( lhs = lhs >> rhs );
 }
 
 // Sets the matrix to an identity matrix.
-HLML_INLINE void identity( int2x2& mat )
+HLML_INLINE void identity( int2x2 &mat )
 {
 	mat.rows[0] = HLML_CONSTRUCT( int2 ) { 1, 0 };
 	mat.rows[1] = HLML_CONSTRUCT( int2 ) { 0, 1 };
 }
 
 // Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-HLML_INLINE int2x2 transpose( const int2x2& mat )
+HLML_INLINE int2x2 transpose( const int2x2 &mat )
 {
 	return HLML_CONSTRUCT( int2x2 )
 	{
@@ -2826,13 +2826,13 @@ HLML_INLINE int2x2 transpose( const int2x2& mat )
 }
 
 // Returns the determinant of the matrix.
-HLML_INLINE int32_t determinant( const int2x2& mat )
+HLML_INLINE int32_t determinant( const int2x2 &mat )
 {
 	return mat.rows[0].x * mat.rows[1].y - mat.rows[1].x * mat.rows[0].y;
 }
 
 // Performs a matrix multiplication with 'lhs' and 'rhs' and returns the result.
-HLML_INLINE int2x2 mul( const int2x2& lhs, const int2x2& rhs )
+HLML_INLINE int2x2 mul( const int2x2 &lhs, const int2x2 &rhs )
 {
 	int2 row0 = lhs.rows[0];
 	int2 row1 = lhs.rows[1];
@@ -2851,7 +2851,7 @@ HLML_INLINE int2x2 mul( const int2x2& lhs, const int2x2& rhs )
 }
 
 // Multiplies the vector 'lhs' against the matrix 'rhs' and returns the result.
-HLML_INLINE int2 mul( const int2& lhs, const int2x2& rhs )
+HLML_INLINE int2 mul( const int2 &lhs, const int2x2 &rhs )
 {
 	return HLML_CONSTRUCT( int2 )
 	{
@@ -2862,7 +2862,7 @@ HLML_INLINE int2 mul( const int2& lhs, const int2x2& rhs )
 
 // int2x3
 // Performs a sign function on each row of the matrix.
-HLML_INLINE int2x3 sign( const int2x3& x )
+HLML_INLINE int2x3 sign( const int2x3 &x )
 {
 	return int2x3(
 		sign( x[0] ),
@@ -2871,7 +2871,7 @@ HLML_INLINE int2x3 sign( const int2x3& x )
 }
 
 // Performs a min function on each row of the matrix.
-HLML_INLINE int2x3 min( const int2x3& x, const int2x3& y )
+HLML_INLINE int2x3 min( const int2x3 &x, const int2x3 &y )
 {
 	return int2x3(
 		min( x[0], y[0] ),
@@ -2880,7 +2880,7 @@ HLML_INLINE int2x3 min( const int2x3& x, const int2x3& y )
 }
 
 // Performs a max function on each row of the matrix.
-HLML_INLINE int2x3 max( const int2x3& x, const int2x3& y )
+HLML_INLINE int2x3 max( const int2x3 &x, const int2x3 &y )
 {
 	return int2x3(
 		max( x[0], y[0] ),
@@ -2889,7 +2889,7 @@ HLML_INLINE int2x3 max( const int2x3& x, const int2x3& y )
 }
 
 // Performs a clamp function on each row of the matrix.
-HLML_INLINE int2x3 clamp( const int2x3& x, const int2x3& low, const int2x3& high )
+HLML_INLINE int2x3 clamp( const int2x3 &x, const int2x3 &low, const int2x3 &high )
 {
 	return int2x3(
 		clamp( x[0], low[0], high[0] ),
@@ -2898,7 +2898,7 @@ HLML_INLINE int2x3 clamp( const int2x3& x, const int2x3& low, const int2x3& high
 }
 
 // Performs a saturate function on each row of the matrix.
-HLML_INLINE int2x3 saturate( const int2x3& x )
+HLML_INLINE int2x3 saturate( const int2x3 &x )
 {
 	return int2x3(
 		saturate( x[0] ),
@@ -2907,7 +2907,7 @@ HLML_INLINE int2x3 saturate( const int2x3& x )
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator==( const int2x3& lhs, const int2x3& rhs )
+HLML_INLINE bool operator==( const int2x3 &lhs, const int2x3 &rhs )
 {
 	return
 		lhs[0] == rhs[0] &&
@@ -2915,13 +2915,13 @@ HLML_INLINE bool operator==( const int2x3& lhs, const int2x3& rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator!=( const int2x3& lhs, const int2x3& rhs )
+HLML_INLINE bool operator!=( const int2x3 &lhs, const int2x3 &rhs )
 {
 	return !( lhs == rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool2x3 operator<( const int2x3& lhs, const int2x3& rhs )
+HLML_INLINE bool2x3 operator<( const int2x3 &lhs, const int2x3 &rhs )
 {
 	return bool2x3(
 		lhs[0] < rhs[0],
@@ -2930,7 +2930,7 @@ HLML_INLINE bool2x3 operator<( const int2x3& lhs, const int2x3& rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool2x3 operator<=( const int2x3& lhs, const int2x3& rhs )
+HLML_INLINE bool2x3 operator<=( const int2x3 &lhs, const int2x3 &rhs )
 {
 	return bool2x3(
 		lhs[0] <= rhs[0],
@@ -2939,7 +2939,7 @@ HLML_INLINE bool2x3 operator<=( const int2x3& lhs, const int2x3& rhs )
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool2x3 operator>( const int2x3& lhs, const int2x3& rhs )
+HLML_INLINE bool2x3 operator>( const int2x3 &lhs, const int2x3 &rhs )
 {
 	return bool2x3(
 		lhs[0] > rhs[0],
@@ -2948,7 +2948,7 @@ HLML_INLINE bool2x3 operator>( const int2x3& lhs, const int2x3& rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool2x3 operator>=( const int2x3& lhs, const int2x3& rhs )
+HLML_INLINE bool2x3 operator>=( const int2x3 &lhs, const int2x3 &rhs )
 {
 	return bool2x3(
 		lhs[0] >= rhs[0],
@@ -2957,7 +2957,7 @@ HLML_INLINE bool2x3 operator>=( const int2x3& lhs, const int2x3& rhs )
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE int2x3 operator+( const int2x3& lhs, const int32_t rhs )
+HLML_INLINE int2x3 operator+( const int2x3 &lhs, const int32_t rhs )
 {
 	return int2x3(
 		lhs[0] + rhs,
@@ -2966,13 +2966,13 @@ HLML_INLINE int2x3 operator+( const int2x3& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been +'d against the scalar.
-HLML_INLINE int2x3 operator+=( int2x3& lhs, const int32_t rhs )
+HLML_INLINE int2x3 operator+=( int2x3 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE int2x3 operator+( const int2x3& lhs, const int2x3& rhs )
+HLML_INLINE int2x3 operator+( const int2x3 &lhs, const int2x3 &rhs )
 {
 	return int2x3(
 		lhs[0] + rhs[0],
@@ -2981,13 +2981,13 @@ HLML_INLINE int2x3 operator+( const int2x3& lhs, const int2x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise +'d against 'rhs'.
-HLML_INLINE int2x3 operator+=( int2x3& lhs, const int2x3& rhs )
+HLML_INLINE int2x3 operator+=( int2x3 &lhs, const int2x3 &rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE int2x3 operator-( const int2x3& lhs, const int32_t rhs )
+HLML_INLINE int2x3 operator-( const int2x3 &lhs, const int32_t rhs )
 {
 	return int2x3(
 		lhs[0] - rhs,
@@ -2996,13 +2996,13 @@ HLML_INLINE int2x3 operator-( const int2x3& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been -'d against the scalar.
-HLML_INLINE int2x3 operator-=( int2x3& lhs, const int32_t rhs )
+HLML_INLINE int2x3 operator-=( int2x3 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE int2x3 operator-( const int2x3& lhs, const int2x3& rhs )
+HLML_INLINE int2x3 operator-( const int2x3 &lhs, const int2x3 &rhs )
 {
 	return int2x3(
 		lhs[0] - rhs[0],
@@ -3011,13 +3011,13 @@ HLML_INLINE int2x3 operator-( const int2x3& lhs, const int2x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise -'d against 'rhs'.
-HLML_INLINE int2x3 operator-=( int2x3& lhs, const int2x3& rhs )
+HLML_INLINE int2x3 operator-=( int2x3 &lhs, const int2x3 &rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE int2x3 operator*( const int2x3& lhs, const int32_t rhs )
+HLML_INLINE int2x3 operator*( const int2x3 &lhs, const int32_t rhs )
 {
 	return int2x3(
 		lhs[0] * rhs,
@@ -3026,13 +3026,13 @@ HLML_INLINE int2x3 operator*( const int2x3& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been *'d against the scalar.
-HLML_INLINE int2x3 operator*=( int2x3& lhs, const int32_t rhs )
+HLML_INLINE int2x3 operator*=( int2x3 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE int2x3 operator*( const int2x3& lhs, const int2x3& rhs )
+HLML_INLINE int2x3 operator*( const int2x3 &lhs, const int2x3 &rhs )
 {
 	return int2x3(
 		lhs[0] * rhs[0],
@@ -3041,13 +3041,13 @@ HLML_INLINE int2x3 operator*( const int2x3& lhs, const int2x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise *'d against 'rhs'.
-HLML_INLINE int2x3 operator*=( int2x3& lhs, const int2x3& rhs )
+HLML_INLINE int2x3 operator*=( int2x3 &lhs, const int2x3 &rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE int2x3 operator/( const int2x3& lhs, const int32_t rhs )
+HLML_INLINE int2x3 operator/( const int2x3 &lhs, const int32_t rhs )
 {
 	return int2x3(
 		lhs[0] / rhs,
@@ -3056,13 +3056,13 @@ HLML_INLINE int2x3 operator/( const int2x3& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been /'d against the scalar.
-HLML_INLINE int2x3 operator/=( int2x3& lhs, const int32_t rhs )
+HLML_INLINE int2x3 operator/=( int2x3 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE int2x3 operator/( const int2x3& lhs, const int2x3& rhs )
+HLML_INLINE int2x3 operator/( const int2x3 &lhs, const int2x3 &rhs )
 {
 	return int2x3(
 		lhs[0] / rhs[0],
@@ -3071,13 +3071,13 @@ HLML_INLINE int2x3 operator/( const int2x3& lhs, const int2x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise /'d against 'rhs'.
-HLML_INLINE int2x3 operator/=( int2x3& lhs, const int2x3& rhs )
+HLML_INLINE int2x3 operator/=( int2x3 &lhs, const int2x3 &rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // ++s each component of the matrix and returns the result.
-HLML_INLINE int2x3 operator++( int2x3& x )
+HLML_INLINE int2x3 operator++( int2x3 &x )
 {
 	++x[0];
 	++x[1];
@@ -3086,7 +3086,7 @@ HLML_INLINE int2x3 operator++( int2x3& x )
 
 // ++s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE int2x3 operator++( int2x3& x, const int32_t )
+HLML_INLINE int2x3 operator++( int2x3 &x, const int32_t )
 {
 	x[0]++;
 	x[1]++;
@@ -3094,7 +3094,7 @@ HLML_INLINE int2x3 operator++( int2x3& x, const int32_t )
 }
 
 // --s each component of the matrix and returns the result.
-HLML_INLINE int2x3 operator--( int2x3& x )
+HLML_INLINE int2x3 operator--( int2x3 &x )
 {
 	--x[0];
 	--x[1];
@@ -3103,7 +3103,7 @@ HLML_INLINE int2x3 operator--( int2x3& x )
 
 // --s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE int2x3 operator--( int2x3& x, const int32_t )
+HLML_INLINE int2x3 operator--( int2x3 &x, const int32_t )
 {
 	x[0]--;
 	x[1]--;
@@ -3112,7 +3112,7 @@ HLML_INLINE int2x3 operator--( int2x3& x, const int32_t )
 
 // Returns a copy of the matrix that has been negated.
 // pre-fix
-HLML_INLINE int2x3 operator-( const int2x3& x )
+HLML_INLINE int2x3 operator-( const int2x3 &x )
 {
 	return int2x3(
 		-x[0],
@@ -3122,7 +3122,7 @@ HLML_INLINE int2x3 operator-( const int2x3& x )
 
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
 // pre-fix
-HLML_INLINE int2x3 operator~( const int2x3& x )
+HLML_INLINE int2x3 operator~( const int2x3 &x )
 {
 	return int2x3(
 		~x[0],
@@ -3131,7 +3131,7 @@ HLML_INLINE int2x3 operator~( const int2x3& x )
 }
 
 // Performs a component-wise bitwise & on the matrix by the scalar and returns the result.
-HLML_INLINE int2x3 operator&( const int2x3& lhs, const int32_t rhs )
+HLML_INLINE int2x3 operator&( const int2x3 &lhs, const int32_t rhs )
 {
 	return int2x3(
 		lhs[0] & rhs,
@@ -3140,13 +3140,13 @@ HLML_INLINE int2x3 operator&( const int2x3& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise &'d against the scalar.
-HLML_INLINE int2x3 operator&=( int2x3& lhs, const int32_t rhs )
+HLML_INLINE int2x3 operator&=( int2x3 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs & rhs );
 }
 
 // Performs a component-wise bitwise & against the two matrices and returns the result.
-HLML_INLINE int2x3 operator&( const int2x3& lhs, const int2x3& rhs )
+HLML_INLINE int2x3 operator&( const int2x3 &lhs, const int2x3 &rhs )
 {
 	return int2x3(
 		lhs[0] & rhs[0],
@@ -3155,13 +3155,13 @@ HLML_INLINE int2x3 operator&( const int2x3& lhs, const int2x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise &'d against 'rhs'.
-HLML_INLINE int2x3 operator&=( int2x3& lhs, const int2x3& rhs )
+HLML_INLINE int2x3 operator&=( int2x3 &lhs, const int2x3 &rhs )
 {
 	return ( lhs = lhs & rhs );
 }
 
 // Performs a component-wise bitwise | on the matrix by the scalar and returns the result.
-HLML_INLINE int2x3 operator|( const int2x3& lhs, const int32_t rhs )
+HLML_INLINE int2x3 operator|( const int2x3 &lhs, const int32_t rhs )
 {
 	return int2x3(
 		lhs[0] | rhs,
@@ -3170,13 +3170,13 @@ HLML_INLINE int2x3 operator|( const int2x3& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise |'d against the scalar.
-HLML_INLINE int2x3 operator|=( int2x3& lhs, const int32_t rhs )
+HLML_INLINE int2x3 operator|=( int2x3 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs | rhs );
 }
 
 // Performs a component-wise bitwise | against the two matrices and returns the result.
-HLML_INLINE int2x3 operator|( const int2x3& lhs, const int2x3& rhs )
+HLML_INLINE int2x3 operator|( const int2x3 &lhs, const int2x3 &rhs )
 {
 	return int2x3(
 		lhs[0] | rhs[0],
@@ -3185,13 +3185,13 @@ HLML_INLINE int2x3 operator|( const int2x3& lhs, const int2x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise |'d against 'rhs'.
-HLML_INLINE int2x3 operator|=( int2x3& lhs, const int2x3& rhs )
+HLML_INLINE int2x3 operator|=( int2x3 &lhs, const int2x3 &rhs )
 {
 	return ( lhs = lhs | rhs );
 }
 
 // Performs a component-wise bitwise ^ on the matrix by the scalar and returns the result.
-HLML_INLINE int2x3 operator^( const int2x3& lhs, const int32_t rhs )
+HLML_INLINE int2x3 operator^( const int2x3 &lhs, const int32_t rhs )
 {
 	return int2x3(
 		lhs[0] ^ rhs,
@@ -3200,13 +3200,13 @@ HLML_INLINE int2x3 operator^( const int2x3& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise ^'d against the scalar.
-HLML_INLINE int2x3 operator^=( int2x3& lhs, const int32_t rhs )
+HLML_INLINE int2x3 operator^=( int2x3 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs ^ rhs );
 }
 
 // Performs a component-wise bitwise ^ against the two matrices and returns the result.
-HLML_INLINE int2x3 operator^( const int2x3& lhs, const int2x3& rhs )
+HLML_INLINE int2x3 operator^( const int2x3 &lhs, const int2x3 &rhs )
 {
 	return int2x3(
 		lhs[0] ^ rhs[0],
@@ -3215,13 +3215,13 @@ HLML_INLINE int2x3 operator^( const int2x3& lhs, const int2x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise ^'d against 'rhs'.
-HLML_INLINE int2x3 operator^=( int2x3& lhs, const int2x3& rhs )
+HLML_INLINE int2x3 operator^=( int2x3 &lhs, const int2x3 &rhs )
 {
 	return ( lhs = lhs ^ rhs );
 }
 
 // Performs a component-wise bitwise << on the matrix by the scalar and returns the result.
-HLML_INLINE int2x3 operator<<( const int2x3& lhs, const int32_t rhs )
+HLML_INLINE int2x3 operator<<( const int2x3 &lhs, const int32_t rhs )
 {
 	return int2x3(
 		lhs[0] << rhs,
@@ -3230,13 +3230,13 @@ HLML_INLINE int2x3 operator<<( const int2x3& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise <<'d against the scalar.
-HLML_INLINE int2x3 operator<<=( int2x3& lhs, const int32_t rhs )
+HLML_INLINE int2x3 operator<<=( int2x3 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs << rhs );
 }
 
 // Performs a component-wise bitwise << against the two matrices and returns the result.
-HLML_INLINE int2x3 operator<<( const int2x3& lhs, const int2x3& rhs )
+HLML_INLINE int2x3 operator<<( const int2x3 &lhs, const int2x3 &rhs )
 {
 	return int2x3(
 		lhs[0] << rhs[0],
@@ -3245,13 +3245,13 @@ HLML_INLINE int2x3 operator<<( const int2x3& lhs, const int2x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise <<'d against 'rhs'.
-HLML_INLINE int2x3 operator<<=( int2x3& lhs, const int2x3& rhs )
+HLML_INLINE int2x3 operator<<=( int2x3 &lhs, const int2x3 &rhs )
 {
 	return ( lhs = lhs << rhs );
 }
 
 // Performs a component-wise bitwise >> on the matrix by the scalar and returns the result.
-HLML_INLINE int2x3 operator>>( const int2x3& lhs, const int32_t rhs )
+HLML_INLINE int2x3 operator>>( const int2x3 &lhs, const int32_t rhs )
 {
 	return int2x3(
 		lhs[0] >> rhs,
@@ -3260,13 +3260,13 @@ HLML_INLINE int2x3 operator>>( const int2x3& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise >>'d against the scalar.
-HLML_INLINE int2x3 operator>>=( int2x3& lhs, const int32_t rhs )
+HLML_INLINE int2x3 operator>>=( int2x3 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs >> rhs );
 }
 
 // Performs a component-wise bitwise >> against the two matrices and returns the result.
-HLML_INLINE int2x3 operator>>( const int2x3& lhs, const int2x3& rhs )
+HLML_INLINE int2x3 operator>>( const int2x3 &lhs, const int2x3 &rhs )
 {
 	return int2x3(
 		lhs[0] >> rhs[0],
@@ -3275,20 +3275,20 @@ HLML_INLINE int2x3 operator>>( const int2x3& lhs, const int2x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise >>'d against 'rhs'.
-HLML_INLINE int2x3 operator>>=( int2x3& lhs, const int2x3& rhs )
+HLML_INLINE int2x3 operator>>=( int2x3 &lhs, const int2x3 &rhs )
 {
 	return ( lhs = lhs >> rhs );
 }
 
 // Sets the matrix to an identity matrix.
-HLML_INLINE void identity( int2x3& mat )
+HLML_INLINE void identity( int2x3 &mat )
 {
 	mat.rows[0] = HLML_CONSTRUCT( int3 ) { 1, 0, 0 };
 	mat.rows[1] = HLML_CONSTRUCT( int3 ) { 0, 1, 0 };
 }
 
 // Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-HLML_INLINE int3x2 transpose( const int2x3& mat )
+HLML_INLINE int3x2 transpose( const int2x3 &mat )
 {
 	return HLML_CONSTRUCT( int3x2 )
 	{
@@ -3299,7 +3299,7 @@ HLML_INLINE int3x2 transpose( const int2x3& mat )
 }
 
 // Performs a matrix multiplication with 'lhs' and 'rhs' and returns the result.
-HLML_INLINE int2x2 mul( const int2x3& lhs, const int3x2& rhs )
+HLML_INLINE int2x2 mul( const int2x3 &lhs, const int3x2 &rhs )
 {
 	int3 row0 = lhs.rows[0];
 	int3 row1 = lhs.rows[1];
@@ -3319,7 +3319,7 @@ HLML_INLINE int2x2 mul( const int2x3& lhs, const int3x2& rhs )
 
 // int2x4
 // Performs a sign function on each row of the matrix.
-HLML_INLINE int2x4 sign( const int2x4& x )
+HLML_INLINE int2x4 sign( const int2x4 &x )
 {
 	return int2x4(
 		sign( x[0] ),
@@ -3328,7 +3328,7 @@ HLML_INLINE int2x4 sign( const int2x4& x )
 }
 
 // Performs a min function on each row of the matrix.
-HLML_INLINE int2x4 min( const int2x4& x, const int2x4& y )
+HLML_INLINE int2x4 min( const int2x4 &x, const int2x4 &y )
 {
 	return int2x4(
 		min( x[0], y[0] ),
@@ -3337,7 +3337,7 @@ HLML_INLINE int2x4 min( const int2x4& x, const int2x4& y )
 }
 
 // Performs a max function on each row of the matrix.
-HLML_INLINE int2x4 max( const int2x4& x, const int2x4& y )
+HLML_INLINE int2x4 max( const int2x4 &x, const int2x4 &y )
 {
 	return int2x4(
 		max( x[0], y[0] ),
@@ -3346,7 +3346,7 @@ HLML_INLINE int2x4 max( const int2x4& x, const int2x4& y )
 }
 
 // Performs a clamp function on each row of the matrix.
-HLML_INLINE int2x4 clamp( const int2x4& x, const int2x4& low, const int2x4& high )
+HLML_INLINE int2x4 clamp( const int2x4 &x, const int2x4 &low, const int2x4 &high )
 {
 	return int2x4(
 		clamp( x[0], low[0], high[0] ),
@@ -3355,7 +3355,7 @@ HLML_INLINE int2x4 clamp( const int2x4& x, const int2x4& low, const int2x4& high
 }
 
 // Performs a saturate function on each row of the matrix.
-HLML_INLINE int2x4 saturate( const int2x4& x )
+HLML_INLINE int2x4 saturate( const int2x4 &x )
 {
 	return int2x4(
 		saturate( x[0] ),
@@ -3364,7 +3364,7 @@ HLML_INLINE int2x4 saturate( const int2x4& x )
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator==( const int2x4& lhs, const int2x4& rhs )
+HLML_INLINE bool operator==( const int2x4 &lhs, const int2x4 &rhs )
 {
 	return
 		lhs[0] == rhs[0] &&
@@ -3372,13 +3372,13 @@ HLML_INLINE bool operator==( const int2x4& lhs, const int2x4& rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator!=( const int2x4& lhs, const int2x4& rhs )
+HLML_INLINE bool operator!=( const int2x4 &lhs, const int2x4 &rhs )
 {
 	return !( lhs == rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool2x4 operator<( const int2x4& lhs, const int2x4& rhs )
+HLML_INLINE bool2x4 operator<( const int2x4 &lhs, const int2x4 &rhs )
 {
 	return bool2x4(
 		lhs[0] < rhs[0],
@@ -3387,7 +3387,7 @@ HLML_INLINE bool2x4 operator<( const int2x4& lhs, const int2x4& rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool2x4 operator<=( const int2x4& lhs, const int2x4& rhs )
+HLML_INLINE bool2x4 operator<=( const int2x4 &lhs, const int2x4 &rhs )
 {
 	return bool2x4(
 		lhs[0] <= rhs[0],
@@ -3396,7 +3396,7 @@ HLML_INLINE bool2x4 operator<=( const int2x4& lhs, const int2x4& rhs )
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool2x4 operator>( const int2x4& lhs, const int2x4& rhs )
+HLML_INLINE bool2x4 operator>( const int2x4 &lhs, const int2x4 &rhs )
 {
 	return bool2x4(
 		lhs[0] > rhs[0],
@@ -3405,7 +3405,7 @@ HLML_INLINE bool2x4 operator>( const int2x4& lhs, const int2x4& rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool2x4 operator>=( const int2x4& lhs, const int2x4& rhs )
+HLML_INLINE bool2x4 operator>=( const int2x4 &lhs, const int2x4 &rhs )
 {
 	return bool2x4(
 		lhs[0] >= rhs[0],
@@ -3414,7 +3414,7 @@ HLML_INLINE bool2x4 operator>=( const int2x4& lhs, const int2x4& rhs )
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE int2x4 operator+( const int2x4& lhs, const int32_t rhs )
+HLML_INLINE int2x4 operator+( const int2x4 &lhs, const int32_t rhs )
 {
 	return int2x4(
 		lhs[0] + rhs,
@@ -3423,13 +3423,13 @@ HLML_INLINE int2x4 operator+( const int2x4& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been +'d against the scalar.
-HLML_INLINE int2x4 operator+=( int2x4& lhs, const int32_t rhs )
+HLML_INLINE int2x4 operator+=( int2x4 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE int2x4 operator+( const int2x4& lhs, const int2x4& rhs )
+HLML_INLINE int2x4 operator+( const int2x4 &lhs, const int2x4 &rhs )
 {
 	return int2x4(
 		lhs[0] + rhs[0],
@@ -3438,13 +3438,13 @@ HLML_INLINE int2x4 operator+( const int2x4& lhs, const int2x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise +'d against 'rhs'.
-HLML_INLINE int2x4 operator+=( int2x4& lhs, const int2x4& rhs )
+HLML_INLINE int2x4 operator+=( int2x4 &lhs, const int2x4 &rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE int2x4 operator-( const int2x4& lhs, const int32_t rhs )
+HLML_INLINE int2x4 operator-( const int2x4 &lhs, const int32_t rhs )
 {
 	return int2x4(
 		lhs[0] - rhs,
@@ -3453,13 +3453,13 @@ HLML_INLINE int2x4 operator-( const int2x4& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been -'d against the scalar.
-HLML_INLINE int2x4 operator-=( int2x4& lhs, const int32_t rhs )
+HLML_INLINE int2x4 operator-=( int2x4 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE int2x4 operator-( const int2x4& lhs, const int2x4& rhs )
+HLML_INLINE int2x4 operator-( const int2x4 &lhs, const int2x4 &rhs )
 {
 	return int2x4(
 		lhs[0] - rhs[0],
@@ -3468,13 +3468,13 @@ HLML_INLINE int2x4 operator-( const int2x4& lhs, const int2x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise -'d against 'rhs'.
-HLML_INLINE int2x4 operator-=( int2x4& lhs, const int2x4& rhs )
+HLML_INLINE int2x4 operator-=( int2x4 &lhs, const int2x4 &rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE int2x4 operator*( const int2x4& lhs, const int32_t rhs )
+HLML_INLINE int2x4 operator*( const int2x4 &lhs, const int32_t rhs )
 {
 	return int2x4(
 		lhs[0] * rhs,
@@ -3483,13 +3483,13 @@ HLML_INLINE int2x4 operator*( const int2x4& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been *'d against the scalar.
-HLML_INLINE int2x4 operator*=( int2x4& lhs, const int32_t rhs )
+HLML_INLINE int2x4 operator*=( int2x4 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE int2x4 operator*( const int2x4& lhs, const int2x4& rhs )
+HLML_INLINE int2x4 operator*( const int2x4 &lhs, const int2x4 &rhs )
 {
 	return int2x4(
 		lhs[0] * rhs[0],
@@ -3498,13 +3498,13 @@ HLML_INLINE int2x4 operator*( const int2x4& lhs, const int2x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise *'d against 'rhs'.
-HLML_INLINE int2x4 operator*=( int2x4& lhs, const int2x4& rhs )
+HLML_INLINE int2x4 operator*=( int2x4 &lhs, const int2x4 &rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE int2x4 operator/( const int2x4& lhs, const int32_t rhs )
+HLML_INLINE int2x4 operator/( const int2x4 &lhs, const int32_t rhs )
 {
 	return int2x4(
 		lhs[0] / rhs,
@@ -3513,13 +3513,13 @@ HLML_INLINE int2x4 operator/( const int2x4& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been /'d against the scalar.
-HLML_INLINE int2x4 operator/=( int2x4& lhs, const int32_t rhs )
+HLML_INLINE int2x4 operator/=( int2x4 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE int2x4 operator/( const int2x4& lhs, const int2x4& rhs )
+HLML_INLINE int2x4 operator/( const int2x4 &lhs, const int2x4 &rhs )
 {
 	return int2x4(
 		lhs[0] / rhs[0],
@@ -3528,13 +3528,13 @@ HLML_INLINE int2x4 operator/( const int2x4& lhs, const int2x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise /'d against 'rhs'.
-HLML_INLINE int2x4 operator/=( int2x4& lhs, const int2x4& rhs )
+HLML_INLINE int2x4 operator/=( int2x4 &lhs, const int2x4 &rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // ++s each component of the matrix and returns the result.
-HLML_INLINE int2x4 operator++( int2x4& x )
+HLML_INLINE int2x4 operator++( int2x4 &x )
 {
 	++x[0];
 	++x[1];
@@ -3543,7 +3543,7 @@ HLML_INLINE int2x4 operator++( int2x4& x )
 
 // ++s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE int2x4 operator++( int2x4& x, const int32_t )
+HLML_INLINE int2x4 operator++( int2x4 &x, const int32_t )
 {
 	x[0]++;
 	x[1]++;
@@ -3551,7 +3551,7 @@ HLML_INLINE int2x4 operator++( int2x4& x, const int32_t )
 }
 
 // --s each component of the matrix and returns the result.
-HLML_INLINE int2x4 operator--( int2x4& x )
+HLML_INLINE int2x4 operator--( int2x4 &x )
 {
 	--x[0];
 	--x[1];
@@ -3560,7 +3560,7 @@ HLML_INLINE int2x4 operator--( int2x4& x )
 
 // --s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE int2x4 operator--( int2x4& x, const int32_t )
+HLML_INLINE int2x4 operator--( int2x4 &x, const int32_t )
 {
 	x[0]--;
 	x[1]--;
@@ -3569,7 +3569,7 @@ HLML_INLINE int2x4 operator--( int2x4& x, const int32_t )
 
 // Returns a copy of the matrix that has been negated.
 // pre-fix
-HLML_INLINE int2x4 operator-( const int2x4& x )
+HLML_INLINE int2x4 operator-( const int2x4 &x )
 {
 	return int2x4(
 		-x[0],
@@ -3579,7 +3579,7 @@ HLML_INLINE int2x4 operator-( const int2x4& x )
 
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
 // pre-fix
-HLML_INLINE int2x4 operator~( const int2x4& x )
+HLML_INLINE int2x4 operator~( const int2x4 &x )
 {
 	return int2x4(
 		~x[0],
@@ -3588,7 +3588,7 @@ HLML_INLINE int2x4 operator~( const int2x4& x )
 }
 
 // Performs a component-wise bitwise & on the matrix by the scalar and returns the result.
-HLML_INLINE int2x4 operator&( const int2x4& lhs, const int32_t rhs )
+HLML_INLINE int2x4 operator&( const int2x4 &lhs, const int32_t rhs )
 {
 	return int2x4(
 		lhs[0] & rhs,
@@ -3597,13 +3597,13 @@ HLML_INLINE int2x4 operator&( const int2x4& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise &'d against the scalar.
-HLML_INLINE int2x4 operator&=( int2x4& lhs, const int32_t rhs )
+HLML_INLINE int2x4 operator&=( int2x4 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs & rhs );
 }
 
 // Performs a component-wise bitwise & against the two matrices and returns the result.
-HLML_INLINE int2x4 operator&( const int2x4& lhs, const int2x4& rhs )
+HLML_INLINE int2x4 operator&( const int2x4 &lhs, const int2x4 &rhs )
 {
 	return int2x4(
 		lhs[0] & rhs[0],
@@ -3612,13 +3612,13 @@ HLML_INLINE int2x4 operator&( const int2x4& lhs, const int2x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise &'d against 'rhs'.
-HLML_INLINE int2x4 operator&=( int2x4& lhs, const int2x4& rhs )
+HLML_INLINE int2x4 operator&=( int2x4 &lhs, const int2x4 &rhs )
 {
 	return ( lhs = lhs & rhs );
 }
 
 // Performs a component-wise bitwise | on the matrix by the scalar and returns the result.
-HLML_INLINE int2x4 operator|( const int2x4& lhs, const int32_t rhs )
+HLML_INLINE int2x4 operator|( const int2x4 &lhs, const int32_t rhs )
 {
 	return int2x4(
 		lhs[0] | rhs,
@@ -3627,13 +3627,13 @@ HLML_INLINE int2x4 operator|( const int2x4& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise |'d against the scalar.
-HLML_INLINE int2x4 operator|=( int2x4& lhs, const int32_t rhs )
+HLML_INLINE int2x4 operator|=( int2x4 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs | rhs );
 }
 
 // Performs a component-wise bitwise | against the two matrices and returns the result.
-HLML_INLINE int2x4 operator|( const int2x4& lhs, const int2x4& rhs )
+HLML_INLINE int2x4 operator|( const int2x4 &lhs, const int2x4 &rhs )
 {
 	return int2x4(
 		lhs[0] | rhs[0],
@@ -3642,13 +3642,13 @@ HLML_INLINE int2x4 operator|( const int2x4& lhs, const int2x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise |'d against 'rhs'.
-HLML_INLINE int2x4 operator|=( int2x4& lhs, const int2x4& rhs )
+HLML_INLINE int2x4 operator|=( int2x4 &lhs, const int2x4 &rhs )
 {
 	return ( lhs = lhs | rhs );
 }
 
 // Performs a component-wise bitwise ^ on the matrix by the scalar and returns the result.
-HLML_INLINE int2x4 operator^( const int2x4& lhs, const int32_t rhs )
+HLML_INLINE int2x4 operator^( const int2x4 &lhs, const int32_t rhs )
 {
 	return int2x4(
 		lhs[0] ^ rhs,
@@ -3657,13 +3657,13 @@ HLML_INLINE int2x4 operator^( const int2x4& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise ^'d against the scalar.
-HLML_INLINE int2x4 operator^=( int2x4& lhs, const int32_t rhs )
+HLML_INLINE int2x4 operator^=( int2x4 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs ^ rhs );
 }
 
 // Performs a component-wise bitwise ^ against the two matrices and returns the result.
-HLML_INLINE int2x4 operator^( const int2x4& lhs, const int2x4& rhs )
+HLML_INLINE int2x4 operator^( const int2x4 &lhs, const int2x4 &rhs )
 {
 	return int2x4(
 		lhs[0] ^ rhs[0],
@@ -3672,13 +3672,13 @@ HLML_INLINE int2x4 operator^( const int2x4& lhs, const int2x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise ^'d against 'rhs'.
-HLML_INLINE int2x4 operator^=( int2x4& lhs, const int2x4& rhs )
+HLML_INLINE int2x4 operator^=( int2x4 &lhs, const int2x4 &rhs )
 {
 	return ( lhs = lhs ^ rhs );
 }
 
 // Performs a component-wise bitwise << on the matrix by the scalar and returns the result.
-HLML_INLINE int2x4 operator<<( const int2x4& lhs, const int32_t rhs )
+HLML_INLINE int2x4 operator<<( const int2x4 &lhs, const int32_t rhs )
 {
 	return int2x4(
 		lhs[0] << rhs,
@@ -3687,13 +3687,13 @@ HLML_INLINE int2x4 operator<<( const int2x4& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise <<'d against the scalar.
-HLML_INLINE int2x4 operator<<=( int2x4& lhs, const int32_t rhs )
+HLML_INLINE int2x4 operator<<=( int2x4 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs << rhs );
 }
 
 // Performs a component-wise bitwise << against the two matrices and returns the result.
-HLML_INLINE int2x4 operator<<( const int2x4& lhs, const int2x4& rhs )
+HLML_INLINE int2x4 operator<<( const int2x4 &lhs, const int2x4 &rhs )
 {
 	return int2x4(
 		lhs[0] << rhs[0],
@@ -3702,13 +3702,13 @@ HLML_INLINE int2x4 operator<<( const int2x4& lhs, const int2x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise <<'d against 'rhs'.
-HLML_INLINE int2x4 operator<<=( int2x4& lhs, const int2x4& rhs )
+HLML_INLINE int2x4 operator<<=( int2x4 &lhs, const int2x4 &rhs )
 {
 	return ( lhs = lhs << rhs );
 }
 
 // Performs a component-wise bitwise >> on the matrix by the scalar and returns the result.
-HLML_INLINE int2x4 operator>>( const int2x4& lhs, const int32_t rhs )
+HLML_INLINE int2x4 operator>>( const int2x4 &lhs, const int32_t rhs )
 {
 	return int2x4(
 		lhs[0] >> rhs,
@@ -3717,13 +3717,13 @@ HLML_INLINE int2x4 operator>>( const int2x4& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise >>'d against the scalar.
-HLML_INLINE int2x4 operator>>=( int2x4& lhs, const int32_t rhs )
+HLML_INLINE int2x4 operator>>=( int2x4 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs >> rhs );
 }
 
 // Performs a component-wise bitwise >> against the two matrices and returns the result.
-HLML_INLINE int2x4 operator>>( const int2x4& lhs, const int2x4& rhs )
+HLML_INLINE int2x4 operator>>( const int2x4 &lhs, const int2x4 &rhs )
 {
 	return int2x4(
 		lhs[0] >> rhs[0],
@@ -3732,20 +3732,20 @@ HLML_INLINE int2x4 operator>>( const int2x4& lhs, const int2x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise >>'d against 'rhs'.
-HLML_INLINE int2x4 operator>>=( int2x4& lhs, const int2x4& rhs )
+HLML_INLINE int2x4 operator>>=( int2x4 &lhs, const int2x4 &rhs )
 {
 	return ( lhs = lhs >> rhs );
 }
 
 // Sets the matrix to an identity matrix.
-HLML_INLINE void identity( int2x4& mat )
+HLML_INLINE void identity( int2x4 &mat )
 {
 	mat.rows[0] = HLML_CONSTRUCT( int4 ) { 1, 0, 0, 0 };
 	mat.rows[1] = HLML_CONSTRUCT( int4 ) { 0, 1, 0, 0 };
 }
 
 // Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-HLML_INLINE int4x2 transpose( const int2x4& mat )
+HLML_INLINE int4x2 transpose( const int2x4 &mat )
 {
 	return HLML_CONSTRUCT( int4x2 )
 	{
@@ -3757,7 +3757,7 @@ HLML_INLINE int4x2 transpose( const int2x4& mat )
 }
 
 // Performs a matrix multiplication with 'lhs' and 'rhs' and returns the result.
-HLML_INLINE int2x2 mul( const int2x4& lhs, const int4x2& rhs )
+HLML_INLINE int2x2 mul( const int2x4 &lhs, const int4x2 &rhs )
 {
 	int4 row0 = lhs.rows[0];
 	int4 row1 = lhs.rows[1];
@@ -3777,7 +3777,7 @@ HLML_INLINE int2x2 mul( const int2x4& lhs, const int4x2& rhs )
 
 // int3x2
 // Performs a sign function on each row of the matrix.
-HLML_INLINE int3x2 sign( const int3x2& x )
+HLML_INLINE int3x2 sign( const int3x2 &x )
 {
 	return int3x2(
 		sign( x[0] ),
@@ -3787,7 +3787,7 @@ HLML_INLINE int3x2 sign( const int3x2& x )
 }
 
 // Performs a min function on each row of the matrix.
-HLML_INLINE int3x2 min( const int3x2& x, const int3x2& y )
+HLML_INLINE int3x2 min( const int3x2 &x, const int3x2 &y )
 {
 	return int3x2(
 		min( x[0], y[0] ),
@@ -3797,7 +3797,7 @@ HLML_INLINE int3x2 min( const int3x2& x, const int3x2& y )
 }
 
 // Performs a max function on each row of the matrix.
-HLML_INLINE int3x2 max( const int3x2& x, const int3x2& y )
+HLML_INLINE int3x2 max( const int3x2 &x, const int3x2 &y )
 {
 	return int3x2(
 		max( x[0], y[0] ),
@@ -3807,7 +3807,7 @@ HLML_INLINE int3x2 max( const int3x2& x, const int3x2& y )
 }
 
 // Performs a clamp function on each row of the matrix.
-HLML_INLINE int3x2 clamp( const int3x2& x, const int3x2& low, const int3x2& high )
+HLML_INLINE int3x2 clamp( const int3x2 &x, const int3x2 &low, const int3x2 &high )
 {
 	return int3x2(
 		clamp( x[0], low[0], high[0] ),
@@ -3817,7 +3817,7 @@ HLML_INLINE int3x2 clamp( const int3x2& x, const int3x2& low, const int3x2& high
 }
 
 // Performs a saturate function on each row of the matrix.
-HLML_INLINE int3x2 saturate( const int3x2& x )
+HLML_INLINE int3x2 saturate( const int3x2 &x )
 {
 	return int3x2(
 		saturate( x[0] ),
@@ -3827,7 +3827,7 @@ HLML_INLINE int3x2 saturate( const int3x2& x )
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator==( const int3x2& lhs, const int3x2& rhs )
+HLML_INLINE bool operator==( const int3x2 &lhs, const int3x2 &rhs )
 {
 	return
 		lhs[0] == rhs[0] &&
@@ -3836,13 +3836,13 @@ HLML_INLINE bool operator==( const int3x2& lhs, const int3x2& rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator!=( const int3x2& lhs, const int3x2& rhs )
+HLML_INLINE bool operator!=( const int3x2 &lhs, const int3x2 &rhs )
 {
 	return !( lhs == rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool3x2 operator<( const int3x2& lhs, const int3x2& rhs )
+HLML_INLINE bool3x2 operator<( const int3x2 &lhs, const int3x2 &rhs )
 {
 	return bool3x2(
 		lhs[0] < rhs[0],
@@ -3852,7 +3852,7 @@ HLML_INLINE bool3x2 operator<( const int3x2& lhs, const int3x2& rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool3x2 operator<=( const int3x2& lhs, const int3x2& rhs )
+HLML_INLINE bool3x2 operator<=( const int3x2 &lhs, const int3x2 &rhs )
 {
 	return bool3x2(
 		lhs[0] <= rhs[0],
@@ -3862,7 +3862,7 @@ HLML_INLINE bool3x2 operator<=( const int3x2& lhs, const int3x2& rhs )
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool3x2 operator>( const int3x2& lhs, const int3x2& rhs )
+HLML_INLINE bool3x2 operator>( const int3x2 &lhs, const int3x2 &rhs )
 {
 	return bool3x2(
 		lhs[0] > rhs[0],
@@ -3872,7 +3872,7 @@ HLML_INLINE bool3x2 operator>( const int3x2& lhs, const int3x2& rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool3x2 operator>=( const int3x2& lhs, const int3x2& rhs )
+HLML_INLINE bool3x2 operator>=( const int3x2 &lhs, const int3x2 &rhs )
 {
 	return bool3x2(
 		lhs[0] >= rhs[0],
@@ -3882,7 +3882,7 @@ HLML_INLINE bool3x2 operator>=( const int3x2& lhs, const int3x2& rhs )
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE int3x2 operator+( const int3x2& lhs, const int32_t rhs )
+HLML_INLINE int3x2 operator+( const int3x2 &lhs, const int32_t rhs )
 {
 	return int3x2(
 		lhs[0] + rhs,
@@ -3892,13 +3892,13 @@ HLML_INLINE int3x2 operator+( const int3x2& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been +'d against the scalar.
-HLML_INLINE int3x2 operator+=( int3x2& lhs, const int32_t rhs )
+HLML_INLINE int3x2 operator+=( int3x2 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE int3x2 operator+( const int3x2& lhs, const int3x2& rhs )
+HLML_INLINE int3x2 operator+( const int3x2 &lhs, const int3x2 &rhs )
 {
 	return int3x2(
 		lhs[0] + rhs[0],
@@ -3908,13 +3908,13 @@ HLML_INLINE int3x2 operator+( const int3x2& lhs, const int3x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise +'d against 'rhs'.
-HLML_INLINE int3x2 operator+=( int3x2& lhs, const int3x2& rhs )
+HLML_INLINE int3x2 operator+=( int3x2 &lhs, const int3x2 &rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE int3x2 operator-( const int3x2& lhs, const int32_t rhs )
+HLML_INLINE int3x2 operator-( const int3x2 &lhs, const int32_t rhs )
 {
 	return int3x2(
 		lhs[0] - rhs,
@@ -3924,13 +3924,13 @@ HLML_INLINE int3x2 operator-( const int3x2& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been -'d against the scalar.
-HLML_INLINE int3x2 operator-=( int3x2& lhs, const int32_t rhs )
+HLML_INLINE int3x2 operator-=( int3x2 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE int3x2 operator-( const int3x2& lhs, const int3x2& rhs )
+HLML_INLINE int3x2 operator-( const int3x2 &lhs, const int3x2 &rhs )
 {
 	return int3x2(
 		lhs[0] - rhs[0],
@@ -3940,13 +3940,13 @@ HLML_INLINE int3x2 operator-( const int3x2& lhs, const int3x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise -'d against 'rhs'.
-HLML_INLINE int3x2 operator-=( int3x2& lhs, const int3x2& rhs )
+HLML_INLINE int3x2 operator-=( int3x2 &lhs, const int3x2 &rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE int3x2 operator*( const int3x2& lhs, const int32_t rhs )
+HLML_INLINE int3x2 operator*( const int3x2 &lhs, const int32_t rhs )
 {
 	return int3x2(
 		lhs[0] * rhs,
@@ -3956,13 +3956,13 @@ HLML_INLINE int3x2 operator*( const int3x2& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been *'d against the scalar.
-HLML_INLINE int3x2 operator*=( int3x2& lhs, const int32_t rhs )
+HLML_INLINE int3x2 operator*=( int3x2 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE int3x2 operator*( const int3x2& lhs, const int3x2& rhs )
+HLML_INLINE int3x2 operator*( const int3x2 &lhs, const int3x2 &rhs )
 {
 	return int3x2(
 		lhs[0] * rhs[0],
@@ -3972,13 +3972,13 @@ HLML_INLINE int3x2 operator*( const int3x2& lhs, const int3x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise *'d against 'rhs'.
-HLML_INLINE int3x2 operator*=( int3x2& lhs, const int3x2& rhs )
+HLML_INLINE int3x2 operator*=( int3x2 &lhs, const int3x2 &rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE int3x2 operator/( const int3x2& lhs, const int32_t rhs )
+HLML_INLINE int3x2 operator/( const int3x2 &lhs, const int32_t rhs )
 {
 	return int3x2(
 		lhs[0] / rhs,
@@ -3988,13 +3988,13 @@ HLML_INLINE int3x2 operator/( const int3x2& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been /'d against the scalar.
-HLML_INLINE int3x2 operator/=( int3x2& lhs, const int32_t rhs )
+HLML_INLINE int3x2 operator/=( int3x2 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE int3x2 operator/( const int3x2& lhs, const int3x2& rhs )
+HLML_INLINE int3x2 operator/( const int3x2 &lhs, const int3x2 &rhs )
 {
 	return int3x2(
 		lhs[0] / rhs[0],
@@ -4004,13 +4004,13 @@ HLML_INLINE int3x2 operator/( const int3x2& lhs, const int3x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise /'d against 'rhs'.
-HLML_INLINE int3x2 operator/=( int3x2& lhs, const int3x2& rhs )
+HLML_INLINE int3x2 operator/=( int3x2 &lhs, const int3x2 &rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // ++s each component of the matrix and returns the result.
-HLML_INLINE int3x2 operator++( int3x2& x )
+HLML_INLINE int3x2 operator++( int3x2 &x )
 {
 	++x[0];
 	++x[1];
@@ -4020,7 +4020,7 @@ HLML_INLINE int3x2 operator++( int3x2& x )
 
 // ++s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE int3x2 operator++( int3x2& x, const int32_t )
+HLML_INLINE int3x2 operator++( int3x2 &x, const int32_t )
 {
 	x[0]++;
 	x[1]++;
@@ -4029,7 +4029,7 @@ HLML_INLINE int3x2 operator++( int3x2& x, const int32_t )
 }
 
 // --s each component of the matrix and returns the result.
-HLML_INLINE int3x2 operator--( int3x2& x )
+HLML_INLINE int3x2 operator--( int3x2 &x )
 {
 	--x[0];
 	--x[1];
@@ -4039,7 +4039,7 @@ HLML_INLINE int3x2 operator--( int3x2& x )
 
 // --s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE int3x2 operator--( int3x2& x, const int32_t )
+HLML_INLINE int3x2 operator--( int3x2 &x, const int32_t )
 {
 	x[0]--;
 	x[1]--;
@@ -4049,7 +4049,7 @@ HLML_INLINE int3x2 operator--( int3x2& x, const int32_t )
 
 // Returns a copy of the matrix that has been negated.
 // pre-fix
-HLML_INLINE int3x2 operator-( const int3x2& x )
+HLML_INLINE int3x2 operator-( const int3x2 &x )
 {
 	return int3x2(
 		-x[0],
@@ -4060,7 +4060,7 @@ HLML_INLINE int3x2 operator-( const int3x2& x )
 
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
 // pre-fix
-HLML_INLINE int3x2 operator~( const int3x2& x )
+HLML_INLINE int3x2 operator~( const int3x2 &x )
 {
 	return int3x2(
 		~x[0],
@@ -4070,7 +4070,7 @@ HLML_INLINE int3x2 operator~( const int3x2& x )
 }
 
 // Performs a component-wise bitwise & on the matrix by the scalar and returns the result.
-HLML_INLINE int3x2 operator&( const int3x2& lhs, const int32_t rhs )
+HLML_INLINE int3x2 operator&( const int3x2 &lhs, const int32_t rhs )
 {
 	return int3x2(
 		lhs[0] & rhs,
@@ -4080,13 +4080,13 @@ HLML_INLINE int3x2 operator&( const int3x2& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise &'d against the scalar.
-HLML_INLINE int3x2 operator&=( int3x2& lhs, const int32_t rhs )
+HLML_INLINE int3x2 operator&=( int3x2 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs & rhs );
 }
 
 // Performs a component-wise bitwise & against the two matrices and returns the result.
-HLML_INLINE int3x2 operator&( const int3x2& lhs, const int3x2& rhs )
+HLML_INLINE int3x2 operator&( const int3x2 &lhs, const int3x2 &rhs )
 {
 	return int3x2(
 		lhs[0] & rhs[0],
@@ -4096,13 +4096,13 @@ HLML_INLINE int3x2 operator&( const int3x2& lhs, const int3x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise &'d against 'rhs'.
-HLML_INLINE int3x2 operator&=( int3x2& lhs, const int3x2& rhs )
+HLML_INLINE int3x2 operator&=( int3x2 &lhs, const int3x2 &rhs )
 {
 	return ( lhs = lhs & rhs );
 }
 
 // Performs a component-wise bitwise | on the matrix by the scalar and returns the result.
-HLML_INLINE int3x2 operator|( const int3x2& lhs, const int32_t rhs )
+HLML_INLINE int3x2 operator|( const int3x2 &lhs, const int32_t rhs )
 {
 	return int3x2(
 		lhs[0] | rhs,
@@ -4112,13 +4112,13 @@ HLML_INLINE int3x2 operator|( const int3x2& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise |'d against the scalar.
-HLML_INLINE int3x2 operator|=( int3x2& lhs, const int32_t rhs )
+HLML_INLINE int3x2 operator|=( int3x2 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs | rhs );
 }
 
 // Performs a component-wise bitwise | against the two matrices and returns the result.
-HLML_INLINE int3x2 operator|( const int3x2& lhs, const int3x2& rhs )
+HLML_INLINE int3x2 operator|( const int3x2 &lhs, const int3x2 &rhs )
 {
 	return int3x2(
 		lhs[0] | rhs[0],
@@ -4128,13 +4128,13 @@ HLML_INLINE int3x2 operator|( const int3x2& lhs, const int3x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise |'d against 'rhs'.
-HLML_INLINE int3x2 operator|=( int3x2& lhs, const int3x2& rhs )
+HLML_INLINE int3x2 operator|=( int3x2 &lhs, const int3x2 &rhs )
 {
 	return ( lhs = lhs | rhs );
 }
 
 // Performs a component-wise bitwise ^ on the matrix by the scalar and returns the result.
-HLML_INLINE int3x2 operator^( const int3x2& lhs, const int32_t rhs )
+HLML_INLINE int3x2 operator^( const int3x2 &lhs, const int32_t rhs )
 {
 	return int3x2(
 		lhs[0] ^ rhs,
@@ -4144,13 +4144,13 @@ HLML_INLINE int3x2 operator^( const int3x2& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise ^'d against the scalar.
-HLML_INLINE int3x2 operator^=( int3x2& lhs, const int32_t rhs )
+HLML_INLINE int3x2 operator^=( int3x2 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs ^ rhs );
 }
 
 // Performs a component-wise bitwise ^ against the two matrices and returns the result.
-HLML_INLINE int3x2 operator^( const int3x2& lhs, const int3x2& rhs )
+HLML_INLINE int3x2 operator^( const int3x2 &lhs, const int3x2 &rhs )
 {
 	return int3x2(
 		lhs[0] ^ rhs[0],
@@ -4160,13 +4160,13 @@ HLML_INLINE int3x2 operator^( const int3x2& lhs, const int3x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise ^'d against 'rhs'.
-HLML_INLINE int3x2 operator^=( int3x2& lhs, const int3x2& rhs )
+HLML_INLINE int3x2 operator^=( int3x2 &lhs, const int3x2 &rhs )
 {
 	return ( lhs = lhs ^ rhs );
 }
 
 // Performs a component-wise bitwise << on the matrix by the scalar and returns the result.
-HLML_INLINE int3x2 operator<<( const int3x2& lhs, const int32_t rhs )
+HLML_INLINE int3x2 operator<<( const int3x2 &lhs, const int32_t rhs )
 {
 	return int3x2(
 		lhs[0] << rhs,
@@ -4176,13 +4176,13 @@ HLML_INLINE int3x2 operator<<( const int3x2& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise <<'d against the scalar.
-HLML_INLINE int3x2 operator<<=( int3x2& lhs, const int32_t rhs )
+HLML_INLINE int3x2 operator<<=( int3x2 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs << rhs );
 }
 
 // Performs a component-wise bitwise << against the two matrices and returns the result.
-HLML_INLINE int3x2 operator<<( const int3x2& lhs, const int3x2& rhs )
+HLML_INLINE int3x2 operator<<( const int3x2 &lhs, const int3x2 &rhs )
 {
 	return int3x2(
 		lhs[0] << rhs[0],
@@ -4192,13 +4192,13 @@ HLML_INLINE int3x2 operator<<( const int3x2& lhs, const int3x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise <<'d against 'rhs'.
-HLML_INLINE int3x2 operator<<=( int3x2& lhs, const int3x2& rhs )
+HLML_INLINE int3x2 operator<<=( int3x2 &lhs, const int3x2 &rhs )
 {
 	return ( lhs = lhs << rhs );
 }
 
 // Performs a component-wise bitwise >> on the matrix by the scalar and returns the result.
-HLML_INLINE int3x2 operator>>( const int3x2& lhs, const int32_t rhs )
+HLML_INLINE int3x2 operator>>( const int3x2 &lhs, const int32_t rhs )
 {
 	return int3x2(
 		lhs[0] >> rhs,
@@ -4208,13 +4208,13 @@ HLML_INLINE int3x2 operator>>( const int3x2& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise >>'d against the scalar.
-HLML_INLINE int3x2 operator>>=( int3x2& lhs, const int32_t rhs )
+HLML_INLINE int3x2 operator>>=( int3x2 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs >> rhs );
 }
 
 // Performs a component-wise bitwise >> against the two matrices and returns the result.
-HLML_INLINE int3x2 operator>>( const int3x2& lhs, const int3x2& rhs )
+HLML_INLINE int3x2 operator>>( const int3x2 &lhs, const int3x2 &rhs )
 {
 	return int3x2(
 		lhs[0] >> rhs[0],
@@ -4224,13 +4224,13 @@ HLML_INLINE int3x2 operator>>( const int3x2& lhs, const int3x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise >>'d against 'rhs'.
-HLML_INLINE int3x2 operator>>=( int3x2& lhs, const int3x2& rhs )
+HLML_INLINE int3x2 operator>>=( int3x2 &lhs, const int3x2 &rhs )
 {
 	return ( lhs = lhs >> rhs );
 }
 
 // Sets the matrix to an identity matrix.
-HLML_INLINE void identity( int3x2& mat )
+HLML_INLINE void identity( int3x2 &mat )
 {
 	mat.rows[0] = HLML_CONSTRUCT( int2 ) { 1, 0 };
 	mat.rows[1] = HLML_CONSTRUCT( int2 ) { 0, 1 };
@@ -4238,7 +4238,7 @@ HLML_INLINE void identity( int3x2& mat )
 }
 
 // Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-HLML_INLINE int2x3 transpose( const int3x2& mat )
+HLML_INLINE int2x3 transpose( const int3x2 &mat )
 {
 	return HLML_CONSTRUCT( int2x3 )
 	{
@@ -4248,7 +4248,7 @@ HLML_INLINE int2x3 transpose( const int3x2& mat )
 }
 
 // Performs a matrix multiplication with 'lhs' and 'rhs' and returns the result.
-HLML_INLINE int3x3 mul( const int3x2& lhs, const int2x3& rhs )
+HLML_INLINE int3x3 mul( const int3x2 &lhs, const int2x3 &rhs )
 {
 	int2 row0 = lhs.rows[0];
 	int2 row1 = lhs.rows[1];
@@ -4276,7 +4276,7 @@ HLML_INLINE int3x3 mul( const int3x2& lhs, const int2x3& rhs )
 
 // int3x3
 // Performs a sign function on each row of the matrix.
-HLML_INLINE int3x3 sign( const int3x3& x )
+HLML_INLINE int3x3 sign( const int3x3 &x )
 {
 	return int3x3(
 		sign( x[0] ),
@@ -4286,7 +4286,7 @@ HLML_INLINE int3x3 sign( const int3x3& x )
 }
 
 // Performs a min function on each row of the matrix.
-HLML_INLINE int3x3 min( const int3x3& x, const int3x3& y )
+HLML_INLINE int3x3 min( const int3x3 &x, const int3x3 &y )
 {
 	return int3x3(
 		min( x[0], y[0] ),
@@ -4296,7 +4296,7 @@ HLML_INLINE int3x3 min( const int3x3& x, const int3x3& y )
 }
 
 // Performs a max function on each row of the matrix.
-HLML_INLINE int3x3 max( const int3x3& x, const int3x3& y )
+HLML_INLINE int3x3 max( const int3x3 &x, const int3x3 &y )
 {
 	return int3x3(
 		max( x[0], y[0] ),
@@ -4306,7 +4306,7 @@ HLML_INLINE int3x3 max( const int3x3& x, const int3x3& y )
 }
 
 // Performs a clamp function on each row of the matrix.
-HLML_INLINE int3x3 clamp( const int3x3& x, const int3x3& low, const int3x3& high )
+HLML_INLINE int3x3 clamp( const int3x3 &x, const int3x3 &low, const int3x3 &high )
 {
 	return int3x3(
 		clamp( x[0], low[0], high[0] ),
@@ -4316,7 +4316,7 @@ HLML_INLINE int3x3 clamp( const int3x3& x, const int3x3& low, const int3x3& high
 }
 
 // Performs a saturate function on each row of the matrix.
-HLML_INLINE int3x3 saturate( const int3x3& x )
+HLML_INLINE int3x3 saturate( const int3x3 &x )
 {
 	return int3x3(
 		saturate( x[0] ),
@@ -4326,7 +4326,7 @@ HLML_INLINE int3x3 saturate( const int3x3& x )
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator==( const int3x3& lhs, const int3x3& rhs )
+HLML_INLINE bool operator==( const int3x3 &lhs, const int3x3 &rhs )
 {
 	return
 		lhs[0] == rhs[0] &&
@@ -4335,13 +4335,13 @@ HLML_INLINE bool operator==( const int3x3& lhs, const int3x3& rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator!=( const int3x3& lhs, const int3x3& rhs )
+HLML_INLINE bool operator!=( const int3x3 &lhs, const int3x3 &rhs )
 {
 	return !( lhs == rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool3x3 operator<( const int3x3& lhs, const int3x3& rhs )
+HLML_INLINE bool3x3 operator<( const int3x3 &lhs, const int3x3 &rhs )
 {
 	return bool3x3(
 		lhs[0] < rhs[0],
@@ -4351,7 +4351,7 @@ HLML_INLINE bool3x3 operator<( const int3x3& lhs, const int3x3& rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool3x3 operator<=( const int3x3& lhs, const int3x3& rhs )
+HLML_INLINE bool3x3 operator<=( const int3x3 &lhs, const int3x3 &rhs )
 {
 	return bool3x3(
 		lhs[0] <= rhs[0],
@@ -4361,7 +4361,7 @@ HLML_INLINE bool3x3 operator<=( const int3x3& lhs, const int3x3& rhs )
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool3x3 operator>( const int3x3& lhs, const int3x3& rhs )
+HLML_INLINE bool3x3 operator>( const int3x3 &lhs, const int3x3 &rhs )
 {
 	return bool3x3(
 		lhs[0] > rhs[0],
@@ -4371,7 +4371,7 @@ HLML_INLINE bool3x3 operator>( const int3x3& lhs, const int3x3& rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool3x3 operator>=( const int3x3& lhs, const int3x3& rhs )
+HLML_INLINE bool3x3 operator>=( const int3x3 &lhs, const int3x3 &rhs )
 {
 	return bool3x3(
 		lhs[0] >= rhs[0],
@@ -4381,7 +4381,7 @@ HLML_INLINE bool3x3 operator>=( const int3x3& lhs, const int3x3& rhs )
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE int3x3 operator+( const int3x3& lhs, const int32_t rhs )
+HLML_INLINE int3x3 operator+( const int3x3 &lhs, const int32_t rhs )
 {
 	return int3x3(
 		lhs[0] + rhs,
@@ -4391,13 +4391,13 @@ HLML_INLINE int3x3 operator+( const int3x3& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been +'d against the scalar.
-HLML_INLINE int3x3 operator+=( int3x3& lhs, const int32_t rhs )
+HLML_INLINE int3x3 operator+=( int3x3 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE int3x3 operator+( const int3x3& lhs, const int3x3& rhs )
+HLML_INLINE int3x3 operator+( const int3x3 &lhs, const int3x3 &rhs )
 {
 	return int3x3(
 		lhs[0] + rhs[0],
@@ -4407,13 +4407,13 @@ HLML_INLINE int3x3 operator+( const int3x3& lhs, const int3x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise +'d against 'rhs'.
-HLML_INLINE int3x3 operator+=( int3x3& lhs, const int3x3& rhs )
+HLML_INLINE int3x3 operator+=( int3x3 &lhs, const int3x3 &rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE int3x3 operator-( const int3x3& lhs, const int32_t rhs )
+HLML_INLINE int3x3 operator-( const int3x3 &lhs, const int32_t rhs )
 {
 	return int3x3(
 		lhs[0] - rhs,
@@ -4423,13 +4423,13 @@ HLML_INLINE int3x3 operator-( const int3x3& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been -'d against the scalar.
-HLML_INLINE int3x3 operator-=( int3x3& lhs, const int32_t rhs )
+HLML_INLINE int3x3 operator-=( int3x3 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE int3x3 operator-( const int3x3& lhs, const int3x3& rhs )
+HLML_INLINE int3x3 operator-( const int3x3 &lhs, const int3x3 &rhs )
 {
 	return int3x3(
 		lhs[0] - rhs[0],
@@ -4439,13 +4439,13 @@ HLML_INLINE int3x3 operator-( const int3x3& lhs, const int3x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise -'d against 'rhs'.
-HLML_INLINE int3x3 operator-=( int3x3& lhs, const int3x3& rhs )
+HLML_INLINE int3x3 operator-=( int3x3 &lhs, const int3x3 &rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE int3x3 operator*( const int3x3& lhs, const int32_t rhs )
+HLML_INLINE int3x3 operator*( const int3x3 &lhs, const int32_t rhs )
 {
 	return int3x3(
 		lhs[0] * rhs,
@@ -4455,13 +4455,13 @@ HLML_INLINE int3x3 operator*( const int3x3& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been *'d against the scalar.
-HLML_INLINE int3x3 operator*=( int3x3& lhs, const int32_t rhs )
+HLML_INLINE int3x3 operator*=( int3x3 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE int3x3 operator*( const int3x3& lhs, const int3x3& rhs )
+HLML_INLINE int3x3 operator*( const int3x3 &lhs, const int3x3 &rhs )
 {
 	return int3x3(
 		lhs[0] * rhs[0],
@@ -4471,13 +4471,13 @@ HLML_INLINE int3x3 operator*( const int3x3& lhs, const int3x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise *'d against 'rhs'.
-HLML_INLINE int3x3 operator*=( int3x3& lhs, const int3x3& rhs )
+HLML_INLINE int3x3 operator*=( int3x3 &lhs, const int3x3 &rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE int3x3 operator/( const int3x3& lhs, const int32_t rhs )
+HLML_INLINE int3x3 operator/( const int3x3 &lhs, const int32_t rhs )
 {
 	return int3x3(
 		lhs[0] / rhs,
@@ -4487,13 +4487,13 @@ HLML_INLINE int3x3 operator/( const int3x3& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been /'d against the scalar.
-HLML_INLINE int3x3 operator/=( int3x3& lhs, const int32_t rhs )
+HLML_INLINE int3x3 operator/=( int3x3 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE int3x3 operator/( const int3x3& lhs, const int3x3& rhs )
+HLML_INLINE int3x3 operator/( const int3x3 &lhs, const int3x3 &rhs )
 {
 	return int3x3(
 		lhs[0] / rhs[0],
@@ -4503,13 +4503,13 @@ HLML_INLINE int3x3 operator/( const int3x3& lhs, const int3x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise /'d against 'rhs'.
-HLML_INLINE int3x3 operator/=( int3x3& lhs, const int3x3& rhs )
+HLML_INLINE int3x3 operator/=( int3x3 &lhs, const int3x3 &rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // ++s each component of the matrix and returns the result.
-HLML_INLINE int3x3 operator++( int3x3& x )
+HLML_INLINE int3x3 operator++( int3x3 &x )
 {
 	++x[0];
 	++x[1];
@@ -4519,7 +4519,7 @@ HLML_INLINE int3x3 operator++( int3x3& x )
 
 // ++s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE int3x3 operator++( int3x3& x, const int32_t )
+HLML_INLINE int3x3 operator++( int3x3 &x, const int32_t )
 {
 	x[0]++;
 	x[1]++;
@@ -4528,7 +4528,7 @@ HLML_INLINE int3x3 operator++( int3x3& x, const int32_t )
 }
 
 // --s each component of the matrix and returns the result.
-HLML_INLINE int3x3 operator--( int3x3& x )
+HLML_INLINE int3x3 operator--( int3x3 &x )
 {
 	--x[0];
 	--x[1];
@@ -4538,7 +4538,7 @@ HLML_INLINE int3x3 operator--( int3x3& x )
 
 // --s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE int3x3 operator--( int3x3& x, const int32_t )
+HLML_INLINE int3x3 operator--( int3x3 &x, const int32_t )
 {
 	x[0]--;
 	x[1]--;
@@ -4548,7 +4548,7 @@ HLML_INLINE int3x3 operator--( int3x3& x, const int32_t )
 
 // Returns a copy of the matrix that has been negated.
 // pre-fix
-HLML_INLINE int3x3 operator-( const int3x3& x )
+HLML_INLINE int3x3 operator-( const int3x3 &x )
 {
 	return int3x3(
 		-x[0],
@@ -4559,7 +4559,7 @@ HLML_INLINE int3x3 operator-( const int3x3& x )
 
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
 // pre-fix
-HLML_INLINE int3x3 operator~( const int3x3& x )
+HLML_INLINE int3x3 operator~( const int3x3 &x )
 {
 	return int3x3(
 		~x[0],
@@ -4569,7 +4569,7 @@ HLML_INLINE int3x3 operator~( const int3x3& x )
 }
 
 // Performs a component-wise bitwise & on the matrix by the scalar and returns the result.
-HLML_INLINE int3x3 operator&( const int3x3& lhs, const int32_t rhs )
+HLML_INLINE int3x3 operator&( const int3x3 &lhs, const int32_t rhs )
 {
 	return int3x3(
 		lhs[0] & rhs,
@@ -4579,13 +4579,13 @@ HLML_INLINE int3x3 operator&( const int3x3& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise &'d against the scalar.
-HLML_INLINE int3x3 operator&=( int3x3& lhs, const int32_t rhs )
+HLML_INLINE int3x3 operator&=( int3x3 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs & rhs );
 }
 
 // Performs a component-wise bitwise & against the two matrices and returns the result.
-HLML_INLINE int3x3 operator&( const int3x3& lhs, const int3x3& rhs )
+HLML_INLINE int3x3 operator&( const int3x3 &lhs, const int3x3 &rhs )
 {
 	return int3x3(
 		lhs[0] & rhs[0],
@@ -4595,13 +4595,13 @@ HLML_INLINE int3x3 operator&( const int3x3& lhs, const int3x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise &'d against 'rhs'.
-HLML_INLINE int3x3 operator&=( int3x3& lhs, const int3x3& rhs )
+HLML_INLINE int3x3 operator&=( int3x3 &lhs, const int3x3 &rhs )
 {
 	return ( lhs = lhs & rhs );
 }
 
 // Performs a component-wise bitwise | on the matrix by the scalar and returns the result.
-HLML_INLINE int3x3 operator|( const int3x3& lhs, const int32_t rhs )
+HLML_INLINE int3x3 operator|( const int3x3 &lhs, const int32_t rhs )
 {
 	return int3x3(
 		lhs[0] | rhs,
@@ -4611,13 +4611,13 @@ HLML_INLINE int3x3 operator|( const int3x3& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise |'d against the scalar.
-HLML_INLINE int3x3 operator|=( int3x3& lhs, const int32_t rhs )
+HLML_INLINE int3x3 operator|=( int3x3 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs | rhs );
 }
 
 // Performs a component-wise bitwise | against the two matrices and returns the result.
-HLML_INLINE int3x3 operator|( const int3x3& lhs, const int3x3& rhs )
+HLML_INLINE int3x3 operator|( const int3x3 &lhs, const int3x3 &rhs )
 {
 	return int3x3(
 		lhs[0] | rhs[0],
@@ -4627,13 +4627,13 @@ HLML_INLINE int3x3 operator|( const int3x3& lhs, const int3x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise |'d against 'rhs'.
-HLML_INLINE int3x3 operator|=( int3x3& lhs, const int3x3& rhs )
+HLML_INLINE int3x3 operator|=( int3x3 &lhs, const int3x3 &rhs )
 {
 	return ( lhs = lhs | rhs );
 }
 
 // Performs a component-wise bitwise ^ on the matrix by the scalar and returns the result.
-HLML_INLINE int3x3 operator^( const int3x3& lhs, const int32_t rhs )
+HLML_INLINE int3x3 operator^( const int3x3 &lhs, const int32_t rhs )
 {
 	return int3x3(
 		lhs[0] ^ rhs,
@@ -4643,13 +4643,13 @@ HLML_INLINE int3x3 operator^( const int3x3& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise ^'d against the scalar.
-HLML_INLINE int3x3 operator^=( int3x3& lhs, const int32_t rhs )
+HLML_INLINE int3x3 operator^=( int3x3 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs ^ rhs );
 }
 
 // Performs a component-wise bitwise ^ against the two matrices and returns the result.
-HLML_INLINE int3x3 operator^( const int3x3& lhs, const int3x3& rhs )
+HLML_INLINE int3x3 operator^( const int3x3 &lhs, const int3x3 &rhs )
 {
 	return int3x3(
 		lhs[0] ^ rhs[0],
@@ -4659,13 +4659,13 @@ HLML_INLINE int3x3 operator^( const int3x3& lhs, const int3x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise ^'d against 'rhs'.
-HLML_INLINE int3x3 operator^=( int3x3& lhs, const int3x3& rhs )
+HLML_INLINE int3x3 operator^=( int3x3 &lhs, const int3x3 &rhs )
 {
 	return ( lhs = lhs ^ rhs );
 }
 
 // Performs a component-wise bitwise << on the matrix by the scalar and returns the result.
-HLML_INLINE int3x3 operator<<( const int3x3& lhs, const int32_t rhs )
+HLML_INLINE int3x3 operator<<( const int3x3 &lhs, const int32_t rhs )
 {
 	return int3x3(
 		lhs[0] << rhs,
@@ -4675,13 +4675,13 @@ HLML_INLINE int3x3 operator<<( const int3x3& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise <<'d against the scalar.
-HLML_INLINE int3x3 operator<<=( int3x3& lhs, const int32_t rhs )
+HLML_INLINE int3x3 operator<<=( int3x3 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs << rhs );
 }
 
 // Performs a component-wise bitwise << against the two matrices and returns the result.
-HLML_INLINE int3x3 operator<<( const int3x3& lhs, const int3x3& rhs )
+HLML_INLINE int3x3 operator<<( const int3x3 &lhs, const int3x3 &rhs )
 {
 	return int3x3(
 		lhs[0] << rhs[0],
@@ -4691,13 +4691,13 @@ HLML_INLINE int3x3 operator<<( const int3x3& lhs, const int3x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise <<'d against 'rhs'.
-HLML_INLINE int3x3 operator<<=( int3x3& lhs, const int3x3& rhs )
+HLML_INLINE int3x3 operator<<=( int3x3 &lhs, const int3x3 &rhs )
 {
 	return ( lhs = lhs << rhs );
 }
 
 // Performs a component-wise bitwise >> on the matrix by the scalar and returns the result.
-HLML_INLINE int3x3 operator>>( const int3x3& lhs, const int32_t rhs )
+HLML_INLINE int3x3 operator>>( const int3x3 &lhs, const int32_t rhs )
 {
 	return int3x3(
 		lhs[0] >> rhs,
@@ -4707,13 +4707,13 @@ HLML_INLINE int3x3 operator>>( const int3x3& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise >>'d against the scalar.
-HLML_INLINE int3x3 operator>>=( int3x3& lhs, const int32_t rhs )
+HLML_INLINE int3x3 operator>>=( int3x3 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs >> rhs );
 }
 
 // Performs a component-wise bitwise >> against the two matrices and returns the result.
-HLML_INLINE int3x3 operator>>( const int3x3& lhs, const int3x3& rhs )
+HLML_INLINE int3x3 operator>>( const int3x3 &lhs, const int3x3 &rhs )
 {
 	return int3x3(
 		lhs[0] >> rhs[0],
@@ -4723,13 +4723,13 @@ HLML_INLINE int3x3 operator>>( const int3x3& lhs, const int3x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise >>'d against 'rhs'.
-HLML_INLINE int3x3 operator>>=( int3x3& lhs, const int3x3& rhs )
+HLML_INLINE int3x3 operator>>=( int3x3 &lhs, const int3x3 &rhs )
 {
 	return ( lhs = lhs >> rhs );
 }
 
 // Sets the matrix to an identity matrix.
-HLML_INLINE void identity( int3x3& mat )
+HLML_INLINE void identity( int3x3 &mat )
 {
 	mat.rows[0] = HLML_CONSTRUCT( int3 ) { 1, 0, 0 };
 	mat.rows[1] = HLML_CONSTRUCT( int3 ) { 0, 1, 0 };
@@ -4737,7 +4737,7 @@ HLML_INLINE void identity( int3x3& mat )
 }
 
 // Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-HLML_INLINE int3x3 transpose( const int3x3& mat )
+HLML_INLINE int3x3 transpose( const int3x3 &mat )
 {
 	return HLML_CONSTRUCT( int3x3 )
 	{
@@ -4748,7 +4748,7 @@ HLML_INLINE int3x3 transpose( const int3x3& mat )
 }
 
 // Returns the determinant of the matrix.
-HLML_INLINE int32_t determinant( const int3x3& mat )
+HLML_INLINE int32_t determinant( const int3x3 &mat )
 {
 	return
 		+ mat.rows[0].x * ( mat.rows[1].y * mat.rows[2].z - mat.rows[2].y * mat.rows[1].z ) 
@@ -4757,7 +4757,7 @@ HLML_INLINE int32_t determinant( const int3x3& mat )
 }
 
 // Performs a matrix multiplication with 'lhs' and 'rhs' and returns the result.
-HLML_INLINE int3x3 mul( const int3x3& lhs, const int3x3& rhs )
+HLML_INLINE int3x3 mul( const int3x3 &lhs, const int3x3 &rhs )
 {
 	int3 row0 = lhs.rows[0];
 	int3 row1 = lhs.rows[1];
@@ -4784,7 +4784,7 @@ HLML_INLINE int3x3 mul( const int3x3& lhs, const int3x3& rhs )
 }
 
 // Multiplies the vector 'lhs' against the matrix 'rhs' and returns the result.
-HLML_INLINE int3 mul( const int3& lhs, const int3x3& rhs )
+HLML_INLINE int3 mul( const int3 &lhs, const int3x3 &rhs )
 {
 	return HLML_CONSTRUCT( int3 )
 	{
@@ -4796,7 +4796,7 @@ HLML_INLINE int3 mul( const int3& lhs, const int3x3& rhs )
 
 // int3x4
 // Performs a sign function on each row of the matrix.
-HLML_INLINE int3x4 sign( const int3x4& x )
+HLML_INLINE int3x4 sign( const int3x4 &x )
 {
 	return int3x4(
 		sign( x[0] ),
@@ -4806,7 +4806,7 @@ HLML_INLINE int3x4 sign( const int3x4& x )
 }
 
 // Performs a min function on each row of the matrix.
-HLML_INLINE int3x4 min( const int3x4& x, const int3x4& y )
+HLML_INLINE int3x4 min( const int3x4 &x, const int3x4 &y )
 {
 	return int3x4(
 		min( x[0], y[0] ),
@@ -4816,7 +4816,7 @@ HLML_INLINE int3x4 min( const int3x4& x, const int3x4& y )
 }
 
 // Performs a max function on each row of the matrix.
-HLML_INLINE int3x4 max( const int3x4& x, const int3x4& y )
+HLML_INLINE int3x4 max( const int3x4 &x, const int3x4 &y )
 {
 	return int3x4(
 		max( x[0], y[0] ),
@@ -4826,7 +4826,7 @@ HLML_INLINE int3x4 max( const int3x4& x, const int3x4& y )
 }
 
 // Performs a clamp function on each row of the matrix.
-HLML_INLINE int3x4 clamp( const int3x4& x, const int3x4& low, const int3x4& high )
+HLML_INLINE int3x4 clamp( const int3x4 &x, const int3x4 &low, const int3x4 &high )
 {
 	return int3x4(
 		clamp( x[0], low[0], high[0] ),
@@ -4836,7 +4836,7 @@ HLML_INLINE int3x4 clamp( const int3x4& x, const int3x4& low, const int3x4& high
 }
 
 // Performs a saturate function on each row of the matrix.
-HLML_INLINE int3x4 saturate( const int3x4& x )
+HLML_INLINE int3x4 saturate( const int3x4 &x )
 {
 	return int3x4(
 		saturate( x[0] ),
@@ -4846,7 +4846,7 @@ HLML_INLINE int3x4 saturate( const int3x4& x )
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator==( const int3x4& lhs, const int3x4& rhs )
+HLML_INLINE bool operator==( const int3x4 &lhs, const int3x4 &rhs )
 {
 	return
 		lhs[0] == rhs[0] &&
@@ -4855,13 +4855,13 @@ HLML_INLINE bool operator==( const int3x4& lhs, const int3x4& rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator!=( const int3x4& lhs, const int3x4& rhs )
+HLML_INLINE bool operator!=( const int3x4 &lhs, const int3x4 &rhs )
 {
 	return !( lhs == rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool3x4 operator<( const int3x4& lhs, const int3x4& rhs )
+HLML_INLINE bool3x4 operator<( const int3x4 &lhs, const int3x4 &rhs )
 {
 	return bool3x4(
 		lhs[0] < rhs[0],
@@ -4871,7 +4871,7 @@ HLML_INLINE bool3x4 operator<( const int3x4& lhs, const int3x4& rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool3x4 operator<=( const int3x4& lhs, const int3x4& rhs )
+HLML_INLINE bool3x4 operator<=( const int3x4 &lhs, const int3x4 &rhs )
 {
 	return bool3x4(
 		lhs[0] <= rhs[0],
@@ -4881,7 +4881,7 @@ HLML_INLINE bool3x4 operator<=( const int3x4& lhs, const int3x4& rhs )
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool3x4 operator>( const int3x4& lhs, const int3x4& rhs )
+HLML_INLINE bool3x4 operator>( const int3x4 &lhs, const int3x4 &rhs )
 {
 	return bool3x4(
 		lhs[0] > rhs[0],
@@ -4891,7 +4891,7 @@ HLML_INLINE bool3x4 operator>( const int3x4& lhs, const int3x4& rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool3x4 operator>=( const int3x4& lhs, const int3x4& rhs )
+HLML_INLINE bool3x4 operator>=( const int3x4 &lhs, const int3x4 &rhs )
 {
 	return bool3x4(
 		lhs[0] >= rhs[0],
@@ -4901,7 +4901,7 @@ HLML_INLINE bool3x4 operator>=( const int3x4& lhs, const int3x4& rhs )
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE int3x4 operator+( const int3x4& lhs, const int32_t rhs )
+HLML_INLINE int3x4 operator+( const int3x4 &lhs, const int32_t rhs )
 {
 	return int3x4(
 		lhs[0] + rhs,
@@ -4911,13 +4911,13 @@ HLML_INLINE int3x4 operator+( const int3x4& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been +'d against the scalar.
-HLML_INLINE int3x4 operator+=( int3x4& lhs, const int32_t rhs )
+HLML_INLINE int3x4 operator+=( int3x4 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE int3x4 operator+( const int3x4& lhs, const int3x4& rhs )
+HLML_INLINE int3x4 operator+( const int3x4 &lhs, const int3x4 &rhs )
 {
 	return int3x4(
 		lhs[0] + rhs[0],
@@ -4927,13 +4927,13 @@ HLML_INLINE int3x4 operator+( const int3x4& lhs, const int3x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise +'d against 'rhs'.
-HLML_INLINE int3x4 operator+=( int3x4& lhs, const int3x4& rhs )
+HLML_INLINE int3x4 operator+=( int3x4 &lhs, const int3x4 &rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE int3x4 operator-( const int3x4& lhs, const int32_t rhs )
+HLML_INLINE int3x4 operator-( const int3x4 &lhs, const int32_t rhs )
 {
 	return int3x4(
 		lhs[0] - rhs,
@@ -4943,13 +4943,13 @@ HLML_INLINE int3x4 operator-( const int3x4& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been -'d against the scalar.
-HLML_INLINE int3x4 operator-=( int3x4& lhs, const int32_t rhs )
+HLML_INLINE int3x4 operator-=( int3x4 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE int3x4 operator-( const int3x4& lhs, const int3x4& rhs )
+HLML_INLINE int3x4 operator-( const int3x4 &lhs, const int3x4 &rhs )
 {
 	return int3x4(
 		lhs[0] - rhs[0],
@@ -4959,13 +4959,13 @@ HLML_INLINE int3x4 operator-( const int3x4& lhs, const int3x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise -'d against 'rhs'.
-HLML_INLINE int3x4 operator-=( int3x4& lhs, const int3x4& rhs )
+HLML_INLINE int3x4 operator-=( int3x4 &lhs, const int3x4 &rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE int3x4 operator*( const int3x4& lhs, const int32_t rhs )
+HLML_INLINE int3x4 operator*( const int3x4 &lhs, const int32_t rhs )
 {
 	return int3x4(
 		lhs[0] * rhs,
@@ -4975,13 +4975,13 @@ HLML_INLINE int3x4 operator*( const int3x4& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been *'d against the scalar.
-HLML_INLINE int3x4 operator*=( int3x4& lhs, const int32_t rhs )
+HLML_INLINE int3x4 operator*=( int3x4 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE int3x4 operator*( const int3x4& lhs, const int3x4& rhs )
+HLML_INLINE int3x4 operator*( const int3x4 &lhs, const int3x4 &rhs )
 {
 	return int3x4(
 		lhs[0] * rhs[0],
@@ -4991,13 +4991,13 @@ HLML_INLINE int3x4 operator*( const int3x4& lhs, const int3x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise *'d against 'rhs'.
-HLML_INLINE int3x4 operator*=( int3x4& lhs, const int3x4& rhs )
+HLML_INLINE int3x4 operator*=( int3x4 &lhs, const int3x4 &rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE int3x4 operator/( const int3x4& lhs, const int32_t rhs )
+HLML_INLINE int3x4 operator/( const int3x4 &lhs, const int32_t rhs )
 {
 	return int3x4(
 		lhs[0] / rhs,
@@ -5007,13 +5007,13 @@ HLML_INLINE int3x4 operator/( const int3x4& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been /'d against the scalar.
-HLML_INLINE int3x4 operator/=( int3x4& lhs, const int32_t rhs )
+HLML_INLINE int3x4 operator/=( int3x4 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE int3x4 operator/( const int3x4& lhs, const int3x4& rhs )
+HLML_INLINE int3x4 operator/( const int3x4 &lhs, const int3x4 &rhs )
 {
 	return int3x4(
 		lhs[0] / rhs[0],
@@ -5023,13 +5023,13 @@ HLML_INLINE int3x4 operator/( const int3x4& lhs, const int3x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise /'d against 'rhs'.
-HLML_INLINE int3x4 operator/=( int3x4& lhs, const int3x4& rhs )
+HLML_INLINE int3x4 operator/=( int3x4 &lhs, const int3x4 &rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // ++s each component of the matrix and returns the result.
-HLML_INLINE int3x4 operator++( int3x4& x )
+HLML_INLINE int3x4 operator++( int3x4 &x )
 {
 	++x[0];
 	++x[1];
@@ -5039,7 +5039,7 @@ HLML_INLINE int3x4 operator++( int3x4& x )
 
 // ++s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE int3x4 operator++( int3x4& x, const int32_t )
+HLML_INLINE int3x4 operator++( int3x4 &x, const int32_t )
 {
 	x[0]++;
 	x[1]++;
@@ -5048,7 +5048,7 @@ HLML_INLINE int3x4 operator++( int3x4& x, const int32_t )
 }
 
 // --s each component of the matrix and returns the result.
-HLML_INLINE int3x4 operator--( int3x4& x )
+HLML_INLINE int3x4 operator--( int3x4 &x )
 {
 	--x[0];
 	--x[1];
@@ -5058,7 +5058,7 @@ HLML_INLINE int3x4 operator--( int3x4& x )
 
 // --s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE int3x4 operator--( int3x4& x, const int32_t )
+HLML_INLINE int3x4 operator--( int3x4 &x, const int32_t )
 {
 	x[0]--;
 	x[1]--;
@@ -5068,7 +5068,7 @@ HLML_INLINE int3x4 operator--( int3x4& x, const int32_t )
 
 // Returns a copy of the matrix that has been negated.
 // pre-fix
-HLML_INLINE int3x4 operator-( const int3x4& x )
+HLML_INLINE int3x4 operator-( const int3x4 &x )
 {
 	return int3x4(
 		-x[0],
@@ -5079,7 +5079,7 @@ HLML_INLINE int3x4 operator-( const int3x4& x )
 
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
 // pre-fix
-HLML_INLINE int3x4 operator~( const int3x4& x )
+HLML_INLINE int3x4 operator~( const int3x4 &x )
 {
 	return int3x4(
 		~x[0],
@@ -5089,7 +5089,7 @@ HLML_INLINE int3x4 operator~( const int3x4& x )
 }
 
 // Performs a component-wise bitwise & on the matrix by the scalar and returns the result.
-HLML_INLINE int3x4 operator&( const int3x4& lhs, const int32_t rhs )
+HLML_INLINE int3x4 operator&( const int3x4 &lhs, const int32_t rhs )
 {
 	return int3x4(
 		lhs[0] & rhs,
@@ -5099,13 +5099,13 @@ HLML_INLINE int3x4 operator&( const int3x4& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise &'d against the scalar.
-HLML_INLINE int3x4 operator&=( int3x4& lhs, const int32_t rhs )
+HLML_INLINE int3x4 operator&=( int3x4 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs & rhs );
 }
 
 // Performs a component-wise bitwise & against the two matrices and returns the result.
-HLML_INLINE int3x4 operator&( const int3x4& lhs, const int3x4& rhs )
+HLML_INLINE int3x4 operator&( const int3x4 &lhs, const int3x4 &rhs )
 {
 	return int3x4(
 		lhs[0] & rhs[0],
@@ -5115,13 +5115,13 @@ HLML_INLINE int3x4 operator&( const int3x4& lhs, const int3x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise &'d against 'rhs'.
-HLML_INLINE int3x4 operator&=( int3x4& lhs, const int3x4& rhs )
+HLML_INLINE int3x4 operator&=( int3x4 &lhs, const int3x4 &rhs )
 {
 	return ( lhs = lhs & rhs );
 }
 
 // Performs a component-wise bitwise | on the matrix by the scalar and returns the result.
-HLML_INLINE int3x4 operator|( const int3x4& lhs, const int32_t rhs )
+HLML_INLINE int3x4 operator|( const int3x4 &lhs, const int32_t rhs )
 {
 	return int3x4(
 		lhs[0] | rhs,
@@ -5131,13 +5131,13 @@ HLML_INLINE int3x4 operator|( const int3x4& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise |'d against the scalar.
-HLML_INLINE int3x4 operator|=( int3x4& lhs, const int32_t rhs )
+HLML_INLINE int3x4 operator|=( int3x4 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs | rhs );
 }
 
 // Performs a component-wise bitwise | against the two matrices and returns the result.
-HLML_INLINE int3x4 operator|( const int3x4& lhs, const int3x4& rhs )
+HLML_INLINE int3x4 operator|( const int3x4 &lhs, const int3x4 &rhs )
 {
 	return int3x4(
 		lhs[0] | rhs[0],
@@ -5147,13 +5147,13 @@ HLML_INLINE int3x4 operator|( const int3x4& lhs, const int3x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise |'d against 'rhs'.
-HLML_INLINE int3x4 operator|=( int3x4& lhs, const int3x4& rhs )
+HLML_INLINE int3x4 operator|=( int3x4 &lhs, const int3x4 &rhs )
 {
 	return ( lhs = lhs | rhs );
 }
 
 // Performs a component-wise bitwise ^ on the matrix by the scalar and returns the result.
-HLML_INLINE int3x4 operator^( const int3x4& lhs, const int32_t rhs )
+HLML_INLINE int3x4 operator^( const int3x4 &lhs, const int32_t rhs )
 {
 	return int3x4(
 		lhs[0] ^ rhs,
@@ -5163,13 +5163,13 @@ HLML_INLINE int3x4 operator^( const int3x4& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise ^'d against the scalar.
-HLML_INLINE int3x4 operator^=( int3x4& lhs, const int32_t rhs )
+HLML_INLINE int3x4 operator^=( int3x4 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs ^ rhs );
 }
 
 // Performs a component-wise bitwise ^ against the two matrices and returns the result.
-HLML_INLINE int3x4 operator^( const int3x4& lhs, const int3x4& rhs )
+HLML_INLINE int3x4 operator^( const int3x4 &lhs, const int3x4 &rhs )
 {
 	return int3x4(
 		lhs[0] ^ rhs[0],
@@ -5179,13 +5179,13 @@ HLML_INLINE int3x4 operator^( const int3x4& lhs, const int3x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise ^'d against 'rhs'.
-HLML_INLINE int3x4 operator^=( int3x4& lhs, const int3x4& rhs )
+HLML_INLINE int3x4 operator^=( int3x4 &lhs, const int3x4 &rhs )
 {
 	return ( lhs = lhs ^ rhs );
 }
 
 // Performs a component-wise bitwise << on the matrix by the scalar and returns the result.
-HLML_INLINE int3x4 operator<<( const int3x4& lhs, const int32_t rhs )
+HLML_INLINE int3x4 operator<<( const int3x4 &lhs, const int32_t rhs )
 {
 	return int3x4(
 		lhs[0] << rhs,
@@ -5195,13 +5195,13 @@ HLML_INLINE int3x4 operator<<( const int3x4& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise <<'d against the scalar.
-HLML_INLINE int3x4 operator<<=( int3x4& lhs, const int32_t rhs )
+HLML_INLINE int3x4 operator<<=( int3x4 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs << rhs );
 }
 
 // Performs a component-wise bitwise << against the two matrices and returns the result.
-HLML_INLINE int3x4 operator<<( const int3x4& lhs, const int3x4& rhs )
+HLML_INLINE int3x4 operator<<( const int3x4 &lhs, const int3x4 &rhs )
 {
 	return int3x4(
 		lhs[0] << rhs[0],
@@ -5211,13 +5211,13 @@ HLML_INLINE int3x4 operator<<( const int3x4& lhs, const int3x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise <<'d against 'rhs'.
-HLML_INLINE int3x4 operator<<=( int3x4& lhs, const int3x4& rhs )
+HLML_INLINE int3x4 operator<<=( int3x4 &lhs, const int3x4 &rhs )
 {
 	return ( lhs = lhs << rhs );
 }
 
 // Performs a component-wise bitwise >> on the matrix by the scalar and returns the result.
-HLML_INLINE int3x4 operator>>( const int3x4& lhs, const int32_t rhs )
+HLML_INLINE int3x4 operator>>( const int3x4 &lhs, const int32_t rhs )
 {
 	return int3x4(
 		lhs[0] >> rhs,
@@ -5227,13 +5227,13 @@ HLML_INLINE int3x4 operator>>( const int3x4& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise >>'d against the scalar.
-HLML_INLINE int3x4 operator>>=( int3x4& lhs, const int32_t rhs )
+HLML_INLINE int3x4 operator>>=( int3x4 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs >> rhs );
 }
 
 // Performs a component-wise bitwise >> against the two matrices and returns the result.
-HLML_INLINE int3x4 operator>>( const int3x4& lhs, const int3x4& rhs )
+HLML_INLINE int3x4 operator>>( const int3x4 &lhs, const int3x4 &rhs )
 {
 	return int3x4(
 		lhs[0] >> rhs[0],
@@ -5243,13 +5243,13 @@ HLML_INLINE int3x4 operator>>( const int3x4& lhs, const int3x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise >>'d against 'rhs'.
-HLML_INLINE int3x4 operator>>=( int3x4& lhs, const int3x4& rhs )
+HLML_INLINE int3x4 operator>>=( int3x4 &lhs, const int3x4 &rhs )
 {
 	return ( lhs = lhs >> rhs );
 }
 
 // Sets the matrix to an identity matrix.
-HLML_INLINE void identity( int3x4& mat )
+HLML_INLINE void identity( int3x4 &mat )
 {
 	mat.rows[0] = HLML_CONSTRUCT( int4 ) { 1, 0, 0, 0 };
 	mat.rows[1] = HLML_CONSTRUCT( int4 ) { 0, 1, 0, 0 };
@@ -5257,7 +5257,7 @@ HLML_INLINE void identity( int3x4& mat )
 }
 
 // Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-HLML_INLINE int4x3 transpose( const int3x4& mat )
+HLML_INLINE int4x3 transpose( const int3x4 &mat )
 {
 	return HLML_CONSTRUCT( int4x3 )
 	{
@@ -5269,7 +5269,7 @@ HLML_INLINE int4x3 transpose( const int3x4& mat )
 }
 
 // Performs a matrix multiplication with 'lhs' and 'rhs' and returns the result.
-HLML_INLINE int3x3 mul( const int3x4& lhs, const int4x3& rhs )
+HLML_INLINE int3x3 mul( const int3x4 &lhs, const int4x3 &rhs )
 {
 	int4 row0 = lhs.rows[0];
 	int4 row1 = lhs.rows[1];
@@ -5297,7 +5297,7 @@ HLML_INLINE int3x3 mul( const int3x4& lhs, const int4x3& rhs )
 
 // int4x2
 // Performs a sign function on each row of the matrix.
-HLML_INLINE int4x2 sign( const int4x2& x )
+HLML_INLINE int4x2 sign( const int4x2 &x )
 {
 	return int4x2(
 		sign( x[0] ),
@@ -5308,7 +5308,7 @@ HLML_INLINE int4x2 sign( const int4x2& x )
 }
 
 // Performs a min function on each row of the matrix.
-HLML_INLINE int4x2 min( const int4x2& x, const int4x2& y )
+HLML_INLINE int4x2 min( const int4x2 &x, const int4x2 &y )
 {
 	return int4x2(
 		min( x[0], y[0] ),
@@ -5319,7 +5319,7 @@ HLML_INLINE int4x2 min( const int4x2& x, const int4x2& y )
 }
 
 // Performs a max function on each row of the matrix.
-HLML_INLINE int4x2 max( const int4x2& x, const int4x2& y )
+HLML_INLINE int4x2 max( const int4x2 &x, const int4x2 &y )
 {
 	return int4x2(
 		max( x[0], y[0] ),
@@ -5330,7 +5330,7 @@ HLML_INLINE int4x2 max( const int4x2& x, const int4x2& y )
 }
 
 // Performs a clamp function on each row of the matrix.
-HLML_INLINE int4x2 clamp( const int4x2& x, const int4x2& low, const int4x2& high )
+HLML_INLINE int4x2 clamp( const int4x2 &x, const int4x2 &low, const int4x2 &high )
 {
 	return int4x2(
 		clamp( x[0], low[0], high[0] ),
@@ -5341,7 +5341,7 @@ HLML_INLINE int4x2 clamp( const int4x2& x, const int4x2& low, const int4x2& high
 }
 
 // Performs a saturate function on each row of the matrix.
-HLML_INLINE int4x2 saturate( const int4x2& x )
+HLML_INLINE int4x2 saturate( const int4x2 &x )
 {
 	return int4x2(
 		saturate( x[0] ),
@@ -5352,7 +5352,7 @@ HLML_INLINE int4x2 saturate( const int4x2& x )
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator==( const int4x2& lhs, const int4x2& rhs )
+HLML_INLINE bool operator==( const int4x2 &lhs, const int4x2 &rhs )
 {
 	return
 		lhs[0] == rhs[0] &&
@@ -5362,13 +5362,13 @@ HLML_INLINE bool operator==( const int4x2& lhs, const int4x2& rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator!=( const int4x2& lhs, const int4x2& rhs )
+HLML_INLINE bool operator!=( const int4x2 &lhs, const int4x2 &rhs )
 {
 	return !( lhs == rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool4x2 operator<( const int4x2& lhs, const int4x2& rhs )
+HLML_INLINE bool4x2 operator<( const int4x2 &lhs, const int4x2 &rhs )
 {
 	return bool4x2(
 		lhs[0] < rhs[0],
@@ -5379,7 +5379,7 @@ HLML_INLINE bool4x2 operator<( const int4x2& lhs, const int4x2& rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool4x2 operator<=( const int4x2& lhs, const int4x2& rhs )
+HLML_INLINE bool4x2 operator<=( const int4x2 &lhs, const int4x2 &rhs )
 {
 	return bool4x2(
 		lhs[0] <= rhs[0],
@@ -5390,7 +5390,7 @@ HLML_INLINE bool4x2 operator<=( const int4x2& lhs, const int4x2& rhs )
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool4x2 operator>( const int4x2& lhs, const int4x2& rhs )
+HLML_INLINE bool4x2 operator>( const int4x2 &lhs, const int4x2 &rhs )
 {
 	return bool4x2(
 		lhs[0] > rhs[0],
@@ -5401,7 +5401,7 @@ HLML_INLINE bool4x2 operator>( const int4x2& lhs, const int4x2& rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool4x2 operator>=( const int4x2& lhs, const int4x2& rhs )
+HLML_INLINE bool4x2 operator>=( const int4x2 &lhs, const int4x2 &rhs )
 {
 	return bool4x2(
 		lhs[0] >= rhs[0],
@@ -5412,7 +5412,7 @@ HLML_INLINE bool4x2 operator>=( const int4x2& lhs, const int4x2& rhs )
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE int4x2 operator+( const int4x2& lhs, const int32_t rhs )
+HLML_INLINE int4x2 operator+( const int4x2 &lhs, const int32_t rhs )
 {
 	return int4x2(
 		lhs[0] + rhs,
@@ -5423,13 +5423,13 @@ HLML_INLINE int4x2 operator+( const int4x2& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been +'d against the scalar.
-HLML_INLINE int4x2 operator+=( int4x2& lhs, const int32_t rhs )
+HLML_INLINE int4x2 operator+=( int4x2 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE int4x2 operator+( const int4x2& lhs, const int4x2& rhs )
+HLML_INLINE int4x2 operator+( const int4x2 &lhs, const int4x2 &rhs )
 {
 	return int4x2(
 		lhs[0] + rhs[0],
@@ -5440,13 +5440,13 @@ HLML_INLINE int4x2 operator+( const int4x2& lhs, const int4x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise +'d against 'rhs'.
-HLML_INLINE int4x2 operator+=( int4x2& lhs, const int4x2& rhs )
+HLML_INLINE int4x2 operator+=( int4x2 &lhs, const int4x2 &rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE int4x2 operator-( const int4x2& lhs, const int32_t rhs )
+HLML_INLINE int4x2 operator-( const int4x2 &lhs, const int32_t rhs )
 {
 	return int4x2(
 		lhs[0] - rhs,
@@ -5457,13 +5457,13 @@ HLML_INLINE int4x2 operator-( const int4x2& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been -'d against the scalar.
-HLML_INLINE int4x2 operator-=( int4x2& lhs, const int32_t rhs )
+HLML_INLINE int4x2 operator-=( int4x2 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE int4x2 operator-( const int4x2& lhs, const int4x2& rhs )
+HLML_INLINE int4x2 operator-( const int4x2 &lhs, const int4x2 &rhs )
 {
 	return int4x2(
 		lhs[0] - rhs[0],
@@ -5474,13 +5474,13 @@ HLML_INLINE int4x2 operator-( const int4x2& lhs, const int4x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise -'d against 'rhs'.
-HLML_INLINE int4x2 operator-=( int4x2& lhs, const int4x2& rhs )
+HLML_INLINE int4x2 operator-=( int4x2 &lhs, const int4x2 &rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE int4x2 operator*( const int4x2& lhs, const int32_t rhs )
+HLML_INLINE int4x2 operator*( const int4x2 &lhs, const int32_t rhs )
 {
 	return int4x2(
 		lhs[0] * rhs,
@@ -5491,13 +5491,13 @@ HLML_INLINE int4x2 operator*( const int4x2& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been *'d against the scalar.
-HLML_INLINE int4x2 operator*=( int4x2& lhs, const int32_t rhs )
+HLML_INLINE int4x2 operator*=( int4x2 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE int4x2 operator*( const int4x2& lhs, const int4x2& rhs )
+HLML_INLINE int4x2 operator*( const int4x2 &lhs, const int4x2 &rhs )
 {
 	return int4x2(
 		lhs[0] * rhs[0],
@@ -5508,13 +5508,13 @@ HLML_INLINE int4x2 operator*( const int4x2& lhs, const int4x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise *'d against 'rhs'.
-HLML_INLINE int4x2 operator*=( int4x2& lhs, const int4x2& rhs )
+HLML_INLINE int4x2 operator*=( int4x2 &lhs, const int4x2 &rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE int4x2 operator/( const int4x2& lhs, const int32_t rhs )
+HLML_INLINE int4x2 operator/( const int4x2 &lhs, const int32_t rhs )
 {
 	return int4x2(
 		lhs[0] / rhs,
@@ -5525,13 +5525,13 @@ HLML_INLINE int4x2 operator/( const int4x2& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been /'d against the scalar.
-HLML_INLINE int4x2 operator/=( int4x2& lhs, const int32_t rhs )
+HLML_INLINE int4x2 operator/=( int4x2 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE int4x2 operator/( const int4x2& lhs, const int4x2& rhs )
+HLML_INLINE int4x2 operator/( const int4x2 &lhs, const int4x2 &rhs )
 {
 	return int4x2(
 		lhs[0] / rhs[0],
@@ -5542,13 +5542,13 @@ HLML_INLINE int4x2 operator/( const int4x2& lhs, const int4x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise /'d against 'rhs'.
-HLML_INLINE int4x2 operator/=( int4x2& lhs, const int4x2& rhs )
+HLML_INLINE int4x2 operator/=( int4x2 &lhs, const int4x2 &rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // ++s each component of the matrix and returns the result.
-HLML_INLINE int4x2 operator++( int4x2& x )
+HLML_INLINE int4x2 operator++( int4x2 &x )
 {
 	++x[0];
 	++x[1];
@@ -5559,7 +5559,7 @@ HLML_INLINE int4x2 operator++( int4x2& x )
 
 // ++s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE int4x2 operator++( int4x2& x, const int32_t )
+HLML_INLINE int4x2 operator++( int4x2 &x, const int32_t )
 {
 	x[0]++;
 	x[1]++;
@@ -5569,7 +5569,7 @@ HLML_INLINE int4x2 operator++( int4x2& x, const int32_t )
 }
 
 // --s each component of the matrix and returns the result.
-HLML_INLINE int4x2 operator--( int4x2& x )
+HLML_INLINE int4x2 operator--( int4x2 &x )
 {
 	--x[0];
 	--x[1];
@@ -5580,7 +5580,7 @@ HLML_INLINE int4x2 operator--( int4x2& x )
 
 // --s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE int4x2 operator--( int4x2& x, const int32_t )
+HLML_INLINE int4x2 operator--( int4x2 &x, const int32_t )
 {
 	x[0]--;
 	x[1]--;
@@ -5591,7 +5591,7 @@ HLML_INLINE int4x2 operator--( int4x2& x, const int32_t )
 
 // Returns a copy of the matrix that has been negated.
 // pre-fix
-HLML_INLINE int4x2 operator-( const int4x2& x )
+HLML_INLINE int4x2 operator-( const int4x2 &x )
 {
 	return int4x2(
 		-x[0],
@@ -5603,7 +5603,7 @@ HLML_INLINE int4x2 operator-( const int4x2& x )
 
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
 // pre-fix
-HLML_INLINE int4x2 operator~( const int4x2& x )
+HLML_INLINE int4x2 operator~( const int4x2 &x )
 {
 	return int4x2(
 		~x[0],
@@ -5614,7 +5614,7 @@ HLML_INLINE int4x2 operator~( const int4x2& x )
 }
 
 // Performs a component-wise bitwise & on the matrix by the scalar and returns the result.
-HLML_INLINE int4x2 operator&( const int4x2& lhs, const int32_t rhs )
+HLML_INLINE int4x2 operator&( const int4x2 &lhs, const int32_t rhs )
 {
 	return int4x2(
 		lhs[0] & rhs,
@@ -5625,13 +5625,13 @@ HLML_INLINE int4x2 operator&( const int4x2& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise &'d against the scalar.
-HLML_INLINE int4x2 operator&=( int4x2& lhs, const int32_t rhs )
+HLML_INLINE int4x2 operator&=( int4x2 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs & rhs );
 }
 
 // Performs a component-wise bitwise & against the two matrices and returns the result.
-HLML_INLINE int4x2 operator&( const int4x2& lhs, const int4x2& rhs )
+HLML_INLINE int4x2 operator&( const int4x2 &lhs, const int4x2 &rhs )
 {
 	return int4x2(
 		lhs[0] & rhs[0],
@@ -5642,13 +5642,13 @@ HLML_INLINE int4x2 operator&( const int4x2& lhs, const int4x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise &'d against 'rhs'.
-HLML_INLINE int4x2 operator&=( int4x2& lhs, const int4x2& rhs )
+HLML_INLINE int4x2 operator&=( int4x2 &lhs, const int4x2 &rhs )
 {
 	return ( lhs = lhs & rhs );
 }
 
 // Performs a component-wise bitwise | on the matrix by the scalar and returns the result.
-HLML_INLINE int4x2 operator|( const int4x2& lhs, const int32_t rhs )
+HLML_INLINE int4x2 operator|( const int4x2 &lhs, const int32_t rhs )
 {
 	return int4x2(
 		lhs[0] | rhs,
@@ -5659,13 +5659,13 @@ HLML_INLINE int4x2 operator|( const int4x2& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise |'d against the scalar.
-HLML_INLINE int4x2 operator|=( int4x2& lhs, const int32_t rhs )
+HLML_INLINE int4x2 operator|=( int4x2 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs | rhs );
 }
 
 // Performs a component-wise bitwise | against the two matrices and returns the result.
-HLML_INLINE int4x2 operator|( const int4x2& lhs, const int4x2& rhs )
+HLML_INLINE int4x2 operator|( const int4x2 &lhs, const int4x2 &rhs )
 {
 	return int4x2(
 		lhs[0] | rhs[0],
@@ -5676,13 +5676,13 @@ HLML_INLINE int4x2 operator|( const int4x2& lhs, const int4x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise |'d against 'rhs'.
-HLML_INLINE int4x2 operator|=( int4x2& lhs, const int4x2& rhs )
+HLML_INLINE int4x2 operator|=( int4x2 &lhs, const int4x2 &rhs )
 {
 	return ( lhs = lhs | rhs );
 }
 
 // Performs a component-wise bitwise ^ on the matrix by the scalar and returns the result.
-HLML_INLINE int4x2 operator^( const int4x2& lhs, const int32_t rhs )
+HLML_INLINE int4x2 operator^( const int4x2 &lhs, const int32_t rhs )
 {
 	return int4x2(
 		lhs[0] ^ rhs,
@@ -5693,13 +5693,13 @@ HLML_INLINE int4x2 operator^( const int4x2& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise ^'d against the scalar.
-HLML_INLINE int4x2 operator^=( int4x2& lhs, const int32_t rhs )
+HLML_INLINE int4x2 operator^=( int4x2 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs ^ rhs );
 }
 
 // Performs a component-wise bitwise ^ against the two matrices and returns the result.
-HLML_INLINE int4x2 operator^( const int4x2& lhs, const int4x2& rhs )
+HLML_INLINE int4x2 operator^( const int4x2 &lhs, const int4x2 &rhs )
 {
 	return int4x2(
 		lhs[0] ^ rhs[0],
@@ -5710,13 +5710,13 @@ HLML_INLINE int4x2 operator^( const int4x2& lhs, const int4x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise ^'d against 'rhs'.
-HLML_INLINE int4x2 operator^=( int4x2& lhs, const int4x2& rhs )
+HLML_INLINE int4x2 operator^=( int4x2 &lhs, const int4x2 &rhs )
 {
 	return ( lhs = lhs ^ rhs );
 }
 
 // Performs a component-wise bitwise << on the matrix by the scalar and returns the result.
-HLML_INLINE int4x2 operator<<( const int4x2& lhs, const int32_t rhs )
+HLML_INLINE int4x2 operator<<( const int4x2 &lhs, const int32_t rhs )
 {
 	return int4x2(
 		lhs[0] << rhs,
@@ -5727,13 +5727,13 @@ HLML_INLINE int4x2 operator<<( const int4x2& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise <<'d against the scalar.
-HLML_INLINE int4x2 operator<<=( int4x2& lhs, const int32_t rhs )
+HLML_INLINE int4x2 operator<<=( int4x2 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs << rhs );
 }
 
 // Performs a component-wise bitwise << against the two matrices and returns the result.
-HLML_INLINE int4x2 operator<<( const int4x2& lhs, const int4x2& rhs )
+HLML_INLINE int4x2 operator<<( const int4x2 &lhs, const int4x2 &rhs )
 {
 	return int4x2(
 		lhs[0] << rhs[0],
@@ -5744,13 +5744,13 @@ HLML_INLINE int4x2 operator<<( const int4x2& lhs, const int4x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise <<'d against 'rhs'.
-HLML_INLINE int4x2 operator<<=( int4x2& lhs, const int4x2& rhs )
+HLML_INLINE int4x2 operator<<=( int4x2 &lhs, const int4x2 &rhs )
 {
 	return ( lhs = lhs << rhs );
 }
 
 // Performs a component-wise bitwise >> on the matrix by the scalar and returns the result.
-HLML_INLINE int4x2 operator>>( const int4x2& lhs, const int32_t rhs )
+HLML_INLINE int4x2 operator>>( const int4x2 &lhs, const int32_t rhs )
 {
 	return int4x2(
 		lhs[0] >> rhs,
@@ -5761,13 +5761,13 @@ HLML_INLINE int4x2 operator>>( const int4x2& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise >>'d against the scalar.
-HLML_INLINE int4x2 operator>>=( int4x2& lhs, const int32_t rhs )
+HLML_INLINE int4x2 operator>>=( int4x2 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs >> rhs );
 }
 
 // Performs a component-wise bitwise >> against the two matrices and returns the result.
-HLML_INLINE int4x2 operator>>( const int4x2& lhs, const int4x2& rhs )
+HLML_INLINE int4x2 operator>>( const int4x2 &lhs, const int4x2 &rhs )
 {
 	return int4x2(
 		lhs[0] >> rhs[0],
@@ -5778,13 +5778,13 @@ HLML_INLINE int4x2 operator>>( const int4x2& lhs, const int4x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise >>'d against 'rhs'.
-HLML_INLINE int4x2 operator>>=( int4x2& lhs, const int4x2& rhs )
+HLML_INLINE int4x2 operator>>=( int4x2 &lhs, const int4x2 &rhs )
 {
 	return ( lhs = lhs >> rhs );
 }
 
 // Sets the matrix to an identity matrix.
-HLML_INLINE void identity( int4x2& mat )
+HLML_INLINE void identity( int4x2 &mat )
 {
 	mat.rows[0] = HLML_CONSTRUCT( int2 ) { 1, 0 };
 	mat.rows[1] = HLML_CONSTRUCT( int2 ) { 0, 1 };
@@ -5793,7 +5793,7 @@ HLML_INLINE void identity( int4x2& mat )
 }
 
 // Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-HLML_INLINE int2x4 transpose( const int4x2& mat )
+HLML_INLINE int2x4 transpose( const int4x2 &mat )
 {
 	return HLML_CONSTRUCT( int2x4 )
 	{
@@ -5803,7 +5803,7 @@ HLML_INLINE int2x4 transpose( const int4x2& mat )
 }
 
 // Performs a matrix multiplication with 'lhs' and 'rhs' and returns the result.
-HLML_INLINE int4x4 mul( const int4x2& lhs, const int2x4& rhs )
+HLML_INLINE int4x4 mul( const int4x2 &lhs, const int2x4 &rhs )
 {
 	int2 row0 = lhs.rows[0];
 	int2 row1 = lhs.rows[1];
@@ -5841,7 +5841,7 @@ HLML_INLINE int4x4 mul( const int4x2& lhs, const int2x4& rhs )
 
 // int4x3
 // Performs a sign function on each row of the matrix.
-HLML_INLINE int4x3 sign( const int4x3& x )
+HLML_INLINE int4x3 sign( const int4x3 &x )
 {
 	return int4x3(
 		sign( x[0] ),
@@ -5852,7 +5852,7 @@ HLML_INLINE int4x3 sign( const int4x3& x )
 }
 
 // Performs a min function on each row of the matrix.
-HLML_INLINE int4x3 min( const int4x3& x, const int4x3& y )
+HLML_INLINE int4x3 min( const int4x3 &x, const int4x3 &y )
 {
 	return int4x3(
 		min( x[0], y[0] ),
@@ -5863,7 +5863,7 @@ HLML_INLINE int4x3 min( const int4x3& x, const int4x3& y )
 }
 
 // Performs a max function on each row of the matrix.
-HLML_INLINE int4x3 max( const int4x3& x, const int4x3& y )
+HLML_INLINE int4x3 max( const int4x3 &x, const int4x3 &y )
 {
 	return int4x3(
 		max( x[0], y[0] ),
@@ -5874,7 +5874,7 @@ HLML_INLINE int4x3 max( const int4x3& x, const int4x3& y )
 }
 
 // Performs a clamp function on each row of the matrix.
-HLML_INLINE int4x3 clamp( const int4x3& x, const int4x3& low, const int4x3& high )
+HLML_INLINE int4x3 clamp( const int4x3 &x, const int4x3 &low, const int4x3 &high )
 {
 	return int4x3(
 		clamp( x[0], low[0], high[0] ),
@@ -5885,7 +5885,7 @@ HLML_INLINE int4x3 clamp( const int4x3& x, const int4x3& low, const int4x3& high
 }
 
 // Performs a saturate function on each row of the matrix.
-HLML_INLINE int4x3 saturate( const int4x3& x )
+HLML_INLINE int4x3 saturate( const int4x3 &x )
 {
 	return int4x3(
 		saturate( x[0] ),
@@ -5896,7 +5896,7 @@ HLML_INLINE int4x3 saturate( const int4x3& x )
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator==( const int4x3& lhs, const int4x3& rhs )
+HLML_INLINE bool operator==( const int4x3 &lhs, const int4x3 &rhs )
 {
 	return
 		lhs[0] == rhs[0] &&
@@ -5906,13 +5906,13 @@ HLML_INLINE bool operator==( const int4x3& lhs, const int4x3& rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator!=( const int4x3& lhs, const int4x3& rhs )
+HLML_INLINE bool operator!=( const int4x3 &lhs, const int4x3 &rhs )
 {
 	return !( lhs == rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool4x3 operator<( const int4x3& lhs, const int4x3& rhs )
+HLML_INLINE bool4x3 operator<( const int4x3 &lhs, const int4x3 &rhs )
 {
 	return bool4x3(
 		lhs[0] < rhs[0],
@@ -5923,7 +5923,7 @@ HLML_INLINE bool4x3 operator<( const int4x3& lhs, const int4x3& rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool4x3 operator<=( const int4x3& lhs, const int4x3& rhs )
+HLML_INLINE bool4x3 operator<=( const int4x3 &lhs, const int4x3 &rhs )
 {
 	return bool4x3(
 		lhs[0] <= rhs[0],
@@ -5934,7 +5934,7 @@ HLML_INLINE bool4x3 operator<=( const int4x3& lhs, const int4x3& rhs )
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool4x3 operator>( const int4x3& lhs, const int4x3& rhs )
+HLML_INLINE bool4x3 operator>( const int4x3 &lhs, const int4x3 &rhs )
 {
 	return bool4x3(
 		lhs[0] > rhs[0],
@@ -5945,7 +5945,7 @@ HLML_INLINE bool4x3 operator>( const int4x3& lhs, const int4x3& rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool4x3 operator>=( const int4x3& lhs, const int4x3& rhs )
+HLML_INLINE bool4x3 operator>=( const int4x3 &lhs, const int4x3 &rhs )
 {
 	return bool4x3(
 		lhs[0] >= rhs[0],
@@ -5956,7 +5956,7 @@ HLML_INLINE bool4x3 operator>=( const int4x3& lhs, const int4x3& rhs )
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE int4x3 operator+( const int4x3& lhs, const int32_t rhs )
+HLML_INLINE int4x3 operator+( const int4x3 &lhs, const int32_t rhs )
 {
 	return int4x3(
 		lhs[0] + rhs,
@@ -5967,13 +5967,13 @@ HLML_INLINE int4x3 operator+( const int4x3& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been +'d against the scalar.
-HLML_INLINE int4x3 operator+=( int4x3& lhs, const int32_t rhs )
+HLML_INLINE int4x3 operator+=( int4x3 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE int4x3 operator+( const int4x3& lhs, const int4x3& rhs )
+HLML_INLINE int4x3 operator+( const int4x3 &lhs, const int4x3 &rhs )
 {
 	return int4x3(
 		lhs[0] + rhs[0],
@@ -5984,13 +5984,13 @@ HLML_INLINE int4x3 operator+( const int4x3& lhs, const int4x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise +'d against 'rhs'.
-HLML_INLINE int4x3 operator+=( int4x3& lhs, const int4x3& rhs )
+HLML_INLINE int4x3 operator+=( int4x3 &lhs, const int4x3 &rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE int4x3 operator-( const int4x3& lhs, const int32_t rhs )
+HLML_INLINE int4x3 operator-( const int4x3 &lhs, const int32_t rhs )
 {
 	return int4x3(
 		lhs[0] - rhs,
@@ -6001,13 +6001,13 @@ HLML_INLINE int4x3 operator-( const int4x3& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been -'d against the scalar.
-HLML_INLINE int4x3 operator-=( int4x3& lhs, const int32_t rhs )
+HLML_INLINE int4x3 operator-=( int4x3 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE int4x3 operator-( const int4x3& lhs, const int4x3& rhs )
+HLML_INLINE int4x3 operator-( const int4x3 &lhs, const int4x3 &rhs )
 {
 	return int4x3(
 		lhs[0] - rhs[0],
@@ -6018,13 +6018,13 @@ HLML_INLINE int4x3 operator-( const int4x3& lhs, const int4x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise -'d against 'rhs'.
-HLML_INLINE int4x3 operator-=( int4x3& lhs, const int4x3& rhs )
+HLML_INLINE int4x3 operator-=( int4x3 &lhs, const int4x3 &rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE int4x3 operator*( const int4x3& lhs, const int32_t rhs )
+HLML_INLINE int4x3 operator*( const int4x3 &lhs, const int32_t rhs )
 {
 	return int4x3(
 		lhs[0] * rhs,
@@ -6035,13 +6035,13 @@ HLML_INLINE int4x3 operator*( const int4x3& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been *'d against the scalar.
-HLML_INLINE int4x3 operator*=( int4x3& lhs, const int32_t rhs )
+HLML_INLINE int4x3 operator*=( int4x3 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE int4x3 operator*( const int4x3& lhs, const int4x3& rhs )
+HLML_INLINE int4x3 operator*( const int4x3 &lhs, const int4x3 &rhs )
 {
 	return int4x3(
 		lhs[0] * rhs[0],
@@ -6052,13 +6052,13 @@ HLML_INLINE int4x3 operator*( const int4x3& lhs, const int4x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise *'d against 'rhs'.
-HLML_INLINE int4x3 operator*=( int4x3& lhs, const int4x3& rhs )
+HLML_INLINE int4x3 operator*=( int4x3 &lhs, const int4x3 &rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE int4x3 operator/( const int4x3& lhs, const int32_t rhs )
+HLML_INLINE int4x3 operator/( const int4x3 &lhs, const int32_t rhs )
 {
 	return int4x3(
 		lhs[0] / rhs,
@@ -6069,13 +6069,13 @@ HLML_INLINE int4x3 operator/( const int4x3& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been /'d against the scalar.
-HLML_INLINE int4x3 operator/=( int4x3& lhs, const int32_t rhs )
+HLML_INLINE int4x3 operator/=( int4x3 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE int4x3 operator/( const int4x3& lhs, const int4x3& rhs )
+HLML_INLINE int4x3 operator/( const int4x3 &lhs, const int4x3 &rhs )
 {
 	return int4x3(
 		lhs[0] / rhs[0],
@@ -6086,13 +6086,13 @@ HLML_INLINE int4x3 operator/( const int4x3& lhs, const int4x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise /'d against 'rhs'.
-HLML_INLINE int4x3 operator/=( int4x3& lhs, const int4x3& rhs )
+HLML_INLINE int4x3 operator/=( int4x3 &lhs, const int4x3 &rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // ++s each component of the matrix and returns the result.
-HLML_INLINE int4x3 operator++( int4x3& x )
+HLML_INLINE int4x3 operator++( int4x3 &x )
 {
 	++x[0];
 	++x[1];
@@ -6103,7 +6103,7 @@ HLML_INLINE int4x3 operator++( int4x3& x )
 
 // ++s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE int4x3 operator++( int4x3& x, const int32_t )
+HLML_INLINE int4x3 operator++( int4x3 &x, const int32_t )
 {
 	x[0]++;
 	x[1]++;
@@ -6113,7 +6113,7 @@ HLML_INLINE int4x3 operator++( int4x3& x, const int32_t )
 }
 
 // --s each component of the matrix and returns the result.
-HLML_INLINE int4x3 operator--( int4x3& x )
+HLML_INLINE int4x3 operator--( int4x3 &x )
 {
 	--x[0];
 	--x[1];
@@ -6124,7 +6124,7 @@ HLML_INLINE int4x3 operator--( int4x3& x )
 
 // --s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE int4x3 operator--( int4x3& x, const int32_t )
+HLML_INLINE int4x3 operator--( int4x3 &x, const int32_t )
 {
 	x[0]--;
 	x[1]--;
@@ -6135,7 +6135,7 @@ HLML_INLINE int4x3 operator--( int4x3& x, const int32_t )
 
 // Returns a copy of the matrix that has been negated.
 // pre-fix
-HLML_INLINE int4x3 operator-( const int4x3& x )
+HLML_INLINE int4x3 operator-( const int4x3 &x )
 {
 	return int4x3(
 		-x[0],
@@ -6147,7 +6147,7 @@ HLML_INLINE int4x3 operator-( const int4x3& x )
 
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
 // pre-fix
-HLML_INLINE int4x3 operator~( const int4x3& x )
+HLML_INLINE int4x3 operator~( const int4x3 &x )
 {
 	return int4x3(
 		~x[0],
@@ -6158,7 +6158,7 @@ HLML_INLINE int4x3 operator~( const int4x3& x )
 }
 
 // Performs a component-wise bitwise & on the matrix by the scalar and returns the result.
-HLML_INLINE int4x3 operator&( const int4x3& lhs, const int32_t rhs )
+HLML_INLINE int4x3 operator&( const int4x3 &lhs, const int32_t rhs )
 {
 	return int4x3(
 		lhs[0] & rhs,
@@ -6169,13 +6169,13 @@ HLML_INLINE int4x3 operator&( const int4x3& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise &'d against the scalar.
-HLML_INLINE int4x3 operator&=( int4x3& lhs, const int32_t rhs )
+HLML_INLINE int4x3 operator&=( int4x3 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs & rhs );
 }
 
 // Performs a component-wise bitwise & against the two matrices and returns the result.
-HLML_INLINE int4x3 operator&( const int4x3& lhs, const int4x3& rhs )
+HLML_INLINE int4x3 operator&( const int4x3 &lhs, const int4x3 &rhs )
 {
 	return int4x3(
 		lhs[0] & rhs[0],
@@ -6186,13 +6186,13 @@ HLML_INLINE int4x3 operator&( const int4x3& lhs, const int4x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise &'d against 'rhs'.
-HLML_INLINE int4x3 operator&=( int4x3& lhs, const int4x3& rhs )
+HLML_INLINE int4x3 operator&=( int4x3 &lhs, const int4x3 &rhs )
 {
 	return ( lhs = lhs & rhs );
 }
 
 // Performs a component-wise bitwise | on the matrix by the scalar and returns the result.
-HLML_INLINE int4x3 operator|( const int4x3& lhs, const int32_t rhs )
+HLML_INLINE int4x3 operator|( const int4x3 &lhs, const int32_t rhs )
 {
 	return int4x3(
 		lhs[0] | rhs,
@@ -6203,13 +6203,13 @@ HLML_INLINE int4x3 operator|( const int4x3& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise |'d against the scalar.
-HLML_INLINE int4x3 operator|=( int4x3& lhs, const int32_t rhs )
+HLML_INLINE int4x3 operator|=( int4x3 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs | rhs );
 }
 
 // Performs a component-wise bitwise | against the two matrices and returns the result.
-HLML_INLINE int4x3 operator|( const int4x3& lhs, const int4x3& rhs )
+HLML_INLINE int4x3 operator|( const int4x3 &lhs, const int4x3 &rhs )
 {
 	return int4x3(
 		lhs[0] | rhs[0],
@@ -6220,13 +6220,13 @@ HLML_INLINE int4x3 operator|( const int4x3& lhs, const int4x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise |'d against 'rhs'.
-HLML_INLINE int4x3 operator|=( int4x3& lhs, const int4x3& rhs )
+HLML_INLINE int4x3 operator|=( int4x3 &lhs, const int4x3 &rhs )
 {
 	return ( lhs = lhs | rhs );
 }
 
 // Performs a component-wise bitwise ^ on the matrix by the scalar and returns the result.
-HLML_INLINE int4x3 operator^( const int4x3& lhs, const int32_t rhs )
+HLML_INLINE int4x3 operator^( const int4x3 &lhs, const int32_t rhs )
 {
 	return int4x3(
 		lhs[0] ^ rhs,
@@ -6237,13 +6237,13 @@ HLML_INLINE int4x3 operator^( const int4x3& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise ^'d against the scalar.
-HLML_INLINE int4x3 operator^=( int4x3& lhs, const int32_t rhs )
+HLML_INLINE int4x3 operator^=( int4x3 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs ^ rhs );
 }
 
 // Performs a component-wise bitwise ^ against the two matrices and returns the result.
-HLML_INLINE int4x3 operator^( const int4x3& lhs, const int4x3& rhs )
+HLML_INLINE int4x3 operator^( const int4x3 &lhs, const int4x3 &rhs )
 {
 	return int4x3(
 		lhs[0] ^ rhs[0],
@@ -6254,13 +6254,13 @@ HLML_INLINE int4x3 operator^( const int4x3& lhs, const int4x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise ^'d against 'rhs'.
-HLML_INLINE int4x3 operator^=( int4x3& lhs, const int4x3& rhs )
+HLML_INLINE int4x3 operator^=( int4x3 &lhs, const int4x3 &rhs )
 {
 	return ( lhs = lhs ^ rhs );
 }
 
 // Performs a component-wise bitwise << on the matrix by the scalar and returns the result.
-HLML_INLINE int4x3 operator<<( const int4x3& lhs, const int32_t rhs )
+HLML_INLINE int4x3 operator<<( const int4x3 &lhs, const int32_t rhs )
 {
 	return int4x3(
 		lhs[0] << rhs,
@@ -6271,13 +6271,13 @@ HLML_INLINE int4x3 operator<<( const int4x3& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise <<'d against the scalar.
-HLML_INLINE int4x3 operator<<=( int4x3& lhs, const int32_t rhs )
+HLML_INLINE int4x3 operator<<=( int4x3 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs << rhs );
 }
 
 // Performs a component-wise bitwise << against the two matrices and returns the result.
-HLML_INLINE int4x3 operator<<( const int4x3& lhs, const int4x3& rhs )
+HLML_INLINE int4x3 operator<<( const int4x3 &lhs, const int4x3 &rhs )
 {
 	return int4x3(
 		lhs[0] << rhs[0],
@@ -6288,13 +6288,13 @@ HLML_INLINE int4x3 operator<<( const int4x3& lhs, const int4x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise <<'d against 'rhs'.
-HLML_INLINE int4x3 operator<<=( int4x3& lhs, const int4x3& rhs )
+HLML_INLINE int4x3 operator<<=( int4x3 &lhs, const int4x3 &rhs )
 {
 	return ( lhs = lhs << rhs );
 }
 
 // Performs a component-wise bitwise >> on the matrix by the scalar and returns the result.
-HLML_INLINE int4x3 operator>>( const int4x3& lhs, const int32_t rhs )
+HLML_INLINE int4x3 operator>>( const int4x3 &lhs, const int32_t rhs )
 {
 	return int4x3(
 		lhs[0] >> rhs,
@@ -6305,13 +6305,13 @@ HLML_INLINE int4x3 operator>>( const int4x3& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise >>'d against the scalar.
-HLML_INLINE int4x3 operator>>=( int4x3& lhs, const int32_t rhs )
+HLML_INLINE int4x3 operator>>=( int4x3 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs >> rhs );
 }
 
 // Performs a component-wise bitwise >> against the two matrices and returns the result.
-HLML_INLINE int4x3 operator>>( const int4x3& lhs, const int4x3& rhs )
+HLML_INLINE int4x3 operator>>( const int4x3 &lhs, const int4x3 &rhs )
 {
 	return int4x3(
 		lhs[0] >> rhs[0],
@@ -6322,13 +6322,13 @@ HLML_INLINE int4x3 operator>>( const int4x3& lhs, const int4x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise >>'d against 'rhs'.
-HLML_INLINE int4x3 operator>>=( int4x3& lhs, const int4x3& rhs )
+HLML_INLINE int4x3 operator>>=( int4x3 &lhs, const int4x3 &rhs )
 {
 	return ( lhs = lhs >> rhs );
 }
 
 // Sets the matrix to an identity matrix.
-HLML_INLINE void identity( int4x3& mat )
+HLML_INLINE void identity( int4x3 &mat )
 {
 	mat.rows[0] = HLML_CONSTRUCT( int3 ) { 1, 0, 0 };
 	mat.rows[1] = HLML_CONSTRUCT( int3 ) { 0, 1, 0 };
@@ -6337,7 +6337,7 @@ HLML_INLINE void identity( int4x3& mat )
 }
 
 // Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-HLML_INLINE int3x4 transpose( const int4x3& mat )
+HLML_INLINE int3x4 transpose( const int4x3 &mat )
 {
 	return HLML_CONSTRUCT( int3x4 )
 	{
@@ -6348,7 +6348,7 @@ HLML_INLINE int3x4 transpose( const int4x3& mat )
 }
 
 // Performs a matrix multiplication with 'lhs' and 'rhs' and returns the result.
-HLML_INLINE int4x4 mul( const int4x3& lhs, const int3x4& rhs )
+HLML_INLINE int4x4 mul( const int4x3 &lhs, const int3x4 &rhs )
 {
 	int3 row0 = lhs.rows[0];
 	int3 row1 = lhs.rows[1];
@@ -6386,7 +6386,7 @@ HLML_INLINE int4x4 mul( const int4x3& lhs, const int3x4& rhs )
 
 // int4x4
 // Performs a sign function on each row of the matrix.
-HLML_INLINE int4x4 sign( const int4x4& x )
+HLML_INLINE int4x4 sign( const int4x4 &x )
 {
 	return int4x4(
 		sign( x[0] ),
@@ -6397,7 +6397,7 @@ HLML_INLINE int4x4 sign( const int4x4& x )
 }
 
 // Performs a min function on each row of the matrix.
-HLML_INLINE int4x4 min( const int4x4& x, const int4x4& y )
+HLML_INLINE int4x4 min( const int4x4 &x, const int4x4 &y )
 {
 	return int4x4(
 		min( x[0], y[0] ),
@@ -6408,7 +6408,7 @@ HLML_INLINE int4x4 min( const int4x4& x, const int4x4& y )
 }
 
 // Performs a max function on each row of the matrix.
-HLML_INLINE int4x4 max( const int4x4& x, const int4x4& y )
+HLML_INLINE int4x4 max( const int4x4 &x, const int4x4 &y )
 {
 	return int4x4(
 		max( x[0], y[0] ),
@@ -6419,7 +6419,7 @@ HLML_INLINE int4x4 max( const int4x4& x, const int4x4& y )
 }
 
 // Performs a clamp function on each row of the matrix.
-HLML_INLINE int4x4 clamp( const int4x4& x, const int4x4& low, const int4x4& high )
+HLML_INLINE int4x4 clamp( const int4x4 &x, const int4x4 &low, const int4x4 &high )
 {
 	return int4x4(
 		clamp( x[0], low[0], high[0] ),
@@ -6430,7 +6430,7 @@ HLML_INLINE int4x4 clamp( const int4x4& x, const int4x4& low, const int4x4& high
 }
 
 // Performs a saturate function on each row of the matrix.
-HLML_INLINE int4x4 saturate( const int4x4& x )
+HLML_INLINE int4x4 saturate( const int4x4 &x )
 {
 	return int4x4(
 		saturate( x[0] ),
@@ -6441,7 +6441,7 @@ HLML_INLINE int4x4 saturate( const int4x4& x )
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator==( const int4x4& lhs, const int4x4& rhs )
+HLML_INLINE bool operator==( const int4x4 &lhs, const int4x4 &rhs )
 {
 	return
 		lhs[0] == rhs[0] &&
@@ -6451,13 +6451,13 @@ HLML_INLINE bool operator==( const int4x4& lhs, const int4x4& rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator!=( const int4x4& lhs, const int4x4& rhs )
+HLML_INLINE bool operator!=( const int4x4 &lhs, const int4x4 &rhs )
 {
 	return !( lhs == rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool4x4 operator<( const int4x4& lhs, const int4x4& rhs )
+HLML_INLINE bool4x4 operator<( const int4x4 &lhs, const int4x4 &rhs )
 {
 	return bool4x4(
 		lhs[0] < rhs[0],
@@ -6468,7 +6468,7 @@ HLML_INLINE bool4x4 operator<( const int4x4& lhs, const int4x4& rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool4x4 operator<=( const int4x4& lhs, const int4x4& rhs )
+HLML_INLINE bool4x4 operator<=( const int4x4 &lhs, const int4x4 &rhs )
 {
 	return bool4x4(
 		lhs[0] <= rhs[0],
@@ -6479,7 +6479,7 @@ HLML_INLINE bool4x4 operator<=( const int4x4& lhs, const int4x4& rhs )
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool4x4 operator>( const int4x4& lhs, const int4x4& rhs )
+HLML_INLINE bool4x4 operator>( const int4x4 &lhs, const int4x4 &rhs )
 {
 	return bool4x4(
 		lhs[0] > rhs[0],
@@ -6490,7 +6490,7 @@ HLML_INLINE bool4x4 operator>( const int4x4& lhs, const int4x4& rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool4x4 operator>=( const int4x4& lhs, const int4x4& rhs )
+HLML_INLINE bool4x4 operator>=( const int4x4 &lhs, const int4x4 &rhs )
 {
 	return bool4x4(
 		lhs[0] >= rhs[0],
@@ -6501,7 +6501,7 @@ HLML_INLINE bool4x4 operator>=( const int4x4& lhs, const int4x4& rhs )
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE int4x4 operator+( const int4x4& lhs, const int32_t rhs )
+HLML_INLINE int4x4 operator+( const int4x4 &lhs, const int32_t rhs )
 {
 	return int4x4(
 		lhs[0] + rhs,
@@ -6512,13 +6512,13 @@ HLML_INLINE int4x4 operator+( const int4x4& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been +'d against the scalar.
-HLML_INLINE int4x4 operator+=( int4x4& lhs, const int32_t rhs )
+HLML_INLINE int4x4 operator+=( int4x4 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE int4x4 operator+( const int4x4& lhs, const int4x4& rhs )
+HLML_INLINE int4x4 operator+( const int4x4 &lhs, const int4x4 &rhs )
 {
 	return int4x4(
 		lhs[0] + rhs[0],
@@ -6529,13 +6529,13 @@ HLML_INLINE int4x4 operator+( const int4x4& lhs, const int4x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise +'d against 'rhs'.
-HLML_INLINE int4x4 operator+=( int4x4& lhs, const int4x4& rhs )
+HLML_INLINE int4x4 operator+=( int4x4 &lhs, const int4x4 &rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE int4x4 operator-( const int4x4& lhs, const int32_t rhs )
+HLML_INLINE int4x4 operator-( const int4x4 &lhs, const int32_t rhs )
 {
 	return int4x4(
 		lhs[0] - rhs,
@@ -6546,13 +6546,13 @@ HLML_INLINE int4x4 operator-( const int4x4& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been -'d against the scalar.
-HLML_INLINE int4x4 operator-=( int4x4& lhs, const int32_t rhs )
+HLML_INLINE int4x4 operator-=( int4x4 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE int4x4 operator-( const int4x4& lhs, const int4x4& rhs )
+HLML_INLINE int4x4 operator-( const int4x4 &lhs, const int4x4 &rhs )
 {
 	return int4x4(
 		lhs[0] - rhs[0],
@@ -6563,13 +6563,13 @@ HLML_INLINE int4x4 operator-( const int4x4& lhs, const int4x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise -'d against 'rhs'.
-HLML_INLINE int4x4 operator-=( int4x4& lhs, const int4x4& rhs )
+HLML_INLINE int4x4 operator-=( int4x4 &lhs, const int4x4 &rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE int4x4 operator*( const int4x4& lhs, const int32_t rhs )
+HLML_INLINE int4x4 operator*( const int4x4 &lhs, const int32_t rhs )
 {
 	return int4x4(
 		lhs[0] * rhs,
@@ -6580,13 +6580,13 @@ HLML_INLINE int4x4 operator*( const int4x4& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been *'d against the scalar.
-HLML_INLINE int4x4 operator*=( int4x4& lhs, const int32_t rhs )
+HLML_INLINE int4x4 operator*=( int4x4 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE int4x4 operator*( const int4x4& lhs, const int4x4& rhs )
+HLML_INLINE int4x4 operator*( const int4x4 &lhs, const int4x4 &rhs )
 {
 	return int4x4(
 		lhs[0] * rhs[0],
@@ -6597,13 +6597,13 @@ HLML_INLINE int4x4 operator*( const int4x4& lhs, const int4x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise *'d against 'rhs'.
-HLML_INLINE int4x4 operator*=( int4x4& lhs, const int4x4& rhs )
+HLML_INLINE int4x4 operator*=( int4x4 &lhs, const int4x4 &rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE int4x4 operator/( const int4x4& lhs, const int32_t rhs )
+HLML_INLINE int4x4 operator/( const int4x4 &lhs, const int32_t rhs )
 {
 	return int4x4(
 		lhs[0] / rhs,
@@ -6614,13 +6614,13 @@ HLML_INLINE int4x4 operator/( const int4x4& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been /'d against the scalar.
-HLML_INLINE int4x4 operator/=( int4x4& lhs, const int32_t rhs )
+HLML_INLINE int4x4 operator/=( int4x4 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE int4x4 operator/( const int4x4& lhs, const int4x4& rhs )
+HLML_INLINE int4x4 operator/( const int4x4 &lhs, const int4x4 &rhs )
 {
 	return int4x4(
 		lhs[0] / rhs[0],
@@ -6631,13 +6631,13 @@ HLML_INLINE int4x4 operator/( const int4x4& lhs, const int4x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise /'d against 'rhs'.
-HLML_INLINE int4x4 operator/=( int4x4& lhs, const int4x4& rhs )
+HLML_INLINE int4x4 operator/=( int4x4 &lhs, const int4x4 &rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // ++s each component of the matrix and returns the result.
-HLML_INLINE int4x4 operator++( int4x4& x )
+HLML_INLINE int4x4 operator++( int4x4 &x )
 {
 	++x[0];
 	++x[1];
@@ -6648,7 +6648,7 @@ HLML_INLINE int4x4 operator++( int4x4& x )
 
 // ++s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE int4x4 operator++( int4x4& x, const int32_t )
+HLML_INLINE int4x4 operator++( int4x4 &x, const int32_t )
 {
 	x[0]++;
 	x[1]++;
@@ -6658,7 +6658,7 @@ HLML_INLINE int4x4 operator++( int4x4& x, const int32_t )
 }
 
 // --s each component of the matrix and returns the result.
-HLML_INLINE int4x4 operator--( int4x4& x )
+HLML_INLINE int4x4 operator--( int4x4 &x )
 {
 	--x[0];
 	--x[1];
@@ -6669,7 +6669,7 @@ HLML_INLINE int4x4 operator--( int4x4& x )
 
 // --s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE int4x4 operator--( int4x4& x, const int32_t )
+HLML_INLINE int4x4 operator--( int4x4 &x, const int32_t )
 {
 	x[0]--;
 	x[1]--;
@@ -6680,7 +6680,7 @@ HLML_INLINE int4x4 operator--( int4x4& x, const int32_t )
 
 // Returns a copy of the matrix that has been negated.
 // pre-fix
-HLML_INLINE int4x4 operator-( const int4x4& x )
+HLML_INLINE int4x4 operator-( const int4x4 &x )
 {
 	return int4x4(
 		-x[0],
@@ -6692,7 +6692,7 @@ HLML_INLINE int4x4 operator-( const int4x4& x )
 
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
 // pre-fix
-HLML_INLINE int4x4 operator~( const int4x4& x )
+HLML_INLINE int4x4 operator~( const int4x4 &x )
 {
 	return int4x4(
 		~x[0],
@@ -6703,7 +6703,7 @@ HLML_INLINE int4x4 operator~( const int4x4& x )
 }
 
 // Performs a component-wise bitwise & on the matrix by the scalar and returns the result.
-HLML_INLINE int4x4 operator&( const int4x4& lhs, const int32_t rhs )
+HLML_INLINE int4x4 operator&( const int4x4 &lhs, const int32_t rhs )
 {
 	return int4x4(
 		lhs[0] & rhs,
@@ -6714,13 +6714,13 @@ HLML_INLINE int4x4 operator&( const int4x4& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise &'d against the scalar.
-HLML_INLINE int4x4 operator&=( int4x4& lhs, const int32_t rhs )
+HLML_INLINE int4x4 operator&=( int4x4 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs & rhs );
 }
 
 // Performs a component-wise bitwise & against the two matrices and returns the result.
-HLML_INLINE int4x4 operator&( const int4x4& lhs, const int4x4& rhs )
+HLML_INLINE int4x4 operator&( const int4x4 &lhs, const int4x4 &rhs )
 {
 	return int4x4(
 		lhs[0] & rhs[0],
@@ -6731,13 +6731,13 @@ HLML_INLINE int4x4 operator&( const int4x4& lhs, const int4x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise &'d against 'rhs'.
-HLML_INLINE int4x4 operator&=( int4x4& lhs, const int4x4& rhs )
+HLML_INLINE int4x4 operator&=( int4x4 &lhs, const int4x4 &rhs )
 {
 	return ( lhs = lhs & rhs );
 }
 
 // Performs a component-wise bitwise | on the matrix by the scalar and returns the result.
-HLML_INLINE int4x4 operator|( const int4x4& lhs, const int32_t rhs )
+HLML_INLINE int4x4 operator|( const int4x4 &lhs, const int32_t rhs )
 {
 	return int4x4(
 		lhs[0] | rhs,
@@ -6748,13 +6748,13 @@ HLML_INLINE int4x4 operator|( const int4x4& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise |'d against the scalar.
-HLML_INLINE int4x4 operator|=( int4x4& lhs, const int32_t rhs )
+HLML_INLINE int4x4 operator|=( int4x4 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs | rhs );
 }
 
 // Performs a component-wise bitwise | against the two matrices and returns the result.
-HLML_INLINE int4x4 operator|( const int4x4& lhs, const int4x4& rhs )
+HLML_INLINE int4x4 operator|( const int4x4 &lhs, const int4x4 &rhs )
 {
 	return int4x4(
 		lhs[0] | rhs[0],
@@ -6765,13 +6765,13 @@ HLML_INLINE int4x4 operator|( const int4x4& lhs, const int4x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise |'d against 'rhs'.
-HLML_INLINE int4x4 operator|=( int4x4& lhs, const int4x4& rhs )
+HLML_INLINE int4x4 operator|=( int4x4 &lhs, const int4x4 &rhs )
 {
 	return ( lhs = lhs | rhs );
 }
 
 // Performs a component-wise bitwise ^ on the matrix by the scalar and returns the result.
-HLML_INLINE int4x4 operator^( const int4x4& lhs, const int32_t rhs )
+HLML_INLINE int4x4 operator^( const int4x4 &lhs, const int32_t rhs )
 {
 	return int4x4(
 		lhs[0] ^ rhs,
@@ -6782,13 +6782,13 @@ HLML_INLINE int4x4 operator^( const int4x4& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise ^'d against the scalar.
-HLML_INLINE int4x4 operator^=( int4x4& lhs, const int32_t rhs )
+HLML_INLINE int4x4 operator^=( int4x4 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs ^ rhs );
 }
 
 // Performs a component-wise bitwise ^ against the two matrices and returns the result.
-HLML_INLINE int4x4 operator^( const int4x4& lhs, const int4x4& rhs )
+HLML_INLINE int4x4 operator^( const int4x4 &lhs, const int4x4 &rhs )
 {
 	return int4x4(
 		lhs[0] ^ rhs[0],
@@ -6799,13 +6799,13 @@ HLML_INLINE int4x4 operator^( const int4x4& lhs, const int4x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise ^'d against 'rhs'.
-HLML_INLINE int4x4 operator^=( int4x4& lhs, const int4x4& rhs )
+HLML_INLINE int4x4 operator^=( int4x4 &lhs, const int4x4 &rhs )
 {
 	return ( lhs = lhs ^ rhs );
 }
 
 // Performs a component-wise bitwise << on the matrix by the scalar and returns the result.
-HLML_INLINE int4x4 operator<<( const int4x4& lhs, const int32_t rhs )
+HLML_INLINE int4x4 operator<<( const int4x4 &lhs, const int32_t rhs )
 {
 	return int4x4(
 		lhs[0] << rhs,
@@ -6816,13 +6816,13 @@ HLML_INLINE int4x4 operator<<( const int4x4& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise <<'d against the scalar.
-HLML_INLINE int4x4 operator<<=( int4x4& lhs, const int32_t rhs )
+HLML_INLINE int4x4 operator<<=( int4x4 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs << rhs );
 }
 
 // Performs a component-wise bitwise << against the two matrices and returns the result.
-HLML_INLINE int4x4 operator<<( const int4x4& lhs, const int4x4& rhs )
+HLML_INLINE int4x4 operator<<( const int4x4 &lhs, const int4x4 &rhs )
 {
 	return int4x4(
 		lhs[0] << rhs[0],
@@ -6833,13 +6833,13 @@ HLML_INLINE int4x4 operator<<( const int4x4& lhs, const int4x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise <<'d against 'rhs'.
-HLML_INLINE int4x4 operator<<=( int4x4& lhs, const int4x4& rhs )
+HLML_INLINE int4x4 operator<<=( int4x4 &lhs, const int4x4 &rhs )
 {
 	return ( lhs = lhs << rhs );
 }
 
 // Performs a component-wise bitwise >> on the matrix by the scalar and returns the result.
-HLML_INLINE int4x4 operator>>( const int4x4& lhs, const int32_t rhs )
+HLML_INLINE int4x4 operator>>( const int4x4 &lhs, const int32_t rhs )
 {
 	return int4x4(
 		lhs[0] >> rhs,
@@ -6850,13 +6850,13 @@ HLML_INLINE int4x4 operator>>( const int4x4& lhs, const int32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise >>'d against the scalar.
-HLML_INLINE int4x4 operator>>=( int4x4& lhs, const int32_t rhs )
+HLML_INLINE int4x4 operator>>=( int4x4 &lhs, const int32_t rhs )
 {
 	return ( lhs = lhs >> rhs );
 }
 
 // Performs a component-wise bitwise >> against the two matrices and returns the result.
-HLML_INLINE int4x4 operator>>( const int4x4& lhs, const int4x4& rhs )
+HLML_INLINE int4x4 operator>>( const int4x4 &lhs, const int4x4 &rhs )
 {
 	return int4x4(
 		lhs[0] >> rhs[0],
@@ -6867,13 +6867,13 @@ HLML_INLINE int4x4 operator>>( const int4x4& lhs, const int4x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise >>'d against 'rhs'.
-HLML_INLINE int4x4 operator>>=( int4x4& lhs, const int4x4& rhs )
+HLML_INLINE int4x4 operator>>=( int4x4 &lhs, const int4x4 &rhs )
 {
 	return ( lhs = lhs >> rhs );
 }
 
 // Sets the matrix to an identity matrix.
-HLML_INLINE void identity( int4x4& mat )
+HLML_INLINE void identity( int4x4 &mat )
 {
 	mat.rows[0] = HLML_CONSTRUCT( int4 ) { 1, 0, 0, 0 };
 	mat.rows[1] = HLML_CONSTRUCT( int4 ) { 0, 1, 0, 0 };
@@ -6882,7 +6882,7 @@ HLML_INLINE void identity( int4x4& mat )
 }
 
 // Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-HLML_INLINE int4x4 transpose( const int4x4& mat )
+HLML_INLINE int4x4 transpose( const int4x4 &mat )
 {
 	return HLML_CONSTRUCT( int4x4 )
 	{
@@ -6894,7 +6894,7 @@ HLML_INLINE int4x4 transpose( const int4x4& mat )
 }
 
 // Returns the determinant of the matrix.
-HLML_INLINE int32_t determinant( const int4x4& mat )
+HLML_INLINE int32_t determinant( const int4x4 &mat )
 {
 	// using glm's method where you basically take determinants from each sub matrix and cache the repeat occurences
 	int32_t sub00 = mat.rows[2].z * mat.rows[3].w - mat.rows[3].z * mat.rows[2].w;
@@ -6918,7 +6918,7 @@ HLML_INLINE int32_t determinant( const int4x4& mat )
 }
 
 // Performs a matrix multiplication with 'lhs' and 'rhs' and returns the result.
-HLML_INLINE int4x4 mul( const int4x4& lhs, const int4x4& rhs )
+HLML_INLINE int4x4 mul( const int4x4 &lhs, const int4x4 &rhs )
 {
 	int4 row0 = lhs.rows[0];
 	int4 row1 = lhs.rows[1];
@@ -6955,7 +6955,7 @@ HLML_INLINE int4x4 mul( const int4x4& lhs, const int4x4& rhs )
 }
 
 // Multiplies the vector 'lhs' against the matrix 'rhs' and returns the result.
-HLML_INLINE int4 mul( const int4& lhs, const int4x4& rhs )
+HLML_INLINE int4 mul( const int4 &lhs, const int4x4 &rhs )
 {
 	return HLML_CONSTRUCT( int4 )
 	{
@@ -6967,7 +6967,7 @@ HLML_INLINE int4 mul( const int4& lhs, const int4x4& rhs )
 }
 
 // "Translates" the matrix.  Adds the last column of 'mat' by the position vector 'vec'.
-HLML_INLINE int4x4 translate( const int4x4& mat, const int3& vec )
+HLML_INLINE int4x4 translate( const int4x4 &mat, const int3 &vec )
 {
 	return HLML_CONSTRUCT( int4x4 )
 	{
@@ -6979,7 +6979,7 @@ HLML_INLINE int4x4 translate( const int4x4& mat, const int3& vec )
 }
 
 // Applies a non-uniform scale to the matrix and returns the result.
-HLML_INLINE int4x4 scale( const int4x4& mat, const int3& scale )
+HLML_INLINE int4x4 scale( const int4x4 &mat, const int3 &scale )
 {
 	return HLML_CONSTRUCT( int4x4 )
 	{
@@ -7007,7 +7007,7 @@ HLML_INLINE int4x4 scale( const int4x4& mat, const int3& scale )
 
 // uint2x2
 // Performs a min function on each row of the matrix.
-HLML_INLINE uint2x2 min( const uint2x2& x, const uint2x2& y )
+HLML_INLINE uint2x2 min( const uint2x2 &x, const uint2x2 &y )
 {
 	return uint2x2(
 		min( x[0], y[0] ),
@@ -7016,7 +7016,7 @@ HLML_INLINE uint2x2 min( const uint2x2& x, const uint2x2& y )
 }
 
 // Performs a max function on each row of the matrix.
-HLML_INLINE uint2x2 max( const uint2x2& x, const uint2x2& y )
+HLML_INLINE uint2x2 max( const uint2x2 &x, const uint2x2 &y )
 {
 	return uint2x2(
 		max( x[0], y[0] ),
@@ -7025,7 +7025,7 @@ HLML_INLINE uint2x2 max( const uint2x2& x, const uint2x2& y )
 }
 
 // Performs a clamp function on each row of the matrix.
-HLML_INLINE uint2x2 clamp( const uint2x2& x, const uint2x2& low, const uint2x2& high )
+HLML_INLINE uint2x2 clamp( const uint2x2 &x, const uint2x2 &low, const uint2x2 &high )
 {
 	return uint2x2(
 		clamp( x[0], low[0], high[0] ),
@@ -7034,7 +7034,7 @@ HLML_INLINE uint2x2 clamp( const uint2x2& x, const uint2x2& low, const uint2x2& 
 }
 
 // Performs a saturate function on each row of the matrix.
-HLML_INLINE uint2x2 saturate( const uint2x2& x )
+HLML_INLINE uint2x2 saturate( const uint2x2 &x )
 {
 	return uint2x2(
 		saturate( x[0] ),
@@ -7043,7 +7043,7 @@ HLML_INLINE uint2x2 saturate( const uint2x2& x )
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator==( const uint2x2& lhs, const uint2x2& rhs )
+HLML_INLINE bool operator==( const uint2x2 &lhs, const uint2x2 &rhs )
 {
 	return
 		lhs[0] == rhs[0] &&
@@ -7051,13 +7051,13 @@ HLML_INLINE bool operator==( const uint2x2& lhs, const uint2x2& rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator!=( const uint2x2& lhs, const uint2x2& rhs )
+HLML_INLINE bool operator!=( const uint2x2 &lhs, const uint2x2 &rhs )
 {
 	return !( lhs == rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool2x2 operator<( const uint2x2& lhs, const uint2x2& rhs )
+HLML_INLINE bool2x2 operator<( const uint2x2 &lhs, const uint2x2 &rhs )
 {
 	return bool2x2(
 		lhs[0] < rhs[0],
@@ -7066,7 +7066,7 @@ HLML_INLINE bool2x2 operator<( const uint2x2& lhs, const uint2x2& rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool2x2 operator<=( const uint2x2& lhs, const uint2x2& rhs )
+HLML_INLINE bool2x2 operator<=( const uint2x2 &lhs, const uint2x2 &rhs )
 {
 	return bool2x2(
 		lhs[0] <= rhs[0],
@@ -7075,7 +7075,7 @@ HLML_INLINE bool2x2 operator<=( const uint2x2& lhs, const uint2x2& rhs )
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool2x2 operator>( const uint2x2& lhs, const uint2x2& rhs )
+HLML_INLINE bool2x2 operator>( const uint2x2 &lhs, const uint2x2 &rhs )
 {
 	return bool2x2(
 		lhs[0] > rhs[0],
@@ -7084,7 +7084,7 @@ HLML_INLINE bool2x2 operator>( const uint2x2& lhs, const uint2x2& rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool2x2 operator>=( const uint2x2& lhs, const uint2x2& rhs )
+HLML_INLINE bool2x2 operator>=( const uint2x2 &lhs, const uint2x2 &rhs )
 {
 	return bool2x2(
 		lhs[0] >= rhs[0],
@@ -7093,7 +7093,7 @@ HLML_INLINE bool2x2 operator>=( const uint2x2& lhs, const uint2x2& rhs )
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x2 operator+( const uint2x2& lhs, const uint32_t rhs )
+HLML_INLINE uint2x2 operator+( const uint2x2 &lhs, const uint32_t rhs )
 {
 	return uint2x2(
 		lhs[0] + rhs,
@@ -7102,13 +7102,13 @@ HLML_INLINE uint2x2 operator+( const uint2x2& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been +'d against the scalar.
-HLML_INLINE uint2x2 operator+=( uint2x2& lhs, const uint32_t rhs )
+HLML_INLINE uint2x2 operator+=( uint2x2 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE uint2x2 operator+( const uint2x2& lhs, const uint2x2& rhs )
+HLML_INLINE uint2x2 operator+( const uint2x2 &lhs, const uint2x2 &rhs )
 {
 	return uint2x2(
 		lhs[0] + rhs[0],
@@ -7117,13 +7117,13 @@ HLML_INLINE uint2x2 operator+( const uint2x2& lhs, const uint2x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise +'d against 'rhs'.
-HLML_INLINE uint2x2 operator+=( uint2x2& lhs, const uint2x2& rhs )
+HLML_INLINE uint2x2 operator+=( uint2x2 &lhs, const uint2x2 &rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x2 operator-( const uint2x2& lhs, const uint32_t rhs )
+HLML_INLINE uint2x2 operator-( const uint2x2 &lhs, const uint32_t rhs )
 {
 	return uint2x2(
 		lhs[0] - rhs,
@@ -7132,13 +7132,13 @@ HLML_INLINE uint2x2 operator-( const uint2x2& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been -'d against the scalar.
-HLML_INLINE uint2x2 operator-=( uint2x2& lhs, const uint32_t rhs )
+HLML_INLINE uint2x2 operator-=( uint2x2 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE uint2x2 operator-( const uint2x2& lhs, const uint2x2& rhs )
+HLML_INLINE uint2x2 operator-( const uint2x2 &lhs, const uint2x2 &rhs )
 {
 	return uint2x2(
 		lhs[0] - rhs[0],
@@ -7147,13 +7147,13 @@ HLML_INLINE uint2x2 operator-( const uint2x2& lhs, const uint2x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise -'d against 'rhs'.
-HLML_INLINE uint2x2 operator-=( uint2x2& lhs, const uint2x2& rhs )
+HLML_INLINE uint2x2 operator-=( uint2x2 &lhs, const uint2x2 &rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x2 operator*( const uint2x2& lhs, const uint32_t rhs )
+HLML_INLINE uint2x2 operator*( const uint2x2 &lhs, const uint32_t rhs )
 {
 	return uint2x2(
 		lhs[0] * rhs,
@@ -7162,13 +7162,13 @@ HLML_INLINE uint2x2 operator*( const uint2x2& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been *'d against the scalar.
-HLML_INLINE uint2x2 operator*=( uint2x2& lhs, const uint32_t rhs )
+HLML_INLINE uint2x2 operator*=( uint2x2 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE uint2x2 operator*( const uint2x2& lhs, const uint2x2& rhs )
+HLML_INLINE uint2x2 operator*( const uint2x2 &lhs, const uint2x2 &rhs )
 {
 	return uint2x2(
 		lhs[0] * rhs[0],
@@ -7177,13 +7177,13 @@ HLML_INLINE uint2x2 operator*( const uint2x2& lhs, const uint2x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise *'d against 'rhs'.
-HLML_INLINE uint2x2 operator*=( uint2x2& lhs, const uint2x2& rhs )
+HLML_INLINE uint2x2 operator*=( uint2x2 &lhs, const uint2x2 &rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x2 operator/( const uint2x2& lhs, const uint32_t rhs )
+HLML_INLINE uint2x2 operator/( const uint2x2 &lhs, const uint32_t rhs )
 {
 	return uint2x2(
 		lhs[0] / rhs,
@@ -7192,13 +7192,13 @@ HLML_INLINE uint2x2 operator/( const uint2x2& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been /'d against the scalar.
-HLML_INLINE uint2x2 operator/=( uint2x2& lhs, const uint32_t rhs )
+HLML_INLINE uint2x2 operator/=( uint2x2 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE uint2x2 operator/( const uint2x2& lhs, const uint2x2& rhs )
+HLML_INLINE uint2x2 operator/( const uint2x2 &lhs, const uint2x2 &rhs )
 {
 	return uint2x2(
 		lhs[0] / rhs[0],
@@ -7207,13 +7207,13 @@ HLML_INLINE uint2x2 operator/( const uint2x2& lhs, const uint2x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise /'d against 'rhs'.
-HLML_INLINE uint2x2 operator/=( uint2x2& lhs, const uint2x2& rhs )
+HLML_INLINE uint2x2 operator/=( uint2x2 &lhs, const uint2x2 &rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // ++s each component of the matrix and returns the result.
-HLML_INLINE uint2x2 operator++( uint2x2& x )
+HLML_INLINE uint2x2 operator++( uint2x2 &x )
 {
 	++x[0];
 	++x[1];
@@ -7222,7 +7222,7 @@ HLML_INLINE uint2x2 operator++( uint2x2& x )
 
 // ++s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE uint2x2 operator++( uint2x2& x, const int32_t )
+HLML_INLINE uint2x2 operator++( uint2x2 &x, const int32_t )
 {
 	x[0]++;
 	x[1]++;
@@ -7230,7 +7230,7 @@ HLML_INLINE uint2x2 operator++( uint2x2& x, const int32_t )
 }
 
 // --s each component of the matrix and returns the result.
-HLML_INLINE uint2x2 operator--( uint2x2& x )
+HLML_INLINE uint2x2 operator--( uint2x2 &x )
 {
 	--x[0];
 	--x[1];
@@ -7239,7 +7239,7 @@ HLML_INLINE uint2x2 operator--( uint2x2& x )
 
 // --s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE uint2x2 operator--( uint2x2& x, const int32_t )
+HLML_INLINE uint2x2 operator--( uint2x2 &x, const int32_t )
 {
 	x[0]--;
 	x[1]--;
@@ -7252,7 +7252,7 @@ HLML_INLINE uint2x2 operator--( uint2x2& x, const int32_t )
 #endif
 // Returns a copy of the matrix that has been negated.
 // pre-fix
-HLML_INLINE uint2x2 operator-( const uint2x2& x )
+HLML_INLINE uint2x2 operator-( const uint2x2 &x )
 {
 	return uint2x2(
 		-x[0],
@@ -7265,7 +7265,7 @@ HLML_INLINE uint2x2 operator-( const uint2x2& x )
 #endif
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
 // pre-fix
-HLML_INLINE uint2x2 operator~( const uint2x2& x )
+HLML_INLINE uint2x2 operator~( const uint2x2 &x )
 {
 	return uint2x2(
 		~x[0],
@@ -7274,7 +7274,7 @@ HLML_INLINE uint2x2 operator~( const uint2x2& x )
 }
 
 // Performs a component-wise bitwise & on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x2 operator&( const uint2x2& lhs, const uint32_t rhs )
+HLML_INLINE uint2x2 operator&( const uint2x2 &lhs, const uint32_t rhs )
 {
 	return uint2x2(
 		lhs[0] & rhs,
@@ -7283,13 +7283,13 @@ HLML_INLINE uint2x2 operator&( const uint2x2& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise &'d against the scalar.
-HLML_INLINE uint2x2 operator&=( uint2x2& lhs, const uint32_t rhs )
+HLML_INLINE uint2x2 operator&=( uint2x2 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs & rhs );
 }
 
 // Performs a component-wise bitwise & against the two matrices and returns the result.
-HLML_INLINE uint2x2 operator&( const uint2x2& lhs, const uint2x2& rhs )
+HLML_INLINE uint2x2 operator&( const uint2x2 &lhs, const uint2x2 &rhs )
 {
 	return uint2x2(
 		lhs[0] & rhs[0],
@@ -7298,13 +7298,13 @@ HLML_INLINE uint2x2 operator&( const uint2x2& lhs, const uint2x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise &'d against 'rhs'.
-HLML_INLINE uint2x2 operator&=( uint2x2& lhs, const uint2x2& rhs )
+HLML_INLINE uint2x2 operator&=( uint2x2 &lhs, const uint2x2 &rhs )
 {
 	return ( lhs = lhs & rhs );
 }
 
 // Performs a component-wise bitwise | on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x2 operator|( const uint2x2& lhs, const uint32_t rhs )
+HLML_INLINE uint2x2 operator|( const uint2x2 &lhs, const uint32_t rhs )
 {
 	return uint2x2(
 		lhs[0] | rhs,
@@ -7313,13 +7313,13 @@ HLML_INLINE uint2x2 operator|( const uint2x2& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise |'d against the scalar.
-HLML_INLINE uint2x2 operator|=( uint2x2& lhs, const uint32_t rhs )
+HLML_INLINE uint2x2 operator|=( uint2x2 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs | rhs );
 }
 
 // Performs a component-wise bitwise | against the two matrices and returns the result.
-HLML_INLINE uint2x2 operator|( const uint2x2& lhs, const uint2x2& rhs )
+HLML_INLINE uint2x2 operator|( const uint2x2 &lhs, const uint2x2 &rhs )
 {
 	return uint2x2(
 		lhs[0] | rhs[0],
@@ -7328,13 +7328,13 @@ HLML_INLINE uint2x2 operator|( const uint2x2& lhs, const uint2x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise |'d against 'rhs'.
-HLML_INLINE uint2x2 operator|=( uint2x2& lhs, const uint2x2& rhs )
+HLML_INLINE uint2x2 operator|=( uint2x2 &lhs, const uint2x2 &rhs )
 {
 	return ( lhs = lhs | rhs );
 }
 
 // Performs a component-wise bitwise ^ on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x2 operator^( const uint2x2& lhs, const uint32_t rhs )
+HLML_INLINE uint2x2 operator^( const uint2x2 &lhs, const uint32_t rhs )
 {
 	return uint2x2(
 		lhs[0] ^ rhs,
@@ -7343,13 +7343,13 @@ HLML_INLINE uint2x2 operator^( const uint2x2& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise ^'d against the scalar.
-HLML_INLINE uint2x2 operator^=( uint2x2& lhs, const uint32_t rhs )
+HLML_INLINE uint2x2 operator^=( uint2x2 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs ^ rhs );
 }
 
 // Performs a component-wise bitwise ^ against the two matrices and returns the result.
-HLML_INLINE uint2x2 operator^( const uint2x2& lhs, const uint2x2& rhs )
+HLML_INLINE uint2x2 operator^( const uint2x2 &lhs, const uint2x2 &rhs )
 {
 	return uint2x2(
 		lhs[0] ^ rhs[0],
@@ -7358,13 +7358,13 @@ HLML_INLINE uint2x2 operator^( const uint2x2& lhs, const uint2x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise ^'d against 'rhs'.
-HLML_INLINE uint2x2 operator^=( uint2x2& lhs, const uint2x2& rhs )
+HLML_INLINE uint2x2 operator^=( uint2x2 &lhs, const uint2x2 &rhs )
 {
 	return ( lhs = lhs ^ rhs );
 }
 
 // Performs a component-wise bitwise << on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x2 operator<<( const uint2x2& lhs, const uint32_t rhs )
+HLML_INLINE uint2x2 operator<<( const uint2x2 &lhs, const uint32_t rhs )
 {
 	return uint2x2(
 		lhs[0] << rhs,
@@ -7373,13 +7373,13 @@ HLML_INLINE uint2x2 operator<<( const uint2x2& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise <<'d against the scalar.
-HLML_INLINE uint2x2 operator<<=( uint2x2& lhs, const uint32_t rhs )
+HLML_INLINE uint2x2 operator<<=( uint2x2 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs << rhs );
 }
 
 // Performs a component-wise bitwise << against the two matrices and returns the result.
-HLML_INLINE uint2x2 operator<<( const uint2x2& lhs, const uint2x2& rhs )
+HLML_INLINE uint2x2 operator<<( const uint2x2 &lhs, const uint2x2 &rhs )
 {
 	return uint2x2(
 		lhs[0] << rhs[0],
@@ -7388,13 +7388,13 @@ HLML_INLINE uint2x2 operator<<( const uint2x2& lhs, const uint2x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise <<'d against 'rhs'.
-HLML_INLINE uint2x2 operator<<=( uint2x2& lhs, const uint2x2& rhs )
+HLML_INLINE uint2x2 operator<<=( uint2x2 &lhs, const uint2x2 &rhs )
 {
 	return ( lhs = lhs << rhs );
 }
 
 // Performs a component-wise bitwise >> on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x2 operator>>( const uint2x2& lhs, const uint32_t rhs )
+HLML_INLINE uint2x2 operator>>( const uint2x2 &lhs, const uint32_t rhs )
 {
 	return uint2x2(
 		lhs[0] >> rhs,
@@ -7403,13 +7403,13 @@ HLML_INLINE uint2x2 operator>>( const uint2x2& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise >>'d against the scalar.
-HLML_INLINE uint2x2 operator>>=( uint2x2& lhs, const uint32_t rhs )
+HLML_INLINE uint2x2 operator>>=( uint2x2 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs >> rhs );
 }
 
 // Performs a component-wise bitwise >> against the two matrices and returns the result.
-HLML_INLINE uint2x2 operator>>( const uint2x2& lhs, const uint2x2& rhs )
+HLML_INLINE uint2x2 operator>>( const uint2x2 &lhs, const uint2x2 &rhs )
 {
 	return uint2x2(
 		lhs[0] >> rhs[0],
@@ -7418,20 +7418,20 @@ HLML_INLINE uint2x2 operator>>( const uint2x2& lhs, const uint2x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise >>'d against 'rhs'.
-HLML_INLINE uint2x2 operator>>=( uint2x2& lhs, const uint2x2& rhs )
+HLML_INLINE uint2x2 operator>>=( uint2x2 &lhs, const uint2x2 &rhs )
 {
 	return ( lhs = lhs >> rhs );
 }
 
 // Sets the matrix to an identity matrix.
-HLML_INLINE void identity( uint2x2& mat )
+HLML_INLINE void identity( uint2x2 &mat )
 {
 	mat.rows[0] = HLML_CONSTRUCT( uint2 ) { 1U, 0U };
 	mat.rows[1] = HLML_CONSTRUCT( uint2 ) { 0U, 1U };
 }
 
 // Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-HLML_INLINE uint2x2 transpose( const uint2x2& mat )
+HLML_INLINE uint2x2 transpose( const uint2x2 &mat )
 {
 	return HLML_CONSTRUCT( uint2x2 )
 	{
@@ -7441,7 +7441,7 @@ HLML_INLINE uint2x2 transpose( const uint2x2& mat )
 }
 
 // Performs a matrix multiplication with 'lhs' and 'rhs' and returns the result.
-HLML_INLINE uint2x2 mul( const uint2x2& lhs, const uint2x2& rhs )
+HLML_INLINE uint2x2 mul( const uint2x2 &lhs, const uint2x2 &rhs )
 {
 	uint2 row0 = lhs.rows[0];
 	uint2 row1 = lhs.rows[1];
@@ -7460,7 +7460,7 @@ HLML_INLINE uint2x2 mul( const uint2x2& lhs, const uint2x2& rhs )
 }
 
 // Multiplies the vector 'lhs' against the matrix 'rhs' and returns the result.
-HLML_INLINE uint2 mul( const uint2& lhs, const uint2x2& rhs )
+HLML_INLINE uint2 mul( const uint2 &lhs, const uint2x2 &rhs )
 {
 	return HLML_CONSTRUCT( uint2 )
 	{
@@ -7471,7 +7471,7 @@ HLML_INLINE uint2 mul( const uint2& lhs, const uint2x2& rhs )
 
 // uint2x3
 // Performs a min function on each row of the matrix.
-HLML_INLINE uint2x3 min( const uint2x3& x, const uint2x3& y )
+HLML_INLINE uint2x3 min( const uint2x3 &x, const uint2x3 &y )
 {
 	return uint2x3(
 		min( x[0], y[0] ),
@@ -7480,7 +7480,7 @@ HLML_INLINE uint2x3 min( const uint2x3& x, const uint2x3& y )
 }
 
 // Performs a max function on each row of the matrix.
-HLML_INLINE uint2x3 max( const uint2x3& x, const uint2x3& y )
+HLML_INLINE uint2x3 max( const uint2x3 &x, const uint2x3 &y )
 {
 	return uint2x3(
 		max( x[0], y[0] ),
@@ -7489,7 +7489,7 @@ HLML_INLINE uint2x3 max( const uint2x3& x, const uint2x3& y )
 }
 
 // Performs a clamp function on each row of the matrix.
-HLML_INLINE uint2x3 clamp( const uint2x3& x, const uint2x3& low, const uint2x3& high )
+HLML_INLINE uint2x3 clamp( const uint2x3 &x, const uint2x3 &low, const uint2x3 &high )
 {
 	return uint2x3(
 		clamp( x[0], low[0], high[0] ),
@@ -7498,7 +7498,7 @@ HLML_INLINE uint2x3 clamp( const uint2x3& x, const uint2x3& low, const uint2x3& 
 }
 
 // Performs a saturate function on each row of the matrix.
-HLML_INLINE uint2x3 saturate( const uint2x3& x )
+HLML_INLINE uint2x3 saturate( const uint2x3 &x )
 {
 	return uint2x3(
 		saturate( x[0] ),
@@ -7507,7 +7507,7 @@ HLML_INLINE uint2x3 saturate( const uint2x3& x )
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator==( const uint2x3& lhs, const uint2x3& rhs )
+HLML_INLINE bool operator==( const uint2x3 &lhs, const uint2x3 &rhs )
 {
 	return
 		lhs[0] == rhs[0] &&
@@ -7515,13 +7515,13 @@ HLML_INLINE bool operator==( const uint2x3& lhs, const uint2x3& rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator!=( const uint2x3& lhs, const uint2x3& rhs )
+HLML_INLINE bool operator!=( const uint2x3 &lhs, const uint2x3 &rhs )
 {
 	return !( lhs == rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool2x3 operator<( const uint2x3& lhs, const uint2x3& rhs )
+HLML_INLINE bool2x3 operator<( const uint2x3 &lhs, const uint2x3 &rhs )
 {
 	return bool2x3(
 		lhs[0] < rhs[0],
@@ -7530,7 +7530,7 @@ HLML_INLINE bool2x3 operator<( const uint2x3& lhs, const uint2x3& rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool2x3 operator<=( const uint2x3& lhs, const uint2x3& rhs )
+HLML_INLINE bool2x3 operator<=( const uint2x3 &lhs, const uint2x3 &rhs )
 {
 	return bool2x3(
 		lhs[0] <= rhs[0],
@@ -7539,7 +7539,7 @@ HLML_INLINE bool2x3 operator<=( const uint2x3& lhs, const uint2x3& rhs )
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool2x3 operator>( const uint2x3& lhs, const uint2x3& rhs )
+HLML_INLINE bool2x3 operator>( const uint2x3 &lhs, const uint2x3 &rhs )
 {
 	return bool2x3(
 		lhs[0] > rhs[0],
@@ -7548,7 +7548,7 @@ HLML_INLINE bool2x3 operator>( const uint2x3& lhs, const uint2x3& rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool2x3 operator>=( const uint2x3& lhs, const uint2x3& rhs )
+HLML_INLINE bool2x3 operator>=( const uint2x3 &lhs, const uint2x3 &rhs )
 {
 	return bool2x3(
 		lhs[0] >= rhs[0],
@@ -7557,7 +7557,7 @@ HLML_INLINE bool2x3 operator>=( const uint2x3& lhs, const uint2x3& rhs )
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x3 operator+( const uint2x3& lhs, const uint32_t rhs )
+HLML_INLINE uint2x3 operator+( const uint2x3 &lhs, const uint32_t rhs )
 {
 	return uint2x3(
 		lhs[0] + rhs,
@@ -7566,13 +7566,13 @@ HLML_INLINE uint2x3 operator+( const uint2x3& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been +'d against the scalar.
-HLML_INLINE uint2x3 operator+=( uint2x3& lhs, const uint32_t rhs )
+HLML_INLINE uint2x3 operator+=( uint2x3 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE uint2x3 operator+( const uint2x3& lhs, const uint2x3& rhs )
+HLML_INLINE uint2x3 operator+( const uint2x3 &lhs, const uint2x3 &rhs )
 {
 	return uint2x3(
 		lhs[0] + rhs[0],
@@ -7581,13 +7581,13 @@ HLML_INLINE uint2x3 operator+( const uint2x3& lhs, const uint2x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise +'d against 'rhs'.
-HLML_INLINE uint2x3 operator+=( uint2x3& lhs, const uint2x3& rhs )
+HLML_INLINE uint2x3 operator+=( uint2x3 &lhs, const uint2x3 &rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x3 operator-( const uint2x3& lhs, const uint32_t rhs )
+HLML_INLINE uint2x3 operator-( const uint2x3 &lhs, const uint32_t rhs )
 {
 	return uint2x3(
 		lhs[0] - rhs,
@@ -7596,13 +7596,13 @@ HLML_INLINE uint2x3 operator-( const uint2x3& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been -'d against the scalar.
-HLML_INLINE uint2x3 operator-=( uint2x3& lhs, const uint32_t rhs )
+HLML_INLINE uint2x3 operator-=( uint2x3 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE uint2x3 operator-( const uint2x3& lhs, const uint2x3& rhs )
+HLML_INLINE uint2x3 operator-( const uint2x3 &lhs, const uint2x3 &rhs )
 {
 	return uint2x3(
 		lhs[0] - rhs[0],
@@ -7611,13 +7611,13 @@ HLML_INLINE uint2x3 operator-( const uint2x3& lhs, const uint2x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise -'d against 'rhs'.
-HLML_INLINE uint2x3 operator-=( uint2x3& lhs, const uint2x3& rhs )
+HLML_INLINE uint2x3 operator-=( uint2x3 &lhs, const uint2x3 &rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x3 operator*( const uint2x3& lhs, const uint32_t rhs )
+HLML_INLINE uint2x3 operator*( const uint2x3 &lhs, const uint32_t rhs )
 {
 	return uint2x3(
 		lhs[0] * rhs,
@@ -7626,13 +7626,13 @@ HLML_INLINE uint2x3 operator*( const uint2x3& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been *'d against the scalar.
-HLML_INLINE uint2x3 operator*=( uint2x3& lhs, const uint32_t rhs )
+HLML_INLINE uint2x3 operator*=( uint2x3 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE uint2x3 operator*( const uint2x3& lhs, const uint2x3& rhs )
+HLML_INLINE uint2x3 operator*( const uint2x3 &lhs, const uint2x3 &rhs )
 {
 	return uint2x3(
 		lhs[0] * rhs[0],
@@ -7641,13 +7641,13 @@ HLML_INLINE uint2x3 operator*( const uint2x3& lhs, const uint2x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise *'d against 'rhs'.
-HLML_INLINE uint2x3 operator*=( uint2x3& lhs, const uint2x3& rhs )
+HLML_INLINE uint2x3 operator*=( uint2x3 &lhs, const uint2x3 &rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x3 operator/( const uint2x3& lhs, const uint32_t rhs )
+HLML_INLINE uint2x3 operator/( const uint2x3 &lhs, const uint32_t rhs )
 {
 	return uint2x3(
 		lhs[0] / rhs,
@@ -7656,13 +7656,13 @@ HLML_INLINE uint2x3 operator/( const uint2x3& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been /'d against the scalar.
-HLML_INLINE uint2x3 operator/=( uint2x3& lhs, const uint32_t rhs )
+HLML_INLINE uint2x3 operator/=( uint2x3 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE uint2x3 operator/( const uint2x3& lhs, const uint2x3& rhs )
+HLML_INLINE uint2x3 operator/( const uint2x3 &lhs, const uint2x3 &rhs )
 {
 	return uint2x3(
 		lhs[0] / rhs[0],
@@ -7671,13 +7671,13 @@ HLML_INLINE uint2x3 operator/( const uint2x3& lhs, const uint2x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise /'d against 'rhs'.
-HLML_INLINE uint2x3 operator/=( uint2x3& lhs, const uint2x3& rhs )
+HLML_INLINE uint2x3 operator/=( uint2x3 &lhs, const uint2x3 &rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // ++s each component of the matrix and returns the result.
-HLML_INLINE uint2x3 operator++( uint2x3& x )
+HLML_INLINE uint2x3 operator++( uint2x3 &x )
 {
 	++x[0];
 	++x[1];
@@ -7686,7 +7686,7 @@ HLML_INLINE uint2x3 operator++( uint2x3& x )
 
 // ++s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE uint2x3 operator++( uint2x3& x, const int32_t )
+HLML_INLINE uint2x3 operator++( uint2x3 &x, const int32_t )
 {
 	x[0]++;
 	x[1]++;
@@ -7694,7 +7694,7 @@ HLML_INLINE uint2x3 operator++( uint2x3& x, const int32_t )
 }
 
 // --s each component of the matrix and returns the result.
-HLML_INLINE uint2x3 operator--( uint2x3& x )
+HLML_INLINE uint2x3 operator--( uint2x3 &x )
 {
 	--x[0];
 	--x[1];
@@ -7703,7 +7703,7 @@ HLML_INLINE uint2x3 operator--( uint2x3& x )
 
 // --s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE uint2x3 operator--( uint2x3& x, const int32_t )
+HLML_INLINE uint2x3 operator--( uint2x3 &x, const int32_t )
 {
 	x[0]--;
 	x[1]--;
@@ -7716,7 +7716,7 @@ HLML_INLINE uint2x3 operator--( uint2x3& x, const int32_t )
 #endif
 // Returns a copy of the matrix that has been negated.
 // pre-fix
-HLML_INLINE uint2x3 operator-( const uint2x3& x )
+HLML_INLINE uint2x3 operator-( const uint2x3 &x )
 {
 	return uint2x3(
 		-x[0],
@@ -7729,7 +7729,7 @@ HLML_INLINE uint2x3 operator-( const uint2x3& x )
 #endif
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
 // pre-fix
-HLML_INLINE uint2x3 operator~( const uint2x3& x )
+HLML_INLINE uint2x3 operator~( const uint2x3 &x )
 {
 	return uint2x3(
 		~x[0],
@@ -7738,7 +7738,7 @@ HLML_INLINE uint2x3 operator~( const uint2x3& x )
 }
 
 // Performs a component-wise bitwise & on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x3 operator&( const uint2x3& lhs, const uint32_t rhs )
+HLML_INLINE uint2x3 operator&( const uint2x3 &lhs, const uint32_t rhs )
 {
 	return uint2x3(
 		lhs[0] & rhs,
@@ -7747,13 +7747,13 @@ HLML_INLINE uint2x3 operator&( const uint2x3& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise &'d against the scalar.
-HLML_INLINE uint2x3 operator&=( uint2x3& lhs, const uint32_t rhs )
+HLML_INLINE uint2x3 operator&=( uint2x3 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs & rhs );
 }
 
 // Performs a component-wise bitwise & against the two matrices and returns the result.
-HLML_INLINE uint2x3 operator&( const uint2x3& lhs, const uint2x3& rhs )
+HLML_INLINE uint2x3 operator&( const uint2x3 &lhs, const uint2x3 &rhs )
 {
 	return uint2x3(
 		lhs[0] & rhs[0],
@@ -7762,13 +7762,13 @@ HLML_INLINE uint2x3 operator&( const uint2x3& lhs, const uint2x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise &'d against 'rhs'.
-HLML_INLINE uint2x3 operator&=( uint2x3& lhs, const uint2x3& rhs )
+HLML_INLINE uint2x3 operator&=( uint2x3 &lhs, const uint2x3 &rhs )
 {
 	return ( lhs = lhs & rhs );
 }
 
 // Performs a component-wise bitwise | on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x3 operator|( const uint2x3& lhs, const uint32_t rhs )
+HLML_INLINE uint2x3 operator|( const uint2x3 &lhs, const uint32_t rhs )
 {
 	return uint2x3(
 		lhs[0] | rhs,
@@ -7777,13 +7777,13 @@ HLML_INLINE uint2x3 operator|( const uint2x3& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise |'d against the scalar.
-HLML_INLINE uint2x3 operator|=( uint2x3& lhs, const uint32_t rhs )
+HLML_INLINE uint2x3 operator|=( uint2x3 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs | rhs );
 }
 
 // Performs a component-wise bitwise | against the two matrices and returns the result.
-HLML_INLINE uint2x3 operator|( const uint2x3& lhs, const uint2x3& rhs )
+HLML_INLINE uint2x3 operator|( const uint2x3 &lhs, const uint2x3 &rhs )
 {
 	return uint2x3(
 		lhs[0] | rhs[0],
@@ -7792,13 +7792,13 @@ HLML_INLINE uint2x3 operator|( const uint2x3& lhs, const uint2x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise |'d against 'rhs'.
-HLML_INLINE uint2x3 operator|=( uint2x3& lhs, const uint2x3& rhs )
+HLML_INLINE uint2x3 operator|=( uint2x3 &lhs, const uint2x3 &rhs )
 {
 	return ( lhs = lhs | rhs );
 }
 
 // Performs a component-wise bitwise ^ on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x3 operator^( const uint2x3& lhs, const uint32_t rhs )
+HLML_INLINE uint2x3 operator^( const uint2x3 &lhs, const uint32_t rhs )
 {
 	return uint2x3(
 		lhs[0] ^ rhs,
@@ -7807,13 +7807,13 @@ HLML_INLINE uint2x3 operator^( const uint2x3& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise ^'d against the scalar.
-HLML_INLINE uint2x3 operator^=( uint2x3& lhs, const uint32_t rhs )
+HLML_INLINE uint2x3 operator^=( uint2x3 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs ^ rhs );
 }
 
 // Performs a component-wise bitwise ^ against the two matrices and returns the result.
-HLML_INLINE uint2x3 operator^( const uint2x3& lhs, const uint2x3& rhs )
+HLML_INLINE uint2x3 operator^( const uint2x3 &lhs, const uint2x3 &rhs )
 {
 	return uint2x3(
 		lhs[0] ^ rhs[0],
@@ -7822,13 +7822,13 @@ HLML_INLINE uint2x3 operator^( const uint2x3& lhs, const uint2x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise ^'d against 'rhs'.
-HLML_INLINE uint2x3 operator^=( uint2x3& lhs, const uint2x3& rhs )
+HLML_INLINE uint2x3 operator^=( uint2x3 &lhs, const uint2x3 &rhs )
 {
 	return ( lhs = lhs ^ rhs );
 }
 
 // Performs a component-wise bitwise << on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x3 operator<<( const uint2x3& lhs, const uint32_t rhs )
+HLML_INLINE uint2x3 operator<<( const uint2x3 &lhs, const uint32_t rhs )
 {
 	return uint2x3(
 		lhs[0] << rhs,
@@ -7837,13 +7837,13 @@ HLML_INLINE uint2x3 operator<<( const uint2x3& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise <<'d against the scalar.
-HLML_INLINE uint2x3 operator<<=( uint2x3& lhs, const uint32_t rhs )
+HLML_INLINE uint2x3 operator<<=( uint2x3 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs << rhs );
 }
 
 // Performs a component-wise bitwise << against the two matrices and returns the result.
-HLML_INLINE uint2x3 operator<<( const uint2x3& lhs, const uint2x3& rhs )
+HLML_INLINE uint2x3 operator<<( const uint2x3 &lhs, const uint2x3 &rhs )
 {
 	return uint2x3(
 		lhs[0] << rhs[0],
@@ -7852,13 +7852,13 @@ HLML_INLINE uint2x3 operator<<( const uint2x3& lhs, const uint2x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise <<'d against 'rhs'.
-HLML_INLINE uint2x3 operator<<=( uint2x3& lhs, const uint2x3& rhs )
+HLML_INLINE uint2x3 operator<<=( uint2x3 &lhs, const uint2x3 &rhs )
 {
 	return ( lhs = lhs << rhs );
 }
 
 // Performs a component-wise bitwise >> on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x3 operator>>( const uint2x3& lhs, const uint32_t rhs )
+HLML_INLINE uint2x3 operator>>( const uint2x3 &lhs, const uint32_t rhs )
 {
 	return uint2x3(
 		lhs[0] >> rhs,
@@ -7867,13 +7867,13 @@ HLML_INLINE uint2x3 operator>>( const uint2x3& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise >>'d against the scalar.
-HLML_INLINE uint2x3 operator>>=( uint2x3& lhs, const uint32_t rhs )
+HLML_INLINE uint2x3 operator>>=( uint2x3 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs >> rhs );
 }
 
 // Performs a component-wise bitwise >> against the two matrices and returns the result.
-HLML_INLINE uint2x3 operator>>( const uint2x3& lhs, const uint2x3& rhs )
+HLML_INLINE uint2x3 operator>>( const uint2x3 &lhs, const uint2x3 &rhs )
 {
 	return uint2x3(
 		lhs[0] >> rhs[0],
@@ -7882,20 +7882,20 @@ HLML_INLINE uint2x3 operator>>( const uint2x3& lhs, const uint2x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise >>'d against 'rhs'.
-HLML_INLINE uint2x3 operator>>=( uint2x3& lhs, const uint2x3& rhs )
+HLML_INLINE uint2x3 operator>>=( uint2x3 &lhs, const uint2x3 &rhs )
 {
 	return ( lhs = lhs >> rhs );
 }
 
 // Sets the matrix to an identity matrix.
-HLML_INLINE void identity( uint2x3& mat )
+HLML_INLINE void identity( uint2x3 &mat )
 {
 	mat.rows[0] = HLML_CONSTRUCT( uint3 ) { 1U, 0U, 0U };
 	mat.rows[1] = HLML_CONSTRUCT( uint3 ) { 0U, 1U, 0U };
 }
 
 // Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-HLML_INLINE uint3x2 transpose( const uint2x3& mat )
+HLML_INLINE uint3x2 transpose( const uint2x3 &mat )
 {
 	return HLML_CONSTRUCT( uint3x2 )
 	{
@@ -7906,7 +7906,7 @@ HLML_INLINE uint3x2 transpose( const uint2x3& mat )
 }
 
 // Performs a matrix multiplication with 'lhs' and 'rhs' and returns the result.
-HLML_INLINE uint2x2 mul( const uint2x3& lhs, const uint3x2& rhs )
+HLML_INLINE uint2x2 mul( const uint2x3 &lhs, const uint3x2 &rhs )
 {
 	uint3 row0 = lhs.rows[0];
 	uint3 row1 = lhs.rows[1];
@@ -7926,7 +7926,7 @@ HLML_INLINE uint2x2 mul( const uint2x3& lhs, const uint3x2& rhs )
 
 // uint2x4
 // Performs a min function on each row of the matrix.
-HLML_INLINE uint2x4 min( const uint2x4& x, const uint2x4& y )
+HLML_INLINE uint2x4 min( const uint2x4 &x, const uint2x4 &y )
 {
 	return uint2x4(
 		min( x[0], y[0] ),
@@ -7935,7 +7935,7 @@ HLML_INLINE uint2x4 min( const uint2x4& x, const uint2x4& y )
 }
 
 // Performs a max function on each row of the matrix.
-HLML_INLINE uint2x4 max( const uint2x4& x, const uint2x4& y )
+HLML_INLINE uint2x4 max( const uint2x4 &x, const uint2x4 &y )
 {
 	return uint2x4(
 		max( x[0], y[0] ),
@@ -7944,7 +7944,7 @@ HLML_INLINE uint2x4 max( const uint2x4& x, const uint2x4& y )
 }
 
 // Performs a clamp function on each row of the matrix.
-HLML_INLINE uint2x4 clamp( const uint2x4& x, const uint2x4& low, const uint2x4& high )
+HLML_INLINE uint2x4 clamp( const uint2x4 &x, const uint2x4 &low, const uint2x4 &high )
 {
 	return uint2x4(
 		clamp( x[0], low[0], high[0] ),
@@ -7953,7 +7953,7 @@ HLML_INLINE uint2x4 clamp( const uint2x4& x, const uint2x4& low, const uint2x4& 
 }
 
 // Performs a saturate function on each row of the matrix.
-HLML_INLINE uint2x4 saturate( const uint2x4& x )
+HLML_INLINE uint2x4 saturate( const uint2x4 &x )
 {
 	return uint2x4(
 		saturate( x[0] ),
@@ -7962,7 +7962,7 @@ HLML_INLINE uint2x4 saturate( const uint2x4& x )
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator==( const uint2x4& lhs, const uint2x4& rhs )
+HLML_INLINE bool operator==( const uint2x4 &lhs, const uint2x4 &rhs )
 {
 	return
 		lhs[0] == rhs[0] &&
@@ -7970,13 +7970,13 @@ HLML_INLINE bool operator==( const uint2x4& lhs, const uint2x4& rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator!=( const uint2x4& lhs, const uint2x4& rhs )
+HLML_INLINE bool operator!=( const uint2x4 &lhs, const uint2x4 &rhs )
 {
 	return !( lhs == rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool2x4 operator<( const uint2x4& lhs, const uint2x4& rhs )
+HLML_INLINE bool2x4 operator<( const uint2x4 &lhs, const uint2x4 &rhs )
 {
 	return bool2x4(
 		lhs[0] < rhs[0],
@@ -7985,7 +7985,7 @@ HLML_INLINE bool2x4 operator<( const uint2x4& lhs, const uint2x4& rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool2x4 operator<=( const uint2x4& lhs, const uint2x4& rhs )
+HLML_INLINE bool2x4 operator<=( const uint2x4 &lhs, const uint2x4 &rhs )
 {
 	return bool2x4(
 		lhs[0] <= rhs[0],
@@ -7994,7 +7994,7 @@ HLML_INLINE bool2x4 operator<=( const uint2x4& lhs, const uint2x4& rhs )
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool2x4 operator>( const uint2x4& lhs, const uint2x4& rhs )
+HLML_INLINE bool2x4 operator>( const uint2x4 &lhs, const uint2x4 &rhs )
 {
 	return bool2x4(
 		lhs[0] > rhs[0],
@@ -8003,7 +8003,7 @@ HLML_INLINE bool2x4 operator>( const uint2x4& lhs, const uint2x4& rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool2x4 operator>=( const uint2x4& lhs, const uint2x4& rhs )
+HLML_INLINE bool2x4 operator>=( const uint2x4 &lhs, const uint2x4 &rhs )
 {
 	return bool2x4(
 		lhs[0] >= rhs[0],
@@ -8012,7 +8012,7 @@ HLML_INLINE bool2x4 operator>=( const uint2x4& lhs, const uint2x4& rhs )
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x4 operator+( const uint2x4& lhs, const uint32_t rhs )
+HLML_INLINE uint2x4 operator+( const uint2x4 &lhs, const uint32_t rhs )
 {
 	return uint2x4(
 		lhs[0] + rhs,
@@ -8021,13 +8021,13 @@ HLML_INLINE uint2x4 operator+( const uint2x4& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been +'d against the scalar.
-HLML_INLINE uint2x4 operator+=( uint2x4& lhs, const uint32_t rhs )
+HLML_INLINE uint2x4 operator+=( uint2x4 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE uint2x4 operator+( const uint2x4& lhs, const uint2x4& rhs )
+HLML_INLINE uint2x4 operator+( const uint2x4 &lhs, const uint2x4 &rhs )
 {
 	return uint2x4(
 		lhs[0] + rhs[0],
@@ -8036,13 +8036,13 @@ HLML_INLINE uint2x4 operator+( const uint2x4& lhs, const uint2x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise +'d against 'rhs'.
-HLML_INLINE uint2x4 operator+=( uint2x4& lhs, const uint2x4& rhs )
+HLML_INLINE uint2x4 operator+=( uint2x4 &lhs, const uint2x4 &rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x4 operator-( const uint2x4& lhs, const uint32_t rhs )
+HLML_INLINE uint2x4 operator-( const uint2x4 &lhs, const uint32_t rhs )
 {
 	return uint2x4(
 		lhs[0] - rhs,
@@ -8051,13 +8051,13 @@ HLML_INLINE uint2x4 operator-( const uint2x4& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been -'d against the scalar.
-HLML_INLINE uint2x4 operator-=( uint2x4& lhs, const uint32_t rhs )
+HLML_INLINE uint2x4 operator-=( uint2x4 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE uint2x4 operator-( const uint2x4& lhs, const uint2x4& rhs )
+HLML_INLINE uint2x4 operator-( const uint2x4 &lhs, const uint2x4 &rhs )
 {
 	return uint2x4(
 		lhs[0] - rhs[0],
@@ -8066,13 +8066,13 @@ HLML_INLINE uint2x4 operator-( const uint2x4& lhs, const uint2x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise -'d against 'rhs'.
-HLML_INLINE uint2x4 operator-=( uint2x4& lhs, const uint2x4& rhs )
+HLML_INLINE uint2x4 operator-=( uint2x4 &lhs, const uint2x4 &rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x4 operator*( const uint2x4& lhs, const uint32_t rhs )
+HLML_INLINE uint2x4 operator*( const uint2x4 &lhs, const uint32_t rhs )
 {
 	return uint2x4(
 		lhs[0] * rhs,
@@ -8081,13 +8081,13 @@ HLML_INLINE uint2x4 operator*( const uint2x4& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been *'d against the scalar.
-HLML_INLINE uint2x4 operator*=( uint2x4& lhs, const uint32_t rhs )
+HLML_INLINE uint2x4 operator*=( uint2x4 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE uint2x4 operator*( const uint2x4& lhs, const uint2x4& rhs )
+HLML_INLINE uint2x4 operator*( const uint2x4 &lhs, const uint2x4 &rhs )
 {
 	return uint2x4(
 		lhs[0] * rhs[0],
@@ -8096,13 +8096,13 @@ HLML_INLINE uint2x4 operator*( const uint2x4& lhs, const uint2x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise *'d against 'rhs'.
-HLML_INLINE uint2x4 operator*=( uint2x4& lhs, const uint2x4& rhs )
+HLML_INLINE uint2x4 operator*=( uint2x4 &lhs, const uint2x4 &rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x4 operator/( const uint2x4& lhs, const uint32_t rhs )
+HLML_INLINE uint2x4 operator/( const uint2x4 &lhs, const uint32_t rhs )
 {
 	return uint2x4(
 		lhs[0] / rhs,
@@ -8111,13 +8111,13 @@ HLML_INLINE uint2x4 operator/( const uint2x4& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been /'d against the scalar.
-HLML_INLINE uint2x4 operator/=( uint2x4& lhs, const uint32_t rhs )
+HLML_INLINE uint2x4 operator/=( uint2x4 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE uint2x4 operator/( const uint2x4& lhs, const uint2x4& rhs )
+HLML_INLINE uint2x4 operator/( const uint2x4 &lhs, const uint2x4 &rhs )
 {
 	return uint2x4(
 		lhs[0] / rhs[0],
@@ -8126,13 +8126,13 @@ HLML_INLINE uint2x4 operator/( const uint2x4& lhs, const uint2x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise /'d against 'rhs'.
-HLML_INLINE uint2x4 operator/=( uint2x4& lhs, const uint2x4& rhs )
+HLML_INLINE uint2x4 operator/=( uint2x4 &lhs, const uint2x4 &rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // ++s each component of the matrix and returns the result.
-HLML_INLINE uint2x4 operator++( uint2x4& x )
+HLML_INLINE uint2x4 operator++( uint2x4 &x )
 {
 	++x[0];
 	++x[1];
@@ -8141,7 +8141,7 @@ HLML_INLINE uint2x4 operator++( uint2x4& x )
 
 // ++s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE uint2x4 operator++( uint2x4& x, const int32_t )
+HLML_INLINE uint2x4 operator++( uint2x4 &x, const int32_t )
 {
 	x[0]++;
 	x[1]++;
@@ -8149,7 +8149,7 @@ HLML_INLINE uint2x4 operator++( uint2x4& x, const int32_t )
 }
 
 // --s each component of the matrix and returns the result.
-HLML_INLINE uint2x4 operator--( uint2x4& x )
+HLML_INLINE uint2x4 operator--( uint2x4 &x )
 {
 	--x[0];
 	--x[1];
@@ -8158,7 +8158,7 @@ HLML_INLINE uint2x4 operator--( uint2x4& x )
 
 // --s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE uint2x4 operator--( uint2x4& x, const int32_t )
+HLML_INLINE uint2x4 operator--( uint2x4 &x, const int32_t )
 {
 	x[0]--;
 	x[1]--;
@@ -8171,7 +8171,7 @@ HLML_INLINE uint2x4 operator--( uint2x4& x, const int32_t )
 #endif
 // Returns a copy of the matrix that has been negated.
 // pre-fix
-HLML_INLINE uint2x4 operator-( const uint2x4& x )
+HLML_INLINE uint2x4 operator-( const uint2x4 &x )
 {
 	return uint2x4(
 		-x[0],
@@ -8184,7 +8184,7 @@ HLML_INLINE uint2x4 operator-( const uint2x4& x )
 #endif
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
 // pre-fix
-HLML_INLINE uint2x4 operator~( const uint2x4& x )
+HLML_INLINE uint2x4 operator~( const uint2x4 &x )
 {
 	return uint2x4(
 		~x[0],
@@ -8193,7 +8193,7 @@ HLML_INLINE uint2x4 operator~( const uint2x4& x )
 }
 
 // Performs a component-wise bitwise & on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x4 operator&( const uint2x4& lhs, const uint32_t rhs )
+HLML_INLINE uint2x4 operator&( const uint2x4 &lhs, const uint32_t rhs )
 {
 	return uint2x4(
 		lhs[0] & rhs,
@@ -8202,13 +8202,13 @@ HLML_INLINE uint2x4 operator&( const uint2x4& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise &'d against the scalar.
-HLML_INLINE uint2x4 operator&=( uint2x4& lhs, const uint32_t rhs )
+HLML_INLINE uint2x4 operator&=( uint2x4 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs & rhs );
 }
 
 // Performs a component-wise bitwise & against the two matrices and returns the result.
-HLML_INLINE uint2x4 operator&( const uint2x4& lhs, const uint2x4& rhs )
+HLML_INLINE uint2x4 operator&( const uint2x4 &lhs, const uint2x4 &rhs )
 {
 	return uint2x4(
 		lhs[0] & rhs[0],
@@ -8217,13 +8217,13 @@ HLML_INLINE uint2x4 operator&( const uint2x4& lhs, const uint2x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise &'d against 'rhs'.
-HLML_INLINE uint2x4 operator&=( uint2x4& lhs, const uint2x4& rhs )
+HLML_INLINE uint2x4 operator&=( uint2x4 &lhs, const uint2x4 &rhs )
 {
 	return ( lhs = lhs & rhs );
 }
 
 // Performs a component-wise bitwise | on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x4 operator|( const uint2x4& lhs, const uint32_t rhs )
+HLML_INLINE uint2x4 operator|( const uint2x4 &lhs, const uint32_t rhs )
 {
 	return uint2x4(
 		lhs[0] | rhs,
@@ -8232,13 +8232,13 @@ HLML_INLINE uint2x4 operator|( const uint2x4& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise |'d against the scalar.
-HLML_INLINE uint2x4 operator|=( uint2x4& lhs, const uint32_t rhs )
+HLML_INLINE uint2x4 operator|=( uint2x4 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs | rhs );
 }
 
 // Performs a component-wise bitwise | against the two matrices and returns the result.
-HLML_INLINE uint2x4 operator|( const uint2x4& lhs, const uint2x4& rhs )
+HLML_INLINE uint2x4 operator|( const uint2x4 &lhs, const uint2x4 &rhs )
 {
 	return uint2x4(
 		lhs[0] | rhs[0],
@@ -8247,13 +8247,13 @@ HLML_INLINE uint2x4 operator|( const uint2x4& lhs, const uint2x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise |'d against 'rhs'.
-HLML_INLINE uint2x4 operator|=( uint2x4& lhs, const uint2x4& rhs )
+HLML_INLINE uint2x4 operator|=( uint2x4 &lhs, const uint2x4 &rhs )
 {
 	return ( lhs = lhs | rhs );
 }
 
 // Performs a component-wise bitwise ^ on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x4 operator^( const uint2x4& lhs, const uint32_t rhs )
+HLML_INLINE uint2x4 operator^( const uint2x4 &lhs, const uint32_t rhs )
 {
 	return uint2x4(
 		lhs[0] ^ rhs,
@@ -8262,13 +8262,13 @@ HLML_INLINE uint2x4 operator^( const uint2x4& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise ^'d against the scalar.
-HLML_INLINE uint2x4 operator^=( uint2x4& lhs, const uint32_t rhs )
+HLML_INLINE uint2x4 operator^=( uint2x4 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs ^ rhs );
 }
 
 // Performs a component-wise bitwise ^ against the two matrices and returns the result.
-HLML_INLINE uint2x4 operator^( const uint2x4& lhs, const uint2x4& rhs )
+HLML_INLINE uint2x4 operator^( const uint2x4 &lhs, const uint2x4 &rhs )
 {
 	return uint2x4(
 		lhs[0] ^ rhs[0],
@@ -8277,13 +8277,13 @@ HLML_INLINE uint2x4 operator^( const uint2x4& lhs, const uint2x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise ^'d against 'rhs'.
-HLML_INLINE uint2x4 operator^=( uint2x4& lhs, const uint2x4& rhs )
+HLML_INLINE uint2x4 operator^=( uint2x4 &lhs, const uint2x4 &rhs )
 {
 	return ( lhs = lhs ^ rhs );
 }
 
 // Performs a component-wise bitwise << on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x4 operator<<( const uint2x4& lhs, const uint32_t rhs )
+HLML_INLINE uint2x4 operator<<( const uint2x4 &lhs, const uint32_t rhs )
 {
 	return uint2x4(
 		lhs[0] << rhs,
@@ -8292,13 +8292,13 @@ HLML_INLINE uint2x4 operator<<( const uint2x4& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise <<'d against the scalar.
-HLML_INLINE uint2x4 operator<<=( uint2x4& lhs, const uint32_t rhs )
+HLML_INLINE uint2x4 operator<<=( uint2x4 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs << rhs );
 }
 
 // Performs a component-wise bitwise << against the two matrices and returns the result.
-HLML_INLINE uint2x4 operator<<( const uint2x4& lhs, const uint2x4& rhs )
+HLML_INLINE uint2x4 operator<<( const uint2x4 &lhs, const uint2x4 &rhs )
 {
 	return uint2x4(
 		lhs[0] << rhs[0],
@@ -8307,13 +8307,13 @@ HLML_INLINE uint2x4 operator<<( const uint2x4& lhs, const uint2x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise <<'d against 'rhs'.
-HLML_INLINE uint2x4 operator<<=( uint2x4& lhs, const uint2x4& rhs )
+HLML_INLINE uint2x4 operator<<=( uint2x4 &lhs, const uint2x4 &rhs )
 {
 	return ( lhs = lhs << rhs );
 }
 
 // Performs a component-wise bitwise >> on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x4 operator>>( const uint2x4& lhs, const uint32_t rhs )
+HLML_INLINE uint2x4 operator>>( const uint2x4 &lhs, const uint32_t rhs )
 {
 	return uint2x4(
 		lhs[0] >> rhs,
@@ -8322,13 +8322,13 @@ HLML_INLINE uint2x4 operator>>( const uint2x4& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise >>'d against the scalar.
-HLML_INLINE uint2x4 operator>>=( uint2x4& lhs, const uint32_t rhs )
+HLML_INLINE uint2x4 operator>>=( uint2x4 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs >> rhs );
 }
 
 // Performs a component-wise bitwise >> against the two matrices and returns the result.
-HLML_INLINE uint2x4 operator>>( const uint2x4& lhs, const uint2x4& rhs )
+HLML_INLINE uint2x4 operator>>( const uint2x4 &lhs, const uint2x4 &rhs )
 {
 	return uint2x4(
 		lhs[0] >> rhs[0],
@@ -8337,20 +8337,20 @@ HLML_INLINE uint2x4 operator>>( const uint2x4& lhs, const uint2x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise >>'d against 'rhs'.
-HLML_INLINE uint2x4 operator>>=( uint2x4& lhs, const uint2x4& rhs )
+HLML_INLINE uint2x4 operator>>=( uint2x4 &lhs, const uint2x4 &rhs )
 {
 	return ( lhs = lhs >> rhs );
 }
 
 // Sets the matrix to an identity matrix.
-HLML_INLINE void identity( uint2x4& mat )
+HLML_INLINE void identity( uint2x4 &mat )
 {
 	mat.rows[0] = HLML_CONSTRUCT( uint4 ) { 1U, 0U, 0U, 0U };
 	mat.rows[1] = HLML_CONSTRUCT( uint4 ) { 0U, 1U, 0U, 0U };
 }
 
 // Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-HLML_INLINE uint4x2 transpose( const uint2x4& mat )
+HLML_INLINE uint4x2 transpose( const uint2x4 &mat )
 {
 	return HLML_CONSTRUCT( uint4x2 )
 	{
@@ -8362,7 +8362,7 @@ HLML_INLINE uint4x2 transpose( const uint2x4& mat )
 }
 
 // Performs a matrix multiplication with 'lhs' and 'rhs' and returns the result.
-HLML_INLINE uint2x2 mul( const uint2x4& lhs, const uint4x2& rhs )
+HLML_INLINE uint2x2 mul( const uint2x4 &lhs, const uint4x2 &rhs )
 {
 	uint4 row0 = lhs.rows[0];
 	uint4 row1 = lhs.rows[1];
@@ -8382,7 +8382,7 @@ HLML_INLINE uint2x2 mul( const uint2x4& lhs, const uint4x2& rhs )
 
 // uint3x2
 // Performs a min function on each row of the matrix.
-HLML_INLINE uint3x2 min( const uint3x2& x, const uint3x2& y )
+HLML_INLINE uint3x2 min( const uint3x2 &x, const uint3x2 &y )
 {
 	return uint3x2(
 		min( x[0], y[0] ),
@@ -8392,7 +8392,7 @@ HLML_INLINE uint3x2 min( const uint3x2& x, const uint3x2& y )
 }
 
 // Performs a max function on each row of the matrix.
-HLML_INLINE uint3x2 max( const uint3x2& x, const uint3x2& y )
+HLML_INLINE uint3x2 max( const uint3x2 &x, const uint3x2 &y )
 {
 	return uint3x2(
 		max( x[0], y[0] ),
@@ -8402,7 +8402,7 @@ HLML_INLINE uint3x2 max( const uint3x2& x, const uint3x2& y )
 }
 
 // Performs a clamp function on each row of the matrix.
-HLML_INLINE uint3x2 clamp( const uint3x2& x, const uint3x2& low, const uint3x2& high )
+HLML_INLINE uint3x2 clamp( const uint3x2 &x, const uint3x2 &low, const uint3x2 &high )
 {
 	return uint3x2(
 		clamp( x[0], low[0], high[0] ),
@@ -8412,7 +8412,7 @@ HLML_INLINE uint3x2 clamp( const uint3x2& x, const uint3x2& low, const uint3x2& 
 }
 
 // Performs a saturate function on each row of the matrix.
-HLML_INLINE uint3x2 saturate( const uint3x2& x )
+HLML_INLINE uint3x2 saturate( const uint3x2 &x )
 {
 	return uint3x2(
 		saturate( x[0] ),
@@ -8422,7 +8422,7 @@ HLML_INLINE uint3x2 saturate( const uint3x2& x )
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator==( const uint3x2& lhs, const uint3x2& rhs )
+HLML_INLINE bool operator==( const uint3x2 &lhs, const uint3x2 &rhs )
 {
 	return
 		lhs[0] == rhs[0] &&
@@ -8431,13 +8431,13 @@ HLML_INLINE bool operator==( const uint3x2& lhs, const uint3x2& rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator!=( const uint3x2& lhs, const uint3x2& rhs )
+HLML_INLINE bool operator!=( const uint3x2 &lhs, const uint3x2 &rhs )
 {
 	return !( lhs == rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool3x2 operator<( const uint3x2& lhs, const uint3x2& rhs )
+HLML_INLINE bool3x2 operator<( const uint3x2 &lhs, const uint3x2 &rhs )
 {
 	return bool3x2(
 		lhs[0] < rhs[0],
@@ -8447,7 +8447,7 @@ HLML_INLINE bool3x2 operator<( const uint3x2& lhs, const uint3x2& rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool3x2 operator<=( const uint3x2& lhs, const uint3x2& rhs )
+HLML_INLINE bool3x2 operator<=( const uint3x2 &lhs, const uint3x2 &rhs )
 {
 	return bool3x2(
 		lhs[0] <= rhs[0],
@@ -8457,7 +8457,7 @@ HLML_INLINE bool3x2 operator<=( const uint3x2& lhs, const uint3x2& rhs )
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool3x2 operator>( const uint3x2& lhs, const uint3x2& rhs )
+HLML_INLINE bool3x2 operator>( const uint3x2 &lhs, const uint3x2 &rhs )
 {
 	return bool3x2(
 		lhs[0] > rhs[0],
@@ -8467,7 +8467,7 @@ HLML_INLINE bool3x2 operator>( const uint3x2& lhs, const uint3x2& rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool3x2 operator>=( const uint3x2& lhs, const uint3x2& rhs )
+HLML_INLINE bool3x2 operator>=( const uint3x2 &lhs, const uint3x2 &rhs )
 {
 	return bool3x2(
 		lhs[0] >= rhs[0],
@@ -8477,7 +8477,7 @@ HLML_INLINE bool3x2 operator>=( const uint3x2& lhs, const uint3x2& rhs )
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x2 operator+( const uint3x2& lhs, const uint32_t rhs )
+HLML_INLINE uint3x2 operator+( const uint3x2 &lhs, const uint32_t rhs )
 {
 	return uint3x2(
 		lhs[0] + rhs,
@@ -8487,13 +8487,13 @@ HLML_INLINE uint3x2 operator+( const uint3x2& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been +'d against the scalar.
-HLML_INLINE uint3x2 operator+=( uint3x2& lhs, const uint32_t rhs )
+HLML_INLINE uint3x2 operator+=( uint3x2 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE uint3x2 operator+( const uint3x2& lhs, const uint3x2& rhs )
+HLML_INLINE uint3x2 operator+( const uint3x2 &lhs, const uint3x2 &rhs )
 {
 	return uint3x2(
 		lhs[0] + rhs[0],
@@ -8503,13 +8503,13 @@ HLML_INLINE uint3x2 operator+( const uint3x2& lhs, const uint3x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise +'d against 'rhs'.
-HLML_INLINE uint3x2 operator+=( uint3x2& lhs, const uint3x2& rhs )
+HLML_INLINE uint3x2 operator+=( uint3x2 &lhs, const uint3x2 &rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x2 operator-( const uint3x2& lhs, const uint32_t rhs )
+HLML_INLINE uint3x2 operator-( const uint3x2 &lhs, const uint32_t rhs )
 {
 	return uint3x2(
 		lhs[0] - rhs,
@@ -8519,13 +8519,13 @@ HLML_INLINE uint3x2 operator-( const uint3x2& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been -'d against the scalar.
-HLML_INLINE uint3x2 operator-=( uint3x2& lhs, const uint32_t rhs )
+HLML_INLINE uint3x2 operator-=( uint3x2 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE uint3x2 operator-( const uint3x2& lhs, const uint3x2& rhs )
+HLML_INLINE uint3x2 operator-( const uint3x2 &lhs, const uint3x2 &rhs )
 {
 	return uint3x2(
 		lhs[0] - rhs[0],
@@ -8535,13 +8535,13 @@ HLML_INLINE uint3x2 operator-( const uint3x2& lhs, const uint3x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise -'d against 'rhs'.
-HLML_INLINE uint3x2 operator-=( uint3x2& lhs, const uint3x2& rhs )
+HLML_INLINE uint3x2 operator-=( uint3x2 &lhs, const uint3x2 &rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x2 operator*( const uint3x2& lhs, const uint32_t rhs )
+HLML_INLINE uint3x2 operator*( const uint3x2 &lhs, const uint32_t rhs )
 {
 	return uint3x2(
 		lhs[0] * rhs,
@@ -8551,13 +8551,13 @@ HLML_INLINE uint3x2 operator*( const uint3x2& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been *'d against the scalar.
-HLML_INLINE uint3x2 operator*=( uint3x2& lhs, const uint32_t rhs )
+HLML_INLINE uint3x2 operator*=( uint3x2 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE uint3x2 operator*( const uint3x2& lhs, const uint3x2& rhs )
+HLML_INLINE uint3x2 operator*( const uint3x2 &lhs, const uint3x2 &rhs )
 {
 	return uint3x2(
 		lhs[0] * rhs[0],
@@ -8567,13 +8567,13 @@ HLML_INLINE uint3x2 operator*( const uint3x2& lhs, const uint3x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise *'d against 'rhs'.
-HLML_INLINE uint3x2 operator*=( uint3x2& lhs, const uint3x2& rhs )
+HLML_INLINE uint3x2 operator*=( uint3x2 &lhs, const uint3x2 &rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x2 operator/( const uint3x2& lhs, const uint32_t rhs )
+HLML_INLINE uint3x2 operator/( const uint3x2 &lhs, const uint32_t rhs )
 {
 	return uint3x2(
 		lhs[0] / rhs,
@@ -8583,13 +8583,13 @@ HLML_INLINE uint3x2 operator/( const uint3x2& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been /'d against the scalar.
-HLML_INLINE uint3x2 operator/=( uint3x2& lhs, const uint32_t rhs )
+HLML_INLINE uint3x2 operator/=( uint3x2 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE uint3x2 operator/( const uint3x2& lhs, const uint3x2& rhs )
+HLML_INLINE uint3x2 operator/( const uint3x2 &lhs, const uint3x2 &rhs )
 {
 	return uint3x2(
 		lhs[0] / rhs[0],
@@ -8599,13 +8599,13 @@ HLML_INLINE uint3x2 operator/( const uint3x2& lhs, const uint3x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise /'d against 'rhs'.
-HLML_INLINE uint3x2 operator/=( uint3x2& lhs, const uint3x2& rhs )
+HLML_INLINE uint3x2 operator/=( uint3x2 &lhs, const uint3x2 &rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // ++s each component of the matrix and returns the result.
-HLML_INLINE uint3x2 operator++( uint3x2& x )
+HLML_INLINE uint3x2 operator++( uint3x2 &x )
 {
 	++x[0];
 	++x[1];
@@ -8615,7 +8615,7 @@ HLML_INLINE uint3x2 operator++( uint3x2& x )
 
 // ++s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE uint3x2 operator++( uint3x2& x, const int32_t )
+HLML_INLINE uint3x2 operator++( uint3x2 &x, const int32_t )
 {
 	x[0]++;
 	x[1]++;
@@ -8624,7 +8624,7 @@ HLML_INLINE uint3x2 operator++( uint3x2& x, const int32_t )
 }
 
 // --s each component of the matrix and returns the result.
-HLML_INLINE uint3x2 operator--( uint3x2& x )
+HLML_INLINE uint3x2 operator--( uint3x2 &x )
 {
 	--x[0];
 	--x[1];
@@ -8634,7 +8634,7 @@ HLML_INLINE uint3x2 operator--( uint3x2& x )
 
 // --s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE uint3x2 operator--( uint3x2& x, const int32_t )
+HLML_INLINE uint3x2 operator--( uint3x2 &x, const int32_t )
 {
 	x[0]--;
 	x[1]--;
@@ -8648,7 +8648,7 @@ HLML_INLINE uint3x2 operator--( uint3x2& x, const int32_t )
 #endif
 // Returns a copy of the matrix that has been negated.
 // pre-fix
-HLML_INLINE uint3x2 operator-( const uint3x2& x )
+HLML_INLINE uint3x2 operator-( const uint3x2 &x )
 {
 	return uint3x2(
 		-x[0],
@@ -8662,7 +8662,7 @@ HLML_INLINE uint3x2 operator-( const uint3x2& x )
 #endif
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
 // pre-fix
-HLML_INLINE uint3x2 operator~( const uint3x2& x )
+HLML_INLINE uint3x2 operator~( const uint3x2 &x )
 {
 	return uint3x2(
 		~x[0],
@@ -8672,7 +8672,7 @@ HLML_INLINE uint3x2 operator~( const uint3x2& x )
 }
 
 // Performs a component-wise bitwise & on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x2 operator&( const uint3x2& lhs, const uint32_t rhs )
+HLML_INLINE uint3x2 operator&( const uint3x2 &lhs, const uint32_t rhs )
 {
 	return uint3x2(
 		lhs[0] & rhs,
@@ -8682,13 +8682,13 @@ HLML_INLINE uint3x2 operator&( const uint3x2& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise &'d against the scalar.
-HLML_INLINE uint3x2 operator&=( uint3x2& lhs, const uint32_t rhs )
+HLML_INLINE uint3x2 operator&=( uint3x2 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs & rhs );
 }
 
 // Performs a component-wise bitwise & against the two matrices and returns the result.
-HLML_INLINE uint3x2 operator&( const uint3x2& lhs, const uint3x2& rhs )
+HLML_INLINE uint3x2 operator&( const uint3x2 &lhs, const uint3x2 &rhs )
 {
 	return uint3x2(
 		lhs[0] & rhs[0],
@@ -8698,13 +8698,13 @@ HLML_INLINE uint3x2 operator&( const uint3x2& lhs, const uint3x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise &'d against 'rhs'.
-HLML_INLINE uint3x2 operator&=( uint3x2& lhs, const uint3x2& rhs )
+HLML_INLINE uint3x2 operator&=( uint3x2 &lhs, const uint3x2 &rhs )
 {
 	return ( lhs = lhs & rhs );
 }
 
 // Performs a component-wise bitwise | on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x2 operator|( const uint3x2& lhs, const uint32_t rhs )
+HLML_INLINE uint3x2 operator|( const uint3x2 &lhs, const uint32_t rhs )
 {
 	return uint3x2(
 		lhs[0] | rhs,
@@ -8714,13 +8714,13 @@ HLML_INLINE uint3x2 operator|( const uint3x2& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise |'d against the scalar.
-HLML_INLINE uint3x2 operator|=( uint3x2& lhs, const uint32_t rhs )
+HLML_INLINE uint3x2 operator|=( uint3x2 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs | rhs );
 }
 
 // Performs a component-wise bitwise | against the two matrices and returns the result.
-HLML_INLINE uint3x2 operator|( const uint3x2& lhs, const uint3x2& rhs )
+HLML_INLINE uint3x2 operator|( const uint3x2 &lhs, const uint3x2 &rhs )
 {
 	return uint3x2(
 		lhs[0] | rhs[0],
@@ -8730,13 +8730,13 @@ HLML_INLINE uint3x2 operator|( const uint3x2& lhs, const uint3x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise |'d against 'rhs'.
-HLML_INLINE uint3x2 operator|=( uint3x2& lhs, const uint3x2& rhs )
+HLML_INLINE uint3x2 operator|=( uint3x2 &lhs, const uint3x2 &rhs )
 {
 	return ( lhs = lhs | rhs );
 }
 
 // Performs a component-wise bitwise ^ on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x2 operator^( const uint3x2& lhs, const uint32_t rhs )
+HLML_INLINE uint3x2 operator^( const uint3x2 &lhs, const uint32_t rhs )
 {
 	return uint3x2(
 		lhs[0] ^ rhs,
@@ -8746,13 +8746,13 @@ HLML_INLINE uint3x2 operator^( const uint3x2& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise ^'d against the scalar.
-HLML_INLINE uint3x2 operator^=( uint3x2& lhs, const uint32_t rhs )
+HLML_INLINE uint3x2 operator^=( uint3x2 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs ^ rhs );
 }
 
 // Performs a component-wise bitwise ^ against the two matrices and returns the result.
-HLML_INLINE uint3x2 operator^( const uint3x2& lhs, const uint3x2& rhs )
+HLML_INLINE uint3x2 operator^( const uint3x2 &lhs, const uint3x2 &rhs )
 {
 	return uint3x2(
 		lhs[0] ^ rhs[0],
@@ -8762,13 +8762,13 @@ HLML_INLINE uint3x2 operator^( const uint3x2& lhs, const uint3x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise ^'d against 'rhs'.
-HLML_INLINE uint3x2 operator^=( uint3x2& lhs, const uint3x2& rhs )
+HLML_INLINE uint3x2 operator^=( uint3x2 &lhs, const uint3x2 &rhs )
 {
 	return ( lhs = lhs ^ rhs );
 }
 
 // Performs a component-wise bitwise << on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x2 operator<<( const uint3x2& lhs, const uint32_t rhs )
+HLML_INLINE uint3x2 operator<<( const uint3x2 &lhs, const uint32_t rhs )
 {
 	return uint3x2(
 		lhs[0] << rhs,
@@ -8778,13 +8778,13 @@ HLML_INLINE uint3x2 operator<<( const uint3x2& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise <<'d against the scalar.
-HLML_INLINE uint3x2 operator<<=( uint3x2& lhs, const uint32_t rhs )
+HLML_INLINE uint3x2 operator<<=( uint3x2 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs << rhs );
 }
 
 // Performs a component-wise bitwise << against the two matrices and returns the result.
-HLML_INLINE uint3x2 operator<<( const uint3x2& lhs, const uint3x2& rhs )
+HLML_INLINE uint3x2 operator<<( const uint3x2 &lhs, const uint3x2 &rhs )
 {
 	return uint3x2(
 		lhs[0] << rhs[0],
@@ -8794,13 +8794,13 @@ HLML_INLINE uint3x2 operator<<( const uint3x2& lhs, const uint3x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise <<'d against 'rhs'.
-HLML_INLINE uint3x2 operator<<=( uint3x2& lhs, const uint3x2& rhs )
+HLML_INLINE uint3x2 operator<<=( uint3x2 &lhs, const uint3x2 &rhs )
 {
 	return ( lhs = lhs << rhs );
 }
 
 // Performs a component-wise bitwise >> on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x2 operator>>( const uint3x2& lhs, const uint32_t rhs )
+HLML_INLINE uint3x2 operator>>( const uint3x2 &lhs, const uint32_t rhs )
 {
 	return uint3x2(
 		lhs[0] >> rhs,
@@ -8810,13 +8810,13 @@ HLML_INLINE uint3x2 operator>>( const uint3x2& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise >>'d against the scalar.
-HLML_INLINE uint3x2 operator>>=( uint3x2& lhs, const uint32_t rhs )
+HLML_INLINE uint3x2 operator>>=( uint3x2 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs >> rhs );
 }
 
 // Performs a component-wise bitwise >> against the two matrices and returns the result.
-HLML_INLINE uint3x2 operator>>( const uint3x2& lhs, const uint3x2& rhs )
+HLML_INLINE uint3x2 operator>>( const uint3x2 &lhs, const uint3x2 &rhs )
 {
 	return uint3x2(
 		lhs[0] >> rhs[0],
@@ -8826,13 +8826,13 @@ HLML_INLINE uint3x2 operator>>( const uint3x2& lhs, const uint3x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise >>'d against 'rhs'.
-HLML_INLINE uint3x2 operator>>=( uint3x2& lhs, const uint3x2& rhs )
+HLML_INLINE uint3x2 operator>>=( uint3x2 &lhs, const uint3x2 &rhs )
 {
 	return ( lhs = lhs >> rhs );
 }
 
 // Sets the matrix to an identity matrix.
-HLML_INLINE void identity( uint3x2& mat )
+HLML_INLINE void identity( uint3x2 &mat )
 {
 	mat.rows[0] = HLML_CONSTRUCT( uint2 ) { 1U, 0U };
 	mat.rows[1] = HLML_CONSTRUCT( uint2 ) { 0U, 1U };
@@ -8840,7 +8840,7 @@ HLML_INLINE void identity( uint3x2& mat )
 }
 
 // Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-HLML_INLINE uint2x3 transpose( const uint3x2& mat )
+HLML_INLINE uint2x3 transpose( const uint3x2 &mat )
 {
 	return HLML_CONSTRUCT( uint2x3 )
 	{
@@ -8850,7 +8850,7 @@ HLML_INLINE uint2x3 transpose( const uint3x2& mat )
 }
 
 // Performs a matrix multiplication with 'lhs' and 'rhs' and returns the result.
-HLML_INLINE uint3x3 mul( const uint3x2& lhs, const uint2x3& rhs )
+HLML_INLINE uint3x3 mul( const uint3x2 &lhs, const uint2x3 &rhs )
 {
 	uint2 row0 = lhs.rows[0];
 	uint2 row1 = lhs.rows[1];
@@ -8878,7 +8878,7 @@ HLML_INLINE uint3x3 mul( const uint3x2& lhs, const uint2x3& rhs )
 
 // uint3x3
 // Performs a min function on each row of the matrix.
-HLML_INLINE uint3x3 min( const uint3x3& x, const uint3x3& y )
+HLML_INLINE uint3x3 min( const uint3x3 &x, const uint3x3 &y )
 {
 	return uint3x3(
 		min( x[0], y[0] ),
@@ -8888,7 +8888,7 @@ HLML_INLINE uint3x3 min( const uint3x3& x, const uint3x3& y )
 }
 
 // Performs a max function on each row of the matrix.
-HLML_INLINE uint3x3 max( const uint3x3& x, const uint3x3& y )
+HLML_INLINE uint3x3 max( const uint3x3 &x, const uint3x3 &y )
 {
 	return uint3x3(
 		max( x[0], y[0] ),
@@ -8898,7 +8898,7 @@ HLML_INLINE uint3x3 max( const uint3x3& x, const uint3x3& y )
 }
 
 // Performs a clamp function on each row of the matrix.
-HLML_INLINE uint3x3 clamp( const uint3x3& x, const uint3x3& low, const uint3x3& high )
+HLML_INLINE uint3x3 clamp( const uint3x3 &x, const uint3x3 &low, const uint3x3 &high )
 {
 	return uint3x3(
 		clamp( x[0], low[0], high[0] ),
@@ -8908,7 +8908,7 @@ HLML_INLINE uint3x3 clamp( const uint3x3& x, const uint3x3& low, const uint3x3& 
 }
 
 // Performs a saturate function on each row of the matrix.
-HLML_INLINE uint3x3 saturate( const uint3x3& x )
+HLML_INLINE uint3x3 saturate( const uint3x3 &x )
 {
 	return uint3x3(
 		saturate( x[0] ),
@@ -8918,7 +8918,7 @@ HLML_INLINE uint3x3 saturate( const uint3x3& x )
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator==( const uint3x3& lhs, const uint3x3& rhs )
+HLML_INLINE bool operator==( const uint3x3 &lhs, const uint3x3 &rhs )
 {
 	return
 		lhs[0] == rhs[0] &&
@@ -8927,13 +8927,13 @@ HLML_INLINE bool operator==( const uint3x3& lhs, const uint3x3& rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator!=( const uint3x3& lhs, const uint3x3& rhs )
+HLML_INLINE bool operator!=( const uint3x3 &lhs, const uint3x3 &rhs )
 {
 	return !( lhs == rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool3x3 operator<( const uint3x3& lhs, const uint3x3& rhs )
+HLML_INLINE bool3x3 operator<( const uint3x3 &lhs, const uint3x3 &rhs )
 {
 	return bool3x3(
 		lhs[0] < rhs[0],
@@ -8943,7 +8943,7 @@ HLML_INLINE bool3x3 operator<( const uint3x3& lhs, const uint3x3& rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool3x3 operator<=( const uint3x3& lhs, const uint3x3& rhs )
+HLML_INLINE bool3x3 operator<=( const uint3x3 &lhs, const uint3x3 &rhs )
 {
 	return bool3x3(
 		lhs[0] <= rhs[0],
@@ -8953,7 +8953,7 @@ HLML_INLINE bool3x3 operator<=( const uint3x3& lhs, const uint3x3& rhs )
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool3x3 operator>( const uint3x3& lhs, const uint3x3& rhs )
+HLML_INLINE bool3x3 operator>( const uint3x3 &lhs, const uint3x3 &rhs )
 {
 	return bool3x3(
 		lhs[0] > rhs[0],
@@ -8963,7 +8963,7 @@ HLML_INLINE bool3x3 operator>( const uint3x3& lhs, const uint3x3& rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool3x3 operator>=( const uint3x3& lhs, const uint3x3& rhs )
+HLML_INLINE bool3x3 operator>=( const uint3x3 &lhs, const uint3x3 &rhs )
 {
 	return bool3x3(
 		lhs[0] >= rhs[0],
@@ -8973,7 +8973,7 @@ HLML_INLINE bool3x3 operator>=( const uint3x3& lhs, const uint3x3& rhs )
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x3 operator+( const uint3x3& lhs, const uint32_t rhs )
+HLML_INLINE uint3x3 operator+( const uint3x3 &lhs, const uint32_t rhs )
 {
 	return uint3x3(
 		lhs[0] + rhs,
@@ -8983,13 +8983,13 @@ HLML_INLINE uint3x3 operator+( const uint3x3& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been +'d against the scalar.
-HLML_INLINE uint3x3 operator+=( uint3x3& lhs, const uint32_t rhs )
+HLML_INLINE uint3x3 operator+=( uint3x3 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE uint3x3 operator+( const uint3x3& lhs, const uint3x3& rhs )
+HLML_INLINE uint3x3 operator+( const uint3x3 &lhs, const uint3x3 &rhs )
 {
 	return uint3x3(
 		lhs[0] + rhs[0],
@@ -8999,13 +8999,13 @@ HLML_INLINE uint3x3 operator+( const uint3x3& lhs, const uint3x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise +'d against 'rhs'.
-HLML_INLINE uint3x3 operator+=( uint3x3& lhs, const uint3x3& rhs )
+HLML_INLINE uint3x3 operator+=( uint3x3 &lhs, const uint3x3 &rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x3 operator-( const uint3x3& lhs, const uint32_t rhs )
+HLML_INLINE uint3x3 operator-( const uint3x3 &lhs, const uint32_t rhs )
 {
 	return uint3x3(
 		lhs[0] - rhs,
@@ -9015,13 +9015,13 @@ HLML_INLINE uint3x3 operator-( const uint3x3& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been -'d against the scalar.
-HLML_INLINE uint3x3 operator-=( uint3x3& lhs, const uint32_t rhs )
+HLML_INLINE uint3x3 operator-=( uint3x3 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE uint3x3 operator-( const uint3x3& lhs, const uint3x3& rhs )
+HLML_INLINE uint3x3 operator-( const uint3x3 &lhs, const uint3x3 &rhs )
 {
 	return uint3x3(
 		lhs[0] - rhs[0],
@@ -9031,13 +9031,13 @@ HLML_INLINE uint3x3 operator-( const uint3x3& lhs, const uint3x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise -'d against 'rhs'.
-HLML_INLINE uint3x3 operator-=( uint3x3& lhs, const uint3x3& rhs )
+HLML_INLINE uint3x3 operator-=( uint3x3 &lhs, const uint3x3 &rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x3 operator*( const uint3x3& lhs, const uint32_t rhs )
+HLML_INLINE uint3x3 operator*( const uint3x3 &lhs, const uint32_t rhs )
 {
 	return uint3x3(
 		lhs[0] * rhs,
@@ -9047,13 +9047,13 @@ HLML_INLINE uint3x3 operator*( const uint3x3& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been *'d against the scalar.
-HLML_INLINE uint3x3 operator*=( uint3x3& lhs, const uint32_t rhs )
+HLML_INLINE uint3x3 operator*=( uint3x3 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE uint3x3 operator*( const uint3x3& lhs, const uint3x3& rhs )
+HLML_INLINE uint3x3 operator*( const uint3x3 &lhs, const uint3x3 &rhs )
 {
 	return uint3x3(
 		lhs[0] * rhs[0],
@@ -9063,13 +9063,13 @@ HLML_INLINE uint3x3 operator*( const uint3x3& lhs, const uint3x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise *'d against 'rhs'.
-HLML_INLINE uint3x3 operator*=( uint3x3& lhs, const uint3x3& rhs )
+HLML_INLINE uint3x3 operator*=( uint3x3 &lhs, const uint3x3 &rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x3 operator/( const uint3x3& lhs, const uint32_t rhs )
+HLML_INLINE uint3x3 operator/( const uint3x3 &lhs, const uint32_t rhs )
 {
 	return uint3x3(
 		lhs[0] / rhs,
@@ -9079,13 +9079,13 @@ HLML_INLINE uint3x3 operator/( const uint3x3& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been /'d against the scalar.
-HLML_INLINE uint3x3 operator/=( uint3x3& lhs, const uint32_t rhs )
+HLML_INLINE uint3x3 operator/=( uint3x3 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE uint3x3 operator/( const uint3x3& lhs, const uint3x3& rhs )
+HLML_INLINE uint3x3 operator/( const uint3x3 &lhs, const uint3x3 &rhs )
 {
 	return uint3x3(
 		lhs[0] / rhs[0],
@@ -9095,13 +9095,13 @@ HLML_INLINE uint3x3 operator/( const uint3x3& lhs, const uint3x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise /'d against 'rhs'.
-HLML_INLINE uint3x3 operator/=( uint3x3& lhs, const uint3x3& rhs )
+HLML_INLINE uint3x3 operator/=( uint3x3 &lhs, const uint3x3 &rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // ++s each component of the matrix and returns the result.
-HLML_INLINE uint3x3 operator++( uint3x3& x )
+HLML_INLINE uint3x3 operator++( uint3x3 &x )
 {
 	++x[0];
 	++x[1];
@@ -9111,7 +9111,7 @@ HLML_INLINE uint3x3 operator++( uint3x3& x )
 
 // ++s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE uint3x3 operator++( uint3x3& x, const int32_t )
+HLML_INLINE uint3x3 operator++( uint3x3 &x, const int32_t )
 {
 	x[0]++;
 	x[1]++;
@@ -9120,7 +9120,7 @@ HLML_INLINE uint3x3 operator++( uint3x3& x, const int32_t )
 }
 
 // --s each component of the matrix and returns the result.
-HLML_INLINE uint3x3 operator--( uint3x3& x )
+HLML_INLINE uint3x3 operator--( uint3x3 &x )
 {
 	--x[0];
 	--x[1];
@@ -9130,7 +9130,7 @@ HLML_INLINE uint3x3 operator--( uint3x3& x )
 
 // --s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE uint3x3 operator--( uint3x3& x, const int32_t )
+HLML_INLINE uint3x3 operator--( uint3x3 &x, const int32_t )
 {
 	x[0]--;
 	x[1]--;
@@ -9144,7 +9144,7 @@ HLML_INLINE uint3x3 operator--( uint3x3& x, const int32_t )
 #endif
 // Returns a copy of the matrix that has been negated.
 // pre-fix
-HLML_INLINE uint3x3 operator-( const uint3x3& x )
+HLML_INLINE uint3x3 operator-( const uint3x3 &x )
 {
 	return uint3x3(
 		-x[0],
@@ -9158,7 +9158,7 @@ HLML_INLINE uint3x3 operator-( const uint3x3& x )
 #endif
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
 // pre-fix
-HLML_INLINE uint3x3 operator~( const uint3x3& x )
+HLML_INLINE uint3x3 operator~( const uint3x3 &x )
 {
 	return uint3x3(
 		~x[0],
@@ -9168,7 +9168,7 @@ HLML_INLINE uint3x3 operator~( const uint3x3& x )
 }
 
 // Performs a component-wise bitwise & on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x3 operator&( const uint3x3& lhs, const uint32_t rhs )
+HLML_INLINE uint3x3 operator&( const uint3x3 &lhs, const uint32_t rhs )
 {
 	return uint3x3(
 		lhs[0] & rhs,
@@ -9178,13 +9178,13 @@ HLML_INLINE uint3x3 operator&( const uint3x3& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise &'d against the scalar.
-HLML_INLINE uint3x3 operator&=( uint3x3& lhs, const uint32_t rhs )
+HLML_INLINE uint3x3 operator&=( uint3x3 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs & rhs );
 }
 
 // Performs a component-wise bitwise & against the two matrices and returns the result.
-HLML_INLINE uint3x3 operator&( const uint3x3& lhs, const uint3x3& rhs )
+HLML_INLINE uint3x3 operator&( const uint3x3 &lhs, const uint3x3 &rhs )
 {
 	return uint3x3(
 		lhs[0] & rhs[0],
@@ -9194,13 +9194,13 @@ HLML_INLINE uint3x3 operator&( const uint3x3& lhs, const uint3x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise &'d against 'rhs'.
-HLML_INLINE uint3x3 operator&=( uint3x3& lhs, const uint3x3& rhs )
+HLML_INLINE uint3x3 operator&=( uint3x3 &lhs, const uint3x3 &rhs )
 {
 	return ( lhs = lhs & rhs );
 }
 
 // Performs a component-wise bitwise | on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x3 operator|( const uint3x3& lhs, const uint32_t rhs )
+HLML_INLINE uint3x3 operator|( const uint3x3 &lhs, const uint32_t rhs )
 {
 	return uint3x3(
 		lhs[0] | rhs,
@@ -9210,13 +9210,13 @@ HLML_INLINE uint3x3 operator|( const uint3x3& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise |'d against the scalar.
-HLML_INLINE uint3x3 operator|=( uint3x3& lhs, const uint32_t rhs )
+HLML_INLINE uint3x3 operator|=( uint3x3 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs | rhs );
 }
 
 // Performs a component-wise bitwise | against the two matrices and returns the result.
-HLML_INLINE uint3x3 operator|( const uint3x3& lhs, const uint3x3& rhs )
+HLML_INLINE uint3x3 operator|( const uint3x3 &lhs, const uint3x3 &rhs )
 {
 	return uint3x3(
 		lhs[0] | rhs[0],
@@ -9226,13 +9226,13 @@ HLML_INLINE uint3x3 operator|( const uint3x3& lhs, const uint3x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise |'d against 'rhs'.
-HLML_INLINE uint3x3 operator|=( uint3x3& lhs, const uint3x3& rhs )
+HLML_INLINE uint3x3 operator|=( uint3x3 &lhs, const uint3x3 &rhs )
 {
 	return ( lhs = lhs | rhs );
 }
 
 // Performs a component-wise bitwise ^ on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x3 operator^( const uint3x3& lhs, const uint32_t rhs )
+HLML_INLINE uint3x3 operator^( const uint3x3 &lhs, const uint32_t rhs )
 {
 	return uint3x3(
 		lhs[0] ^ rhs,
@@ -9242,13 +9242,13 @@ HLML_INLINE uint3x3 operator^( const uint3x3& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise ^'d against the scalar.
-HLML_INLINE uint3x3 operator^=( uint3x3& lhs, const uint32_t rhs )
+HLML_INLINE uint3x3 operator^=( uint3x3 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs ^ rhs );
 }
 
 // Performs a component-wise bitwise ^ against the two matrices and returns the result.
-HLML_INLINE uint3x3 operator^( const uint3x3& lhs, const uint3x3& rhs )
+HLML_INLINE uint3x3 operator^( const uint3x3 &lhs, const uint3x3 &rhs )
 {
 	return uint3x3(
 		lhs[0] ^ rhs[0],
@@ -9258,13 +9258,13 @@ HLML_INLINE uint3x3 operator^( const uint3x3& lhs, const uint3x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise ^'d against 'rhs'.
-HLML_INLINE uint3x3 operator^=( uint3x3& lhs, const uint3x3& rhs )
+HLML_INLINE uint3x3 operator^=( uint3x3 &lhs, const uint3x3 &rhs )
 {
 	return ( lhs = lhs ^ rhs );
 }
 
 // Performs a component-wise bitwise << on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x3 operator<<( const uint3x3& lhs, const uint32_t rhs )
+HLML_INLINE uint3x3 operator<<( const uint3x3 &lhs, const uint32_t rhs )
 {
 	return uint3x3(
 		lhs[0] << rhs,
@@ -9274,13 +9274,13 @@ HLML_INLINE uint3x3 operator<<( const uint3x3& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise <<'d against the scalar.
-HLML_INLINE uint3x3 operator<<=( uint3x3& lhs, const uint32_t rhs )
+HLML_INLINE uint3x3 operator<<=( uint3x3 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs << rhs );
 }
 
 // Performs a component-wise bitwise << against the two matrices and returns the result.
-HLML_INLINE uint3x3 operator<<( const uint3x3& lhs, const uint3x3& rhs )
+HLML_INLINE uint3x3 operator<<( const uint3x3 &lhs, const uint3x3 &rhs )
 {
 	return uint3x3(
 		lhs[0] << rhs[0],
@@ -9290,13 +9290,13 @@ HLML_INLINE uint3x3 operator<<( const uint3x3& lhs, const uint3x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise <<'d against 'rhs'.
-HLML_INLINE uint3x3 operator<<=( uint3x3& lhs, const uint3x3& rhs )
+HLML_INLINE uint3x3 operator<<=( uint3x3 &lhs, const uint3x3 &rhs )
 {
 	return ( lhs = lhs << rhs );
 }
 
 // Performs a component-wise bitwise >> on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x3 operator>>( const uint3x3& lhs, const uint32_t rhs )
+HLML_INLINE uint3x3 operator>>( const uint3x3 &lhs, const uint32_t rhs )
 {
 	return uint3x3(
 		lhs[0] >> rhs,
@@ -9306,13 +9306,13 @@ HLML_INLINE uint3x3 operator>>( const uint3x3& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise >>'d against the scalar.
-HLML_INLINE uint3x3 operator>>=( uint3x3& lhs, const uint32_t rhs )
+HLML_INLINE uint3x3 operator>>=( uint3x3 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs >> rhs );
 }
 
 // Performs a component-wise bitwise >> against the two matrices and returns the result.
-HLML_INLINE uint3x3 operator>>( const uint3x3& lhs, const uint3x3& rhs )
+HLML_INLINE uint3x3 operator>>( const uint3x3 &lhs, const uint3x3 &rhs )
 {
 	return uint3x3(
 		lhs[0] >> rhs[0],
@@ -9322,13 +9322,13 @@ HLML_INLINE uint3x3 operator>>( const uint3x3& lhs, const uint3x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise >>'d against 'rhs'.
-HLML_INLINE uint3x3 operator>>=( uint3x3& lhs, const uint3x3& rhs )
+HLML_INLINE uint3x3 operator>>=( uint3x3 &lhs, const uint3x3 &rhs )
 {
 	return ( lhs = lhs >> rhs );
 }
 
 // Sets the matrix to an identity matrix.
-HLML_INLINE void identity( uint3x3& mat )
+HLML_INLINE void identity( uint3x3 &mat )
 {
 	mat.rows[0] = HLML_CONSTRUCT( uint3 ) { 1U, 0U, 0U };
 	mat.rows[1] = HLML_CONSTRUCT( uint3 ) { 0U, 1U, 0U };
@@ -9336,7 +9336,7 @@ HLML_INLINE void identity( uint3x3& mat )
 }
 
 // Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-HLML_INLINE uint3x3 transpose( const uint3x3& mat )
+HLML_INLINE uint3x3 transpose( const uint3x3 &mat )
 {
 	return HLML_CONSTRUCT( uint3x3 )
 	{
@@ -9347,7 +9347,7 @@ HLML_INLINE uint3x3 transpose( const uint3x3& mat )
 }
 
 // Performs a matrix multiplication with 'lhs' and 'rhs' and returns the result.
-HLML_INLINE uint3x3 mul( const uint3x3& lhs, const uint3x3& rhs )
+HLML_INLINE uint3x3 mul( const uint3x3 &lhs, const uint3x3 &rhs )
 {
 	uint3 row0 = lhs.rows[0];
 	uint3 row1 = lhs.rows[1];
@@ -9374,7 +9374,7 @@ HLML_INLINE uint3x3 mul( const uint3x3& lhs, const uint3x3& rhs )
 }
 
 // Multiplies the vector 'lhs' against the matrix 'rhs' and returns the result.
-HLML_INLINE uint3 mul( const uint3& lhs, const uint3x3& rhs )
+HLML_INLINE uint3 mul( const uint3 &lhs, const uint3x3 &rhs )
 {
 	return HLML_CONSTRUCT( uint3 )
 	{
@@ -9386,7 +9386,7 @@ HLML_INLINE uint3 mul( const uint3& lhs, const uint3x3& rhs )
 
 // uint3x4
 // Performs a min function on each row of the matrix.
-HLML_INLINE uint3x4 min( const uint3x4& x, const uint3x4& y )
+HLML_INLINE uint3x4 min( const uint3x4 &x, const uint3x4 &y )
 {
 	return uint3x4(
 		min( x[0], y[0] ),
@@ -9396,7 +9396,7 @@ HLML_INLINE uint3x4 min( const uint3x4& x, const uint3x4& y )
 }
 
 // Performs a max function on each row of the matrix.
-HLML_INLINE uint3x4 max( const uint3x4& x, const uint3x4& y )
+HLML_INLINE uint3x4 max( const uint3x4 &x, const uint3x4 &y )
 {
 	return uint3x4(
 		max( x[0], y[0] ),
@@ -9406,7 +9406,7 @@ HLML_INLINE uint3x4 max( const uint3x4& x, const uint3x4& y )
 }
 
 // Performs a clamp function on each row of the matrix.
-HLML_INLINE uint3x4 clamp( const uint3x4& x, const uint3x4& low, const uint3x4& high )
+HLML_INLINE uint3x4 clamp( const uint3x4 &x, const uint3x4 &low, const uint3x4 &high )
 {
 	return uint3x4(
 		clamp( x[0], low[0], high[0] ),
@@ -9416,7 +9416,7 @@ HLML_INLINE uint3x4 clamp( const uint3x4& x, const uint3x4& low, const uint3x4& 
 }
 
 // Performs a saturate function on each row of the matrix.
-HLML_INLINE uint3x4 saturate( const uint3x4& x )
+HLML_INLINE uint3x4 saturate( const uint3x4 &x )
 {
 	return uint3x4(
 		saturate( x[0] ),
@@ -9426,7 +9426,7 @@ HLML_INLINE uint3x4 saturate( const uint3x4& x )
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator==( const uint3x4& lhs, const uint3x4& rhs )
+HLML_INLINE bool operator==( const uint3x4 &lhs, const uint3x4 &rhs )
 {
 	return
 		lhs[0] == rhs[0] &&
@@ -9435,13 +9435,13 @@ HLML_INLINE bool operator==( const uint3x4& lhs, const uint3x4& rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator!=( const uint3x4& lhs, const uint3x4& rhs )
+HLML_INLINE bool operator!=( const uint3x4 &lhs, const uint3x4 &rhs )
 {
 	return !( lhs == rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool3x4 operator<( const uint3x4& lhs, const uint3x4& rhs )
+HLML_INLINE bool3x4 operator<( const uint3x4 &lhs, const uint3x4 &rhs )
 {
 	return bool3x4(
 		lhs[0] < rhs[0],
@@ -9451,7 +9451,7 @@ HLML_INLINE bool3x4 operator<( const uint3x4& lhs, const uint3x4& rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool3x4 operator<=( const uint3x4& lhs, const uint3x4& rhs )
+HLML_INLINE bool3x4 operator<=( const uint3x4 &lhs, const uint3x4 &rhs )
 {
 	return bool3x4(
 		lhs[0] <= rhs[0],
@@ -9461,7 +9461,7 @@ HLML_INLINE bool3x4 operator<=( const uint3x4& lhs, const uint3x4& rhs )
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool3x4 operator>( const uint3x4& lhs, const uint3x4& rhs )
+HLML_INLINE bool3x4 operator>( const uint3x4 &lhs, const uint3x4 &rhs )
 {
 	return bool3x4(
 		lhs[0] > rhs[0],
@@ -9471,7 +9471,7 @@ HLML_INLINE bool3x4 operator>( const uint3x4& lhs, const uint3x4& rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool3x4 operator>=( const uint3x4& lhs, const uint3x4& rhs )
+HLML_INLINE bool3x4 operator>=( const uint3x4 &lhs, const uint3x4 &rhs )
 {
 	return bool3x4(
 		lhs[0] >= rhs[0],
@@ -9481,7 +9481,7 @@ HLML_INLINE bool3x4 operator>=( const uint3x4& lhs, const uint3x4& rhs )
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x4 operator+( const uint3x4& lhs, const uint32_t rhs )
+HLML_INLINE uint3x4 operator+( const uint3x4 &lhs, const uint32_t rhs )
 {
 	return uint3x4(
 		lhs[0] + rhs,
@@ -9491,13 +9491,13 @@ HLML_INLINE uint3x4 operator+( const uint3x4& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been +'d against the scalar.
-HLML_INLINE uint3x4 operator+=( uint3x4& lhs, const uint32_t rhs )
+HLML_INLINE uint3x4 operator+=( uint3x4 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE uint3x4 operator+( const uint3x4& lhs, const uint3x4& rhs )
+HLML_INLINE uint3x4 operator+( const uint3x4 &lhs, const uint3x4 &rhs )
 {
 	return uint3x4(
 		lhs[0] + rhs[0],
@@ -9507,13 +9507,13 @@ HLML_INLINE uint3x4 operator+( const uint3x4& lhs, const uint3x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise +'d against 'rhs'.
-HLML_INLINE uint3x4 operator+=( uint3x4& lhs, const uint3x4& rhs )
+HLML_INLINE uint3x4 operator+=( uint3x4 &lhs, const uint3x4 &rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x4 operator-( const uint3x4& lhs, const uint32_t rhs )
+HLML_INLINE uint3x4 operator-( const uint3x4 &lhs, const uint32_t rhs )
 {
 	return uint3x4(
 		lhs[0] - rhs,
@@ -9523,13 +9523,13 @@ HLML_INLINE uint3x4 operator-( const uint3x4& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been -'d against the scalar.
-HLML_INLINE uint3x4 operator-=( uint3x4& lhs, const uint32_t rhs )
+HLML_INLINE uint3x4 operator-=( uint3x4 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE uint3x4 operator-( const uint3x4& lhs, const uint3x4& rhs )
+HLML_INLINE uint3x4 operator-( const uint3x4 &lhs, const uint3x4 &rhs )
 {
 	return uint3x4(
 		lhs[0] - rhs[0],
@@ -9539,13 +9539,13 @@ HLML_INLINE uint3x4 operator-( const uint3x4& lhs, const uint3x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise -'d against 'rhs'.
-HLML_INLINE uint3x4 operator-=( uint3x4& lhs, const uint3x4& rhs )
+HLML_INLINE uint3x4 operator-=( uint3x4 &lhs, const uint3x4 &rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x4 operator*( const uint3x4& lhs, const uint32_t rhs )
+HLML_INLINE uint3x4 operator*( const uint3x4 &lhs, const uint32_t rhs )
 {
 	return uint3x4(
 		lhs[0] * rhs,
@@ -9555,13 +9555,13 @@ HLML_INLINE uint3x4 operator*( const uint3x4& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been *'d against the scalar.
-HLML_INLINE uint3x4 operator*=( uint3x4& lhs, const uint32_t rhs )
+HLML_INLINE uint3x4 operator*=( uint3x4 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE uint3x4 operator*( const uint3x4& lhs, const uint3x4& rhs )
+HLML_INLINE uint3x4 operator*( const uint3x4 &lhs, const uint3x4 &rhs )
 {
 	return uint3x4(
 		lhs[0] * rhs[0],
@@ -9571,13 +9571,13 @@ HLML_INLINE uint3x4 operator*( const uint3x4& lhs, const uint3x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise *'d against 'rhs'.
-HLML_INLINE uint3x4 operator*=( uint3x4& lhs, const uint3x4& rhs )
+HLML_INLINE uint3x4 operator*=( uint3x4 &lhs, const uint3x4 &rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x4 operator/( const uint3x4& lhs, const uint32_t rhs )
+HLML_INLINE uint3x4 operator/( const uint3x4 &lhs, const uint32_t rhs )
 {
 	return uint3x4(
 		lhs[0] / rhs,
@@ -9587,13 +9587,13 @@ HLML_INLINE uint3x4 operator/( const uint3x4& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been /'d against the scalar.
-HLML_INLINE uint3x4 operator/=( uint3x4& lhs, const uint32_t rhs )
+HLML_INLINE uint3x4 operator/=( uint3x4 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE uint3x4 operator/( const uint3x4& lhs, const uint3x4& rhs )
+HLML_INLINE uint3x4 operator/( const uint3x4 &lhs, const uint3x4 &rhs )
 {
 	return uint3x4(
 		lhs[0] / rhs[0],
@@ -9603,13 +9603,13 @@ HLML_INLINE uint3x4 operator/( const uint3x4& lhs, const uint3x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise /'d against 'rhs'.
-HLML_INLINE uint3x4 operator/=( uint3x4& lhs, const uint3x4& rhs )
+HLML_INLINE uint3x4 operator/=( uint3x4 &lhs, const uint3x4 &rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // ++s each component of the matrix and returns the result.
-HLML_INLINE uint3x4 operator++( uint3x4& x )
+HLML_INLINE uint3x4 operator++( uint3x4 &x )
 {
 	++x[0];
 	++x[1];
@@ -9619,7 +9619,7 @@ HLML_INLINE uint3x4 operator++( uint3x4& x )
 
 // ++s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE uint3x4 operator++( uint3x4& x, const int32_t )
+HLML_INLINE uint3x4 operator++( uint3x4 &x, const int32_t )
 {
 	x[0]++;
 	x[1]++;
@@ -9628,7 +9628,7 @@ HLML_INLINE uint3x4 operator++( uint3x4& x, const int32_t )
 }
 
 // --s each component of the matrix and returns the result.
-HLML_INLINE uint3x4 operator--( uint3x4& x )
+HLML_INLINE uint3x4 operator--( uint3x4 &x )
 {
 	--x[0];
 	--x[1];
@@ -9638,7 +9638,7 @@ HLML_INLINE uint3x4 operator--( uint3x4& x )
 
 // --s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE uint3x4 operator--( uint3x4& x, const int32_t )
+HLML_INLINE uint3x4 operator--( uint3x4 &x, const int32_t )
 {
 	x[0]--;
 	x[1]--;
@@ -9652,7 +9652,7 @@ HLML_INLINE uint3x4 operator--( uint3x4& x, const int32_t )
 #endif
 // Returns a copy of the matrix that has been negated.
 // pre-fix
-HLML_INLINE uint3x4 operator-( const uint3x4& x )
+HLML_INLINE uint3x4 operator-( const uint3x4 &x )
 {
 	return uint3x4(
 		-x[0],
@@ -9666,7 +9666,7 @@ HLML_INLINE uint3x4 operator-( const uint3x4& x )
 #endif
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
 // pre-fix
-HLML_INLINE uint3x4 operator~( const uint3x4& x )
+HLML_INLINE uint3x4 operator~( const uint3x4 &x )
 {
 	return uint3x4(
 		~x[0],
@@ -9676,7 +9676,7 @@ HLML_INLINE uint3x4 operator~( const uint3x4& x )
 }
 
 // Performs a component-wise bitwise & on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x4 operator&( const uint3x4& lhs, const uint32_t rhs )
+HLML_INLINE uint3x4 operator&( const uint3x4 &lhs, const uint32_t rhs )
 {
 	return uint3x4(
 		lhs[0] & rhs,
@@ -9686,13 +9686,13 @@ HLML_INLINE uint3x4 operator&( const uint3x4& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise &'d against the scalar.
-HLML_INLINE uint3x4 operator&=( uint3x4& lhs, const uint32_t rhs )
+HLML_INLINE uint3x4 operator&=( uint3x4 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs & rhs );
 }
 
 // Performs a component-wise bitwise & against the two matrices and returns the result.
-HLML_INLINE uint3x4 operator&( const uint3x4& lhs, const uint3x4& rhs )
+HLML_INLINE uint3x4 operator&( const uint3x4 &lhs, const uint3x4 &rhs )
 {
 	return uint3x4(
 		lhs[0] & rhs[0],
@@ -9702,13 +9702,13 @@ HLML_INLINE uint3x4 operator&( const uint3x4& lhs, const uint3x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise &'d against 'rhs'.
-HLML_INLINE uint3x4 operator&=( uint3x4& lhs, const uint3x4& rhs )
+HLML_INLINE uint3x4 operator&=( uint3x4 &lhs, const uint3x4 &rhs )
 {
 	return ( lhs = lhs & rhs );
 }
 
 // Performs a component-wise bitwise | on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x4 operator|( const uint3x4& lhs, const uint32_t rhs )
+HLML_INLINE uint3x4 operator|( const uint3x4 &lhs, const uint32_t rhs )
 {
 	return uint3x4(
 		lhs[0] | rhs,
@@ -9718,13 +9718,13 @@ HLML_INLINE uint3x4 operator|( const uint3x4& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise |'d against the scalar.
-HLML_INLINE uint3x4 operator|=( uint3x4& lhs, const uint32_t rhs )
+HLML_INLINE uint3x4 operator|=( uint3x4 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs | rhs );
 }
 
 // Performs a component-wise bitwise | against the two matrices and returns the result.
-HLML_INLINE uint3x4 operator|( const uint3x4& lhs, const uint3x4& rhs )
+HLML_INLINE uint3x4 operator|( const uint3x4 &lhs, const uint3x4 &rhs )
 {
 	return uint3x4(
 		lhs[0] | rhs[0],
@@ -9734,13 +9734,13 @@ HLML_INLINE uint3x4 operator|( const uint3x4& lhs, const uint3x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise |'d against 'rhs'.
-HLML_INLINE uint3x4 operator|=( uint3x4& lhs, const uint3x4& rhs )
+HLML_INLINE uint3x4 operator|=( uint3x4 &lhs, const uint3x4 &rhs )
 {
 	return ( lhs = lhs | rhs );
 }
 
 // Performs a component-wise bitwise ^ on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x4 operator^( const uint3x4& lhs, const uint32_t rhs )
+HLML_INLINE uint3x4 operator^( const uint3x4 &lhs, const uint32_t rhs )
 {
 	return uint3x4(
 		lhs[0] ^ rhs,
@@ -9750,13 +9750,13 @@ HLML_INLINE uint3x4 operator^( const uint3x4& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise ^'d against the scalar.
-HLML_INLINE uint3x4 operator^=( uint3x4& lhs, const uint32_t rhs )
+HLML_INLINE uint3x4 operator^=( uint3x4 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs ^ rhs );
 }
 
 // Performs a component-wise bitwise ^ against the two matrices and returns the result.
-HLML_INLINE uint3x4 operator^( const uint3x4& lhs, const uint3x4& rhs )
+HLML_INLINE uint3x4 operator^( const uint3x4 &lhs, const uint3x4 &rhs )
 {
 	return uint3x4(
 		lhs[0] ^ rhs[0],
@@ -9766,13 +9766,13 @@ HLML_INLINE uint3x4 operator^( const uint3x4& lhs, const uint3x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise ^'d against 'rhs'.
-HLML_INLINE uint3x4 operator^=( uint3x4& lhs, const uint3x4& rhs )
+HLML_INLINE uint3x4 operator^=( uint3x4 &lhs, const uint3x4 &rhs )
 {
 	return ( lhs = lhs ^ rhs );
 }
 
 // Performs a component-wise bitwise << on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x4 operator<<( const uint3x4& lhs, const uint32_t rhs )
+HLML_INLINE uint3x4 operator<<( const uint3x4 &lhs, const uint32_t rhs )
 {
 	return uint3x4(
 		lhs[0] << rhs,
@@ -9782,13 +9782,13 @@ HLML_INLINE uint3x4 operator<<( const uint3x4& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise <<'d against the scalar.
-HLML_INLINE uint3x4 operator<<=( uint3x4& lhs, const uint32_t rhs )
+HLML_INLINE uint3x4 operator<<=( uint3x4 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs << rhs );
 }
 
 // Performs a component-wise bitwise << against the two matrices and returns the result.
-HLML_INLINE uint3x4 operator<<( const uint3x4& lhs, const uint3x4& rhs )
+HLML_INLINE uint3x4 operator<<( const uint3x4 &lhs, const uint3x4 &rhs )
 {
 	return uint3x4(
 		lhs[0] << rhs[0],
@@ -9798,13 +9798,13 @@ HLML_INLINE uint3x4 operator<<( const uint3x4& lhs, const uint3x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise <<'d against 'rhs'.
-HLML_INLINE uint3x4 operator<<=( uint3x4& lhs, const uint3x4& rhs )
+HLML_INLINE uint3x4 operator<<=( uint3x4 &lhs, const uint3x4 &rhs )
 {
 	return ( lhs = lhs << rhs );
 }
 
 // Performs a component-wise bitwise >> on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x4 operator>>( const uint3x4& lhs, const uint32_t rhs )
+HLML_INLINE uint3x4 operator>>( const uint3x4 &lhs, const uint32_t rhs )
 {
 	return uint3x4(
 		lhs[0] >> rhs,
@@ -9814,13 +9814,13 @@ HLML_INLINE uint3x4 operator>>( const uint3x4& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise >>'d against the scalar.
-HLML_INLINE uint3x4 operator>>=( uint3x4& lhs, const uint32_t rhs )
+HLML_INLINE uint3x4 operator>>=( uint3x4 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs >> rhs );
 }
 
 // Performs a component-wise bitwise >> against the two matrices and returns the result.
-HLML_INLINE uint3x4 operator>>( const uint3x4& lhs, const uint3x4& rhs )
+HLML_INLINE uint3x4 operator>>( const uint3x4 &lhs, const uint3x4 &rhs )
 {
 	return uint3x4(
 		lhs[0] >> rhs[0],
@@ -9830,13 +9830,13 @@ HLML_INLINE uint3x4 operator>>( const uint3x4& lhs, const uint3x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise >>'d against 'rhs'.
-HLML_INLINE uint3x4 operator>>=( uint3x4& lhs, const uint3x4& rhs )
+HLML_INLINE uint3x4 operator>>=( uint3x4 &lhs, const uint3x4 &rhs )
 {
 	return ( lhs = lhs >> rhs );
 }
 
 // Sets the matrix to an identity matrix.
-HLML_INLINE void identity( uint3x4& mat )
+HLML_INLINE void identity( uint3x4 &mat )
 {
 	mat.rows[0] = HLML_CONSTRUCT( uint4 ) { 1U, 0U, 0U, 0U };
 	mat.rows[1] = HLML_CONSTRUCT( uint4 ) { 0U, 1U, 0U, 0U };
@@ -9844,7 +9844,7 @@ HLML_INLINE void identity( uint3x4& mat )
 }
 
 // Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-HLML_INLINE uint4x3 transpose( const uint3x4& mat )
+HLML_INLINE uint4x3 transpose( const uint3x4 &mat )
 {
 	return HLML_CONSTRUCT( uint4x3 )
 	{
@@ -9856,7 +9856,7 @@ HLML_INLINE uint4x3 transpose( const uint3x4& mat )
 }
 
 // Performs a matrix multiplication with 'lhs' and 'rhs' and returns the result.
-HLML_INLINE uint3x3 mul( const uint3x4& lhs, const uint4x3& rhs )
+HLML_INLINE uint3x3 mul( const uint3x4 &lhs, const uint4x3 &rhs )
 {
 	uint4 row0 = lhs.rows[0];
 	uint4 row1 = lhs.rows[1];
@@ -9884,7 +9884,7 @@ HLML_INLINE uint3x3 mul( const uint3x4& lhs, const uint4x3& rhs )
 
 // uint4x2
 // Performs a min function on each row of the matrix.
-HLML_INLINE uint4x2 min( const uint4x2& x, const uint4x2& y )
+HLML_INLINE uint4x2 min( const uint4x2 &x, const uint4x2 &y )
 {
 	return uint4x2(
 		min( x[0], y[0] ),
@@ -9895,7 +9895,7 @@ HLML_INLINE uint4x2 min( const uint4x2& x, const uint4x2& y )
 }
 
 // Performs a max function on each row of the matrix.
-HLML_INLINE uint4x2 max( const uint4x2& x, const uint4x2& y )
+HLML_INLINE uint4x2 max( const uint4x2 &x, const uint4x2 &y )
 {
 	return uint4x2(
 		max( x[0], y[0] ),
@@ -9906,7 +9906,7 @@ HLML_INLINE uint4x2 max( const uint4x2& x, const uint4x2& y )
 }
 
 // Performs a clamp function on each row of the matrix.
-HLML_INLINE uint4x2 clamp( const uint4x2& x, const uint4x2& low, const uint4x2& high )
+HLML_INLINE uint4x2 clamp( const uint4x2 &x, const uint4x2 &low, const uint4x2 &high )
 {
 	return uint4x2(
 		clamp( x[0], low[0], high[0] ),
@@ -9917,7 +9917,7 @@ HLML_INLINE uint4x2 clamp( const uint4x2& x, const uint4x2& low, const uint4x2& 
 }
 
 // Performs a saturate function on each row of the matrix.
-HLML_INLINE uint4x2 saturate( const uint4x2& x )
+HLML_INLINE uint4x2 saturate( const uint4x2 &x )
 {
 	return uint4x2(
 		saturate( x[0] ),
@@ -9928,7 +9928,7 @@ HLML_INLINE uint4x2 saturate( const uint4x2& x )
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator==( const uint4x2& lhs, const uint4x2& rhs )
+HLML_INLINE bool operator==( const uint4x2 &lhs, const uint4x2 &rhs )
 {
 	return
 		lhs[0] == rhs[0] &&
@@ -9938,13 +9938,13 @@ HLML_INLINE bool operator==( const uint4x2& lhs, const uint4x2& rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator!=( const uint4x2& lhs, const uint4x2& rhs )
+HLML_INLINE bool operator!=( const uint4x2 &lhs, const uint4x2 &rhs )
 {
 	return !( lhs == rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool4x2 operator<( const uint4x2& lhs, const uint4x2& rhs )
+HLML_INLINE bool4x2 operator<( const uint4x2 &lhs, const uint4x2 &rhs )
 {
 	return bool4x2(
 		lhs[0] < rhs[0],
@@ -9955,7 +9955,7 @@ HLML_INLINE bool4x2 operator<( const uint4x2& lhs, const uint4x2& rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool4x2 operator<=( const uint4x2& lhs, const uint4x2& rhs )
+HLML_INLINE bool4x2 operator<=( const uint4x2 &lhs, const uint4x2 &rhs )
 {
 	return bool4x2(
 		lhs[0] <= rhs[0],
@@ -9966,7 +9966,7 @@ HLML_INLINE bool4x2 operator<=( const uint4x2& lhs, const uint4x2& rhs )
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool4x2 operator>( const uint4x2& lhs, const uint4x2& rhs )
+HLML_INLINE bool4x2 operator>( const uint4x2 &lhs, const uint4x2 &rhs )
 {
 	return bool4x2(
 		lhs[0] > rhs[0],
@@ -9977,7 +9977,7 @@ HLML_INLINE bool4x2 operator>( const uint4x2& lhs, const uint4x2& rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool4x2 operator>=( const uint4x2& lhs, const uint4x2& rhs )
+HLML_INLINE bool4x2 operator>=( const uint4x2 &lhs, const uint4x2 &rhs )
 {
 	return bool4x2(
 		lhs[0] >= rhs[0],
@@ -9988,7 +9988,7 @@ HLML_INLINE bool4x2 operator>=( const uint4x2& lhs, const uint4x2& rhs )
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x2 operator+( const uint4x2& lhs, const uint32_t rhs )
+HLML_INLINE uint4x2 operator+( const uint4x2 &lhs, const uint32_t rhs )
 {
 	return uint4x2(
 		lhs[0] + rhs,
@@ -9999,13 +9999,13 @@ HLML_INLINE uint4x2 operator+( const uint4x2& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been +'d against the scalar.
-HLML_INLINE uint4x2 operator+=( uint4x2& lhs, const uint32_t rhs )
+HLML_INLINE uint4x2 operator+=( uint4x2 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE uint4x2 operator+( const uint4x2& lhs, const uint4x2& rhs )
+HLML_INLINE uint4x2 operator+( const uint4x2 &lhs, const uint4x2 &rhs )
 {
 	return uint4x2(
 		lhs[0] + rhs[0],
@@ -10016,13 +10016,13 @@ HLML_INLINE uint4x2 operator+( const uint4x2& lhs, const uint4x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise +'d against 'rhs'.
-HLML_INLINE uint4x2 operator+=( uint4x2& lhs, const uint4x2& rhs )
+HLML_INLINE uint4x2 operator+=( uint4x2 &lhs, const uint4x2 &rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x2 operator-( const uint4x2& lhs, const uint32_t rhs )
+HLML_INLINE uint4x2 operator-( const uint4x2 &lhs, const uint32_t rhs )
 {
 	return uint4x2(
 		lhs[0] - rhs,
@@ -10033,13 +10033,13 @@ HLML_INLINE uint4x2 operator-( const uint4x2& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been -'d against the scalar.
-HLML_INLINE uint4x2 operator-=( uint4x2& lhs, const uint32_t rhs )
+HLML_INLINE uint4x2 operator-=( uint4x2 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE uint4x2 operator-( const uint4x2& lhs, const uint4x2& rhs )
+HLML_INLINE uint4x2 operator-( const uint4x2 &lhs, const uint4x2 &rhs )
 {
 	return uint4x2(
 		lhs[0] - rhs[0],
@@ -10050,13 +10050,13 @@ HLML_INLINE uint4x2 operator-( const uint4x2& lhs, const uint4x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise -'d against 'rhs'.
-HLML_INLINE uint4x2 operator-=( uint4x2& lhs, const uint4x2& rhs )
+HLML_INLINE uint4x2 operator-=( uint4x2 &lhs, const uint4x2 &rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x2 operator*( const uint4x2& lhs, const uint32_t rhs )
+HLML_INLINE uint4x2 operator*( const uint4x2 &lhs, const uint32_t rhs )
 {
 	return uint4x2(
 		lhs[0] * rhs,
@@ -10067,13 +10067,13 @@ HLML_INLINE uint4x2 operator*( const uint4x2& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been *'d against the scalar.
-HLML_INLINE uint4x2 operator*=( uint4x2& lhs, const uint32_t rhs )
+HLML_INLINE uint4x2 operator*=( uint4x2 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE uint4x2 operator*( const uint4x2& lhs, const uint4x2& rhs )
+HLML_INLINE uint4x2 operator*( const uint4x2 &lhs, const uint4x2 &rhs )
 {
 	return uint4x2(
 		lhs[0] * rhs[0],
@@ -10084,13 +10084,13 @@ HLML_INLINE uint4x2 operator*( const uint4x2& lhs, const uint4x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise *'d against 'rhs'.
-HLML_INLINE uint4x2 operator*=( uint4x2& lhs, const uint4x2& rhs )
+HLML_INLINE uint4x2 operator*=( uint4x2 &lhs, const uint4x2 &rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x2 operator/( const uint4x2& lhs, const uint32_t rhs )
+HLML_INLINE uint4x2 operator/( const uint4x2 &lhs, const uint32_t rhs )
 {
 	return uint4x2(
 		lhs[0] / rhs,
@@ -10101,13 +10101,13 @@ HLML_INLINE uint4x2 operator/( const uint4x2& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been /'d against the scalar.
-HLML_INLINE uint4x2 operator/=( uint4x2& lhs, const uint32_t rhs )
+HLML_INLINE uint4x2 operator/=( uint4x2 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE uint4x2 operator/( const uint4x2& lhs, const uint4x2& rhs )
+HLML_INLINE uint4x2 operator/( const uint4x2 &lhs, const uint4x2 &rhs )
 {
 	return uint4x2(
 		lhs[0] / rhs[0],
@@ -10118,13 +10118,13 @@ HLML_INLINE uint4x2 operator/( const uint4x2& lhs, const uint4x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise /'d against 'rhs'.
-HLML_INLINE uint4x2 operator/=( uint4x2& lhs, const uint4x2& rhs )
+HLML_INLINE uint4x2 operator/=( uint4x2 &lhs, const uint4x2 &rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // ++s each component of the matrix and returns the result.
-HLML_INLINE uint4x2 operator++( uint4x2& x )
+HLML_INLINE uint4x2 operator++( uint4x2 &x )
 {
 	++x[0];
 	++x[1];
@@ -10135,7 +10135,7 @@ HLML_INLINE uint4x2 operator++( uint4x2& x )
 
 // ++s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE uint4x2 operator++( uint4x2& x, const int32_t )
+HLML_INLINE uint4x2 operator++( uint4x2 &x, const int32_t )
 {
 	x[0]++;
 	x[1]++;
@@ -10145,7 +10145,7 @@ HLML_INLINE uint4x2 operator++( uint4x2& x, const int32_t )
 }
 
 // --s each component of the matrix and returns the result.
-HLML_INLINE uint4x2 operator--( uint4x2& x )
+HLML_INLINE uint4x2 operator--( uint4x2 &x )
 {
 	--x[0];
 	--x[1];
@@ -10156,7 +10156,7 @@ HLML_INLINE uint4x2 operator--( uint4x2& x )
 
 // --s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE uint4x2 operator--( uint4x2& x, const int32_t )
+HLML_INLINE uint4x2 operator--( uint4x2 &x, const int32_t )
 {
 	x[0]--;
 	x[1]--;
@@ -10171,7 +10171,7 @@ HLML_INLINE uint4x2 operator--( uint4x2& x, const int32_t )
 #endif
 // Returns a copy of the matrix that has been negated.
 // pre-fix
-HLML_INLINE uint4x2 operator-( const uint4x2& x )
+HLML_INLINE uint4x2 operator-( const uint4x2 &x )
 {
 	return uint4x2(
 		-x[0],
@@ -10186,7 +10186,7 @@ HLML_INLINE uint4x2 operator-( const uint4x2& x )
 #endif
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
 // pre-fix
-HLML_INLINE uint4x2 operator~( const uint4x2& x )
+HLML_INLINE uint4x2 operator~( const uint4x2 &x )
 {
 	return uint4x2(
 		~x[0],
@@ -10197,7 +10197,7 @@ HLML_INLINE uint4x2 operator~( const uint4x2& x )
 }
 
 // Performs a component-wise bitwise & on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x2 operator&( const uint4x2& lhs, const uint32_t rhs )
+HLML_INLINE uint4x2 operator&( const uint4x2 &lhs, const uint32_t rhs )
 {
 	return uint4x2(
 		lhs[0] & rhs,
@@ -10208,13 +10208,13 @@ HLML_INLINE uint4x2 operator&( const uint4x2& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise &'d against the scalar.
-HLML_INLINE uint4x2 operator&=( uint4x2& lhs, const uint32_t rhs )
+HLML_INLINE uint4x2 operator&=( uint4x2 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs & rhs );
 }
 
 // Performs a component-wise bitwise & against the two matrices and returns the result.
-HLML_INLINE uint4x2 operator&( const uint4x2& lhs, const uint4x2& rhs )
+HLML_INLINE uint4x2 operator&( const uint4x2 &lhs, const uint4x2 &rhs )
 {
 	return uint4x2(
 		lhs[0] & rhs[0],
@@ -10225,13 +10225,13 @@ HLML_INLINE uint4x2 operator&( const uint4x2& lhs, const uint4x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise &'d against 'rhs'.
-HLML_INLINE uint4x2 operator&=( uint4x2& lhs, const uint4x2& rhs )
+HLML_INLINE uint4x2 operator&=( uint4x2 &lhs, const uint4x2 &rhs )
 {
 	return ( lhs = lhs & rhs );
 }
 
 // Performs a component-wise bitwise | on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x2 operator|( const uint4x2& lhs, const uint32_t rhs )
+HLML_INLINE uint4x2 operator|( const uint4x2 &lhs, const uint32_t rhs )
 {
 	return uint4x2(
 		lhs[0] | rhs,
@@ -10242,13 +10242,13 @@ HLML_INLINE uint4x2 operator|( const uint4x2& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise |'d against the scalar.
-HLML_INLINE uint4x2 operator|=( uint4x2& lhs, const uint32_t rhs )
+HLML_INLINE uint4x2 operator|=( uint4x2 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs | rhs );
 }
 
 // Performs a component-wise bitwise | against the two matrices and returns the result.
-HLML_INLINE uint4x2 operator|( const uint4x2& lhs, const uint4x2& rhs )
+HLML_INLINE uint4x2 operator|( const uint4x2 &lhs, const uint4x2 &rhs )
 {
 	return uint4x2(
 		lhs[0] | rhs[0],
@@ -10259,13 +10259,13 @@ HLML_INLINE uint4x2 operator|( const uint4x2& lhs, const uint4x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise |'d against 'rhs'.
-HLML_INLINE uint4x2 operator|=( uint4x2& lhs, const uint4x2& rhs )
+HLML_INLINE uint4x2 operator|=( uint4x2 &lhs, const uint4x2 &rhs )
 {
 	return ( lhs = lhs | rhs );
 }
 
 // Performs a component-wise bitwise ^ on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x2 operator^( const uint4x2& lhs, const uint32_t rhs )
+HLML_INLINE uint4x2 operator^( const uint4x2 &lhs, const uint32_t rhs )
 {
 	return uint4x2(
 		lhs[0] ^ rhs,
@@ -10276,13 +10276,13 @@ HLML_INLINE uint4x2 operator^( const uint4x2& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise ^'d against the scalar.
-HLML_INLINE uint4x2 operator^=( uint4x2& lhs, const uint32_t rhs )
+HLML_INLINE uint4x2 operator^=( uint4x2 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs ^ rhs );
 }
 
 // Performs a component-wise bitwise ^ against the two matrices and returns the result.
-HLML_INLINE uint4x2 operator^( const uint4x2& lhs, const uint4x2& rhs )
+HLML_INLINE uint4x2 operator^( const uint4x2 &lhs, const uint4x2 &rhs )
 {
 	return uint4x2(
 		lhs[0] ^ rhs[0],
@@ -10293,13 +10293,13 @@ HLML_INLINE uint4x2 operator^( const uint4x2& lhs, const uint4x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise ^'d against 'rhs'.
-HLML_INLINE uint4x2 operator^=( uint4x2& lhs, const uint4x2& rhs )
+HLML_INLINE uint4x2 operator^=( uint4x2 &lhs, const uint4x2 &rhs )
 {
 	return ( lhs = lhs ^ rhs );
 }
 
 // Performs a component-wise bitwise << on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x2 operator<<( const uint4x2& lhs, const uint32_t rhs )
+HLML_INLINE uint4x2 operator<<( const uint4x2 &lhs, const uint32_t rhs )
 {
 	return uint4x2(
 		lhs[0] << rhs,
@@ -10310,13 +10310,13 @@ HLML_INLINE uint4x2 operator<<( const uint4x2& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise <<'d against the scalar.
-HLML_INLINE uint4x2 operator<<=( uint4x2& lhs, const uint32_t rhs )
+HLML_INLINE uint4x2 operator<<=( uint4x2 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs << rhs );
 }
 
 // Performs a component-wise bitwise << against the two matrices and returns the result.
-HLML_INLINE uint4x2 operator<<( const uint4x2& lhs, const uint4x2& rhs )
+HLML_INLINE uint4x2 operator<<( const uint4x2 &lhs, const uint4x2 &rhs )
 {
 	return uint4x2(
 		lhs[0] << rhs[0],
@@ -10327,13 +10327,13 @@ HLML_INLINE uint4x2 operator<<( const uint4x2& lhs, const uint4x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise <<'d against 'rhs'.
-HLML_INLINE uint4x2 operator<<=( uint4x2& lhs, const uint4x2& rhs )
+HLML_INLINE uint4x2 operator<<=( uint4x2 &lhs, const uint4x2 &rhs )
 {
 	return ( lhs = lhs << rhs );
 }
 
 // Performs a component-wise bitwise >> on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x2 operator>>( const uint4x2& lhs, const uint32_t rhs )
+HLML_INLINE uint4x2 operator>>( const uint4x2 &lhs, const uint32_t rhs )
 {
 	return uint4x2(
 		lhs[0] >> rhs,
@@ -10344,13 +10344,13 @@ HLML_INLINE uint4x2 operator>>( const uint4x2& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise >>'d against the scalar.
-HLML_INLINE uint4x2 operator>>=( uint4x2& lhs, const uint32_t rhs )
+HLML_INLINE uint4x2 operator>>=( uint4x2 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs >> rhs );
 }
 
 // Performs a component-wise bitwise >> against the two matrices and returns the result.
-HLML_INLINE uint4x2 operator>>( const uint4x2& lhs, const uint4x2& rhs )
+HLML_INLINE uint4x2 operator>>( const uint4x2 &lhs, const uint4x2 &rhs )
 {
 	return uint4x2(
 		lhs[0] >> rhs[0],
@@ -10361,13 +10361,13 @@ HLML_INLINE uint4x2 operator>>( const uint4x2& lhs, const uint4x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise >>'d against 'rhs'.
-HLML_INLINE uint4x2 operator>>=( uint4x2& lhs, const uint4x2& rhs )
+HLML_INLINE uint4x2 operator>>=( uint4x2 &lhs, const uint4x2 &rhs )
 {
 	return ( lhs = lhs >> rhs );
 }
 
 // Sets the matrix to an identity matrix.
-HLML_INLINE void identity( uint4x2& mat )
+HLML_INLINE void identity( uint4x2 &mat )
 {
 	mat.rows[0] = HLML_CONSTRUCT( uint2 ) { 1U, 0U };
 	mat.rows[1] = HLML_CONSTRUCT( uint2 ) { 0U, 1U };
@@ -10376,7 +10376,7 @@ HLML_INLINE void identity( uint4x2& mat )
 }
 
 // Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-HLML_INLINE uint2x4 transpose( const uint4x2& mat )
+HLML_INLINE uint2x4 transpose( const uint4x2 &mat )
 {
 	return HLML_CONSTRUCT( uint2x4 )
 	{
@@ -10386,7 +10386,7 @@ HLML_INLINE uint2x4 transpose( const uint4x2& mat )
 }
 
 // Performs a matrix multiplication with 'lhs' and 'rhs' and returns the result.
-HLML_INLINE uint4x4 mul( const uint4x2& lhs, const uint2x4& rhs )
+HLML_INLINE uint4x4 mul( const uint4x2 &lhs, const uint2x4 &rhs )
 {
 	uint2 row0 = lhs.rows[0];
 	uint2 row1 = lhs.rows[1];
@@ -10424,7 +10424,7 @@ HLML_INLINE uint4x4 mul( const uint4x2& lhs, const uint2x4& rhs )
 
 // uint4x3
 // Performs a min function on each row of the matrix.
-HLML_INLINE uint4x3 min( const uint4x3& x, const uint4x3& y )
+HLML_INLINE uint4x3 min( const uint4x3 &x, const uint4x3 &y )
 {
 	return uint4x3(
 		min( x[0], y[0] ),
@@ -10435,7 +10435,7 @@ HLML_INLINE uint4x3 min( const uint4x3& x, const uint4x3& y )
 }
 
 // Performs a max function on each row of the matrix.
-HLML_INLINE uint4x3 max( const uint4x3& x, const uint4x3& y )
+HLML_INLINE uint4x3 max( const uint4x3 &x, const uint4x3 &y )
 {
 	return uint4x3(
 		max( x[0], y[0] ),
@@ -10446,7 +10446,7 @@ HLML_INLINE uint4x3 max( const uint4x3& x, const uint4x3& y )
 }
 
 // Performs a clamp function on each row of the matrix.
-HLML_INLINE uint4x3 clamp( const uint4x3& x, const uint4x3& low, const uint4x3& high )
+HLML_INLINE uint4x3 clamp( const uint4x3 &x, const uint4x3 &low, const uint4x3 &high )
 {
 	return uint4x3(
 		clamp( x[0], low[0], high[0] ),
@@ -10457,7 +10457,7 @@ HLML_INLINE uint4x3 clamp( const uint4x3& x, const uint4x3& low, const uint4x3& 
 }
 
 // Performs a saturate function on each row of the matrix.
-HLML_INLINE uint4x3 saturate( const uint4x3& x )
+HLML_INLINE uint4x3 saturate( const uint4x3 &x )
 {
 	return uint4x3(
 		saturate( x[0] ),
@@ -10468,7 +10468,7 @@ HLML_INLINE uint4x3 saturate( const uint4x3& x )
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator==( const uint4x3& lhs, const uint4x3& rhs )
+HLML_INLINE bool operator==( const uint4x3 &lhs, const uint4x3 &rhs )
 {
 	return
 		lhs[0] == rhs[0] &&
@@ -10478,13 +10478,13 @@ HLML_INLINE bool operator==( const uint4x3& lhs, const uint4x3& rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator!=( const uint4x3& lhs, const uint4x3& rhs )
+HLML_INLINE bool operator!=( const uint4x3 &lhs, const uint4x3 &rhs )
 {
 	return !( lhs == rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool4x3 operator<( const uint4x3& lhs, const uint4x3& rhs )
+HLML_INLINE bool4x3 operator<( const uint4x3 &lhs, const uint4x3 &rhs )
 {
 	return bool4x3(
 		lhs[0] < rhs[0],
@@ -10495,7 +10495,7 @@ HLML_INLINE bool4x3 operator<( const uint4x3& lhs, const uint4x3& rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool4x3 operator<=( const uint4x3& lhs, const uint4x3& rhs )
+HLML_INLINE bool4x3 operator<=( const uint4x3 &lhs, const uint4x3 &rhs )
 {
 	return bool4x3(
 		lhs[0] <= rhs[0],
@@ -10506,7 +10506,7 @@ HLML_INLINE bool4x3 operator<=( const uint4x3& lhs, const uint4x3& rhs )
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool4x3 operator>( const uint4x3& lhs, const uint4x3& rhs )
+HLML_INLINE bool4x3 operator>( const uint4x3 &lhs, const uint4x3 &rhs )
 {
 	return bool4x3(
 		lhs[0] > rhs[0],
@@ -10517,7 +10517,7 @@ HLML_INLINE bool4x3 operator>( const uint4x3& lhs, const uint4x3& rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool4x3 operator>=( const uint4x3& lhs, const uint4x3& rhs )
+HLML_INLINE bool4x3 operator>=( const uint4x3 &lhs, const uint4x3 &rhs )
 {
 	return bool4x3(
 		lhs[0] >= rhs[0],
@@ -10528,7 +10528,7 @@ HLML_INLINE bool4x3 operator>=( const uint4x3& lhs, const uint4x3& rhs )
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x3 operator+( const uint4x3& lhs, const uint32_t rhs )
+HLML_INLINE uint4x3 operator+( const uint4x3 &lhs, const uint32_t rhs )
 {
 	return uint4x3(
 		lhs[0] + rhs,
@@ -10539,13 +10539,13 @@ HLML_INLINE uint4x3 operator+( const uint4x3& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been +'d against the scalar.
-HLML_INLINE uint4x3 operator+=( uint4x3& lhs, const uint32_t rhs )
+HLML_INLINE uint4x3 operator+=( uint4x3 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE uint4x3 operator+( const uint4x3& lhs, const uint4x3& rhs )
+HLML_INLINE uint4x3 operator+( const uint4x3 &lhs, const uint4x3 &rhs )
 {
 	return uint4x3(
 		lhs[0] + rhs[0],
@@ -10556,13 +10556,13 @@ HLML_INLINE uint4x3 operator+( const uint4x3& lhs, const uint4x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise +'d against 'rhs'.
-HLML_INLINE uint4x3 operator+=( uint4x3& lhs, const uint4x3& rhs )
+HLML_INLINE uint4x3 operator+=( uint4x3 &lhs, const uint4x3 &rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x3 operator-( const uint4x3& lhs, const uint32_t rhs )
+HLML_INLINE uint4x3 operator-( const uint4x3 &lhs, const uint32_t rhs )
 {
 	return uint4x3(
 		lhs[0] - rhs,
@@ -10573,13 +10573,13 @@ HLML_INLINE uint4x3 operator-( const uint4x3& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been -'d against the scalar.
-HLML_INLINE uint4x3 operator-=( uint4x3& lhs, const uint32_t rhs )
+HLML_INLINE uint4x3 operator-=( uint4x3 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE uint4x3 operator-( const uint4x3& lhs, const uint4x3& rhs )
+HLML_INLINE uint4x3 operator-( const uint4x3 &lhs, const uint4x3 &rhs )
 {
 	return uint4x3(
 		lhs[0] - rhs[0],
@@ -10590,13 +10590,13 @@ HLML_INLINE uint4x3 operator-( const uint4x3& lhs, const uint4x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise -'d against 'rhs'.
-HLML_INLINE uint4x3 operator-=( uint4x3& lhs, const uint4x3& rhs )
+HLML_INLINE uint4x3 operator-=( uint4x3 &lhs, const uint4x3 &rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x3 operator*( const uint4x3& lhs, const uint32_t rhs )
+HLML_INLINE uint4x3 operator*( const uint4x3 &lhs, const uint32_t rhs )
 {
 	return uint4x3(
 		lhs[0] * rhs,
@@ -10607,13 +10607,13 @@ HLML_INLINE uint4x3 operator*( const uint4x3& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been *'d against the scalar.
-HLML_INLINE uint4x3 operator*=( uint4x3& lhs, const uint32_t rhs )
+HLML_INLINE uint4x3 operator*=( uint4x3 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE uint4x3 operator*( const uint4x3& lhs, const uint4x3& rhs )
+HLML_INLINE uint4x3 operator*( const uint4x3 &lhs, const uint4x3 &rhs )
 {
 	return uint4x3(
 		lhs[0] * rhs[0],
@@ -10624,13 +10624,13 @@ HLML_INLINE uint4x3 operator*( const uint4x3& lhs, const uint4x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise *'d against 'rhs'.
-HLML_INLINE uint4x3 operator*=( uint4x3& lhs, const uint4x3& rhs )
+HLML_INLINE uint4x3 operator*=( uint4x3 &lhs, const uint4x3 &rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x3 operator/( const uint4x3& lhs, const uint32_t rhs )
+HLML_INLINE uint4x3 operator/( const uint4x3 &lhs, const uint32_t rhs )
 {
 	return uint4x3(
 		lhs[0] / rhs,
@@ -10641,13 +10641,13 @@ HLML_INLINE uint4x3 operator/( const uint4x3& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been /'d against the scalar.
-HLML_INLINE uint4x3 operator/=( uint4x3& lhs, const uint32_t rhs )
+HLML_INLINE uint4x3 operator/=( uint4x3 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE uint4x3 operator/( const uint4x3& lhs, const uint4x3& rhs )
+HLML_INLINE uint4x3 operator/( const uint4x3 &lhs, const uint4x3 &rhs )
 {
 	return uint4x3(
 		lhs[0] / rhs[0],
@@ -10658,13 +10658,13 @@ HLML_INLINE uint4x3 operator/( const uint4x3& lhs, const uint4x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise /'d against 'rhs'.
-HLML_INLINE uint4x3 operator/=( uint4x3& lhs, const uint4x3& rhs )
+HLML_INLINE uint4x3 operator/=( uint4x3 &lhs, const uint4x3 &rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // ++s each component of the matrix and returns the result.
-HLML_INLINE uint4x3 operator++( uint4x3& x )
+HLML_INLINE uint4x3 operator++( uint4x3 &x )
 {
 	++x[0];
 	++x[1];
@@ -10675,7 +10675,7 @@ HLML_INLINE uint4x3 operator++( uint4x3& x )
 
 // ++s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE uint4x3 operator++( uint4x3& x, const int32_t )
+HLML_INLINE uint4x3 operator++( uint4x3 &x, const int32_t )
 {
 	x[0]++;
 	x[1]++;
@@ -10685,7 +10685,7 @@ HLML_INLINE uint4x3 operator++( uint4x3& x, const int32_t )
 }
 
 // --s each component of the matrix and returns the result.
-HLML_INLINE uint4x3 operator--( uint4x3& x )
+HLML_INLINE uint4x3 operator--( uint4x3 &x )
 {
 	--x[0];
 	--x[1];
@@ -10696,7 +10696,7 @@ HLML_INLINE uint4x3 operator--( uint4x3& x )
 
 // --s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE uint4x3 operator--( uint4x3& x, const int32_t )
+HLML_INLINE uint4x3 operator--( uint4x3 &x, const int32_t )
 {
 	x[0]--;
 	x[1]--;
@@ -10711,7 +10711,7 @@ HLML_INLINE uint4x3 operator--( uint4x3& x, const int32_t )
 #endif
 // Returns a copy of the matrix that has been negated.
 // pre-fix
-HLML_INLINE uint4x3 operator-( const uint4x3& x )
+HLML_INLINE uint4x3 operator-( const uint4x3 &x )
 {
 	return uint4x3(
 		-x[0],
@@ -10726,7 +10726,7 @@ HLML_INLINE uint4x3 operator-( const uint4x3& x )
 #endif
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
 // pre-fix
-HLML_INLINE uint4x3 operator~( const uint4x3& x )
+HLML_INLINE uint4x3 operator~( const uint4x3 &x )
 {
 	return uint4x3(
 		~x[0],
@@ -10737,7 +10737,7 @@ HLML_INLINE uint4x3 operator~( const uint4x3& x )
 }
 
 // Performs a component-wise bitwise & on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x3 operator&( const uint4x3& lhs, const uint32_t rhs )
+HLML_INLINE uint4x3 operator&( const uint4x3 &lhs, const uint32_t rhs )
 {
 	return uint4x3(
 		lhs[0] & rhs,
@@ -10748,13 +10748,13 @@ HLML_INLINE uint4x3 operator&( const uint4x3& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise &'d against the scalar.
-HLML_INLINE uint4x3 operator&=( uint4x3& lhs, const uint32_t rhs )
+HLML_INLINE uint4x3 operator&=( uint4x3 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs & rhs );
 }
 
 // Performs a component-wise bitwise & against the two matrices and returns the result.
-HLML_INLINE uint4x3 operator&( const uint4x3& lhs, const uint4x3& rhs )
+HLML_INLINE uint4x3 operator&( const uint4x3 &lhs, const uint4x3 &rhs )
 {
 	return uint4x3(
 		lhs[0] & rhs[0],
@@ -10765,13 +10765,13 @@ HLML_INLINE uint4x3 operator&( const uint4x3& lhs, const uint4x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise &'d against 'rhs'.
-HLML_INLINE uint4x3 operator&=( uint4x3& lhs, const uint4x3& rhs )
+HLML_INLINE uint4x3 operator&=( uint4x3 &lhs, const uint4x3 &rhs )
 {
 	return ( lhs = lhs & rhs );
 }
 
 // Performs a component-wise bitwise | on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x3 operator|( const uint4x3& lhs, const uint32_t rhs )
+HLML_INLINE uint4x3 operator|( const uint4x3 &lhs, const uint32_t rhs )
 {
 	return uint4x3(
 		lhs[0] | rhs,
@@ -10782,13 +10782,13 @@ HLML_INLINE uint4x3 operator|( const uint4x3& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise |'d against the scalar.
-HLML_INLINE uint4x3 operator|=( uint4x3& lhs, const uint32_t rhs )
+HLML_INLINE uint4x3 operator|=( uint4x3 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs | rhs );
 }
 
 // Performs a component-wise bitwise | against the two matrices and returns the result.
-HLML_INLINE uint4x3 operator|( const uint4x3& lhs, const uint4x3& rhs )
+HLML_INLINE uint4x3 operator|( const uint4x3 &lhs, const uint4x3 &rhs )
 {
 	return uint4x3(
 		lhs[0] | rhs[0],
@@ -10799,13 +10799,13 @@ HLML_INLINE uint4x3 operator|( const uint4x3& lhs, const uint4x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise |'d against 'rhs'.
-HLML_INLINE uint4x3 operator|=( uint4x3& lhs, const uint4x3& rhs )
+HLML_INLINE uint4x3 operator|=( uint4x3 &lhs, const uint4x3 &rhs )
 {
 	return ( lhs = lhs | rhs );
 }
 
 // Performs a component-wise bitwise ^ on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x3 operator^( const uint4x3& lhs, const uint32_t rhs )
+HLML_INLINE uint4x3 operator^( const uint4x3 &lhs, const uint32_t rhs )
 {
 	return uint4x3(
 		lhs[0] ^ rhs,
@@ -10816,13 +10816,13 @@ HLML_INLINE uint4x3 operator^( const uint4x3& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise ^'d against the scalar.
-HLML_INLINE uint4x3 operator^=( uint4x3& lhs, const uint32_t rhs )
+HLML_INLINE uint4x3 operator^=( uint4x3 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs ^ rhs );
 }
 
 // Performs a component-wise bitwise ^ against the two matrices and returns the result.
-HLML_INLINE uint4x3 operator^( const uint4x3& lhs, const uint4x3& rhs )
+HLML_INLINE uint4x3 operator^( const uint4x3 &lhs, const uint4x3 &rhs )
 {
 	return uint4x3(
 		lhs[0] ^ rhs[0],
@@ -10833,13 +10833,13 @@ HLML_INLINE uint4x3 operator^( const uint4x3& lhs, const uint4x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise ^'d against 'rhs'.
-HLML_INLINE uint4x3 operator^=( uint4x3& lhs, const uint4x3& rhs )
+HLML_INLINE uint4x3 operator^=( uint4x3 &lhs, const uint4x3 &rhs )
 {
 	return ( lhs = lhs ^ rhs );
 }
 
 // Performs a component-wise bitwise << on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x3 operator<<( const uint4x3& lhs, const uint32_t rhs )
+HLML_INLINE uint4x3 operator<<( const uint4x3 &lhs, const uint32_t rhs )
 {
 	return uint4x3(
 		lhs[0] << rhs,
@@ -10850,13 +10850,13 @@ HLML_INLINE uint4x3 operator<<( const uint4x3& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise <<'d against the scalar.
-HLML_INLINE uint4x3 operator<<=( uint4x3& lhs, const uint32_t rhs )
+HLML_INLINE uint4x3 operator<<=( uint4x3 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs << rhs );
 }
 
 // Performs a component-wise bitwise << against the two matrices and returns the result.
-HLML_INLINE uint4x3 operator<<( const uint4x3& lhs, const uint4x3& rhs )
+HLML_INLINE uint4x3 operator<<( const uint4x3 &lhs, const uint4x3 &rhs )
 {
 	return uint4x3(
 		lhs[0] << rhs[0],
@@ -10867,13 +10867,13 @@ HLML_INLINE uint4x3 operator<<( const uint4x3& lhs, const uint4x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise <<'d against 'rhs'.
-HLML_INLINE uint4x3 operator<<=( uint4x3& lhs, const uint4x3& rhs )
+HLML_INLINE uint4x3 operator<<=( uint4x3 &lhs, const uint4x3 &rhs )
 {
 	return ( lhs = lhs << rhs );
 }
 
 // Performs a component-wise bitwise >> on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x3 operator>>( const uint4x3& lhs, const uint32_t rhs )
+HLML_INLINE uint4x3 operator>>( const uint4x3 &lhs, const uint32_t rhs )
 {
 	return uint4x3(
 		lhs[0] >> rhs,
@@ -10884,13 +10884,13 @@ HLML_INLINE uint4x3 operator>>( const uint4x3& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise >>'d against the scalar.
-HLML_INLINE uint4x3 operator>>=( uint4x3& lhs, const uint32_t rhs )
+HLML_INLINE uint4x3 operator>>=( uint4x3 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs >> rhs );
 }
 
 // Performs a component-wise bitwise >> against the two matrices and returns the result.
-HLML_INLINE uint4x3 operator>>( const uint4x3& lhs, const uint4x3& rhs )
+HLML_INLINE uint4x3 operator>>( const uint4x3 &lhs, const uint4x3 &rhs )
 {
 	return uint4x3(
 		lhs[0] >> rhs[0],
@@ -10901,13 +10901,13 @@ HLML_INLINE uint4x3 operator>>( const uint4x3& lhs, const uint4x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise >>'d against 'rhs'.
-HLML_INLINE uint4x3 operator>>=( uint4x3& lhs, const uint4x3& rhs )
+HLML_INLINE uint4x3 operator>>=( uint4x3 &lhs, const uint4x3 &rhs )
 {
 	return ( lhs = lhs >> rhs );
 }
 
 // Sets the matrix to an identity matrix.
-HLML_INLINE void identity( uint4x3& mat )
+HLML_INLINE void identity( uint4x3 &mat )
 {
 	mat.rows[0] = HLML_CONSTRUCT( uint3 ) { 1U, 0U, 0U };
 	mat.rows[1] = HLML_CONSTRUCT( uint3 ) { 0U, 1U, 0U };
@@ -10916,7 +10916,7 @@ HLML_INLINE void identity( uint4x3& mat )
 }
 
 // Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-HLML_INLINE uint3x4 transpose( const uint4x3& mat )
+HLML_INLINE uint3x4 transpose( const uint4x3 &mat )
 {
 	return HLML_CONSTRUCT( uint3x4 )
 	{
@@ -10927,7 +10927,7 @@ HLML_INLINE uint3x4 transpose( const uint4x3& mat )
 }
 
 // Performs a matrix multiplication with 'lhs' and 'rhs' and returns the result.
-HLML_INLINE uint4x4 mul( const uint4x3& lhs, const uint3x4& rhs )
+HLML_INLINE uint4x4 mul( const uint4x3 &lhs, const uint3x4 &rhs )
 {
 	uint3 row0 = lhs.rows[0];
 	uint3 row1 = lhs.rows[1];
@@ -10965,7 +10965,7 @@ HLML_INLINE uint4x4 mul( const uint4x3& lhs, const uint3x4& rhs )
 
 // uint4x4
 // Performs a min function on each row of the matrix.
-HLML_INLINE uint4x4 min( const uint4x4& x, const uint4x4& y )
+HLML_INLINE uint4x4 min( const uint4x4 &x, const uint4x4 &y )
 {
 	return uint4x4(
 		min( x[0], y[0] ),
@@ -10976,7 +10976,7 @@ HLML_INLINE uint4x4 min( const uint4x4& x, const uint4x4& y )
 }
 
 // Performs a max function on each row of the matrix.
-HLML_INLINE uint4x4 max( const uint4x4& x, const uint4x4& y )
+HLML_INLINE uint4x4 max( const uint4x4 &x, const uint4x4 &y )
 {
 	return uint4x4(
 		max( x[0], y[0] ),
@@ -10987,7 +10987,7 @@ HLML_INLINE uint4x4 max( const uint4x4& x, const uint4x4& y )
 }
 
 // Performs a clamp function on each row of the matrix.
-HLML_INLINE uint4x4 clamp( const uint4x4& x, const uint4x4& low, const uint4x4& high )
+HLML_INLINE uint4x4 clamp( const uint4x4 &x, const uint4x4 &low, const uint4x4 &high )
 {
 	return uint4x4(
 		clamp( x[0], low[0], high[0] ),
@@ -10998,7 +10998,7 @@ HLML_INLINE uint4x4 clamp( const uint4x4& x, const uint4x4& low, const uint4x4& 
 }
 
 // Performs a saturate function on each row of the matrix.
-HLML_INLINE uint4x4 saturate( const uint4x4& x )
+HLML_INLINE uint4x4 saturate( const uint4x4 &x )
 {
 	return uint4x4(
 		saturate( x[0] ),
@@ -11009,7 +11009,7 @@ HLML_INLINE uint4x4 saturate( const uint4x4& x )
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator==( const uint4x4& lhs, const uint4x4& rhs )
+HLML_INLINE bool operator==( const uint4x4 &lhs, const uint4x4 &rhs )
 {
 	return
 		lhs[0] == rhs[0] &&
@@ -11019,13 +11019,13 @@ HLML_INLINE bool operator==( const uint4x4& lhs, const uint4x4& rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator!=( const uint4x4& lhs, const uint4x4& rhs )
+HLML_INLINE bool operator!=( const uint4x4 &lhs, const uint4x4 &rhs )
 {
 	return !( lhs == rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool4x4 operator<( const uint4x4& lhs, const uint4x4& rhs )
+HLML_INLINE bool4x4 operator<( const uint4x4 &lhs, const uint4x4 &rhs )
 {
 	return bool4x4(
 		lhs[0] < rhs[0],
@@ -11036,7 +11036,7 @@ HLML_INLINE bool4x4 operator<( const uint4x4& lhs, const uint4x4& rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool4x4 operator<=( const uint4x4& lhs, const uint4x4& rhs )
+HLML_INLINE bool4x4 operator<=( const uint4x4 &lhs, const uint4x4 &rhs )
 {
 	return bool4x4(
 		lhs[0] <= rhs[0],
@@ -11047,7 +11047,7 @@ HLML_INLINE bool4x4 operator<=( const uint4x4& lhs, const uint4x4& rhs )
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool4x4 operator>( const uint4x4& lhs, const uint4x4& rhs )
+HLML_INLINE bool4x4 operator>( const uint4x4 &lhs, const uint4x4 &rhs )
 {
 	return bool4x4(
 		lhs[0] > rhs[0],
@@ -11058,7 +11058,7 @@ HLML_INLINE bool4x4 operator>( const uint4x4& lhs, const uint4x4& rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool4x4 operator>=( const uint4x4& lhs, const uint4x4& rhs )
+HLML_INLINE bool4x4 operator>=( const uint4x4 &lhs, const uint4x4 &rhs )
 {
 	return bool4x4(
 		lhs[0] >= rhs[0],
@@ -11069,7 +11069,7 @@ HLML_INLINE bool4x4 operator>=( const uint4x4& lhs, const uint4x4& rhs )
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x4 operator+( const uint4x4& lhs, const uint32_t rhs )
+HLML_INLINE uint4x4 operator+( const uint4x4 &lhs, const uint32_t rhs )
 {
 	return uint4x4(
 		lhs[0] + rhs,
@@ -11080,13 +11080,13 @@ HLML_INLINE uint4x4 operator+( const uint4x4& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been +'d against the scalar.
-HLML_INLINE uint4x4 operator+=( uint4x4& lhs, const uint32_t rhs )
+HLML_INLINE uint4x4 operator+=( uint4x4 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE uint4x4 operator+( const uint4x4& lhs, const uint4x4& rhs )
+HLML_INLINE uint4x4 operator+( const uint4x4 &lhs, const uint4x4 &rhs )
 {
 	return uint4x4(
 		lhs[0] + rhs[0],
@@ -11097,13 +11097,13 @@ HLML_INLINE uint4x4 operator+( const uint4x4& lhs, const uint4x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise +'d against 'rhs'.
-HLML_INLINE uint4x4 operator+=( uint4x4& lhs, const uint4x4& rhs )
+HLML_INLINE uint4x4 operator+=( uint4x4 &lhs, const uint4x4 &rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x4 operator-( const uint4x4& lhs, const uint32_t rhs )
+HLML_INLINE uint4x4 operator-( const uint4x4 &lhs, const uint32_t rhs )
 {
 	return uint4x4(
 		lhs[0] - rhs,
@@ -11114,13 +11114,13 @@ HLML_INLINE uint4x4 operator-( const uint4x4& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been -'d against the scalar.
-HLML_INLINE uint4x4 operator-=( uint4x4& lhs, const uint32_t rhs )
+HLML_INLINE uint4x4 operator-=( uint4x4 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE uint4x4 operator-( const uint4x4& lhs, const uint4x4& rhs )
+HLML_INLINE uint4x4 operator-( const uint4x4 &lhs, const uint4x4 &rhs )
 {
 	return uint4x4(
 		lhs[0] - rhs[0],
@@ -11131,13 +11131,13 @@ HLML_INLINE uint4x4 operator-( const uint4x4& lhs, const uint4x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise -'d against 'rhs'.
-HLML_INLINE uint4x4 operator-=( uint4x4& lhs, const uint4x4& rhs )
+HLML_INLINE uint4x4 operator-=( uint4x4 &lhs, const uint4x4 &rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x4 operator*( const uint4x4& lhs, const uint32_t rhs )
+HLML_INLINE uint4x4 operator*( const uint4x4 &lhs, const uint32_t rhs )
 {
 	return uint4x4(
 		lhs[0] * rhs,
@@ -11148,13 +11148,13 @@ HLML_INLINE uint4x4 operator*( const uint4x4& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been *'d against the scalar.
-HLML_INLINE uint4x4 operator*=( uint4x4& lhs, const uint32_t rhs )
+HLML_INLINE uint4x4 operator*=( uint4x4 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE uint4x4 operator*( const uint4x4& lhs, const uint4x4& rhs )
+HLML_INLINE uint4x4 operator*( const uint4x4 &lhs, const uint4x4 &rhs )
 {
 	return uint4x4(
 		lhs[0] * rhs[0],
@@ -11165,13 +11165,13 @@ HLML_INLINE uint4x4 operator*( const uint4x4& lhs, const uint4x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise *'d against 'rhs'.
-HLML_INLINE uint4x4 operator*=( uint4x4& lhs, const uint4x4& rhs )
+HLML_INLINE uint4x4 operator*=( uint4x4 &lhs, const uint4x4 &rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x4 operator/( const uint4x4& lhs, const uint32_t rhs )
+HLML_INLINE uint4x4 operator/( const uint4x4 &lhs, const uint32_t rhs )
 {
 	return uint4x4(
 		lhs[0] / rhs,
@@ -11182,13 +11182,13 @@ HLML_INLINE uint4x4 operator/( const uint4x4& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been /'d against the scalar.
-HLML_INLINE uint4x4 operator/=( uint4x4& lhs, const uint32_t rhs )
+HLML_INLINE uint4x4 operator/=( uint4x4 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE uint4x4 operator/( const uint4x4& lhs, const uint4x4& rhs )
+HLML_INLINE uint4x4 operator/( const uint4x4 &lhs, const uint4x4 &rhs )
 {
 	return uint4x4(
 		lhs[0] / rhs[0],
@@ -11199,13 +11199,13 @@ HLML_INLINE uint4x4 operator/( const uint4x4& lhs, const uint4x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise /'d against 'rhs'.
-HLML_INLINE uint4x4 operator/=( uint4x4& lhs, const uint4x4& rhs )
+HLML_INLINE uint4x4 operator/=( uint4x4 &lhs, const uint4x4 &rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // ++s each component of the matrix and returns the result.
-HLML_INLINE uint4x4 operator++( uint4x4& x )
+HLML_INLINE uint4x4 operator++( uint4x4 &x )
 {
 	++x[0];
 	++x[1];
@@ -11216,7 +11216,7 @@ HLML_INLINE uint4x4 operator++( uint4x4& x )
 
 // ++s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE uint4x4 operator++( uint4x4& x, const int32_t )
+HLML_INLINE uint4x4 operator++( uint4x4 &x, const int32_t )
 {
 	x[0]++;
 	x[1]++;
@@ -11226,7 +11226,7 @@ HLML_INLINE uint4x4 operator++( uint4x4& x, const int32_t )
 }
 
 // --s each component of the matrix and returns the result.
-HLML_INLINE uint4x4 operator--( uint4x4& x )
+HLML_INLINE uint4x4 operator--( uint4x4 &x )
 {
 	--x[0];
 	--x[1];
@@ -11237,7 +11237,7 @@ HLML_INLINE uint4x4 operator--( uint4x4& x )
 
 // --s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE uint4x4 operator--( uint4x4& x, const int32_t )
+HLML_INLINE uint4x4 operator--( uint4x4 &x, const int32_t )
 {
 	x[0]--;
 	x[1]--;
@@ -11252,7 +11252,7 @@ HLML_INLINE uint4x4 operator--( uint4x4& x, const int32_t )
 #endif
 // Returns a copy of the matrix that has been negated.
 // pre-fix
-HLML_INLINE uint4x4 operator-( const uint4x4& x )
+HLML_INLINE uint4x4 operator-( const uint4x4 &x )
 {
 	return uint4x4(
 		-x[0],
@@ -11267,7 +11267,7 @@ HLML_INLINE uint4x4 operator-( const uint4x4& x )
 #endif
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
 // pre-fix
-HLML_INLINE uint4x4 operator~( const uint4x4& x )
+HLML_INLINE uint4x4 operator~( const uint4x4 &x )
 {
 	return uint4x4(
 		~x[0],
@@ -11278,7 +11278,7 @@ HLML_INLINE uint4x4 operator~( const uint4x4& x )
 }
 
 // Performs a component-wise bitwise & on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x4 operator&( const uint4x4& lhs, const uint32_t rhs )
+HLML_INLINE uint4x4 operator&( const uint4x4 &lhs, const uint32_t rhs )
 {
 	return uint4x4(
 		lhs[0] & rhs,
@@ -11289,13 +11289,13 @@ HLML_INLINE uint4x4 operator&( const uint4x4& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise &'d against the scalar.
-HLML_INLINE uint4x4 operator&=( uint4x4& lhs, const uint32_t rhs )
+HLML_INLINE uint4x4 operator&=( uint4x4 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs & rhs );
 }
 
 // Performs a component-wise bitwise & against the two matrices and returns the result.
-HLML_INLINE uint4x4 operator&( const uint4x4& lhs, const uint4x4& rhs )
+HLML_INLINE uint4x4 operator&( const uint4x4 &lhs, const uint4x4 &rhs )
 {
 	return uint4x4(
 		lhs[0] & rhs[0],
@@ -11306,13 +11306,13 @@ HLML_INLINE uint4x4 operator&( const uint4x4& lhs, const uint4x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise &'d against 'rhs'.
-HLML_INLINE uint4x4 operator&=( uint4x4& lhs, const uint4x4& rhs )
+HLML_INLINE uint4x4 operator&=( uint4x4 &lhs, const uint4x4 &rhs )
 {
 	return ( lhs = lhs & rhs );
 }
 
 // Performs a component-wise bitwise | on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x4 operator|( const uint4x4& lhs, const uint32_t rhs )
+HLML_INLINE uint4x4 operator|( const uint4x4 &lhs, const uint32_t rhs )
 {
 	return uint4x4(
 		lhs[0] | rhs,
@@ -11323,13 +11323,13 @@ HLML_INLINE uint4x4 operator|( const uint4x4& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise |'d against the scalar.
-HLML_INLINE uint4x4 operator|=( uint4x4& lhs, const uint32_t rhs )
+HLML_INLINE uint4x4 operator|=( uint4x4 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs | rhs );
 }
 
 // Performs a component-wise bitwise | against the two matrices and returns the result.
-HLML_INLINE uint4x4 operator|( const uint4x4& lhs, const uint4x4& rhs )
+HLML_INLINE uint4x4 operator|( const uint4x4 &lhs, const uint4x4 &rhs )
 {
 	return uint4x4(
 		lhs[0] | rhs[0],
@@ -11340,13 +11340,13 @@ HLML_INLINE uint4x4 operator|( const uint4x4& lhs, const uint4x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise |'d against 'rhs'.
-HLML_INLINE uint4x4 operator|=( uint4x4& lhs, const uint4x4& rhs )
+HLML_INLINE uint4x4 operator|=( uint4x4 &lhs, const uint4x4 &rhs )
 {
 	return ( lhs = lhs | rhs );
 }
 
 // Performs a component-wise bitwise ^ on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x4 operator^( const uint4x4& lhs, const uint32_t rhs )
+HLML_INLINE uint4x4 operator^( const uint4x4 &lhs, const uint32_t rhs )
 {
 	return uint4x4(
 		lhs[0] ^ rhs,
@@ -11357,13 +11357,13 @@ HLML_INLINE uint4x4 operator^( const uint4x4& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise ^'d against the scalar.
-HLML_INLINE uint4x4 operator^=( uint4x4& lhs, const uint32_t rhs )
+HLML_INLINE uint4x4 operator^=( uint4x4 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs ^ rhs );
 }
 
 // Performs a component-wise bitwise ^ against the two matrices and returns the result.
-HLML_INLINE uint4x4 operator^( const uint4x4& lhs, const uint4x4& rhs )
+HLML_INLINE uint4x4 operator^( const uint4x4 &lhs, const uint4x4 &rhs )
 {
 	return uint4x4(
 		lhs[0] ^ rhs[0],
@@ -11374,13 +11374,13 @@ HLML_INLINE uint4x4 operator^( const uint4x4& lhs, const uint4x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise ^'d against 'rhs'.
-HLML_INLINE uint4x4 operator^=( uint4x4& lhs, const uint4x4& rhs )
+HLML_INLINE uint4x4 operator^=( uint4x4 &lhs, const uint4x4 &rhs )
 {
 	return ( lhs = lhs ^ rhs );
 }
 
 // Performs a component-wise bitwise << on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x4 operator<<( const uint4x4& lhs, const uint32_t rhs )
+HLML_INLINE uint4x4 operator<<( const uint4x4 &lhs, const uint32_t rhs )
 {
 	return uint4x4(
 		lhs[0] << rhs,
@@ -11391,13 +11391,13 @@ HLML_INLINE uint4x4 operator<<( const uint4x4& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise <<'d against the scalar.
-HLML_INLINE uint4x4 operator<<=( uint4x4& lhs, const uint32_t rhs )
+HLML_INLINE uint4x4 operator<<=( uint4x4 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs << rhs );
 }
 
 // Performs a component-wise bitwise << against the two matrices and returns the result.
-HLML_INLINE uint4x4 operator<<( const uint4x4& lhs, const uint4x4& rhs )
+HLML_INLINE uint4x4 operator<<( const uint4x4 &lhs, const uint4x4 &rhs )
 {
 	return uint4x4(
 		lhs[0] << rhs[0],
@@ -11408,13 +11408,13 @@ HLML_INLINE uint4x4 operator<<( const uint4x4& lhs, const uint4x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise <<'d against 'rhs'.
-HLML_INLINE uint4x4 operator<<=( uint4x4& lhs, const uint4x4& rhs )
+HLML_INLINE uint4x4 operator<<=( uint4x4 &lhs, const uint4x4 &rhs )
 {
 	return ( lhs = lhs << rhs );
 }
 
 // Performs a component-wise bitwise >> on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x4 operator>>( const uint4x4& lhs, const uint32_t rhs )
+HLML_INLINE uint4x4 operator>>( const uint4x4 &lhs, const uint32_t rhs )
 {
 	return uint4x4(
 		lhs[0] >> rhs,
@@ -11425,13 +11425,13 @@ HLML_INLINE uint4x4 operator>>( const uint4x4& lhs, const uint32_t rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been bitwise >>'d against the scalar.
-HLML_INLINE uint4x4 operator>>=( uint4x4& lhs, const uint32_t rhs )
+HLML_INLINE uint4x4 operator>>=( uint4x4 &lhs, const uint32_t rhs )
 {
 	return ( lhs = lhs >> rhs );
 }
 
 // Performs a component-wise bitwise >> against the two matrices and returns the result.
-HLML_INLINE uint4x4 operator>>( const uint4x4& lhs, const uint4x4& rhs )
+HLML_INLINE uint4x4 operator>>( const uint4x4 &lhs, const uint4x4 &rhs )
 {
 	return uint4x4(
 		lhs[0] >> rhs[0],
@@ -11442,13 +11442,13 @@ HLML_INLINE uint4x4 operator>>( const uint4x4& lhs, const uint4x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise bitwise >>'d against 'rhs'.
-HLML_INLINE uint4x4 operator>>=( uint4x4& lhs, const uint4x4& rhs )
+HLML_INLINE uint4x4 operator>>=( uint4x4 &lhs, const uint4x4 &rhs )
 {
 	return ( lhs = lhs >> rhs );
 }
 
 // Sets the matrix to an identity matrix.
-HLML_INLINE void identity( uint4x4& mat )
+HLML_INLINE void identity( uint4x4 &mat )
 {
 	mat.rows[0] = HLML_CONSTRUCT( uint4 ) { 1U, 0U, 0U, 0U };
 	mat.rows[1] = HLML_CONSTRUCT( uint4 ) { 0U, 1U, 0U, 0U };
@@ -11457,7 +11457,7 @@ HLML_INLINE void identity( uint4x4& mat )
 }
 
 // Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-HLML_INLINE uint4x4 transpose( const uint4x4& mat )
+HLML_INLINE uint4x4 transpose( const uint4x4 &mat )
 {
 	return HLML_CONSTRUCT( uint4x4 )
 	{
@@ -11469,7 +11469,7 @@ HLML_INLINE uint4x4 transpose( const uint4x4& mat )
 }
 
 // Performs a matrix multiplication with 'lhs' and 'rhs' and returns the result.
-HLML_INLINE uint4x4 mul( const uint4x4& lhs, const uint4x4& rhs )
+HLML_INLINE uint4x4 mul( const uint4x4 &lhs, const uint4x4 &rhs )
 {
 	uint4 row0 = lhs.rows[0];
 	uint4 row1 = lhs.rows[1];
@@ -11506,7 +11506,7 @@ HLML_INLINE uint4x4 mul( const uint4x4& lhs, const uint4x4& rhs )
 }
 
 // Multiplies the vector 'lhs' against the matrix 'rhs' and returns the result.
-HLML_INLINE uint4 mul( const uint4& lhs, const uint4x4& rhs )
+HLML_INLINE uint4 mul( const uint4 &lhs, const uint4x4 &rhs )
 {
 	return HLML_CONSTRUCT( uint4 )
 	{
@@ -11518,7 +11518,7 @@ HLML_INLINE uint4 mul( const uint4& lhs, const uint4x4& rhs )
 }
 
 // "Translates" the matrix.  Adds the last column of 'mat' by the position vector 'vec'.
-HLML_INLINE uint4x4 translate( const uint4x4& mat, const uint3& vec )
+HLML_INLINE uint4x4 translate( const uint4x4 &mat, const uint3 &vec )
 {
 	return HLML_CONSTRUCT( uint4x4 )
 	{
@@ -11530,7 +11530,7 @@ HLML_INLINE uint4x4 translate( const uint4x4& mat, const uint3& vec )
 }
 
 // Applies a non-uniform scale to the matrix and returns the result.
-HLML_INLINE uint4x4 scale( const uint4x4& mat, const uint3& scale )
+HLML_INLINE uint4x4 scale( const uint4x4 &mat, const uint3 &scale )
 {
 	return HLML_CONSTRUCT( uint4x4 )
 	{
@@ -11558,7 +11558,7 @@ HLML_INLINE uint4x4 scale( const uint4x4& mat, const uint3& scale )
 
 // float2x2
 // Performs a sign function on each row of the matrix.
-HLML_INLINE int2x2 sign( const float2x2& x )
+HLML_INLINE int2x2 sign( const float2x2 &x )
 {
 	return int2x2(
 		sign( x[0] ),
@@ -11567,7 +11567,7 @@ HLML_INLINE int2x2 sign( const float2x2& x )
 }
 
 // Performs a min function on each row of the matrix.
-HLML_INLINE float2x2 min( const float2x2& x, const float2x2& y )
+HLML_INLINE float2x2 min( const float2x2 &x, const float2x2 &y )
 {
 	return float2x2(
 		min( x[0], y[0] ),
@@ -11576,7 +11576,7 @@ HLML_INLINE float2x2 min( const float2x2& x, const float2x2& y )
 }
 
 // Performs a max function on each row of the matrix.
-HLML_INLINE float2x2 max( const float2x2& x, const float2x2& y )
+HLML_INLINE float2x2 max( const float2x2 &x, const float2x2 &y )
 {
 	return float2x2(
 		max( x[0], y[0] ),
@@ -11585,7 +11585,7 @@ HLML_INLINE float2x2 max( const float2x2& x, const float2x2& y )
 }
 
 // Performs a clamp function on each row of the matrix.
-HLML_INLINE float2x2 clamp( const float2x2& x, const float2x2& low, const float2x2& high )
+HLML_INLINE float2x2 clamp( const float2x2 &x, const float2x2 &low, const float2x2 &high )
 {
 	return float2x2(
 		clamp( x[0], low[0], high[0] ),
@@ -11594,7 +11594,7 @@ HLML_INLINE float2x2 clamp( const float2x2& x, const float2x2& low, const float2
 }
 
 // Performs a saturate function on each row of the matrix.
-HLML_INLINE float2x2 saturate( const float2x2& x )
+HLML_INLINE float2x2 saturate( const float2x2 &x )
 {
 	return float2x2(
 		saturate( x[0] ),
@@ -11603,7 +11603,7 @@ HLML_INLINE float2x2 saturate( const float2x2& x )
 }
 
 // Performs a lerp function on each row of the matrix.
-HLML_INLINE float2x2 lerp( const float2x2& lhs, const float2x2& rhs, const float t )
+HLML_INLINE float2x2 lerp( const float2x2 &lhs, const float2x2 &rhs, const float t )
 {
 	return float2x2(
 		lerp( lhs[0], rhs[0], t ),
@@ -11612,7 +11612,7 @@ HLML_INLINE float2x2 lerp( const float2x2& lhs, const float2x2& rhs, const float
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator==( const float2x2& lhs, const float2x2& rhs )
+HLML_INLINE bool operator==( const float2x2 &lhs, const float2x2 &rhs )
 {
 	return
 		lhs[0] == rhs[0] &&
@@ -11620,13 +11620,13 @@ HLML_INLINE bool operator==( const float2x2& lhs, const float2x2& rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator!=( const float2x2& lhs, const float2x2& rhs )
+HLML_INLINE bool operator!=( const float2x2 &lhs, const float2x2 &rhs )
 {
 	return !( lhs == rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool2x2 operator<( const float2x2& lhs, const float2x2& rhs )
+HLML_INLINE bool2x2 operator<( const float2x2 &lhs, const float2x2 &rhs )
 {
 	return bool2x2(
 		lhs[0] < rhs[0],
@@ -11635,7 +11635,7 @@ HLML_INLINE bool2x2 operator<( const float2x2& lhs, const float2x2& rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool2x2 operator<=( const float2x2& lhs, const float2x2& rhs )
+HLML_INLINE bool2x2 operator<=( const float2x2 &lhs, const float2x2 &rhs )
 {
 	return bool2x2(
 		lhs[0] <= rhs[0],
@@ -11644,7 +11644,7 @@ HLML_INLINE bool2x2 operator<=( const float2x2& lhs, const float2x2& rhs )
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool2x2 operator>( const float2x2& lhs, const float2x2& rhs )
+HLML_INLINE bool2x2 operator>( const float2x2 &lhs, const float2x2 &rhs )
 {
 	return bool2x2(
 		lhs[0] > rhs[0],
@@ -11653,7 +11653,7 @@ HLML_INLINE bool2x2 operator>( const float2x2& lhs, const float2x2& rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool2x2 operator>=( const float2x2& lhs, const float2x2& rhs )
+HLML_INLINE bool2x2 operator>=( const float2x2 &lhs, const float2x2 &rhs )
 {
 	return bool2x2(
 		lhs[0] >= rhs[0],
@@ -11662,7 +11662,7 @@ HLML_INLINE bool2x2 operator>=( const float2x2& lhs, const float2x2& rhs )
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE float2x2 operator+( const float2x2& lhs, const float rhs )
+HLML_INLINE float2x2 operator+( const float2x2 &lhs, const float rhs )
 {
 	return float2x2(
 		lhs[0] + rhs,
@@ -11671,13 +11671,13 @@ HLML_INLINE float2x2 operator+( const float2x2& lhs, const float rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been +'d against the scalar.
-HLML_INLINE float2x2 operator+=( float2x2& lhs, const float rhs )
+HLML_INLINE float2x2 operator+=( float2x2 &lhs, const float rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE float2x2 operator+( const float2x2& lhs, const float2x2& rhs )
+HLML_INLINE float2x2 operator+( const float2x2 &lhs, const float2x2 &rhs )
 {
 	return float2x2(
 		lhs[0] + rhs[0],
@@ -11686,13 +11686,13 @@ HLML_INLINE float2x2 operator+( const float2x2& lhs, const float2x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise +'d against 'rhs'.
-HLML_INLINE float2x2 operator+=( float2x2& lhs, const float2x2& rhs )
+HLML_INLINE float2x2 operator+=( float2x2 &lhs, const float2x2 &rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE float2x2 operator-( const float2x2& lhs, const float rhs )
+HLML_INLINE float2x2 operator-( const float2x2 &lhs, const float rhs )
 {
 	return float2x2(
 		lhs[0] - rhs,
@@ -11701,13 +11701,13 @@ HLML_INLINE float2x2 operator-( const float2x2& lhs, const float rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been -'d against the scalar.
-HLML_INLINE float2x2 operator-=( float2x2& lhs, const float rhs )
+HLML_INLINE float2x2 operator-=( float2x2 &lhs, const float rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE float2x2 operator-( const float2x2& lhs, const float2x2& rhs )
+HLML_INLINE float2x2 operator-( const float2x2 &lhs, const float2x2 &rhs )
 {
 	return float2x2(
 		lhs[0] - rhs[0],
@@ -11716,13 +11716,13 @@ HLML_INLINE float2x2 operator-( const float2x2& lhs, const float2x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise -'d against 'rhs'.
-HLML_INLINE float2x2 operator-=( float2x2& lhs, const float2x2& rhs )
+HLML_INLINE float2x2 operator-=( float2x2 &lhs, const float2x2 &rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE float2x2 operator*( const float2x2& lhs, const float rhs )
+HLML_INLINE float2x2 operator*( const float2x2 &lhs, const float rhs )
 {
 	return float2x2(
 		lhs[0] * rhs,
@@ -11731,13 +11731,13 @@ HLML_INLINE float2x2 operator*( const float2x2& lhs, const float rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been *'d against the scalar.
-HLML_INLINE float2x2 operator*=( float2x2& lhs, const float rhs )
+HLML_INLINE float2x2 operator*=( float2x2 &lhs, const float rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE float2x2 operator*( const float2x2& lhs, const float2x2& rhs )
+HLML_INLINE float2x2 operator*( const float2x2 &lhs, const float2x2 &rhs )
 {
 	return float2x2(
 		lhs[0] * rhs[0],
@@ -11746,13 +11746,13 @@ HLML_INLINE float2x2 operator*( const float2x2& lhs, const float2x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise *'d against 'rhs'.
-HLML_INLINE float2x2 operator*=( float2x2& lhs, const float2x2& rhs )
+HLML_INLINE float2x2 operator*=( float2x2 &lhs, const float2x2 &rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE float2x2 operator/( const float2x2& lhs, const float rhs )
+HLML_INLINE float2x2 operator/( const float2x2 &lhs, const float rhs )
 {
 	return float2x2(
 		lhs[0] / rhs,
@@ -11761,13 +11761,13 @@ HLML_INLINE float2x2 operator/( const float2x2& lhs, const float rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been /'d against the scalar.
-HLML_INLINE float2x2 operator/=( float2x2& lhs, const float rhs )
+HLML_INLINE float2x2 operator/=( float2x2 &lhs, const float rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE float2x2 operator/( const float2x2& lhs, const float2x2& rhs )
+HLML_INLINE float2x2 operator/( const float2x2 &lhs, const float2x2 &rhs )
 {
 	return float2x2(
 		lhs[0] / rhs[0],
@@ -11776,13 +11776,13 @@ HLML_INLINE float2x2 operator/( const float2x2& lhs, const float2x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise /'d against 'rhs'.
-HLML_INLINE float2x2 operator/=( float2x2& lhs, const float2x2& rhs )
+HLML_INLINE float2x2 operator/=( float2x2 &lhs, const float2x2 &rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // ++s each component of the matrix and returns the result.
-HLML_INLINE float2x2 operator++( float2x2& x )
+HLML_INLINE float2x2 operator++( float2x2 &x )
 {
 	++x[0];
 	++x[1];
@@ -11791,7 +11791,7 @@ HLML_INLINE float2x2 operator++( float2x2& x )
 
 // ++s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE float2x2 operator++( float2x2& x, const int32_t )
+HLML_INLINE float2x2 operator++( float2x2 &x, const int32_t )
 {
 	x[0]++;
 	x[1]++;
@@ -11799,7 +11799,7 @@ HLML_INLINE float2x2 operator++( float2x2& x, const int32_t )
 }
 
 // --s each component of the matrix and returns the result.
-HLML_INLINE float2x2 operator--( float2x2& x )
+HLML_INLINE float2x2 operator--( float2x2 &x )
 {
 	--x[0];
 	--x[1];
@@ -11808,7 +11808,7 @@ HLML_INLINE float2x2 operator--( float2x2& x )
 
 // --s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE float2x2 operator--( float2x2& x, const int32_t )
+HLML_INLINE float2x2 operator--( float2x2 &x, const int32_t )
 {
 	x[0]--;
 	x[1]--;
@@ -11817,7 +11817,7 @@ HLML_INLINE float2x2 operator--( float2x2& x, const int32_t )
 
 // Returns a copy of the matrix that has been negated.
 // pre-fix
-HLML_INLINE float2x2 operator-( const float2x2& x )
+HLML_INLINE float2x2 operator-( const float2x2 &x )
 {
 	return float2x2(
 		-x[0],
@@ -11826,14 +11826,14 @@ HLML_INLINE float2x2 operator-( const float2x2& x )
 }
 
 // Sets the matrix to an identity matrix.
-HLML_INLINE void identity( float2x2& mat )
+HLML_INLINE void identity( float2x2 &mat )
 {
 	mat.rows[0] = HLML_CONSTRUCT( float2 ) { 1.0f, 0.0f };
 	mat.rows[1] = HLML_CONSTRUCT( float2 ) { 0.0f, 1.0f };
 }
 
 // Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-HLML_INLINE float2x2 transpose( const float2x2& mat )
+HLML_INLINE float2x2 transpose( const float2x2 &mat )
 {
 	return HLML_CONSTRUCT( float2x2 )
 	{
@@ -11843,14 +11843,14 @@ HLML_INLINE float2x2 transpose( const float2x2& mat )
 }
 
 // Returns the determinant of the matrix.
-HLML_INLINE float determinant( const float2x2& mat )
+HLML_INLINE float determinant( const float2x2 &mat )
 {
 	return mat.rows[0].x * mat.rows[1].y - mat.rows[1].x * mat.rows[0].y;
 }
 
 // Returns a copy of the matrix that is inversed.
 // This is only applicable for square matrices.
-HLML_INLINE float2x2 inverse( const float2x2& mat )
+HLML_INLINE float2x2 inverse( const float2x2 &mat )
 {
 	const float invdet = 1.0f / determinant( mat );
 	return HLML_CONSTRUCT( float2x2 )
@@ -11861,7 +11861,7 @@ HLML_INLINE float2x2 inverse( const float2x2& mat )
 }
 
 // Performs a matrix multiplication with 'lhs' and 'rhs' and returns the result.
-HLML_INLINE float2x2 mul( const float2x2& lhs, const float2x2& rhs )
+HLML_INLINE float2x2 mul( const float2x2 &lhs, const float2x2 &rhs )
 {
 	float2 row0 = lhs.rows[0];
 	float2 row1 = lhs.rows[1];
@@ -11880,7 +11880,7 @@ HLML_INLINE float2x2 mul( const float2x2& lhs, const float2x2& rhs )
 }
 
 // Multiplies the vector 'lhs' against the matrix 'rhs' and returns the result.
-HLML_INLINE float2 mul( const float2& lhs, const float2x2& rhs )
+HLML_INLINE float2 mul( const float2 &lhs, const float2x2 &rhs )
 {
 	return HLML_CONSTRUCT( float2 )
 	{
@@ -11891,7 +11891,7 @@ HLML_INLINE float2 mul( const float2& lhs, const float2x2& rhs )
 
 // float2x3
 // Performs a sign function on each row of the matrix.
-HLML_INLINE int2x3 sign( const float2x3& x )
+HLML_INLINE int2x3 sign( const float2x3 &x )
 {
 	return int2x3(
 		sign( x[0] ),
@@ -11900,7 +11900,7 @@ HLML_INLINE int2x3 sign( const float2x3& x )
 }
 
 // Performs a min function on each row of the matrix.
-HLML_INLINE float2x3 min( const float2x3& x, const float2x3& y )
+HLML_INLINE float2x3 min( const float2x3 &x, const float2x3 &y )
 {
 	return float2x3(
 		min( x[0], y[0] ),
@@ -11909,7 +11909,7 @@ HLML_INLINE float2x3 min( const float2x3& x, const float2x3& y )
 }
 
 // Performs a max function on each row of the matrix.
-HLML_INLINE float2x3 max( const float2x3& x, const float2x3& y )
+HLML_INLINE float2x3 max( const float2x3 &x, const float2x3 &y )
 {
 	return float2x3(
 		max( x[0], y[0] ),
@@ -11918,7 +11918,7 @@ HLML_INLINE float2x3 max( const float2x3& x, const float2x3& y )
 }
 
 // Performs a clamp function on each row of the matrix.
-HLML_INLINE float2x3 clamp( const float2x3& x, const float2x3& low, const float2x3& high )
+HLML_INLINE float2x3 clamp( const float2x3 &x, const float2x3 &low, const float2x3 &high )
 {
 	return float2x3(
 		clamp( x[0], low[0], high[0] ),
@@ -11927,7 +11927,7 @@ HLML_INLINE float2x3 clamp( const float2x3& x, const float2x3& low, const float2
 }
 
 // Performs a saturate function on each row of the matrix.
-HLML_INLINE float2x3 saturate( const float2x3& x )
+HLML_INLINE float2x3 saturate( const float2x3 &x )
 {
 	return float2x3(
 		saturate( x[0] ),
@@ -11936,7 +11936,7 @@ HLML_INLINE float2x3 saturate( const float2x3& x )
 }
 
 // Performs a lerp function on each row of the matrix.
-HLML_INLINE float2x3 lerp( const float2x3& lhs, const float2x3& rhs, const float t )
+HLML_INLINE float2x3 lerp( const float2x3 &lhs, const float2x3 &rhs, const float t )
 {
 	return float2x3(
 		lerp( lhs[0], rhs[0], t ),
@@ -11945,7 +11945,7 @@ HLML_INLINE float2x3 lerp( const float2x3& lhs, const float2x3& rhs, const float
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator==( const float2x3& lhs, const float2x3& rhs )
+HLML_INLINE bool operator==( const float2x3 &lhs, const float2x3 &rhs )
 {
 	return
 		lhs[0] == rhs[0] &&
@@ -11953,13 +11953,13 @@ HLML_INLINE bool operator==( const float2x3& lhs, const float2x3& rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator!=( const float2x3& lhs, const float2x3& rhs )
+HLML_INLINE bool operator!=( const float2x3 &lhs, const float2x3 &rhs )
 {
 	return !( lhs == rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool2x3 operator<( const float2x3& lhs, const float2x3& rhs )
+HLML_INLINE bool2x3 operator<( const float2x3 &lhs, const float2x3 &rhs )
 {
 	return bool2x3(
 		lhs[0] < rhs[0],
@@ -11968,7 +11968,7 @@ HLML_INLINE bool2x3 operator<( const float2x3& lhs, const float2x3& rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool2x3 operator<=( const float2x3& lhs, const float2x3& rhs )
+HLML_INLINE bool2x3 operator<=( const float2x3 &lhs, const float2x3 &rhs )
 {
 	return bool2x3(
 		lhs[0] <= rhs[0],
@@ -11977,7 +11977,7 @@ HLML_INLINE bool2x3 operator<=( const float2x3& lhs, const float2x3& rhs )
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool2x3 operator>( const float2x3& lhs, const float2x3& rhs )
+HLML_INLINE bool2x3 operator>( const float2x3 &lhs, const float2x3 &rhs )
 {
 	return bool2x3(
 		lhs[0] > rhs[0],
@@ -11986,7 +11986,7 @@ HLML_INLINE bool2x3 operator>( const float2x3& lhs, const float2x3& rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool2x3 operator>=( const float2x3& lhs, const float2x3& rhs )
+HLML_INLINE bool2x3 operator>=( const float2x3 &lhs, const float2x3 &rhs )
 {
 	return bool2x3(
 		lhs[0] >= rhs[0],
@@ -11995,7 +11995,7 @@ HLML_INLINE bool2x3 operator>=( const float2x3& lhs, const float2x3& rhs )
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE float2x3 operator+( const float2x3& lhs, const float rhs )
+HLML_INLINE float2x3 operator+( const float2x3 &lhs, const float rhs )
 {
 	return float2x3(
 		lhs[0] + rhs,
@@ -12004,13 +12004,13 @@ HLML_INLINE float2x3 operator+( const float2x3& lhs, const float rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been +'d against the scalar.
-HLML_INLINE float2x3 operator+=( float2x3& lhs, const float rhs )
+HLML_INLINE float2x3 operator+=( float2x3 &lhs, const float rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE float2x3 operator+( const float2x3& lhs, const float2x3& rhs )
+HLML_INLINE float2x3 operator+( const float2x3 &lhs, const float2x3 &rhs )
 {
 	return float2x3(
 		lhs[0] + rhs[0],
@@ -12019,13 +12019,13 @@ HLML_INLINE float2x3 operator+( const float2x3& lhs, const float2x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise +'d against 'rhs'.
-HLML_INLINE float2x3 operator+=( float2x3& lhs, const float2x3& rhs )
+HLML_INLINE float2x3 operator+=( float2x3 &lhs, const float2x3 &rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE float2x3 operator-( const float2x3& lhs, const float rhs )
+HLML_INLINE float2x3 operator-( const float2x3 &lhs, const float rhs )
 {
 	return float2x3(
 		lhs[0] - rhs,
@@ -12034,13 +12034,13 @@ HLML_INLINE float2x3 operator-( const float2x3& lhs, const float rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been -'d against the scalar.
-HLML_INLINE float2x3 operator-=( float2x3& lhs, const float rhs )
+HLML_INLINE float2x3 operator-=( float2x3 &lhs, const float rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE float2x3 operator-( const float2x3& lhs, const float2x3& rhs )
+HLML_INLINE float2x3 operator-( const float2x3 &lhs, const float2x3 &rhs )
 {
 	return float2x3(
 		lhs[0] - rhs[0],
@@ -12049,13 +12049,13 @@ HLML_INLINE float2x3 operator-( const float2x3& lhs, const float2x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise -'d against 'rhs'.
-HLML_INLINE float2x3 operator-=( float2x3& lhs, const float2x3& rhs )
+HLML_INLINE float2x3 operator-=( float2x3 &lhs, const float2x3 &rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE float2x3 operator*( const float2x3& lhs, const float rhs )
+HLML_INLINE float2x3 operator*( const float2x3 &lhs, const float rhs )
 {
 	return float2x3(
 		lhs[0] * rhs,
@@ -12064,13 +12064,13 @@ HLML_INLINE float2x3 operator*( const float2x3& lhs, const float rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been *'d against the scalar.
-HLML_INLINE float2x3 operator*=( float2x3& lhs, const float rhs )
+HLML_INLINE float2x3 operator*=( float2x3 &lhs, const float rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE float2x3 operator*( const float2x3& lhs, const float2x3& rhs )
+HLML_INLINE float2x3 operator*( const float2x3 &lhs, const float2x3 &rhs )
 {
 	return float2x3(
 		lhs[0] * rhs[0],
@@ -12079,13 +12079,13 @@ HLML_INLINE float2x3 operator*( const float2x3& lhs, const float2x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise *'d against 'rhs'.
-HLML_INLINE float2x3 operator*=( float2x3& lhs, const float2x3& rhs )
+HLML_INLINE float2x3 operator*=( float2x3 &lhs, const float2x3 &rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE float2x3 operator/( const float2x3& lhs, const float rhs )
+HLML_INLINE float2x3 operator/( const float2x3 &lhs, const float rhs )
 {
 	return float2x3(
 		lhs[0] / rhs,
@@ -12094,13 +12094,13 @@ HLML_INLINE float2x3 operator/( const float2x3& lhs, const float rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been /'d against the scalar.
-HLML_INLINE float2x3 operator/=( float2x3& lhs, const float rhs )
+HLML_INLINE float2x3 operator/=( float2x3 &lhs, const float rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE float2x3 operator/( const float2x3& lhs, const float2x3& rhs )
+HLML_INLINE float2x3 operator/( const float2x3 &lhs, const float2x3 &rhs )
 {
 	return float2x3(
 		lhs[0] / rhs[0],
@@ -12109,13 +12109,13 @@ HLML_INLINE float2x3 operator/( const float2x3& lhs, const float2x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise /'d against 'rhs'.
-HLML_INLINE float2x3 operator/=( float2x3& lhs, const float2x3& rhs )
+HLML_INLINE float2x3 operator/=( float2x3 &lhs, const float2x3 &rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // ++s each component of the matrix and returns the result.
-HLML_INLINE float2x3 operator++( float2x3& x )
+HLML_INLINE float2x3 operator++( float2x3 &x )
 {
 	++x[0];
 	++x[1];
@@ -12124,7 +12124,7 @@ HLML_INLINE float2x3 operator++( float2x3& x )
 
 // ++s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE float2x3 operator++( float2x3& x, const int32_t )
+HLML_INLINE float2x3 operator++( float2x3 &x, const int32_t )
 {
 	x[0]++;
 	x[1]++;
@@ -12132,7 +12132,7 @@ HLML_INLINE float2x3 operator++( float2x3& x, const int32_t )
 }
 
 // --s each component of the matrix and returns the result.
-HLML_INLINE float2x3 operator--( float2x3& x )
+HLML_INLINE float2x3 operator--( float2x3 &x )
 {
 	--x[0];
 	--x[1];
@@ -12141,7 +12141,7 @@ HLML_INLINE float2x3 operator--( float2x3& x )
 
 // --s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE float2x3 operator--( float2x3& x, const int32_t )
+HLML_INLINE float2x3 operator--( float2x3 &x, const int32_t )
 {
 	x[0]--;
 	x[1]--;
@@ -12150,7 +12150,7 @@ HLML_INLINE float2x3 operator--( float2x3& x, const int32_t )
 
 // Returns a copy of the matrix that has been negated.
 // pre-fix
-HLML_INLINE float2x3 operator-( const float2x3& x )
+HLML_INLINE float2x3 operator-( const float2x3 &x )
 {
 	return float2x3(
 		-x[0],
@@ -12159,14 +12159,14 @@ HLML_INLINE float2x3 operator-( const float2x3& x )
 }
 
 // Sets the matrix to an identity matrix.
-HLML_INLINE void identity( float2x3& mat )
+HLML_INLINE void identity( float2x3 &mat )
 {
 	mat.rows[0] = HLML_CONSTRUCT( float3 ) { 1.0f, 0.0f, 0.0f };
 	mat.rows[1] = HLML_CONSTRUCT( float3 ) { 0.0f, 1.0f, 0.0f };
 }
 
 // Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-HLML_INLINE float3x2 transpose( const float2x3& mat )
+HLML_INLINE float3x2 transpose( const float2x3 &mat )
 {
 	return HLML_CONSTRUCT( float3x2 )
 	{
@@ -12177,7 +12177,7 @@ HLML_INLINE float3x2 transpose( const float2x3& mat )
 }
 
 // Performs a matrix multiplication with 'lhs' and 'rhs' and returns the result.
-HLML_INLINE float2x2 mul( const float2x3& lhs, const float3x2& rhs )
+HLML_INLINE float2x2 mul( const float2x3 &lhs, const float3x2 &rhs )
 {
 	float3 row0 = lhs.rows[0];
 	float3 row1 = lhs.rows[1];
@@ -12197,7 +12197,7 @@ HLML_INLINE float2x2 mul( const float2x3& lhs, const float3x2& rhs )
 
 // float2x4
 // Performs a sign function on each row of the matrix.
-HLML_INLINE int2x4 sign( const float2x4& x )
+HLML_INLINE int2x4 sign( const float2x4 &x )
 {
 	return int2x4(
 		sign( x[0] ),
@@ -12206,7 +12206,7 @@ HLML_INLINE int2x4 sign( const float2x4& x )
 }
 
 // Performs a min function on each row of the matrix.
-HLML_INLINE float2x4 min( const float2x4& x, const float2x4& y )
+HLML_INLINE float2x4 min( const float2x4 &x, const float2x4 &y )
 {
 	return float2x4(
 		min( x[0], y[0] ),
@@ -12215,7 +12215,7 @@ HLML_INLINE float2x4 min( const float2x4& x, const float2x4& y )
 }
 
 // Performs a max function on each row of the matrix.
-HLML_INLINE float2x4 max( const float2x4& x, const float2x4& y )
+HLML_INLINE float2x4 max( const float2x4 &x, const float2x4 &y )
 {
 	return float2x4(
 		max( x[0], y[0] ),
@@ -12224,7 +12224,7 @@ HLML_INLINE float2x4 max( const float2x4& x, const float2x4& y )
 }
 
 // Performs a clamp function on each row of the matrix.
-HLML_INLINE float2x4 clamp( const float2x4& x, const float2x4& low, const float2x4& high )
+HLML_INLINE float2x4 clamp( const float2x4 &x, const float2x4 &low, const float2x4 &high )
 {
 	return float2x4(
 		clamp( x[0], low[0], high[0] ),
@@ -12233,7 +12233,7 @@ HLML_INLINE float2x4 clamp( const float2x4& x, const float2x4& low, const float2
 }
 
 // Performs a saturate function on each row of the matrix.
-HLML_INLINE float2x4 saturate( const float2x4& x )
+HLML_INLINE float2x4 saturate( const float2x4 &x )
 {
 	return float2x4(
 		saturate( x[0] ),
@@ -12242,7 +12242,7 @@ HLML_INLINE float2x4 saturate( const float2x4& x )
 }
 
 // Performs a lerp function on each row of the matrix.
-HLML_INLINE float2x4 lerp( const float2x4& lhs, const float2x4& rhs, const float t )
+HLML_INLINE float2x4 lerp( const float2x4 &lhs, const float2x4 &rhs, const float t )
 {
 	return float2x4(
 		lerp( lhs[0], rhs[0], t ),
@@ -12251,7 +12251,7 @@ HLML_INLINE float2x4 lerp( const float2x4& lhs, const float2x4& rhs, const float
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator==( const float2x4& lhs, const float2x4& rhs )
+HLML_INLINE bool operator==( const float2x4 &lhs, const float2x4 &rhs )
 {
 	return
 		lhs[0] == rhs[0] &&
@@ -12259,13 +12259,13 @@ HLML_INLINE bool operator==( const float2x4& lhs, const float2x4& rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator!=( const float2x4& lhs, const float2x4& rhs )
+HLML_INLINE bool operator!=( const float2x4 &lhs, const float2x4 &rhs )
 {
 	return !( lhs == rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool2x4 operator<( const float2x4& lhs, const float2x4& rhs )
+HLML_INLINE bool2x4 operator<( const float2x4 &lhs, const float2x4 &rhs )
 {
 	return bool2x4(
 		lhs[0] < rhs[0],
@@ -12274,7 +12274,7 @@ HLML_INLINE bool2x4 operator<( const float2x4& lhs, const float2x4& rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool2x4 operator<=( const float2x4& lhs, const float2x4& rhs )
+HLML_INLINE bool2x4 operator<=( const float2x4 &lhs, const float2x4 &rhs )
 {
 	return bool2x4(
 		lhs[0] <= rhs[0],
@@ -12283,7 +12283,7 @@ HLML_INLINE bool2x4 operator<=( const float2x4& lhs, const float2x4& rhs )
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool2x4 operator>( const float2x4& lhs, const float2x4& rhs )
+HLML_INLINE bool2x4 operator>( const float2x4 &lhs, const float2x4 &rhs )
 {
 	return bool2x4(
 		lhs[0] > rhs[0],
@@ -12292,7 +12292,7 @@ HLML_INLINE bool2x4 operator>( const float2x4& lhs, const float2x4& rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool2x4 operator>=( const float2x4& lhs, const float2x4& rhs )
+HLML_INLINE bool2x4 operator>=( const float2x4 &lhs, const float2x4 &rhs )
 {
 	return bool2x4(
 		lhs[0] >= rhs[0],
@@ -12301,7 +12301,7 @@ HLML_INLINE bool2x4 operator>=( const float2x4& lhs, const float2x4& rhs )
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE float2x4 operator+( const float2x4& lhs, const float rhs )
+HLML_INLINE float2x4 operator+( const float2x4 &lhs, const float rhs )
 {
 	return float2x4(
 		lhs[0] + rhs,
@@ -12310,13 +12310,13 @@ HLML_INLINE float2x4 operator+( const float2x4& lhs, const float rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been +'d against the scalar.
-HLML_INLINE float2x4 operator+=( float2x4& lhs, const float rhs )
+HLML_INLINE float2x4 operator+=( float2x4 &lhs, const float rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE float2x4 operator+( const float2x4& lhs, const float2x4& rhs )
+HLML_INLINE float2x4 operator+( const float2x4 &lhs, const float2x4 &rhs )
 {
 	return float2x4(
 		lhs[0] + rhs[0],
@@ -12325,13 +12325,13 @@ HLML_INLINE float2x4 operator+( const float2x4& lhs, const float2x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise +'d against 'rhs'.
-HLML_INLINE float2x4 operator+=( float2x4& lhs, const float2x4& rhs )
+HLML_INLINE float2x4 operator+=( float2x4 &lhs, const float2x4 &rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE float2x4 operator-( const float2x4& lhs, const float rhs )
+HLML_INLINE float2x4 operator-( const float2x4 &lhs, const float rhs )
 {
 	return float2x4(
 		lhs[0] - rhs,
@@ -12340,13 +12340,13 @@ HLML_INLINE float2x4 operator-( const float2x4& lhs, const float rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been -'d against the scalar.
-HLML_INLINE float2x4 operator-=( float2x4& lhs, const float rhs )
+HLML_INLINE float2x4 operator-=( float2x4 &lhs, const float rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE float2x4 operator-( const float2x4& lhs, const float2x4& rhs )
+HLML_INLINE float2x4 operator-( const float2x4 &lhs, const float2x4 &rhs )
 {
 	return float2x4(
 		lhs[0] - rhs[0],
@@ -12355,13 +12355,13 @@ HLML_INLINE float2x4 operator-( const float2x4& lhs, const float2x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise -'d against 'rhs'.
-HLML_INLINE float2x4 operator-=( float2x4& lhs, const float2x4& rhs )
+HLML_INLINE float2x4 operator-=( float2x4 &lhs, const float2x4 &rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE float2x4 operator*( const float2x4& lhs, const float rhs )
+HLML_INLINE float2x4 operator*( const float2x4 &lhs, const float rhs )
 {
 	return float2x4(
 		lhs[0] * rhs,
@@ -12370,13 +12370,13 @@ HLML_INLINE float2x4 operator*( const float2x4& lhs, const float rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been *'d against the scalar.
-HLML_INLINE float2x4 operator*=( float2x4& lhs, const float rhs )
+HLML_INLINE float2x4 operator*=( float2x4 &lhs, const float rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE float2x4 operator*( const float2x4& lhs, const float2x4& rhs )
+HLML_INLINE float2x4 operator*( const float2x4 &lhs, const float2x4 &rhs )
 {
 	return float2x4(
 		lhs[0] * rhs[0],
@@ -12385,13 +12385,13 @@ HLML_INLINE float2x4 operator*( const float2x4& lhs, const float2x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise *'d against 'rhs'.
-HLML_INLINE float2x4 operator*=( float2x4& lhs, const float2x4& rhs )
+HLML_INLINE float2x4 operator*=( float2x4 &lhs, const float2x4 &rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE float2x4 operator/( const float2x4& lhs, const float rhs )
+HLML_INLINE float2x4 operator/( const float2x4 &lhs, const float rhs )
 {
 	return float2x4(
 		lhs[0] / rhs,
@@ -12400,13 +12400,13 @@ HLML_INLINE float2x4 operator/( const float2x4& lhs, const float rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been /'d against the scalar.
-HLML_INLINE float2x4 operator/=( float2x4& lhs, const float rhs )
+HLML_INLINE float2x4 operator/=( float2x4 &lhs, const float rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE float2x4 operator/( const float2x4& lhs, const float2x4& rhs )
+HLML_INLINE float2x4 operator/( const float2x4 &lhs, const float2x4 &rhs )
 {
 	return float2x4(
 		lhs[0] / rhs[0],
@@ -12415,13 +12415,13 @@ HLML_INLINE float2x4 operator/( const float2x4& lhs, const float2x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise /'d against 'rhs'.
-HLML_INLINE float2x4 operator/=( float2x4& lhs, const float2x4& rhs )
+HLML_INLINE float2x4 operator/=( float2x4 &lhs, const float2x4 &rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // ++s each component of the matrix and returns the result.
-HLML_INLINE float2x4 operator++( float2x4& x )
+HLML_INLINE float2x4 operator++( float2x4 &x )
 {
 	++x[0];
 	++x[1];
@@ -12430,7 +12430,7 @@ HLML_INLINE float2x4 operator++( float2x4& x )
 
 // ++s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE float2x4 operator++( float2x4& x, const int32_t )
+HLML_INLINE float2x4 operator++( float2x4 &x, const int32_t )
 {
 	x[0]++;
 	x[1]++;
@@ -12438,7 +12438,7 @@ HLML_INLINE float2x4 operator++( float2x4& x, const int32_t )
 }
 
 // --s each component of the matrix and returns the result.
-HLML_INLINE float2x4 operator--( float2x4& x )
+HLML_INLINE float2x4 operator--( float2x4 &x )
 {
 	--x[0];
 	--x[1];
@@ -12447,7 +12447,7 @@ HLML_INLINE float2x4 operator--( float2x4& x )
 
 // --s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE float2x4 operator--( float2x4& x, const int32_t )
+HLML_INLINE float2x4 operator--( float2x4 &x, const int32_t )
 {
 	x[0]--;
 	x[1]--;
@@ -12456,7 +12456,7 @@ HLML_INLINE float2x4 operator--( float2x4& x, const int32_t )
 
 // Returns a copy of the matrix that has been negated.
 // pre-fix
-HLML_INLINE float2x4 operator-( const float2x4& x )
+HLML_INLINE float2x4 operator-( const float2x4 &x )
 {
 	return float2x4(
 		-x[0],
@@ -12465,14 +12465,14 @@ HLML_INLINE float2x4 operator-( const float2x4& x )
 }
 
 // Sets the matrix to an identity matrix.
-HLML_INLINE void identity( float2x4& mat )
+HLML_INLINE void identity( float2x4 &mat )
 {
 	mat.rows[0] = HLML_CONSTRUCT( float4 ) { 1.0f, 0.0f, 0.0f, 0.0f };
 	mat.rows[1] = HLML_CONSTRUCT( float4 ) { 0.0f, 1.0f, 0.0f, 0.0f };
 }
 
 // Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-HLML_INLINE float4x2 transpose( const float2x4& mat )
+HLML_INLINE float4x2 transpose( const float2x4 &mat )
 {
 	return HLML_CONSTRUCT( float4x2 )
 	{
@@ -12484,7 +12484,7 @@ HLML_INLINE float4x2 transpose( const float2x4& mat )
 }
 
 // Performs a matrix multiplication with 'lhs' and 'rhs' and returns the result.
-HLML_INLINE float2x2 mul( const float2x4& lhs, const float4x2& rhs )
+HLML_INLINE float2x2 mul( const float2x4 &lhs, const float4x2 &rhs )
 {
 	float4 row0 = lhs.rows[0];
 	float4 row1 = lhs.rows[1];
@@ -12504,7 +12504,7 @@ HLML_INLINE float2x2 mul( const float2x4& lhs, const float4x2& rhs )
 
 // float3x2
 // Performs a sign function on each row of the matrix.
-HLML_INLINE int3x2 sign( const float3x2& x )
+HLML_INLINE int3x2 sign( const float3x2 &x )
 {
 	return int3x2(
 		sign( x[0] ),
@@ -12514,7 +12514,7 @@ HLML_INLINE int3x2 sign( const float3x2& x )
 }
 
 // Performs a min function on each row of the matrix.
-HLML_INLINE float3x2 min( const float3x2& x, const float3x2& y )
+HLML_INLINE float3x2 min( const float3x2 &x, const float3x2 &y )
 {
 	return float3x2(
 		min( x[0], y[0] ),
@@ -12524,7 +12524,7 @@ HLML_INLINE float3x2 min( const float3x2& x, const float3x2& y )
 }
 
 // Performs a max function on each row of the matrix.
-HLML_INLINE float3x2 max( const float3x2& x, const float3x2& y )
+HLML_INLINE float3x2 max( const float3x2 &x, const float3x2 &y )
 {
 	return float3x2(
 		max( x[0], y[0] ),
@@ -12534,7 +12534,7 @@ HLML_INLINE float3x2 max( const float3x2& x, const float3x2& y )
 }
 
 // Performs a clamp function on each row of the matrix.
-HLML_INLINE float3x2 clamp( const float3x2& x, const float3x2& low, const float3x2& high )
+HLML_INLINE float3x2 clamp( const float3x2 &x, const float3x2 &low, const float3x2 &high )
 {
 	return float3x2(
 		clamp( x[0], low[0], high[0] ),
@@ -12544,7 +12544,7 @@ HLML_INLINE float3x2 clamp( const float3x2& x, const float3x2& low, const float3
 }
 
 // Performs a saturate function on each row of the matrix.
-HLML_INLINE float3x2 saturate( const float3x2& x )
+HLML_INLINE float3x2 saturate( const float3x2 &x )
 {
 	return float3x2(
 		saturate( x[0] ),
@@ -12554,7 +12554,7 @@ HLML_INLINE float3x2 saturate( const float3x2& x )
 }
 
 // Performs a lerp function on each row of the matrix.
-HLML_INLINE float3x2 lerp( const float3x2& lhs, const float3x2& rhs, const float t )
+HLML_INLINE float3x2 lerp( const float3x2 &lhs, const float3x2 &rhs, const float t )
 {
 	return float3x2(
 		lerp( lhs[0], rhs[0], t ),
@@ -12564,7 +12564,7 @@ HLML_INLINE float3x2 lerp( const float3x2& lhs, const float3x2& rhs, const float
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator==( const float3x2& lhs, const float3x2& rhs )
+HLML_INLINE bool operator==( const float3x2 &lhs, const float3x2 &rhs )
 {
 	return
 		lhs[0] == rhs[0] &&
@@ -12573,13 +12573,13 @@ HLML_INLINE bool operator==( const float3x2& lhs, const float3x2& rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator!=( const float3x2& lhs, const float3x2& rhs )
+HLML_INLINE bool operator!=( const float3x2 &lhs, const float3x2 &rhs )
 {
 	return !( lhs == rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool3x2 operator<( const float3x2& lhs, const float3x2& rhs )
+HLML_INLINE bool3x2 operator<( const float3x2 &lhs, const float3x2 &rhs )
 {
 	return bool3x2(
 		lhs[0] < rhs[0],
@@ -12589,7 +12589,7 @@ HLML_INLINE bool3x2 operator<( const float3x2& lhs, const float3x2& rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool3x2 operator<=( const float3x2& lhs, const float3x2& rhs )
+HLML_INLINE bool3x2 operator<=( const float3x2 &lhs, const float3x2 &rhs )
 {
 	return bool3x2(
 		lhs[0] <= rhs[0],
@@ -12599,7 +12599,7 @@ HLML_INLINE bool3x2 operator<=( const float3x2& lhs, const float3x2& rhs )
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool3x2 operator>( const float3x2& lhs, const float3x2& rhs )
+HLML_INLINE bool3x2 operator>( const float3x2 &lhs, const float3x2 &rhs )
 {
 	return bool3x2(
 		lhs[0] > rhs[0],
@@ -12609,7 +12609,7 @@ HLML_INLINE bool3x2 operator>( const float3x2& lhs, const float3x2& rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool3x2 operator>=( const float3x2& lhs, const float3x2& rhs )
+HLML_INLINE bool3x2 operator>=( const float3x2 &lhs, const float3x2 &rhs )
 {
 	return bool3x2(
 		lhs[0] >= rhs[0],
@@ -12619,7 +12619,7 @@ HLML_INLINE bool3x2 operator>=( const float3x2& lhs, const float3x2& rhs )
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE float3x2 operator+( const float3x2& lhs, const float rhs )
+HLML_INLINE float3x2 operator+( const float3x2 &lhs, const float rhs )
 {
 	return float3x2(
 		lhs[0] + rhs,
@@ -12629,13 +12629,13 @@ HLML_INLINE float3x2 operator+( const float3x2& lhs, const float rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been +'d against the scalar.
-HLML_INLINE float3x2 operator+=( float3x2& lhs, const float rhs )
+HLML_INLINE float3x2 operator+=( float3x2 &lhs, const float rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE float3x2 operator+( const float3x2& lhs, const float3x2& rhs )
+HLML_INLINE float3x2 operator+( const float3x2 &lhs, const float3x2 &rhs )
 {
 	return float3x2(
 		lhs[0] + rhs[0],
@@ -12645,13 +12645,13 @@ HLML_INLINE float3x2 operator+( const float3x2& lhs, const float3x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise +'d against 'rhs'.
-HLML_INLINE float3x2 operator+=( float3x2& lhs, const float3x2& rhs )
+HLML_INLINE float3x2 operator+=( float3x2 &lhs, const float3x2 &rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE float3x2 operator-( const float3x2& lhs, const float rhs )
+HLML_INLINE float3x2 operator-( const float3x2 &lhs, const float rhs )
 {
 	return float3x2(
 		lhs[0] - rhs,
@@ -12661,13 +12661,13 @@ HLML_INLINE float3x2 operator-( const float3x2& lhs, const float rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been -'d against the scalar.
-HLML_INLINE float3x2 operator-=( float3x2& lhs, const float rhs )
+HLML_INLINE float3x2 operator-=( float3x2 &lhs, const float rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE float3x2 operator-( const float3x2& lhs, const float3x2& rhs )
+HLML_INLINE float3x2 operator-( const float3x2 &lhs, const float3x2 &rhs )
 {
 	return float3x2(
 		lhs[0] - rhs[0],
@@ -12677,13 +12677,13 @@ HLML_INLINE float3x2 operator-( const float3x2& lhs, const float3x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise -'d against 'rhs'.
-HLML_INLINE float3x2 operator-=( float3x2& lhs, const float3x2& rhs )
+HLML_INLINE float3x2 operator-=( float3x2 &lhs, const float3x2 &rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE float3x2 operator*( const float3x2& lhs, const float rhs )
+HLML_INLINE float3x2 operator*( const float3x2 &lhs, const float rhs )
 {
 	return float3x2(
 		lhs[0] * rhs,
@@ -12693,13 +12693,13 @@ HLML_INLINE float3x2 operator*( const float3x2& lhs, const float rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been *'d against the scalar.
-HLML_INLINE float3x2 operator*=( float3x2& lhs, const float rhs )
+HLML_INLINE float3x2 operator*=( float3x2 &lhs, const float rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE float3x2 operator*( const float3x2& lhs, const float3x2& rhs )
+HLML_INLINE float3x2 operator*( const float3x2 &lhs, const float3x2 &rhs )
 {
 	return float3x2(
 		lhs[0] * rhs[0],
@@ -12709,13 +12709,13 @@ HLML_INLINE float3x2 operator*( const float3x2& lhs, const float3x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise *'d against 'rhs'.
-HLML_INLINE float3x2 operator*=( float3x2& lhs, const float3x2& rhs )
+HLML_INLINE float3x2 operator*=( float3x2 &lhs, const float3x2 &rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE float3x2 operator/( const float3x2& lhs, const float rhs )
+HLML_INLINE float3x2 operator/( const float3x2 &lhs, const float rhs )
 {
 	return float3x2(
 		lhs[0] / rhs,
@@ -12725,13 +12725,13 @@ HLML_INLINE float3x2 operator/( const float3x2& lhs, const float rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been /'d against the scalar.
-HLML_INLINE float3x2 operator/=( float3x2& lhs, const float rhs )
+HLML_INLINE float3x2 operator/=( float3x2 &lhs, const float rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE float3x2 operator/( const float3x2& lhs, const float3x2& rhs )
+HLML_INLINE float3x2 operator/( const float3x2 &lhs, const float3x2 &rhs )
 {
 	return float3x2(
 		lhs[0] / rhs[0],
@@ -12741,13 +12741,13 @@ HLML_INLINE float3x2 operator/( const float3x2& lhs, const float3x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise /'d against 'rhs'.
-HLML_INLINE float3x2 operator/=( float3x2& lhs, const float3x2& rhs )
+HLML_INLINE float3x2 operator/=( float3x2 &lhs, const float3x2 &rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // ++s each component of the matrix and returns the result.
-HLML_INLINE float3x2 operator++( float3x2& x )
+HLML_INLINE float3x2 operator++( float3x2 &x )
 {
 	++x[0];
 	++x[1];
@@ -12757,7 +12757,7 @@ HLML_INLINE float3x2 operator++( float3x2& x )
 
 // ++s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE float3x2 operator++( float3x2& x, const int32_t )
+HLML_INLINE float3x2 operator++( float3x2 &x, const int32_t )
 {
 	x[0]++;
 	x[1]++;
@@ -12766,7 +12766,7 @@ HLML_INLINE float3x2 operator++( float3x2& x, const int32_t )
 }
 
 // --s each component of the matrix and returns the result.
-HLML_INLINE float3x2 operator--( float3x2& x )
+HLML_INLINE float3x2 operator--( float3x2 &x )
 {
 	--x[0];
 	--x[1];
@@ -12776,7 +12776,7 @@ HLML_INLINE float3x2 operator--( float3x2& x )
 
 // --s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE float3x2 operator--( float3x2& x, const int32_t )
+HLML_INLINE float3x2 operator--( float3x2 &x, const int32_t )
 {
 	x[0]--;
 	x[1]--;
@@ -12786,7 +12786,7 @@ HLML_INLINE float3x2 operator--( float3x2& x, const int32_t )
 
 // Returns a copy of the matrix that has been negated.
 // pre-fix
-HLML_INLINE float3x2 operator-( const float3x2& x )
+HLML_INLINE float3x2 operator-( const float3x2 &x )
 {
 	return float3x2(
 		-x[0],
@@ -12796,7 +12796,7 @@ HLML_INLINE float3x2 operator-( const float3x2& x )
 }
 
 // Sets the matrix to an identity matrix.
-HLML_INLINE void identity( float3x2& mat )
+HLML_INLINE void identity( float3x2 &mat )
 {
 	mat.rows[0] = HLML_CONSTRUCT( float2 ) { 1.0f, 0.0f };
 	mat.rows[1] = HLML_CONSTRUCT( float2 ) { 0.0f, 1.0f };
@@ -12804,7 +12804,7 @@ HLML_INLINE void identity( float3x2& mat )
 }
 
 // Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-HLML_INLINE float2x3 transpose( const float3x2& mat )
+HLML_INLINE float2x3 transpose( const float3x2 &mat )
 {
 	return HLML_CONSTRUCT( float2x3 )
 	{
@@ -12814,7 +12814,7 @@ HLML_INLINE float2x3 transpose( const float3x2& mat )
 }
 
 // Performs a matrix multiplication with 'lhs' and 'rhs' and returns the result.
-HLML_INLINE float3x3 mul( const float3x2& lhs, const float2x3& rhs )
+HLML_INLINE float3x3 mul( const float3x2 &lhs, const float2x3 &rhs )
 {
 	float2 row0 = lhs.rows[0];
 	float2 row1 = lhs.rows[1];
@@ -12842,7 +12842,7 @@ HLML_INLINE float3x3 mul( const float3x2& lhs, const float2x3& rhs )
 
 // float3x3
 // Performs a sign function on each row of the matrix.
-HLML_INLINE int3x3 sign( const float3x3& x )
+HLML_INLINE int3x3 sign( const float3x3 &x )
 {
 	return int3x3(
 		sign( x[0] ),
@@ -12852,7 +12852,7 @@ HLML_INLINE int3x3 sign( const float3x3& x )
 }
 
 // Performs a min function on each row of the matrix.
-HLML_INLINE float3x3 min( const float3x3& x, const float3x3& y )
+HLML_INLINE float3x3 min( const float3x3 &x, const float3x3 &y )
 {
 	return float3x3(
 		min( x[0], y[0] ),
@@ -12862,7 +12862,7 @@ HLML_INLINE float3x3 min( const float3x3& x, const float3x3& y )
 }
 
 // Performs a max function on each row of the matrix.
-HLML_INLINE float3x3 max( const float3x3& x, const float3x3& y )
+HLML_INLINE float3x3 max( const float3x3 &x, const float3x3 &y )
 {
 	return float3x3(
 		max( x[0], y[0] ),
@@ -12872,7 +12872,7 @@ HLML_INLINE float3x3 max( const float3x3& x, const float3x3& y )
 }
 
 // Performs a clamp function on each row of the matrix.
-HLML_INLINE float3x3 clamp( const float3x3& x, const float3x3& low, const float3x3& high )
+HLML_INLINE float3x3 clamp( const float3x3 &x, const float3x3 &low, const float3x3 &high )
 {
 	return float3x3(
 		clamp( x[0], low[0], high[0] ),
@@ -12882,7 +12882,7 @@ HLML_INLINE float3x3 clamp( const float3x3& x, const float3x3& low, const float3
 }
 
 // Performs a saturate function on each row of the matrix.
-HLML_INLINE float3x3 saturate( const float3x3& x )
+HLML_INLINE float3x3 saturate( const float3x3 &x )
 {
 	return float3x3(
 		saturate( x[0] ),
@@ -12892,7 +12892,7 @@ HLML_INLINE float3x3 saturate( const float3x3& x )
 }
 
 // Performs a lerp function on each row of the matrix.
-HLML_INLINE float3x3 lerp( const float3x3& lhs, const float3x3& rhs, const float t )
+HLML_INLINE float3x3 lerp( const float3x3 &lhs, const float3x3 &rhs, const float t )
 {
 	return float3x3(
 		lerp( lhs[0], rhs[0], t ),
@@ -12902,7 +12902,7 @@ HLML_INLINE float3x3 lerp( const float3x3& lhs, const float3x3& rhs, const float
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator==( const float3x3& lhs, const float3x3& rhs )
+HLML_INLINE bool operator==( const float3x3 &lhs, const float3x3 &rhs )
 {
 	return
 		lhs[0] == rhs[0] &&
@@ -12911,13 +12911,13 @@ HLML_INLINE bool operator==( const float3x3& lhs, const float3x3& rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator!=( const float3x3& lhs, const float3x3& rhs )
+HLML_INLINE bool operator!=( const float3x3 &lhs, const float3x3 &rhs )
 {
 	return !( lhs == rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool3x3 operator<( const float3x3& lhs, const float3x3& rhs )
+HLML_INLINE bool3x3 operator<( const float3x3 &lhs, const float3x3 &rhs )
 {
 	return bool3x3(
 		lhs[0] < rhs[0],
@@ -12927,7 +12927,7 @@ HLML_INLINE bool3x3 operator<( const float3x3& lhs, const float3x3& rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool3x3 operator<=( const float3x3& lhs, const float3x3& rhs )
+HLML_INLINE bool3x3 operator<=( const float3x3 &lhs, const float3x3 &rhs )
 {
 	return bool3x3(
 		lhs[0] <= rhs[0],
@@ -12937,7 +12937,7 @@ HLML_INLINE bool3x3 operator<=( const float3x3& lhs, const float3x3& rhs )
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool3x3 operator>( const float3x3& lhs, const float3x3& rhs )
+HLML_INLINE bool3x3 operator>( const float3x3 &lhs, const float3x3 &rhs )
 {
 	return bool3x3(
 		lhs[0] > rhs[0],
@@ -12947,7 +12947,7 @@ HLML_INLINE bool3x3 operator>( const float3x3& lhs, const float3x3& rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool3x3 operator>=( const float3x3& lhs, const float3x3& rhs )
+HLML_INLINE bool3x3 operator>=( const float3x3 &lhs, const float3x3 &rhs )
 {
 	return bool3x3(
 		lhs[0] >= rhs[0],
@@ -12957,7 +12957,7 @@ HLML_INLINE bool3x3 operator>=( const float3x3& lhs, const float3x3& rhs )
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE float3x3 operator+( const float3x3& lhs, const float rhs )
+HLML_INLINE float3x3 operator+( const float3x3 &lhs, const float rhs )
 {
 	return float3x3(
 		lhs[0] + rhs,
@@ -12967,13 +12967,13 @@ HLML_INLINE float3x3 operator+( const float3x3& lhs, const float rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been +'d against the scalar.
-HLML_INLINE float3x3 operator+=( float3x3& lhs, const float rhs )
+HLML_INLINE float3x3 operator+=( float3x3 &lhs, const float rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE float3x3 operator+( const float3x3& lhs, const float3x3& rhs )
+HLML_INLINE float3x3 operator+( const float3x3 &lhs, const float3x3 &rhs )
 {
 	return float3x3(
 		lhs[0] + rhs[0],
@@ -12983,13 +12983,13 @@ HLML_INLINE float3x3 operator+( const float3x3& lhs, const float3x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise +'d against 'rhs'.
-HLML_INLINE float3x3 operator+=( float3x3& lhs, const float3x3& rhs )
+HLML_INLINE float3x3 operator+=( float3x3 &lhs, const float3x3 &rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE float3x3 operator-( const float3x3& lhs, const float rhs )
+HLML_INLINE float3x3 operator-( const float3x3 &lhs, const float rhs )
 {
 	return float3x3(
 		lhs[0] - rhs,
@@ -12999,13 +12999,13 @@ HLML_INLINE float3x3 operator-( const float3x3& lhs, const float rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been -'d against the scalar.
-HLML_INLINE float3x3 operator-=( float3x3& lhs, const float rhs )
+HLML_INLINE float3x3 operator-=( float3x3 &lhs, const float rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE float3x3 operator-( const float3x3& lhs, const float3x3& rhs )
+HLML_INLINE float3x3 operator-( const float3x3 &lhs, const float3x3 &rhs )
 {
 	return float3x3(
 		lhs[0] - rhs[0],
@@ -13015,13 +13015,13 @@ HLML_INLINE float3x3 operator-( const float3x3& lhs, const float3x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise -'d against 'rhs'.
-HLML_INLINE float3x3 operator-=( float3x3& lhs, const float3x3& rhs )
+HLML_INLINE float3x3 operator-=( float3x3 &lhs, const float3x3 &rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE float3x3 operator*( const float3x3& lhs, const float rhs )
+HLML_INLINE float3x3 operator*( const float3x3 &lhs, const float rhs )
 {
 	return float3x3(
 		lhs[0] * rhs,
@@ -13031,13 +13031,13 @@ HLML_INLINE float3x3 operator*( const float3x3& lhs, const float rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been *'d against the scalar.
-HLML_INLINE float3x3 operator*=( float3x3& lhs, const float rhs )
+HLML_INLINE float3x3 operator*=( float3x3 &lhs, const float rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE float3x3 operator*( const float3x3& lhs, const float3x3& rhs )
+HLML_INLINE float3x3 operator*( const float3x3 &lhs, const float3x3 &rhs )
 {
 	return float3x3(
 		lhs[0] * rhs[0],
@@ -13047,13 +13047,13 @@ HLML_INLINE float3x3 operator*( const float3x3& lhs, const float3x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise *'d against 'rhs'.
-HLML_INLINE float3x3 operator*=( float3x3& lhs, const float3x3& rhs )
+HLML_INLINE float3x3 operator*=( float3x3 &lhs, const float3x3 &rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE float3x3 operator/( const float3x3& lhs, const float rhs )
+HLML_INLINE float3x3 operator/( const float3x3 &lhs, const float rhs )
 {
 	return float3x3(
 		lhs[0] / rhs,
@@ -13063,13 +13063,13 @@ HLML_INLINE float3x3 operator/( const float3x3& lhs, const float rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been /'d against the scalar.
-HLML_INLINE float3x3 operator/=( float3x3& lhs, const float rhs )
+HLML_INLINE float3x3 operator/=( float3x3 &lhs, const float rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE float3x3 operator/( const float3x3& lhs, const float3x3& rhs )
+HLML_INLINE float3x3 operator/( const float3x3 &lhs, const float3x3 &rhs )
 {
 	return float3x3(
 		lhs[0] / rhs[0],
@@ -13079,13 +13079,13 @@ HLML_INLINE float3x3 operator/( const float3x3& lhs, const float3x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise /'d against 'rhs'.
-HLML_INLINE float3x3 operator/=( float3x3& lhs, const float3x3& rhs )
+HLML_INLINE float3x3 operator/=( float3x3 &lhs, const float3x3 &rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // ++s each component of the matrix and returns the result.
-HLML_INLINE float3x3 operator++( float3x3& x )
+HLML_INLINE float3x3 operator++( float3x3 &x )
 {
 	++x[0];
 	++x[1];
@@ -13095,7 +13095,7 @@ HLML_INLINE float3x3 operator++( float3x3& x )
 
 // ++s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE float3x3 operator++( float3x3& x, const int32_t )
+HLML_INLINE float3x3 operator++( float3x3 &x, const int32_t )
 {
 	x[0]++;
 	x[1]++;
@@ -13104,7 +13104,7 @@ HLML_INLINE float3x3 operator++( float3x3& x, const int32_t )
 }
 
 // --s each component of the matrix and returns the result.
-HLML_INLINE float3x3 operator--( float3x3& x )
+HLML_INLINE float3x3 operator--( float3x3 &x )
 {
 	--x[0];
 	--x[1];
@@ -13114,7 +13114,7 @@ HLML_INLINE float3x3 operator--( float3x3& x )
 
 // --s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE float3x3 operator--( float3x3& x, const int32_t )
+HLML_INLINE float3x3 operator--( float3x3 &x, const int32_t )
 {
 	x[0]--;
 	x[1]--;
@@ -13124,7 +13124,7 @@ HLML_INLINE float3x3 operator--( float3x3& x, const int32_t )
 
 // Returns a copy of the matrix that has been negated.
 // pre-fix
-HLML_INLINE float3x3 operator-( const float3x3& x )
+HLML_INLINE float3x3 operator-( const float3x3 &x )
 {
 	return float3x3(
 		-x[0],
@@ -13134,7 +13134,7 @@ HLML_INLINE float3x3 operator-( const float3x3& x )
 }
 
 // Sets the matrix to an identity matrix.
-HLML_INLINE void identity( float3x3& mat )
+HLML_INLINE void identity( float3x3 &mat )
 {
 	mat.rows[0] = HLML_CONSTRUCT( float3 ) { 1.0f, 0.0f, 0.0f };
 	mat.rows[1] = HLML_CONSTRUCT( float3 ) { 0.0f, 1.0f, 0.0f };
@@ -13142,7 +13142,7 @@ HLML_INLINE void identity( float3x3& mat )
 }
 
 // Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-HLML_INLINE float3x3 transpose( const float3x3& mat )
+HLML_INLINE float3x3 transpose( const float3x3 &mat )
 {
 	return HLML_CONSTRUCT( float3x3 )
 	{
@@ -13153,7 +13153,7 @@ HLML_INLINE float3x3 transpose( const float3x3& mat )
 }
 
 // Returns the determinant of the matrix.
-HLML_INLINE float determinant( const float3x3& mat )
+HLML_INLINE float determinant( const float3x3 &mat )
 {
 	return
 		+ mat.rows[0].x * ( mat.rows[1].y * mat.rows[2].z - mat.rows[2].y * mat.rows[1].z ) 
@@ -13163,7 +13163,7 @@ HLML_INLINE float determinant( const float3x3& mat )
 
 // Returns a copy of the matrix that is inversed.
 // This is only applicable for square matrices.
-HLML_INLINE float3x3 inverse( const float3x3& mat )
+HLML_INLINE float3x3 inverse( const float3x3 &mat )
 {
 	const float invdet = 1.0f / determinant( mat );
 	return HLML_CONSTRUCT( float3x3 )
@@ -13183,7 +13183,7 @@ HLML_INLINE float3x3 inverse( const float3x3& mat )
 }
 
 // Performs a matrix multiplication with 'lhs' and 'rhs' and returns the result.
-HLML_INLINE float3x3 mul( const float3x3& lhs, const float3x3& rhs )
+HLML_INLINE float3x3 mul( const float3x3 &lhs, const float3x3 &rhs )
 {
 	float3 row0 = lhs.rows[0];
 	float3 row1 = lhs.rows[1];
@@ -13210,7 +13210,7 @@ HLML_INLINE float3x3 mul( const float3x3& lhs, const float3x3& rhs )
 }
 
 // Multiplies the vector 'lhs' against the matrix 'rhs' and returns the result.
-HLML_INLINE float3 mul( const float3& lhs, const float3x3& rhs )
+HLML_INLINE float3 mul( const float3 &lhs, const float3x3 &rhs )
 {
 	return HLML_CONSTRUCT( float3 )
 	{
@@ -13222,7 +13222,7 @@ HLML_INLINE float3 mul( const float3& lhs, const float3x3& rhs )
 
 // float3x4
 // Performs a sign function on each row of the matrix.
-HLML_INLINE int3x4 sign( const float3x4& x )
+HLML_INLINE int3x4 sign( const float3x4 &x )
 {
 	return int3x4(
 		sign( x[0] ),
@@ -13232,7 +13232,7 @@ HLML_INLINE int3x4 sign( const float3x4& x )
 }
 
 // Performs a min function on each row of the matrix.
-HLML_INLINE float3x4 min( const float3x4& x, const float3x4& y )
+HLML_INLINE float3x4 min( const float3x4 &x, const float3x4 &y )
 {
 	return float3x4(
 		min( x[0], y[0] ),
@@ -13242,7 +13242,7 @@ HLML_INLINE float3x4 min( const float3x4& x, const float3x4& y )
 }
 
 // Performs a max function on each row of the matrix.
-HLML_INLINE float3x4 max( const float3x4& x, const float3x4& y )
+HLML_INLINE float3x4 max( const float3x4 &x, const float3x4 &y )
 {
 	return float3x4(
 		max( x[0], y[0] ),
@@ -13252,7 +13252,7 @@ HLML_INLINE float3x4 max( const float3x4& x, const float3x4& y )
 }
 
 // Performs a clamp function on each row of the matrix.
-HLML_INLINE float3x4 clamp( const float3x4& x, const float3x4& low, const float3x4& high )
+HLML_INLINE float3x4 clamp( const float3x4 &x, const float3x4 &low, const float3x4 &high )
 {
 	return float3x4(
 		clamp( x[0], low[0], high[0] ),
@@ -13262,7 +13262,7 @@ HLML_INLINE float3x4 clamp( const float3x4& x, const float3x4& low, const float3
 }
 
 // Performs a saturate function on each row of the matrix.
-HLML_INLINE float3x4 saturate( const float3x4& x )
+HLML_INLINE float3x4 saturate( const float3x4 &x )
 {
 	return float3x4(
 		saturate( x[0] ),
@@ -13272,7 +13272,7 @@ HLML_INLINE float3x4 saturate( const float3x4& x )
 }
 
 // Performs a lerp function on each row of the matrix.
-HLML_INLINE float3x4 lerp( const float3x4& lhs, const float3x4& rhs, const float t )
+HLML_INLINE float3x4 lerp( const float3x4 &lhs, const float3x4 &rhs, const float t )
 {
 	return float3x4(
 		lerp( lhs[0], rhs[0], t ),
@@ -13282,7 +13282,7 @@ HLML_INLINE float3x4 lerp( const float3x4& lhs, const float3x4& rhs, const float
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator==( const float3x4& lhs, const float3x4& rhs )
+HLML_INLINE bool operator==( const float3x4 &lhs, const float3x4 &rhs )
 {
 	return
 		lhs[0] == rhs[0] &&
@@ -13291,13 +13291,13 @@ HLML_INLINE bool operator==( const float3x4& lhs, const float3x4& rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator!=( const float3x4& lhs, const float3x4& rhs )
+HLML_INLINE bool operator!=( const float3x4 &lhs, const float3x4 &rhs )
 {
 	return !( lhs == rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool3x4 operator<( const float3x4& lhs, const float3x4& rhs )
+HLML_INLINE bool3x4 operator<( const float3x4 &lhs, const float3x4 &rhs )
 {
 	return bool3x4(
 		lhs[0] < rhs[0],
@@ -13307,7 +13307,7 @@ HLML_INLINE bool3x4 operator<( const float3x4& lhs, const float3x4& rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool3x4 operator<=( const float3x4& lhs, const float3x4& rhs )
+HLML_INLINE bool3x4 operator<=( const float3x4 &lhs, const float3x4 &rhs )
 {
 	return bool3x4(
 		lhs[0] <= rhs[0],
@@ -13317,7 +13317,7 @@ HLML_INLINE bool3x4 operator<=( const float3x4& lhs, const float3x4& rhs )
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool3x4 operator>( const float3x4& lhs, const float3x4& rhs )
+HLML_INLINE bool3x4 operator>( const float3x4 &lhs, const float3x4 &rhs )
 {
 	return bool3x4(
 		lhs[0] > rhs[0],
@@ -13327,7 +13327,7 @@ HLML_INLINE bool3x4 operator>( const float3x4& lhs, const float3x4& rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool3x4 operator>=( const float3x4& lhs, const float3x4& rhs )
+HLML_INLINE bool3x4 operator>=( const float3x4 &lhs, const float3x4 &rhs )
 {
 	return bool3x4(
 		lhs[0] >= rhs[0],
@@ -13337,7 +13337,7 @@ HLML_INLINE bool3x4 operator>=( const float3x4& lhs, const float3x4& rhs )
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE float3x4 operator+( const float3x4& lhs, const float rhs )
+HLML_INLINE float3x4 operator+( const float3x4 &lhs, const float rhs )
 {
 	return float3x4(
 		lhs[0] + rhs,
@@ -13347,13 +13347,13 @@ HLML_INLINE float3x4 operator+( const float3x4& lhs, const float rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been +'d against the scalar.
-HLML_INLINE float3x4 operator+=( float3x4& lhs, const float rhs )
+HLML_INLINE float3x4 operator+=( float3x4 &lhs, const float rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE float3x4 operator+( const float3x4& lhs, const float3x4& rhs )
+HLML_INLINE float3x4 operator+( const float3x4 &lhs, const float3x4 &rhs )
 {
 	return float3x4(
 		lhs[0] + rhs[0],
@@ -13363,13 +13363,13 @@ HLML_INLINE float3x4 operator+( const float3x4& lhs, const float3x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise +'d against 'rhs'.
-HLML_INLINE float3x4 operator+=( float3x4& lhs, const float3x4& rhs )
+HLML_INLINE float3x4 operator+=( float3x4 &lhs, const float3x4 &rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE float3x4 operator-( const float3x4& lhs, const float rhs )
+HLML_INLINE float3x4 operator-( const float3x4 &lhs, const float rhs )
 {
 	return float3x4(
 		lhs[0] - rhs,
@@ -13379,13 +13379,13 @@ HLML_INLINE float3x4 operator-( const float3x4& lhs, const float rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been -'d against the scalar.
-HLML_INLINE float3x4 operator-=( float3x4& lhs, const float rhs )
+HLML_INLINE float3x4 operator-=( float3x4 &lhs, const float rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE float3x4 operator-( const float3x4& lhs, const float3x4& rhs )
+HLML_INLINE float3x4 operator-( const float3x4 &lhs, const float3x4 &rhs )
 {
 	return float3x4(
 		lhs[0] - rhs[0],
@@ -13395,13 +13395,13 @@ HLML_INLINE float3x4 operator-( const float3x4& lhs, const float3x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise -'d against 'rhs'.
-HLML_INLINE float3x4 operator-=( float3x4& lhs, const float3x4& rhs )
+HLML_INLINE float3x4 operator-=( float3x4 &lhs, const float3x4 &rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE float3x4 operator*( const float3x4& lhs, const float rhs )
+HLML_INLINE float3x4 operator*( const float3x4 &lhs, const float rhs )
 {
 	return float3x4(
 		lhs[0] * rhs,
@@ -13411,13 +13411,13 @@ HLML_INLINE float3x4 operator*( const float3x4& lhs, const float rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been *'d against the scalar.
-HLML_INLINE float3x4 operator*=( float3x4& lhs, const float rhs )
+HLML_INLINE float3x4 operator*=( float3x4 &lhs, const float rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE float3x4 operator*( const float3x4& lhs, const float3x4& rhs )
+HLML_INLINE float3x4 operator*( const float3x4 &lhs, const float3x4 &rhs )
 {
 	return float3x4(
 		lhs[0] * rhs[0],
@@ -13427,13 +13427,13 @@ HLML_INLINE float3x4 operator*( const float3x4& lhs, const float3x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise *'d against 'rhs'.
-HLML_INLINE float3x4 operator*=( float3x4& lhs, const float3x4& rhs )
+HLML_INLINE float3x4 operator*=( float3x4 &lhs, const float3x4 &rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE float3x4 operator/( const float3x4& lhs, const float rhs )
+HLML_INLINE float3x4 operator/( const float3x4 &lhs, const float rhs )
 {
 	return float3x4(
 		lhs[0] / rhs,
@@ -13443,13 +13443,13 @@ HLML_INLINE float3x4 operator/( const float3x4& lhs, const float rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been /'d against the scalar.
-HLML_INLINE float3x4 operator/=( float3x4& lhs, const float rhs )
+HLML_INLINE float3x4 operator/=( float3x4 &lhs, const float rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE float3x4 operator/( const float3x4& lhs, const float3x4& rhs )
+HLML_INLINE float3x4 operator/( const float3x4 &lhs, const float3x4 &rhs )
 {
 	return float3x4(
 		lhs[0] / rhs[0],
@@ -13459,13 +13459,13 @@ HLML_INLINE float3x4 operator/( const float3x4& lhs, const float3x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise /'d against 'rhs'.
-HLML_INLINE float3x4 operator/=( float3x4& lhs, const float3x4& rhs )
+HLML_INLINE float3x4 operator/=( float3x4 &lhs, const float3x4 &rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // ++s each component of the matrix and returns the result.
-HLML_INLINE float3x4 operator++( float3x4& x )
+HLML_INLINE float3x4 operator++( float3x4 &x )
 {
 	++x[0];
 	++x[1];
@@ -13475,7 +13475,7 @@ HLML_INLINE float3x4 operator++( float3x4& x )
 
 // ++s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE float3x4 operator++( float3x4& x, const int32_t )
+HLML_INLINE float3x4 operator++( float3x4 &x, const int32_t )
 {
 	x[0]++;
 	x[1]++;
@@ -13484,7 +13484,7 @@ HLML_INLINE float3x4 operator++( float3x4& x, const int32_t )
 }
 
 // --s each component of the matrix and returns the result.
-HLML_INLINE float3x4 operator--( float3x4& x )
+HLML_INLINE float3x4 operator--( float3x4 &x )
 {
 	--x[0];
 	--x[1];
@@ -13494,7 +13494,7 @@ HLML_INLINE float3x4 operator--( float3x4& x )
 
 // --s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE float3x4 operator--( float3x4& x, const int32_t )
+HLML_INLINE float3x4 operator--( float3x4 &x, const int32_t )
 {
 	x[0]--;
 	x[1]--;
@@ -13504,7 +13504,7 @@ HLML_INLINE float3x4 operator--( float3x4& x, const int32_t )
 
 // Returns a copy of the matrix that has been negated.
 // pre-fix
-HLML_INLINE float3x4 operator-( const float3x4& x )
+HLML_INLINE float3x4 operator-( const float3x4 &x )
 {
 	return float3x4(
 		-x[0],
@@ -13514,7 +13514,7 @@ HLML_INLINE float3x4 operator-( const float3x4& x )
 }
 
 // Sets the matrix to an identity matrix.
-HLML_INLINE void identity( float3x4& mat )
+HLML_INLINE void identity( float3x4 &mat )
 {
 	mat.rows[0] = HLML_CONSTRUCT( float4 ) { 1.0f, 0.0f, 0.0f, 0.0f };
 	mat.rows[1] = HLML_CONSTRUCT( float4 ) { 0.0f, 1.0f, 0.0f, 0.0f };
@@ -13522,7 +13522,7 @@ HLML_INLINE void identity( float3x4& mat )
 }
 
 // Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-HLML_INLINE float4x3 transpose( const float3x4& mat )
+HLML_INLINE float4x3 transpose( const float3x4 &mat )
 {
 	return HLML_CONSTRUCT( float4x3 )
 	{
@@ -13534,7 +13534,7 @@ HLML_INLINE float4x3 transpose( const float3x4& mat )
 }
 
 // Performs a matrix multiplication with 'lhs' and 'rhs' and returns the result.
-HLML_INLINE float3x3 mul( const float3x4& lhs, const float4x3& rhs )
+HLML_INLINE float3x3 mul( const float3x4 &lhs, const float4x3 &rhs )
 {
 	float4 row0 = lhs.rows[0];
 	float4 row1 = lhs.rows[1];
@@ -13562,7 +13562,7 @@ HLML_INLINE float3x3 mul( const float3x4& lhs, const float4x3& rhs )
 
 // float4x2
 // Performs a sign function on each row of the matrix.
-HLML_INLINE int4x2 sign( const float4x2& x )
+HLML_INLINE int4x2 sign( const float4x2 &x )
 {
 	return int4x2(
 		sign( x[0] ),
@@ -13573,7 +13573,7 @@ HLML_INLINE int4x2 sign( const float4x2& x )
 }
 
 // Performs a min function on each row of the matrix.
-HLML_INLINE float4x2 min( const float4x2& x, const float4x2& y )
+HLML_INLINE float4x2 min( const float4x2 &x, const float4x2 &y )
 {
 	return float4x2(
 		min( x[0], y[0] ),
@@ -13584,7 +13584,7 @@ HLML_INLINE float4x2 min( const float4x2& x, const float4x2& y )
 }
 
 // Performs a max function on each row of the matrix.
-HLML_INLINE float4x2 max( const float4x2& x, const float4x2& y )
+HLML_INLINE float4x2 max( const float4x2 &x, const float4x2 &y )
 {
 	return float4x2(
 		max( x[0], y[0] ),
@@ -13595,7 +13595,7 @@ HLML_INLINE float4x2 max( const float4x2& x, const float4x2& y )
 }
 
 // Performs a clamp function on each row of the matrix.
-HLML_INLINE float4x2 clamp( const float4x2& x, const float4x2& low, const float4x2& high )
+HLML_INLINE float4x2 clamp( const float4x2 &x, const float4x2 &low, const float4x2 &high )
 {
 	return float4x2(
 		clamp( x[0], low[0], high[0] ),
@@ -13606,7 +13606,7 @@ HLML_INLINE float4x2 clamp( const float4x2& x, const float4x2& low, const float4
 }
 
 // Performs a saturate function on each row of the matrix.
-HLML_INLINE float4x2 saturate( const float4x2& x )
+HLML_INLINE float4x2 saturate( const float4x2 &x )
 {
 	return float4x2(
 		saturate( x[0] ),
@@ -13617,7 +13617,7 @@ HLML_INLINE float4x2 saturate( const float4x2& x )
 }
 
 // Performs a lerp function on each row of the matrix.
-HLML_INLINE float4x2 lerp( const float4x2& lhs, const float4x2& rhs, const float t )
+HLML_INLINE float4x2 lerp( const float4x2 &lhs, const float4x2 &rhs, const float t )
 {
 	return float4x2(
 		lerp( lhs[0], rhs[0], t ),
@@ -13628,7 +13628,7 @@ HLML_INLINE float4x2 lerp( const float4x2& lhs, const float4x2& rhs, const float
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator==( const float4x2& lhs, const float4x2& rhs )
+HLML_INLINE bool operator==( const float4x2 &lhs, const float4x2 &rhs )
 {
 	return
 		lhs[0] == rhs[0] &&
@@ -13638,13 +13638,13 @@ HLML_INLINE bool operator==( const float4x2& lhs, const float4x2& rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator!=( const float4x2& lhs, const float4x2& rhs )
+HLML_INLINE bool operator!=( const float4x2 &lhs, const float4x2 &rhs )
 {
 	return !( lhs == rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool4x2 operator<( const float4x2& lhs, const float4x2& rhs )
+HLML_INLINE bool4x2 operator<( const float4x2 &lhs, const float4x2 &rhs )
 {
 	return bool4x2(
 		lhs[0] < rhs[0],
@@ -13655,7 +13655,7 @@ HLML_INLINE bool4x2 operator<( const float4x2& lhs, const float4x2& rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool4x2 operator<=( const float4x2& lhs, const float4x2& rhs )
+HLML_INLINE bool4x2 operator<=( const float4x2 &lhs, const float4x2 &rhs )
 {
 	return bool4x2(
 		lhs[0] <= rhs[0],
@@ -13666,7 +13666,7 @@ HLML_INLINE bool4x2 operator<=( const float4x2& lhs, const float4x2& rhs )
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool4x2 operator>( const float4x2& lhs, const float4x2& rhs )
+HLML_INLINE bool4x2 operator>( const float4x2 &lhs, const float4x2 &rhs )
 {
 	return bool4x2(
 		lhs[0] > rhs[0],
@@ -13677,7 +13677,7 @@ HLML_INLINE bool4x2 operator>( const float4x2& lhs, const float4x2& rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool4x2 operator>=( const float4x2& lhs, const float4x2& rhs )
+HLML_INLINE bool4x2 operator>=( const float4x2 &lhs, const float4x2 &rhs )
 {
 	return bool4x2(
 		lhs[0] >= rhs[0],
@@ -13688,7 +13688,7 @@ HLML_INLINE bool4x2 operator>=( const float4x2& lhs, const float4x2& rhs )
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE float4x2 operator+( const float4x2& lhs, const float rhs )
+HLML_INLINE float4x2 operator+( const float4x2 &lhs, const float rhs )
 {
 	return float4x2(
 		lhs[0] + rhs,
@@ -13699,13 +13699,13 @@ HLML_INLINE float4x2 operator+( const float4x2& lhs, const float rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been +'d against the scalar.
-HLML_INLINE float4x2 operator+=( float4x2& lhs, const float rhs )
+HLML_INLINE float4x2 operator+=( float4x2 &lhs, const float rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE float4x2 operator+( const float4x2& lhs, const float4x2& rhs )
+HLML_INLINE float4x2 operator+( const float4x2 &lhs, const float4x2 &rhs )
 {
 	return float4x2(
 		lhs[0] + rhs[0],
@@ -13716,13 +13716,13 @@ HLML_INLINE float4x2 operator+( const float4x2& lhs, const float4x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise +'d against 'rhs'.
-HLML_INLINE float4x2 operator+=( float4x2& lhs, const float4x2& rhs )
+HLML_INLINE float4x2 operator+=( float4x2 &lhs, const float4x2 &rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE float4x2 operator-( const float4x2& lhs, const float rhs )
+HLML_INLINE float4x2 operator-( const float4x2 &lhs, const float rhs )
 {
 	return float4x2(
 		lhs[0] - rhs,
@@ -13733,13 +13733,13 @@ HLML_INLINE float4x2 operator-( const float4x2& lhs, const float rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been -'d against the scalar.
-HLML_INLINE float4x2 operator-=( float4x2& lhs, const float rhs )
+HLML_INLINE float4x2 operator-=( float4x2 &lhs, const float rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE float4x2 operator-( const float4x2& lhs, const float4x2& rhs )
+HLML_INLINE float4x2 operator-( const float4x2 &lhs, const float4x2 &rhs )
 {
 	return float4x2(
 		lhs[0] - rhs[0],
@@ -13750,13 +13750,13 @@ HLML_INLINE float4x2 operator-( const float4x2& lhs, const float4x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise -'d against 'rhs'.
-HLML_INLINE float4x2 operator-=( float4x2& lhs, const float4x2& rhs )
+HLML_INLINE float4x2 operator-=( float4x2 &lhs, const float4x2 &rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE float4x2 operator*( const float4x2& lhs, const float rhs )
+HLML_INLINE float4x2 operator*( const float4x2 &lhs, const float rhs )
 {
 	return float4x2(
 		lhs[0] * rhs,
@@ -13767,13 +13767,13 @@ HLML_INLINE float4x2 operator*( const float4x2& lhs, const float rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been *'d against the scalar.
-HLML_INLINE float4x2 operator*=( float4x2& lhs, const float rhs )
+HLML_INLINE float4x2 operator*=( float4x2 &lhs, const float rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE float4x2 operator*( const float4x2& lhs, const float4x2& rhs )
+HLML_INLINE float4x2 operator*( const float4x2 &lhs, const float4x2 &rhs )
 {
 	return float4x2(
 		lhs[0] * rhs[0],
@@ -13784,13 +13784,13 @@ HLML_INLINE float4x2 operator*( const float4x2& lhs, const float4x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise *'d against 'rhs'.
-HLML_INLINE float4x2 operator*=( float4x2& lhs, const float4x2& rhs )
+HLML_INLINE float4x2 operator*=( float4x2 &lhs, const float4x2 &rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE float4x2 operator/( const float4x2& lhs, const float rhs )
+HLML_INLINE float4x2 operator/( const float4x2 &lhs, const float rhs )
 {
 	return float4x2(
 		lhs[0] / rhs,
@@ -13801,13 +13801,13 @@ HLML_INLINE float4x2 operator/( const float4x2& lhs, const float rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been /'d against the scalar.
-HLML_INLINE float4x2 operator/=( float4x2& lhs, const float rhs )
+HLML_INLINE float4x2 operator/=( float4x2 &lhs, const float rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE float4x2 operator/( const float4x2& lhs, const float4x2& rhs )
+HLML_INLINE float4x2 operator/( const float4x2 &lhs, const float4x2 &rhs )
 {
 	return float4x2(
 		lhs[0] / rhs[0],
@@ -13818,13 +13818,13 @@ HLML_INLINE float4x2 operator/( const float4x2& lhs, const float4x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise /'d against 'rhs'.
-HLML_INLINE float4x2 operator/=( float4x2& lhs, const float4x2& rhs )
+HLML_INLINE float4x2 operator/=( float4x2 &lhs, const float4x2 &rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // ++s each component of the matrix and returns the result.
-HLML_INLINE float4x2 operator++( float4x2& x )
+HLML_INLINE float4x2 operator++( float4x2 &x )
 {
 	++x[0];
 	++x[1];
@@ -13835,7 +13835,7 @@ HLML_INLINE float4x2 operator++( float4x2& x )
 
 // ++s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE float4x2 operator++( float4x2& x, const int32_t )
+HLML_INLINE float4x2 operator++( float4x2 &x, const int32_t )
 {
 	x[0]++;
 	x[1]++;
@@ -13845,7 +13845,7 @@ HLML_INLINE float4x2 operator++( float4x2& x, const int32_t )
 }
 
 // --s each component of the matrix and returns the result.
-HLML_INLINE float4x2 operator--( float4x2& x )
+HLML_INLINE float4x2 operator--( float4x2 &x )
 {
 	--x[0];
 	--x[1];
@@ -13856,7 +13856,7 @@ HLML_INLINE float4x2 operator--( float4x2& x )
 
 // --s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE float4x2 operator--( float4x2& x, const int32_t )
+HLML_INLINE float4x2 operator--( float4x2 &x, const int32_t )
 {
 	x[0]--;
 	x[1]--;
@@ -13867,7 +13867,7 @@ HLML_INLINE float4x2 operator--( float4x2& x, const int32_t )
 
 // Returns a copy of the matrix that has been negated.
 // pre-fix
-HLML_INLINE float4x2 operator-( const float4x2& x )
+HLML_INLINE float4x2 operator-( const float4x2 &x )
 {
 	return float4x2(
 		-x[0],
@@ -13878,7 +13878,7 @@ HLML_INLINE float4x2 operator-( const float4x2& x )
 }
 
 // Sets the matrix to an identity matrix.
-HLML_INLINE void identity( float4x2& mat )
+HLML_INLINE void identity( float4x2 &mat )
 {
 	mat.rows[0] = HLML_CONSTRUCT( float2 ) { 1.0f, 0.0f };
 	mat.rows[1] = HLML_CONSTRUCT( float2 ) { 0.0f, 1.0f };
@@ -13887,7 +13887,7 @@ HLML_INLINE void identity( float4x2& mat )
 }
 
 // Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-HLML_INLINE float2x4 transpose( const float4x2& mat )
+HLML_INLINE float2x4 transpose( const float4x2 &mat )
 {
 	return HLML_CONSTRUCT( float2x4 )
 	{
@@ -13897,7 +13897,7 @@ HLML_INLINE float2x4 transpose( const float4x2& mat )
 }
 
 // Performs a matrix multiplication with 'lhs' and 'rhs' and returns the result.
-HLML_INLINE float4x4 mul( const float4x2& lhs, const float2x4& rhs )
+HLML_INLINE float4x4 mul( const float4x2 &lhs, const float2x4 &rhs )
 {
 	float2 row0 = lhs.rows[0];
 	float2 row1 = lhs.rows[1];
@@ -13935,7 +13935,7 @@ HLML_INLINE float4x4 mul( const float4x2& lhs, const float2x4& rhs )
 
 // float4x3
 // Performs a sign function on each row of the matrix.
-HLML_INLINE int4x3 sign( const float4x3& x )
+HLML_INLINE int4x3 sign( const float4x3 &x )
 {
 	return int4x3(
 		sign( x[0] ),
@@ -13946,7 +13946,7 @@ HLML_INLINE int4x3 sign( const float4x3& x )
 }
 
 // Performs a min function on each row of the matrix.
-HLML_INLINE float4x3 min( const float4x3& x, const float4x3& y )
+HLML_INLINE float4x3 min( const float4x3 &x, const float4x3 &y )
 {
 	return float4x3(
 		min( x[0], y[0] ),
@@ -13957,7 +13957,7 @@ HLML_INLINE float4x3 min( const float4x3& x, const float4x3& y )
 }
 
 // Performs a max function on each row of the matrix.
-HLML_INLINE float4x3 max( const float4x3& x, const float4x3& y )
+HLML_INLINE float4x3 max( const float4x3 &x, const float4x3 &y )
 {
 	return float4x3(
 		max( x[0], y[0] ),
@@ -13968,7 +13968,7 @@ HLML_INLINE float4x3 max( const float4x3& x, const float4x3& y )
 }
 
 // Performs a clamp function on each row of the matrix.
-HLML_INLINE float4x3 clamp( const float4x3& x, const float4x3& low, const float4x3& high )
+HLML_INLINE float4x3 clamp( const float4x3 &x, const float4x3 &low, const float4x3 &high )
 {
 	return float4x3(
 		clamp( x[0], low[0], high[0] ),
@@ -13979,7 +13979,7 @@ HLML_INLINE float4x3 clamp( const float4x3& x, const float4x3& low, const float4
 }
 
 // Performs a saturate function on each row of the matrix.
-HLML_INLINE float4x3 saturate( const float4x3& x )
+HLML_INLINE float4x3 saturate( const float4x3 &x )
 {
 	return float4x3(
 		saturate( x[0] ),
@@ -13990,7 +13990,7 @@ HLML_INLINE float4x3 saturate( const float4x3& x )
 }
 
 // Performs a lerp function on each row of the matrix.
-HLML_INLINE float4x3 lerp( const float4x3& lhs, const float4x3& rhs, const float t )
+HLML_INLINE float4x3 lerp( const float4x3 &lhs, const float4x3 &rhs, const float t )
 {
 	return float4x3(
 		lerp( lhs[0], rhs[0], t ),
@@ -14001,7 +14001,7 @@ HLML_INLINE float4x3 lerp( const float4x3& lhs, const float4x3& rhs, const float
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator==( const float4x3& lhs, const float4x3& rhs )
+HLML_INLINE bool operator==( const float4x3 &lhs, const float4x3 &rhs )
 {
 	return
 		lhs[0] == rhs[0] &&
@@ -14011,13 +14011,13 @@ HLML_INLINE bool operator==( const float4x3& lhs, const float4x3& rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator!=( const float4x3& lhs, const float4x3& rhs )
+HLML_INLINE bool operator!=( const float4x3 &lhs, const float4x3 &rhs )
 {
 	return !( lhs == rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool4x3 operator<( const float4x3& lhs, const float4x3& rhs )
+HLML_INLINE bool4x3 operator<( const float4x3 &lhs, const float4x3 &rhs )
 {
 	return bool4x3(
 		lhs[0] < rhs[0],
@@ -14028,7 +14028,7 @@ HLML_INLINE bool4x3 operator<( const float4x3& lhs, const float4x3& rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool4x3 operator<=( const float4x3& lhs, const float4x3& rhs )
+HLML_INLINE bool4x3 operator<=( const float4x3 &lhs, const float4x3 &rhs )
 {
 	return bool4x3(
 		lhs[0] <= rhs[0],
@@ -14039,7 +14039,7 @@ HLML_INLINE bool4x3 operator<=( const float4x3& lhs, const float4x3& rhs )
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool4x3 operator>( const float4x3& lhs, const float4x3& rhs )
+HLML_INLINE bool4x3 operator>( const float4x3 &lhs, const float4x3 &rhs )
 {
 	return bool4x3(
 		lhs[0] > rhs[0],
@@ -14050,7 +14050,7 @@ HLML_INLINE bool4x3 operator>( const float4x3& lhs, const float4x3& rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool4x3 operator>=( const float4x3& lhs, const float4x3& rhs )
+HLML_INLINE bool4x3 operator>=( const float4x3 &lhs, const float4x3 &rhs )
 {
 	return bool4x3(
 		lhs[0] >= rhs[0],
@@ -14061,7 +14061,7 @@ HLML_INLINE bool4x3 operator>=( const float4x3& lhs, const float4x3& rhs )
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE float4x3 operator+( const float4x3& lhs, const float rhs )
+HLML_INLINE float4x3 operator+( const float4x3 &lhs, const float rhs )
 {
 	return float4x3(
 		lhs[0] + rhs,
@@ -14072,13 +14072,13 @@ HLML_INLINE float4x3 operator+( const float4x3& lhs, const float rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been +'d against the scalar.
-HLML_INLINE float4x3 operator+=( float4x3& lhs, const float rhs )
+HLML_INLINE float4x3 operator+=( float4x3 &lhs, const float rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE float4x3 operator+( const float4x3& lhs, const float4x3& rhs )
+HLML_INLINE float4x3 operator+( const float4x3 &lhs, const float4x3 &rhs )
 {
 	return float4x3(
 		lhs[0] + rhs[0],
@@ -14089,13 +14089,13 @@ HLML_INLINE float4x3 operator+( const float4x3& lhs, const float4x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise +'d against 'rhs'.
-HLML_INLINE float4x3 operator+=( float4x3& lhs, const float4x3& rhs )
+HLML_INLINE float4x3 operator+=( float4x3 &lhs, const float4x3 &rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE float4x3 operator-( const float4x3& lhs, const float rhs )
+HLML_INLINE float4x3 operator-( const float4x3 &lhs, const float rhs )
 {
 	return float4x3(
 		lhs[0] - rhs,
@@ -14106,13 +14106,13 @@ HLML_INLINE float4x3 operator-( const float4x3& lhs, const float rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been -'d against the scalar.
-HLML_INLINE float4x3 operator-=( float4x3& lhs, const float rhs )
+HLML_INLINE float4x3 operator-=( float4x3 &lhs, const float rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE float4x3 operator-( const float4x3& lhs, const float4x3& rhs )
+HLML_INLINE float4x3 operator-( const float4x3 &lhs, const float4x3 &rhs )
 {
 	return float4x3(
 		lhs[0] - rhs[0],
@@ -14123,13 +14123,13 @@ HLML_INLINE float4x3 operator-( const float4x3& lhs, const float4x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise -'d against 'rhs'.
-HLML_INLINE float4x3 operator-=( float4x3& lhs, const float4x3& rhs )
+HLML_INLINE float4x3 operator-=( float4x3 &lhs, const float4x3 &rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE float4x3 operator*( const float4x3& lhs, const float rhs )
+HLML_INLINE float4x3 operator*( const float4x3 &lhs, const float rhs )
 {
 	return float4x3(
 		lhs[0] * rhs,
@@ -14140,13 +14140,13 @@ HLML_INLINE float4x3 operator*( const float4x3& lhs, const float rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been *'d against the scalar.
-HLML_INLINE float4x3 operator*=( float4x3& lhs, const float rhs )
+HLML_INLINE float4x3 operator*=( float4x3 &lhs, const float rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE float4x3 operator*( const float4x3& lhs, const float4x3& rhs )
+HLML_INLINE float4x3 operator*( const float4x3 &lhs, const float4x3 &rhs )
 {
 	return float4x3(
 		lhs[0] * rhs[0],
@@ -14157,13 +14157,13 @@ HLML_INLINE float4x3 operator*( const float4x3& lhs, const float4x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise *'d against 'rhs'.
-HLML_INLINE float4x3 operator*=( float4x3& lhs, const float4x3& rhs )
+HLML_INLINE float4x3 operator*=( float4x3 &lhs, const float4x3 &rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE float4x3 operator/( const float4x3& lhs, const float rhs )
+HLML_INLINE float4x3 operator/( const float4x3 &lhs, const float rhs )
 {
 	return float4x3(
 		lhs[0] / rhs,
@@ -14174,13 +14174,13 @@ HLML_INLINE float4x3 operator/( const float4x3& lhs, const float rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been /'d against the scalar.
-HLML_INLINE float4x3 operator/=( float4x3& lhs, const float rhs )
+HLML_INLINE float4x3 operator/=( float4x3 &lhs, const float rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE float4x3 operator/( const float4x3& lhs, const float4x3& rhs )
+HLML_INLINE float4x3 operator/( const float4x3 &lhs, const float4x3 &rhs )
 {
 	return float4x3(
 		lhs[0] / rhs[0],
@@ -14191,13 +14191,13 @@ HLML_INLINE float4x3 operator/( const float4x3& lhs, const float4x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise /'d against 'rhs'.
-HLML_INLINE float4x3 operator/=( float4x3& lhs, const float4x3& rhs )
+HLML_INLINE float4x3 operator/=( float4x3 &lhs, const float4x3 &rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // ++s each component of the matrix and returns the result.
-HLML_INLINE float4x3 operator++( float4x3& x )
+HLML_INLINE float4x3 operator++( float4x3 &x )
 {
 	++x[0];
 	++x[1];
@@ -14208,7 +14208,7 @@ HLML_INLINE float4x3 operator++( float4x3& x )
 
 // ++s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE float4x3 operator++( float4x3& x, const int32_t )
+HLML_INLINE float4x3 operator++( float4x3 &x, const int32_t )
 {
 	x[0]++;
 	x[1]++;
@@ -14218,7 +14218,7 @@ HLML_INLINE float4x3 operator++( float4x3& x, const int32_t )
 }
 
 // --s each component of the matrix and returns the result.
-HLML_INLINE float4x3 operator--( float4x3& x )
+HLML_INLINE float4x3 operator--( float4x3 &x )
 {
 	--x[0];
 	--x[1];
@@ -14229,7 +14229,7 @@ HLML_INLINE float4x3 operator--( float4x3& x )
 
 // --s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE float4x3 operator--( float4x3& x, const int32_t )
+HLML_INLINE float4x3 operator--( float4x3 &x, const int32_t )
 {
 	x[0]--;
 	x[1]--;
@@ -14240,7 +14240,7 @@ HLML_INLINE float4x3 operator--( float4x3& x, const int32_t )
 
 // Returns a copy of the matrix that has been negated.
 // pre-fix
-HLML_INLINE float4x3 operator-( const float4x3& x )
+HLML_INLINE float4x3 operator-( const float4x3 &x )
 {
 	return float4x3(
 		-x[0],
@@ -14251,7 +14251,7 @@ HLML_INLINE float4x3 operator-( const float4x3& x )
 }
 
 // Sets the matrix to an identity matrix.
-HLML_INLINE void identity( float4x3& mat )
+HLML_INLINE void identity( float4x3 &mat )
 {
 	mat.rows[0] = HLML_CONSTRUCT( float3 ) { 1.0f, 0.0f, 0.0f };
 	mat.rows[1] = HLML_CONSTRUCT( float3 ) { 0.0f, 1.0f, 0.0f };
@@ -14260,7 +14260,7 @@ HLML_INLINE void identity( float4x3& mat )
 }
 
 // Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-HLML_INLINE float3x4 transpose( const float4x3& mat )
+HLML_INLINE float3x4 transpose( const float4x3 &mat )
 {
 	return HLML_CONSTRUCT( float3x4 )
 	{
@@ -14271,7 +14271,7 @@ HLML_INLINE float3x4 transpose( const float4x3& mat )
 }
 
 // Performs a matrix multiplication with 'lhs' and 'rhs' and returns the result.
-HLML_INLINE float4x4 mul( const float4x3& lhs, const float3x4& rhs )
+HLML_INLINE float4x4 mul( const float4x3 &lhs, const float3x4 &rhs )
 {
 	float3 row0 = lhs.rows[0];
 	float3 row1 = lhs.rows[1];
@@ -14309,7 +14309,7 @@ HLML_INLINE float4x4 mul( const float4x3& lhs, const float3x4& rhs )
 
 // float4x4
 // Performs a sign function on each row of the matrix.
-HLML_INLINE int4x4 sign( const float4x4& x )
+HLML_INLINE int4x4 sign( const float4x4 &x )
 {
 	return int4x4(
 		sign( x[0] ),
@@ -14320,7 +14320,7 @@ HLML_INLINE int4x4 sign( const float4x4& x )
 }
 
 // Performs a min function on each row of the matrix.
-HLML_INLINE float4x4 min( const float4x4& x, const float4x4& y )
+HLML_INLINE float4x4 min( const float4x4 &x, const float4x4 &y )
 {
 	return float4x4(
 		min( x[0], y[0] ),
@@ -14331,7 +14331,7 @@ HLML_INLINE float4x4 min( const float4x4& x, const float4x4& y )
 }
 
 // Performs a max function on each row of the matrix.
-HLML_INLINE float4x4 max( const float4x4& x, const float4x4& y )
+HLML_INLINE float4x4 max( const float4x4 &x, const float4x4 &y )
 {
 	return float4x4(
 		max( x[0], y[0] ),
@@ -14342,7 +14342,7 @@ HLML_INLINE float4x4 max( const float4x4& x, const float4x4& y )
 }
 
 // Performs a clamp function on each row of the matrix.
-HLML_INLINE float4x4 clamp( const float4x4& x, const float4x4& low, const float4x4& high )
+HLML_INLINE float4x4 clamp( const float4x4 &x, const float4x4 &low, const float4x4 &high )
 {
 	return float4x4(
 		clamp( x[0], low[0], high[0] ),
@@ -14353,7 +14353,7 @@ HLML_INLINE float4x4 clamp( const float4x4& x, const float4x4& low, const float4
 }
 
 // Performs a saturate function on each row of the matrix.
-HLML_INLINE float4x4 saturate( const float4x4& x )
+HLML_INLINE float4x4 saturate( const float4x4 &x )
 {
 	return float4x4(
 		saturate( x[0] ),
@@ -14364,7 +14364,7 @@ HLML_INLINE float4x4 saturate( const float4x4& x )
 }
 
 // Performs a lerp function on each row of the matrix.
-HLML_INLINE float4x4 lerp( const float4x4& lhs, const float4x4& rhs, const float t )
+HLML_INLINE float4x4 lerp( const float4x4 &lhs, const float4x4 &rhs, const float t )
 {
 	return float4x4(
 		lerp( lhs[0], rhs[0], t ),
@@ -14375,7 +14375,7 @@ HLML_INLINE float4x4 lerp( const float4x4& lhs, const float4x4& rhs, const float
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator==( const float4x4& lhs, const float4x4& rhs )
+HLML_INLINE bool operator==( const float4x4 &lhs, const float4x4 &rhs )
 {
 	return
 		lhs[0] == rhs[0] &&
@@ -14385,13 +14385,13 @@ HLML_INLINE bool operator==( const float4x4& lhs, const float4x4& rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator!=( const float4x4& lhs, const float4x4& rhs )
+HLML_INLINE bool operator!=( const float4x4 &lhs, const float4x4 &rhs )
 {
 	return !( lhs == rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool4x4 operator<( const float4x4& lhs, const float4x4& rhs )
+HLML_INLINE bool4x4 operator<( const float4x4 &lhs, const float4x4 &rhs )
 {
 	return bool4x4(
 		lhs[0] < rhs[0],
@@ -14402,7 +14402,7 @@ HLML_INLINE bool4x4 operator<( const float4x4& lhs, const float4x4& rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool4x4 operator<=( const float4x4& lhs, const float4x4& rhs )
+HLML_INLINE bool4x4 operator<=( const float4x4 &lhs, const float4x4 &rhs )
 {
 	return bool4x4(
 		lhs[0] <= rhs[0],
@@ -14413,7 +14413,7 @@ HLML_INLINE bool4x4 operator<=( const float4x4& lhs, const float4x4& rhs )
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool4x4 operator>( const float4x4& lhs, const float4x4& rhs )
+HLML_INLINE bool4x4 operator>( const float4x4 &lhs, const float4x4 &rhs )
 {
 	return bool4x4(
 		lhs[0] > rhs[0],
@@ -14424,7 +14424,7 @@ HLML_INLINE bool4x4 operator>( const float4x4& lhs, const float4x4& rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool4x4 operator>=( const float4x4& lhs, const float4x4& rhs )
+HLML_INLINE bool4x4 operator>=( const float4x4 &lhs, const float4x4 &rhs )
 {
 	return bool4x4(
 		lhs[0] >= rhs[0],
@@ -14435,7 +14435,7 @@ HLML_INLINE bool4x4 operator>=( const float4x4& lhs, const float4x4& rhs )
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE float4x4 operator+( const float4x4& lhs, const float rhs )
+HLML_INLINE float4x4 operator+( const float4x4 &lhs, const float rhs )
 {
 	return float4x4(
 		lhs[0] + rhs,
@@ -14446,13 +14446,13 @@ HLML_INLINE float4x4 operator+( const float4x4& lhs, const float rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been +'d against the scalar.
-HLML_INLINE float4x4 operator+=( float4x4& lhs, const float rhs )
+HLML_INLINE float4x4 operator+=( float4x4 &lhs, const float rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE float4x4 operator+( const float4x4& lhs, const float4x4& rhs )
+HLML_INLINE float4x4 operator+( const float4x4 &lhs, const float4x4 &rhs )
 {
 	return float4x4(
 		lhs[0] + rhs[0],
@@ -14463,13 +14463,13 @@ HLML_INLINE float4x4 operator+( const float4x4& lhs, const float4x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise +'d against 'rhs'.
-HLML_INLINE float4x4 operator+=( float4x4& lhs, const float4x4& rhs )
+HLML_INLINE float4x4 operator+=( float4x4 &lhs, const float4x4 &rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE float4x4 operator-( const float4x4& lhs, const float rhs )
+HLML_INLINE float4x4 operator-( const float4x4 &lhs, const float rhs )
 {
 	return float4x4(
 		lhs[0] - rhs,
@@ -14480,13 +14480,13 @@ HLML_INLINE float4x4 operator-( const float4x4& lhs, const float rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been -'d against the scalar.
-HLML_INLINE float4x4 operator-=( float4x4& lhs, const float rhs )
+HLML_INLINE float4x4 operator-=( float4x4 &lhs, const float rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE float4x4 operator-( const float4x4& lhs, const float4x4& rhs )
+HLML_INLINE float4x4 operator-( const float4x4 &lhs, const float4x4 &rhs )
 {
 	return float4x4(
 		lhs[0] - rhs[0],
@@ -14497,13 +14497,13 @@ HLML_INLINE float4x4 operator-( const float4x4& lhs, const float4x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise -'d against 'rhs'.
-HLML_INLINE float4x4 operator-=( float4x4& lhs, const float4x4& rhs )
+HLML_INLINE float4x4 operator-=( float4x4 &lhs, const float4x4 &rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE float4x4 operator*( const float4x4& lhs, const float rhs )
+HLML_INLINE float4x4 operator*( const float4x4 &lhs, const float rhs )
 {
 	return float4x4(
 		lhs[0] * rhs,
@@ -14514,13 +14514,13 @@ HLML_INLINE float4x4 operator*( const float4x4& lhs, const float rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been *'d against the scalar.
-HLML_INLINE float4x4 operator*=( float4x4& lhs, const float rhs )
+HLML_INLINE float4x4 operator*=( float4x4 &lhs, const float rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE float4x4 operator*( const float4x4& lhs, const float4x4& rhs )
+HLML_INLINE float4x4 operator*( const float4x4 &lhs, const float4x4 &rhs )
 {
 	return float4x4(
 		lhs[0] * rhs[0],
@@ -14531,13 +14531,13 @@ HLML_INLINE float4x4 operator*( const float4x4& lhs, const float4x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise *'d against 'rhs'.
-HLML_INLINE float4x4 operator*=( float4x4& lhs, const float4x4& rhs )
+HLML_INLINE float4x4 operator*=( float4x4 &lhs, const float4x4 &rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE float4x4 operator/( const float4x4& lhs, const float rhs )
+HLML_INLINE float4x4 operator/( const float4x4 &lhs, const float rhs )
 {
 	return float4x4(
 		lhs[0] / rhs,
@@ -14548,13 +14548,13 @@ HLML_INLINE float4x4 operator/( const float4x4& lhs, const float rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been /'d against the scalar.
-HLML_INLINE float4x4 operator/=( float4x4& lhs, const float rhs )
+HLML_INLINE float4x4 operator/=( float4x4 &lhs, const float rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE float4x4 operator/( const float4x4& lhs, const float4x4& rhs )
+HLML_INLINE float4x4 operator/( const float4x4 &lhs, const float4x4 &rhs )
 {
 	return float4x4(
 		lhs[0] / rhs[0],
@@ -14565,13 +14565,13 @@ HLML_INLINE float4x4 operator/( const float4x4& lhs, const float4x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise /'d against 'rhs'.
-HLML_INLINE float4x4 operator/=( float4x4& lhs, const float4x4& rhs )
+HLML_INLINE float4x4 operator/=( float4x4 &lhs, const float4x4 &rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // ++s each component of the matrix and returns the result.
-HLML_INLINE float4x4 operator++( float4x4& x )
+HLML_INLINE float4x4 operator++( float4x4 &x )
 {
 	++x[0];
 	++x[1];
@@ -14582,7 +14582,7 @@ HLML_INLINE float4x4 operator++( float4x4& x )
 
 // ++s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE float4x4 operator++( float4x4& x, const int32_t )
+HLML_INLINE float4x4 operator++( float4x4 &x, const int32_t )
 {
 	x[0]++;
 	x[1]++;
@@ -14592,7 +14592,7 @@ HLML_INLINE float4x4 operator++( float4x4& x, const int32_t )
 }
 
 // --s each component of the matrix and returns the result.
-HLML_INLINE float4x4 operator--( float4x4& x )
+HLML_INLINE float4x4 operator--( float4x4 &x )
 {
 	--x[0];
 	--x[1];
@@ -14603,7 +14603,7 @@ HLML_INLINE float4x4 operator--( float4x4& x )
 
 // --s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE float4x4 operator--( float4x4& x, const int32_t )
+HLML_INLINE float4x4 operator--( float4x4 &x, const int32_t )
 {
 	x[0]--;
 	x[1]--;
@@ -14614,7 +14614,7 @@ HLML_INLINE float4x4 operator--( float4x4& x, const int32_t )
 
 // Returns a copy of the matrix that has been negated.
 // pre-fix
-HLML_INLINE float4x4 operator-( const float4x4& x )
+HLML_INLINE float4x4 operator-( const float4x4 &x )
 {
 	return float4x4(
 		-x[0],
@@ -14625,7 +14625,7 @@ HLML_INLINE float4x4 operator-( const float4x4& x )
 }
 
 // Sets the matrix to an identity matrix.
-HLML_INLINE void identity( float4x4& mat )
+HLML_INLINE void identity( float4x4 &mat )
 {
 	mat.rows[0] = HLML_CONSTRUCT( float4 ) { 1.0f, 0.0f, 0.0f, 0.0f };
 	mat.rows[1] = HLML_CONSTRUCT( float4 ) { 0.0f, 1.0f, 0.0f, 0.0f };
@@ -14634,7 +14634,7 @@ HLML_INLINE void identity( float4x4& mat )
 }
 
 // Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-HLML_INLINE float4x4 transpose( const float4x4& mat )
+HLML_INLINE float4x4 transpose( const float4x4 &mat )
 {
 	return HLML_CONSTRUCT( float4x4 )
 	{
@@ -14646,7 +14646,7 @@ HLML_INLINE float4x4 transpose( const float4x4& mat )
 }
 
 // Returns the determinant of the matrix.
-HLML_INLINE float determinant( const float4x4& mat )
+HLML_INLINE float determinant( const float4x4 &mat )
 {
 	// using glm's method where you basically take determinants from each sub matrix and cache the repeat occurences
 	float sub00 = mat.rows[2].z * mat.rows[3].w - mat.rows[3].z * mat.rows[2].w;
@@ -14671,7 +14671,7 @@ HLML_INLINE float determinant( const float4x4& mat )
 
 // Returns a copy of the matrix that is inversed.
 // This is only applicable for square matrices.
-HLML_INLINE float4x4 inverse( const float4x4& mat )
+HLML_INLINE float4x4 inverse( const float4x4 &mat )
 {
 	// uses the glm version, which is basically just an optimised version of the adjugate formula
 	float coef00 = mat.rows[2].z * mat.rows[3].w - mat.rows[3].z * mat.rows[2].w;
@@ -14736,7 +14736,7 @@ HLML_INLINE float4x4 inverse( const float4x4& mat )
 }
 
 // Performs a matrix multiplication with 'lhs' and 'rhs' and returns the result.
-HLML_INLINE float4x4 mul( const float4x4& lhs, const float4x4& rhs )
+HLML_INLINE float4x4 mul( const float4x4 &lhs, const float4x4 &rhs )
 {
 	float4 row0 = lhs.rows[0];
 	float4 row1 = lhs.rows[1];
@@ -14773,7 +14773,7 @@ HLML_INLINE float4x4 mul( const float4x4& lhs, const float4x4& rhs )
 }
 
 // Multiplies the vector 'lhs' against the matrix 'rhs' and returns the result.
-HLML_INLINE float4 mul( const float4& lhs, const float4x4& rhs )
+HLML_INLINE float4 mul( const float4 &lhs, const float4x4 &rhs )
 {
 	return HLML_CONSTRUCT( float4 )
 	{
@@ -14785,7 +14785,7 @@ HLML_INLINE float4 mul( const float4& lhs, const float4x4& rhs )
 }
 
 // "Translates" the matrix.  Adds the last column of 'mat' by the position vector 'vec'.
-HLML_INLINE float4x4 translate( const float4x4& mat, const float3& vec )
+HLML_INLINE float4x4 translate( const float4x4 &mat, const float3 &vec )
 {
 	return HLML_CONSTRUCT( float4x4 )
 	{
@@ -14797,7 +14797,7 @@ HLML_INLINE float4x4 translate( const float4x4& mat, const float3& vec )
 }
 
 // Rotates the matrix by the given axis-angle (in radians) and returns the result.
-HLML_INLINE float4x4 rotate( const float4x4& mat, const float rad, const float3& axis )
+HLML_INLINE float4x4 rotate( const float4x4 &mat, const float rad, const float3 &axis )
 {
 	const float c = cosf( rad );
 	const float s = sinf( rad );
@@ -14822,7 +14822,7 @@ HLML_INLINE float4x4 rotate( const float4x4& mat, const float rad, const float3&
 }
 
 // Applies a non-uniform scale to the matrix and returns the result.
-HLML_INLINE float4x4 scale( const float4x4& mat, const float3& scale )
+HLML_INLINE float4x4 scale( const float4x4 &mat, const float3 &scale )
 {
 	return HLML_CONSTRUCT( float4x4 )
 	{
@@ -14992,7 +14992,7 @@ HLML_INLINE float4x4 perspective_rh_no( const float fovdeg, const float aspect, 
 }
 
 // Returns a left-handed orthonormal matrix that is oriented at position 'eye' to look at position 'target'.
-HLML_INLINE float4x4 look_at_lh( const float3& eye, const float3& target, const float3& up )
+HLML_INLINE float4x4 look_at_lh( const float3 &eye, const float3 &target, const float3 &up )
 {
 	// left handed
 	const float3 forward = normalized( target - eye );
@@ -15010,7 +15010,7 @@ HLML_INLINE float4x4 look_at_lh( const float3& eye, const float3& target, const 
 }
 
 // Returns a right-handed orthonormal matrix that is oriented at position 'eye' to look at position 'target'.
-HLML_INLINE float4x4 look_at_rh( const float3& eye, const float3& target, const float3& up )
+HLML_INLINE float4x4 look_at_rh( const float3 &eye, const float3 &target, const float3 &up )
 {
 	// right handed
 	const float3 forward = normalized( target - eye );
@@ -15029,7 +15029,7 @@ HLML_INLINE float4x4 look_at_rh( const float3& eye, const float3& target, const 
 
 // double2x2
 // Performs a sign function on each row of the matrix.
-HLML_INLINE int2x2 sign( const double2x2& x )
+HLML_INLINE int2x2 sign( const double2x2 &x )
 {
 	return int2x2(
 		sign( x[0] ),
@@ -15038,7 +15038,7 @@ HLML_INLINE int2x2 sign( const double2x2& x )
 }
 
 // Performs a min function on each row of the matrix.
-HLML_INLINE double2x2 min( const double2x2& x, const double2x2& y )
+HLML_INLINE double2x2 min( const double2x2 &x, const double2x2 &y )
 {
 	return double2x2(
 		min( x[0], y[0] ),
@@ -15047,7 +15047,7 @@ HLML_INLINE double2x2 min( const double2x2& x, const double2x2& y )
 }
 
 // Performs a max function on each row of the matrix.
-HLML_INLINE double2x2 max( const double2x2& x, const double2x2& y )
+HLML_INLINE double2x2 max( const double2x2 &x, const double2x2 &y )
 {
 	return double2x2(
 		max( x[0], y[0] ),
@@ -15056,7 +15056,7 @@ HLML_INLINE double2x2 max( const double2x2& x, const double2x2& y )
 }
 
 // Performs a clamp function on each row of the matrix.
-HLML_INLINE double2x2 clamp( const double2x2& x, const double2x2& low, const double2x2& high )
+HLML_INLINE double2x2 clamp( const double2x2 &x, const double2x2 &low, const double2x2 &high )
 {
 	return double2x2(
 		clamp( x[0], low[0], high[0] ),
@@ -15065,7 +15065,7 @@ HLML_INLINE double2x2 clamp( const double2x2& x, const double2x2& low, const dou
 }
 
 // Performs a saturate function on each row of the matrix.
-HLML_INLINE double2x2 saturate( const double2x2& x )
+HLML_INLINE double2x2 saturate( const double2x2 &x )
 {
 	return double2x2(
 		saturate( x[0] ),
@@ -15074,7 +15074,7 @@ HLML_INLINE double2x2 saturate( const double2x2& x )
 }
 
 // Performs a lerp function on each row of the matrix.
-HLML_INLINE double2x2 lerp( const double2x2& lhs, const double2x2& rhs, const double t )
+HLML_INLINE double2x2 lerp( const double2x2 &lhs, const double2x2 &rhs, const double t )
 {
 	return double2x2(
 		lerp( lhs[0], rhs[0], t ),
@@ -15083,7 +15083,7 @@ HLML_INLINE double2x2 lerp( const double2x2& lhs, const double2x2& rhs, const do
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator==( const double2x2& lhs, const double2x2& rhs )
+HLML_INLINE bool operator==( const double2x2 &lhs, const double2x2 &rhs )
 {
 	return
 		lhs[0] == rhs[0] &&
@@ -15091,13 +15091,13 @@ HLML_INLINE bool operator==( const double2x2& lhs, const double2x2& rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator!=( const double2x2& lhs, const double2x2& rhs )
+HLML_INLINE bool operator!=( const double2x2 &lhs, const double2x2 &rhs )
 {
 	return !( lhs == rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool2x2 operator<( const double2x2& lhs, const double2x2& rhs )
+HLML_INLINE bool2x2 operator<( const double2x2 &lhs, const double2x2 &rhs )
 {
 	return bool2x2(
 		lhs[0] < rhs[0],
@@ -15106,7 +15106,7 @@ HLML_INLINE bool2x2 operator<( const double2x2& lhs, const double2x2& rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool2x2 operator<=( const double2x2& lhs, const double2x2& rhs )
+HLML_INLINE bool2x2 operator<=( const double2x2 &lhs, const double2x2 &rhs )
 {
 	return bool2x2(
 		lhs[0] <= rhs[0],
@@ -15115,7 +15115,7 @@ HLML_INLINE bool2x2 operator<=( const double2x2& lhs, const double2x2& rhs )
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool2x2 operator>( const double2x2& lhs, const double2x2& rhs )
+HLML_INLINE bool2x2 operator>( const double2x2 &lhs, const double2x2 &rhs )
 {
 	return bool2x2(
 		lhs[0] > rhs[0],
@@ -15124,7 +15124,7 @@ HLML_INLINE bool2x2 operator>( const double2x2& lhs, const double2x2& rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool2x2 operator>=( const double2x2& lhs, const double2x2& rhs )
+HLML_INLINE bool2x2 operator>=( const double2x2 &lhs, const double2x2 &rhs )
 {
 	return bool2x2(
 		lhs[0] >= rhs[0],
@@ -15133,7 +15133,7 @@ HLML_INLINE bool2x2 operator>=( const double2x2& lhs, const double2x2& rhs )
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE double2x2 operator+( const double2x2& lhs, const double rhs )
+HLML_INLINE double2x2 operator+( const double2x2 &lhs, const double rhs )
 {
 	return double2x2(
 		lhs[0] + rhs,
@@ -15142,13 +15142,13 @@ HLML_INLINE double2x2 operator+( const double2x2& lhs, const double rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been +'d against the scalar.
-HLML_INLINE double2x2 operator+=( double2x2& lhs, const double rhs )
+HLML_INLINE double2x2 operator+=( double2x2 &lhs, const double rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE double2x2 operator+( const double2x2& lhs, const double2x2& rhs )
+HLML_INLINE double2x2 operator+( const double2x2 &lhs, const double2x2 &rhs )
 {
 	return double2x2(
 		lhs[0] + rhs[0],
@@ -15157,13 +15157,13 @@ HLML_INLINE double2x2 operator+( const double2x2& lhs, const double2x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise +'d against 'rhs'.
-HLML_INLINE double2x2 operator+=( double2x2& lhs, const double2x2& rhs )
+HLML_INLINE double2x2 operator+=( double2x2 &lhs, const double2x2 &rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE double2x2 operator-( const double2x2& lhs, const double rhs )
+HLML_INLINE double2x2 operator-( const double2x2 &lhs, const double rhs )
 {
 	return double2x2(
 		lhs[0] - rhs,
@@ -15172,13 +15172,13 @@ HLML_INLINE double2x2 operator-( const double2x2& lhs, const double rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been -'d against the scalar.
-HLML_INLINE double2x2 operator-=( double2x2& lhs, const double rhs )
+HLML_INLINE double2x2 operator-=( double2x2 &lhs, const double rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE double2x2 operator-( const double2x2& lhs, const double2x2& rhs )
+HLML_INLINE double2x2 operator-( const double2x2 &lhs, const double2x2 &rhs )
 {
 	return double2x2(
 		lhs[0] - rhs[0],
@@ -15187,13 +15187,13 @@ HLML_INLINE double2x2 operator-( const double2x2& lhs, const double2x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise -'d against 'rhs'.
-HLML_INLINE double2x2 operator-=( double2x2& lhs, const double2x2& rhs )
+HLML_INLINE double2x2 operator-=( double2x2 &lhs, const double2x2 &rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE double2x2 operator*( const double2x2& lhs, const double rhs )
+HLML_INLINE double2x2 operator*( const double2x2 &lhs, const double rhs )
 {
 	return double2x2(
 		lhs[0] * rhs,
@@ -15202,13 +15202,13 @@ HLML_INLINE double2x2 operator*( const double2x2& lhs, const double rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been *'d against the scalar.
-HLML_INLINE double2x2 operator*=( double2x2& lhs, const double rhs )
+HLML_INLINE double2x2 operator*=( double2x2 &lhs, const double rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE double2x2 operator*( const double2x2& lhs, const double2x2& rhs )
+HLML_INLINE double2x2 operator*( const double2x2 &lhs, const double2x2 &rhs )
 {
 	return double2x2(
 		lhs[0] * rhs[0],
@@ -15217,13 +15217,13 @@ HLML_INLINE double2x2 operator*( const double2x2& lhs, const double2x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise *'d against 'rhs'.
-HLML_INLINE double2x2 operator*=( double2x2& lhs, const double2x2& rhs )
+HLML_INLINE double2x2 operator*=( double2x2 &lhs, const double2x2 &rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE double2x2 operator/( const double2x2& lhs, const double rhs )
+HLML_INLINE double2x2 operator/( const double2x2 &lhs, const double rhs )
 {
 	return double2x2(
 		lhs[0] / rhs,
@@ -15232,13 +15232,13 @@ HLML_INLINE double2x2 operator/( const double2x2& lhs, const double rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been /'d against the scalar.
-HLML_INLINE double2x2 operator/=( double2x2& lhs, const double rhs )
+HLML_INLINE double2x2 operator/=( double2x2 &lhs, const double rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE double2x2 operator/( const double2x2& lhs, const double2x2& rhs )
+HLML_INLINE double2x2 operator/( const double2x2 &lhs, const double2x2 &rhs )
 {
 	return double2x2(
 		lhs[0] / rhs[0],
@@ -15247,13 +15247,13 @@ HLML_INLINE double2x2 operator/( const double2x2& lhs, const double2x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise /'d against 'rhs'.
-HLML_INLINE double2x2 operator/=( double2x2& lhs, const double2x2& rhs )
+HLML_INLINE double2x2 operator/=( double2x2 &lhs, const double2x2 &rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // ++s each component of the matrix and returns the result.
-HLML_INLINE double2x2 operator++( double2x2& x )
+HLML_INLINE double2x2 operator++( double2x2 &x )
 {
 	++x[0];
 	++x[1];
@@ -15262,7 +15262,7 @@ HLML_INLINE double2x2 operator++( double2x2& x )
 
 // ++s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE double2x2 operator++( double2x2& x, const int32_t )
+HLML_INLINE double2x2 operator++( double2x2 &x, const int32_t )
 {
 	x[0]++;
 	x[1]++;
@@ -15270,7 +15270,7 @@ HLML_INLINE double2x2 operator++( double2x2& x, const int32_t )
 }
 
 // --s each component of the matrix and returns the result.
-HLML_INLINE double2x2 operator--( double2x2& x )
+HLML_INLINE double2x2 operator--( double2x2 &x )
 {
 	--x[0];
 	--x[1];
@@ -15279,7 +15279,7 @@ HLML_INLINE double2x2 operator--( double2x2& x )
 
 // --s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE double2x2 operator--( double2x2& x, const int32_t )
+HLML_INLINE double2x2 operator--( double2x2 &x, const int32_t )
 {
 	x[0]--;
 	x[1]--;
@@ -15288,7 +15288,7 @@ HLML_INLINE double2x2 operator--( double2x2& x, const int32_t )
 
 // Returns a copy of the matrix that has been negated.
 // pre-fix
-HLML_INLINE double2x2 operator-( const double2x2& x )
+HLML_INLINE double2x2 operator-( const double2x2 &x )
 {
 	return double2x2(
 		-x[0],
@@ -15297,14 +15297,14 @@ HLML_INLINE double2x2 operator-( const double2x2& x )
 }
 
 // Sets the matrix to an identity matrix.
-HLML_INLINE void identity( double2x2& mat )
+HLML_INLINE void identity( double2x2 &mat )
 {
 	mat.rows[0] = HLML_CONSTRUCT( double2 ) { 1.0, 0.0 };
 	mat.rows[1] = HLML_CONSTRUCT( double2 ) { 0.0, 1.0 };
 }
 
 // Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-HLML_INLINE double2x2 transpose( const double2x2& mat )
+HLML_INLINE double2x2 transpose( const double2x2 &mat )
 {
 	return HLML_CONSTRUCT( double2x2 )
 	{
@@ -15314,14 +15314,14 @@ HLML_INLINE double2x2 transpose( const double2x2& mat )
 }
 
 // Returns the determinant of the matrix.
-HLML_INLINE double determinant( const double2x2& mat )
+HLML_INLINE double determinant( const double2x2 &mat )
 {
 	return mat.rows[0].x * mat.rows[1].y - mat.rows[1].x * mat.rows[0].y;
 }
 
 // Returns a copy of the matrix that is inversed.
 // This is only applicable for square matrices.
-HLML_INLINE double2x2 inverse( const double2x2& mat )
+HLML_INLINE double2x2 inverse( const double2x2 &mat )
 {
 	const double invdet = 1.0 / determinant( mat );
 	return HLML_CONSTRUCT( double2x2 )
@@ -15332,7 +15332,7 @@ HLML_INLINE double2x2 inverse( const double2x2& mat )
 }
 
 // Performs a matrix multiplication with 'lhs' and 'rhs' and returns the result.
-HLML_INLINE double2x2 mul( const double2x2& lhs, const double2x2& rhs )
+HLML_INLINE double2x2 mul( const double2x2 &lhs, const double2x2 &rhs )
 {
 	double2 row0 = lhs.rows[0];
 	double2 row1 = lhs.rows[1];
@@ -15351,7 +15351,7 @@ HLML_INLINE double2x2 mul( const double2x2& lhs, const double2x2& rhs )
 }
 
 // Multiplies the vector 'lhs' against the matrix 'rhs' and returns the result.
-HLML_INLINE double2 mul( const double2& lhs, const double2x2& rhs )
+HLML_INLINE double2 mul( const double2 &lhs, const double2x2 &rhs )
 {
 	return HLML_CONSTRUCT( double2 )
 	{
@@ -15362,7 +15362,7 @@ HLML_INLINE double2 mul( const double2& lhs, const double2x2& rhs )
 
 // double2x3
 // Performs a sign function on each row of the matrix.
-HLML_INLINE int2x3 sign( const double2x3& x )
+HLML_INLINE int2x3 sign( const double2x3 &x )
 {
 	return int2x3(
 		sign( x[0] ),
@@ -15371,7 +15371,7 @@ HLML_INLINE int2x3 sign( const double2x3& x )
 }
 
 // Performs a min function on each row of the matrix.
-HLML_INLINE double2x3 min( const double2x3& x, const double2x3& y )
+HLML_INLINE double2x3 min( const double2x3 &x, const double2x3 &y )
 {
 	return double2x3(
 		min( x[0], y[0] ),
@@ -15380,7 +15380,7 @@ HLML_INLINE double2x3 min( const double2x3& x, const double2x3& y )
 }
 
 // Performs a max function on each row of the matrix.
-HLML_INLINE double2x3 max( const double2x3& x, const double2x3& y )
+HLML_INLINE double2x3 max( const double2x3 &x, const double2x3 &y )
 {
 	return double2x3(
 		max( x[0], y[0] ),
@@ -15389,7 +15389,7 @@ HLML_INLINE double2x3 max( const double2x3& x, const double2x3& y )
 }
 
 // Performs a clamp function on each row of the matrix.
-HLML_INLINE double2x3 clamp( const double2x3& x, const double2x3& low, const double2x3& high )
+HLML_INLINE double2x3 clamp( const double2x3 &x, const double2x3 &low, const double2x3 &high )
 {
 	return double2x3(
 		clamp( x[0], low[0], high[0] ),
@@ -15398,7 +15398,7 @@ HLML_INLINE double2x3 clamp( const double2x3& x, const double2x3& low, const dou
 }
 
 // Performs a saturate function on each row of the matrix.
-HLML_INLINE double2x3 saturate( const double2x3& x )
+HLML_INLINE double2x3 saturate( const double2x3 &x )
 {
 	return double2x3(
 		saturate( x[0] ),
@@ -15407,7 +15407,7 @@ HLML_INLINE double2x3 saturate( const double2x3& x )
 }
 
 // Performs a lerp function on each row of the matrix.
-HLML_INLINE double2x3 lerp( const double2x3& lhs, const double2x3& rhs, const double t )
+HLML_INLINE double2x3 lerp( const double2x3 &lhs, const double2x3 &rhs, const double t )
 {
 	return double2x3(
 		lerp( lhs[0], rhs[0], t ),
@@ -15416,7 +15416,7 @@ HLML_INLINE double2x3 lerp( const double2x3& lhs, const double2x3& rhs, const do
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator==( const double2x3& lhs, const double2x3& rhs )
+HLML_INLINE bool operator==( const double2x3 &lhs, const double2x3 &rhs )
 {
 	return
 		lhs[0] == rhs[0] &&
@@ -15424,13 +15424,13 @@ HLML_INLINE bool operator==( const double2x3& lhs, const double2x3& rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator!=( const double2x3& lhs, const double2x3& rhs )
+HLML_INLINE bool operator!=( const double2x3 &lhs, const double2x3 &rhs )
 {
 	return !( lhs == rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool2x3 operator<( const double2x3& lhs, const double2x3& rhs )
+HLML_INLINE bool2x3 operator<( const double2x3 &lhs, const double2x3 &rhs )
 {
 	return bool2x3(
 		lhs[0] < rhs[0],
@@ -15439,7 +15439,7 @@ HLML_INLINE bool2x3 operator<( const double2x3& lhs, const double2x3& rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool2x3 operator<=( const double2x3& lhs, const double2x3& rhs )
+HLML_INLINE bool2x3 operator<=( const double2x3 &lhs, const double2x3 &rhs )
 {
 	return bool2x3(
 		lhs[0] <= rhs[0],
@@ -15448,7 +15448,7 @@ HLML_INLINE bool2x3 operator<=( const double2x3& lhs, const double2x3& rhs )
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool2x3 operator>( const double2x3& lhs, const double2x3& rhs )
+HLML_INLINE bool2x3 operator>( const double2x3 &lhs, const double2x3 &rhs )
 {
 	return bool2x3(
 		lhs[0] > rhs[0],
@@ -15457,7 +15457,7 @@ HLML_INLINE bool2x3 operator>( const double2x3& lhs, const double2x3& rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool2x3 operator>=( const double2x3& lhs, const double2x3& rhs )
+HLML_INLINE bool2x3 operator>=( const double2x3 &lhs, const double2x3 &rhs )
 {
 	return bool2x3(
 		lhs[0] >= rhs[0],
@@ -15466,7 +15466,7 @@ HLML_INLINE bool2x3 operator>=( const double2x3& lhs, const double2x3& rhs )
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE double2x3 operator+( const double2x3& lhs, const double rhs )
+HLML_INLINE double2x3 operator+( const double2x3 &lhs, const double rhs )
 {
 	return double2x3(
 		lhs[0] + rhs,
@@ -15475,13 +15475,13 @@ HLML_INLINE double2x3 operator+( const double2x3& lhs, const double rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been +'d against the scalar.
-HLML_INLINE double2x3 operator+=( double2x3& lhs, const double rhs )
+HLML_INLINE double2x3 operator+=( double2x3 &lhs, const double rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE double2x3 operator+( const double2x3& lhs, const double2x3& rhs )
+HLML_INLINE double2x3 operator+( const double2x3 &lhs, const double2x3 &rhs )
 {
 	return double2x3(
 		lhs[0] + rhs[0],
@@ -15490,13 +15490,13 @@ HLML_INLINE double2x3 operator+( const double2x3& lhs, const double2x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise +'d against 'rhs'.
-HLML_INLINE double2x3 operator+=( double2x3& lhs, const double2x3& rhs )
+HLML_INLINE double2x3 operator+=( double2x3 &lhs, const double2x3 &rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE double2x3 operator-( const double2x3& lhs, const double rhs )
+HLML_INLINE double2x3 operator-( const double2x3 &lhs, const double rhs )
 {
 	return double2x3(
 		lhs[0] - rhs,
@@ -15505,13 +15505,13 @@ HLML_INLINE double2x3 operator-( const double2x3& lhs, const double rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been -'d against the scalar.
-HLML_INLINE double2x3 operator-=( double2x3& lhs, const double rhs )
+HLML_INLINE double2x3 operator-=( double2x3 &lhs, const double rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE double2x3 operator-( const double2x3& lhs, const double2x3& rhs )
+HLML_INLINE double2x3 operator-( const double2x3 &lhs, const double2x3 &rhs )
 {
 	return double2x3(
 		lhs[0] - rhs[0],
@@ -15520,13 +15520,13 @@ HLML_INLINE double2x3 operator-( const double2x3& lhs, const double2x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise -'d against 'rhs'.
-HLML_INLINE double2x3 operator-=( double2x3& lhs, const double2x3& rhs )
+HLML_INLINE double2x3 operator-=( double2x3 &lhs, const double2x3 &rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE double2x3 operator*( const double2x3& lhs, const double rhs )
+HLML_INLINE double2x3 operator*( const double2x3 &lhs, const double rhs )
 {
 	return double2x3(
 		lhs[0] * rhs,
@@ -15535,13 +15535,13 @@ HLML_INLINE double2x3 operator*( const double2x3& lhs, const double rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been *'d against the scalar.
-HLML_INLINE double2x3 operator*=( double2x3& lhs, const double rhs )
+HLML_INLINE double2x3 operator*=( double2x3 &lhs, const double rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE double2x3 operator*( const double2x3& lhs, const double2x3& rhs )
+HLML_INLINE double2x3 operator*( const double2x3 &lhs, const double2x3 &rhs )
 {
 	return double2x3(
 		lhs[0] * rhs[0],
@@ -15550,13 +15550,13 @@ HLML_INLINE double2x3 operator*( const double2x3& lhs, const double2x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise *'d against 'rhs'.
-HLML_INLINE double2x3 operator*=( double2x3& lhs, const double2x3& rhs )
+HLML_INLINE double2x3 operator*=( double2x3 &lhs, const double2x3 &rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE double2x3 operator/( const double2x3& lhs, const double rhs )
+HLML_INLINE double2x3 operator/( const double2x3 &lhs, const double rhs )
 {
 	return double2x3(
 		lhs[0] / rhs,
@@ -15565,13 +15565,13 @@ HLML_INLINE double2x3 operator/( const double2x3& lhs, const double rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been /'d against the scalar.
-HLML_INLINE double2x3 operator/=( double2x3& lhs, const double rhs )
+HLML_INLINE double2x3 operator/=( double2x3 &lhs, const double rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE double2x3 operator/( const double2x3& lhs, const double2x3& rhs )
+HLML_INLINE double2x3 operator/( const double2x3 &lhs, const double2x3 &rhs )
 {
 	return double2x3(
 		lhs[0] / rhs[0],
@@ -15580,13 +15580,13 @@ HLML_INLINE double2x3 operator/( const double2x3& lhs, const double2x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise /'d against 'rhs'.
-HLML_INLINE double2x3 operator/=( double2x3& lhs, const double2x3& rhs )
+HLML_INLINE double2x3 operator/=( double2x3 &lhs, const double2x3 &rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // ++s each component of the matrix and returns the result.
-HLML_INLINE double2x3 operator++( double2x3& x )
+HLML_INLINE double2x3 operator++( double2x3 &x )
 {
 	++x[0];
 	++x[1];
@@ -15595,7 +15595,7 @@ HLML_INLINE double2x3 operator++( double2x3& x )
 
 // ++s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE double2x3 operator++( double2x3& x, const int32_t )
+HLML_INLINE double2x3 operator++( double2x3 &x, const int32_t )
 {
 	x[0]++;
 	x[1]++;
@@ -15603,7 +15603,7 @@ HLML_INLINE double2x3 operator++( double2x3& x, const int32_t )
 }
 
 // --s each component of the matrix and returns the result.
-HLML_INLINE double2x3 operator--( double2x3& x )
+HLML_INLINE double2x3 operator--( double2x3 &x )
 {
 	--x[0];
 	--x[1];
@@ -15612,7 +15612,7 @@ HLML_INLINE double2x3 operator--( double2x3& x )
 
 // --s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE double2x3 operator--( double2x3& x, const int32_t )
+HLML_INLINE double2x3 operator--( double2x3 &x, const int32_t )
 {
 	x[0]--;
 	x[1]--;
@@ -15621,7 +15621,7 @@ HLML_INLINE double2x3 operator--( double2x3& x, const int32_t )
 
 // Returns a copy of the matrix that has been negated.
 // pre-fix
-HLML_INLINE double2x3 operator-( const double2x3& x )
+HLML_INLINE double2x3 operator-( const double2x3 &x )
 {
 	return double2x3(
 		-x[0],
@@ -15630,14 +15630,14 @@ HLML_INLINE double2x3 operator-( const double2x3& x )
 }
 
 // Sets the matrix to an identity matrix.
-HLML_INLINE void identity( double2x3& mat )
+HLML_INLINE void identity( double2x3 &mat )
 {
 	mat.rows[0] = HLML_CONSTRUCT( double3 ) { 1.0, 0.0, 0.0 };
 	mat.rows[1] = HLML_CONSTRUCT( double3 ) { 0.0, 1.0, 0.0 };
 }
 
 // Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-HLML_INLINE double3x2 transpose( const double2x3& mat )
+HLML_INLINE double3x2 transpose( const double2x3 &mat )
 {
 	return HLML_CONSTRUCT( double3x2 )
 	{
@@ -15648,7 +15648,7 @@ HLML_INLINE double3x2 transpose( const double2x3& mat )
 }
 
 // Performs a matrix multiplication with 'lhs' and 'rhs' and returns the result.
-HLML_INLINE double2x2 mul( const double2x3& lhs, const double3x2& rhs )
+HLML_INLINE double2x2 mul( const double2x3 &lhs, const double3x2 &rhs )
 {
 	double3 row0 = lhs.rows[0];
 	double3 row1 = lhs.rows[1];
@@ -15668,7 +15668,7 @@ HLML_INLINE double2x2 mul( const double2x3& lhs, const double3x2& rhs )
 
 // double2x4
 // Performs a sign function on each row of the matrix.
-HLML_INLINE int2x4 sign( const double2x4& x )
+HLML_INLINE int2x4 sign( const double2x4 &x )
 {
 	return int2x4(
 		sign( x[0] ),
@@ -15677,7 +15677,7 @@ HLML_INLINE int2x4 sign( const double2x4& x )
 }
 
 // Performs a min function on each row of the matrix.
-HLML_INLINE double2x4 min( const double2x4& x, const double2x4& y )
+HLML_INLINE double2x4 min( const double2x4 &x, const double2x4 &y )
 {
 	return double2x4(
 		min( x[0], y[0] ),
@@ -15686,7 +15686,7 @@ HLML_INLINE double2x4 min( const double2x4& x, const double2x4& y )
 }
 
 // Performs a max function on each row of the matrix.
-HLML_INLINE double2x4 max( const double2x4& x, const double2x4& y )
+HLML_INLINE double2x4 max( const double2x4 &x, const double2x4 &y )
 {
 	return double2x4(
 		max( x[0], y[0] ),
@@ -15695,7 +15695,7 @@ HLML_INLINE double2x4 max( const double2x4& x, const double2x4& y )
 }
 
 // Performs a clamp function on each row of the matrix.
-HLML_INLINE double2x4 clamp( const double2x4& x, const double2x4& low, const double2x4& high )
+HLML_INLINE double2x4 clamp( const double2x4 &x, const double2x4 &low, const double2x4 &high )
 {
 	return double2x4(
 		clamp( x[0], low[0], high[0] ),
@@ -15704,7 +15704,7 @@ HLML_INLINE double2x4 clamp( const double2x4& x, const double2x4& low, const dou
 }
 
 // Performs a saturate function on each row of the matrix.
-HLML_INLINE double2x4 saturate( const double2x4& x )
+HLML_INLINE double2x4 saturate( const double2x4 &x )
 {
 	return double2x4(
 		saturate( x[0] ),
@@ -15713,7 +15713,7 @@ HLML_INLINE double2x4 saturate( const double2x4& x )
 }
 
 // Performs a lerp function on each row of the matrix.
-HLML_INLINE double2x4 lerp( const double2x4& lhs, const double2x4& rhs, const double t )
+HLML_INLINE double2x4 lerp( const double2x4 &lhs, const double2x4 &rhs, const double t )
 {
 	return double2x4(
 		lerp( lhs[0], rhs[0], t ),
@@ -15722,7 +15722,7 @@ HLML_INLINE double2x4 lerp( const double2x4& lhs, const double2x4& rhs, const do
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator==( const double2x4& lhs, const double2x4& rhs )
+HLML_INLINE bool operator==( const double2x4 &lhs, const double2x4 &rhs )
 {
 	return
 		lhs[0] == rhs[0] &&
@@ -15730,13 +15730,13 @@ HLML_INLINE bool operator==( const double2x4& lhs, const double2x4& rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator!=( const double2x4& lhs, const double2x4& rhs )
+HLML_INLINE bool operator!=( const double2x4 &lhs, const double2x4 &rhs )
 {
 	return !( lhs == rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool2x4 operator<( const double2x4& lhs, const double2x4& rhs )
+HLML_INLINE bool2x4 operator<( const double2x4 &lhs, const double2x4 &rhs )
 {
 	return bool2x4(
 		lhs[0] < rhs[0],
@@ -15745,7 +15745,7 @@ HLML_INLINE bool2x4 operator<( const double2x4& lhs, const double2x4& rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool2x4 operator<=( const double2x4& lhs, const double2x4& rhs )
+HLML_INLINE bool2x4 operator<=( const double2x4 &lhs, const double2x4 &rhs )
 {
 	return bool2x4(
 		lhs[0] <= rhs[0],
@@ -15754,7 +15754,7 @@ HLML_INLINE bool2x4 operator<=( const double2x4& lhs, const double2x4& rhs )
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool2x4 operator>( const double2x4& lhs, const double2x4& rhs )
+HLML_INLINE bool2x4 operator>( const double2x4 &lhs, const double2x4 &rhs )
 {
 	return bool2x4(
 		lhs[0] > rhs[0],
@@ -15763,7 +15763,7 @@ HLML_INLINE bool2x4 operator>( const double2x4& lhs, const double2x4& rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool2x4 operator>=( const double2x4& lhs, const double2x4& rhs )
+HLML_INLINE bool2x4 operator>=( const double2x4 &lhs, const double2x4 &rhs )
 {
 	return bool2x4(
 		lhs[0] >= rhs[0],
@@ -15772,7 +15772,7 @@ HLML_INLINE bool2x4 operator>=( const double2x4& lhs, const double2x4& rhs )
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE double2x4 operator+( const double2x4& lhs, const double rhs )
+HLML_INLINE double2x4 operator+( const double2x4 &lhs, const double rhs )
 {
 	return double2x4(
 		lhs[0] + rhs,
@@ -15781,13 +15781,13 @@ HLML_INLINE double2x4 operator+( const double2x4& lhs, const double rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been +'d against the scalar.
-HLML_INLINE double2x4 operator+=( double2x4& lhs, const double rhs )
+HLML_INLINE double2x4 operator+=( double2x4 &lhs, const double rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE double2x4 operator+( const double2x4& lhs, const double2x4& rhs )
+HLML_INLINE double2x4 operator+( const double2x4 &lhs, const double2x4 &rhs )
 {
 	return double2x4(
 		lhs[0] + rhs[0],
@@ -15796,13 +15796,13 @@ HLML_INLINE double2x4 operator+( const double2x4& lhs, const double2x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise +'d against 'rhs'.
-HLML_INLINE double2x4 operator+=( double2x4& lhs, const double2x4& rhs )
+HLML_INLINE double2x4 operator+=( double2x4 &lhs, const double2x4 &rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE double2x4 operator-( const double2x4& lhs, const double rhs )
+HLML_INLINE double2x4 operator-( const double2x4 &lhs, const double rhs )
 {
 	return double2x4(
 		lhs[0] - rhs,
@@ -15811,13 +15811,13 @@ HLML_INLINE double2x4 operator-( const double2x4& lhs, const double rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been -'d against the scalar.
-HLML_INLINE double2x4 operator-=( double2x4& lhs, const double rhs )
+HLML_INLINE double2x4 operator-=( double2x4 &lhs, const double rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE double2x4 operator-( const double2x4& lhs, const double2x4& rhs )
+HLML_INLINE double2x4 operator-( const double2x4 &lhs, const double2x4 &rhs )
 {
 	return double2x4(
 		lhs[0] - rhs[0],
@@ -15826,13 +15826,13 @@ HLML_INLINE double2x4 operator-( const double2x4& lhs, const double2x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise -'d against 'rhs'.
-HLML_INLINE double2x4 operator-=( double2x4& lhs, const double2x4& rhs )
+HLML_INLINE double2x4 operator-=( double2x4 &lhs, const double2x4 &rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE double2x4 operator*( const double2x4& lhs, const double rhs )
+HLML_INLINE double2x4 operator*( const double2x4 &lhs, const double rhs )
 {
 	return double2x4(
 		lhs[0] * rhs,
@@ -15841,13 +15841,13 @@ HLML_INLINE double2x4 operator*( const double2x4& lhs, const double rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been *'d against the scalar.
-HLML_INLINE double2x4 operator*=( double2x4& lhs, const double rhs )
+HLML_INLINE double2x4 operator*=( double2x4 &lhs, const double rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE double2x4 operator*( const double2x4& lhs, const double2x4& rhs )
+HLML_INLINE double2x4 operator*( const double2x4 &lhs, const double2x4 &rhs )
 {
 	return double2x4(
 		lhs[0] * rhs[0],
@@ -15856,13 +15856,13 @@ HLML_INLINE double2x4 operator*( const double2x4& lhs, const double2x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise *'d against 'rhs'.
-HLML_INLINE double2x4 operator*=( double2x4& lhs, const double2x4& rhs )
+HLML_INLINE double2x4 operator*=( double2x4 &lhs, const double2x4 &rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE double2x4 operator/( const double2x4& lhs, const double rhs )
+HLML_INLINE double2x4 operator/( const double2x4 &lhs, const double rhs )
 {
 	return double2x4(
 		lhs[0] / rhs,
@@ -15871,13 +15871,13 @@ HLML_INLINE double2x4 operator/( const double2x4& lhs, const double rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been /'d against the scalar.
-HLML_INLINE double2x4 operator/=( double2x4& lhs, const double rhs )
+HLML_INLINE double2x4 operator/=( double2x4 &lhs, const double rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE double2x4 operator/( const double2x4& lhs, const double2x4& rhs )
+HLML_INLINE double2x4 operator/( const double2x4 &lhs, const double2x4 &rhs )
 {
 	return double2x4(
 		lhs[0] / rhs[0],
@@ -15886,13 +15886,13 @@ HLML_INLINE double2x4 operator/( const double2x4& lhs, const double2x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise /'d against 'rhs'.
-HLML_INLINE double2x4 operator/=( double2x4& lhs, const double2x4& rhs )
+HLML_INLINE double2x4 operator/=( double2x4 &lhs, const double2x4 &rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // ++s each component of the matrix and returns the result.
-HLML_INLINE double2x4 operator++( double2x4& x )
+HLML_INLINE double2x4 operator++( double2x4 &x )
 {
 	++x[0];
 	++x[1];
@@ -15901,7 +15901,7 @@ HLML_INLINE double2x4 operator++( double2x4& x )
 
 // ++s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE double2x4 operator++( double2x4& x, const int32_t )
+HLML_INLINE double2x4 operator++( double2x4 &x, const int32_t )
 {
 	x[0]++;
 	x[1]++;
@@ -15909,7 +15909,7 @@ HLML_INLINE double2x4 operator++( double2x4& x, const int32_t )
 }
 
 // --s each component of the matrix and returns the result.
-HLML_INLINE double2x4 operator--( double2x4& x )
+HLML_INLINE double2x4 operator--( double2x4 &x )
 {
 	--x[0];
 	--x[1];
@@ -15918,7 +15918,7 @@ HLML_INLINE double2x4 operator--( double2x4& x )
 
 // --s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE double2x4 operator--( double2x4& x, const int32_t )
+HLML_INLINE double2x4 operator--( double2x4 &x, const int32_t )
 {
 	x[0]--;
 	x[1]--;
@@ -15927,7 +15927,7 @@ HLML_INLINE double2x4 operator--( double2x4& x, const int32_t )
 
 // Returns a copy of the matrix that has been negated.
 // pre-fix
-HLML_INLINE double2x4 operator-( const double2x4& x )
+HLML_INLINE double2x4 operator-( const double2x4 &x )
 {
 	return double2x4(
 		-x[0],
@@ -15936,14 +15936,14 @@ HLML_INLINE double2x4 operator-( const double2x4& x )
 }
 
 // Sets the matrix to an identity matrix.
-HLML_INLINE void identity( double2x4& mat )
+HLML_INLINE void identity( double2x4 &mat )
 {
 	mat.rows[0] = HLML_CONSTRUCT( double4 ) { 1.0, 0.0, 0.0, 0.0 };
 	mat.rows[1] = HLML_CONSTRUCT( double4 ) { 0.0, 1.0, 0.0, 0.0 };
 }
 
 // Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-HLML_INLINE double4x2 transpose( const double2x4& mat )
+HLML_INLINE double4x2 transpose( const double2x4 &mat )
 {
 	return HLML_CONSTRUCT( double4x2 )
 	{
@@ -15955,7 +15955,7 @@ HLML_INLINE double4x2 transpose( const double2x4& mat )
 }
 
 // Performs a matrix multiplication with 'lhs' and 'rhs' and returns the result.
-HLML_INLINE double2x2 mul( const double2x4& lhs, const double4x2& rhs )
+HLML_INLINE double2x2 mul( const double2x4 &lhs, const double4x2 &rhs )
 {
 	double4 row0 = lhs.rows[0];
 	double4 row1 = lhs.rows[1];
@@ -15975,7 +15975,7 @@ HLML_INLINE double2x2 mul( const double2x4& lhs, const double4x2& rhs )
 
 // double3x2
 // Performs a sign function on each row of the matrix.
-HLML_INLINE int3x2 sign( const double3x2& x )
+HLML_INLINE int3x2 sign( const double3x2 &x )
 {
 	return int3x2(
 		sign( x[0] ),
@@ -15985,7 +15985,7 @@ HLML_INLINE int3x2 sign( const double3x2& x )
 }
 
 // Performs a min function on each row of the matrix.
-HLML_INLINE double3x2 min( const double3x2& x, const double3x2& y )
+HLML_INLINE double3x2 min( const double3x2 &x, const double3x2 &y )
 {
 	return double3x2(
 		min( x[0], y[0] ),
@@ -15995,7 +15995,7 @@ HLML_INLINE double3x2 min( const double3x2& x, const double3x2& y )
 }
 
 // Performs a max function on each row of the matrix.
-HLML_INLINE double3x2 max( const double3x2& x, const double3x2& y )
+HLML_INLINE double3x2 max( const double3x2 &x, const double3x2 &y )
 {
 	return double3x2(
 		max( x[0], y[0] ),
@@ -16005,7 +16005,7 @@ HLML_INLINE double3x2 max( const double3x2& x, const double3x2& y )
 }
 
 // Performs a clamp function on each row of the matrix.
-HLML_INLINE double3x2 clamp( const double3x2& x, const double3x2& low, const double3x2& high )
+HLML_INLINE double3x2 clamp( const double3x2 &x, const double3x2 &low, const double3x2 &high )
 {
 	return double3x2(
 		clamp( x[0], low[0], high[0] ),
@@ -16015,7 +16015,7 @@ HLML_INLINE double3x2 clamp( const double3x2& x, const double3x2& low, const dou
 }
 
 // Performs a saturate function on each row of the matrix.
-HLML_INLINE double3x2 saturate( const double3x2& x )
+HLML_INLINE double3x2 saturate( const double3x2 &x )
 {
 	return double3x2(
 		saturate( x[0] ),
@@ -16025,7 +16025,7 @@ HLML_INLINE double3x2 saturate( const double3x2& x )
 }
 
 // Performs a lerp function on each row of the matrix.
-HLML_INLINE double3x2 lerp( const double3x2& lhs, const double3x2& rhs, const double t )
+HLML_INLINE double3x2 lerp( const double3x2 &lhs, const double3x2 &rhs, const double t )
 {
 	return double3x2(
 		lerp( lhs[0], rhs[0], t ),
@@ -16035,7 +16035,7 @@ HLML_INLINE double3x2 lerp( const double3x2& lhs, const double3x2& rhs, const do
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator==( const double3x2& lhs, const double3x2& rhs )
+HLML_INLINE bool operator==( const double3x2 &lhs, const double3x2 &rhs )
 {
 	return
 		lhs[0] == rhs[0] &&
@@ -16044,13 +16044,13 @@ HLML_INLINE bool operator==( const double3x2& lhs, const double3x2& rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator!=( const double3x2& lhs, const double3x2& rhs )
+HLML_INLINE bool operator!=( const double3x2 &lhs, const double3x2 &rhs )
 {
 	return !( lhs == rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool3x2 operator<( const double3x2& lhs, const double3x2& rhs )
+HLML_INLINE bool3x2 operator<( const double3x2 &lhs, const double3x2 &rhs )
 {
 	return bool3x2(
 		lhs[0] < rhs[0],
@@ -16060,7 +16060,7 @@ HLML_INLINE bool3x2 operator<( const double3x2& lhs, const double3x2& rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool3x2 operator<=( const double3x2& lhs, const double3x2& rhs )
+HLML_INLINE bool3x2 operator<=( const double3x2 &lhs, const double3x2 &rhs )
 {
 	return bool3x2(
 		lhs[0] <= rhs[0],
@@ -16070,7 +16070,7 @@ HLML_INLINE bool3x2 operator<=( const double3x2& lhs, const double3x2& rhs )
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool3x2 operator>( const double3x2& lhs, const double3x2& rhs )
+HLML_INLINE bool3x2 operator>( const double3x2 &lhs, const double3x2 &rhs )
 {
 	return bool3x2(
 		lhs[0] > rhs[0],
@@ -16080,7 +16080,7 @@ HLML_INLINE bool3x2 operator>( const double3x2& lhs, const double3x2& rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool3x2 operator>=( const double3x2& lhs, const double3x2& rhs )
+HLML_INLINE bool3x2 operator>=( const double3x2 &lhs, const double3x2 &rhs )
 {
 	return bool3x2(
 		lhs[0] >= rhs[0],
@@ -16090,7 +16090,7 @@ HLML_INLINE bool3x2 operator>=( const double3x2& lhs, const double3x2& rhs )
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE double3x2 operator+( const double3x2& lhs, const double rhs )
+HLML_INLINE double3x2 operator+( const double3x2 &lhs, const double rhs )
 {
 	return double3x2(
 		lhs[0] + rhs,
@@ -16100,13 +16100,13 @@ HLML_INLINE double3x2 operator+( const double3x2& lhs, const double rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been +'d against the scalar.
-HLML_INLINE double3x2 operator+=( double3x2& lhs, const double rhs )
+HLML_INLINE double3x2 operator+=( double3x2 &lhs, const double rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE double3x2 operator+( const double3x2& lhs, const double3x2& rhs )
+HLML_INLINE double3x2 operator+( const double3x2 &lhs, const double3x2 &rhs )
 {
 	return double3x2(
 		lhs[0] + rhs[0],
@@ -16116,13 +16116,13 @@ HLML_INLINE double3x2 operator+( const double3x2& lhs, const double3x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise +'d against 'rhs'.
-HLML_INLINE double3x2 operator+=( double3x2& lhs, const double3x2& rhs )
+HLML_INLINE double3x2 operator+=( double3x2 &lhs, const double3x2 &rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE double3x2 operator-( const double3x2& lhs, const double rhs )
+HLML_INLINE double3x2 operator-( const double3x2 &lhs, const double rhs )
 {
 	return double3x2(
 		lhs[0] - rhs,
@@ -16132,13 +16132,13 @@ HLML_INLINE double3x2 operator-( const double3x2& lhs, const double rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been -'d against the scalar.
-HLML_INLINE double3x2 operator-=( double3x2& lhs, const double rhs )
+HLML_INLINE double3x2 operator-=( double3x2 &lhs, const double rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE double3x2 operator-( const double3x2& lhs, const double3x2& rhs )
+HLML_INLINE double3x2 operator-( const double3x2 &lhs, const double3x2 &rhs )
 {
 	return double3x2(
 		lhs[0] - rhs[0],
@@ -16148,13 +16148,13 @@ HLML_INLINE double3x2 operator-( const double3x2& lhs, const double3x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise -'d against 'rhs'.
-HLML_INLINE double3x2 operator-=( double3x2& lhs, const double3x2& rhs )
+HLML_INLINE double3x2 operator-=( double3x2 &lhs, const double3x2 &rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE double3x2 operator*( const double3x2& lhs, const double rhs )
+HLML_INLINE double3x2 operator*( const double3x2 &lhs, const double rhs )
 {
 	return double3x2(
 		lhs[0] * rhs,
@@ -16164,13 +16164,13 @@ HLML_INLINE double3x2 operator*( const double3x2& lhs, const double rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been *'d against the scalar.
-HLML_INLINE double3x2 operator*=( double3x2& lhs, const double rhs )
+HLML_INLINE double3x2 operator*=( double3x2 &lhs, const double rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE double3x2 operator*( const double3x2& lhs, const double3x2& rhs )
+HLML_INLINE double3x2 operator*( const double3x2 &lhs, const double3x2 &rhs )
 {
 	return double3x2(
 		lhs[0] * rhs[0],
@@ -16180,13 +16180,13 @@ HLML_INLINE double3x2 operator*( const double3x2& lhs, const double3x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise *'d against 'rhs'.
-HLML_INLINE double3x2 operator*=( double3x2& lhs, const double3x2& rhs )
+HLML_INLINE double3x2 operator*=( double3x2 &lhs, const double3x2 &rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE double3x2 operator/( const double3x2& lhs, const double rhs )
+HLML_INLINE double3x2 operator/( const double3x2 &lhs, const double rhs )
 {
 	return double3x2(
 		lhs[0] / rhs,
@@ -16196,13 +16196,13 @@ HLML_INLINE double3x2 operator/( const double3x2& lhs, const double rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been /'d against the scalar.
-HLML_INLINE double3x2 operator/=( double3x2& lhs, const double rhs )
+HLML_INLINE double3x2 operator/=( double3x2 &lhs, const double rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE double3x2 operator/( const double3x2& lhs, const double3x2& rhs )
+HLML_INLINE double3x2 operator/( const double3x2 &lhs, const double3x2 &rhs )
 {
 	return double3x2(
 		lhs[0] / rhs[0],
@@ -16212,13 +16212,13 @@ HLML_INLINE double3x2 operator/( const double3x2& lhs, const double3x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise /'d against 'rhs'.
-HLML_INLINE double3x2 operator/=( double3x2& lhs, const double3x2& rhs )
+HLML_INLINE double3x2 operator/=( double3x2 &lhs, const double3x2 &rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // ++s each component of the matrix and returns the result.
-HLML_INLINE double3x2 operator++( double3x2& x )
+HLML_INLINE double3x2 operator++( double3x2 &x )
 {
 	++x[0];
 	++x[1];
@@ -16228,7 +16228,7 @@ HLML_INLINE double3x2 operator++( double3x2& x )
 
 // ++s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE double3x2 operator++( double3x2& x, const int32_t )
+HLML_INLINE double3x2 operator++( double3x2 &x, const int32_t )
 {
 	x[0]++;
 	x[1]++;
@@ -16237,7 +16237,7 @@ HLML_INLINE double3x2 operator++( double3x2& x, const int32_t )
 }
 
 // --s each component of the matrix and returns the result.
-HLML_INLINE double3x2 operator--( double3x2& x )
+HLML_INLINE double3x2 operator--( double3x2 &x )
 {
 	--x[0];
 	--x[1];
@@ -16247,7 +16247,7 @@ HLML_INLINE double3x2 operator--( double3x2& x )
 
 // --s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE double3x2 operator--( double3x2& x, const int32_t )
+HLML_INLINE double3x2 operator--( double3x2 &x, const int32_t )
 {
 	x[0]--;
 	x[1]--;
@@ -16257,7 +16257,7 @@ HLML_INLINE double3x2 operator--( double3x2& x, const int32_t )
 
 // Returns a copy of the matrix that has been negated.
 // pre-fix
-HLML_INLINE double3x2 operator-( const double3x2& x )
+HLML_INLINE double3x2 operator-( const double3x2 &x )
 {
 	return double3x2(
 		-x[0],
@@ -16267,7 +16267,7 @@ HLML_INLINE double3x2 operator-( const double3x2& x )
 }
 
 // Sets the matrix to an identity matrix.
-HLML_INLINE void identity( double3x2& mat )
+HLML_INLINE void identity( double3x2 &mat )
 {
 	mat.rows[0] = HLML_CONSTRUCT( double2 ) { 1.0, 0.0 };
 	mat.rows[1] = HLML_CONSTRUCT( double2 ) { 0.0, 1.0 };
@@ -16275,7 +16275,7 @@ HLML_INLINE void identity( double3x2& mat )
 }
 
 // Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-HLML_INLINE double2x3 transpose( const double3x2& mat )
+HLML_INLINE double2x3 transpose( const double3x2 &mat )
 {
 	return HLML_CONSTRUCT( double2x3 )
 	{
@@ -16285,7 +16285,7 @@ HLML_INLINE double2x3 transpose( const double3x2& mat )
 }
 
 // Performs a matrix multiplication with 'lhs' and 'rhs' and returns the result.
-HLML_INLINE double3x3 mul( const double3x2& lhs, const double2x3& rhs )
+HLML_INLINE double3x3 mul( const double3x2 &lhs, const double2x3 &rhs )
 {
 	double2 row0 = lhs.rows[0];
 	double2 row1 = lhs.rows[1];
@@ -16313,7 +16313,7 @@ HLML_INLINE double3x3 mul( const double3x2& lhs, const double2x3& rhs )
 
 // double3x3
 // Performs a sign function on each row of the matrix.
-HLML_INLINE int3x3 sign( const double3x3& x )
+HLML_INLINE int3x3 sign( const double3x3 &x )
 {
 	return int3x3(
 		sign( x[0] ),
@@ -16323,7 +16323,7 @@ HLML_INLINE int3x3 sign( const double3x3& x )
 }
 
 // Performs a min function on each row of the matrix.
-HLML_INLINE double3x3 min( const double3x3& x, const double3x3& y )
+HLML_INLINE double3x3 min( const double3x3 &x, const double3x3 &y )
 {
 	return double3x3(
 		min( x[0], y[0] ),
@@ -16333,7 +16333,7 @@ HLML_INLINE double3x3 min( const double3x3& x, const double3x3& y )
 }
 
 // Performs a max function on each row of the matrix.
-HLML_INLINE double3x3 max( const double3x3& x, const double3x3& y )
+HLML_INLINE double3x3 max( const double3x3 &x, const double3x3 &y )
 {
 	return double3x3(
 		max( x[0], y[0] ),
@@ -16343,7 +16343,7 @@ HLML_INLINE double3x3 max( const double3x3& x, const double3x3& y )
 }
 
 // Performs a clamp function on each row of the matrix.
-HLML_INLINE double3x3 clamp( const double3x3& x, const double3x3& low, const double3x3& high )
+HLML_INLINE double3x3 clamp( const double3x3 &x, const double3x3 &low, const double3x3 &high )
 {
 	return double3x3(
 		clamp( x[0], low[0], high[0] ),
@@ -16353,7 +16353,7 @@ HLML_INLINE double3x3 clamp( const double3x3& x, const double3x3& low, const dou
 }
 
 // Performs a saturate function on each row of the matrix.
-HLML_INLINE double3x3 saturate( const double3x3& x )
+HLML_INLINE double3x3 saturate( const double3x3 &x )
 {
 	return double3x3(
 		saturate( x[0] ),
@@ -16363,7 +16363,7 @@ HLML_INLINE double3x3 saturate( const double3x3& x )
 }
 
 // Performs a lerp function on each row of the matrix.
-HLML_INLINE double3x3 lerp( const double3x3& lhs, const double3x3& rhs, const double t )
+HLML_INLINE double3x3 lerp( const double3x3 &lhs, const double3x3 &rhs, const double t )
 {
 	return double3x3(
 		lerp( lhs[0], rhs[0], t ),
@@ -16373,7 +16373,7 @@ HLML_INLINE double3x3 lerp( const double3x3& lhs, const double3x3& rhs, const do
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator==( const double3x3& lhs, const double3x3& rhs )
+HLML_INLINE bool operator==( const double3x3 &lhs, const double3x3 &rhs )
 {
 	return
 		lhs[0] == rhs[0] &&
@@ -16382,13 +16382,13 @@ HLML_INLINE bool operator==( const double3x3& lhs, const double3x3& rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator!=( const double3x3& lhs, const double3x3& rhs )
+HLML_INLINE bool operator!=( const double3x3 &lhs, const double3x3 &rhs )
 {
 	return !( lhs == rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool3x3 operator<( const double3x3& lhs, const double3x3& rhs )
+HLML_INLINE bool3x3 operator<( const double3x3 &lhs, const double3x3 &rhs )
 {
 	return bool3x3(
 		lhs[0] < rhs[0],
@@ -16398,7 +16398,7 @@ HLML_INLINE bool3x3 operator<( const double3x3& lhs, const double3x3& rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool3x3 operator<=( const double3x3& lhs, const double3x3& rhs )
+HLML_INLINE bool3x3 operator<=( const double3x3 &lhs, const double3x3 &rhs )
 {
 	return bool3x3(
 		lhs[0] <= rhs[0],
@@ -16408,7 +16408,7 @@ HLML_INLINE bool3x3 operator<=( const double3x3& lhs, const double3x3& rhs )
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool3x3 operator>( const double3x3& lhs, const double3x3& rhs )
+HLML_INLINE bool3x3 operator>( const double3x3 &lhs, const double3x3 &rhs )
 {
 	return bool3x3(
 		lhs[0] > rhs[0],
@@ -16418,7 +16418,7 @@ HLML_INLINE bool3x3 operator>( const double3x3& lhs, const double3x3& rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool3x3 operator>=( const double3x3& lhs, const double3x3& rhs )
+HLML_INLINE bool3x3 operator>=( const double3x3 &lhs, const double3x3 &rhs )
 {
 	return bool3x3(
 		lhs[0] >= rhs[0],
@@ -16428,7 +16428,7 @@ HLML_INLINE bool3x3 operator>=( const double3x3& lhs, const double3x3& rhs )
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE double3x3 operator+( const double3x3& lhs, const double rhs )
+HLML_INLINE double3x3 operator+( const double3x3 &lhs, const double rhs )
 {
 	return double3x3(
 		lhs[0] + rhs,
@@ -16438,13 +16438,13 @@ HLML_INLINE double3x3 operator+( const double3x3& lhs, const double rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been +'d against the scalar.
-HLML_INLINE double3x3 operator+=( double3x3& lhs, const double rhs )
+HLML_INLINE double3x3 operator+=( double3x3 &lhs, const double rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE double3x3 operator+( const double3x3& lhs, const double3x3& rhs )
+HLML_INLINE double3x3 operator+( const double3x3 &lhs, const double3x3 &rhs )
 {
 	return double3x3(
 		lhs[0] + rhs[0],
@@ -16454,13 +16454,13 @@ HLML_INLINE double3x3 operator+( const double3x3& lhs, const double3x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise +'d against 'rhs'.
-HLML_INLINE double3x3 operator+=( double3x3& lhs, const double3x3& rhs )
+HLML_INLINE double3x3 operator+=( double3x3 &lhs, const double3x3 &rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE double3x3 operator-( const double3x3& lhs, const double rhs )
+HLML_INLINE double3x3 operator-( const double3x3 &lhs, const double rhs )
 {
 	return double3x3(
 		lhs[0] - rhs,
@@ -16470,13 +16470,13 @@ HLML_INLINE double3x3 operator-( const double3x3& lhs, const double rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been -'d against the scalar.
-HLML_INLINE double3x3 operator-=( double3x3& lhs, const double rhs )
+HLML_INLINE double3x3 operator-=( double3x3 &lhs, const double rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE double3x3 operator-( const double3x3& lhs, const double3x3& rhs )
+HLML_INLINE double3x3 operator-( const double3x3 &lhs, const double3x3 &rhs )
 {
 	return double3x3(
 		lhs[0] - rhs[0],
@@ -16486,13 +16486,13 @@ HLML_INLINE double3x3 operator-( const double3x3& lhs, const double3x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise -'d against 'rhs'.
-HLML_INLINE double3x3 operator-=( double3x3& lhs, const double3x3& rhs )
+HLML_INLINE double3x3 operator-=( double3x3 &lhs, const double3x3 &rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE double3x3 operator*( const double3x3& lhs, const double rhs )
+HLML_INLINE double3x3 operator*( const double3x3 &lhs, const double rhs )
 {
 	return double3x3(
 		lhs[0] * rhs,
@@ -16502,13 +16502,13 @@ HLML_INLINE double3x3 operator*( const double3x3& lhs, const double rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been *'d against the scalar.
-HLML_INLINE double3x3 operator*=( double3x3& lhs, const double rhs )
+HLML_INLINE double3x3 operator*=( double3x3 &lhs, const double rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE double3x3 operator*( const double3x3& lhs, const double3x3& rhs )
+HLML_INLINE double3x3 operator*( const double3x3 &lhs, const double3x3 &rhs )
 {
 	return double3x3(
 		lhs[0] * rhs[0],
@@ -16518,13 +16518,13 @@ HLML_INLINE double3x3 operator*( const double3x3& lhs, const double3x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise *'d against 'rhs'.
-HLML_INLINE double3x3 operator*=( double3x3& lhs, const double3x3& rhs )
+HLML_INLINE double3x3 operator*=( double3x3 &lhs, const double3x3 &rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE double3x3 operator/( const double3x3& lhs, const double rhs )
+HLML_INLINE double3x3 operator/( const double3x3 &lhs, const double rhs )
 {
 	return double3x3(
 		lhs[0] / rhs,
@@ -16534,13 +16534,13 @@ HLML_INLINE double3x3 operator/( const double3x3& lhs, const double rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been /'d against the scalar.
-HLML_INLINE double3x3 operator/=( double3x3& lhs, const double rhs )
+HLML_INLINE double3x3 operator/=( double3x3 &lhs, const double rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE double3x3 operator/( const double3x3& lhs, const double3x3& rhs )
+HLML_INLINE double3x3 operator/( const double3x3 &lhs, const double3x3 &rhs )
 {
 	return double3x3(
 		lhs[0] / rhs[0],
@@ -16550,13 +16550,13 @@ HLML_INLINE double3x3 operator/( const double3x3& lhs, const double3x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise /'d against 'rhs'.
-HLML_INLINE double3x3 operator/=( double3x3& lhs, const double3x3& rhs )
+HLML_INLINE double3x3 operator/=( double3x3 &lhs, const double3x3 &rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // ++s each component of the matrix and returns the result.
-HLML_INLINE double3x3 operator++( double3x3& x )
+HLML_INLINE double3x3 operator++( double3x3 &x )
 {
 	++x[0];
 	++x[1];
@@ -16566,7 +16566,7 @@ HLML_INLINE double3x3 operator++( double3x3& x )
 
 // ++s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE double3x3 operator++( double3x3& x, const int32_t )
+HLML_INLINE double3x3 operator++( double3x3 &x, const int32_t )
 {
 	x[0]++;
 	x[1]++;
@@ -16575,7 +16575,7 @@ HLML_INLINE double3x3 operator++( double3x3& x, const int32_t )
 }
 
 // --s each component of the matrix and returns the result.
-HLML_INLINE double3x3 operator--( double3x3& x )
+HLML_INLINE double3x3 operator--( double3x3 &x )
 {
 	--x[0];
 	--x[1];
@@ -16585,7 +16585,7 @@ HLML_INLINE double3x3 operator--( double3x3& x )
 
 // --s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE double3x3 operator--( double3x3& x, const int32_t )
+HLML_INLINE double3x3 operator--( double3x3 &x, const int32_t )
 {
 	x[0]--;
 	x[1]--;
@@ -16595,7 +16595,7 @@ HLML_INLINE double3x3 operator--( double3x3& x, const int32_t )
 
 // Returns a copy of the matrix that has been negated.
 // pre-fix
-HLML_INLINE double3x3 operator-( const double3x3& x )
+HLML_INLINE double3x3 operator-( const double3x3 &x )
 {
 	return double3x3(
 		-x[0],
@@ -16605,7 +16605,7 @@ HLML_INLINE double3x3 operator-( const double3x3& x )
 }
 
 // Sets the matrix to an identity matrix.
-HLML_INLINE void identity( double3x3& mat )
+HLML_INLINE void identity( double3x3 &mat )
 {
 	mat.rows[0] = HLML_CONSTRUCT( double3 ) { 1.0, 0.0, 0.0 };
 	mat.rows[1] = HLML_CONSTRUCT( double3 ) { 0.0, 1.0, 0.0 };
@@ -16613,7 +16613,7 @@ HLML_INLINE void identity( double3x3& mat )
 }
 
 // Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-HLML_INLINE double3x3 transpose( const double3x3& mat )
+HLML_INLINE double3x3 transpose( const double3x3 &mat )
 {
 	return HLML_CONSTRUCT( double3x3 )
 	{
@@ -16624,7 +16624,7 @@ HLML_INLINE double3x3 transpose( const double3x3& mat )
 }
 
 // Returns the determinant of the matrix.
-HLML_INLINE double determinant( const double3x3& mat )
+HLML_INLINE double determinant( const double3x3 &mat )
 {
 	return
 		+ mat.rows[0].x * ( mat.rows[1].y * mat.rows[2].z - mat.rows[2].y * mat.rows[1].z ) 
@@ -16634,7 +16634,7 @@ HLML_INLINE double determinant( const double3x3& mat )
 
 // Returns a copy of the matrix that is inversed.
 // This is only applicable for square matrices.
-HLML_INLINE double3x3 inverse( const double3x3& mat )
+HLML_INLINE double3x3 inverse( const double3x3 &mat )
 {
 	const double invdet = 1.0 / determinant( mat );
 	return HLML_CONSTRUCT( double3x3 )
@@ -16654,7 +16654,7 @@ HLML_INLINE double3x3 inverse( const double3x3& mat )
 }
 
 // Performs a matrix multiplication with 'lhs' and 'rhs' and returns the result.
-HLML_INLINE double3x3 mul( const double3x3& lhs, const double3x3& rhs )
+HLML_INLINE double3x3 mul( const double3x3 &lhs, const double3x3 &rhs )
 {
 	double3 row0 = lhs.rows[0];
 	double3 row1 = lhs.rows[1];
@@ -16681,7 +16681,7 @@ HLML_INLINE double3x3 mul( const double3x3& lhs, const double3x3& rhs )
 }
 
 // Multiplies the vector 'lhs' against the matrix 'rhs' and returns the result.
-HLML_INLINE double3 mul( const double3& lhs, const double3x3& rhs )
+HLML_INLINE double3 mul( const double3 &lhs, const double3x3 &rhs )
 {
 	return HLML_CONSTRUCT( double3 )
 	{
@@ -16693,7 +16693,7 @@ HLML_INLINE double3 mul( const double3& lhs, const double3x3& rhs )
 
 // double3x4
 // Performs a sign function on each row of the matrix.
-HLML_INLINE int3x4 sign( const double3x4& x )
+HLML_INLINE int3x4 sign( const double3x4 &x )
 {
 	return int3x4(
 		sign( x[0] ),
@@ -16703,7 +16703,7 @@ HLML_INLINE int3x4 sign( const double3x4& x )
 }
 
 // Performs a min function on each row of the matrix.
-HLML_INLINE double3x4 min( const double3x4& x, const double3x4& y )
+HLML_INLINE double3x4 min( const double3x4 &x, const double3x4 &y )
 {
 	return double3x4(
 		min( x[0], y[0] ),
@@ -16713,7 +16713,7 @@ HLML_INLINE double3x4 min( const double3x4& x, const double3x4& y )
 }
 
 // Performs a max function on each row of the matrix.
-HLML_INLINE double3x4 max( const double3x4& x, const double3x4& y )
+HLML_INLINE double3x4 max( const double3x4 &x, const double3x4 &y )
 {
 	return double3x4(
 		max( x[0], y[0] ),
@@ -16723,7 +16723,7 @@ HLML_INLINE double3x4 max( const double3x4& x, const double3x4& y )
 }
 
 // Performs a clamp function on each row of the matrix.
-HLML_INLINE double3x4 clamp( const double3x4& x, const double3x4& low, const double3x4& high )
+HLML_INLINE double3x4 clamp( const double3x4 &x, const double3x4 &low, const double3x4 &high )
 {
 	return double3x4(
 		clamp( x[0], low[0], high[0] ),
@@ -16733,7 +16733,7 @@ HLML_INLINE double3x4 clamp( const double3x4& x, const double3x4& low, const dou
 }
 
 // Performs a saturate function on each row of the matrix.
-HLML_INLINE double3x4 saturate( const double3x4& x )
+HLML_INLINE double3x4 saturate( const double3x4 &x )
 {
 	return double3x4(
 		saturate( x[0] ),
@@ -16743,7 +16743,7 @@ HLML_INLINE double3x4 saturate( const double3x4& x )
 }
 
 // Performs a lerp function on each row of the matrix.
-HLML_INLINE double3x4 lerp( const double3x4& lhs, const double3x4& rhs, const double t )
+HLML_INLINE double3x4 lerp( const double3x4 &lhs, const double3x4 &rhs, const double t )
 {
 	return double3x4(
 		lerp( lhs[0], rhs[0], t ),
@@ -16753,7 +16753,7 @@ HLML_INLINE double3x4 lerp( const double3x4& lhs, const double3x4& rhs, const do
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator==( const double3x4& lhs, const double3x4& rhs )
+HLML_INLINE bool operator==( const double3x4 &lhs, const double3x4 &rhs )
 {
 	return
 		lhs[0] == rhs[0] &&
@@ -16762,13 +16762,13 @@ HLML_INLINE bool operator==( const double3x4& lhs, const double3x4& rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator!=( const double3x4& lhs, const double3x4& rhs )
+HLML_INLINE bool operator!=( const double3x4 &lhs, const double3x4 &rhs )
 {
 	return !( lhs == rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool3x4 operator<( const double3x4& lhs, const double3x4& rhs )
+HLML_INLINE bool3x4 operator<( const double3x4 &lhs, const double3x4 &rhs )
 {
 	return bool3x4(
 		lhs[0] < rhs[0],
@@ -16778,7 +16778,7 @@ HLML_INLINE bool3x4 operator<( const double3x4& lhs, const double3x4& rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool3x4 operator<=( const double3x4& lhs, const double3x4& rhs )
+HLML_INLINE bool3x4 operator<=( const double3x4 &lhs, const double3x4 &rhs )
 {
 	return bool3x4(
 		lhs[0] <= rhs[0],
@@ -16788,7 +16788,7 @@ HLML_INLINE bool3x4 operator<=( const double3x4& lhs, const double3x4& rhs )
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool3x4 operator>( const double3x4& lhs, const double3x4& rhs )
+HLML_INLINE bool3x4 operator>( const double3x4 &lhs, const double3x4 &rhs )
 {
 	return bool3x4(
 		lhs[0] > rhs[0],
@@ -16798,7 +16798,7 @@ HLML_INLINE bool3x4 operator>( const double3x4& lhs, const double3x4& rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool3x4 operator>=( const double3x4& lhs, const double3x4& rhs )
+HLML_INLINE bool3x4 operator>=( const double3x4 &lhs, const double3x4 &rhs )
 {
 	return bool3x4(
 		lhs[0] >= rhs[0],
@@ -16808,7 +16808,7 @@ HLML_INLINE bool3x4 operator>=( const double3x4& lhs, const double3x4& rhs )
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE double3x4 operator+( const double3x4& lhs, const double rhs )
+HLML_INLINE double3x4 operator+( const double3x4 &lhs, const double rhs )
 {
 	return double3x4(
 		lhs[0] + rhs,
@@ -16818,13 +16818,13 @@ HLML_INLINE double3x4 operator+( const double3x4& lhs, const double rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been +'d against the scalar.
-HLML_INLINE double3x4 operator+=( double3x4& lhs, const double rhs )
+HLML_INLINE double3x4 operator+=( double3x4 &lhs, const double rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE double3x4 operator+( const double3x4& lhs, const double3x4& rhs )
+HLML_INLINE double3x4 operator+( const double3x4 &lhs, const double3x4 &rhs )
 {
 	return double3x4(
 		lhs[0] + rhs[0],
@@ -16834,13 +16834,13 @@ HLML_INLINE double3x4 operator+( const double3x4& lhs, const double3x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise +'d against 'rhs'.
-HLML_INLINE double3x4 operator+=( double3x4& lhs, const double3x4& rhs )
+HLML_INLINE double3x4 operator+=( double3x4 &lhs, const double3x4 &rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE double3x4 operator-( const double3x4& lhs, const double rhs )
+HLML_INLINE double3x4 operator-( const double3x4 &lhs, const double rhs )
 {
 	return double3x4(
 		lhs[0] - rhs,
@@ -16850,13 +16850,13 @@ HLML_INLINE double3x4 operator-( const double3x4& lhs, const double rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been -'d against the scalar.
-HLML_INLINE double3x4 operator-=( double3x4& lhs, const double rhs )
+HLML_INLINE double3x4 operator-=( double3x4 &lhs, const double rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE double3x4 operator-( const double3x4& lhs, const double3x4& rhs )
+HLML_INLINE double3x4 operator-( const double3x4 &lhs, const double3x4 &rhs )
 {
 	return double3x4(
 		lhs[0] - rhs[0],
@@ -16866,13 +16866,13 @@ HLML_INLINE double3x4 operator-( const double3x4& lhs, const double3x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise -'d against 'rhs'.
-HLML_INLINE double3x4 operator-=( double3x4& lhs, const double3x4& rhs )
+HLML_INLINE double3x4 operator-=( double3x4 &lhs, const double3x4 &rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE double3x4 operator*( const double3x4& lhs, const double rhs )
+HLML_INLINE double3x4 operator*( const double3x4 &lhs, const double rhs )
 {
 	return double3x4(
 		lhs[0] * rhs,
@@ -16882,13 +16882,13 @@ HLML_INLINE double3x4 operator*( const double3x4& lhs, const double rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been *'d against the scalar.
-HLML_INLINE double3x4 operator*=( double3x4& lhs, const double rhs )
+HLML_INLINE double3x4 operator*=( double3x4 &lhs, const double rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE double3x4 operator*( const double3x4& lhs, const double3x4& rhs )
+HLML_INLINE double3x4 operator*( const double3x4 &lhs, const double3x4 &rhs )
 {
 	return double3x4(
 		lhs[0] * rhs[0],
@@ -16898,13 +16898,13 @@ HLML_INLINE double3x4 operator*( const double3x4& lhs, const double3x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise *'d against 'rhs'.
-HLML_INLINE double3x4 operator*=( double3x4& lhs, const double3x4& rhs )
+HLML_INLINE double3x4 operator*=( double3x4 &lhs, const double3x4 &rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE double3x4 operator/( const double3x4& lhs, const double rhs )
+HLML_INLINE double3x4 operator/( const double3x4 &lhs, const double rhs )
 {
 	return double3x4(
 		lhs[0] / rhs,
@@ -16914,13 +16914,13 @@ HLML_INLINE double3x4 operator/( const double3x4& lhs, const double rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been /'d against the scalar.
-HLML_INLINE double3x4 operator/=( double3x4& lhs, const double rhs )
+HLML_INLINE double3x4 operator/=( double3x4 &lhs, const double rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE double3x4 operator/( const double3x4& lhs, const double3x4& rhs )
+HLML_INLINE double3x4 operator/( const double3x4 &lhs, const double3x4 &rhs )
 {
 	return double3x4(
 		lhs[0] / rhs[0],
@@ -16930,13 +16930,13 @@ HLML_INLINE double3x4 operator/( const double3x4& lhs, const double3x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise /'d against 'rhs'.
-HLML_INLINE double3x4 operator/=( double3x4& lhs, const double3x4& rhs )
+HLML_INLINE double3x4 operator/=( double3x4 &lhs, const double3x4 &rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // ++s each component of the matrix and returns the result.
-HLML_INLINE double3x4 operator++( double3x4& x )
+HLML_INLINE double3x4 operator++( double3x4 &x )
 {
 	++x[0];
 	++x[1];
@@ -16946,7 +16946,7 @@ HLML_INLINE double3x4 operator++( double3x4& x )
 
 // ++s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE double3x4 operator++( double3x4& x, const int32_t )
+HLML_INLINE double3x4 operator++( double3x4 &x, const int32_t )
 {
 	x[0]++;
 	x[1]++;
@@ -16955,7 +16955,7 @@ HLML_INLINE double3x4 operator++( double3x4& x, const int32_t )
 }
 
 // --s each component of the matrix and returns the result.
-HLML_INLINE double3x4 operator--( double3x4& x )
+HLML_INLINE double3x4 operator--( double3x4 &x )
 {
 	--x[0];
 	--x[1];
@@ -16965,7 +16965,7 @@ HLML_INLINE double3x4 operator--( double3x4& x )
 
 // --s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE double3x4 operator--( double3x4& x, const int32_t )
+HLML_INLINE double3x4 operator--( double3x4 &x, const int32_t )
 {
 	x[0]--;
 	x[1]--;
@@ -16975,7 +16975,7 @@ HLML_INLINE double3x4 operator--( double3x4& x, const int32_t )
 
 // Returns a copy of the matrix that has been negated.
 // pre-fix
-HLML_INLINE double3x4 operator-( const double3x4& x )
+HLML_INLINE double3x4 operator-( const double3x4 &x )
 {
 	return double3x4(
 		-x[0],
@@ -16985,7 +16985,7 @@ HLML_INLINE double3x4 operator-( const double3x4& x )
 }
 
 // Sets the matrix to an identity matrix.
-HLML_INLINE void identity( double3x4& mat )
+HLML_INLINE void identity( double3x4 &mat )
 {
 	mat.rows[0] = HLML_CONSTRUCT( double4 ) { 1.0, 0.0, 0.0, 0.0 };
 	mat.rows[1] = HLML_CONSTRUCT( double4 ) { 0.0, 1.0, 0.0, 0.0 };
@@ -16993,7 +16993,7 @@ HLML_INLINE void identity( double3x4& mat )
 }
 
 // Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-HLML_INLINE double4x3 transpose( const double3x4& mat )
+HLML_INLINE double4x3 transpose( const double3x4 &mat )
 {
 	return HLML_CONSTRUCT( double4x3 )
 	{
@@ -17005,7 +17005,7 @@ HLML_INLINE double4x3 transpose( const double3x4& mat )
 }
 
 // Performs a matrix multiplication with 'lhs' and 'rhs' and returns the result.
-HLML_INLINE double3x3 mul( const double3x4& lhs, const double4x3& rhs )
+HLML_INLINE double3x3 mul( const double3x4 &lhs, const double4x3 &rhs )
 {
 	double4 row0 = lhs.rows[0];
 	double4 row1 = lhs.rows[1];
@@ -17033,7 +17033,7 @@ HLML_INLINE double3x3 mul( const double3x4& lhs, const double4x3& rhs )
 
 // double4x2
 // Performs a sign function on each row of the matrix.
-HLML_INLINE int4x2 sign( const double4x2& x )
+HLML_INLINE int4x2 sign( const double4x2 &x )
 {
 	return int4x2(
 		sign( x[0] ),
@@ -17044,7 +17044,7 @@ HLML_INLINE int4x2 sign( const double4x2& x )
 }
 
 // Performs a min function on each row of the matrix.
-HLML_INLINE double4x2 min( const double4x2& x, const double4x2& y )
+HLML_INLINE double4x2 min( const double4x2 &x, const double4x2 &y )
 {
 	return double4x2(
 		min( x[0], y[0] ),
@@ -17055,7 +17055,7 @@ HLML_INLINE double4x2 min( const double4x2& x, const double4x2& y )
 }
 
 // Performs a max function on each row of the matrix.
-HLML_INLINE double4x2 max( const double4x2& x, const double4x2& y )
+HLML_INLINE double4x2 max( const double4x2 &x, const double4x2 &y )
 {
 	return double4x2(
 		max( x[0], y[0] ),
@@ -17066,7 +17066,7 @@ HLML_INLINE double4x2 max( const double4x2& x, const double4x2& y )
 }
 
 // Performs a clamp function on each row of the matrix.
-HLML_INLINE double4x2 clamp( const double4x2& x, const double4x2& low, const double4x2& high )
+HLML_INLINE double4x2 clamp( const double4x2 &x, const double4x2 &low, const double4x2 &high )
 {
 	return double4x2(
 		clamp( x[0], low[0], high[0] ),
@@ -17077,7 +17077,7 @@ HLML_INLINE double4x2 clamp( const double4x2& x, const double4x2& low, const dou
 }
 
 // Performs a saturate function on each row of the matrix.
-HLML_INLINE double4x2 saturate( const double4x2& x )
+HLML_INLINE double4x2 saturate( const double4x2 &x )
 {
 	return double4x2(
 		saturate( x[0] ),
@@ -17088,7 +17088,7 @@ HLML_INLINE double4x2 saturate( const double4x2& x )
 }
 
 // Performs a lerp function on each row of the matrix.
-HLML_INLINE double4x2 lerp( const double4x2& lhs, const double4x2& rhs, const double t )
+HLML_INLINE double4x2 lerp( const double4x2 &lhs, const double4x2 &rhs, const double t )
 {
 	return double4x2(
 		lerp( lhs[0], rhs[0], t ),
@@ -17099,7 +17099,7 @@ HLML_INLINE double4x2 lerp( const double4x2& lhs, const double4x2& rhs, const do
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator==( const double4x2& lhs, const double4x2& rhs )
+HLML_INLINE bool operator==( const double4x2 &lhs, const double4x2 &rhs )
 {
 	return
 		lhs[0] == rhs[0] &&
@@ -17109,13 +17109,13 @@ HLML_INLINE bool operator==( const double4x2& lhs, const double4x2& rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator!=( const double4x2& lhs, const double4x2& rhs )
+HLML_INLINE bool operator!=( const double4x2 &lhs, const double4x2 &rhs )
 {
 	return !( lhs == rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool4x2 operator<( const double4x2& lhs, const double4x2& rhs )
+HLML_INLINE bool4x2 operator<( const double4x2 &lhs, const double4x2 &rhs )
 {
 	return bool4x2(
 		lhs[0] < rhs[0],
@@ -17126,7 +17126,7 @@ HLML_INLINE bool4x2 operator<( const double4x2& lhs, const double4x2& rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool4x2 operator<=( const double4x2& lhs, const double4x2& rhs )
+HLML_INLINE bool4x2 operator<=( const double4x2 &lhs, const double4x2 &rhs )
 {
 	return bool4x2(
 		lhs[0] <= rhs[0],
@@ -17137,7 +17137,7 @@ HLML_INLINE bool4x2 operator<=( const double4x2& lhs, const double4x2& rhs )
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool4x2 operator>( const double4x2& lhs, const double4x2& rhs )
+HLML_INLINE bool4x2 operator>( const double4x2 &lhs, const double4x2 &rhs )
 {
 	return bool4x2(
 		lhs[0] > rhs[0],
@@ -17148,7 +17148,7 @@ HLML_INLINE bool4x2 operator>( const double4x2& lhs, const double4x2& rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool4x2 operator>=( const double4x2& lhs, const double4x2& rhs )
+HLML_INLINE bool4x2 operator>=( const double4x2 &lhs, const double4x2 &rhs )
 {
 	return bool4x2(
 		lhs[0] >= rhs[0],
@@ -17159,7 +17159,7 @@ HLML_INLINE bool4x2 operator>=( const double4x2& lhs, const double4x2& rhs )
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE double4x2 operator+( const double4x2& lhs, const double rhs )
+HLML_INLINE double4x2 operator+( const double4x2 &lhs, const double rhs )
 {
 	return double4x2(
 		lhs[0] + rhs,
@@ -17170,13 +17170,13 @@ HLML_INLINE double4x2 operator+( const double4x2& lhs, const double rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been +'d against the scalar.
-HLML_INLINE double4x2 operator+=( double4x2& lhs, const double rhs )
+HLML_INLINE double4x2 operator+=( double4x2 &lhs, const double rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE double4x2 operator+( const double4x2& lhs, const double4x2& rhs )
+HLML_INLINE double4x2 operator+( const double4x2 &lhs, const double4x2 &rhs )
 {
 	return double4x2(
 		lhs[0] + rhs[0],
@@ -17187,13 +17187,13 @@ HLML_INLINE double4x2 operator+( const double4x2& lhs, const double4x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise +'d against 'rhs'.
-HLML_INLINE double4x2 operator+=( double4x2& lhs, const double4x2& rhs )
+HLML_INLINE double4x2 operator+=( double4x2 &lhs, const double4x2 &rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE double4x2 operator-( const double4x2& lhs, const double rhs )
+HLML_INLINE double4x2 operator-( const double4x2 &lhs, const double rhs )
 {
 	return double4x2(
 		lhs[0] - rhs,
@@ -17204,13 +17204,13 @@ HLML_INLINE double4x2 operator-( const double4x2& lhs, const double rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been -'d against the scalar.
-HLML_INLINE double4x2 operator-=( double4x2& lhs, const double rhs )
+HLML_INLINE double4x2 operator-=( double4x2 &lhs, const double rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE double4x2 operator-( const double4x2& lhs, const double4x2& rhs )
+HLML_INLINE double4x2 operator-( const double4x2 &lhs, const double4x2 &rhs )
 {
 	return double4x2(
 		lhs[0] - rhs[0],
@@ -17221,13 +17221,13 @@ HLML_INLINE double4x2 operator-( const double4x2& lhs, const double4x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise -'d against 'rhs'.
-HLML_INLINE double4x2 operator-=( double4x2& lhs, const double4x2& rhs )
+HLML_INLINE double4x2 operator-=( double4x2 &lhs, const double4x2 &rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE double4x2 operator*( const double4x2& lhs, const double rhs )
+HLML_INLINE double4x2 operator*( const double4x2 &lhs, const double rhs )
 {
 	return double4x2(
 		lhs[0] * rhs,
@@ -17238,13 +17238,13 @@ HLML_INLINE double4x2 operator*( const double4x2& lhs, const double rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been *'d against the scalar.
-HLML_INLINE double4x2 operator*=( double4x2& lhs, const double rhs )
+HLML_INLINE double4x2 operator*=( double4x2 &lhs, const double rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE double4x2 operator*( const double4x2& lhs, const double4x2& rhs )
+HLML_INLINE double4x2 operator*( const double4x2 &lhs, const double4x2 &rhs )
 {
 	return double4x2(
 		lhs[0] * rhs[0],
@@ -17255,13 +17255,13 @@ HLML_INLINE double4x2 operator*( const double4x2& lhs, const double4x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise *'d against 'rhs'.
-HLML_INLINE double4x2 operator*=( double4x2& lhs, const double4x2& rhs )
+HLML_INLINE double4x2 operator*=( double4x2 &lhs, const double4x2 &rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE double4x2 operator/( const double4x2& lhs, const double rhs )
+HLML_INLINE double4x2 operator/( const double4x2 &lhs, const double rhs )
 {
 	return double4x2(
 		lhs[0] / rhs,
@@ -17272,13 +17272,13 @@ HLML_INLINE double4x2 operator/( const double4x2& lhs, const double rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been /'d against the scalar.
-HLML_INLINE double4x2 operator/=( double4x2& lhs, const double rhs )
+HLML_INLINE double4x2 operator/=( double4x2 &lhs, const double rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE double4x2 operator/( const double4x2& lhs, const double4x2& rhs )
+HLML_INLINE double4x2 operator/( const double4x2 &lhs, const double4x2 &rhs )
 {
 	return double4x2(
 		lhs[0] / rhs[0],
@@ -17289,13 +17289,13 @@ HLML_INLINE double4x2 operator/( const double4x2& lhs, const double4x2& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise /'d against 'rhs'.
-HLML_INLINE double4x2 operator/=( double4x2& lhs, const double4x2& rhs )
+HLML_INLINE double4x2 operator/=( double4x2 &lhs, const double4x2 &rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // ++s each component of the matrix and returns the result.
-HLML_INLINE double4x2 operator++( double4x2& x )
+HLML_INLINE double4x2 operator++( double4x2 &x )
 {
 	++x[0];
 	++x[1];
@@ -17306,7 +17306,7 @@ HLML_INLINE double4x2 operator++( double4x2& x )
 
 // ++s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE double4x2 operator++( double4x2& x, const int32_t )
+HLML_INLINE double4x2 operator++( double4x2 &x, const int32_t )
 {
 	x[0]++;
 	x[1]++;
@@ -17316,7 +17316,7 @@ HLML_INLINE double4x2 operator++( double4x2& x, const int32_t )
 }
 
 // --s each component of the matrix and returns the result.
-HLML_INLINE double4x2 operator--( double4x2& x )
+HLML_INLINE double4x2 operator--( double4x2 &x )
 {
 	--x[0];
 	--x[1];
@@ -17327,7 +17327,7 @@ HLML_INLINE double4x2 operator--( double4x2& x )
 
 // --s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE double4x2 operator--( double4x2& x, const int32_t )
+HLML_INLINE double4x2 operator--( double4x2 &x, const int32_t )
 {
 	x[0]--;
 	x[1]--;
@@ -17338,7 +17338,7 @@ HLML_INLINE double4x2 operator--( double4x2& x, const int32_t )
 
 // Returns a copy of the matrix that has been negated.
 // pre-fix
-HLML_INLINE double4x2 operator-( const double4x2& x )
+HLML_INLINE double4x2 operator-( const double4x2 &x )
 {
 	return double4x2(
 		-x[0],
@@ -17349,7 +17349,7 @@ HLML_INLINE double4x2 operator-( const double4x2& x )
 }
 
 // Sets the matrix to an identity matrix.
-HLML_INLINE void identity( double4x2& mat )
+HLML_INLINE void identity( double4x2 &mat )
 {
 	mat.rows[0] = HLML_CONSTRUCT( double2 ) { 1.0, 0.0 };
 	mat.rows[1] = HLML_CONSTRUCT( double2 ) { 0.0, 1.0 };
@@ -17358,7 +17358,7 @@ HLML_INLINE void identity( double4x2& mat )
 }
 
 // Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-HLML_INLINE double2x4 transpose( const double4x2& mat )
+HLML_INLINE double2x4 transpose( const double4x2 &mat )
 {
 	return HLML_CONSTRUCT( double2x4 )
 	{
@@ -17368,7 +17368,7 @@ HLML_INLINE double2x4 transpose( const double4x2& mat )
 }
 
 // Performs a matrix multiplication with 'lhs' and 'rhs' and returns the result.
-HLML_INLINE double4x4 mul( const double4x2& lhs, const double2x4& rhs )
+HLML_INLINE double4x4 mul( const double4x2 &lhs, const double2x4 &rhs )
 {
 	double2 row0 = lhs.rows[0];
 	double2 row1 = lhs.rows[1];
@@ -17406,7 +17406,7 @@ HLML_INLINE double4x4 mul( const double4x2& lhs, const double2x4& rhs )
 
 // double4x3
 // Performs a sign function on each row of the matrix.
-HLML_INLINE int4x3 sign( const double4x3& x )
+HLML_INLINE int4x3 sign( const double4x3 &x )
 {
 	return int4x3(
 		sign( x[0] ),
@@ -17417,7 +17417,7 @@ HLML_INLINE int4x3 sign( const double4x3& x )
 }
 
 // Performs a min function on each row of the matrix.
-HLML_INLINE double4x3 min( const double4x3& x, const double4x3& y )
+HLML_INLINE double4x3 min( const double4x3 &x, const double4x3 &y )
 {
 	return double4x3(
 		min( x[0], y[0] ),
@@ -17428,7 +17428,7 @@ HLML_INLINE double4x3 min( const double4x3& x, const double4x3& y )
 }
 
 // Performs a max function on each row of the matrix.
-HLML_INLINE double4x3 max( const double4x3& x, const double4x3& y )
+HLML_INLINE double4x3 max( const double4x3 &x, const double4x3 &y )
 {
 	return double4x3(
 		max( x[0], y[0] ),
@@ -17439,7 +17439,7 @@ HLML_INLINE double4x3 max( const double4x3& x, const double4x3& y )
 }
 
 // Performs a clamp function on each row of the matrix.
-HLML_INLINE double4x3 clamp( const double4x3& x, const double4x3& low, const double4x3& high )
+HLML_INLINE double4x3 clamp( const double4x3 &x, const double4x3 &low, const double4x3 &high )
 {
 	return double4x3(
 		clamp( x[0], low[0], high[0] ),
@@ -17450,7 +17450,7 @@ HLML_INLINE double4x3 clamp( const double4x3& x, const double4x3& low, const dou
 }
 
 // Performs a saturate function on each row of the matrix.
-HLML_INLINE double4x3 saturate( const double4x3& x )
+HLML_INLINE double4x3 saturate( const double4x3 &x )
 {
 	return double4x3(
 		saturate( x[0] ),
@@ -17461,7 +17461,7 @@ HLML_INLINE double4x3 saturate( const double4x3& x )
 }
 
 // Performs a lerp function on each row of the matrix.
-HLML_INLINE double4x3 lerp( const double4x3& lhs, const double4x3& rhs, const double t )
+HLML_INLINE double4x3 lerp( const double4x3 &lhs, const double4x3 &rhs, const double t )
 {
 	return double4x3(
 		lerp( lhs[0], rhs[0], t ),
@@ -17472,7 +17472,7 @@ HLML_INLINE double4x3 lerp( const double4x3& lhs, const double4x3& rhs, const do
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator==( const double4x3& lhs, const double4x3& rhs )
+HLML_INLINE bool operator==( const double4x3 &lhs, const double4x3 &rhs )
 {
 	return
 		lhs[0] == rhs[0] &&
@@ -17482,13 +17482,13 @@ HLML_INLINE bool operator==( const double4x3& lhs, const double4x3& rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator!=( const double4x3& lhs, const double4x3& rhs )
+HLML_INLINE bool operator!=( const double4x3 &lhs, const double4x3 &rhs )
 {
 	return !( lhs == rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool4x3 operator<( const double4x3& lhs, const double4x3& rhs )
+HLML_INLINE bool4x3 operator<( const double4x3 &lhs, const double4x3 &rhs )
 {
 	return bool4x3(
 		lhs[0] < rhs[0],
@@ -17499,7 +17499,7 @@ HLML_INLINE bool4x3 operator<( const double4x3& lhs, const double4x3& rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool4x3 operator<=( const double4x3& lhs, const double4x3& rhs )
+HLML_INLINE bool4x3 operator<=( const double4x3 &lhs, const double4x3 &rhs )
 {
 	return bool4x3(
 		lhs[0] <= rhs[0],
@@ -17510,7 +17510,7 @@ HLML_INLINE bool4x3 operator<=( const double4x3& lhs, const double4x3& rhs )
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool4x3 operator>( const double4x3& lhs, const double4x3& rhs )
+HLML_INLINE bool4x3 operator>( const double4x3 &lhs, const double4x3 &rhs )
 {
 	return bool4x3(
 		lhs[0] > rhs[0],
@@ -17521,7 +17521,7 @@ HLML_INLINE bool4x3 operator>( const double4x3& lhs, const double4x3& rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool4x3 operator>=( const double4x3& lhs, const double4x3& rhs )
+HLML_INLINE bool4x3 operator>=( const double4x3 &lhs, const double4x3 &rhs )
 {
 	return bool4x3(
 		lhs[0] >= rhs[0],
@@ -17532,7 +17532,7 @@ HLML_INLINE bool4x3 operator>=( const double4x3& lhs, const double4x3& rhs )
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE double4x3 operator+( const double4x3& lhs, const double rhs )
+HLML_INLINE double4x3 operator+( const double4x3 &lhs, const double rhs )
 {
 	return double4x3(
 		lhs[0] + rhs,
@@ -17543,13 +17543,13 @@ HLML_INLINE double4x3 operator+( const double4x3& lhs, const double rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been +'d against the scalar.
-HLML_INLINE double4x3 operator+=( double4x3& lhs, const double rhs )
+HLML_INLINE double4x3 operator+=( double4x3 &lhs, const double rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE double4x3 operator+( const double4x3& lhs, const double4x3& rhs )
+HLML_INLINE double4x3 operator+( const double4x3 &lhs, const double4x3 &rhs )
 {
 	return double4x3(
 		lhs[0] + rhs[0],
@@ -17560,13 +17560,13 @@ HLML_INLINE double4x3 operator+( const double4x3& lhs, const double4x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise +'d against 'rhs'.
-HLML_INLINE double4x3 operator+=( double4x3& lhs, const double4x3& rhs )
+HLML_INLINE double4x3 operator+=( double4x3 &lhs, const double4x3 &rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE double4x3 operator-( const double4x3& lhs, const double rhs )
+HLML_INLINE double4x3 operator-( const double4x3 &lhs, const double rhs )
 {
 	return double4x3(
 		lhs[0] - rhs,
@@ -17577,13 +17577,13 @@ HLML_INLINE double4x3 operator-( const double4x3& lhs, const double rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been -'d against the scalar.
-HLML_INLINE double4x3 operator-=( double4x3& lhs, const double rhs )
+HLML_INLINE double4x3 operator-=( double4x3 &lhs, const double rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE double4x3 operator-( const double4x3& lhs, const double4x3& rhs )
+HLML_INLINE double4x3 operator-( const double4x3 &lhs, const double4x3 &rhs )
 {
 	return double4x3(
 		lhs[0] - rhs[0],
@@ -17594,13 +17594,13 @@ HLML_INLINE double4x3 operator-( const double4x3& lhs, const double4x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise -'d against 'rhs'.
-HLML_INLINE double4x3 operator-=( double4x3& lhs, const double4x3& rhs )
+HLML_INLINE double4x3 operator-=( double4x3 &lhs, const double4x3 &rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE double4x3 operator*( const double4x3& lhs, const double rhs )
+HLML_INLINE double4x3 operator*( const double4x3 &lhs, const double rhs )
 {
 	return double4x3(
 		lhs[0] * rhs,
@@ -17611,13 +17611,13 @@ HLML_INLINE double4x3 operator*( const double4x3& lhs, const double rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been *'d against the scalar.
-HLML_INLINE double4x3 operator*=( double4x3& lhs, const double rhs )
+HLML_INLINE double4x3 operator*=( double4x3 &lhs, const double rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE double4x3 operator*( const double4x3& lhs, const double4x3& rhs )
+HLML_INLINE double4x3 operator*( const double4x3 &lhs, const double4x3 &rhs )
 {
 	return double4x3(
 		lhs[0] * rhs[0],
@@ -17628,13 +17628,13 @@ HLML_INLINE double4x3 operator*( const double4x3& lhs, const double4x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise *'d against 'rhs'.
-HLML_INLINE double4x3 operator*=( double4x3& lhs, const double4x3& rhs )
+HLML_INLINE double4x3 operator*=( double4x3 &lhs, const double4x3 &rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE double4x3 operator/( const double4x3& lhs, const double rhs )
+HLML_INLINE double4x3 operator/( const double4x3 &lhs, const double rhs )
 {
 	return double4x3(
 		lhs[0] / rhs,
@@ -17645,13 +17645,13 @@ HLML_INLINE double4x3 operator/( const double4x3& lhs, const double rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been /'d against the scalar.
-HLML_INLINE double4x3 operator/=( double4x3& lhs, const double rhs )
+HLML_INLINE double4x3 operator/=( double4x3 &lhs, const double rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE double4x3 operator/( const double4x3& lhs, const double4x3& rhs )
+HLML_INLINE double4x3 operator/( const double4x3 &lhs, const double4x3 &rhs )
 {
 	return double4x3(
 		lhs[0] / rhs[0],
@@ -17662,13 +17662,13 @@ HLML_INLINE double4x3 operator/( const double4x3& lhs, const double4x3& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise /'d against 'rhs'.
-HLML_INLINE double4x3 operator/=( double4x3& lhs, const double4x3& rhs )
+HLML_INLINE double4x3 operator/=( double4x3 &lhs, const double4x3 &rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // ++s each component of the matrix and returns the result.
-HLML_INLINE double4x3 operator++( double4x3& x )
+HLML_INLINE double4x3 operator++( double4x3 &x )
 {
 	++x[0];
 	++x[1];
@@ -17679,7 +17679,7 @@ HLML_INLINE double4x3 operator++( double4x3& x )
 
 // ++s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE double4x3 operator++( double4x3& x, const int32_t )
+HLML_INLINE double4x3 operator++( double4x3 &x, const int32_t )
 {
 	x[0]++;
 	x[1]++;
@@ -17689,7 +17689,7 @@ HLML_INLINE double4x3 operator++( double4x3& x, const int32_t )
 }
 
 // --s each component of the matrix and returns the result.
-HLML_INLINE double4x3 operator--( double4x3& x )
+HLML_INLINE double4x3 operator--( double4x3 &x )
 {
 	--x[0];
 	--x[1];
@@ -17700,7 +17700,7 @@ HLML_INLINE double4x3 operator--( double4x3& x )
 
 // --s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE double4x3 operator--( double4x3& x, const int32_t )
+HLML_INLINE double4x3 operator--( double4x3 &x, const int32_t )
 {
 	x[0]--;
 	x[1]--;
@@ -17711,7 +17711,7 @@ HLML_INLINE double4x3 operator--( double4x3& x, const int32_t )
 
 // Returns a copy of the matrix that has been negated.
 // pre-fix
-HLML_INLINE double4x3 operator-( const double4x3& x )
+HLML_INLINE double4x3 operator-( const double4x3 &x )
 {
 	return double4x3(
 		-x[0],
@@ -17722,7 +17722,7 @@ HLML_INLINE double4x3 operator-( const double4x3& x )
 }
 
 // Sets the matrix to an identity matrix.
-HLML_INLINE void identity( double4x3& mat )
+HLML_INLINE void identity( double4x3 &mat )
 {
 	mat.rows[0] = HLML_CONSTRUCT( double3 ) { 1.0, 0.0, 0.0 };
 	mat.rows[1] = HLML_CONSTRUCT( double3 ) { 0.0, 1.0, 0.0 };
@@ -17731,7 +17731,7 @@ HLML_INLINE void identity( double4x3& mat )
 }
 
 // Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-HLML_INLINE double3x4 transpose( const double4x3& mat )
+HLML_INLINE double3x4 transpose( const double4x3 &mat )
 {
 	return HLML_CONSTRUCT( double3x4 )
 	{
@@ -17742,7 +17742,7 @@ HLML_INLINE double3x4 transpose( const double4x3& mat )
 }
 
 // Performs a matrix multiplication with 'lhs' and 'rhs' and returns the result.
-HLML_INLINE double4x4 mul( const double4x3& lhs, const double3x4& rhs )
+HLML_INLINE double4x4 mul( const double4x3 &lhs, const double3x4 &rhs )
 {
 	double3 row0 = lhs.rows[0];
 	double3 row1 = lhs.rows[1];
@@ -17780,7 +17780,7 @@ HLML_INLINE double4x4 mul( const double4x3& lhs, const double3x4& rhs )
 
 // double4x4
 // Performs a sign function on each row of the matrix.
-HLML_INLINE int4x4 sign( const double4x4& x )
+HLML_INLINE int4x4 sign( const double4x4 &x )
 {
 	return int4x4(
 		sign( x[0] ),
@@ -17791,7 +17791,7 @@ HLML_INLINE int4x4 sign( const double4x4& x )
 }
 
 // Performs a min function on each row of the matrix.
-HLML_INLINE double4x4 min( const double4x4& x, const double4x4& y )
+HLML_INLINE double4x4 min( const double4x4 &x, const double4x4 &y )
 {
 	return double4x4(
 		min( x[0], y[0] ),
@@ -17802,7 +17802,7 @@ HLML_INLINE double4x4 min( const double4x4& x, const double4x4& y )
 }
 
 // Performs a max function on each row of the matrix.
-HLML_INLINE double4x4 max( const double4x4& x, const double4x4& y )
+HLML_INLINE double4x4 max( const double4x4 &x, const double4x4 &y )
 {
 	return double4x4(
 		max( x[0], y[0] ),
@@ -17813,7 +17813,7 @@ HLML_INLINE double4x4 max( const double4x4& x, const double4x4& y )
 }
 
 // Performs a clamp function on each row of the matrix.
-HLML_INLINE double4x4 clamp( const double4x4& x, const double4x4& low, const double4x4& high )
+HLML_INLINE double4x4 clamp( const double4x4 &x, const double4x4 &low, const double4x4 &high )
 {
 	return double4x4(
 		clamp( x[0], low[0], high[0] ),
@@ -17824,7 +17824,7 @@ HLML_INLINE double4x4 clamp( const double4x4& x, const double4x4& low, const dou
 }
 
 // Performs a saturate function on each row of the matrix.
-HLML_INLINE double4x4 saturate( const double4x4& x )
+HLML_INLINE double4x4 saturate( const double4x4 &x )
 {
 	return double4x4(
 		saturate( x[0] ),
@@ -17835,7 +17835,7 @@ HLML_INLINE double4x4 saturate( const double4x4& x )
 }
 
 // Performs a lerp function on each row of the matrix.
-HLML_INLINE double4x4 lerp( const double4x4& lhs, const double4x4& rhs, const double t )
+HLML_INLINE double4x4 lerp( const double4x4 &lhs, const double4x4 &rhs, const double t )
 {
 	return double4x4(
 		lerp( lhs[0], rhs[0], t ),
@@ -17846,7 +17846,7 @@ HLML_INLINE double4x4 lerp( const double4x4& lhs, const double4x4& rhs, const do
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator==( const double4x4& lhs, const double4x4& rhs )
+HLML_INLINE bool operator==( const double4x4 &lhs, const double4x4 &rhs )
 {
 	return
 		lhs[0] == rhs[0] &&
@@ -17856,13 +17856,13 @@ HLML_INLINE bool operator==( const double4x4& lhs, const double4x4& rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool operator!=( const double4x4& lhs, const double4x4& rhs )
+HLML_INLINE bool operator!=( const double4x4 &lhs, const double4x4 &rhs )
 {
 	return !( lhs == rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool4x4 operator<( const double4x4& lhs, const double4x4& rhs )
+HLML_INLINE bool4x4 operator<( const double4x4 &lhs, const double4x4 &rhs )
 {
 	return bool4x4(
 		lhs[0] < rhs[0],
@@ -17873,7 +17873,7 @@ HLML_INLINE bool4x4 operator<( const double4x4& lhs, const double4x4& rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool4x4 operator<=( const double4x4& lhs, const double4x4& rhs )
+HLML_INLINE bool4x4 operator<=( const double4x4 &lhs, const double4x4 &rhs )
 {
 	return bool4x4(
 		lhs[0] <= rhs[0],
@@ -17884,7 +17884,7 @@ HLML_INLINE bool4x4 operator<=( const double4x4& lhs, const double4x4& rhs )
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool4x4 operator>( const double4x4& lhs, const double4x4& rhs )
+HLML_INLINE bool4x4 operator>( const double4x4 &lhs, const double4x4 &rhs )
 {
 	return bool4x4(
 		lhs[0] > rhs[0],
@@ -17895,7 +17895,7 @@ HLML_INLINE bool4x4 operator>( const double4x4& lhs, const double4x4& rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool4x4 operator>=( const double4x4& lhs, const double4x4& rhs )
+HLML_INLINE bool4x4 operator>=( const double4x4 &lhs, const double4x4 &rhs )
 {
 	return bool4x4(
 		lhs[0] >= rhs[0],
@@ -17906,7 +17906,7 @@ HLML_INLINE bool4x4 operator>=( const double4x4& lhs, const double4x4& rhs )
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE double4x4 operator+( const double4x4& lhs, const double rhs )
+HLML_INLINE double4x4 operator+( const double4x4 &lhs, const double rhs )
 {
 	return double4x4(
 		lhs[0] + rhs,
@@ -17917,13 +17917,13 @@ HLML_INLINE double4x4 operator+( const double4x4& lhs, const double rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been +'d against the scalar.
-HLML_INLINE double4x4 operator+=( double4x4& lhs, const double rhs )
+HLML_INLINE double4x4 operator+=( double4x4 &lhs, const double rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE double4x4 operator+( const double4x4& lhs, const double4x4& rhs )
+HLML_INLINE double4x4 operator+( const double4x4 &lhs, const double4x4 &rhs )
 {
 	return double4x4(
 		lhs[0] + rhs[0],
@@ -17934,13 +17934,13 @@ HLML_INLINE double4x4 operator+( const double4x4& lhs, const double4x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise +'d against 'rhs'.
-HLML_INLINE double4x4 operator+=( double4x4& lhs, const double4x4& rhs )
+HLML_INLINE double4x4 operator+=( double4x4 &lhs, const double4x4 &rhs )
 {
 	return ( lhs = lhs + rhs );
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE double4x4 operator-( const double4x4& lhs, const double rhs )
+HLML_INLINE double4x4 operator-( const double4x4 &lhs, const double rhs )
 {
 	return double4x4(
 		lhs[0] - rhs,
@@ -17951,13 +17951,13 @@ HLML_INLINE double4x4 operator-( const double4x4& lhs, const double rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been -'d against the scalar.
-HLML_INLINE double4x4 operator-=( double4x4& lhs, const double rhs )
+HLML_INLINE double4x4 operator-=( double4x4 &lhs, const double rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE double4x4 operator-( const double4x4& lhs, const double4x4& rhs )
+HLML_INLINE double4x4 operator-( const double4x4 &lhs, const double4x4 &rhs )
 {
 	return double4x4(
 		lhs[0] - rhs[0],
@@ -17968,13 +17968,13 @@ HLML_INLINE double4x4 operator-( const double4x4& lhs, const double4x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise -'d against 'rhs'.
-HLML_INLINE double4x4 operator-=( double4x4& lhs, const double4x4& rhs )
+HLML_INLINE double4x4 operator-=( double4x4 &lhs, const double4x4 &rhs )
 {
 	return ( lhs = lhs - rhs );
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE double4x4 operator*( const double4x4& lhs, const double rhs )
+HLML_INLINE double4x4 operator*( const double4x4 &lhs, const double rhs )
 {
 	return double4x4(
 		lhs[0] * rhs,
@@ -17985,13 +17985,13 @@ HLML_INLINE double4x4 operator*( const double4x4& lhs, const double rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been *'d against the scalar.
-HLML_INLINE double4x4 operator*=( double4x4& lhs, const double rhs )
+HLML_INLINE double4x4 operator*=( double4x4 &lhs, const double rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE double4x4 operator*( const double4x4& lhs, const double4x4& rhs )
+HLML_INLINE double4x4 operator*( const double4x4 &lhs, const double4x4 &rhs )
 {
 	return double4x4(
 		lhs[0] * rhs[0],
@@ -18002,13 +18002,13 @@ HLML_INLINE double4x4 operator*( const double4x4& lhs, const double4x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise *'d against 'rhs'.
-HLML_INLINE double4x4 operator*=( double4x4& lhs, const double4x4& rhs )
+HLML_INLINE double4x4 operator*=( double4x4 &lhs, const double4x4 &rhs )
 {
 	return ( lhs = lhs * rhs );
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE double4x4 operator/( const double4x4& lhs, const double rhs )
+HLML_INLINE double4x4 operator/( const double4x4 &lhs, const double rhs )
 {
 	return double4x4(
 		lhs[0] / rhs,
@@ -18019,13 +18019,13 @@ HLML_INLINE double4x4 operator/( const double4x4& lhs, const double rhs )
 }
 
 // Returns a copy of 'lhs' where each component has been /'d against the scalar.
-HLML_INLINE double4x4 operator/=( double4x4& lhs, const double rhs )
+HLML_INLINE double4x4 operator/=( double4x4 &lhs, const double rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE double4x4 operator/( const double4x4& lhs, const double4x4& rhs )
+HLML_INLINE double4x4 operator/( const double4x4 &lhs, const double4x4 &rhs )
 {
 	return double4x4(
 		lhs[0] / rhs[0],
@@ -18036,13 +18036,13 @@ HLML_INLINE double4x4 operator/( const double4x4& lhs, const double4x4& rhs )
 }
 
 // Returns a copy of 'lhs' that has been component-wise /'d against 'rhs'.
-HLML_INLINE double4x4 operator/=( double4x4& lhs, const double4x4& rhs )
+HLML_INLINE double4x4 operator/=( double4x4 &lhs, const double4x4 &rhs )
 {
 	return ( lhs = lhs / rhs );
 }
 
 // ++s each component of the matrix and returns the result.
-HLML_INLINE double4x4 operator++( double4x4& x )
+HLML_INLINE double4x4 operator++( double4x4 &x )
 {
 	++x[0];
 	++x[1];
@@ -18053,7 +18053,7 @@ HLML_INLINE double4x4 operator++( double4x4& x )
 
 // ++s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE double4x4 operator++( double4x4& x, const int32_t )
+HLML_INLINE double4x4 operator++( double4x4 &x, const int32_t )
 {
 	x[0]++;
 	x[1]++;
@@ -18063,7 +18063,7 @@ HLML_INLINE double4x4 operator++( double4x4& x, const int32_t )
 }
 
 // --s each component of the matrix and returns the result.
-HLML_INLINE double4x4 operator--( double4x4& x )
+HLML_INLINE double4x4 operator--( double4x4 &x )
 {
 	--x[0];
 	--x[1];
@@ -18074,7 +18074,7 @@ HLML_INLINE double4x4 operator--( double4x4& x )
 
 // --s each component of the matrix and returns the result.
 // post-fix
-HLML_INLINE double4x4 operator--( double4x4& x, const int32_t )
+HLML_INLINE double4x4 operator--( double4x4 &x, const int32_t )
 {
 	x[0]--;
 	x[1]--;
@@ -18085,7 +18085,7 @@ HLML_INLINE double4x4 operator--( double4x4& x, const int32_t )
 
 // Returns a copy of the matrix that has been negated.
 // pre-fix
-HLML_INLINE double4x4 operator-( const double4x4& x )
+HLML_INLINE double4x4 operator-( const double4x4 &x )
 {
 	return double4x4(
 		-x[0],
@@ -18096,7 +18096,7 @@ HLML_INLINE double4x4 operator-( const double4x4& x )
 }
 
 // Sets the matrix to an identity matrix.
-HLML_INLINE void identity( double4x4& mat )
+HLML_INLINE void identity( double4x4 &mat )
 {
 	mat.rows[0] = HLML_CONSTRUCT( double4 ) { 1.0, 0.0, 0.0, 0.0 };
 	mat.rows[1] = HLML_CONSTRUCT( double4 ) { 0.0, 1.0, 0.0, 0.0 };
@@ -18105,7 +18105,7 @@ HLML_INLINE void identity( double4x4& mat )
 }
 
 // Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-HLML_INLINE double4x4 transpose( const double4x4& mat )
+HLML_INLINE double4x4 transpose( const double4x4 &mat )
 {
 	return HLML_CONSTRUCT( double4x4 )
 	{
@@ -18117,7 +18117,7 @@ HLML_INLINE double4x4 transpose( const double4x4& mat )
 }
 
 // Returns the determinant of the matrix.
-HLML_INLINE double determinant( const double4x4& mat )
+HLML_INLINE double determinant( const double4x4 &mat )
 {
 	// using glm's method where you basically take determinants from each sub matrix and cache the repeat occurences
 	double sub00 = mat.rows[2].z * mat.rows[3].w - mat.rows[3].z * mat.rows[2].w;
@@ -18142,7 +18142,7 @@ HLML_INLINE double determinant( const double4x4& mat )
 
 // Returns a copy of the matrix that is inversed.
 // This is only applicable for square matrices.
-HLML_INLINE double4x4 inverse( const double4x4& mat )
+HLML_INLINE double4x4 inverse( const double4x4 &mat )
 {
 	// uses the glm version, which is basically just an optimised version of the adjugate formula
 	double coef00 = mat.rows[2].z * mat.rows[3].w - mat.rows[3].z * mat.rows[2].w;
@@ -18207,7 +18207,7 @@ HLML_INLINE double4x4 inverse( const double4x4& mat )
 }
 
 // Performs a matrix multiplication with 'lhs' and 'rhs' and returns the result.
-HLML_INLINE double4x4 mul( const double4x4& lhs, const double4x4& rhs )
+HLML_INLINE double4x4 mul( const double4x4 &lhs, const double4x4 &rhs )
 {
 	double4 row0 = lhs.rows[0];
 	double4 row1 = lhs.rows[1];
@@ -18244,7 +18244,7 @@ HLML_INLINE double4x4 mul( const double4x4& lhs, const double4x4& rhs )
 }
 
 // Multiplies the vector 'lhs' against the matrix 'rhs' and returns the result.
-HLML_INLINE double4 mul( const double4& lhs, const double4x4& rhs )
+HLML_INLINE double4 mul( const double4 &lhs, const double4x4 &rhs )
 {
 	return HLML_CONSTRUCT( double4 )
 	{
@@ -18256,7 +18256,7 @@ HLML_INLINE double4 mul( const double4& lhs, const double4x4& rhs )
 }
 
 // "Translates" the matrix.  Adds the last column of 'mat' by the position vector 'vec'.
-HLML_INLINE double4x4 translate( const double4x4& mat, const double3& vec )
+HLML_INLINE double4x4 translate( const double4x4 &mat, const double3 &vec )
 {
 	return HLML_CONSTRUCT( double4x4 )
 	{
@@ -18268,7 +18268,7 @@ HLML_INLINE double4x4 translate( const double4x4& mat, const double3& vec )
 }
 
 // Rotates the matrix by the given axis-angle (in radians) and returns the result.
-HLML_INLINE double4x4 rotate( const double4x4& mat, const double rad, const double3& axis )
+HLML_INLINE double4x4 rotate( const double4x4 &mat, const double rad, const double3 &axis )
 {
 	const double c = cos( rad );
 	const double s = sin( rad );
@@ -18293,7 +18293,7 @@ HLML_INLINE double4x4 rotate( const double4x4& mat, const double rad, const doub
 }
 
 // Applies a non-uniform scale to the matrix and returns the result.
-HLML_INLINE double4x4 scale( const double4x4& mat, const double3& scale )
+HLML_INLINE double4x4 scale( const double4x4 &mat, const double3 &scale )
 {
 	return HLML_CONSTRUCT( double4x4 )
 	{
@@ -18463,7 +18463,7 @@ HLML_INLINE double4x4 perspective_rh_no( const double fovdeg, const double aspec
 }
 
 // Returns a left-handed orthonormal matrix that is oriented at position 'eye' to look at position 'target'.
-HLML_INLINE double4x4 look_at_lh( const double3& eye, const double3& target, const double3& up )
+HLML_INLINE double4x4 look_at_lh( const double3 &eye, const double3 &target, const double3 &up )
 {
 	// left handed
 	const double3 forward = normalized( target - eye );
@@ -18481,7 +18481,7 @@ HLML_INLINE double4x4 look_at_lh( const double3& eye, const double3& target, con
 }
 
 // Returns a right-handed orthonormal matrix that is oriented at position 'eye' to look at position 'target'.
-HLML_INLINE double4x4 look_at_rh( const double3& eye, const double3& target, const double3& up )
+HLML_INLINE double4x4 look_at_rh( const double3 &eye, const double3 &target, const double3 &up )
 {
 	// right handed
 	const double3 forward = normalized( target - eye );

@@ -6,7 +6,7 @@
 
 #include "../hlml.h"
 
-TEMPER_TEST_PARAMETRIC( Test_float3x4_less_than, TEMPER_FLAG_SHOULD_RUN, const float3x4* lhs, const float3x4* rhs, const bool3x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_float3x4_less_than, TEMPER_FLAG_SHOULD_RUN, const float3x4 *lhs, const float3x4 *rhs, const bool3x4 *expectedAnswer )
 {
 	bool3x4 actualResult = float3x4_less_than( lhs, rhs );
 	TEMPER_CHECK_TRUE( bool3x4_equals( &actualResult, expectedAnswer ) );
@@ -96,7 +96,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3x4_less_than,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_float3x4_less_than_equal, TEMPER_FLAG_SHOULD_RUN, const float3x4* lhs, const float3x4* rhs, const bool3x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_float3x4_less_than_equal, TEMPER_FLAG_SHOULD_RUN, const float3x4 *lhs, const float3x4 *rhs, const bool3x4 *expectedAnswer )
 {
 	bool3x4 actualResult = float3x4_less_than_equal( lhs, rhs );
 	TEMPER_CHECK_TRUE( bool3x4_equals( &actualResult, expectedAnswer ) );
@@ -186,7 +186,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3x4_less_than_equal,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_float3x4_greater_than, TEMPER_FLAG_SHOULD_RUN, const float3x4* lhs, const float3x4* rhs, const bool3x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_float3x4_greater_than, TEMPER_FLAG_SHOULD_RUN, const float3x4 *lhs, const float3x4 *rhs, const bool3x4 *expectedAnswer )
 {
 	bool3x4 actualResult = float3x4_greater_than( lhs, rhs );
 	TEMPER_CHECK_TRUE( bool3x4_equals( &actualResult, expectedAnswer ) );
@@ -276,7 +276,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3x4_greater_than,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_float3x4_greater_than_equal, TEMPER_FLAG_SHOULD_RUN, const float3x4* lhs, const float3x4* rhs, const bool3x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_float3x4_greater_than_equal, TEMPER_FLAG_SHOULD_RUN, const float3x4 *lhs, const float3x4 *rhs, const bool3x4 *expectedAnswer )
 {
 	bool3x4 actualResult = float3x4_greater_than_equal( lhs, rhs );
 	TEMPER_CHECK_TRUE( bool3x4_equals( &actualResult, expectedAnswer ) );
@@ -366,7 +366,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3x4_greater_than_equal,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_float3x4_cadds, TEMPER_FLAG_SHOULD_RUN, const float3x4* lhs, const float rhs, const float3x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_float3x4_cadds, TEMPER_FLAG_SHOULD_RUN, const float3x4 *lhs, const float rhs, const float3x4 *expectedAnswer )
 {
 	float3x4 actualResult = float3x4_cadds( lhs, rhs );
 	TEMPER_CHECK_TRUE( float3x4_equals( &actualResult, expectedAnswer ) );
@@ -436,7 +436,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3x4_cadds,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_float3x4_csubs, TEMPER_FLAG_SHOULD_RUN, const float3x4* lhs, const float rhs, const float3x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_float3x4_csubs, TEMPER_FLAG_SHOULD_RUN, const float3x4 *lhs, const float rhs, const float3x4 *expectedAnswer )
 {
 	float3x4 actualResult = float3x4_csubs( lhs, rhs );
 	TEMPER_CHECK_TRUE( float3x4_equals( &actualResult, expectedAnswer ) );
@@ -506,7 +506,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3x4_csubs,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_float3x4_cmuls, TEMPER_FLAG_SHOULD_RUN, const float3x4* lhs, const float rhs, const float3x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_float3x4_cmuls, TEMPER_FLAG_SHOULD_RUN, const float3x4 *lhs, const float rhs, const float3x4 *expectedAnswer )
 {
 	float3x4 actualResult = float3x4_cmuls( lhs, rhs );
 	TEMPER_CHECK_TRUE( float3x4_equals( &actualResult, expectedAnswer ) );
@@ -576,7 +576,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3x4_cmuls,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_float3x4_cdivs, TEMPER_FLAG_SHOULD_RUN, const float3x4* lhs, const float rhs, const float3x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_float3x4_cdivs, TEMPER_FLAG_SHOULD_RUN, const float3x4 *lhs, const float rhs, const float3x4 *expectedAnswer )
 {
 	float3x4 actualResult = float3x4_cdivs( lhs, rhs );
 	TEMPER_CHECK_TRUE( float3x4_equals( &actualResult, expectedAnswer ) );
@@ -646,7 +646,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3x4_cdivs,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_float3x4_caddm, TEMPER_FLAG_SHOULD_RUN, const float3x4* lhs, const float3x4* rhs, const float3x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_float3x4_caddm, TEMPER_FLAG_SHOULD_RUN, const float3x4 *lhs, const float3x4 *rhs, const float3x4 *expectedAnswer )
 {
 	float3x4 actualResult = float3x4_caddm( lhs, rhs );
 	TEMPER_CHECK_TRUE( float3x4_equals( &actualResult, expectedAnswer ) );
@@ -736,7 +736,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3x4_caddm,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_float3x4_csubm, TEMPER_FLAG_SHOULD_RUN, const float3x4* lhs, const float3x4* rhs, const float3x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_float3x4_csubm, TEMPER_FLAG_SHOULD_RUN, const float3x4 *lhs, const float3x4 *rhs, const float3x4 *expectedAnswer )
 {
 	float3x4 actualResult = float3x4_csubm( lhs, rhs );
 	TEMPER_CHECK_TRUE( float3x4_equals( &actualResult, expectedAnswer ) );
@@ -826,7 +826,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3x4_csubm,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_float3x4_cmulm, TEMPER_FLAG_SHOULD_RUN, const float3x4* lhs, const float3x4* rhs, const float3x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_float3x4_cmulm, TEMPER_FLAG_SHOULD_RUN, const float3x4 *lhs, const float3x4 *rhs, const float3x4 *expectedAnswer )
 {
 	float3x4 actualResult = float3x4_cmulm( lhs, rhs );
 	TEMPER_CHECK_TRUE( float3x4_equals( &actualResult, expectedAnswer ) );
@@ -916,7 +916,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3x4_cmulm,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_float3x4_cdivm, TEMPER_FLAG_SHOULD_RUN, const float3x4* lhs, const float3x4* rhs, const float3x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_float3x4_cdivm, TEMPER_FLAG_SHOULD_RUN, const float3x4 *lhs, const float3x4 *rhs, const float3x4 *expectedAnswer )
 {
 	float3x4 actualResult = float3x4_cdivm( lhs, rhs );
 	TEMPER_CHECK_TRUE( float3x4_equals( &actualResult, expectedAnswer ) );
@@ -1010,7 +1010,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3x4_cdivm,
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wcast-qual"
 #endif
-TEMPER_TEST_PARAMETRIC( Test_float3x4_negate_prefix, TEMPER_FLAG_SHOULD_RUN, const float3x4* x, const float3x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_float3x4_negate_prefix, TEMPER_FLAG_SHOULD_RUN, const float3x4 *x, const float3x4 *expectedAnswer )
 {
 	// make local copy of x and use that because we cant do increment or decrement operations on a const reference
 	// and MSVC throws warnings if we just make the parameter a non-const reference
@@ -1098,7 +1098,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3x4_negate_prefix,
 #pragma GCC diagnostic pop
 #endif
 
-TEMPER_TEST_PARAMETRIC( Test_float3x4_min, TEMPER_FLAG_SHOULD_RUN, const float3x4* lhs, const float3x4* rhs, const float3x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_float3x4_min, TEMPER_FLAG_SHOULD_RUN, const float3x4 *lhs, const float3x4 *rhs, const float3x4 *expectedAnswer )
 {
 	float3x4 actualResult = float3x4_min( lhs, rhs );
 	TEMPER_CHECK_TRUE( float3x4_equals( &actualResult, expectedAnswer ) );
@@ -1167,7 +1167,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3x4_min,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_float3x4_max, TEMPER_FLAG_SHOULD_RUN, const float3x4* lhs, const float3x4* rhs, const float3x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_float3x4_max, TEMPER_FLAG_SHOULD_RUN, const float3x4 *lhs, const float3x4 *rhs, const float3x4 *expectedAnswer )
 {
 	float3x4 actualResult = float3x4_max( lhs, rhs );
 	TEMPER_CHECK_TRUE( float3x4_equals( &actualResult, expectedAnswer ) );
@@ -1236,7 +1236,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3x4_max,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_float3x4_saturate, TEMPER_FLAG_SHOULD_RUN, const float3x4* x, const float3x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_float3x4_saturate, TEMPER_FLAG_SHOULD_RUN, const float3x4 *x, const float3x4 *expectedAnswer )
 {
 	float3x4 actualResult = float3x4_saturate( x );
 	TEMPER_CHECK_TRUE( float3x4_equals( &actualResult, expectedAnswer ) );
@@ -1317,7 +1317,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3x4_saturate,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_float3x4_sign, TEMPER_FLAG_SHOULD_RUN, const float3x4* x, const int3x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_float3x4_sign, TEMPER_FLAG_SHOULD_RUN, const float3x4 *x, const int3x4 *expectedAnswer )
 {
 	int3x4 actualResult = float3x4_sign( x );
 	TEMPER_CHECK_TRUE( int3x4_equals( &actualResult, expectedAnswer ) );
@@ -1428,7 +1428,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3x4_sign,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_float3x4_lerp, TEMPER_FLAG_SHOULD_RUN, const float3x4* lhs, const float3x4* rhs, const float t, const float3x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_float3x4_lerp, TEMPER_FLAG_SHOULD_RUN, const float3x4 *lhs, const float3x4 *rhs, const float t, const float3x4 *expectedAnswer )
 {
 	float3x4 actualResult = float3x4_lerp( lhs, rhs, t );
 	TEMPER_CHECK_TRUE( float3x4_equals( &actualResult, expectedAnswer ) );
@@ -1478,7 +1478,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3x4_lerp,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_float3x4_identity, TEMPER_FLAG_SHOULD_RUN, const float3x4* matrix, const bool expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_float3x4_identity, TEMPER_FLAG_SHOULD_RUN, const float3x4 *matrix, const bool expectedAnswer )
 {
 	float3x4 identityMat;
 	float3x4_identity( &identityMat );
@@ -1526,7 +1526,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3x4_identity,
 	false
 );
 
-TEMPER_TEST_PARAMETRIC( Test_float3x4_transpose, TEMPER_FLAG_SHOULD_RUN, const float3x4* matrix, const float4x3* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_float3x4_transpose, TEMPER_FLAG_SHOULD_RUN, const float3x4 *matrix, const float4x3 *expectedAnswer )
 {
 	float4x3 actualResult = float3x4_transpose( matrix );
 	TEMPER_CHECK_TRUE( float4x3_equals( &actualResult, expectedAnswer ) );
@@ -1564,7 +1564,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3x4_transpose,
 	}
 );
 
-TEMPER_TEST_PARAMETRIC( Test_float3x4_mulm, TEMPER_FLAG_SHOULD_RUN, const float3x4* lhs, const float4x3* rhs, const float3x3* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_float3x4_mulm, TEMPER_FLAG_SHOULD_RUN, const float3x4 *lhs, const float4x3 *rhs, const float3x3 *expectedAnswer )
 {
 	float3x3 actualResult = float3x4_mulm( lhs, rhs );
 	TEMPER_CHECK_TRUE( float3x3_equals( &actualResult, expectedAnswer ) );

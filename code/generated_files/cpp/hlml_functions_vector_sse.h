@@ -31,7 +31,7 @@ inline static __m128 length_sse( const __m128 lhs_x, const __m128 lhs_y )
 
 inline static void normalize_sse( 
 	const __m128  lhs_x, const __m128  lhs_y,
-	      __m128& out_x,       __m128& out_y )
+	      __m128 &out_x,       __m128 &out_y )
 {
 	__m128 invlen = length_sse( lhs_x, lhs_y );
 	invlen = _mm_rcp_ps( invlen );
@@ -79,7 +79,7 @@ inline static __m128 dot_sse(
 inline static void cross_sse( 
 	const __m128  lhs_x, const __m128  lhs_y, const __m128  lhs_z,
 	const __m128  rhs_x, const __m128  rhs_y, const __m128  rhs_z,
-	      __m128& out_x,       __m128& out_y,       __m128& out_z )
+	      __m128 &out_x,       __m128 &out_y,       __m128 &out_z )
 {
 	__m128 mul_xa = _mm_mul_ps( lhs_y, rhs_z );
 	__m128 mul_xb = _mm_mul_ps( lhs_z, rhs_y );
@@ -112,7 +112,7 @@ inline static __m128 length_sse( const __m128 lhs_x, const __m128 lhs_y, const _
 
 inline static void normalize_sse( 
 	const __m128  lhs_x, const __m128  lhs_y, const __m128  lhs_z,
-	      __m128& out_x,       __m128& out_y,       __m128& out_z )
+	      __m128 &out_x,       __m128 &out_y,       __m128 &out_z )
 {
 	__m128 invlen = length_sse( lhs_x, lhs_y, lhs_z );
 	invlen = _mm_rcp_ps( invlen );
@@ -184,7 +184,7 @@ inline static __m128 length_sse( const __m128 lhs_x, const __m128 lhs_y, const _
 
 inline static void normalize_sse( 
 	const __m128  lhs_x, const __m128  lhs_y, const __m128  lhs_z, const __m128  lhs_w,
-	      __m128& out_x,       __m128& out_y,       __m128& out_z,       __m128& out_w )
+	      __m128 &out_x,       __m128 &out_y,       __m128 &out_z,       __m128 &out_w )
 {
 	__m128 invlen = length_sse( lhs_x, lhs_y, lhs_z, lhs_w );
 	invlen = _mm_rcp_ps( invlen );

@@ -10,7 +10,7 @@
 using namespace hlml;
 #endif
 
-TEMPER_TEST_PARAMETRIC( Test_bool3x3_all, TEMPER_FLAG_SHOULD_RUN, const bool3x3& x, const bool32_t expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool3x3_all, TEMPER_FLAG_SHOULD_RUN, const bool3x3 &x, const bool32_t expectedAnswer )
 {
 	bool32_t actualResult = all( x );
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -61,7 +61,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3x3_all,
 	false
 );
 
-TEMPER_TEST_PARAMETRIC( Test_bool3x3_any, TEMPER_FLAG_SHOULD_RUN, const bool3x3& x, const bool32_t expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool3x3_any, TEMPER_FLAG_SHOULD_RUN, const bool3x3 &x, const bool32_t expectedAnswer )
 {
 	bool32_t actualResult = any( x );
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -112,7 +112,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3x3_any,
 	false
 );
 
-TEMPER_TEST_PARAMETRIC( Test_bool3x3_int3x3, TEMPER_FLAG_SHOULD_RUN, const int3x3& convertFrom, const bool3x3& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool3x3_int3x3, TEMPER_FLAG_SHOULD_RUN, const int3x3 &convertFrom, const bool3x3 &expectedAnswer )
 {
 	bool3x3 actualAnswer = bool3x3( convertFrom );
 
@@ -182,7 +182,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3x3_int3x3,
 	)
 );
 
-TEMPER_TEST_PARAMETRIC( Test_bool3x3_uint3x3, TEMPER_FLAG_SHOULD_RUN, const uint3x3& convertFrom, const bool3x3& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool3x3_uint3x3, TEMPER_FLAG_SHOULD_RUN, const uint3x3 &convertFrom, const bool3x3 &expectedAnswer )
 {
 	bool3x3 actualAnswer = bool3x3( convertFrom );
 
@@ -252,7 +252,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3x3_uint3x3,
 	)
 );
 
-TEMPER_TEST_PARAMETRIC( Test_bool3x3_float3x3, TEMPER_FLAG_SHOULD_RUN, const float3x3& convertFrom, const bool3x3& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool3x3_float3x3, TEMPER_FLAG_SHOULD_RUN, const float3x3 &convertFrom, const bool3x3 &expectedAnswer )
 {
 	bool3x3 actualAnswer = bool3x3( convertFrom );
 
@@ -322,7 +322,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3x3_float3x3,
 	)
 );
 
-TEMPER_TEST_PARAMETRIC( Test_bool3x3_double3x3, TEMPER_FLAG_SHOULD_RUN, const double3x3& convertFrom, const bool3x3& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool3x3_double3x3, TEMPER_FLAG_SHOULD_RUN, const double3x3 &convertFrom, const bool3x3 &expectedAnswer )
 {
 	bool3x3 actualAnswer = bool3x3( convertFrom );
 
@@ -392,7 +392,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3x3_double3x3,
 	)
 );
 
-TEMPER_TEST_PARAMETRIC( Test_bool3x3_identity, TEMPER_FLAG_SHOULD_RUN, const bool3x3& matrix, const bool expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool3x3_identity, TEMPER_FLAG_SHOULD_RUN, const bool3x3 &matrix, const bool expectedAnswer )
 {
 	bool3x3 identityMat;
 	identity( identityMat );
@@ -436,7 +436,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3x3_identity,
 	false
 );
 
-TEMPER_TEST_PARAMETRIC( Test_bool3x3_transpose, TEMPER_FLAG_SHOULD_RUN, const bool3x3& matrix, const bool3x3& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool3x3_transpose, TEMPER_FLAG_SHOULD_RUN, const bool3x3 &matrix, const bool3x3 &expectedAnswer )
 {
 	bool3x3 actualResult = transpose( matrix );
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );

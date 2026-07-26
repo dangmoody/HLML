@@ -778,18 +778,19 @@ stringBuilder_t *Gen_GetConstructor( allocatorLinear_t *tempStorage, const typeI
 	return result;
 }
 
-static void GenerateFunction_Equals( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorFlags_t flags ) {
+static void GenerateFunction_Equals( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( !Gen_TypeIsScalar( typeInfo ) );
 	assert( code );
+	assert( strings );
 
 	u32 numIterations = Gen_TypeIsVector( typeInfo ) ? typeInfo->numCols : typeInfo->numRows;
 
 	StringBuilder_Append( code, "// Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.\n" );
 
 	if ( flags & GENERATOR_FLAG_GENERATE_OPERATORS ) {
-		StringBuilder_Appendf( code, "HLML_INLINE bool operator==( const %s& lhs, const %s& rhs )\n", typeInfo->fullTypeName, typeInfo->fullTypeName );
+		StringBuilder_Appendf( code, "HLML_INLINE bool operator==( const %s%slhs, const %s%srhs )\n", typeInfo->fullTypeName, strings->refDeclStr, typeInfo->fullTypeName, strings->refDeclStr );
 		Gen_AppendOpenBrace( code, flags, "" );
 		StringBuilder_Append(  code, "\treturn\n" );
 
@@ -818,7 +819,7 @@ static void GenerateFunction_Equals( allocatorLinear_t *tempStorage, const typeI
 	} else {
 		const char *equalsFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_EQUALS );
 
-		StringBuilder_Appendf( code, "HLML_INLINE bool %s( const %s *lhs, const %s *rhs )\n", equalsFuncStr, typeInfo->fullTypeName, typeInfo->fullTypeName );
+		StringBuilder_Appendf( code, "HLML_INLINE bool %s( const %s%slhs, const %s%srhs )\n", equalsFuncStr, typeInfo->fullTypeName, strings->ptrDeclStr, typeInfo->fullTypeName, strings->ptrDeclStr );
 		Gen_AppendOpenBrace( code, flags, "" );
 		StringBuilder_Append(  code, "\treturn\n" );
 
@@ -870,15 +871,16 @@ static void GenerateFunction_Equals( allocatorLinear_t *tempStorage, const typeI
 	}
 }
 
-static void GenerateFunction_NotEquals( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorFlags_t flags ) {
+static void GenerateFunction_NotEquals( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( code );
+	assert( strings );
 
 	StringBuilder_Append( code, "// Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.\n" );
 
 	if ( flags & GENERATOR_FLAG_GENERATE_OPERATORS ) {
-		StringBuilder_Appendf( code, "HLML_INLINE bool operator!=( const %s& lhs, const %s& rhs )\n", typeInfo->fullTypeName, typeInfo->fullTypeName );
+		StringBuilder_Appendf( code, "HLML_INLINE bool operator!=( const %s%slhs, const %s%srhs )\n", typeInfo->fullTypeName, strings->refDeclStr, typeInfo->fullTypeName, strings->refDeclStr );
 		Gen_AppendOpenBrace( code, flags, "" );
 		StringBuilder_Append(  code, "\treturn !( lhs == rhs );\n" );
 		StringBuilder_Append(  code, "}\n\n");
@@ -886,14 +888,14 @@ static void GenerateFunction_NotEquals( allocatorLinear_t *tempStorage, const ty
 		const char *equalsFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_EQUALS );
 		const char *notEqualsFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_NOT_EQUALS );
 
-		StringBuilder_Appendf( code, "HLML_INLINE bool %s( const %s *lhs, const %s *rhs )\n", notEqualsFuncStr, typeInfo->fullTypeName, typeInfo->fullTypeName );
+		StringBuilder_Appendf( code, "HLML_INLINE bool %s( const %s%slhs, const %s%srhs )\n", notEqualsFuncStr, typeInfo->fullTypeName, strings->ptrDeclStr, typeInfo->fullTypeName, strings->ptrDeclStr );
 		Gen_AppendOpenBrace( code, flags, "" );
 		StringBuilder_Appendf( code, "\treturn !%s( lhs, rhs );\n", equalsFuncStr );
 		StringBuilder_Append(  code, "}\n\n");
 	}
 }
 
-static void GenerateComponentWiseOperator( stringBuilder_t *code, const typeInfo_t *returnType, const typeInfo_t *lhsType, const typeInfo_t *rhsType, const char *opStr, const char *commentStr, const bool32 generateConstructors, const generatorFlags_t flags ) {
+static void GenerateComponentWiseOperator( stringBuilder_t *code, const typeInfo_t *returnType, const typeInfo_t *lhsType, const typeInfo_t *rhsType, const char *opStr, const char *commentStr, const bool32 generateConstructors, const generatorStrings_t *strings, const generatorFlags_t flags ) {
 	assert( code );
 	assert( returnType );
 	assert( returnType->fullTypeName );
@@ -903,11 +905,12 @@ static void GenerateComponentWiseOperator( stringBuilder_t *code, const typeInfo
 	assert( rhsType );
 	assert( rhsType->fullTypeName );
 	assert( opStr );
+	assert( strings );
 
-	const char *rhsReferenceStr = rhsType && Gen_TypeIsScalar( rhsType ) ? "" : "&";
+	const char *rhsReferenceStr = rhsType && Gen_TypeIsScalar( rhsType ) ? " " : strings->refDeclStr;
 
 	StringBuilder_Append(  code, commentStr );
-	StringBuilder_Appendf( code, "HLML_INLINE %s operator%s( const %s& lhs, const %s%s rhs )\n", returnType->fullTypeName, opStr, lhsType->fullTypeName, rhsType->fullTypeName, rhsReferenceStr );
+	StringBuilder_Appendf( code, "HLML_INLINE %s operator%s( const %s%slhs, const %s%srhs )\n", returnType->fullTypeName, opStr, lhsType->fullTypeName, strings->refDeclStr, rhsType->fullTypeName, rhsReferenceStr );
 	Gen_AppendOpenBrace( code, flags, "" );
 
 	if ( generateConstructors ) {
@@ -971,7 +974,7 @@ static void GenerateComponentWiseOperator( stringBuilder_t *code, const typeInfo
 	StringBuilder_Append( code, "}\n\n" );
 }
 
-static void GenerateCompundComponentWiseOperator( stringBuilder_t *code, const typeInfo_t *returnType, const typeInfo_t *lhsType, const typeInfo_t *rhsType, const char *opStr, const char *commentStr, const generatorFlags_t flags ) {
+static void GenerateCompundComponentWiseOperator( stringBuilder_t *code, const typeInfo_t *returnType, const typeInfo_t *lhsType, const typeInfo_t *rhsType, const char *opStr, const char *commentStr, const generatorStrings_t *strings, const generatorFlags_t flags ) {
 	assert( code );
 	assert( returnType );
 	assert( returnType->fullTypeName );
@@ -982,22 +985,24 @@ static void GenerateCompundComponentWiseOperator( stringBuilder_t *code, const t
 	assert( rhsType->fullTypeName );
 	assert( opStr );
 	assert( commentStr );
+	assert( strings );
 
-	const char *rhsReferenceStr = rhsType && Gen_TypeIsScalar( rhsType ) ? "" : "&";
+	const char *rhsReferenceStr = rhsType && Gen_TypeIsScalar( rhsType ) ? " " : strings->refDeclStr;
 
 	StringBuilder_Append(  code, commentStr );
-	StringBuilder_Appendf( code, "HLML_INLINE %s operator%s=( %s& lhs, const %s%s rhs )\n", returnType->fullTypeName, opStr, lhsType->fullTypeName, rhsType->fullTypeName, rhsReferenceStr );
+	StringBuilder_Appendf( code, "HLML_INLINE %s operator%s=( %s%slhs, const %s%srhs )\n", returnType->fullTypeName, opStr, lhsType->fullTypeName, strings->refDeclStr, rhsType->fullTypeName, rhsReferenceStr );
 	Gen_AppendOpenBrace( code, flags, "" );
 	StringBuilder_Appendf( code, "\treturn ( lhs = lhs %s rhs );\n", opStr );
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateOperatorSingleParm( stringBuilder_t *code, const typeInfo_t *typeInfo, const char *opStr, const operatorSingleParmType_t type, const operatorSingleParmFlags_t singleParmFlags, const char *commentStr, const bool32 generateConstructors, const generatorFlags_t flags ) {
+static void GenerateOperatorSingleParm( stringBuilder_t *code, const typeInfo_t *typeInfo, const char *opStr, const operatorSingleParmType_t type, const operatorSingleParmFlags_t singleParmFlags, const char *commentStr, const bool32 generateConstructors, const generatorStrings_t *strings, const generatorFlags_t flags ) {
 	assert( code );
 	assert( typeInfo );
 	assert( typeInfo->fullTypeName );
 	assert( opStr );
 	assert( commentStr );
+	assert( strings );
 
 	StringBuilder_Append( code, commentStr );
 
@@ -1006,7 +1011,7 @@ static void GenerateOperatorSingleParm( stringBuilder_t *code, const typeInfo_t 
 	if ( type == OPERATOR_SINGLE_PARM_TYPE_PREFIX ) {
 		if ( singleParmFlags & OPERATOR_PREFIX_FLAG_RETURN_COPY ) {
 			StringBuilder_Append(  code, "// pre-fix\n" );
-			StringBuilder_Appendf( code, "HLML_INLINE %s operator%s( const %s& x )\n", typeInfo->fullTypeName, opStr, typeInfo->fullTypeName );
+			StringBuilder_Appendf( code, "HLML_INLINE %s operator%s( const %s%sx )\n", typeInfo->fullTypeName, opStr, typeInfo->fullTypeName, strings->refDeclStr );
 			Gen_AppendOpenBrace( code, flags, "" );
 
 			if ( generateConstructors ) {
@@ -1033,7 +1038,7 @@ static void GenerateOperatorSingleParm( stringBuilder_t *code, const typeInfo_t 
 			}
 			StringBuilder_Append( code, "}\n\n" );
 		} else {
-			StringBuilder_Appendf( code, "HLML_INLINE %s operator%s( %s& x )\n", typeInfo->fullTypeName, opStr, typeInfo->fullTypeName );
+			StringBuilder_Appendf( code, "HLML_INLINE %s operator%s( %s%sx )\n", typeInfo->fullTypeName, opStr, typeInfo->fullTypeName, strings->refDeclStr );
 			Gen_AppendOpenBrace( code, flags, "" );
 			for ( u32 i = 0; i < numIterations; i++ ) {
 				StringBuilder_Appendf( code, "\t%sx[%d];\n", opStr, i );
@@ -1045,7 +1050,7 @@ static void GenerateOperatorSingleParm( stringBuilder_t *code, const typeInfo_t 
 		assert( ( singleParmFlags & OPERATOR_PREFIX_FLAG_RETURN_COPY ) == 0 );
 
 		StringBuilder_Append(  code, "// post-fix\n" );
-		StringBuilder_Appendf( code, "HLML_INLINE %s operator%s( %s& x, const %s )\n", typeInfo->fullTypeName, opStr, typeInfo->fullTypeName, Gen_GetMemberTypeString( GEN_TYPE_INT ) );
+		StringBuilder_Appendf( code, "HLML_INLINE %s operator%s( %s%sx, const %s )\n", typeInfo->fullTypeName, opStr, typeInfo->fullTypeName, strings->refDeclStr, Gen_GetMemberTypeString( GEN_TYPE_INT ) );
 		Gen_AppendOpenBrace( code, flags, "" );
 		for ( u32 i = 0; i < numIterations; i++ ) {
 			StringBuilder_Appendf( code, "\tx[%d]%s;\n", i, opStr );
@@ -1055,7 +1060,7 @@ static void GenerateOperatorSingleParm( stringBuilder_t *code, const typeInfo_t 
 	}
 }
 
-static void GenerateComponentWiseFunction_Operator( stringBuilder_t *code, const typeInfo_t *returnType, const typeInfo_t *lhsType, const typeInfo_t *rhsType, const char *funcStr, const char *memberFuncStr, const char *opStr, const char *commentStr, const generatorFlags_t flags ) {
+static void GenerateComponentWiseFunction_Operator( stringBuilder_t *code, const typeInfo_t *returnType, const typeInfo_t *lhsType, const typeInfo_t *rhsType, const char *funcStr, const char *memberFuncStr, const char *opStr, const char *commentStr, const generatorStrings_t *strings, const generatorFlags_t flags ) {
 	assert( code );
 	assert( returnType );
 	assert( returnType->fullTypeName );
@@ -1068,12 +1073,13 @@ static void GenerateComponentWiseFunction_Operator( stringBuilder_t *code, const
 	assert( memberFuncStr );
 	assert( opStr );
 	assert( commentStr );
+	assert( strings );
 
-	const char *parmPointerStr = Gen_TypeIsScalar( rhsType ) ? "" : "*";
+	const char *parmPointerStr = Gen_TypeIsScalar( rhsType ) ? " " : strings->ptrDeclStr;
 	const char *referenceStr = Gen_TypeIsScalar( rhsType ) ? "." : "->";
 
 	StringBuilder_Appendf( code, commentStr );
-	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s *lhs, const %s%s rhs )\n", returnType->fullTypeName, funcStr, lhsType->fullTypeName, rhsType->fullTypeName, parmPointerStr );
+	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%slhs, const %s%srhs )\n", returnType->fullTypeName, funcStr, lhsType->fullTypeName, strings->ptrDeclStr, rhsType->fullTypeName, parmPointerStr );
 	Gen_AppendOpenBrace( code, flags, "" );
 	StringBuilder_Appendf( code, "\treturn HLML_CONSTRUCT( %s )\n", returnType->fullTypeName );
 	Gen_AppendOpenBrace( code, flags, "\t" );
@@ -1148,7 +1154,7 @@ static void GenerateComponentWiseFunction_OperatorSingleParm( allocatorLinear_t 
 	const char *funcStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, opName );
 
 	StringBuilder_Append(  code, commentStr );
-	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s *x )\n", typeInfo->fullTypeName, funcStr, typeInfo->fullTypeName );
+	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%sx )\n", typeInfo->fullTypeName, funcStr, typeInfo->fullTypeName, strings->ptrDeclStr );
 	Gen_AppendOpenBrace( code, flags, "" );
 	StringBuilder_Appendf( code, "\treturn HLML_CONSTRUCT( %s )\n", typeInfo->fullTypeName );
 	Gen_AppendOpenBrace( code, flags, "\t" );
@@ -1245,9 +1251,9 @@ static void GenerateComponentWiseFunction( allocatorLinear_t *tempStorage, strin
 	for ( u32 i = 0; i < parmsCount; i++ ) {
 		const genFunctionParm_t *parm = &parms[i];
 
-		const char *parmPointerStr = Gen_TypeIsScalar( parm->typeInfo ) ? "" : strings->parmPassByStr;
+		const char *parmPointerStr = Gen_TypeIsScalar( parm->typeInfo ) ? " " : strings->parmPassByStr;
 
-		StringBuilder_Appendf( code, "const %s%s %s", parm->typeInfo->fullTypeName, parmPointerStr, parm->name );
+		StringBuilder_Appendf( code, "const %s%s%s", parm->typeInfo->fullTypeName, parmPointerStr, parm->name );
 
 		if ( i < parmsCount - 1 ) {
 			StringBuilder_Appendf( code, ", " );
@@ -1605,8 +1611,8 @@ void GenerateComponentWiseOperators( allocatorLinear_t *tempStorage, const typeI
 	// equality (==, !=) is generated unconditionally, regardless of GENERATOR_FLAG_GENERATE_RELATIONAL_OPERATORS -
 	// the generated test suite's pass/fail checks call into the type's own X_equals()/operator==(), so it can't
 	// be made optional without also reworking how tests verify their results.
-	GenerateFunction_Equals( tempStorage, typeInfo, code, flags );
-	GenerateFunction_NotEquals( tempStorage, typeInfo, code, flags );
+	GenerateFunction_Equals( tempStorage, typeInfo, code, strings, flags );
+	GenerateFunction_NotEquals( tempStorage, typeInfo, code, strings, flags );
 
 	if ( flags & GENERATOR_FLAG_GENERATE_OPERATORS ) {
 		if ( flags & GENERATOR_FLAG_GENERATE_RELATIONAL_OPERATORS ) {
@@ -1617,7 +1623,7 @@ void GenerateComponentWiseOperators( allocatorLinear_t *tempStorage, const typeI
 
 				commentStr = GetComment_ComponentWiseRelational( tempStorage, opStr, typeDescPlural );
 
-				GenerateComponentWiseOperator( code, &returnTypeBoolVector, typeInfo, typeInfo, opStr, commentStr, generateConstructors, flags );
+				GenerateComponentWiseOperator( code, &returnTypeBoolVector, typeInfo, typeInfo, opStr, commentStr, generateConstructors, strings, flags );
 			}
 		}
 
@@ -1629,21 +1635,21 @@ void GenerateComponentWiseOperators( allocatorLinear_t *tempStorage, const typeI
 			{
 				commentStr = GetComment_ComponentWiseArithmetic_Scalar( tempStorage, opStr, typeDescSingular );
 
-				GenerateComponentWiseOperator( code, typeInfo, typeInfo, &scalarType, opStr, commentStr, generateConstructors, flags );
+				GenerateComponentWiseOperator( code, typeInfo, typeInfo, &scalarType, opStr, commentStr, generateConstructors, strings, flags );
 
 				commentStr = GetComment_CompoundComponentWiseArithmetic_Scalar( tempStorage, opStr );
 
-				GenerateCompundComponentWiseOperator( code, typeInfo, typeInfo, &scalarType, opStr, commentStr, flags );
+				GenerateCompundComponentWiseOperator( code, typeInfo, typeInfo, &scalarType, opStr, commentStr, strings, flags );
 			}
 
 			{
 				commentStr = GetComment_ComponentWiseArithmetic_Vector( tempStorage, opStr, typeDescPlural );
 
-				GenerateComponentWiseOperator( code, typeInfo, typeInfo, typeInfo, opStr, commentStr, generateConstructors, flags );
+				GenerateComponentWiseOperator( code, typeInfo, typeInfo, typeInfo, opStr, commentStr, generateConstructors, strings, flags );
 
 				commentStr = GetComment_CompoundComponentWiseArithmetic_Vector( tempStorage, opStr );
 
-				GenerateCompundComponentWiseOperator( code, typeInfo, typeInfo, typeInfo, opStr, commentStr, flags );
+				GenerateCompundComponentWiseOperator( code, typeInfo, typeInfo, typeInfo, opStr, commentStr, strings, flags );
 			}
 		}
 
@@ -1654,8 +1660,8 @@ void GenerateComponentWiseOperators( allocatorLinear_t *tempStorage, const typeI
 
 			commentStr = GetComment_ComponentWiseIncrement( tempStorage, opStr, typeDescSingular );
 
-			GenerateOperatorSingleParm( code, typeInfo, opStr, OPERATOR_SINGLE_PARM_TYPE_PREFIX, 0, commentStr, generateConstructors, flags );
-			GenerateOperatorSingleParm( code, typeInfo, opStr, OPERATOR_SINGLE_PARM_TYPE_POSTFIX, 0, commentStr, generateConstructors, flags );
+			GenerateOperatorSingleParm( code, typeInfo, opStr, OPERATOR_SINGLE_PARM_TYPE_PREFIX, 0, commentStr, generateConstructors, strings, flags );
+			GenerateOperatorSingleParm( code, typeInfo, opStr, OPERATOR_SINGLE_PARM_TYPE_POSTFIX, 0, commentStr, generateConstructors, strings, flags );
 		}
 
 		if ( typeInfo->type != GEN_TYPE_BOOL ) {
@@ -1669,7 +1675,7 @@ void GenerateComponentWiseOperators( allocatorLinear_t *tempStorage, const typeI
 			}
 
 			commentStr = GetComment_ComponentWiseNegate( tempStorage, typeDescSingular );
-			GenerateOperatorSingleParm( code, typeInfo, "-", OPERATOR_SINGLE_PARM_TYPE_PREFIX, OPERATOR_PREFIX_FLAG_RETURN_COPY, commentStr, generateConstructors, flags );
+			GenerateOperatorSingleParm( code, typeInfo, "-", OPERATOR_SINGLE_PARM_TYPE_PREFIX, OPERATOR_PREFIX_FLAG_RETURN_COPY, commentStr, generateConstructors, strings, flags );
 
 			if ( typeInfo->type == GEN_TYPE_UINT ) {
 				StringBuilder_Append( code,
@@ -1690,28 +1696,28 @@ void GenerateComponentWiseOperators( allocatorLinear_t *tempStorage, const typeI
 				if ( op == GEN_OP_BITWISE_NOT ) {
 					commentStr = GetComment_ComponentWiseBitwiseNot( tempStorage, typeDescSingular );
 
-					GenerateOperatorSingleParm( code, typeInfo, opStr, OPERATOR_SINGLE_PARM_TYPE_PREFIX, OPERATOR_PREFIX_FLAG_RETURN_COPY, commentStr, generateConstructors, flags );
+					GenerateOperatorSingleParm( code, typeInfo, opStr, OPERATOR_SINGLE_PARM_TYPE_PREFIX, OPERATOR_PREFIX_FLAG_RETURN_COPY, commentStr, generateConstructors, strings, flags );
 					continue;
 				}
 
 				{
 					commentStr = GetComment_ComponentWiseBitwise_Scalar( tempStorage, op, typeDescSingular );
 
-					GenerateComponentWiseOperator( code, typeInfo, typeInfo, &scalarType, opStr, commentStr, generateConstructors, flags );
+					GenerateComponentWiseOperator( code, typeInfo, typeInfo, &scalarType, opStr, commentStr, generateConstructors, strings, flags );
 
 					commentStr = GetComment_CompoundComponentWiseBitwise_Scalar( tempStorage, op );
 
-					GenerateCompundComponentWiseOperator( code, typeInfo, typeInfo, &scalarType, opStr, commentStr, flags );
+					GenerateCompundComponentWiseOperator( code, typeInfo, typeInfo, &scalarType, opStr, commentStr, strings, flags );
 				}
 
 				{
 					commentStr = GetComment_ComponentWiseBitwise_Vector( tempStorage, op, typeDescPlural );
 
-					GenerateComponentWiseOperator( code, typeInfo, typeInfo, typeInfo, opStr, commentStr, generateConstructors, flags );
+					GenerateComponentWiseOperator( code, typeInfo, typeInfo, typeInfo, opStr, commentStr, generateConstructors, strings, flags );
 
 					commentStr = GetComment_CompoundComponentWiseBitwise_Vector( tempStorage, op );
 
-					GenerateCompundComponentWiseOperator( code, typeInfo, typeInfo, typeInfo, opStr, commentStr, flags );
+					GenerateCompundComponentWiseOperator( code, typeInfo, typeInfo, typeInfo, opStr, commentStr, strings, flags );
 				}
 			}
 		}
@@ -1726,7 +1732,7 @@ void GenerateComponentWiseOperators( allocatorLinear_t *tempStorage, const typeI
 
 				commentStr = GetComment_ComponentWiseRelational( tempStorage, opStr, typeDescPlural );
 
-				GenerateComponentWiseFunction_Operator( code, &returnTypeBoolVector, typeInfo, typeInfo, funcName, memberFuncStr, opStr, commentStr, flags );
+				GenerateComponentWiseFunction_Operator( code, &returnTypeBoolVector, typeInfo, typeInfo, funcName, memberFuncStr, opStr, commentStr, strings, flags );
 			}
 		}
 
@@ -1743,7 +1749,7 @@ void GenerateComponentWiseOperators( allocatorLinear_t *tempStorage, const typeI
 
 			commentStr = GetComment_ComponentWiseArithmetic_Scalar( tempStorage, opStr, typeDescSingular );
 
-			GenerateComponentWiseFunction_Operator( code, typeInfo, typeInfo, &scalarType, funcName, memberFuncStrScalar, opStr, commentStr, flags );
+			GenerateComponentWiseFunction_Operator( code, typeInfo, typeInfo, &scalarType, funcName, memberFuncStrScalar, opStr, commentStr, strings, flags );
 
 			if ( typeIsVector ) {
 				funcName = Gen_GetFuncName_VectorArithmeticVector( tempStorage, typeInfo, op );
@@ -1753,7 +1759,7 @@ void GenerateComponentWiseOperators( allocatorLinear_t *tempStorage, const typeI
 
 			commentStr = GetComment_ComponentWiseArithmetic_Vector( tempStorage, opStr, typeDescPlural );
 
-			GenerateComponentWiseFunction_Operator( code, typeInfo, typeInfo, typeInfo, funcName, memberFuncStrVector, opStr, commentStr, flags );
+			GenerateComponentWiseFunction_Operator( code, typeInfo, typeInfo, typeInfo, funcName, memberFuncStrVector, opStr, commentStr, strings, flags );
 		}
 
 		if ( typeInfo->type != GEN_TYPE_BOOL ) {
@@ -1802,7 +1808,7 @@ void GenerateComponentWiseOperators( allocatorLinear_t *tempStorage, const typeI
 
 				commentStr = GetComment_ComponentWiseBitwise_Scalar( tempStorage, op, typeDescSingular );
 
-				GenerateComponentWiseFunction_Operator( code, typeInfo, typeInfo, &scalarType, funcName, memberFuncStrScalar, opStr, commentStr, flags );
+				GenerateComponentWiseFunction_Operator( code, typeInfo, typeInfo, &scalarType, funcName, memberFuncStrScalar, opStr, commentStr, strings, flags );
 
 				if ( typeIsVector ) {
 					funcName = Gen_GetFuncName_VectorBitwiseVector( tempStorage, typeInfo, op );
@@ -1812,7 +1818,7 @@ void GenerateComponentWiseOperators( allocatorLinear_t *tempStorage, const typeI
 
 				commentStr = GetComment_ComponentWiseBitwise_Vector( tempStorage, op, typeDescPlural );
 
-				GenerateComponentWiseFunction_Operator( code, typeInfo, typeInfo,typeInfo, funcName, memberFuncStrVector, opStr, commentStr, flags );
+				GenerateComponentWiseFunction_Operator( code, typeInfo, typeInfo,typeInfo, funcName, memberFuncStrVector, opStr, commentStr, strings, flags );
 			}
 		}
 	}

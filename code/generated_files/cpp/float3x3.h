@@ -67,10 +67,10 @@ struct float3x3
 	HLML_INLINE explicit float3x3( const float diagonal );
 
 	// Sets each diagonal component of the matrix to the corresponding vector component.
-	HLML_INLINE float3x3( const float3& diagonal );
+	HLML_INLINE float3x3( const float3 &diagonal );
 
 	// Sets each row of the matrix to the corresponding vector.
-	HLML_INLINE float3x3( const float3& row0, const float3& row1, const float3& row2 );
+	HLML_INLINE float3x3( const float3 &row0, const float3 &row1, const float3 &row2 );
 
 	// Sets each component of the matrix to the corresponding scalar value.
 	HLML_INLINE float3x3( const float m00, const float m01, const float m02,
@@ -78,32 +78,32 @@ struct float3x3
 					const float m20, const float m21, const float m22 );
 
 	// Copy constructor.
-	HLML_INLINE float3x3( const float3x3& mat );
+	HLML_INLINE float3x3( const float3x3 &mat );
 
 	// Conversion constructor.  Casts all components of 'mat' from type bool32_t to type float.
-	HLML_INLINE explicit float3x3( const bool3x3& mat );
+	HLML_INLINE explicit float3x3( const bool3x3 &mat );
 
 	// Conversion constructor.  Casts all components of 'mat' from type int32_t to type float.
-	HLML_INLINE explicit float3x3( const int3x3& mat );
+	HLML_INLINE explicit float3x3( const int3x3 &mat );
 
 	// Conversion constructor.  Casts all components of 'mat' from type uint32_t to type float.
-	HLML_INLINE explicit float3x3( const uint3x3& mat );
+	HLML_INLINE explicit float3x3( const uint3x3 &mat );
 
 	// Conversion constructor.  Casts all components of 'mat' from type double to type float.
-	HLML_INLINE explicit float3x3( const double3x3& mat );
+	HLML_INLINE explicit float3x3( const double3x3 &mat );
 
 	HLML_INLINE ~float3x3() {}
 
 	// Sets each row of the matrix to be the same as the parameter.
-	HLML_INLINE float3x3 operator=( const float3x3& mat );
+	HLML_INLINE float3x3 operator=( const float3x3 &mat );
 
 	// Returns the row vector at the given index of the matrix.
 	// Index CANNOT be lower than 0 or higher than 3.
-	HLML_INLINE float3& operator[]( const int32_t index );
+	HLML_INLINE float3 &operator[]( const int32_t index );
 
 	// Returns the row vector at the given index of the matrix.
 	// Index CANNOT be lower than 0 or higher than 3.
-	HLML_INLINE const float3& operator[]( const int32_t index ) const;
+	HLML_INLINE const float3 &operator[]( const int32_t index ) const;
 };
 
 #ifdef HLML_NAMESPACE

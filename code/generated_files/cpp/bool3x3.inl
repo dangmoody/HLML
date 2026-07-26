@@ -19,7 +19,7 @@ bool3x3::bool3x3( const bool32_t diagonal )
 	rows[2][2] = diagonal;
 }
 
-bool3x3::bool3x3( const bool3& diagonal )
+bool3x3::bool3x3( const bool3 &diagonal )
 {
 	rows[0][0] = diagonal[0];
 	rows[1][1] = diagonal[1];
@@ -27,7 +27,7 @@ bool3x3::bool3x3( const bool3& diagonal )
 }
 
 // Sets each row of the matrix to the corresponding vector.
-bool3x3::bool3x3( const bool3& row0, const bool3& row1, const bool3& row2 )
+bool3x3::bool3x3( const bool3 &row0, const bool3 &row1, const bool3 &row2 )
 {
 	rows[0] = row0;
 	rows[1] = row1;
@@ -44,42 +44,42 @@ bool3x3::bool3x3( const bool32_t m00, const bool32_t m01, const bool32_t m02,
 	rows[2] = bool3( m20, m21, m22 );
 }
 
-bool3x3::bool3x3( const bool3x3& mat )
+bool3x3::bool3x3( const bool3x3 &mat )
 {
 	rows[0] = mat[0];
 	rows[1] = mat[1];
 	rows[2] = mat[2];
 }
 
-bool3x3::bool3x3( const int3x3& mat )
+bool3x3::bool3x3( const int3x3 &mat )
 {
 	rows[0] = bool3( mat[0] );
 	rows[1] = bool3( mat[1] );
 	rows[2] = bool3( mat[2] );
 }
 
-bool3x3::bool3x3( const uint3x3& mat )
+bool3x3::bool3x3( const uint3x3 &mat )
 {
 	rows[0] = bool3( mat[0] );
 	rows[1] = bool3( mat[1] );
 	rows[2] = bool3( mat[2] );
 }
 
-bool3x3::bool3x3( const float3x3& mat )
+bool3x3::bool3x3( const float3x3 &mat )
 {
 	rows[0] = bool3( mat[0] );
 	rows[1] = bool3( mat[1] );
 	rows[2] = bool3( mat[2] );
 }
 
-bool3x3::bool3x3( const double3x3& mat )
+bool3x3::bool3x3( const double3x3 &mat )
 {
 	rows[0] = bool3( mat[0] );
 	rows[1] = bool3( mat[1] );
 	rows[2] = bool3( mat[2] );
 }
 
-bool3x3 bool3x3::operator=( const bool3x3& other )
+bool3x3 bool3x3::operator=( const bool3x3 &other )
 {
 	rows[0] = other[0];
 	rows[1] = other[1];
@@ -88,13 +88,13 @@ bool3x3 bool3x3::operator=( const bool3x3& other )
 	return *this;
 }
 
-bool3& bool3x3::operator[]( const int32_t index )
+bool3 &bool3x3::operator[]( const int32_t index )
 {
 	HLML_ASSERT( index >= 0 && index < 3 );
 	return rows[index];
 }
 
-const bool3& bool3x3::operator[]( const int32_t index ) const
+const bool3 &bool3x3::operator[]( const int32_t index ) const
 {
 	HLML_ASSERT( index >= 0 && index < 3 );
 	return rows[index];

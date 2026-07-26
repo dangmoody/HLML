@@ -6,7 +6,7 @@
 
 #include "../hlml.h"
 
-TEMPER_TEST_PARAMETRIC( Test_float4_quat_muls, TEMPER_FLAG_SHOULD_RUN, const float4* quat, const float scalar, const float4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_float4_quat_muls, TEMPER_FLAG_SHOULD_RUN, const float4 *quat, const float scalar, const float4 *expectedAnswer )
 {
 	float4 actualAnswer = float4_quat_muls( quat, scalar );
 	TEMPER_CHECK_TRUE( float4_equals( &actualAnswer, expectedAnswer ) );
@@ -32,7 +32,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_quat_muls,
 		1.000000f,
 		&(float4) { 1.000000f, 1.000000f, 1.000000f, 1.000000f }
 );
-TEMPER_TEST_PARAMETRIC( Test_float4_quat_mulq, TEMPER_FLAG_SHOULD_RUN, const float4* lhs, const float4* rhs, const float4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_float4_quat_mulq, TEMPER_FLAG_SHOULD_RUN, const float4 *lhs, const float4 *rhs, const float4 *expectedAnswer )
 {
 	float4 actualAnswer = float4_quat_mulq( lhs, rhs );
 	TEMPER_CHECK_TRUE( float4_equals( &actualAnswer, expectedAnswer ) );
@@ -63,7 +63,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_quat_mulq,
 		&(float4) { 1.000000f, 3.000000f, 5.000000f, 7.000000f },
 		&(float4) { 22.000000f, 30.000000f, 56.000000f, 4.000000f }
 );
-TEMPER_TEST_PARAMETRIC( Test_float4_quat_normalize, TEMPER_FLAG_SHOULD_RUN, const float4* quat, const float4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_float4_quat_normalize, TEMPER_FLAG_SHOULD_RUN, const float4 *quat, const float4 *expectedAnswer )
 {
 	float4 actualResult = float4_quat_normalize( quat );
 	TEMPER_CHECK_TRUE( float4_equals( &actualResult, expectedAnswer ) );
@@ -74,7 +74,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_quat_normalize,
 	&(float4) { 0.272166f, 0.408248f, 0.544331f, 0.680414f }
 );
 
-TEMPER_TEST_PARAMETRIC( Test_float4_quat_conjugate, TEMPER_FLAG_SHOULD_RUN, const float4* quat, const float4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_float4_quat_conjugate, TEMPER_FLAG_SHOULD_RUN, const float4 *quat, const float4 *expectedAnswer )
 {
 	float4 actualResult = float4_quat_conjugate( quat );
 	TEMPER_CHECK_TRUE( float4_equals( &actualResult, expectedAnswer ) );
@@ -95,7 +95,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_quat_conjugate,
 	&(float4) { -3.000000f, -3.000000f, -3.000000f, 3.000000f }
 );
 
-TEMPER_TEST_PARAMETRIC( Test_float4_quat_inverse, TEMPER_FLAG_SHOULD_RUN, const float4* quat, const float4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_float4_quat_inverse, TEMPER_FLAG_SHOULD_RUN, const float4 *quat, const float4 *expectedAnswer )
 {
 	float4 actualResult = float4_quat_inverse( quat );
 	TEMPER_CHECK_TRUE( float4_equals( &actualResult, expectedAnswer ) );
@@ -116,7 +116,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_quat_inverse,
 	&(float4) { -0.083333f, -0.083333f, -0.083333f, 0.083333f }
 );
 
-TEMPER_TEST_PARAMETRIC( Test_float4_quat_rotate, TEMPER_FLAG_SHOULD_RUN, const float4* quat, const float angleRadians, const float3* axis, const float3* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_float4_quat_rotate, TEMPER_FLAG_SHOULD_RUN, const float4 *quat, const float angleRadians, const float3 *axis, const float3 *expectedAnswer )
 {
 	float3 actualResult = float4_quat_rotate( quat, angleRadians, axis );
 	TEMPER_CHECK_TRUE( float3_equals( &actualResult, expectedAnswer ) );
@@ -129,7 +129,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_quat_rotate,
 	&(float3) { 0.000000f, 0.000000f, 1.000000f }
 );
 
-TEMPER_TEST_PARAMETRIC( Test_float4_quat_to_rotation_matrix, TEMPER_FLAG_SHOULD_RUN, const float4* quat, const float4x4* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_float4_quat_to_rotation_matrix, TEMPER_FLAG_SHOULD_RUN, const float4 *quat, const float4x4 *expectedAnswer )
 {
 	float4x4 actualResult = float4_quat_to_rotation_matrix( quat );
 	TEMPER_CHECK_TRUE( float4x4_equals( &actualResult, expectedAnswer ) );

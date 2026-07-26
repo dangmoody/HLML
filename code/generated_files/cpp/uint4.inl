@@ -29,7 +29,7 @@ uint4::uint4( const uint32_t x, const uint32_t y, const uint32_t z, const uint32
 {
 }
 
-uint4::uint4( const uint4& vec )
+uint4::uint4( const uint4 &vec )
 	: x( vec.x )
 	, y( vec.y )
 	, z( vec.z )
@@ -37,7 +37,7 @@ uint4::uint4( const uint4& vec )
 {
 }
 
-uint4::uint4( const bool4& vec )
+uint4::uint4( const bool4 &vec )
 	: x( (uint32_t) vec.x )
 	, y( (uint32_t) vec.y )
 	, z( (uint32_t) vec.z )
@@ -45,7 +45,7 @@ uint4::uint4( const bool4& vec )
 {
 }
 
-uint4::uint4( const int4& vec )
+uint4::uint4( const int4 &vec )
 	: x( (uint32_t) vec.x )
 	, y( (uint32_t) vec.y )
 	, z( (uint32_t) vec.z )
@@ -53,7 +53,7 @@ uint4::uint4( const int4& vec )
 {
 }
 
-uint4::uint4( const float4& vec )
+uint4::uint4( const float4 &vec )
 	: x( (uint32_t) vec.x )
 	, y( (uint32_t) vec.y )
 	, z( (uint32_t) vec.z )
@@ -61,7 +61,7 @@ uint4::uint4( const float4& vec )
 {
 }
 
-uint4::uint4( const double4& vec )
+uint4::uint4( const double4 &vec )
 	: x( (uint32_t) vec.x )
 	, y( (uint32_t) vec.y )
 	, z( (uint32_t) vec.z )
@@ -69,7 +69,7 @@ uint4::uint4( const double4& vec )
 {
 }
 
-uint4::uint4( const uint2& xy, const uint32_t z, const uint32_t w )
+uint4::uint4( const uint2 &xy, const uint32_t z, const uint32_t w )
 	: x( xy.x )
 	, y( xy.y )
 	, z( z )
@@ -77,7 +77,7 @@ uint4::uint4( const uint2& xy, const uint32_t z, const uint32_t w )
 {
 }
 
-uint4::uint4( const uint32_t x, const uint32_t y, const uint2& zw )
+uint4::uint4( const uint32_t x, const uint32_t y, const uint2 &zw )
 	: x( x )
 	, y( y )
 	, z( zw.x )
@@ -85,7 +85,7 @@ uint4::uint4( const uint32_t x, const uint32_t y, const uint2& zw )
 {
 }
 
-uint4::uint4( const uint3& xyz, const uint32_t w )
+uint4::uint4( const uint3 &xyz, const uint32_t w )
 	: x( xyz.x )
 	, y( xyz.y )
 	, z( xyz.z )
@@ -93,7 +93,7 @@ uint4::uint4( const uint3& xyz, const uint32_t w )
 {
 }
 
-uint4::uint4( const uint32_t x, const uint3& w )
+uint4::uint4( const uint32_t x, const uint3 &w )
 	: x( x )
 	, y( w.x )
 	, z( w.y )
@@ -101,7 +101,7 @@ uint4::uint4( const uint32_t x, const uint3& w )
 {
 }
 
-uint4::uint4( const uint2& xy, const uint2& zw )
+uint4::uint4( const uint2 &xy, const uint2 &zw )
 	: x( xy.x )
 	, y( xy.y )
 	, z( zw.x )
@@ -109,7 +109,7 @@ uint4::uint4( const uint2& xy, const uint2& zw )
 {
 }
 
-uint4 uint4::operator=( const uint2& other )
+uint4 uint4::operator=( const uint2 &other )
 {
 	this->x = other.x;
 	this->y = other.y;
@@ -117,7 +117,7 @@ uint4 uint4::operator=( const uint2& other )
 	return *this;
 }
 
-uint4 uint4::operator=( const uint3& other )
+uint4 uint4::operator=( const uint3 &other )
 {
 	this->x = other.x;
 	this->y = other.y;
@@ -126,7 +126,7 @@ uint4 uint4::operator=( const uint3& other )
 	return *this;
 }
 
-uint4 uint4::operator=( const uint4& other )
+uint4 uint4::operator=( const uint4 &other )
 {
 	this->x = other.x;
 	this->y = other.y;
@@ -136,13 +136,13 @@ uint4 uint4::operator=( const uint4& other )
 	return *this;
 }
 
-uint32_t& uint4::operator[]( const int32_t index )
+uint32_t &uint4::operator[]( const int32_t index )
 {
 	HLML_ASSERT( index >= 0 && index < 4 );
 	return v[index];
 }
 
-const uint32_t& uint4::operator[]( const int32_t index ) const
+const uint32_t &uint4::operator[]( const int32_t index ) const
 {
 	HLML_ASSERT( index >= 0 && index < 4 );
 	return v[index];

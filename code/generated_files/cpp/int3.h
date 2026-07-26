@@ -298,41 +298,41 @@ struct int3
 	HLML_INLINE int3( const int32_t x, const int32_t y, const int32_t z );
 
 	// Copy constructor.  Copies all elements of 'other' into the vector.
-	HLML_INLINE int3( const int3& other );
+	HLML_INLINE int3( const int3 &other );
 
 	// Conversion constructor.  Casts all components of 'vec' from type bool32_t to type int32_t.
-	HLML_INLINE explicit int3( const bool3& vec );
+	HLML_INLINE explicit int3( const bool3 &vec );
 
 	// Conversion constructor.  Casts all components of 'vec' from type uint32_t to type int32_t.
-	HLML_INLINE explicit int3( const uint3& vec );
+	HLML_INLINE explicit int3( const uint3 &vec );
 
 	// Conversion constructor.  Casts all components of 'vec' from type float to type int32_t.
-	HLML_INLINE explicit int3( const float3& vec );
+	HLML_INLINE explicit int3( const float3 &vec );
 
 	// Conversion constructor.  Casts all components of 'vec' from type double to type int32_t.
-	HLML_INLINE explicit int3( const double3& vec );
+	HLML_INLINE explicit int3( const double3 &vec );
 
 	// Sets the xy components of the vector to that of the corresponding input vector.  Sets the other corresponding vectors to the given scalars.
-	HLML_INLINE int3( const int2& xy, const int32_t z );
+	HLML_INLINE int3( const int2 &xy, const int32_t z );
 
 	// Sets the zw components of the vector to that of the corresponding input vector.  Sets the other corresponding vectors to the given scalars.
-	HLML_INLINE int3( const int32_t x, const int2& zw );
+	HLML_INLINE int3( const int32_t x, const int2 &zw );
 
 	~int3() {}
 
 	// Copies all elements of 'other' into the vector.
-	HLML_INLINE int3 operator=( const int2& other );
+	HLML_INLINE int3 operator=( const int2 &other );
 
 	// Copies all elements of 'other' into the vector.
-	HLML_INLINE int3 operator=( const int3& other );
+	HLML_INLINE int3 operator=( const int3 &other );
 
 	// Returns the vector component at the given index.
 	// Index CANNOT be lower than 0 or greater than 2.
-	HLML_INLINE int32_t& operator[]( const int32_t index );
+	HLML_INLINE int32_t &operator[]( const int32_t index );
 
 	// Returns the vector component at the given index.
 	// Index CANNOT be lower than 0 or greater than 2.
-	HLML_INLINE const int32_t& operator[]( const int32_t index ) const;
+	HLML_INLINE const int32_t &operator[]( const int32_t index ) const;
 };
 
 #if defined( __clang__ ) || defined( __GNUC__ )

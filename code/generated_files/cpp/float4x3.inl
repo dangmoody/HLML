@@ -20,7 +20,7 @@ float4x3::float4x3( const float diagonal )
 	rows[3][3] = diagonal;
 }
 
-float4x3::float4x3( const float3& diagonal )
+float4x3::float4x3( const float3 &diagonal )
 {
 	rows[0][0] = diagonal[0];
 	rows[1][1] = diagonal[1];
@@ -29,7 +29,7 @@ float4x3::float4x3( const float3& diagonal )
 }
 
 // Sets each row of the matrix to the corresponding vector.
-float4x3::float4x3( const float3& row0, const float3& row1, const float3& row2, const float3& row3 )
+float4x3::float4x3( const float3 &row0, const float3 &row1, const float3 &row2, const float3 &row3 )
 {
 	rows[0] = row0;
 	rows[1] = row1;
@@ -49,7 +49,7 @@ float4x3::float4x3( const float m00, const float m01, const float m02,
 	rows[3] = float3( m30, m31, m32 );
 }
 
-float4x3::float4x3( const float4x3& mat )
+float4x3::float4x3( const float4x3 &mat )
 {
 	rows[0] = mat[0];
 	rows[1] = mat[1];
@@ -57,7 +57,7 @@ float4x3::float4x3( const float4x3& mat )
 	rows[3] = mat[3];
 }
 
-float4x3::float4x3( const bool4x3& mat )
+float4x3::float4x3( const bool4x3 &mat )
 {
 	rows[0] = float3( mat[0] );
 	rows[1] = float3( mat[1] );
@@ -65,7 +65,7 @@ float4x3::float4x3( const bool4x3& mat )
 	rows[3] = float3( mat[3] );
 }
 
-float4x3::float4x3( const int4x3& mat )
+float4x3::float4x3( const int4x3 &mat )
 {
 	rows[0] = float3( mat[0] );
 	rows[1] = float3( mat[1] );
@@ -73,7 +73,7 @@ float4x3::float4x3( const int4x3& mat )
 	rows[3] = float3( mat[3] );
 }
 
-float4x3::float4x3( const uint4x3& mat )
+float4x3::float4x3( const uint4x3 &mat )
 {
 	rows[0] = float3( mat[0] );
 	rows[1] = float3( mat[1] );
@@ -81,7 +81,7 @@ float4x3::float4x3( const uint4x3& mat )
 	rows[3] = float3( mat[3] );
 }
 
-float4x3::float4x3( const double4x3& mat )
+float4x3::float4x3( const double4x3 &mat )
 {
 	rows[0] = float3( mat[0] );
 	rows[1] = float3( mat[1] );
@@ -89,7 +89,7 @@ float4x3::float4x3( const double4x3& mat )
 	rows[3] = float3( mat[3] );
 }
 
-float4x3 float4x3::operator=( const float4x3& other )
+float4x3 float4x3::operator=( const float4x3 &other )
 {
 	rows[0] = other[0];
 	rows[1] = other[1];
@@ -99,13 +99,13 @@ float4x3 float4x3::operator=( const float4x3& other )
 	return *this;
 }
 
-float3& float4x3::operator[]( const int32_t index )
+float3 &float4x3::operator[]( const int32_t index )
 {
 	HLML_ASSERT( index >= 0 && index < 4 );
 	return rows[index];
 }
 
-const float3& float4x3::operator[]( const int32_t index ) const
+const float3 &float4x3::operator[]( const int32_t index ) const
 {
 	HLML_ASSERT( index >= 0 && index < 4 );
 	return rows[index];

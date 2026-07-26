@@ -9,7 +9,7 @@ struct swizzle_2_to_2_writable_t
 {
 	ScalarType v[2];
 
-	HLML_INLINE ReturnType operator=( const ReturnType& vec )
+	HLML_INLINE ReturnType operator=( const ReturnType &vec )
 	{
 		return ReturnType(
 			v[X] = vec.x,
@@ -61,7 +61,7 @@ struct swizzle_3_to_2_writable_t
 {
 	ScalarType v[3];
 
-	HLML_INLINE ReturnType operator=( const ReturnType& vec )
+	HLML_INLINE ReturnType operator=( const ReturnType &vec )
 	{
 		return ReturnType(
 			v[X] = vec.x,
@@ -91,7 +91,7 @@ struct swizzle_3_to_3_writable_t
 {
 	ScalarType v[3];
 
-	HLML_INLINE ReturnType operator=( const ReturnType& vec )
+	HLML_INLINE ReturnType operator=( const ReturnType &vec )
 	{
 		return ReturnType(
 			v[X] = vec.x,
@@ -133,7 +133,7 @@ struct swizzle_4_to_2_writable_t
 {
 	ScalarType v[4];
 
-	HLML_INLINE ReturnType operator=( const ReturnType& vec )
+	HLML_INLINE ReturnType operator=( const ReturnType &vec )
 	{
 		return ReturnType(
 			v[X] = vec.x,
@@ -163,7 +163,7 @@ struct swizzle_4_to_3_writable_t
 {
 	ScalarType v[4];
 
-	HLML_INLINE ReturnType operator=( const ReturnType& vec )
+	HLML_INLINE ReturnType operator=( const ReturnType &vec )
 	{
 		return ReturnType(
 			v[X] = vec.x,
@@ -194,7 +194,7 @@ struct swizzle_4_to_4_writable_t
 {
 	ScalarType v[4];
 
-	HLML_INLINE ReturnType operator=( const ReturnType& vec )
+	HLML_INLINE ReturnType operator=( const ReturnType &vec )
 	{
 		return ReturnType(
 			v[X] = vec.x,
