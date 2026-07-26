@@ -87,3 +87,8 @@ allow_namespace = false
 # Whether <, <=, >, >= are generated for every type. Equality (==, !=) is unaffected by this - it's
 # always generated, since the generated tests rely on it to check their results.
 generate_relational_operators = true
+
+# Whether opening scope braces (functions, structs, namespace blocks, control-flow) are put on the same
+# line as the preceding statement (K&R style) instead of on their own line (Allman style, the default
+# below). Does not affect aggregate-initializer braces (e.g. HLML_CONSTRUCT( type ) { ... }).
+braces_same_line = false
