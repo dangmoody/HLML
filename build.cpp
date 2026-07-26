@@ -89,6 +89,7 @@ static BuildConfig CreateTestConfig( const language_t language, const std::strin
 
 BUILDER_CALLBACK void SetBuilderOptions( BuilderOptions *options, CommandLineArgs *args ) {
 	options->consolidateCompilerArgs = true;
+	options->forceRebuild = HasCommandLineArg( args, "--force" );
 
 	std::string compilerName;
 
