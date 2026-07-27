@@ -402,8 +402,21 @@ void Gen_GenerateAPIFiles( allocatorLinear_t *tempStorage,
 
 	FS_CreateFolder( generatedCodePath );
 
+	// hlml_types.h only exists to provide bool32_t for bool-typed vectors/matrices (see the matching
+	// include-guard in GenerateVectorFiles in gen_vector.c) - skip it entirely if "bool" was excluded from
+	// "scalar_types" in the config, since nothing would reference it.
+	bool32 generateBoolType = false;
+	for ( u32 i = 0; i < vectorTypeInfosCount; i++ ) {
+		if ( vectorTypeInfos[i].type == GEN_TYPE_BOOL ) {
+			generateBoolType = true;
+			break;
+		}
+	}
+
 	GenerateMainHeader( tempStorage, generatedCodePath, vectorTypeInfos, vectorTypeInfosCount, matrixTypeInfos, matrixTypeInfosCount, quaternionTypeInfosCount, flags );
-	GenerateTypesHeader( tempStorage, generatedCodePath, flags );
+	if ( generateBoolType ) {
+		GenerateTypesHeader( tempStorage, generatedCodePath, flags );
+	}
 	GenerateConstantsHeader( tempStorage, generatedCodePath, flags );
 	GenerateDefinesHeader( tempStorage, generatedCodePath, flags );
 

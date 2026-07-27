@@ -736,7 +736,16 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 
 			// includes
 			{
-				StringBuilder_Append( codeHeader, "#include \"" GEN_HEADER_TYPES "\"\n" );
+				// hlml_types.h only exists to provide bool32_t, which only bool-typed vectors/matrices use as
+				// their member type - it isn't generated at all if "bool" was excluded from scalar_types (see
+				// Gen_GenerateAPIFiles in gen_api.c), so only reference it here if bool is actually enabled.
+				if ( scalarTypeEnabled[GEN_TYPE_BOOL] ) {
+					StringBuilder_Append( codeHeader, "#include \"" GEN_HEADER_TYPES "\"\n" );
+				} else if ( Gen_TypeIsInteger( typeInfo->type ) ) {
+					// int32_t/uint32_t members normally get <stdint.h> transitively via hlml_types.h above -
+					// since that's skipped here, pull it in directly so this header still stands on its own.
+					StringBuilder_Append( codeHeader, "#include <stdint.h>\n" );
+				}
 				StringBuilder_Append( codeHeader, "#include \"" GEN_HEADER_DEFINES "\"\n" );
 
 				if ( generateSwizzles ) {
