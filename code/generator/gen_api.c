@@ -400,6 +400,7 @@ void Gen_GenerateAPIFiles( allocatorLinear_t *tempStorage,
 						   const typeInfo_t *matrixTypeInfos, const u32 matrixTypeInfosCount,
 						   const generatorStrings_t *strings,
 						   const generatorFlags_t flags,
+						   const genFunctionNameCase_t caseStyle,
 						   const u32 componentCountMin, const u32 componentCountMax )
 {
 	assert( tempStorage );
@@ -434,19 +435,19 @@ void Gen_GenerateAPIFiles( allocatorLinear_t *tempStorage,
 	GenerateConstantsHeader( tempStorage, generatedCodePath, strings, flags );
 	GenerateDefinesHeader( tempStorage, generatedCodePath, strings, flags );
 
-	GenerateScalarFiles( tempStorage, generatedCodePath, strings, flags );
-	GenerateVectorFiles( tempStorage, generatedCodePath, vectorTypeInfos, vectorTypeInfosCount, strings, flags, componentCountMin, componentCountMax );
+	GenerateScalarFiles( tempStorage, generatedCodePath, strings, flags, caseStyle );
+	GenerateVectorFiles( tempStorage, generatedCodePath, vectorTypeInfos, vectorTypeInfosCount, strings, flags, caseStyle, componentCountMin, componentCountMax );
 
 	if ( flags & GENERATOR_FLAG_GENERATE_SSE ) {
 		GenerateSSEConstantsHeader( tempStorage, generatedCodePath, strings, flags );
-		GenerateScalarFiles_SSE( tempStorage, generatedCodePath, strings, flags );
-		GenerateVectorFiles_SSE( tempStorage, generatedCodePath, vectorTypeInfos, vectorTypeInfosCount, strings, flags );
+		GenerateScalarFiles_SSE( tempStorage, generatedCodePath, strings, flags, caseStyle );
+		GenerateVectorFiles_SSE( tempStorage, generatedCodePath, vectorTypeInfos, vectorTypeInfosCount, strings, flags, caseStyle );
 	}
 
 	if ( quaternionTypeInfosCount > 0 ) {
-		GenerateQuaternionFiles( tempStorage, generatedCodePath, quaternionTypeInfos, quaternionTypeInfosCount, strings, flags );
+		GenerateQuaternionFiles( tempStorage, generatedCodePath, quaternionTypeInfos, quaternionTypeInfosCount, strings, flags, caseStyle );
 	}
-	GenerateMatrixFiles( tempStorage, generatedCodePath, matrixTypeInfos, matrixTypeInfosCount, strings, flags );
+	GenerateMatrixFiles( tempStorage, generatedCodePath, matrixTypeInfos, matrixTypeInfosCount, strings, flags, caseStyle );
 
 	printf( "\n" );
 }

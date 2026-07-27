@@ -45,7 +45,7 @@ SOFTWARE.
 #endif
 
 // not really a "component-wise" function in the common sense, just so happens to use touch all of them
-static void GenerateFunction_All( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void GenerateFunction_All( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( code );
@@ -55,7 +55,7 @@ static void GenerateFunction_All( allocatorLinear_t *tempStorage, const typeInfo
 		return;
 	}
 
-	const char *allFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_ALL );
+	const char *allFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_ALL );
 
 	StringBuilder_Append(  code, "// Returns true if ALL components of the 'x' are true, otherwise returns false.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE bool %s( const %s%sx )\n", allFuncStr, typeInfo->fullTypeName, strings->ptrDeclStr );
@@ -73,7 +73,7 @@ static void GenerateFunction_All( allocatorLinear_t *tempStorage, const typeInfo
 	StringBuilder_Append( code, ";\n}\n\n" );
 }
 
-static void GenerateFunction_Any( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void GenerateFunction_Any( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( code );
@@ -83,7 +83,7 @@ static void GenerateFunction_Any( allocatorLinear_t *tempStorage, const typeInfo
 		return;
 	}
 
-	const char *anyFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_ANY );
+	const char *anyFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_ANY );
 
 	StringBuilder_Append(  code, "// Returns true if ANY one component of 'x' is true, otherwise returns false.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE bool %s( const %s%sx )\n", anyFuncStr, typeInfo->fullTypeName, strings->ptrDeclStr );
@@ -101,7 +101,7 @@ static void GenerateFunction_Any( allocatorLinear_t *tempStorage, const typeInfo
 	StringBuilder_Append( code, ";\n}\n\n" );
 }
 
-static void GenerateFunction_LengthSqr( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void GenerateFunction_LengthSqr( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( code );
@@ -115,7 +115,7 @@ static void GenerateFunction_LengthSqr( allocatorLinear_t *tempStorage, const ty
 
 	const char *returnTypeName = Gen_GetMemberTypeString( floatingPointType );
 
-	const char *lengthsqrFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_LENGTHSQ );
+	const char *lengthsqrFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_LENGTHSQ );
 
 	bool32 shouldTypecast = !Gen_TypeIsFloatingPoint( typeInfo->type );
 
@@ -146,7 +146,7 @@ static void GenerateFunction_LengthSqr( allocatorLinear_t *tempStorage, const ty
 	StringBuilder_Append( code, "}\n\n" );
 }
 
-static void GenerateFunction_Length( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void GenerateFunction_Length( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( code );
@@ -160,8 +160,8 @@ static void GenerateFunction_Length( allocatorLinear_t *tempStorage, const typeI
 
 	const char *returnTypeName = Gen_GetMemberTypeString( floatingPointType );
 
-	const char *lengthFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_LENGTH );
-	const char *lengthsqFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_LENGTHSQ );
+	const char *lengthFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_LENGTH );
+	const char *lengthsqFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_LENGTHSQ );
 
 	const char *sqrtFuncStr = Gen_GetBuiltinFunction( tempStorage, typeInfo->type, GEN_BUILTIN_FUNCTION_NAME_SQRT );
 
@@ -172,7 +172,7 @@ static void GenerateFunction_Length( allocatorLinear_t *tempStorage, const typeI
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateFunction_Normalize( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void GenerateFunction_Normalize( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( code );
@@ -182,10 +182,10 @@ static void GenerateFunction_Normalize( allocatorLinear_t *tempStorage, const ty
 		return;
 	}
 
-	const char *normalizeFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_NORMALIZE );
-	const char *lengthFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_LENGTH );
+	const char *normalizeFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_NORMALIZE );
+	const char *lengthFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_LENGTH );
 
-	const char *mulStr = Gen_GetFuncName_VectorArithmeticScalar( tempStorage, typeInfo, GEN_OP_ARITHMETIC_MUL );
+	const char *mulStr = Gen_GetFuncName_VectorArithmeticScalar( tempStorage, typeInfo, caseStyle, GEN_OP_ARITHMETIC_MUL );
 
 	const char *memberTypeString = Gen_GetMemberTypeString( typeInfo->type );
 
@@ -204,7 +204,7 @@ static void GenerateFunction_Normalize( allocatorLinear_t *tempStorage, const ty
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateFunction_Normalized( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void GenerateFunction_Normalized( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( code );
@@ -214,14 +214,14 @@ static void GenerateFunction_Normalized( allocatorLinear_t *tempStorage, const t
 		return;
 	}
 
-	const char *normalizedFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_NORMALIZED );
-	const char *lengthFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_LENGTH );
+	const char *normalizedFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_NORMALIZED );
+	const char *lengthFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_LENGTH );
 
 	const char *memberTypeString = Gen_GetMemberTypeString( typeInfo->type );
 
 	const char *oneStr = Gen_GetNumericLiteral( tempStorage, typeInfo->type, 1.0f, 1 );
 
-	const char *mulStr = Gen_GetFuncName_VectorArithmeticScalar( tempStorage, typeInfo, GEN_OP_ARITHMETIC_MUL );
+	const char *mulStr = Gen_GetFuncName_VectorArithmeticScalar( tempStorage, typeInfo, caseStyle, GEN_OP_ARITHMETIC_MUL );
 
 	StringBuilder_Append(  code, "// Returns a normalized copy of the vector.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%svec )\n", typeInfo->fullTypeName, normalizedFuncStr, typeInfo->fullTypeName, strings->parmPassByStr );
@@ -236,7 +236,7 @@ static void GenerateFunction_Normalized( allocatorLinear_t *tempStorage, const t
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateFunction_Dot( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void GenerateFunction_Dot( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( code );
@@ -256,7 +256,7 @@ static void GenerateFunction_Dot( allocatorLinear_t *tempStorage, const typeInfo
 
 	const char *returnTypeString = Gen_GetMemberTypeString( typeInfo->type );
 
-	const char *dotFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_DOT );
+	const char *dotFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_DOT );
 
 	StringBuilder_Append(  code, "// Returns the dot product of the two vectors.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%slhs, const %s%srhs )\n", returnTypeString, dotFuncStr, typeInfo->fullTypeName, strings->parmPassByStr, typeInfo->fullTypeName, strings->parmPassByStr );
@@ -285,7 +285,7 @@ static void GenerateFunction_Dot( allocatorLinear_t *tempStorage, const typeInfo
 	StringBuilder_Append( code, "}\n\n" );
 }
 
-static void GenerateFunction_Cross( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void GenerateFunction_Cross( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( code );
@@ -299,7 +299,7 @@ static void GenerateFunction_Cross( allocatorLinear_t *tempStorage, const typeIn
 		return;
 	}
 
-	const char *crossFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_CROSS );
+	const char *crossFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_CROSS );
 
 	StringBuilder_Append(  code, "// Returns a vector perpendicular to the two vectors.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%slhs, const %s%srhs )\n", typeInfo->fullTypeName, crossFuncStr, typeInfo->fullTypeName, strings->parmPassByStr, typeInfo->fullTypeName, strings->parmPassByStr );
@@ -318,7 +318,7 @@ static void GenerateFunction_Cross( allocatorLinear_t *tempStorage, const typeIn
 	StringBuilder_Append( code, "}\n\n" );
 }
 
-static void GenerateFunction_Angle( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void GenerateFunction_Angle( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( code );
@@ -332,10 +332,10 @@ static void GenerateFunction_Angle( allocatorLinear_t *tempStorage, const typeIn
 
 	const char *returnTypeString = Gen_GetMemberTypeString( floatingPointType );
 
-	const char *angleFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_ANGLE );
-	const char *normalizedFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_NORMALIZED );
-	const char *degreesFuncStr = Gen_GetFuncName_Scalar( tempStorage, typeInfo->type, flags, GEN_FUNCTION_NAME_DEGREES );
-	const char *dotFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_DOT );
+	const char *angleFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_ANGLE );
+	const char *normalizedFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_NORMALIZED );
+	const char *degreesFuncStr = Gen_GetFuncName_Scalar( tempStorage, typeInfo->type, flags, caseStyle, GEN_FUNCTION_NAME_DEGREES );
+	const char *dotFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_DOT );
 	const char *acosFuncStr = Gen_GetBuiltinFunction( tempStorage, typeInfo->type, GEN_BUILTIN_FUNCTION_NAME_ACOS );
 
 	StringBuilder_Append(  code, "// Returns the angle (in degrees) between the two vectors.\n" );
@@ -351,7 +351,7 @@ static void GenerateFunction_Angle( allocatorLinear_t *tempStorage, const typeIn
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateFunction_Distancesq( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void GenerateFunction_Distancesq( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( code );
@@ -367,8 +367,8 @@ static void GenerateFunction_Distancesq( allocatorLinear_t *tempStorage, const t
 
 	const char *returnTypeName = Gen_GetTypeString( Gen_GetSupportedFloatingPointType( typeInfo->type ) );
 
-	const char *distancesqFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_DISTANCESQ );
-	const char *lengthsqFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_LENGTHSQ );
+	const char *distancesqFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_DISTANCESQ );
+	const char *lengthsqFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_LENGTHSQ );
 
 	StringBuilder_Append(  code, "// Returns the squared distance between the two vectors.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%slhs, const %s%srhs )\n", returnTypeName, distancesqFuncStr, typeInfo->fullTypeName, strings->parmPassByStr, typeInfo->fullTypeName, strings->parmPassByStr );
@@ -376,7 +376,7 @@ static void GenerateFunction_Distancesq( allocatorLinear_t *tempStorage, const t
 	if ( flags & GENERATOR_FLAG_GENERATE_OPERATORS ) {
 		StringBuilder_Appendf( code, "\treturn %s( lhs - rhs );\n", lengthsqFuncStr );
 	} else {
-		const char *subFuncStr = Gen_GetFuncName_VectorArithmeticVector( tempStorage, typeInfo, GEN_OP_ARITHMETIC_SUB );
+		const char *subFuncStr = Gen_GetFuncName_VectorArithmeticVector( tempStorage, typeInfo, caseStyle, GEN_OP_ARITHMETIC_SUB );
 
 		StringBuilder_Appendf( code, "\t%s delta = %s( lhs, rhs );\n", typeInfo->fullTypeName, subFuncStr );
 		StringBuilder_Appendf( code, "\treturn %s( &delta );\n", lengthsqFuncStr );
@@ -384,7 +384,7 @@ static void GenerateFunction_Distancesq( allocatorLinear_t *tempStorage, const t
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateFunction_Distance( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void GenerateFunction_Distance( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( code );
@@ -400,8 +400,8 @@ static void GenerateFunction_Distance( allocatorLinear_t *tempStorage, const typ
 
 	const char *returnTypeName = Gen_GetMemberTypeString( Gen_GetSupportedFloatingPointType( typeInfo->type ) );
 
-	const char *distancesqFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_DISTANCE );
-	const char *lengthFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_LENGTH );
+	const char *distancesqFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_DISTANCE );
+	const char *lengthFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_LENGTH );
 
 	StringBuilder_Append(  code, "// Returns the distance between the two vectors.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%slhs, const %s%srhs )\n", returnTypeName, distancesqFuncStr, typeInfo->fullTypeName, strings->parmPassByStr, typeInfo->fullTypeName, strings->parmPassByStr );
@@ -410,7 +410,7 @@ static void GenerateFunction_Distance( allocatorLinear_t *tempStorage, const typ
 		StringBuilder_Appendf( code, "\treturn %s( lhs - rhs );\n", lengthFuncStr );
 
 	} else {
-		const char *subFuncStr = Gen_GetFuncName_VectorArithmeticVector( tempStorage, typeInfo, GEN_OP_ARITHMETIC_SUB );
+		const char *subFuncStr = Gen_GetFuncName_VectorArithmeticVector( tempStorage, typeInfo, caseStyle, GEN_OP_ARITHMETIC_SUB );
 
 		StringBuilder_Appendf( code, "\t%s delta = %s( lhs, rhs );\n", typeInfo->fullTypeName, subFuncStr );
 		StringBuilder_Appendf( code, "\treturn %s( &delta );\n", lengthFuncStr );
@@ -418,7 +418,7 @@ static void GenerateFunction_Distance( allocatorLinear_t *tempStorage, const typ
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateFunction_Pack( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void GenerateFunction_Pack( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( typeInfo );
 	assert( code );
 	assert( strings );
@@ -433,7 +433,7 @@ static void GenerateFunction_Pack( allocatorLinear_t *tempStorage, const typeInf
 
 	const char *memberTypeString = Gen_GetMemberTypeString( typeInfo->type );
 
-	const char *packFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_PACK );
+	const char *packFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_PACK );
 
 	StringBuilder_Append(  code, "// Returns a 32 bit integer containing each component of the vector at each byte (where the X component contains the left-most byte).\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%svec )\n", memberTypeString, packFuncStr, typeInfo->fullTypeName, strings->parmPassByStr );
@@ -442,7 +442,7 @@ static void GenerateFunction_Pack( allocatorLinear_t *tempStorage, const typeInf
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateFunction_Unpack( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorFlags_t flags ) {
+static void GenerateFunction_Unpack( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( typeInfo );
 	assert( code );
 
@@ -460,7 +460,7 @@ static void GenerateFunction_Unpack( allocatorLinear_t *tempStorage, const typeI
 
 	const char *memberTypeString = Gen_GetMemberTypeString( typeInfo->type );
 
-	const char *unpackFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_UNPACK );
+	const char *unpackFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_UNPACK );
 
 	StringBuilder_Append(  code, "// Returns a 4-component int vector where each component contains each byte of the integer (where the X component contains the left-most byte).\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s x )\n", typeInfo->fullTypeName, unpackFuncStr, memberTypeString );
@@ -680,7 +680,7 @@ void GenerateSwizzleFunctions( allocatorLinear_t *tempStorage, stringBuilder_t *
 	}
 }
 
-void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedCodePath, const typeInfo_t *typeInfos, const u32 typeInfosCount, const generatorStrings_t *strings, const generatorFlags_t flags, const u32 componentCountMin, const u32 componentCountMax ) {
+void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedCodePath, const typeInfo_t *typeInfos, const u32 typeInfosCount, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle, const u32 componentCountMin, const u32 componentCountMax ) {
 	assert( tempStorage );
 	assert( generatedCodePath );
 	assert( typeInfos );
@@ -1613,24 +1613,24 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 
 			StringBuilder_Appendf( code, "// %s\n", typeInfo->fullTypeName );
 
-			GenerateComponentWiseOperators( tempStorage, typeInfo, code, strings, flags );
+			GenerateComponentWiseOperators( tempStorage, typeInfo, code, strings, flags, caseStyle );
 
-			GenerateComponentWiseFunctions( tempStorage, typeInfo, &scalarMemberType, code, strings, flags, scalarTypeEnabled );
+			GenerateComponentWiseFunctions( tempStorage, typeInfo, &scalarMemberType, code, strings, flags, caseStyle, scalarTypeEnabled );
 
-			GenerateFunction_All( tempStorage, typeInfo, code, strings, flags );
-			GenerateFunction_Any( tempStorage, typeInfo, code, strings, flags );
+			GenerateFunction_All( tempStorage, typeInfo, code, strings, flags, caseStyle );
+			GenerateFunction_Any( tempStorage, typeInfo, code, strings, flags, caseStyle );
 
-			GenerateFunction_LengthSqr( tempStorage, typeInfo, code, strings, flags );
-			GenerateFunction_Length( tempStorage, typeInfo, code, strings, flags );
-			GenerateFunction_Normalize( tempStorage, typeInfo, code, strings, flags );
-			GenerateFunction_Normalized( tempStorage, typeInfo, code, strings, flags );
-			GenerateFunction_Dot( tempStorage, typeInfo, code, strings, flags );
-			GenerateFunction_Cross( tempStorage, typeInfo, code, strings, flags );
-			GenerateFunction_Angle( tempStorage, typeInfo, code, strings, flags );
-			GenerateFunction_Distancesq( tempStorage, typeInfo, code, strings, flags );
-			GenerateFunction_Distance( tempStorage, typeInfo, code, strings, flags );
-			GenerateFunction_Pack( tempStorage, typeInfo, code, strings, flags );
-			GenerateFunction_Unpack( tempStorage, typeInfo, code, /*strings,*/ flags );
+			GenerateFunction_LengthSqr( tempStorage, typeInfo, code, strings, flags, caseStyle );
+			GenerateFunction_Length( tempStorage, typeInfo, code, strings, flags, caseStyle );
+			GenerateFunction_Normalize( tempStorage, typeInfo, code, strings, flags, caseStyle );
+			GenerateFunction_Normalized( tempStorage, typeInfo, code, strings, flags, caseStyle );
+			GenerateFunction_Dot( tempStorage, typeInfo, code, strings, flags, caseStyle );
+			GenerateFunction_Cross( tempStorage, typeInfo, code, strings, flags, caseStyle );
+			GenerateFunction_Angle( tempStorage, typeInfo, code, strings, flags, caseStyle );
+			GenerateFunction_Distancesq( tempStorage, typeInfo, code, strings, flags, caseStyle );
+			GenerateFunction_Distance( tempStorage, typeInfo, code, strings, flags, caseStyle );
+			GenerateFunction_Pack( tempStorage, typeInfo, code, strings, flags, caseStyle );
+			GenerateFunction_Unpack( tempStorage, typeInfo, code, /*strings,*/ flags, caseStyle );
 
 			printf( "OK.\n" );
 		}

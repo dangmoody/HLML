@@ -84,6 +84,17 @@ typedef enum genMathsType_t {
 	GEN_MATHS_TYPE_MATRIX
 } genMathsType_t;
 
+// case style applied to every generated function name (both the named functions in common_names.h and the
+// operator-derived names); GEN_FUNCTION_NAME_CASE_SNAKE (0) is the default and reproduces today's exact
+// naming unchanged - see Gen_ApplyFunctionNameCase in gen_shared.c
+typedef enum genFunctionNameCase_t {
+	GEN_FUNCTION_NAME_CASE_SNAKE	= 0,
+	GEN_FUNCTION_NAME_CASE_PASCAL,
+	GEN_FUNCTION_NAME_CASE_CAMEL,
+
+	GEN_FUNCTION_NAME_CASE_COUNT
+} genFunctionNameCase_t;
+
 typedef struct typeInfo_t {
 	genType_t		type;
 	u32				numRows;
@@ -199,6 +210,11 @@ typeInfo_t			Gen_GetQuaternionImaginaryPartType( const typeInfo_t *typeInfo, all
 
 const char			*Gen_GetBuiltinFunction( allocatorLinear_t *tempStorage, const genType_t type, const char *functionName );
 
+// these return the raw (always snake_case) operator word - e.g. "add", "less_than" - unchanged by
+// genFunctionNameCase_t. Case-styling is applied by the callers that assemble these into a full function
+// name (see Gen_GetFuncName_Vector* / Gen_GetFuncName_VectorRelational / VectorArithmetic* / VectorBitwise*
+// below); a few callers (bitwise NOT, increment/decrement) feed the raw word straight into
+// Gen_GetFuncName_Vector themselves, which is why these must stay uncased here to avoid double-casing.
 const char			*Gen_GetRelationalName( const genOpRelational_t op );
 const char			*Gen_GetOperatorRelational( const genOpRelational_t op );
 
@@ -222,13 +238,20 @@ typeInfo_t			Gen_GetScalarType( const typeInfo_t *typeInfo );
 const char			*Gen_GetFuncName_Floateq( const genType_t type );
 const char			*Gen_GetFuncName_Floateq_eps( const genType_t type );
 
-const char			*Gen_GetFuncName_Scalar( allocatorLinear_t *tempStorage, const genType_t type, const generatorFlags_t flags, const char *functionName );
-const char			*Gen_GetFuncName_Vector( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, const generatorFlags_t flags, const char *functionName );
+const char			*Gen_GetFuncName_Scalar( allocatorLinear_t *tempStorage, const genType_t type, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle, const char *functionName );
+const char			*Gen_GetFuncName_Vector( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle, const char *functionName );
 
-const char			*Gen_GetFuncName_VectorArithmeticScalar( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, const genOpArithmetic_t op );
-const char			*Gen_GetFuncName_VectorArithmeticVector( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, const genOpArithmetic_t op );
+const char			*Gen_GetFuncName_VectorRelational( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, const genFunctionNameCase_t caseStyle, const genOpRelational_t op );
 
-const char			*Gen_GetFuncName_MatrixMul( allocatorLinear_t *tempStorage, const typeInfo_t *lhsType, const typeInfo_t *rhsType, const generatorFlags_t flags );
+const char			*Gen_GetFuncName_VectorArithmeticScalar( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, const genFunctionNameCase_t caseStyle, const genOpArithmetic_t op );
+const char			*Gen_GetFuncName_VectorArithmeticVector( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, const genFunctionNameCase_t caseStyle, const genOpArithmetic_t op );
+const char			*Gen_GetFuncName_VectorArithmeticMatrix( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, const genFunctionNameCase_t caseStyle, const genOpArithmetic_t op );
+
+const char			*Gen_GetFuncName_VectorBitwiseScalar( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, const genFunctionNameCase_t caseStyle, const genOpBitwise_t op );
+const char			*Gen_GetFuncName_VectorBitwiseVector( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, const genFunctionNameCase_t caseStyle, const genOpBitwise_t op );
+const char			*Gen_GetFuncName_VectorBitwiseMatrix( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, const genFunctionNameCase_t caseStyle, const genOpBitwise_t op );
+
+const char			*Gen_GetFuncName_MatrixMul( allocatorLinear_t *tempStorage, const typeInfo_t *lhsType, const typeInfo_t *rhsType, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle );
 
 void				GetMatrixCodeMultiply( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const char *accessOperatorStr, const bool32 useConstructor, const generatorFlags_t flags );
 
@@ -245,12 +268,12 @@ stringBuilder_t	*Gen_GetParmList_MatrixMultiply( allocatorLinear_t *tempStorage,
 
 stringBuilder_t	*Gen_GetConstructor( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, const float32 *values, const generatorStrings_t *strings, const generatorFlags_t flags );
 
-void				GenerateComponentWiseFunctions( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, const typeInfo_t *memberTypeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags, const bool32 *scalarTypeEnabled );
+void				GenerateComponentWiseFunctions( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, const typeInfo_t *memberTypeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle, const bool32 *scalarTypeEnabled );
 
-void				GenerateComponentWiseOperators( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags );
+void				GenerateComponentWiseOperators( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle );
 
 //
 // SSE
 //
-const char			*Gen_GetFuncName_Scalar_SSE( allocatorLinear_t *tempStorage, const genType_t type, const generatorFlags_t flags, const char *funcName );
-const char			*Gen_GetFuncName_Vector_SSE( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, const generatorFlags_t flags, const char *funcName );
+const char			*Gen_GetFuncName_Scalar_SSE( allocatorLinear_t *tempStorage, const genType_t type, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle, const char *funcName );
+const char			*Gen_GetFuncName_Vector_SSE( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle, const char *funcName );

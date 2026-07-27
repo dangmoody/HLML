@@ -36,19 +36,19 @@ typedef struct allocatorLinear_t allocatorLinear_t;
 
 typedef void ( *generateSwizzleFunc_t )( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, const u32 numSwizzleComponents, const char *swizzleStr );
 
-void	GenerateScalarFiles( allocatorLinear_t *tempStorage, const char *generatedCodePath, const generatorStrings_t *strings, const generatorFlags_t flags );
-void	GenerateScalarFiles_SSE( allocatorLinear_t *tempStorage, const char *generatedCodePath, const generatorStrings_t *strings, const generatorFlags_t flags );
+void	GenerateScalarFiles( allocatorLinear_t *tempStorage, const char *generatedCodePath, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle );
+void	GenerateScalarFiles_SSE( allocatorLinear_t *tempStorage, const char *generatedCodePath, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle );
 
 bool32	SwizzleTypeIsWritable( const char *swizzleStr, const u32 numSwizzleComponents );
 
 void	GenerateSwizzleFunctions( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, const char *componentNames, generateSwizzleFunc_t generateSwizzleFunc, const u32 componentCountMin, const u32 componentCountMax );
 
-void	GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedCodePath, const typeInfo_t *typeInfos, const u32 typeInfosCount, const generatorStrings_t *strings, const generatorFlags_t flags, const u32 componentCountMin, const u32 componentCountMax );
-void	GenerateVectorFiles_SSE( allocatorLinear_t *tempStorage, const char *generatedCodePath, const typeInfo_t *typeInfos, const u32 typeInfosCount, const generatorStrings_t *strings, const generatorFlags_t flags );
+void	GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedCodePath, const typeInfo_t *typeInfos, const u32 typeInfosCount, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle, const u32 componentCountMin, const u32 componentCountMax );
+void	GenerateVectorFiles_SSE( allocatorLinear_t *tempStorage, const char *generatedCodePath, const typeInfo_t *typeInfos, const u32 typeInfosCount, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle );
 
-void	GenerateQuaternionFiles( allocatorLinear_t *tempStorage, const char *generatedCodePath, const typeInfo_t *typeInfos, const u32 typeInfosCount, const generatorStrings_t *strings, const generatorFlags_t flags );
+void	GenerateQuaternionFiles( allocatorLinear_t *tempStorage, const char *generatedCodePath, const typeInfo_t *typeInfos, const u32 typeInfosCount, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle );
 
-void	GenerateMatrixFiles( allocatorLinear_t *tempStorage, const char *generatedCodePath, const typeInfo_t *typeInfos, const u32 typeInfosCount, const generatorStrings_t *strings, const generatorFlags_t flags );
+void	GenerateMatrixFiles( allocatorLinear_t *tempStorage, const char *generatedCodePath, const typeInfo_t *typeInfos, const u32 typeInfosCount, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle );
 
 void	Gen_GenerateAPIFiles( allocatorLinear_t *tempStorage,
 							  const char *outputPath,
@@ -58,6 +58,7 @@ void	Gen_GenerateAPIFiles( allocatorLinear_t *tempStorage,
 							  const typeInfo_t *matrixTypeInfos, const u32 matrixTypeInfosCount,
 							  const generatorStrings_t *strings,
 							  const generatorFlags_t flags,
+							  const genFunctionNameCase_t caseStyle,
 							  const u32 componentCountMin, const u32 componentCountMax );
 
 void	Gen_GenerateTests( allocatorLinear_t *tempStorage,
@@ -68,4 +69,5 @@ void	Gen_GenerateTests( allocatorLinear_t *tempStorage,
 						   const typeInfo_t *matrixTypeInfos, const u32 matrixTypeInfosCount,
 						   const generatorStrings_t *strings,
 						   const generatorFlags_t flags,
+						   const genFunctionNameCase_t caseStyle,
 						   const u32 componentCountMin, const u32 componentCountMax );

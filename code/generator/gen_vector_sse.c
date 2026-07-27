@@ -38,14 +38,16 @@ SOFTWARE.
 #include <stdio.h>
 #include <assert.h>
 
-const char *Gen_GetFuncName_Vector_SSE( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, const generatorFlags_t flags, const char *funcName ) {
+const char *Gen_GetFuncName_Vector_SSE( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle, const char *funcName ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( funcName );
 
-	const char *actualFuncName = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, funcName );
+	const char *actualFuncName = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, funcName );
 
-	return String_TPrintf( tempStorage, "%s_sse", actualFuncName );
+	return ( caseStyle == GEN_FUNCTION_NAME_CASE_SNAKE )
+		? String_TPrintf( tempStorage, "%s_sse", actualFuncName )
+		: String_TPrintf( tempStorage, "%sSSE", actualFuncName );
 }
 
 typedef enum simdParmListFlagBits_t {
@@ -112,14 +114,14 @@ static void MakeSSEParmList( stringBuilder_t *code, const u32 numComponents, con
 	}
 }
 
-static void GenerateFunction_Dot_SSE( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void GenerateFunction_Dot_SSE( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
 	assert( typeInfo->fullTypeName );
 	assert( strings );
 
-	const char *dotFuncStr = Gen_GetFuncName_Vector_SSE( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_DOT );
+	const char *dotFuncStr = Gen_GetFuncName_Vector_SSE( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_DOT );
 
 	StringBuilder_Appendf( code, "inline static __m128 %s( ", dotFuncStr );
 	MakeSSEParmList( code, typeInfo->numCols, strings, SIMD_PARM_LIST_FLAG_LHS | SIMD_PARM_LIST_FLAG_RHS );
@@ -154,7 +156,7 @@ static void GenerateFunction_Dot_SSE( allocatorLinear_t *tempStorage, stringBuil
 	StringBuilder_Append( code, "}\n\n" );
 }
 
-static void GenerateFunction_Cross_SSE( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void GenerateFunction_Cross_SSE( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -168,7 +170,7 @@ static void GenerateFunction_Cross_SSE( allocatorLinear_t *tempStorage, stringBu
 	// cross product doesnt use w component
 	u32 numComponents = 3;
 
-	const char *crossFuncStr = Gen_GetFuncName_Vector_SSE( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_CROSS );
+	const char *crossFuncStr = Gen_GetFuncName_Vector_SSE( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_CROSS );
 
 	StringBuilder_Appendf( code, "inline static void %s( ", crossFuncStr );
 	MakeSSEParmList( code, numComponents, strings, SIMD_PARM_LIST_FLAG_LHS | SIMD_PARM_LIST_FLAG_RHS | SIMD_PARM_LIST_FLAG_OUT );
@@ -192,14 +194,14 @@ static void GenerateFunction_Cross_SSE( allocatorLinear_t *tempStorage, stringBu
 	StringBuilder_Append( code, "}\n\n" );
 }
 
-static void GenerateFunction_Lengthsq_SSE( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void GenerateFunction_Lengthsq_SSE( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
 	assert( typeInfo->fullTypeName );
 	assert( strings );
 
-	const char *funcName = Gen_GetFuncName_Vector_SSE( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_LENGTHSQ );
+	const char *funcName = Gen_GetFuncName_Vector_SSE( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_LENGTHSQ );
 
 	StringBuilder_Appendf( code, "inline static __m128 %s( ", funcName );
 	MakeSSEParmList( code, typeInfo->numCols, strings, SIMD_PARM_LIST_FLAG_LHS );
@@ -234,15 +236,15 @@ static void GenerateFunction_Lengthsq_SSE( allocatorLinear_t *tempStorage, strin
 	StringBuilder_Append( code, "}\n\n" );
 }
 
-static void GenerateFunction_Length_SSE( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void GenerateFunction_Length_SSE( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
 	assert( typeInfo->fullTypeName );
 	assert( strings );
 
-	const char *funcName = Gen_GetFuncName_Vector_SSE( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_LENGTH );
-	const char *lengthsqFuncStr = Gen_GetFuncName_Vector_SSE( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_LENGTHSQ );
+	const char *funcName = Gen_GetFuncName_Vector_SSE( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_LENGTH );
+	const char *lengthsqFuncStr = Gen_GetFuncName_Vector_SSE( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_LENGTHSQ );
 
 	StringBuilder_Appendf( code, "inline static __m128 %s( ", funcName );
 	MakeSSEParmList( code, typeInfo->numCols, strings, SIMD_PARM_LIST_FLAG_LHS );
@@ -261,15 +263,15 @@ static void GenerateFunction_Length_SSE( allocatorLinear_t *tempStorage, stringB
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateFunction_Normalize_SSE( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void GenerateFunction_Normalize_SSE( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
 	assert( typeInfo->fullTypeName );
 	assert( strings );
 
-	const char *funcName = Gen_GetFuncName_Vector_SSE( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_NORMALIZE );
-	const char *lengthSSEFuncStr = Gen_GetFuncName_Vector_SSE( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_LENGTH );
+	const char *funcName = Gen_GetFuncName_Vector_SSE( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_NORMALIZE );
+	const char *lengthSSEFuncStr = Gen_GetFuncName_Vector_SSE( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_LENGTH );
 
 	// TODO(DM): generated asm isnt good enough - do better!
 	StringBuilder_Appendf( code, "inline static void %s( ", funcName );
@@ -295,14 +297,14 @@ static void GenerateFunction_Normalize_SSE( allocatorLinear_t *tempStorage, stri
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateFunction_Distancesq_SSE( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void GenerateFunction_Distancesq_SSE( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
 	assert( typeInfo->fullTypeName );
 	assert( strings );
 
-	const char *funcName = Gen_GetFuncName_Vector_SSE( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_DISTANCESQ );
+	const char *funcName = Gen_GetFuncName_Vector_SSE( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_DISTANCESQ );
 
 	StringBuilder_Appendf( code, "inline static __m128 %s( ", funcName );
 	MakeSSEParmList( code, typeInfo->numCols, strings, SIMD_PARM_LIST_FLAG_LHS | SIMD_PARM_LIST_FLAG_RHS );
@@ -345,16 +347,16 @@ static void GenerateFunction_Distancesq_SSE( allocatorLinear_t *tempStorage, str
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateFunction_Distance_SSE( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void GenerateFunction_Distance_SSE( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
 	assert( typeInfo->fullTypeName );
 	assert( strings );
 
-	const char *funcName = Gen_GetFuncName_Vector_SSE( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_DISTANCE );
+	const char *funcName = Gen_GetFuncName_Vector_SSE( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_DISTANCE );
 
-	const char *distancesqFuncStr = Gen_GetFuncName_Vector_SSE( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_DISTANCESQ );
+	const char *distancesqFuncStr = Gen_GetFuncName_Vector_SSE( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_DISTANCESQ );
 
 	StringBuilder_Appendf( code, "inline static __m128 %s( ", funcName );
 	MakeSSEParmList( code, typeInfo->numCols, strings, SIMD_PARM_LIST_FLAG_LHS | SIMD_PARM_LIST_FLAG_RHS );
@@ -382,7 +384,7 @@ static void GenerateFunction_Distance_SSE( allocatorLinear_t *tempStorage, strin
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-void GenerateVectorFiles_SSE( allocatorLinear_t *tempStorage, const char *generatedCodePath, const typeInfo_t *typeInfos, const u32 typeInfosCount, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+void GenerateVectorFiles_SSE( allocatorLinear_t *tempStorage, const char *generatedCodePath, const typeInfo_t *typeInfos, const u32 typeInfosCount, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( generatedCodePath );
 	assert( typeInfos );
@@ -430,13 +432,13 @@ void GenerateVectorFiles_SSE( allocatorLinear_t *tempStorage, const char *genera
 
 		StringBuilder_Appendf( code, "// %s\n", typeInfo->fullTypeName );
 
-		GenerateFunction_Dot_SSE( tempStorage, code, typeInfo, strings, flags );
-		GenerateFunction_Cross_SSE( tempStorage, code, typeInfo, strings, flags );
-		GenerateFunction_Lengthsq_SSE( tempStorage, code, typeInfo, strings, flags );
-		GenerateFunction_Length_SSE( tempStorage, code, typeInfo, strings, flags );
-		GenerateFunction_Normalize_SSE( tempStorage, code, typeInfo, strings, flags );
-		GenerateFunction_Distancesq_SSE( tempStorage, code, typeInfo, strings, flags );
-		GenerateFunction_Distance_SSE( tempStorage, code, typeInfo, strings, flags );
+		GenerateFunction_Dot_SSE( tempStorage, code, typeInfo, strings, flags, caseStyle );
+		GenerateFunction_Cross_SSE( tempStorage, code, typeInfo, strings, flags, caseStyle );
+		GenerateFunction_Lengthsq_SSE( tempStorage, code, typeInfo, strings, flags, caseStyle );
+		GenerateFunction_Length_SSE( tempStorage, code, typeInfo, strings, flags, caseStyle );
+		GenerateFunction_Normalize_SSE( tempStorage, code, typeInfo, strings, flags, caseStyle );
+		GenerateFunction_Distancesq_SSE( tempStorage, code, typeInfo, strings, flags, caseStyle );
+		GenerateFunction_Distance_SSE( tempStorage, code, typeInfo, strings, flags, caseStyle );
 
 		StringBuilder_Append( code, "\n" );
 

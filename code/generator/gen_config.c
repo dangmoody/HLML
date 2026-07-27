@@ -326,6 +326,31 @@ bool32 Gen_Config_LoadFromFile( const char *filename, genConfig_t *outConfig ) {
 		ApplyGenerateFlagsFromTable( root, &outConfig->flags );
 	}
 
+	// function_name_case
+	{
+		toml_datum_t functionNameCaseDatum = toml_string_in( root, "function_name_case" );
+		if ( functionNameCaseDatum.ok ) {
+			if ( String_Equals( functionNameCaseDatum.u.s, "snake_case" ) ) {
+				outConfig->functionNameCase = GEN_FUNCTION_NAME_CASE_SNAKE;
+			} else if ( String_Equals( functionNameCaseDatum.u.s, "PascalCase" ) ) {
+				outConfig->functionNameCase = GEN_FUNCTION_NAME_CASE_PASCAL;
+			} else if ( String_Equals( functionNameCaseDatum.u.s, "camelCase" ) ) {
+				outConfig->functionNameCase = GEN_FUNCTION_NAME_CASE_CAMEL;
+			} else {
+				printf( "ERROR: \"function_name_case\" must be \"snake_case\", \"PascalCase\", or \"camelCase\", got \"%s\" in \"%s\".\n", functionNameCaseDatum.u.s, filename );
+
+				free( functionNameCaseDatum.u.s );
+
+				toml_free( root );
+				root = NULL;
+
+				return false;
+			}
+
+			free( functionNameCaseDatum.u.s );
+		}
+	}
+
 	// relational operators (<, <=, >, >=) return a boolN/boolNxM type for every other vector/matrix type -
 	// see GenerateComponentWiseOperators() in gen_shared.c - so "bool" can't be excluded from
 	// "scalar_types" while "generate_relational_operators" is on.  Equality (==, !=) is unaffected: it

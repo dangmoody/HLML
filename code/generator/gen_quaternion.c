@@ -38,7 +38,7 @@ SOFTWARE.
 #include <stdio.h>
 #include <assert.h>
 
-static void GenerateFunction_QuaternionMulScalar( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void GenerateFunction_QuaternionMulScalar( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( typeInfo->fullTypeName );
@@ -52,7 +52,7 @@ static void GenerateFunction_QuaternionMulScalar( allocatorLinear_t *tempStorage
 	bool32 generateOperators = flags & GENERATOR_FLAG_GENERATE_OPERATORS;
 	bool32 allowNameMangling = ( flags & GENERATOR_FLAG_NAME_MANGLING ) == 0;
 
-	const char *mulQuaternionFuncStr = mulQuaternionFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_QUAT_MUL );
+	const char *mulQuaternionFuncStr = mulQuaternionFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_QUAT_MUL );
 
 	if ( allowNameMangling ) {
 		mulQuaternionFuncStr = String_TPrintf( tempStorage, "%ss", mulQuaternionFuncStr );
@@ -63,7 +63,7 @@ static void GenerateFunction_QuaternionMulScalar( allocatorLinear_t *tempStorage
 
 	typeInfo_t imaginaryType = Gen_GetQuaternionImaginaryPartType( typeInfo, tempStorage );
 
-	const char *cmulFuncStr = Gen_GetFuncName_VectorArithmeticScalar( tempStorage, &imaginaryType, GEN_OP_ARITHMETIC_MUL );
+	const char *cmulFuncStr = Gen_GetFuncName_VectorArithmeticScalar( tempStorage, &imaginaryType, caseStyle, GEN_OP_ARITHMETIC_MUL );
 
 	StringBuilder_Append(  code, "// Performs a quaternion multiplication against the given scalar.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%slhs, const %s rhs )\n", typeInfo->fullTypeName, mulQuaternionFuncStr, typeInfo->fullTypeName, strings->parmPassByStr, memberTypeString );
@@ -79,7 +79,7 @@ static void GenerateFunction_QuaternionMulScalar( allocatorLinear_t *tempStorage
 	StringBuilder_Append( code, "}\n\n" );
 }
 
-static void GenerateFunction_QuaternionMulQuaternion( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void GenerateFunction_QuaternionMulQuaternion( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( code );
@@ -89,7 +89,7 @@ static void GenerateFunction_QuaternionMulQuaternion( allocatorLinear_t *tempSto
 		return;
 	}
 
-	const char *mulQuaternionFuncStr = mulQuaternionFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_QUAT_MUL );
+	const char *mulQuaternionFuncStr = mulQuaternionFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_QUAT_MUL );
 
 	if ( ( flags & GENERATOR_FLAG_NAME_MANGLING ) == 0 ) {
 		mulQuaternionFuncStr = String_TPrintf( tempStorage, "%sq", mulQuaternionFuncStr );
@@ -107,7 +107,7 @@ static void GenerateFunction_QuaternionMulQuaternion( allocatorLinear_t *tempSto
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateFunction_QuaternionLength( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void GenerateFunction_QuaternionLength( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( code );
@@ -120,7 +120,7 @@ static void GenerateFunction_QuaternionLength( allocatorLinear_t *tempStorage, c
 	const char *memberTypeString = Gen_GetMemberTypeString( typeInfo->type );
 
 	// const char *quatLengthFuncStr = C_GetFuncName_Quaternion( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_LENGTH );
-	const char *quatLengthFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_QUAT_LENGTH );
+	const char *quatLengthFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_QUAT_LENGTH );
 
 	StringBuilder_Append(  code, "// Returns the magnitude of the quaternion.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%squat )\n", memberTypeString, quatLengthFuncStr, typeInfo->fullTypeName, strings->parmPassByStr );
@@ -140,7 +140,7 @@ static void GenerateFunction_QuaternionLength( allocatorLinear_t *tempStorage, c
 	StringBuilder_Append( code, "}\n\n" );
 }
 
-static void GenerateFunction_QuaternionNormalize( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void GenerateFunction_QuaternionNormalize( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( code );
@@ -153,15 +153,15 @@ static void GenerateFunction_QuaternionNormalize( allocatorLinear_t *tempStorage
 	const char *typeString = Gen_GetTypeString( typeInfo->type );
 	const char *memberTypeString = Gen_GetTypeString( typeInfo->type );
 
-	const char *normalizeQuaternionFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_QUAT_NORMALIZE );
-	const char *lengthQuaternionFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_QUAT_LENGTH );
+	const char *normalizeQuaternionFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_QUAT_NORMALIZE );
+	const char *lengthQuaternionFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_QUAT_LENGTH );
 
 	typeInfo_t imaginaryType = Gen_GetQuaternionImaginaryPartType( typeInfo, tempStorage );
 
 	const char *zeroStr = Gen_GetNumericLiteral( tempStorage, typeInfo->type, 0.0f, 1 );
 	const char *oneStr = Gen_GetNumericLiteral( tempStorage, typeInfo->type, 1.0f, 1 );
 
-	const char *cmulFuncStr = Gen_GetFuncName_VectorArithmeticScalar( tempStorage, &imaginaryType, GEN_OP_ARITHMETIC_MUL );
+	const char *cmulFuncStr = Gen_GetFuncName_VectorArithmeticScalar( tempStorage, &imaginaryType, caseStyle, GEN_OP_ARITHMETIC_MUL );
 
 	StringBuilder_Append(  code, "// Normalizes the quaternion.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%squat )\n", typeInfo->fullTypeName, normalizeQuaternionFuncStr, typeInfo->fullTypeName, strings->parmPassByStr );
@@ -183,7 +183,7 @@ static void GenerateFunction_QuaternionNormalize( allocatorLinear_t *tempStorage
 	StringBuilder_Append( code, "}\n\n" );
 }
 
-static void GenerateFunction_QuaternionConjugate( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void GenerateFunction_QuaternionConjugate( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( code );
@@ -193,7 +193,7 @@ static void GenerateFunction_QuaternionConjugate( allocatorLinear_t *tempStorage
 		return;
 	}
 
-	const char *conjugateQuaternionFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_QUAT_CONJUGATE );
+	const char *conjugateQuaternionFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_QUAT_CONJUGATE );
 
 	const char *minusOneStr = Gen_GetNumericLiteral( tempStorage, typeInfo->type, -1.0f, 1 );
 
@@ -215,7 +215,7 @@ static void GenerateFunction_QuaternionConjugate( allocatorLinear_t *tempStorage
 	StringBuilder_Append(  code, "\t};\n}\n\n" );
 }
 
-static void GenerateFunction_QuaternionInverse( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void GenerateFunction_QuaternionInverse( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( code );
@@ -225,9 +225,9 @@ static void GenerateFunction_QuaternionInverse( allocatorLinear_t *tempStorage, 
 		return;
 	}
 
-	const char *inverseQuaternionFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_QUAT_INVERSE );
-	const char *lengthQuaternionFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_QUAT_LENGTH );
-	const char *conjugateQuaternionFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_QUAT_CONJUGATE );
+	const char *inverseQuaternionFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_QUAT_INVERSE );
+	const char *lengthQuaternionFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_QUAT_LENGTH );
+	const char *conjugateQuaternionFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_QUAT_CONJUGATE );
 
 	const char *memberTypeString = Gen_GetMemberTypeString( typeInfo->type );
 	const char *typeString = Gen_GetTypeString( typeInfo->type );
@@ -247,7 +247,7 @@ static void GenerateFunction_QuaternionInverse( allocatorLinear_t *tempStorage, 
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateFunction_QuaternionRotationAxis( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void GenerateFunction_QuaternionRotationAxis( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( code );
@@ -261,15 +261,15 @@ static void GenerateFunction_QuaternionRotationAxis( allocatorLinear_t *tempStor
 
 	const char *memberTypeString = Gen_GetMemberTypeString( typeInfo->type );
 
-	const char *rotateQuaternionFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_QUAT_ROTATE );
-	const char *inverseQuaternionFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_QUAT_INVERSE );
+	const char *rotateQuaternionFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_QUAT_ROTATE );
+	const char *inverseQuaternionFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_QUAT_INVERSE );
 
-	const char *quatMulQuatFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_QUAT_MUL );
+	const char *quatMulQuatFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_QUAT_MUL );
 	if ( ( flags & GENERATOR_FLAG_NAME_MANGLING ) == 0 ) {
 		quatMulQuatFuncStr = String_TPrintf( tempStorage, "%sq", quatMulQuatFuncStr );
 	}
 
-	const char *normalizeVectorFuncStr = Gen_GetFuncName_Vector( tempStorage, &imaginaryPartType, flags, GEN_FUNCTION_NAME_NORMALIZE );
+	const char *normalizeVectorFuncStr = Gen_GetFuncName_Vector( tempStorage, &imaginaryPartType, flags, caseStyle, GEN_FUNCTION_NAME_NORMALIZE );
 
 	const char *cosFuncStr = Gen_GetBuiltinFunction( tempStorage, typeInfo->type, GEN_BUILTIN_FUNCTION_NAME_COS );
 	const char *sinFuncStr = Gen_GetBuiltinFunction( tempStorage, typeInfo->type, GEN_BUILTIN_FUNCTION_NAME_SIN );
@@ -294,7 +294,7 @@ static void GenerateFunction_QuaternionRotationAxis( allocatorLinear_t *tempStor
 	if ( flags & GENERATOR_FLAG_GENERATE_OPERATORS ) {
 		StringBuilder_Appendf( code, "\t%s unitNormImaginary = normalizedImaginary * sinResult;\n", imaginaryPartType.fullTypeName, strings->parmReferenceStr );
 	} else {
-		const char *cmulFuncStr = Gen_GetFuncName_VectorArithmeticScalar( tempStorage, &imaginaryPartType, GEN_OP_ARITHMETIC_MUL );
+		const char *cmulFuncStr = Gen_GetFuncName_VectorArithmeticScalar( tempStorage, &imaginaryPartType, caseStyle, GEN_OP_ARITHMETIC_MUL );
 
 		StringBuilder_Appendf( code, "\t%s unitNormImaginary = %s( %snormalizedImaginary, sinResult );\n", imaginaryPartType.fullTypeName, cmulFuncStr, strings->parmReferenceStr );
 	}
@@ -307,7 +307,7 @@ static void GenerateFunction_QuaternionRotationAxis( allocatorLinear_t *tempStor
 	StringBuilder_Append( code, "}\n\n" );
 }
 
-static void GenerateFunction_QuaternionLerp( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void GenerateFunction_QuaternionLerp( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( code );
@@ -317,7 +317,7 @@ static void GenerateFunction_QuaternionLerp( allocatorLinear_t *tempStorage, con
 		return;
 	}
 
-	const char *lerpQuaternionFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_QUAT_LERP );
+	const char *lerpQuaternionFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_QUAT_LERP );
 
 	const char *memberTypeString = Gen_GetMemberTypeString( typeInfo->type );
 
@@ -339,7 +339,7 @@ static void GenerateFunction_QuaternionLerp( allocatorLinear_t *tempStorage, con
 	StringBuilder_Append( code, "}\n\n" );
 }
 
-static void GenerateFunction_QuaternionSlerp( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void GenerateFunction_QuaternionSlerp( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( code );
@@ -349,7 +349,7 @@ static void GenerateFunction_QuaternionSlerp( allocatorLinear_t *tempStorage, co
 		return;
 	}
 
-	const char *slerpQuaternionFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_QUAT_SLERP );
+	const char *slerpQuaternionFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_QUAT_SLERP );
 
 	const char *memberTypeString = Gen_GetMemberTypeString( typeInfo->type );
 
@@ -406,7 +406,7 @@ static void GenerateFunction_QuaternionSlerp( allocatorLinear_t *tempStorage, co
 	StringBuilder_Append( code, "}\n\n" );
 }
 
-static void GenerateFunction_QuaternionToRotationMatrix( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void GenerateFunction_QuaternionToRotationMatrix( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( code );
@@ -420,7 +420,7 @@ static void GenerateFunction_QuaternionToRotationMatrix( allocatorLinear_t *temp
 
 	const char *returnTypeName = String_TPrintf( tempStorage, "%s%dx%d", typeString, typeInfo->numCols, typeInfo->numCols );
 
-	const char *funcName = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_QUAT_TO_ROTATION_MATRIX );
+	const char *funcName = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_QUAT_TO_ROTATION_MATRIX );
 
 	const char *zeroStr = Gen_GetNumericLiteral( tempStorage, typeInfo->type, 0.0f, 1 );
 	const char *oneStr = Gen_GetNumericLiteral( tempStorage, typeInfo->type, 1.0f, 1 );
@@ -454,7 +454,7 @@ static void GenerateFunction_QuaternionToRotationMatrix( allocatorLinear_t *temp
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-void GenerateQuaternionFiles( allocatorLinear_t *tempStorage, const char *generatedCodePath, const typeInfo_t *typeInfos, const u32 typeInfosCount, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+void GenerateQuaternionFiles( allocatorLinear_t *tempStorage, const char *generatedCodePath, const typeInfo_t *typeInfos, const u32 typeInfosCount, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( generatedCodePath );
 	assert( typeInfos );
@@ -503,16 +503,16 @@ void GenerateQuaternionFiles( allocatorLinear_t *tempStorage, const char *genera
 
 		StringBuilder_Appendf( code, "// %s\n", typeInfo->fullTypeName );
 
-		GenerateFunction_QuaternionMulScalar( tempStorage, typeInfo, code, strings, flags );
-		GenerateFunction_QuaternionMulQuaternion( tempStorage, typeInfo, code, strings, flags );
-		GenerateFunction_QuaternionLength( tempStorage, typeInfo, code, strings, flags );
-		GenerateFunction_QuaternionNormalize( tempStorage, typeInfo, code, strings, flags );
-		GenerateFunction_QuaternionConjugate( tempStorage, typeInfo, code, strings, flags );
-		GenerateFunction_QuaternionInverse( tempStorage, typeInfo, code, strings, flags );
-		GenerateFunction_QuaternionRotationAxis( tempStorage, typeInfo, code, strings, flags );
-		GenerateFunction_QuaternionLerp( tempStorage, typeInfo, code, strings, flags );
-		GenerateFunction_QuaternionSlerp( tempStorage, typeInfo, code, strings, flags );
-		GenerateFunction_QuaternionToRotationMatrix( tempStorage, typeInfo, code, strings, flags );
+		GenerateFunction_QuaternionMulScalar( tempStorage, typeInfo, code, strings, flags, caseStyle );
+		GenerateFunction_QuaternionMulQuaternion( tempStorage, typeInfo, code, strings, flags, caseStyle );
+		GenerateFunction_QuaternionLength( tempStorage, typeInfo, code, strings, flags, caseStyle );
+		GenerateFunction_QuaternionNormalize( tempStorage, typeInfo, code, strings, flags, caseStyle );
+		GenerateFunction_QuaternionConjugate( tempStorage, typeInfo, code, strings, flags, caseStyle );
+		GenerateFunction_QuaternionInverse( tempStorage, typeInfo, code, strings, flags, caseStyle );
+		GenerateFunction_QuaternionRotationAxis( tempStorage, typeInfo, code, strings, flags, caseStyle );
+		GenerateFunction_QuaternionLerp( tempStorage, typeInfo, code, strings, flags, caseStyle );
+		GenerateFunction_QuaternionSlerp( tempStorage, typeInfo, code, strings, flags, caseStyle );
+		GenerateFunction_QuaternionToRotationMatrix( tempStorage, typeInfo, code, strings, flags, caseStyle );
 
 		printf( "OK.\n" );
 	}

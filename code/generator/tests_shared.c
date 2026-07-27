@@ -144,7 +144,7 @@ static void Gen_GenerateParametricTestDefinition_Operator( allocatorLinear_t *te
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-void Gen_GenerateParametricTestDefinition_Generic_SSE( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, parametricTestDefinition_t *def ) {
+void Gen_GenerateParametricTestDefinition_Generic_SSE( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle, parametricTestDefinition_t *def ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -158,7 +158,7 @@ void Gen_GenerateParametricTestDefinition_Generic_SSE( allocatorLinear_t *tempSt
 
 	bool32 generateOperators = flags & GENERATOR_FLAG_GENERATE_OPERATORS;
 
-	const char *funcToCall = Gen_GetFuncName_Vector_SSE( tempStorage, typeInfo, flags, def->funcName );
+	const char *funcToCall = Gen_GetFuncName_Vector_SSE( tempStorage, typeInfo, flags, caseStyle, def->funcName );
 	const char *testName = def->testNameOverride ? def->testNameOverride : Gen_GetTestName_SSE( tempStorage, typeInfo, def->funcName );
 
 	const char *floateqFuncStr = Gen_GetFuncName_Floateq( def->returnType->type );
@@ -174,7 +174,7 @@ void Gen_GenerateParametricTestDefinition_Generic_SSE( allocatorLinear_t *tempSt
 		returnPassByStr = " ";
 		referenceStr = "";
 	} else {
-		equalsFuncStr = Gen_GetFuncName_Vector( tempStorage, def->returnType, flags, GEN_FUNCTION_NAME_EQUALS );
+		equalsFuncStr = Gen_GetFuncName_Vector( tempStorage, def->returnType, flags, caseStyle, GEN_FUNCTION_NAME_EQUALS );
 		returnPassByStr = strings->parmPassByStr;
 		referenceStr = strings->parmReferenceStr;
 	}
@@ -290,7 +290,7 @@ void Gen_GenerateParametricTestDefinition_Generic_SSE( allocatorLinear_t *tempSt
 	StringBuilder_Append( code, "}\n\n" );
 }
 
-void Gen_GenerateParametricTestDefinition_Generic( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, parametricTestDefinition_t *def ) {
+void Gen_GenerateParametricTestDefinition_Generic( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle, parametricTestDefinition_t *def ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -303,18 +303,20 @@ void Gen_GenerateParametricTestDefinition_Generic( allocatorLinear_t *tempStorag
 	assert( def->funcName );
 
 	bool32 generateOperators = flags & GENERATOR_FLAG_GENERATE_OPERATORS;
-	bool32 allowNameMangling = flags & GENERATOR_FLAG_NAME_MANGLING;
 
+	// def->funcNameIsResolved means def->funcName is already the exact, final callable name (used for the
+	// operator-derived component-wise functions, whose structural c/s/v/m markers can't be re-derived from
+	// a single functionName the way Gen_GetFuncName_Scalar/Vector expect) - call it verbatim rather than
+	// re-deriving it. Otherwise re-derive unconditionally (not just when mangling is off): under
+	// GEN_FUNCTION_NAME_CASE_SNAKE this is a no-op vs. using def->funcName directly (Gen_GetFuncName_Vector/
+	// Scalar return the name unchanged when mangling is on), but under PascalCase/camelCase the mangled
+	// name must still be re-cased, so the producer functions have to run in both mangling states.
 	const char *funcToCall = def->funcName;
-	if ( !allowNameMangling ) {
-		// HACK(DM): floateq doesnt follow the same naming convention as the other scalar functions
-		// so we have to check for that specifically
-		if ( !String_Equals( def->funcName, Gen_GetFuncName_Floateq( typeInfo->type ) ) ) {
-			if ( Gen_TypeIsScalar( typeInfo ) ) {
-				funcToCall = Gen_GetFuncName_Scalar( tempStorage, typeInfo->type, flags, def->funcName );
-			} else {
-				funcToCall = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, def->funcName );
-			}
+	if ( !def->funcNameIsResolved && !String_Equals( def->funcName, Gen_GetFuncName_Floateq( typeInfo->type ) ) ) {
+		if ( Gen_TypeIsScalar( typeInfo ) ) {
+			funcToCall = Gen_GetFuncName_Scalar( tempStorage, typeInfo->type, flags, caseStyle, def->funcName );
+		} else {
+			funcToCall = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, def->funcName );
 		}
 	}
 
@@ -333,7 +335,7 @@ void Gen_GenerateParametricTestDefinition_Generic( allocatorLinear_t *tempStorag
 		passByStr = " ";
 		referenceStr = "";
 	} else {
-		equalsFuncStr = Gen_GetFuncName_Vector( tempStorage, def->returnType, flags, GEN_FUNCTION_NAME_EQUALS );
+		equalsFuncStr = Gen_GetFuncName_Vector( tempStorage, def->returnType, flags, caseStyle, GEN_FUNCTION_NAME_EQUALS );
 		passByStr = strings->parmPassByStr;
 		referenceStr = strings->parmReferenceStr;
 	}
@@ -383,7 +385,7 @@ void Gen_GenerateParametricTestDefinition_Generic( allocatorLinear_t *tempStorag
 	StringBuilder_Append( code, "}\n\n" );
 
 	if ( def->alsoGenerateSSE ) {
-		Gen_GenerateParametricTestDefinition_Generic_SSE( tempStorage, code, typeInfo, strings, flags, &(parametricTestDefinition_t) {
+		Gen_GenerateParametricTestDefinition_Generic_SSE( tempStorage, code, typeInfo, strings, flags, caseStyle, &(parametricTestDefinition_t) {
 			.returnType = def->returnType,
 			.funcName = def->funcName,
 			.parmsCount = def->parmsCount,
@@ -392,7 +394,7 @@ void Gen_GenerateParametricTestDefinition_Generic( allocatorLinear_t *tempStorag
 	}
 }
 
-static void Gen_GenerateParametricTestDefinition_ComponentWise_SSE( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, const parametricTestDefinition_t *def ) {
+static void Gen_GenerateParametricTestDefinition_ComponentWise_SSE( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle, const parametricTestDefinition_t *def ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -415,9 +417,9 @@ static void Gen_GenerateParametricTestDefinition_ComponentWise_SSE( allocatorLin
 		// so we have to check for that specifically
 		if ( !String_Equals( def->funcName, Gen_GetFuncName_Floateq( typeInfo->type ) ) ) {
 			if ( Gen_TypeIsScalar( typeInfo ) ) {
-				funcToCall = Gen_GetFuncName_Scalar_SSE( tempStorage, typeInfo->type, flags, def->funcName );
+				funcToCall = Gen_GetFuncName_Scalar_SSE( tempStorage, typeInfo->type, flags, caseStyle, def->funcName );
 			} else {
-				funcToCall = Gen_GetFuncName_Vector_SSE( tempStorage, typeInfo, flags, def->funcName );
+				funcToCall = Gen_GetFuncName_Vector_SSE( tempStorage, typeInfo, flags, caseStyle, def->funcName );
 			}
 		}
 	}
@@ -436,7 +438,7 @@ static void Gen_GenerateParametricTestDefinition_ComponentWise_SSE( allocatorLin
 		passByStr = " ";
 		// referenceStr = "";
 	} else {
-		equalsFuncStr = Gen_GetFuncName_Vector( tempStorage, def->returnType, flags, GEN_FUNCTION_NAME_EQUALS );
+		equalsFuncStr = Gen_GetFuncName_Vector( tempStorage, def->returnType, flags, caseStyle, GEN_FUNCTION_NAME_EQUALS );
 		passByStr = strings->parmPassByStr;
 		// referenceStr = strings->parmReferenceStr;
 	}
@@ -579,7 +581,7 @@ static void Gen_GenerateParametricTestInvokations_ComponentWise( allocatorLinear
 	}
 }
 
-static void Gen_GenerateParametricTestsCode_ComponentWise( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const char *funcName, const generatorStrings_t *strings, const generatorFlags_t flags, const componentWiseTestsData_t *testData ) {
+static void Gen_GenerateParametricTestsCode_ComponentWise( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const char *funcName, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle, const componentWiseTestsData_t *testData ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -597,7 +599,7 @@ static void Gen_GenerateParametricTestsCode_ComponentWise( allocatorLinear_t *te
 
 	const char *testName = Gen_GetTestName( tempStorage, typeInfo, funcName );
 
-	Gen_GenerateParametricTestDefinition_Generic( tempStorage, code, typeInfo, strings, flags, &(parametricTestDefinition_t) {
+	Gen_GenerateParametricTestDefinition_Generic( tempStorage, code, typeInfo, strings, flags, caseStyle, &(parametricTestDefinition_t) {
 		.returnType	= testData->outputType,
 		.funcName	= funcName,
 		.parmsCount	= testData->parmDefsCount,
@@ -611,7 +613,7 @@ static void Gen_GenerateParametricTestsCode_ComponentWise( allocatorLinear_t *te
 
 		const char *testNameSSE = Gen_GetTestName_SSE( tempStorage, typeInfo, funcName );
 
-		Gen_GenerateParametricTestDefinition_ComponentWise_SSE( tempStorage, code, typeInfo, strings, flags, &(parametricTestDefinition_t) {
+		Gen_GenerateParametricTestDefinition_ComponentWise_SSE( tempStorage, code, typeInfo, strings, flags, caseStyle, &(parametricTestDefinition_t) {
 			.returnType	= testData->outputType,
 			.funcName	= funcName,
 			.parmsCount	= testData->parmDefsCount,
@@ -622,12 +624,19 @@ static void Gen_GenerateParametricTestsCode_ComponentWise( allocatorLinear_t *te
 	}
 }
 
-static void Gen_GenerateParametricTestsCode_Operator( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const char *opName, const char *opStr, const generatorStrings_t *strings, const generatorFlags_t flags, const testFixtureOperator_t *fixture ) {
+// 'opName' is the raw (uncased) operator word/fragment, used only for the test's own internal name (which
+// doesn't need to match anything external). 'resolvedFuncName' is the exact, already-cased real function
+// name to call when operators are disabled - it must come from the same producer used by the real
+// definition (Gen_GetFuncName_VectorRelational/VectorArithmetic*/VectorBitwise*), since those bake in
+// structural c/s/v/m markers that can't be re-derived by re-running a fragment like "cadds" through the
+// generic per-type-prefix naming scheme (that would recase the structural markers too).
+static void Gen_GenerateParametricTestsCode_Operator( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const char *opName, const char *resolvedFuncName, const char *opStr, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle, const testFixtureOperator_t *fixture ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
 	assert( typeInfo->fullTypeName );
 	assert( opName );
+	assert( resolvedFuncName );
 	assert( opStr );
 	assert( strings );
 	assert( fixture );
@@ -644,9 +653,11 @@ static void Gen_GenerateParametricTestsCode_Operator( allocatorLinear_t *tempSto
 	if ( flags & GENERATOR_FLAG_GENERATE_OPERATORS ) {
 		Gen_GenerateParametricTestDefinition_Operator( tempStorage, code, fixture->lhsType, fixture->rhsType, fixture->returnType, opName, opStr, strings, flags );
 	} else {
-		Gen_GenerateParametricTestDefinition_Generic( tempStorage, code, typeInfo, strings, flags, &(parametricTestDefinition_t) {
+		Gen_GenerateParametricTestDefinition_Generic( tempStorage, code, typeInfo, strings, flags, caseStyle, &(parametricTestDefinition_t) {
 			.returnType = fixture->returnType,
-			.funcName = opName,
+			.funcName = resolvedFuncName,
+			.funcNameIsResolved = true,
+			.testNameOverride = testName,
 			.parmsCount = 2,
 			.parms = (parametricTestDefinitionParm_t[]) {
 				{ fixture->lhsType, "lhs" },
@@ -708,7 +719,7 @@ static void Gen_GenerateParametricTestsCode_Operator( allocatorLinear_t *tempSto
 	}
 }
 
-static void Gen_GenerateParametricTestCode_OperatorSingleParm( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const char *opName, const char *opStr, const generatorStrings_t *strings, const generatorFlags_t flags, const operatorSingleParmType_t type, const testFixtureOperatorSingleParm_t *fixture ) {
+static void Gen_GenerateParametricTestCode_OperatorSingleParm( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const char *opName, const char *opStr, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle, const operatorSingleParmType_t type, const testFixtureOperatorSingleParm_t *fixture ) {
 	assert( tempStorage );
 	assert( code );
 	assert( opName );
@@ -742,8 +753,8 @@ static void Gen_GenerateParametricTestCode_OperatorSingleParm( allocatorLinear_t
 		}
 		StringBuilder_Append( code, "\tTEMPER_CHECK_TRUE( actualAnswer == expectedAnswer );\n" );
 	} else {
-		const char *funcName = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, opName );
-		const char *equalsFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_EQUALS );
+		const char *funcName = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, opName );
+		const char *equalsFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_EQUALS );
 
 		StringBuilder_Appendf( code, "\t%s%sxlocal = (%s *) x;\n", typeInfo->fullTypeName, strings->ptrDeclStr, typeInfo->fullTypeName );
 		StringBuilder_Appendf( code, "\t%s actualAnswer = %s( xlocal );\n", typeInfo->fullTypeName, funcName );
@@ -863,7 +874,7 @@ void Gen_GenerateParametricTestInvokation_Generic_SSE(
 }
 
 
-static void Gen_GenerateTests_All( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const typeInfo_t *scalarType, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void Gen_GenerateTests_All( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const typeInfo_t *scalarType, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -930,7 +941,7 @@ static void Gen_GenerateTests_All( allocatorLinear_t *tempStorage, stringBuilder
 
 	const char *funcName = GEN_FUNCTION_NAME_ALL;
 
-	Gen_GenerateParametricTestDefinition_Generic( tempStorage, code, typeInfo, strings, flags, &(parametricTestDefinition_t) {
+	Gen_GenerateParametricTestDefinition_Generic( tempStorage, code, typeInfo, strings, flags, caseStyle, &(parametricTestDefinition_t) {
 		.returnType = scalarType,
 		.funcName = funcName,
 		.parmsCount = 1,
@@ -964,7 +975,7 @@ static void Gen_GenerateTests_All( allocatorLinear_t *tempStorage, stringBuilder
 	}
 }
 
-static void Gen_GenerateTests_Any( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const typeInfo_t *scalarType, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void Gen_GenerateTests_Any( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const typeInfo_t *scalarType, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -1031,7 +1042,7 @@ static void Gen_GenerateTests_Any( allocatorLinear_t *tempStorage, stringBuilder
 
 	const char *funcName = GEN_FUNCTION_NAME_ANY;
 
-	Gen_GenerateParametricTestDefinition_Generic( tempStorage, code, typeInfo, strings, flags, &(parametricTestDefinition_t) {
+	Gen_GenerateParametricTestDefinition_Generic( tempStorage, code, typeInfo, strings, flags, caseStyle, &(parametricTestDefinition_t) {
 		.returnType = scalarType,
 		.funcName = funcName,
 		.parmsCount = 1,
@@ -1065,7 +1076,7 @@ static void Gen_GenerateTests_Any( allocatorLinear_t *tempStorage, stringBuilder
 	}
 }
 
-static void GenerateOperatorTests( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const typeInfo_t *scalarType, const typeInfo_t *boolTypeVector, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void GenerateOperatorTests( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const typeInfo_t *scalarType, const typeInfo_t *boolTypeVector, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -1098,8 +1109,9 @@ static void GenerateOperatorTests( allocatorLinear_t *tempStorage, stringBuilder
 
 			const char *opFuncName = Gen_GetRelationalName( op );
 			const char *opStr = Gen_GetOperatorRelational( op );
+			const char *resolvedFuncName = Gen_GetFuncName_VectorRelational( tempStorage, typeInfo, caseStyle, op );
 
-			Gen_GenerateParametricTestsCode_Operator( tempStorage, code, typeInfo, opFuncName, opStr, strings, flags, &(testFixtureOperator_t) {
+			Gen_GenerateParametricTestsCode_Operator( tempStorage, code, typeInfo, opFuncName, resolvedFuncName, opStr, strings, flags, caseStyle, &(testFixtureOperator_t) {
 				.numTests = 4,
 
 				.lhsType = typeInfo,
@@ -1131,8 +1143,9 @@ static void GenerateOperatorTests( allocatorLinear_t *tempStorage, stringBuilder
 
 			const char *opFuncName = String_TPrintf( tempStorage, "c%ss", Gen_GetArithmeticName( op ) );
 			const char *opStr = Gen_GetOperatorArithmetic( op );
+			const char *resolvedFuncName = Gen_GetFuncName_VectorArithmeticScalar( tempStorage, typeInfo, caseStyle, op );
 
-			Gen_GenerateParametricTestsCode_Operator( tempStorage, code, typeInfo, opFuncName, opStr, strings, flags, &(testFixtureOperator_t) {
+			Gen_GenerateParametricTestsCode_Operator( tempStorage, code, typeInfo, opFuncName, resolvedFuncName, opStr, strings, flags, caseStyle, &(testFixtureOperator_t) {
 				.numTests = 4,
 
 				.lhsType = typeInfo,
@@ -1150,16 +1163,19 @@ static void GenerateOperatorTests( allocatorLinear_t *tempStorage, stringBuilder
 			genOpArithmetic_t op = (genOpArithmetic_t) opIndex;
 
 			const char *opFuncName = NULL;
+			const char *resolvedFuncName = NULL;
 
 			if ( Gen_TypeIsMatrix( typeInfo ) ) {
 				opFuncName = String_TPrintf( tempStorage, "c%sm", Gen_GetArithmeticName( op ) );
+				resolvedFuncName = Gen_GetFuncName_VectorArithmeticMatrix( tempStorage, typeInfo, caseStyle, op );
 			} else {
 				opFuncName = String_TPrintf( tempStorage, "c%sv", Gen_GetArithmeticName( op ) );
+				resolvedFuncName = Gen_GetFuncName_VectorArithmeticVector( tempStorage, typeInfo, caseStyle, op );
 			}
 
 			const char *opStr = Gen_GetOperatorArithmetic( op );
 
-			Gen_GenerateParametricTestsCode_Operator( tempStorage, code, typeInfo, opFuncName, opStr, strings, flags, &(testFixtureOperator_t) {
+			Gen_GenerateParametricTestsCode_Operator( tempStorage, code, typeInfo, opFuncName, resolvedFuncName, opStr, strings, flags, caseStyle, &(testFixtureOperator_t) {
 				.numTests = 4,
 
 				.lhsType = typeInfo,
@@ -1195,13 +1211,13 @@ static void GenerateOperatorTests( allocatorLinear_t *tempStorage, stringBuilder
 			const char *opName = Gen_GetIncrementName( op );
 			const char *opStr = Gen_GetOperatorIncrement( op );
 
-			Gen_GenerateParametricTestCode_OperatorSingleParm( tempStorage, code, typeInfo, opName, opStr, strings, flags, OPERATOR_SINGLE_PARM_TYPE_PREFIX, &(testFixtureOperatorSingleParm_t) {
+			Gen_GenerateParametricTestCode_OperatorSingleParm( tempStorage, code, typeInfo, opName, opStr, strings, flags, caseStyle, OPERATOR_SINGLE_PARM_TYPE_PREFIX, &(testFixtureOperatorSingleParm_t) {
 				.numTests = 4,
 				.inputValues = inputValues,
 				.outputValues = outputValues[op]
 			} );
 
-			Gen_GenerateParametricTestCode_OperatorSingleParm( tempStorage, code, typeInfo, opName, opStr, strings, flags, OPERATOR_SINGLE_PARM_TYPE_POSTFIX, &(testFixtureOperatorSingleParm_t) {
+			Gen_GenerateParametricTestCode_OperatorSingleParm( tempStorage, code, typeInfo, opName, opStr, strings, flags, caseStyle, OPERATOR_SINGLE_PARM_TYPE_POSTFIX, &(testFixtureOperatorSingleParm_t) {
 				.numTests = 4,
 				.inputValues = inputValues,
 				.outputValues = outputValues[op]
@@ -1226,7 +1242,7 @@ static void GenerateOperatorTests( allocatorLinear_t *tempStorage, stringBuilder
 		float32 inputValues[]           = {  0.0f,  1.0f,  2.0f,  3.0f,  10.0f };
 		float32 negateExpectedAnswers[] = { -0.0f, -1.0f, -2.0f, -3.0f, -10.0f };
 
-		Gen_GenerateParametricTestCode_OperatorSingleParm( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_NEGATE, "-", strings, flags, OPERATOR_SINGLE_PARM_TYPE_PREFIX, &(testFixtureOperatorSingleParm_t) {
+		Gen_GenerateParametricTestCode_OperatorSingleParm( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_NEGATE, "-", strings, flags, caseStyle, OPERATOR_SINGLE_PARM_TYPE_PREFIX, &(testFixtureOperatorSingleParm_t) {
 			.numTests = 5,
 			.inputValues = inputValues,
 			.outputValues = negateExpectedAnswers
@@ -1253,7 +1269,7 @@ static void GenerateOperatorTests( allocatorLinear_t *tempStorage, stringBuilder
 			const char *opFuncName = Gen_GetBitwiseName( GEN_OP_BITWISE_NOT );
 			const char *opStr = Gen_GetOperatorBitwise( GEN_OP_BITWISE_NOT );
 
-			Gen_GenerateParametricTestCode_OperatorSingleParm( tempStorage, code, typeInfo, opFuncName, opStr, strings, flags, OPERATOR_SINGLE_PARM_TYPE_PREFIX, &(testFixtureOperatorSingleParm_t) {
+			Gen_GenerateParametricTestCode_OperatorSingleParm( tempStorage, code, typeInfo, opFuncName, opStr, strings, flags, caseStyle, OPERATOR_SINGLE_PARM_TYPE_PREFIX, &(testFixtureOperatorSingleParm_t) {
 				.numTests = 1,
 				.inputValues =  (float32[]) {  1 },
 				.outputValues = (float32[]) { ~1 }
@@ -1297,8 +1313,9 @@ static void GenerateOperatorTests( allocatorLinear_t *tempStorage, stringBuilder
 
 				const char *opFuncName = String_TPrintf( tempStorage, "c%ss", Gen_GetBitwiseName( op ) );
 				const char *opStr = Gen_GetOperatorBitwise( op );
+				const char *resolvedFuncName = Gen_GetFuncName_VectorBitwiseScalar( tempStorage, typeInfo, caseStyle, op );
 
-				Gen_GenerateParametricTestsCode_Operator( tempStorage, code, typeInfo, opFuncName, opStr, strings, flags, &(testFixtureOperator_t) {
+				Gen_GenerateParametricTestsCode_Operator( tempStorage, code, typeInfo, opFuncName, resolvedFuncName, opStr, strings, flags, caseStyle, &(testFixtureOperator_t) {
 					.numTests = 4,
 
 					.lhsType = typeInfo,
@@ -1320,16 +1337,19 @@ static void GenerateOperatorTests( allocatorLinear_t *tempStorage, stringBuilder
 				}
 
 				const char *opFuncName = NULL;
+				const char *resolvedFuncName = NULL;
 
 				if ( Gen_TypeIsMatrix( typeInfo ) ) {
 					opFuncName = String_TPrintf( tempStorage, "c%sm", Gen_GetBitwiseName( op ) );
+					resolvedFuncName = Gen_GetFuncName_VectorBitwiseMatrix( tempStorage, typeInfo, caseStyle, op );
 				} else {
 					opFuncName = String_TPrintf( tempStorage, "c%sv", Gen_GetBitwiseName( op ) );
+					resolvedFuncName = Gen_GetFuncName_VectorBitwiseVector( tempStorage, typeInfo, caseStyle, op );
 				}
 
 				const char *opStr = Gen_GetOperatorBitwise( op );
 
-				Gen_GenerateParametricTestsCode_Operator( tempStorage, code, typeInfo, opFuncName, opStr, strings, flags, &(testFixtureOperator_t) {
+				Gen_GenerateParametricTestsCode_Operator( tempStorage, code, typeInfo, opFuncName, resolvedFuncName, opStr, strings, flags, caseStyle, &(testFixtureOperator_t) {
 					.numTests = 4,
 
 					.lhsType = typeInfo,
@@ -1346,7 +1366,7 @@ static void GenerateOperatorTests( allocatorLinear_t *tempStorage, stringBuilder
 	}
 }
 
-void GenerateComponentWiseTests( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const typeInfo_t *scalarType, const generatorStrings_t *strings, const generatorFlags_t flags, const bool32 generateQuaternions, const bool32 *scalarTypeEnabled ) {
+void GenerateComponentWiseTests( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const typeInfo_t *scalarType, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle, const bool32 generateQuaternions, const bool32 *scalarTypeEnabled ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -1393,14 +1413,14 @@ void GenerateComponentWiseTests( allocatorLinear_t *tempStorage, stringBuilder_t
 		floatingPointTypeVector.fullTypeName = Gen_GetMemberTypeString( floatingPointTypeVector.type );
 	}
 
-	GenerateOperatorTests( tempStorage, code, typeInfo, scalarType, &boolType, strings, flags );
+	GenerateOperatorTests( tempStorage, code, typeInfo, scalarType, &boolType, strings, flags, caseStyle );
 
-	Gen_GenerateTests_All( tempStorage, code, typeInfo, scalarType, strings, flags );
-	Gen_GenerateTests_Any( tempStorage, code, typeInfo, scalarType, strings, flags );
+	Gen_GenerateTests_All( tempStorage, code, typeInfo, scalarType, strings, flags, caseStyle );
+	Gen_GenerateTests_Any( tempStorage, code, typeInfo, scalarType, strings, flags, caseStyle );
 
 	if ( typeInfo->type != GEN_TYPE_BOOL ) {
 		// min
-		Gen_GenerateParametricTestsCode_ComponentWise( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_MIN, strings, flags, &(componentWiseTestsData_t) {
+		Gen_GenerateParametricTestsCode_ComponentWise( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_MIN, strings, flags, caseStyle, &(componentWiseTestsData_t) {
 			.parmDefsCount = 2,
 			.parmDefs = (parametricTestDefinitionParm_t[]) {
 				{ typeInfo, "lhs" },
@@ -1424,7 +1444,7 @@ void GenerateComponentWiseTests( allocatorLinear_t *tempStorage, stringBuilder_t
 		} );
 
 		// max
-		Gen_GenerateParametricTestsCode_ComponentWise( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_MAX, strings, flags, &(componentWiseTestsData_t) {
+		Gen_GenerateParametricTestsCode_ComponentWise( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_MAX, strings, flags, caseStyle, &(componentWiseTestsData_t) {
 			.parmDefsCount = 2,
 			.parmDefs = (parametricTestDefinitionParm_t[]) {
 				{ typeInfo, "lhs" },
@@ -1448,7 +1468,7 @@ void GenerateComponentWiseTests( allocatorLinear_t *tempStorage, stringBuilder_t
 		} );
 
 		// saturate
-		Gen_GenerateParametricTestsCode_ComponentWise( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_SATURATE, strings, flags, &(componentWiseTestsData_t) {
+		Gen_GenerateParametricTestsCode_ComponentWise( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_SATURATE, strings, flags, caseStyle, &(componentWiseTestsData_t) {
 			.parmDefsCount = 1,
 			.parmDefs = (parametricTestDefinitionParm_t[]) {
 				{ typeInfo, "x" },
@@ -1493,7 +1513,7 @@ void GenerateComponentWiseTests( allocatorLinear_t *tempStorage, stringBuilder_t
 			returnType.fullTypeName = String_TPrintf( tempStorage, "%s%dx%d", Gen_GetTypeString( returnType.type ), typeInfo->numRows, typeInfo->numCols );
 		}
 
-		Gen_GenerateParametricTestsCode_ComponentWise( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_SIGN, strings, flags, &(componentWiseTestsData_t) {
+		Gen_GenerateParametricTestsCode_ComponentWise( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_SIGN, strings, flags, caseStyle, &(componentWiseTestsData_t) {
 			.parmDefsCount = 1,
 			.parmDefs = (parametricTestDefinitionParm_t[]) {
 				{ typeInfo, "x" },
@@ -1527,7 +1547,7 @@ void GenerateComponentWiseTests( allocatorLinear_t *tempStorage, stringBuilder_t
 	if ( Gen_TypeIsFloatingPoint( typeInfo->type ) ) {
 		if ( Gen_TypeIsScalar( typeInfo ) ) {
 			// floateq
-			Gen_GenerateParametricTestsCode_ComponentWise( tempStorage, code, typeInfo, Gen_GetFuncName_Floateq( typeInfo->type ), strings, flags, &(componentWiseTestsData_t) {
+			Gen_GenerateParametricTestsCode_ComponentWise( tempStorage, code, typeInfo, Gen_GetFuncName_Floateq( typeInfo->type ), strings, flags, caseStyle, &(componentWiseTestsData_t) {
 				.parmDefsCount = 2,
 				.parmDefs = (parametricTestDefinitionParm_t[]) {
 					{ typeInfo, "lhs" },
@@ -1559,7 +1579,7 @@ void GenerateComponentWiseTests( allocatorLinear_t *tempStorage, stringBuilder_t
 			} );
 
 			// degrees
-			Gen_GenerateParametricTestsCode_ComponentWise( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_DEGREES, strings, flags, &(componentWiseTestsData_t) {
+			Gen_GenerateParametricTestsCode_ComponentWise( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_DEGREES, strings, flags, caseStyle, &(componentWiseTestsData_t) {
 				.generateSSE = Gen_TypeIsScalar( typeInfo ) && Gen_ShouldGenerateSSE( typeInfo->type, flags ),
 				.parmDefsCount = 1,
 				.parmDefs = (parametricTestDefinitionParm_t[]) {
@@ -1579,7 +1599,7 @@ void GenerateComponentWiseTests( allocatorLinear_t *tempStorage, stringBuilder_t
 			} );
 
 			// radians
-			Gen_GenerateParametricTestsCode_ComponentWise( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_RADIANS, strings, flags, &(componentWiseTestsData_t) {
+			Gen_GenerateParametricTestsCode_ComponentWise( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_RADIANS, strings, flags, caseStyle, &(componentWiseTestsData_t) {
 				.generateSSE = Gen_TypeIsScalar( typeInfo ) && Gen_ShouldGenerateSSE( typeInfo->type, flags ),
 				.parmDefsCount = 1,
 				.parmDefs = (parametricTestDefinitionParm_t[]) {
@@ -1600,7 +1620,7 @@ void GenerateComponentWiseTests( allocatorLinear_t *tempStorage, stringBuilder_t
 		}
 
 		// lerp
-		Gen_GenerateParametricTestsCode_ComponentWise( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_LERP, strings, flags, &(componentWiseTestsData_t) {
+		Gen_GenerateParametricTestsCode_ComponentWise( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_LERP, strings, flags, caseStyle, &(componentWiseTestsData_t) {
 			.generateSSE = Gen_TypeIsScalar( typeInfo ) && Gen_ShouldGenerateSSE( typeInfo->type, flags ),
 			.parmDefsCount = 3,
 			.parmDefs = (parametricTestDefinitionParm_t[]) {
@@ -1625,7 +1645,7 @@ void GenerateComponentWiseTests( allocatorLinear_t *tempStorage, stringBuilder_t
 	}
 
 	if ( generateQuaternions && Gen_TypeIsVector( typeInfo ) && Gen_VectorQualifiesAsQuaternion( typeInfo ) ) {
-		Gen_GenerateParametricTestsCode_ComponentWise( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_QUAT_LENGTH, strings, flags, &(componentWiseTestsData_t) {
+		Gen_GenerateParametricTestsCode_ComponentWise( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_QUAT_LENGTH, strings, flags, caseStyle, &(componentWiseTestsData_t) {
 			.parmDefsCount = 1,
 			.parmDefs = (parametricTestDefinitionParm_t[]) {
 				{ typeInfo, "quat" }
@@ -1651,7 +1671,7 @@ void GenerateComponentWiseTests( allocatorLinear_t *tempStorage, stringBuilder_t
 			}
 		} );
 
-		Gen_GenerateParametricTestsCode_ComponentWise( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_QUAT_LERP, strings, flags, &(componentWiseTestsData_t) {
+		Gen_GenerateParametricTestsCode_ComponentWise( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_QUAT_LERP, strings, flags, caseStyle, &(componentWiseTestsData_t) {
 			.parmDefsCount = 3,
 			.parmDefs = (parametricTestDefinitionParm_t[]) {
 				{ typeInfo,   "lhs" },
@@ -1676,7 +1696,7 @@ void GenerateComponentWiseTests( allocatorLinear_t *tempStorage, stringBuilder_t
 		} );
 
 		{
-			Gen_GenerateParametricTestsCode_ComponentWise( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_QUAT_SLERP, strings, flags, &(componentWiseTestsData_t) {
+			Gen_GenerateParametricTestsCode_ComponentWise( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_QUAT_SLERP, strings, flags, caseStyle, &(componentWiseTestsData_t) {
 				.parmDefsCount = 3,
 				.parmDefs = (parametricTestDefinitionParm_t[]) {
 					{ typeInfo,   "lhs" },

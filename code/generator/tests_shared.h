@@ -43,6 +43,7 @@ typedef struct parametricTestDefinition_t {
 	u32										parmsCount;
 	bool32									alsoGenerateSSE;	// TODO(DM): now that we have multiple bools, do flags
 	bool32									checkEachComponent;
+	bool32									funcNameIsResolved;	// if true, 'funcName' is already the exact real callable name (see the operator-derived name producers in gen_shared.h) and Gen_GenerateParametricTestDefinition_Generic must call it verbatim instead of re-deriving it via Gen_GetFuncName_Scalar/Vector - needed for names like arithmetic/bitwise component-wise ops whose structural markers (c/s/v/m) aren't expressible as a single functionName run through the generic per-type-prefix naming scheme
 	const char								*funcName;
 	const char								*testNameOverride;	// if NULL then generator will pick its own test name
 } parametricTestDefinition_t;
@@ -64,6 +65,7 @@ void		Gen_GenerateParametricTestDefinition_Generic_SSE( allocatorLinear_t *tempS
 															  const typeInfo_t *typeInfo,
 															  const generatorStrings_t *strings,
 															  const generatorFlags_t flags,
+															  const genFunctionNameCase_t caseStyle,
 															  parametricTestDefinition_t *def );
 
 void		Gen_GenerateParametricTestDefinition_Generic( allocatorLinear_t *tempStorage,
@@ -71,6 +73,7 @@ void		Gen_GenerateParametricTestDefinition_Generic( allocatorLinear_t *tempStora
 														  const typeInfo_t *typeInfo,
 														  const generatorStrings_t *strings,
 														  const generatorFlags_t flags,
+														  const genFunctionNameCase_t caseStyle,
 														  parametricTestDefinition_t *def );
 
 void		Gen_GenerateParametricTestInvokation_Generic( allocatorLinear_t *tempStorage,
@@ -97,6 +100,7 @@ void		GenerateComponentWiseTests( allocatorLinear_t *tempStorage,
 										const typeInfo_t *scalarType,
 										const generatorStrings_t *strings,
 										const generatorFlags_t flags,
+										const genFunctionNameCase_t caseStyle,
 										const bool32 generateQuaternions,
 										const bool32 *scalarTypeEnabled );
 
@@ -115,6 +119,7 @@ void		GenerateVectorTests( allocatorLinear_t *tempStorage,
 								 const u32 vectorTypeInfosCount,
 								 const generatorStrings_t *strings,
 								 const generatorFlags_t flags,
+								 const genFunctionNameCase_t caseStyle,
 								 const u32 componentCountMin,
 								 const u32 componentCountMax,
 								 const bool32 generateQuaternions );
@@ -125,7 +130,8 @@ void		GenerateQuaternionTests( allocatorLinear_t *tempStorage,
 									 const typeInfo_t *quaternionTypeInfos,
 									 const u32 quaternionTypeInfosCount,
 									 const generatorStrings_t *strings,
-									 const generatorFlags_t flags );
+									 const generatorFlags_t flags,
+									 const genFunctionNameCase_t caseStyle );
 
 void		GenerateMatrixTests( allocatorLinear_t *tempStorage,
 								 const char *generatedTestsPath,
@@ -133,4 +139,5 @@ void		GenerateMatrixTests( allocatorLinear_t *tempStorage,
 								 const typeInfo_t *matrixTypeInfos,
 								 const u32 matrixTypeInfosCount,
 								 const generatorStrings_t *strings,
-								 const generatorFlags_t flags );
+								 const generatorFlags_t flags,
+								 const genFunctionNameCase_t caseStyle );

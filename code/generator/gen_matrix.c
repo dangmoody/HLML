@@ -40,7 +40,7 @@ SOFTWARE.
 #include <stdio.h>
 #include <assert.h>
 
-static void GenerateFunction_All_Matrix( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, const typeInfo_t *memberTypeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void GenerateFunction_All_Matrix( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, const typeInfo_t *memberTypeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( memberTypeInfo );
@@ -51,8 +51,8 @@ static void GenerateFunction_All_Matrix( allocatorLinear_t *tempStorage, const t
 		return;
 	}
 
-	const char *allFuncMatrixStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_ALL );
-	const char *allFuncVectorStr = Gen_GetFuncName_Vector( tempStorage, memberTypeInfo, flags, GEN_FUNCTION_NAME_ALL );
+	const char *allFuncMatrixStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_ALL );
+	const char *allFuncVectorStr = Gen_GetFuncName_Vector( tempStorage, memberTypeInfo, flags, caseStyle, GEN_FUNCTION_NAME_ALL );
 
 	StringBuilder_Append(  code, "// Returns true if ALL components of the 'x' are true, otherwise returns false.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE bool %s( const %s%sx )\n", allFuncMatrixStr, typeInfo->fullTypeName, strings->ptrDeclStr );
@@ -70,7 +70,7 @@ static void GenerateFunction_All_Matrix( allocatorLinear_t *tempStorage, const t
 	StringBuilder_Append(  code, ";\n}\n\n" );
 }
 
-static void GenerateFunction_Any_Matrix( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, const typeInfo_t *memberTypeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void GenerateFunction_Any_Matrix( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, const typeInfo_t *memberTypeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( memberTypeInfo );
@@ -81,8 +81,8 @@ static void GenerateFunction_Any_Matrix( allocatorLinear_t *tempStorage, const t
 		return;
 	}
 
-	const char *anyFuncStrMatrix = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_ANY );
-	const char *anyFuncStrVector = Gen_GetFuncName_Vector( tempStorage, memberTypeInfo, flags, GEN_FUNCTION_NAME_ANY );
+	const char *anyFuncStrMatrix = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_ANY );
+	const char *anyFuncStrVector = Gen_GetFuncName_Vector( tempStorage, memberTypeInfo, flags, caseStyle, GEN_FUNCTION_NAME_ANY );
 
 	StringBuilder_Append(  code, "// Returns true if ANY one component of 'x' is true, otherwise returns false.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE bool %s( const %s%sx )\n", anyFuncStrMatrix, typeInfo->fullTypeName, strings->ptrDeclStr );
@@ -100,7 +100,7 @@ static void GenerateFunction_Any_Matrix( allocatorLinear_t *tempStorage, const t
 	StringBuilder_Append(  code, ";\n}\n\n" );
 }
 
-static void GenerateFunction_Identity_Matrix( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, const typeInfo_t *memberTypeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void GenerateFunction_Identity_Matrix( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, const typeInfo_t *memberTypeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( memberTypeInfo );
@@ -114,7 +114,7 @@ static void GenerateFunction_Identity_Matrix( allocatorLinear_t *tempStorage, co
 		{ 0.0f, 0.0f, 0.0f, 1.0f }
 	};
 
-	const char *identityFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_IDENTITY );
+	const char *identityFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_IDENTITY );
 
 	StringBuilder_Append(  code, "// Sets the matrix to an identity matrix.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE void %s( %s%smat )\n", identityFuncStr, typeInfo->fullTypeName, strings->parmPassByStr );
@@ -137,7 +137,7 @@ static void GenerateFunction_Identity_Matrix( allocatorLinear_t *tempStorage, co
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateFunction_Transpose_Matrix( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void GenerateFunction_Transpose_Matrix( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( code );
@@ -146,7 +146,7 @@ static void GenerateFunction_Transpose_Matrix( allocatorLinear_t *tempStorage, c
 	// create transposed type, reverse rows and cols
 	const char *transposeTypeName = String_TPrintf( tempStorage, "%s%dx%d", Gen_GetTypeString( typeInfo->type ), typeInfo->numCols, typeInfo->numRows );
 
-	const char *transposeFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_TRANSPOSE );
+	const char *transposeFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_TRANSPOSE );
 
 	StringBuilder_Append(  code, "// Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%smat )\n", transposeTypeName, transposeFuncStr, typeInfo->fullTypeName, strings->parmPassByStr );
@@ -177,7 +177,7 @@ static void GenerateFunction_Transpose_Matrix( allocatorLinear_t *tempStorage, c
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateFunction_Determinant_Matrix( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, const typeInfo_t *memberTypeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void GenerateFunction_Determinant_Matrix( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, const typeInfo_t *memberTypeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( memberTypeInfo );
@@ -194,7 +194,7 @@ static void GenerateFunction_Determinant_Matrix( allocatorLinear_t *tempStorage,
 
 	const char *memberTypeString = Gen_GetMemberTypeString( typeInfo->type );
 
-	const char *determinantFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_DETERMINANT );
+	const char *determinantFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_DETERMINANT );
 
 	StringBuilder_Append(  code, "// Returns the determinant of the matrix.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%smat )\n", memberTypeString, determinantFuncStr, typeInfo->fullTypeName, strings->parmPassByStr );
@@ -240,7 +240,7 @@ static void GenerateFunction_Determinant_Matrix( allocatorLinear_t *tempStorage,
 	StringBuilder_Append( code, "\n" );
 }
 
-static void GenerateFunction_Inverse_Matrix( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, const typeInfo_t *memberTypeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void GenerateFunction_Inverse_Matrix( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, const typeInfo_t *memberTypeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( memberTypeInfo );
@@ -259,13 +259,13 @@ static void GenerateFunction_Inverse_Matrix( allocatorLinear_t *tempStorage, con
 		return;
 	}
 
-	const char *inverseFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_INVERSE );
-	const char *determinantFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_DETERMINANT );
+	const char *inverseFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_INVERSE );
+	const char *determinantFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_DETERMINANT );
 
-	const char *addVectorFuncStr = Gen_GetFuncName_VectorArithmeticVector( tempStorage, memberTypeInfo, GEN_OP_ARITHMETIC_ADD );
-	const char *subVectorFuncStr = Gen_GetFuncName_VectorArithmeticVector( tempStorage, memberTypeInfo, GEN_OP_ARITHMETIC_SUB );
-	const char *mulVectorFuncStr = Gen_GetFuncName_VectorArithmeticVector( tempStorage, memberTypeInfo, GEN_OP_ARITHMETIC_MUL );
-	const char *mulMatrixScalarFuncStr = Gen_GetFuncName_VectorArithmeticScalar( tempStorage, typeInfo, GEN_OP_ARITHMETIC_MUL );
+	const char *addVectorFuncStr = Gen_GetFuncName_VectorArithmeticVector( tempStorage, memberTypeInfo, caseStyle, GEN_OP_ARITHMETIC_ADD );
+	const char *subVectorFuncStr = Gen_GetFuncName_VectorArithmeticVector( tempStorage, memberTypeInfo, caseStyle, GEN_OP_ARITHMETIC_SUB );
+	const char *mulVectorFuncStr = Gen_GetFuncName_VectorArithmeticVector( tempStorage, memberTypeInfo, caseStyle, GEN_OP_ARITHMETIC_MUL );
+	const char *mulMatrixScalarFuncStr = Gen_GetFuncName_VectorArithmeticScalar( tempStorage, typeInfo, caseStyle, GEN_OP_ARITHMETIC_MUL );
 
 	const char *memberTypeString = Gen_GetMemberTypeString( typeInfo->type );
 
@@ -465,7 +465,7 @@ static void GenerateFunction_Inverse_Matrix( allocatorLinear_t *tempStorage, con
 	StringBuilder_Append( code, "}\n\n" );
 }
 
-static void GenerateFunction_Multiply_Matrix( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void GenerateFunction_Multiply_Matrix( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( code );
@@ -481,7 +481,7 @@ static void GenerateFunction_Multiply_Matrix( allocatorLinear_t *tempStorage, co
 	const char *typeNameRhs = String_TPrintf( tempStorage, "%s%dx%d", typeString, typeInfo->numCols, typeInfo->numRows );
 	const char *typeNameReturn = String_TPrintf( tempStorage, "%s%dx%d", typeString, typeInfo->numRows, typeInfo->numRows );
 
-	const char *matrixMulFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_MUL );
+	const char *matrixMulFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_MUL );
 
 	if ( ( flags & GENERATOR_FLAG_NAME_MANGLING ) == 0 ) {
 		matrixMulFuncStr = String_TPrintf( tempStorage, "%sm", matrixMulFuncStr );
@@ -494,7 +494,7 @@ static void GenerateFunction_Multiply_Matrix( allocatorLinear_t *tempStorage, co
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateFunction_MultiplyVector_Matrix( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, const typeInfo_t *memberTypeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void GenerateFunction_MultiplyVector_Matrix( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, const typeInfo_t *memberTypeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( memberTypeInfo );
@@ -509,7 +509,7 @@ static void GenerateFunction_MultiplyVector_Matrix( allocatorLinear_t *tempStora
 		return;
 	}
 
-	const char *mulVectorFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_MUL );
+	const char *mulVectorFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_MUL );
 
 	if ( ( flags & GENERATOR_FLAG_NAME_MANGLING ) == 0 ) {
 		mulVectorFuncStr = String_TPrintf( tempStorage, "%sv", mulVectorFuncStr );
@@ -524,7 +524,7 @@ static void GenerateFunction_MultiplyVector_Matrix( allocatorLinear_t *tempStora
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateFunction_Translate_Matrix( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void GenerateFunction_Translate_Matrix( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( code );
@@ -542,7 +542,7 @@ static void GenerateFunction_Translate_Matrix( allocatorLinear_t *tempStorage, c
 
 	const char *typeString = Gen_GetTypeString( typeInfo->type );
 
-	const char *translateFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_TRANSLATE );
+	const char *translateFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_TRANSLATE );
 
 	StringBuilder_Append(  code, "// \"Translates\" the matrix.  Adds the last column of 'mat' by the position vector 'vec'.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%smat, const %s%d%svec )\n", typeInfo->fullTypeName, translateFuncStr, typeInfo->fullTypeName, strings->parmPassByStr, typeString, vecComponents, strings->parmPassByStr );
@@ -574,7 +574,7 @@ static void GenerateFunction_Translate_Matrix( allocatorLinear_t *tempStorage, c
 	StringBuilder_Append( code, "}\n\n" );
 }
 
-static void GenerateFunction_Rotate_Matrix( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void GenerateFunction_Rotate_Matrix( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( typeInfo->fullTypeName );
@@ -615,10 +615,10 @@ static void GenerateFunction_Rotate_Matrix( allocatorLinear_t *tempStorage, cons
 	const char *cosFuncStr = Gen_GetBuiltinFunction( tempStorage, typeInfo->type, GEN_BUILTIN_FUNCTION_NAME_COS );
 	const char *sinFuncStr = Gen_GetBuiltinFunction( tempStorage, typeInfo->type, GEN_BUILTIN_FUNCTION_NAME_SIN );
 
-	const char *rotateFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_ROTATE );
-	const char *normalizedFuncStr = Gen_GetFuncName_Vector( tempStorage, &rotateVectorType, flags, GEN_FUNCTION_NAME_NORMALIZED );
+	const char *rotateFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_ROTATE );
+	const char *normalizedFuncStr = Gen_GetFuncName_Vector( tempStorage, &rotateVectorType, flags, caseStyle, GEN_FUNCTION_NAME_NORMALIZED );
 
-	const char *matrixMulFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_MUL );
+	const char *matrixMulFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_MUL );
 	if ( ( flags & GENERATOR_FLAG_NAME_MANGLING ) == 0 ) {
 		matrixMulFuncStr = String_TPrintf( tempStorage, "%sm", matrixMulFuncStr );
 	}
@@ -649,7 +649,7 @@ static void GenerateFunction_Rotate_Matrix( allocatorLinear_t *tempStorage, cons
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateFunction_Scale_Matrix( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void GenerateFunction_Scale_Matrix( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( code );
@@ -669,7 +669,7 @@ static void GenerateFunction_Scale_Matrix( allocatorLinear_t *tempStorage, const
 
 	const char *scaleVectorTypeString = String_TPrintf( tempStorage, "%s%d", typeString, numScaleComponents );
 
-	const char *scaleFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_SCALE );
+	const char *scaleFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_SCALE );
 
 	StringBuilder_Append(  code, "// Applies a non-uniform scale to the matrix and returns the result.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%smat, const %s%sscale )\n", typeInfo->fullTypeName, scaleFuncStr, typeInfo->fullTypeName, strings->parmPassByStr, scaleVectorTypeString, strings->parmPassByStr );
@@ -699,7 +699,7 @@ static void GenerateFunction_Scale_Matrix( allocatorLinear_t *tempStorage, const
 	StringBuilder_Append( code, "}\n\n" );
 }
 
-static void GenerateFunction_Ortho_LH_ZO_Matrix( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorFlags_t flags ) {
+static void GenerateFunction_Ortho_LH_ZO_Matrix( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( code );
@@ -718,7 +718,7 @@ static void GenerateFunction_Ortho_LH_ZO_Matrix( allocatorLinear_t *tempStorage,
 	const char *oneStr = Gen_GetNumericLiteral( tempStorage, typeInfo->type, 1.0f, 1 );
 	const char *twoStr = Gen_GetNumericLiteral( tempStorage, typeInfo->type, 2.0f, 1 );
 
-	const char *orthoFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_ORTHO_LH_ZO );
+	const char *orthoFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_ORTHO_LH_ZO );
 
 	StringBuilder_Append(  code, "// Returns an left-handed orthographic projection matrix with the clip-space range 0 to 1.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s left, const %s right, const %s top, const %s bottom, const %s znear, const %s zfar )\n",
@@ -741,7 +741,7 @@ static void GenerateFunction_Ortho_LH_ZO_Matrix( allocatorLinear_t *tempStorage,
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateFunction_Ortho_LH_NO_Matrix( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorFlags_t flags ) {
+static void GenerateFunction_Ortho_LH_NO_Matrix( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( code );
@@ -760,7 +760,7 @@ static void GenerateFunction_Ortho_LH_NO_Matrix( allocatorLinear_t *tempStorage,
 	const char *oneStr = Gen_GetNumericLiteral( tempStorage, typeInfo->type, 1.0f, 1 );
 	const char *twoStr = Gen_GetNumericLiteral( tempStorage, typeInfo->type, 2.0f, 1 );
 
-	const char *orthoFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_ORTHO_LH_NO );
+	const char *orthoFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_ORTHO_LH_NO );
 
 	StringBuilder_Append(  code, "// Returns an left-handed orthographic projection matrix with the clip-space range -1 to 1.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s left, const %s right, const %s top, const %s bottom, const %s znear, const %s zfar )\n",
@@ -784,7 +784,7 @@ static void GenerateFunction_Ortho_LH_NO_Matrix( allocatorLinear_t *tempStorage,
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateFunction_Ortho_RH_ZO_Matrix( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorFlags_t flags ) {
+static void GenerateFunction_Ortho_RH_ZO_Matrix( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( code );
@@ -804,7 +804,7 @@ static void GenerateFunction_Ortho_RH_ZO_Matrix( allocatorLinear_t *tempStorage,
 	const char *minusOneStr = Gen_GetNumericLiteral( tempStorage, typeInfo->type, -1.0f, 1 );
 	const char *twoStr = Gen_GetNumericLiteral( tempStorage, typeInfo->type, 2.0f, 1 );
 
-	const char *orthoFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_ORTHO_RH_ZO );
+	const char *orthoFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_ORTHO_RH_ZO );
 
 	StringBuilder_Append(  code, "// Returns an right-handed orthographic projection matrix with the clip-space range 0 to 1.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s left, const %s right, const %s top, const %s bottom, const %s znear, const %s zfar )\n",
@@ -827,7 +827,7 @@ static void GenerateFunction_Ortho_RH_ZO_Matrix( allocatorLinear_t *tempStorage,
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateFunction_Ortho_RH_NO_Matrix( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorFlags_t flags ) {
+static void GenerateFunction_Ortho_RH_NO_Matrix( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( code );
@@ -847,7 +847,7 @@ static void GenerateFunction_Ortho_RH_NO_Matrix( allocatorLinear_t *tempStorage,
 	const char *twoStr = Gen_GetNumericLiteral( tempStorage, typeInfo->type, 2.0f, 1 );
 	const char *minusTwoStr = Gen_GetNumericLiteral( tempStorage, typeInfo->type, -2.0f, 1 );
 
-	const char *orthoFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_ORTHO_RH_NO );
+	const char *orthoFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_ORTHO_RH_NO );
 
 	StringBuilder_Append(  code, "// Returns an right-handed orthographic projection matrix with the clip-space range -1 to 1.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s left, const %s right, const %s top, const %s bottom, const %s znear, const %s zfar )\n",
@@ -871,7 +871,7 @@ static void GenerateFunction_Ortho_RH_NO_Matrix( allocatorLinear_t *tempStorage,
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateFunction_Perspective_LH_ZO_Matrix( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorFlags_t flags ) {
+static void GenerateFunction_Perspective_LH_ZO_Matrix( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( code );
@@ -884,7 +884,7 @@ static void GenerateFunction_Perspective_LH_ZO_Matrix( allocatorLinear_t *tempSt
 		return;
 	}
 
-	const char *perspectiveFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_PERSPECTIVE_LH_ZO );
+	const char *perspectiveFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_PERSPECTIVE_LH_ZO );
 
 	const char *memberTypeString = Gen_GetMemberTypeString( typeInfo->type );
 
@@ -912,7 +912,7 @@ static void GenerateFunction_Perspective_LH_ZO_Matrix( allocatorLinear_t *tempSt
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateFunction_Perspective_LH_NO_Matrix( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorFlags_t flags ) {
+static void GenerateFunction_Perspective_LH_NO_Matrix( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( code );
@@ -925,7 +925,7 @@ static void GenerateFunction_Perspective_LH_NO_Matrix( allocatorLinear_t *tempSt
 		return;
 	}
 
-	const char *perspectiveFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_PERSPECTIVE_LH_NO );
+	const char *perspectiveFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_PERSPECTIVE_LH_NO );
 
 	const char *memberTypeString = Gen_GetMemberTypeString( typeInfo->type );
 
@@ -955,7 +955,7 @@ static void GenerateFunction_Perspective_LH_NO_Matrix( allocatorLinear_t *tempSt
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateFunction_Perspective_RH_ZO_Matrix( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorFlags_t flags ) {
+static void GenerateFunction_Perspective_RH_ZO_Matrix( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( code );
@@ -968,7 +968,7 @@ static void GenerateFunction_Perspective_RH_ZO_Matrix( allocatorLinear_t *tempSt
 		return;
 	}
 
-	const char *perspectiveFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_PERSPECTIVE_RH_ZO );
+	const char *perspectiveFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_PERSPECTIVE_RH_ZO );
 
 	const char *memberTypeString = Gen_GetMemberTypeString( typeInfo->type );
 
@@ -996,7 +996,7 @@ static void GenerateFunction_Perspective_RH_ZO_Matrix( allocatorLinear_t *tempSt
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateFunction_Perspective_RH_NO_Matrix( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorFlags_t flags ) {
+static void GenerateFunction_Perspective_RH_NO_Matrix( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( code );
@@ -1009,7 +1009,7 @@ static void GenerateFunction_Perspective_RH_NO_Matrix( allocatorLinear_t *tempSt
 		return;
 	}
 
-	const char *perspectiveFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_PERSPECTIVE_RH_NO );
+	const char *perspectiveFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_PERSPECTIVE_RH_NO );
 
 	const char *memberTypeString = Gen_GetMemberTypeString( typeInfo->type );
 
@@ -1040,7 +1040,7 @@ static void GenerateFunction_Perspective_RH_NO_Matrix( allocatorLinear_t *tempSt
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateFunction_LookAt_LH_Matrix( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void GenerateFunction_LookAt_LH_Matrix( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( typeInfo->fullTypeName );
@@ -1062,13 +1062,13 @@ static void GenerateFunction_LookAt_LH_Matrix( allocatorLinear_t *tempStorage, c
 		.fullTypeName = String_TPrintf( tempStorage, "%s3", Gen_GetTypeString( vectorType.type ) )
 	};
 
-	const char *lookAtFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_LOOK_AT_LH );
+	const char *lookAtFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_LOOK_AT_LH );
 
 	const char *vectorTypeName = vectorType.fullTypeName;
 
-	const char *normalizedFuncStr = Gen_GetFuncName_Vector( tempStorage, &vectorType, flags, GEN_FUNCTION_NAME_NORMALIZED );
-	const char *crossFuncStr = Gen_GetFuncName_Vector( tempStorage, &vectorType, flags, GEN_FUNCTION_NAME_CROSS );
-	const char *dotFuncStr = Gen_GetFuncName_Vector( tempStorage, &vectorType, flags, GEN_FUNCTION_NAME_DOT );
+	const char *normalizedFuncStr = Gen_GetFuncName_Vector( tempStorage, &vectorType, flags, caseStyle, GEN_FUNCTION_NAME_NORMALIZED );
+	const char *crossFuncStr = Gen_GetFuncName_Vector( tempStorage, &vectorType, flags, caseStyle, GEN_FUNCTION_NAME_CROSS );
+	const char *dotFuncStr = Gen_GetFuncName_Vector( tempStorage, &vectorType, flags, caseStyle, GEN_FUNCTION_NAME_DOT );
 
 	const char *zeroStr = Gen_GetNumericLiteral( tempStorage, typeInfo->type, 0.0f, 1 );
 	const char *oneStr = Gen_GetNumericLiteral( tempStorage, typeInfo->type, 1.0f, 1 );
@@ -1081,7 +1081,7 @@ static void GenerateFunction_LookAt_LH_Matrix( allocatorLinear_t *tempStorage, c
 	if ( flags & GENERATOR_FLAG_GENERATE_OPERATORS ) {
 		StringBuilder_Appendf( code, "\tconst %s forward = %s( target - eye );\n", vectorTypeName, normalizedFuncStr );
 	} else {
-		const char *vectorSubFuncStr = Gen_GetFuncName_VectorArithmeticVector( tempStorage, &vectorType, GEN_OP_ARITHMETIC_SUB );
+		const char *vectorSubFuncStr = Gen_GetFuncName_VectorArithmeticVector( tempStorage, &vectorType, caseStyle, GEN_OP_ARITHMETIC_SUB );
 
 		StringBuilder_Appendf( code, "\tconst %s eye_to_target = %s( target, eye );\n", vectorTypeName, vectorSubFuncStr );
 		StringBuilder_Appendf( code, "\tconst %s forward = %s( %seye_to_target );\n", vectorTypeName, normalizedFuncStr, strings->parmReferenceStr );
@@ -1100,7 +1100,7 @@ static void GenerateFunction_LookAt_LH_Matrix( allocatorLinear_t *tempStorage, c
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateFunction_LookAt_RH_Matrix( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void GenerateFunction_LookAt_RH_Matrix( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( typeInfo->fullTypeName );
@@ -1122,13 +1122,13 @@ static void GenerateFunction_LookAt_RH_Matrix( allocatorLinear_t *tempStorage, c
 		.fullTypeName = String_TPrintf( tempStorage, "%s3", Gen_GetTypeString( vectorType.type ) )
 	};
 
-	const char *lookAtFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_LOOK_AT_RH );
+	const char *lookAtFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_LOOK_AT_RH );
 
 	const char *vectorTypeName = vectorType.fullTypeName;
 
-	const char *normalizedFuncStr = Gen_GetFuncName_Vector( tempStorage, &vectorType, flags, GEN_FUNCTION_NAME_NORMALIZED );
-	const char *crossFuncStr = Gen_GetFuncName_Vector( tempStorage, &vectorType, flags, GEN_FUNCTION_NAME_CROSS );
-	const char *dotFuncStr = Gen_GetFuncName_Vector( tempStorage, &vectorType, flags, GEN_FUNCTION_NAME_DOT );
+	const char *normalizedFuncStr = Gen_GetFuncName_Vector( tempStorage, &vectorType, flags, caseStyle, GEN_FUNCTION_NAME_NORMALIZED );
+	const char *crossFuncStr = Gen_GetFuncName_Vector( tempStorage, &vectorType, flags, caseStyle, GEN_FUNCTION_NAME_CROSS );
+	const char *dotFuncStr = Gen_GetFuncName_Vector( tempStorage, &vectorType, flags, caseStyle, GEN_FUNCTION_NAME_DOT );
 
 	const char *zeroStr = Gen_GetNumericLiteral( tempStorage, typeInfo->type, 0.0f, 1 );
 	const char *oneStr = Gen_GetNumericLiteral( tempStorage, typeInfo->type, 1.0f, 1 );
@@ -1141,7 +1141,7 @@ static void GenerateFunction_LookAt_RH_Matrix( allocatorLinear_t *tempStorage, c
 	if ( flags & GENERATOR_FLAG_GENERATE_OPERATORS ) {
 		StringBuilder_Appendf( code, "\tconst %s forward = %s( target - eye );\n", vectorTypeName, normalizedFuncStr );
 	} else {
-		const char *vectorSubFuncStr = Gen_GetFuncName_VectorArithmeticVector( tempStorage, &vectorType, GEN_OP_ARITHMETIC_SUB );
+		const char *vectorSubFuncStr = Gen_GetFuncName_VectorArithmeticVector( tempStorage, &vectorType, caseStyle, GEN_OP_ARITHMETIC_SUB );
 
 		StringBuilder_Appendf( code, "\tconst %s eye_to_target = %s( target, eye );\n", vectorTypeName, vectorSubFuncStr );
 		StringBuilder_Appendf( code, "\tconst %s forward = %s( %seye_to_target );\n", vectorTypeName, normalizedFuncStr, strings->parmReferenceStr );
@@ -1160,7 +1160,7 @@ static void GenerateFunction_LookAt_RH_Matrix( allocatorLinear_t *tempStorage, c
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-void GenerateMatrixFiles( allocatorLinear_t *tempStorage, const char *generatedCodePath, const typeInfo_t *typeInfos, const u32 typeInfosCount, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+void GenerateMatrixFiles( allocatorLinear_t *tempStorage, const char *generatedCodePath, const typeInfo_t *typeInfos, const u32 typeInfosCount, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( generatedCodePath );
 	assert( typeInfos );
@@ -1595,32 +1595,32 @@ void GenerateMatrixFiles( allocatorLinear_t *tempStorage, const char *generatedC
 
 			StringBuilder_Appendf( code, "// %s\n", typeInfo->fullTypeName );
 
-			GenerateComponentWiseFunctions( tempStorage, typeInfo, &vectorMemberType, code, strings, flags, scalarTypeEnabled );
+			GenerateComponentWiseFunctions( tempStorage, typeInfo, &vectorMemberType, code, strings, flags, caseStyle, scalarTypeEnabled );
 
-			GenerateComponentWiseOperators( tempStorage, typeInfo, code, strings, flags );
+			GenerateComponentWiseOperators( tempStorage, typeInfo, code, strings, flags, caseStyle );
 
-			GenerateFunction_All_Matrix( tempStorage, typeInfo, &vectorMemberType, code, strings, flags );
-			GenerateFunction_Any_Matrix( tempStorage, typeInfo, &vectorMemberType, code, strings, flags );
+			GenerateFunction_All_Matrix( tempStorage, typeInfo, &vectorMemberType, code, strings, flags, caseStyle );
+			GenerateFunction_Any_Matrix( tempStorage, typeInfo, &vectorMemberType, code, strings, flags, caseStyle );
 
-			GenerateFunction_Identity_Matrix( tempStorage, typeInfo, &vectorMemberType, code, strings, flags );
-			GenerateFunction_Transpose_Matrix( tempStorage, typeInfo, code, strings, flags );
-			GenerateFunction_Determinant_Matrix( tempStorage, typeInfo, &vectorMemberType, code, strings, flags );
-			GenerateFunction_Inverse_Matrix( tempStorage, typeInfo, &vectorMemberType, code, strings, flags );
-			GenerateFunction_Multiply_Matrix( tempStorage, typeInfo, code, strings, flags );
-			GenerateFunction_MultiplyVector_Matrix( tempStorage, typeInfo, &vectorMemberType, code, strings, flags );
-			GenerateFunction_Translate_Matrix( tempStorage, typeInfo, code, strings, flags );
-			GenerateFunction_Rotate_Matrix( tempStorage, typeInfo, code, strings, flags );
-			GenerateFunction_Scale_Matrix( tempStorage, typeInfo, code, strings, flags );
-			GenerateFunction_Ortho_LH_ZO_Matrix( tempStorage, typeInfo, code, flags );
-			GenerateFunction_Ortho_LH_NO_Matrix( tempStorage, typeInfo, code, flags );
-			GenerateFunction_Ortho_RH_ZO_Matrix( tempStorage, typeInfo, code, flags );
-			GenerateFunction_Ortho_RH_NO_Matrix( tempStorage, typeInfo, code, flags );
-			GenerateFunction_Perspective_LH_ZO_Matrix( tempStorage, typeInfo, code, flags );
-			GenerateFunction_Perspective_LH_NO_Matrix( tempStorage, typeInfo, code, flags );
-			GenerateFunction_Perspective_RH_ZO_Matrix( tempStorage, typeInfo, code, flags );
-			GenerateFunction_Perspective_RH_NO_Matrix( tempStorage, typeInfo, code, flags );
-			GenerateFunction_LookAt_LH_Matrix( tempStorage, typeInfo, code, strings, flags );
-			GenerateFunction_LookAt_RH_Matrix( tempStorage, typeInfo, code, strings, flags );
+			GenerateFunction_Identity_Matrix( tempStorage, typeInfo, &vectorMemberType, code, strings, flags, caseStyle );
+			GenerateFunction_Transpose_Matrix( tempStorage, typeInfo, code, strings, flags, caseStyle );
+			GenerateFunction_Determinant_Matrix( tempStorage, typeInfo, &vectorMemberType, code, strings, flags, caseStyle );
+			GenerateFunction_Inverse_Matrix( tempStorage, typeInfo, &vectorMemberType, code, strings, flags, caseStyle );
+			GenerateFunction_Multiply_Matrix( tempStorage, typeInfo, code, strings, flags, caseStyle );
+			GenerateFunction_MultiplyVector_Matrix( tempStorage, typeInfo, &vectorMemberType, code, strings, flags, caseStyle );
+			GenerateFunction_Translate_Matrix( tempStorage, typeInfo, code, strings, flags, caseStyle );
+			GenerateFunction_Rotate_Matrix( tempStorage, typeInfo, code, strings, flags, caseStyle );
+			GenerateFunction_Scale_Matrix( tempStorage, typeInfo, code, strings, flags, caseStyle );
+			GenerateFunction_Ortho_LH_ZO_Matrix( tempStorage, typeInfo, code, flags, caseStyle );
+			GenerateFunction_Ortho_LH_NO_Matrix( tempStorage, typeInfo, code, flags, caseStyle );
+			GenerateFunction_Ortho_RH_ZO_Matrix( tempStorage, typeInfo, code, flags, caseStyle );
+			GenerateFunction_Ortho_RH_NO_Matrix( tempStorage, typeInfo, code, flags, caseStyle );
+			GenerateFunction_Perspective_LH_ZO_Matrix( tempStorage, typeInfo, code, flags, caseStyle );
+			GenerateFunction_Perspective_LH_NO_Matrix( tempStorage, typeInfo, code, flags, caseStyle );
+			GenerateFunction_Perspective_RH_ZO_Matrix( tempStorage, typeInfo, code, flags, caseStyle );
+			GenerateFunction_Perspective_RH_NO_Matrix( tempStorage, typeInfo, code, flags, caseStyle );
+			GenerateFunction_LookAt_LH_Matrix( tempStorage, typeInfo, code, strings, flags, caseStyle );
+			GenerateFunction_LookAt_RH_Matrix( tempStorage, typeInfo, code, strings, flags, caseStyle );
 
 			printf( "OK.\n" );
 		}

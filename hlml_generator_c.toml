@@ -73,6 +73,16 @@ generate_assignment_operator = false
 # suffixed per type (e.g. "float3_add").
 name_mangling = false
 
+# Case style for generated function names (dot, cross, normalize, lerp, transpose, look_at_lh, mul, add,
+# less_than, ...). "snake_case" (the default) reproduces today's exact naming unchanged. "PascalCase"/
+# "camelCase" recase each underscore-separated word and drop the underscores (e.g. "look_at_lh" ->
+# "LookAtLh"/"lookAtLh"). For the unmangled, type-prefixed form used when name_mangling is off (e.g.
+# "float3_look_at_lh"), PascalCase also capitalizes the type prefix's leading letter and drops the
+# joining underscore ("Float3LookAtLh"); camelCase leaves the type prefix exactly as-is and does the same
+# ("float3LookAtLh"). Structural single-letter markers (the scalar type suffix in e.g. "lerpf", and the
+# component-wise "c"/"s"/"v"/"m" markers in e.g. "cadds") always stay lowercase regardless of style.
+function_name_case = "snake_case"
+
 # Whether vector types wrap their members in an anonymous union that also exposes a v[] array and (if
 # vector_swizzles/generate_rgba are on) swizzle/rgba members, all aliasing the same memory. If off,
 # vectors only have plain x/y/z/w members.

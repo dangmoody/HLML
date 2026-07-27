@@ -131,7 +131,7 @@ typedef struct testFixture_QuatToRotationMatrix_t {
 } testFixture_QuatToRotationMatrix_t;
 
 
-static void Gen_GenerateTests_Length_Internal( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const char *funcName, const generatorStrings_t *strings, const generatorFlags_t flags, const testFixture_Length_t *fixtures, const u32 fixturesCount ) {
+static void Gen_GenerateTests_Length_Internal( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const char *funcName, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle, const testFixture_Length_t *fixtures, const u32 fixturesCount ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -152,7 +152,7 @@ static void Gen_GenerateTests_Length_Internal( allocatorLinear_t *tempStorage, s
 		.fullTypeName	= Gen_GetMemberTypeString( floatingPointTypeScalar.type )
 	};
 
-	Gen_GenerateParametricTestDefinition_Generic( tempStorage, code, typeInfo, strings, flags, &(parametricTestDefinition_t) {
+	Gen_GenerateParametricTestDefinition_Generic( tempStorage, code, typeInfo, strings, flags, caseStyle, &(parametricTestDefinition_t) {
 		.alsoGenerateSSE = Gen_ShouldGenerateSSE( typeInfo->type, flags ),
 		.returnType = &floatingPointTypeScalar,
 		.funcName = funcName,
@@ -199,7 +199,7 @@ static void Gen_GenerateTests_Length_Internal( allocatorLinear_t *tempStorage, s
 	}
 }
 
-static void Gen_GenerateTests_Lengthsq( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void Gen_GenerateTests_Lengthsq( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	testFixture_Length_t fixtures[] = {
 		{
 			.values				= { 0.0f, 0.0f, 0.0f, 0.0f },
@@ -223,10 +223,10 @@ static void Gen_GenerateTests_Lengthsq( allocatorLinear_t *tempStorage, stringBu
 		}
 	};
 
-	Gen_GenerateTests_Length_Internal( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_LENGTHSQ, strings, flags, fixtures, GEN_COUNTOF( fixtures ) );
+	Gen_GenerateTests_Length_Internal( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_LENGTHSQ, strings, flags, caseStyle, fixtures, GEN_COUNTOF( fixtures ) );
 }
 
-static void Gen_GenerateTests_Length( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void Gen_GenerateTests_Length( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	testFixture_Length_t fixtures[] = {
 		{
 			.values				= { 0.0f, 0.0f, 0.0f, 0.0f },
@@ -250,10 +250,10 @@ static void Gen_GenerateTests_Length( allocatorLinear_t *tempStorage, stringBuil
 		}
 	};
 
-	Gen_GenerateTests_Length_Internal( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_LENGTH, strings, flags, fixtures, GEN_COUNTOF( fixtures ) );
+	Gen_GenerateTests_Length_Internal( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_LENGTH, strings, flags, caseStyle, fixtures, GEN_COUNTOF( fixtures ) );
 }
 
-static void Gen_GenerateTests_Dot( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void Gen_GenerateTests_Dot( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -266,7 +266,7 @@ static void Gen_GenerateTests_Dot( allocatorLinear_t *tempStorage, stringBuilder
 
 	typeInfo_t floatingPointTypeScalar = Gen_GetScalarType( typeInfo );
 
-	Gen_GenerateParametricTestDefinition_Generic( tempStorage, code, typeInfo, strings, flags, &(parametricTestDefinition_t) {
+	Gen_GenerateParametricTestDefinition_Generic( tempStorage, code, typeInfo, strings, flags, caseStyle, &(parametricTestDefinition_t) {
 		.alsoGenerateSSE = Gen_ShouldGenerateSSE( typeInfo->type, flags ),
 		.returnType = &floatingPointTypeScalar,
 		.funcName = GEN_FUNCTION_NAME_DOT,
@@ -344,7 +344,7 @@ static void Gen_GenerateTests_Dot( allocatorLinear_t *tempStorage, stringBuilder
 
 // DM: this test could be made into a component-wise test
 // but I think a dedicated test is more appropriate
-static void Gen_GenerateTests_Cross( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void Gen_GenerateTests_Cross( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -355,7 +355,7 @@ static void Gen_GenerateTests_Cross( allocatorLinear_t *tempStorage, stringBuild
 		return;
 	}
 
-	Gen_GenerateParametricTestDefinition_Generic( tempStorage, code, typeInfo, strings, flags, &(parametricTestDefinition_t) {
+	Gen_GenerateParametricTestDefinition_Generic( tempStorage, code, typeInfo, strings, flags, caseStyle, &(parametricTestDefinition_t) {
 		.alsoGenerateSSE = Gen_ShouldGenerateSSE( typeInfo->type, flags ),
 		.returnType = typeInfo,
 		.funcName = GEN_FUNCTION_NAME_CROSS,
@@ -391,7 +391,7 @@ static void Gen_GenerateTests_Cross( allocatorLinear_t *tempStorage, stringBuild
 	}
 }
 
-static void Gen_GenerateTests_Angle( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void Gen_GenerateTests_Angle( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -409,7 +409,7 @@ static void Gen_GenerateTests_Angle( allocatorLinear_t *tempStorage, stringBuild
 		.fullTypeName	= Gen_GetMemberTypeString( floatingPointTypeScalar.type )
 	};
 
-	Gen_GenerateParametricTestDefinition_Generic( tempStorage, code, typeInfo, strings, flags, &(parametricTestDefinition_t) {
+	Gen_GenerateParametricTestDefinition_Generic( tempStorage, code, typeInfo, strings, flags, caseStyle, &(parametricTestDefinition_t) {
 		.returnType = &floatingPointTypeScalar,
 			.funcName = GEN_FUNCTION_NAME_ANGLE,
 			.parmsCount = 2,
@@ -446,7 +446,7 @@ static void Gen_GenerateTests_Angle( allocatorLinear_t *tempStorage, stringBuild
 	}
 }
 
-static void Gen_GenerateTests_Distance_Internal( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const char *funcName, const generatorStrings_t *strings, const generatorFlags_t flags, const testFixture_Distance_t *fixtures, const u32 fixturesCount ) {
+static void Gen_GenerateTests_Distance_Internal( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const char *funcName, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle, const testFixture_Distance_t *fixtures, const u32 fixturesCount ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -471,7 +471,7 @@ static void Gen_GenerateTests_Distance_Internal( allocatorLinear_t *tempStorage,
 		.fullTypeName	= Gen_GetMemberTypeString( floatingPointTypeScalar.type )
 	};
 
-	Gen_GenerateParametricTestDefinition_Generic( tempStorage, code, typeInfo, strings, flags, &(parametricTestDefinition_t) {
+	Gen_GenerateParametricTestDefinition_Generic( tempStorage, code, typeInfo, strings, flags, caseStyle, &(parametricTestDefinition_t) {
 		.alsoGenerateSSE = Gen_ShouldGenerateSSE( typeInfo->type, flags ),
 		.returnType = &floatingPointTypeScalar,
 		.funcName = funcName,
@@ -521,7 +521,7 @@ static void Gen_GenerateTests_Distance_Internal( allocatorLinear_t *tempStorage,
 	}
 }
 
-static void Gen_GenerateTests_Distancesq( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void Gen_GenerateTests_Distancesq( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	testFixture_Distance_t fixtures[] = {
 		{
 			.valuesLHS			= { 0.0f, 0.0f, 0.0f, 0.0f },
@@ -548,10 +548,10 @@ static void Gen_GenerateTests_Distancesq( allocatorLinear_t *tempStorage, string
 		}
 	};
 
-	Gen_GenerateTests_Distance_Internal( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_DISTANCESQ, strings, flags, fixtures, GEN_COUNTOF( fixtures ) );
+	Gen_GenerateTests_Distance_Internal( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_DISTANCESQ, strings, flags, caseStyle, fixtures, GEN_COUNTOF( fixtures ) );
 }
 
-static void Gen_GenerateTests_Distance( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void Gen_GenerateTests_Distance( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	testFixture_Distance_t fixtures[] = {
 		{
 			.valuesLHS			= { 0.0f, 0.0f, 0.0f, 0.0f },
@@ -578,10 +578,10 @@ static void Gen_GenerateTests_Distance( allocatorLinear_t *tempStorage, stringBu
 		}
 	};
 
-	Gen_GenerateTests_Distance_Internal( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_DISTANCE, strings, flags, fixtures, GEN_COUNTOF( fixtures ) );
+	Gen_GenerateTests_Distance_Internal( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_DISTANCE, strings, flags, caseStyle, fixtures, GEN_COUNTOF( fixtures ) );
 }
 
-static void Gen_GenerateTests_Normalize( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void Gen_GenerateTests_Normalize( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -592,13 +592,13 @@ static void Gen_GenerateTests_Normalize( allocatorLinear_t *tempStorage, stringB
 		return;
 	}
 
-	const char *actualFuncName = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_NORMALIZE );
+	const char *actualFuncName = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_NORMALIZE );
 	const char *testName = Gen_GetTestName( tempStorage, typeInfo, GEN_FUNCTION_NAME_NORMALIZE );
 
-	const char *equalsFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_EQUALS );
+	const char *equalsFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_EQUALS );
 
 	const char *floateqStr = Gen_GetFuncName_Floateq( typeInfo->type );
-	const char *lengthFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_LENGTH );
+	const char *lengthFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_LENGTH );
 
 	const genType_t floatingPointType = Gen_GetSupportedFloatingPointType( typeInfo->type );
 
@@ -617,7 +617,7 @@ static void Gen_GenerateTests_Normalize( allocatorLinear_t *tempStorage, stringB
 	StringBuilder_Appendf( code, "}\n\n" );
 
 	if ( Gen_ShouldGenerateSSE( typeInfo->type, flags ) ) {
-		Gen_GenerateParametricTestDefinition_Generic_SSE( tempStorage, code, typeInfo, strings, flags, &(parametricTestDefinition_t) {
+		Gen_GenerateParametricTestDefinition_Generic_SSE( tempStorage, code, typeInfo, strings, flags, caseStyle, &(parametricTestDefinition_t) {
 			.returnType = typeInfo,
 			.funcName = GEN_FUNCTION_NAME_NORMALIZE,
 			.parmsCount = 1,
@@ -678,7 +678,7 @@ static void Gen_GenerateTests_Normalize( allocatorLinear_t *tempStorage, stringB
 	}
 }
 
-static void Gen_GenerateTests_Pack( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void Gen_GenerateTests_Pack( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -731,7 +731,7 @@ static void Gen_GenerateTests_Pack( allocatorLinear_t *tempStorage, stringBuilde
 
 	// pack
 	{
-		Gen_GenerateParametricTestDefinition_Generic( tempStorage, code, typeInfo, strings, flags, &(parametricTestDefinition_t) {
+		Gen_GenerateParametricTestDefinition_Generic( tempStorage, code, typeInfo, strings, flags, caseStyle, &(parametricTestDefinition_t) {
 			.returnType = &scalarType,
 			.funcName = GEN_FUNCTION_NAME_PACK,
 			.parmsCount = 1,
@@ -754,7 +754,7 @@ static void Gen_GenerateTests_Pack( allocatorLinear_t *tempStorage, stringBuilde
 
 	// unpack
 	{
-		Gen_GenerateParametricTestDefinition_Generic( tempStorage, code, typeInfo, strings, flags, &(parametricTestDefinition_t) {
+		Gen_GenerateParametricTestDefinition_Generic( tempStorage, code, typeInfo, strings, flags, caseStyle, &(parametricTestDefinition_t) {
 			.returnType = typeInfo,
 			.funcName = GEN_FUNCTION_NAME_UNPACK,
 			.parmsCount = 1,
@@ -873,7 +873,7 @@ static void GenerateSwizzleFunc_Test( allocatorLinear_t *tempStorage, stringBuil
 	}
 }
 
-static void Gen_GenerateTests_QuatMulScalar( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const typeInfo_t *scalarType, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void Gen_GenerateTests_QuatMulScalar( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const typeInfo_t *scalarType, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -890,9 +890,9 @@ static void Gen_GenerateTests_QuatMulScalar( allocatorLinear_t *tempStorage, str
 
 	const char *suffix = allowNameMangling ? "" : "s";
 
-	const char *funcToCall = GEN_FUNCTION_NAME_QUAT_MUL;
+	const char *funcToCall = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_QUAT_MUL );
 	if ( !allowNameMangling ) {
-		funcToCall = String_TPrintf( tempStorage, "%s_%s%s", typeInfo->fullTypeName, GEN_FUNCTION_NAME_QUAT_MUL, suffix );
+		funcToCall = String_TPrintf( tempStorage, "%s%s", funcToCall, suffix );
 	}
 
 	const char *testName = String_TPrintf( tempStorage, "Test_%s_%ss", typeInfo->fullTypeName, GEN_FUNCTION_NAME_QUAT_MUL, suffix );
@@ -903,7 +903,7 @@ static void Gen_GenerateTests_QuatMulScalar( allocatorLinear_t *tempStorage, str
 	if ( flags & GENERATOR_FLAG_GENERATE_OPERATORS ) {
 		StringBuilder_Append(  code, "\tTEMPER_CHECK_TRUE( actualAnswer == expectedAnswer );\n" );
 	} else {
-		const char *equalsFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_EQUALS );
+		const char *equalsFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_EQUALS );
 
 		StringBuilder_Appendf( code, "\tTEMPER_CHECK_TRUE( %s( %sactualAnswer, expectedAnswer ) );\n", equalsFuncStr, strings->parmReferenceStr );
 	}
@@ -950,7 +950,7 @@ static void Gen_GenerateTests_QuatMulScalar( allocatorLinear_t *tempStorage, str
 	}
 }
 
-static void Gen_GenerateTests_QuatMulQuat( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void Gen_GenerateTests_QuatMulQuat( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -965,9 +965,9 @@ static void Gen_GenerateTests_QuatMulQuat( allocatorLinear_t *tempStorage, strin
 
 	const char *suffix = allowNameMangling ? "" : "q";
 
-	const char *funcToCall = GEN_FUNCTION_NAME_QUAT_MUL;
+	const char *funcToCall = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_QUAT_MUL );
 	if ( !allowNameMangling ) {
-		funcToCall = String_TPrintf( tempStorage, "%s_%s%s", typeInfo->fullTypeName, funcToCall, suffix );
+		funcToCall = String_TPrintf( tempStorage, "%s%s", funcToCall, suffix );
 	}
 
 	const char *testName = String_TPrintf( tempStorage, "Test_%s_%sq", typeInfo->fullTypeName, GEN_FUNCTION_NAME_QUAT_MUL, suffix );
@@ -978,7 +978,7 @@ static void Gen_GenerateTests_QuatMulQuat( allocatorLinear_t *tempStorage, strin
 	if ( flags & GENERATOR_FLAG_GENERATE_OPERATORS ) {
 		StringBuilder_Append(  code, "\tTEMPER_CHECK_TRUE( actualAnswer == expectedAnswer );\n" );
 	} else {
-		const char *equalsFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_EQUALS );
+		const char *equalsFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_EQUALS );
 
 		StringBuilder_Appendf( code, "\tTEMPER_CHECK_TRUE( %s( %sactualAnswer, expectedAnswer ) );\n", equalsFuncStr, strings->parmReferenceStr );
 	}
@@ -1031,7 +1031,7 @@ static void Gen_GenerateTests_QuatMulQuat( allocatorLinear_t *tempStorage, strin
 	}
 }
 
-static void Gen_GenerateTests_QuatNormalize( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void Gen_GenerateTests_QuatNormalize( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -1042,7 +1042,7 @@ static void Gen_GenerateTests_QuatNormalize( allocatorLinear_t *tempStorage, str
 		return;
 	}
 
-	Gen_GenerateParametricTestDefinition_Generic( tempStorage, code, typeInfo, strings, flags, &(parametricTestDefinition_t) {
+	Gen_GenerateParametricTestDefinition_Generic( tempStorage, code, typeInfo, strings, flags, caseStyle, &(parametricTestDefinition_t) {
 		.returnType = typeInfo,
 			.funcName = GEN_FUNCTION_NAME_QUAT_NORMALIZE,
 			.parmsCount = 1,
@@ -1070,7 +1070,7 @@ static void Gen_GenerateTests_QuatNormalize( allocatorLinear_t *tempStorage, str
 	}
 }
 
-static void Gen_GenerateTests_QuatConjugate( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void Gen_GenerateTests_QuatConjugate( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -1079,7 +1079,7 @@ static void Gen_GenerateTests_QuatConjugate( allocatorLinear_t *tempStorage, str
 		return;
 	}
 
-	Gen_GenerateParametricTestDefinition_Generic( tempStorage, code, typeInfo, strings, flags, &(parametricTestDefinition_t) {
+	Gen_GenerateParametricTestDefinition_Generic( tempStorage, code, typeInfo, strings, flags, caseStyle, &(parametricTestDefinition_t) {
 		.returnType = typeInfo,
 			.funcName = GEN_FUNCTION_NAME_QUAT_CONJUGATE,
 			.parmsCount = 1,
@@ -1118,7 +1118,7 @@ static void Gen_GenerateTests_QuatConjugate( allocatorLinear_t *tempStorage, str
 	}
 }
 
-static void Gen_GenerateTests_QuatInverse( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void Gen_GenerateTests_QuatInverse( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -1129,7 +1129,7 @@ static void Gen_GenerateTests_QuatInverse( allocatorLinear_t *tempStorage, strin
 		return;
 	}
 
-	Gen_GenerateParametricTestDefinition_Generic( tempStorage, code, typeInfo, strings, flags, &(parametricTestDefinition_t) {
+	Gen_GenerateParametricTestDefinition_Generic( tempStorage, code, typeInfo, strings, flags, caseStyle, &(parametricTestDefinition_t) {
 		.returnType = typeInfo,
 		.funcName = GEN_FUNCTION_NAME_QUAT_INVERSE,
 		.parmsCount = 1,
@@ -1168,7 +1168,7 @@ static void Gen_GenerateTests_QuatInverse( allocatorLinear_t *tempStorage, strin
 	}
 }
 
-static void Gen_GenerateTests_QuatRotate( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void Gen_GenerateTests_QuatRotate( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -1188,7 +1188,7 @@ static void Gen_GenerateTests_QuatRotate( allocatorLinear_t *tempStorage, string
 
 	typeInfo_t imaginaryType = Gen_GetQuaternionImaginaryPartType( typeInfo, tempStorage );
 
-	Gen_GenerateParametricTestDefinition_Generic( tempStorage, code, typeInfo, strings, flags, &(parametricTestDefinition_t) {
+	Gen_GenerateParametricTestDefinition_Generic( tempStorage, code, typeInfo, strings, flags, caseStyle, &(parametricTestDefinition_t) {
 		.returnType = &imaginaryType,
 		.funcName = GEN_FUNCTION_NAME_QUAT_ROTATE,
 		.parmsCount = 3,
@@ -1222,7 +1222,7 @@ static void Gen_GenerateTests_QuatRotate( allocatorLinear_t *tempStorage, string
 	}
 }
 
-static void Gen_GenerateTests_QuatToRotationMatrix( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void Gen_GenerateTests_QuatToRotationMatrix( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -1240,7 +1240,7 @@ static void Gen_GenerateTests_QuatToRotationMatrix( allocatorLinear_t *tempStora
 		.fullTypeName	= String_TPrintf( tempStorage, "%s%dx%d", Gen_GetTypeString( matrixReturnType.type ), matrixReturnType.numRows, matrixReturnType.numCols )
 	};
 
-	Gen_GenerateParametricTestDefinition_Generic( tempStorage, code, typeInfo, strings, flags, &(parametricTestDefinition_t) {
+	Gen_GenerateParametricTestDefinition_Generic( tempStorage, code, typeInfo, strings, flags, caseStyle, &(parametricTestDefinition_t) {
 		.returnType = &matrixReturnType,
 		.funcName = GEN_FUNCTION_NAME_QUAT_TO_ROTATION_MATRIX,
 		.parmsCount = 1,
@@ -1303,7 +1303,7 @@ static void Gen_GenerateTests_QuatToRotationMatrix( allocatorLinear_t *tempStora
 	}
 }
 
-void GenerateVectorTests( allocatorLinear_t *tempStorage, const char *generatedTestsPath, const char *languageName, const typeInfo_t *vectorTypeInfos, const u32 vectorTypeInfosCount, const generatorStrings_t *strings, const generatorFlags_t flags, const u32 componentCountMin, const u32 componentCountMax, const bool32 generateQuaternions ) {
+void GenerateVectorTests( allocatorLinear_t *tempStorage, const char *generatedTestsPath, const char *languageName, const typeInfo_t *vectorTypeInfos, const u32 vectorTypeInfosCount, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle, const u32 componentCountMin, const u32 componentCountMax, const bool32 generateQuaternions ) {
 	assert( tempStorage );
 	assert( languageName );
 	assert( generatedTestsPath );
@@ -1342,19 +1342,19 @@ void GenerateVectorTests( allocatorLinear_t *tempStorage, const char *generatedT
 
 		Gen_AppendTestFileIncludes( tempStorage, code, strings, flags );
 
-		GenerateComponentWiseTests( tempStorage, code, typeInfo, &scalarType, strings, flags, generateQuaternions, scalarTypeEnabled );
+		GenerateComponentWiseTests( tempStorage, code, typeInfo, &scalarType, strings, flags, caseStyle, generateQuaternions, scalarTypeEnabled );
 
 		GenerateTests_CtorConversion( tempStorage, code, typeInfo, strings, flags, componentCountMin, scalarTypeEnabled );
 
-		Gen_GenerateTests_Lengthsq( tempStorage, code, typeInfo, strings, flags );
-		Gen_GenerateTests_Length( tempStorage, code, typeInfo, strings, flags );
-		Gen_GenerateTests_Dot( tempStorage, code, typeInfo, strings, flags );
-		Gen_GenerateTests_Cross( tempStorage, code, typeInfo, strings, flags );
-		Gen_GenerateTests_Angle( tempStorage, code, typeInfo, strings, flags );
-		Gen_GenerateTests_Distancesq( tempStorage, code, typeInfo, strings, flags );
-		Gen_GenerateTests_Distance( tempStorage, code, typeInfo, strings, flags );
-		Gen_GenerateTests_Normalize( tempStorage, code, typeInfo, strings, flags );
-		Gen_GenerateTests_Pack( tempStorage, code, typeInfo, strings, flags );
+		Gen_GenerateTests_Lengthsq( tempStorage, code, typeInfo, strings, flags, caseStyle );
+		Gen_GenerateTests_Length( tempStorage, code, typeInfo, strings, flags, caseStyle );
+		Gen_GenerateTests_Dot( tempStorage, code, typeInfo, strings, flags, caseStyle );
+		Gen_GenerateTests_Cross( tempStorage, code, typeInfo, strings, flags, caseStyle );
+		Gen_GenerateTests_Angle( tempStorage, code, typeInfo, strings, flags, caseStyle );
+		Gen_GenerateTests_Distancesq( tempStorage, code, typeInfo, strings, flags, caseStyle );
+		Gen_GenerateTests_Distance( tempStorage, code, typeInfo, strings, flags, caseStyle );
+		Gen_GenerateTests_Normalize( tempStorage, code, typeInfo, strings, flags, caseStyle );
+		Gen_GenerateTests_Pack( tempStorage, code, typeInfo, strings, flags, caseStyle );
 
 		const char *fileNameHeader = String_TPrintf( tempStorage, "%s/test_%s.%s", generatedTestsPath, typeInfo->fullTypeName, languageName );
 		FS_WriteEntireFile( fileNameHeader, code->str, code->length );
@@ -1412,7 +1412,7 @@ void GenerateVectorTests( allocatorLinear_t *tempStorage, const char *generatedT
 	}
 }
 
-void GenerateQuaternionTests( allocatorLinear_t *tempStorage, const char *generatedTestsPath, const char *languageName, const typeInfo_t *quaternionTypeInfos, const u32 quaternionTypeInfosCount, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+void GenerateQuaternionTests( allocatorLinear_t *tempStorage, const char *generatedTestsPath, const char *languageName, const typeInfo_t *quaternionTypeInfos, const u32 quaternionTypeInfosCount, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( generatedTestsPath );
 	assert( languageName );
@@ -1436,13 +1436,13 @@ void GenerateQuaternionTests( allocatorLinear_t *tempStorage, const char *genera
 
 		Gen_AppendTestFileIncludes( tempStorage, code, strings, flags );
 
-		Gen_GenerateTests_QuatMulScalar( tempStorage, code, typeInfo, &scalarType, strings, flags );
-		Gen_GenerateTests_QuatMulQuat( tempStorage, code, typeInfo, strings, flags );
-		Gen_GenerateTests_QuatNormalize( tempStorage, code, typeInfo, strings, flags );
-		Gen_GenerateTests_QuatConjugate( tempStorage, code, typeInfo, strings, flags );
-		Gen_GenerateTests_QuatInverse( tempStorage, code, typeInfo, strings, flags );
-		Gen_GenerateTests_QuatRotate( tempStorage, code, typeInfo, strings, flags );
-		Gen_GenerateTests_QuatToRotationMatrix( tempStorage, code, typeInfo, strings, flags );
+		Gen_GenerateTests_QuatMulScalar( tempStorage, code, typeInfo, &scalarType, strings, flags, caseStyle );
+		Gen_GenerateTests_QuatMulQuat( tempStorage, code, typeInfo, strings, flags, caseStyle );
+		Gen_GenerateTests_QuatNormalize( tempStorage, code, typeInfo, strings, flags, caseStyle );
+		Gen_GenerateTests_QuatConjugate( tempStorage, code, typeInfo, strings, flags, caseStyle );
+		Gen_GenerateTests_QuatInverse( tempStorage, code, typeInfo, strings, flags, caseStyle );
+		Gen_GenerateTests_QuatRotate( tempStorage, code, typeInfo, strings, flags, caseStyle );
+		Gen_GenerateTests_QuatToRotationMatrix( tempStorage, code, typeInfo, strings, flags, caseStyle );
 
 		const char *fileNameHeader = String_TPrintf( tempStorage, "%s/test_quat_%s.%s", generatedTestsPath, typeInfo->fullTypeName, languageName );
 		FS_WriteEntireFile( fileNameHeader, code->str, code->length );
