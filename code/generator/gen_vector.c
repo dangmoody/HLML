@@ -718,7 +718,7 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 		{
 			stringBuilder_t *codeHeader = StringBuilder_Create( tempStorage, KILOBYTES( 128 ) );
 
-			Gen_AppendGeneratedHeaderComment( codeHeader );
+			Gen_AppendGeneratedHeaderComment( codeHeader, flags );
 
 			StringBuilder_Append(  codeHeader,
 				"#pragma once\n"
@@ -1055,7 +1055,7 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 		if ( generateInlFile ) {
 			stringBuilder_t *codeInl = StringBuilder_Create( tempStorage, KILOBYTES( 64 ) );
 
-			Gen_AppendGeneratedHeaderComment( codeInl );
+			Gen_AppendGeneratedHeaderComment( codeInl, flags );
 
 			StringBuilder_Appendf( codeInl,
 				"#pragma once\n"
@@ -1358,7 +1358,7 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 			{
 				stringBuilder_t *codeHeader = StringBuilder_Create( tempStorage, KILOBYTES( 128 ) );
 
-				Gen_AppendGeneratedHeaderComment( codeHeader );
+				Gen_AppendGeneratedHeaderComment( codeHeader, flags );
 
 				StringBuilder_Appendf( codeHeader,
 					"#pragma once\n\n"
@@ -1398,7 +1398,7 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 			{
 				stringBuilder_t *codeInl = StringBuilder_Create( tempStorage, KILOBYTES( 128 ) );
 
-				Gen_AppendGeneratedHeaderComment( codeInl );
+				Gen_AppendGeneratedHeaderComment( codeInl, flags );
 
 				StringBuilder_Appendf( codeInl,
 					"#pragma once\n\n"
@@ -1445,7 +1445,7 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 	if ( generateSwizzles ) {
 		stringBuilder_t *codeHeader = StringBuilder_Create( tempStorage, KILOBYTES( 8 ) );
 
-		Gen_AppendGeneratedHeaderComment( codeHeader );
+		Gen_AppendGeneratedHeaderComment( codeHeader, flags );
 
 		StringBuilder_Appendf( codeHeader,
 			"#pragma once\n\n"
@@ -1544,7 +1544,7 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 	{
 		stringBuilder_t *code = StringBuilder_Create( tempStorage, KILOBYTES( 256 ) );
 
-		Gen_AppendGeneratedHeaderComment( code );
+		Gen_AppendGeneratedHeaderComment( code, flags );
 
 		StringBuilder_Append( code,
 			"#pragma once\n"

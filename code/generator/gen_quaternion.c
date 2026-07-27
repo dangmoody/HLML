@@ -467,7 +467,7 @@ void GenerateQuaternionFiles( allocatorLinear_t *tempStorage, const char *genera
 	// quaternion functions
 	stringBuilder_t *code = StringBuilder_Create( tempStorage, KILOBYTES( 64 ) );
 
-	Gen_AppendGeneratedHeaderComment( code );
+	Gen_AppendGeneratedHeaderComment( code, flags );
 
 	StringBuilder_Append( code,
 		"#pragma once\n"

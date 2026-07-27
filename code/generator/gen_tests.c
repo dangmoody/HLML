@@ -95,7 +95,7 @@ void Gen_GenerateTests( allocatorLinear_t *tempStorage,
 
 		stringBuilder_t *code = StringBuilder_Create( tempStorage, KILOBYTES( 16 ) );
 
-		Gen_AppendGeneratedHeaderComment( code );
+		Gen_AppendGeneratedHeaderComment( code, flags );
 
 		Gen_AppendTestFileIncludes( tempStorage, code, flags );
 
@@ -130,7 +130,7 @@ void Gen_GenerateTests( allocatorLinear_t *tempStorage,
 
 		stringBuilder_t *sb = StringBuilder_Create( tempStorage, KILOBYTES( 10 ) );
 
-		Gen_AppendGeneratedHeaderComment( sb );
+		Gen_AppendGeneratedHeaderComment( sb, flags );
 
 		StringBuilder_Append( sb,
 			"#define NOMINMAX\n"

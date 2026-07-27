@@ -1338,7 +1338,7 @@ void GenerateVectorTests( allocatorLinear_t *tempStorage, const char *generatedT
 
 		stringBuilder_t *code = StringBuilder_Create( tempStorage, KILOBYTES( 512 ) );
 
-		Gen_AppendGeneratedHeaderComment( code );
+		Gen_AppendGeneratedHeaderComment( code, flags );
 
 		Gen_AppendTestFileIncludes( tempStorage, code, flags );
 
@@ -1373,7 +1373,7 @@ void GenerateVectorTests( allocatorLinear_t *tempStorage, const char *generatedT
 
 			stringBuilder_t *code = StringBuilder_Create( tempStorage, MEGABYTES( 8 ) );
 
-			Gen_AppendGeneratedHeaderComment( code );
+			Gen_AppendGeneratedHeaderComment( code, flags );
 
 			Gen_AppendTestFileIncludes( tempStorage, code, flags );
 
@@ -1395,7 +1395,7 @@ void GenerateVectorTests( allocatorLinear_t *tempStorage, const char *generatedT
 
 				stringBuilder_t *code = StringBuilder_Create( tempStorage, MEGABYTES( 8 ) );
 
-				Gen_AppendGeneratedHeaderComment( code );
+				Gen_AppendGeneratedHeaderComment( code, flags );
 
 				Gen_AppendTestFileIncludes( tempStorage, code, flags );
 
@@ -1432,7 +1432,7 @@ void GenerateQuaternionTests( allocatorLinear_t *tempStorage, const char *genera
 
 		stringBuilder_t *code = StringBuilder_Create( tempStorage, KILOBYTES( 64 ) );
 
-		Gen_AppendGeneratedHeaderComment( code );
+		Gen_AppendGeneratedHeaderComment( code, flags );
 
 		Gen_AppendTestFileIncludes( tempStorage, code, flags );
 
