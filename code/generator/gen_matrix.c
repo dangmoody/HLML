@@ -403,9 +403,9 @@ static void GenerateFunction_Inverse_Matrix( allocatorLinear_t *tempStorage, con
 				}
 				StringBuilder_Append(  code, "\n" );
 				if ( generateConstructors ) {
-					StringBuilder_Appendf( code, "\t%s row0 = %s( result.rows[0][0], result.rows[1][0], result.rows[2][0], result.rows[3][0] );\n", memberTypeInfo->fullTypeName, memberTypeInfo->fullTypeName );
+					StringBuilder_Appendf( code, "\t%s row0 = %s( result.rows[0].x, result.rows[1].x, result.rows[2].x, result.rows[3].x );\n", memberTypeInfo->fullTypeName, memberTypeInfo->fullTypeName );
 				} else {
-					StringBuilder_Appendf( code, "\t%s row0 = { result.rows[0][0], result.rows[1][0], result.rows[2][0], result.rows[3][0] };\n", memberTypeInfo->fullTypeName );
+					StringBuilder_Appendf( code, "\t%s row0 = { result.rows[0].x, result.rows[1].x, result.rows[2].x, result.rows[3].x };\n", memberTypeInfo->fullTypeName );
 				}
 				StringBuilder_Appendf( code, "\t%s dot0 = mat.rows[0] * row0;\n", memberTypeInfo->fullTypeName );
 				StringBuilder_Append(  code, "\n" );
@@ -1171,6 +1171,7 @@ void GenerateMatrixFiles( allocatorLinear_t *tempStorage, const char *generatedC
 	bool32 generateConstructors = flags & GENERATOR_FLAG_GENERATE_CONSTRUCTORS;
 	bool32 generateOperators = flags & GENERATOR_FLAG_GENERATE_OPERATORS;
 	bool32 generateAssignmentOperator = flags & GENERATOR_FLAG_GENERATE_ASSIGNMENT_OPERATOR;
+	bool32 vectorUnions = flags & GENERATOR_FLAG_VECTOR_UNIONS;
 
 	bool32 generateInlFile = generateConstructors || generateOperators;
 
@@ -1327,16 +1328,18 @@ void GenerateMatrixFiles( allocatorLinear_t *tempStorage, const char *generatedC
 					StringBuilder_Appendf( codeHeader, "\tHLML_INLINE %s operator=( const %s%smat );\n\n", typeInfo->fullTypeName, typeInfo->fullTypeName, strings->refDeclStr );
 				}
 
-				// array access operators
-				StringBuilder_Appendf( codeHeader,
-					"\t// Returns the row vector at the given index of the matrix.\n"
-					"\t// Index CANNOT be lower than 0 or higher than %d.\n", typeInfo->numRows );
-				StringBuilder_Appendf( codeHeader, "\tHLML_INLINE %s%soperator[]( const int32_t index );\n\n", vectorMemberTypeName, strings->refDeclStr );
+				if ( vectorUnions ) {
+					// array access operators
+					StringBuilder_Appendf( codeHeader,
+						"\t// Returns the row vector at the given index of the matrix.\n"
+						"\t// Index CANNOT be lower than 0 or higher than %d.\n", typeInfo->numRows );
+					StringBuilder_Appendf( codeHeader, "\tHLML_INLINE %s%soperator[]( const int32_t index );\n\n", vectorMemberTypeName, strings->refDeclStr );
 
-				StringBuilder_Appendf( codeHeader,
-					"\t// Returns the row vector at the given index of the matrix.\n"
-					"\t// Index CANNOT be lower than 0 or higher than %d.\n", typeInfo->numRows );
-				StringBuilder_Appendf( codeHeader, "\tHLML_INLINE const %s%soperator[]( const int32_t index ) const;\n", vectorMemberTypeName, strings->refDeclStr );
+					StringBuilder_Appendf( codeHeader,
+						"\t// Returns the row vector at the given index of the matrix.\n"
+						"\t// Index CANNOT be lower than 0 or higher than %d.\n", typeInfo->numRows );
+					StringBuilder_Appendf( codeHeader, "\tHLML_INLINE const %s%soperator[]( const int32_t index ) const;\n", vectorMemberTypeName, strings->refDeclStr );
+				}
 			}
 
 			if ( cLinkage ) {
@@ -1389,19 +1392,25 @@ void GenerateMatrixFiles( allocatorLinear_t *tempStorage, const char *generatedC
 			}
 
 			if ( generateConstructors ) {
+				// the diagonal only has as many entries as the shorter of the two dimensions - for non-square
+				// matrices, rows/columns past that don't have a corresponding diagonal component to set
+				u32 diagonalCount = ( typeInfo->numRows < typeInfo->numCols ) ? typeInfo->numRows : typeInfo->numCols;
+
 				// diagonal scalar ctor
 				StringBuilder_Appendf( codeInl, "%s::%s( const %s diagonal )\n", typeInfo->fullTypeName, typeInfo->fullTypeName, memberTypeString );
 				Gen_AppendOpenBrace( codeInl, flags, "" );
-				for ( u32 row = 0; row < typeInfo->numRows; row++ ) {
-					StringBuilder_Appendf( codeInl, "\trows[%d][%d] = diagonal;\n", row, row );
+				for ( u32 row = 0; row < diagonalCount; row++ ) {
+					StringBuilder_Appendf( codeInl, "\trows[%d].%c = diagonal;\n", row, GEN_COMPONENT_NAMES_VECTOR[row] );
 				}
 				StringBuilder_Append( codeInl, "}\n\n" );
 
 				// diagonal vector ctor
 				StringBuilder_Appendf( codeInl, "%s::%s( const %s%sdiagonal )\n", typeInfo->fullTypeName, typeInfo->fullTypeName, vectorMemberTypeName, strings->refDeclStr );
 				Gen_AppendOpenBrace( codeInl, flags, "" );
-				for ( u32 row = 0; row < typeInfo->numRows; row++ ) {
-					StringBuilder_Appendf( codeInl, "\trows[%d][%d] = diagonal[%d];\n", row, row, row );
+				for ( u32 row = 0; row < diagonalCount; row++ ) {
+					const char componentName = GEN_COMPONENT_NAMES_VECTOR[row];
+
+					StringBuilder_Appendf( codeInl, "\trows[%d].%c = diagonal.%c;\n", row, componentName, componentName );
 				}
 				StringBuilder_Append( codeInl, "}\n\n" );
 
@@ -1457,7 +1466,7 @@ void GenerateMatrixFiles( allocatorLinear_t *tempStorage, const char *generatedC
 				StringBuilder_Appendf( codeInl, "%s::%s( const %s%smat )\n", typeInfo->fullTypeName, typeInfo->fullTypeName, typeInfo->fullTypeName, strings->refDeclStr );
 				Gen_AppendOpenBrace( codeInl, flags, "" );
 				for ( u32 row = 0; row < typeInfo->numRows; row++ ) {
-					StringBuilder_Appendf( codeInl, "\trows[%d] = mat[%d];\n", row, row );
+					StringBuilder_Appendf( codeInl, "\trows[%d] = mat.rows[%d];\n", row, row );
 				}
 				StringBuilder_Append(  codeInl, "}\n\n" );
 
@@ -1481,7 +1490,7 @@ void GenerateMatrixFiles( allocatorLinear_t *tempStorage, const char *generatedC
 					Gen_AppendOpenBrace( codeInl, flags, "" );
 
 					for ( u32 i = 0; i < typeInfo->numRows; i++ ) {
-						StringBuilder_Appendf( codeInl, "\trows[%d] = %s( mat[%d] );\n", i, vectorMemberTypeName, i );
+						StringBuilder_Appendf( codeInl, "\trows[%d] = %s( mat.rows[%d] );\n", i, vectorMemberTypeName, i );
 					}
 
 					StringBuilder_Append(  codeInl, "}\n\n" );
@@ -1494,25 +1503,27 @@ void GenerateMatrixFiles( allocatorLinear_t *tempStorage, const char *generatedC
 					StringBuilder_Appendf( codeInl, "%s %s::operator=( const %s%sother )\n", typeInfo->fullTypeName, typeInfo->fullTypeName, typeInfo->fullTypeName, strings->refDeclStr );
 					Gen_AppendOpenBrace( codeInl, flags, "" );
 					for ( u32 row = 0; row < typeInfo->numRows; row++ ) {
-						StringBuilder_Appendf( codeInl, "\trows[%d] = other[%d];\n", row, row );
+						StringBuilder_Appendf( codeInl, "\trows[%d] = other.rows[%d];\n", row, row );
 					}
 					StringBuilder_Append( codeInl, "\n" );
 					StringBuilder_Append( codeInl, "\treturn *this;\n" );
 					StringBuilder_Append( codeInl, "}\n\n" );
 				}
 
-				// array operators
-				StringBuilder_Appendf( codeInl, "%s%s%s::operator[]( const %s index )\n", vectorMemberTypeName, strings->refDeclStr, typeInfo->fullTypeName, Gen_GetMemberTypeString( GEN_TYPE_INT ) );
-				Gen_AppendOpenBrace( codeInl, flags, "" );
-				StringBuilder_Appendf( codeInl, "\tHLML_ASSERT( index >= 0 && index < %d );\n", typeInfo->numRows );
-				StringBuilder_Append( codeInl, "\treturn rows[index];\n" );
-				StringBuilder_Append(  codeInl, "}\n\n" );
+				if ( vectorUnions ) {
+					// array operators
+					StringBuilder_Appendf( codeInl, "%s%s%s::operator[]( const %s index )\n", vectorMemberTypeName, strings->refDeclStr, typeInfo->fullTypeName, Gen_GetMemberTypeString( GEN_TYPE_INT ) );
+					Gen_AppendOpenBrace( codeInl, flags, "" );
+					StringBuilder_Appendf( codeInl, "\tHLML_ASSERT( index >= 0 && index < %d );\n", typeInfo->numRows );
+					StringBuilder_Append( codeInl, "\treturn rows[index];\n" );
+					StringBuilder_Append(  codeInl, "}\n\n" );
 
-				StringBuilder_Appendf( codeInl, "const %s%s%s::operator[]( const %s index ) const\n", vectorMemberTypeName, strings->refDeclStr, typeInfo->fullTypeName, Gen_GetMemberTypeString( GEN_TYPE_INT ) );
-				Gen_AppendOpenBrace( codeInl, flags, "" );
-				StringBuilder_Appendf( codeInl, "\tHLML_ASSERT( index >= 0 && index < %d );\n", typeInfo->numRows );
-				StringBuilder_Append( codeInl, "\treturn rows[index];\n" );
-				StringBuilder_Append(  codeInl, "}\n" );
+					StringBuilder_Appendf( codeInl, "const %s%s%s::operator[]( const %s index ) const\n", vectorMemberTypeName, strings->refDeclStr, typeInfo->fullTypeName, Gen_GetMemberTypeString( GEN_TYPE_INT ) );
+					Gen_AppendOpenBrace( codeInl, flags, "" );
+					StringBuilder_Appendf( codeInl, "\tHLML_ASSERT( index >= 0 && index < %d );\n", typeInfo->numRows );
+					StringBuilder_Append( codeInl, "\treturn rows[index];\n" );
+					StringBuilder_Append(  codeInl, "}\n" );
+				}
 			}
 
 			StringBuilder_Append( codeInl, "\n" );

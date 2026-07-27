@@ -13,18 +13,18 @@ namespace hlml
 
 uint4x4::uint4x4( const uint32_t diagonal )
 {
-	rows[0][0] = diagonal;
-	rows[1][1] = diagonal;
-	rows[2][2] = diagonal;
-	rows[3][3] = diagonal;
+	rows[0].x = diagonal;
+	rows[1].y = diagonal;
+	rows[2].z = diagonal;
+	rows[3].w = diagonal;
 }
 
 uint4x4::uint4x4( const uint4 &diagonal )
 {
-	rows[0][0] = diagonal[0];
-	rows[1][1] = diagonal[1];
-	rows[2][2] = diagonal[2];
-	rows[3][3] = diagonal[3];
+	rows[0].x = diagonal.x;
+	rows[1].y = diagonal.y;
+	rows[2].z = diagonal.z;
+	rows[3].w = diagonal.w;
 }
 
 // Sets each row of the matrix to the corresponding vector.
@@ -50,50 +50,50 @@ uint4x4::uint4x4( const uint32_t m00, const uint32_t m01, const uint32_t m02, co
 
 uint4x4::uint4x4( const uint4x4 &mat )
 {
-	rows[0] = mat[0];
-	rows[1] = mat[1];
-	rows[2] = mat[2];
-	rows[3] = mat[3];
+	rows[0] = mat.rows[0];
+	rows[1] = mat.rows[1];
+	rows[2] = mat.rows[2];
+	rows[3] = mat.rows[3];
 }
 
 uint4x4::uint4x4( const bool4x4 &mat )
 {
-	rows[0] = uint4( mat[0] );
-	rows[1] = uint4( mat[1] );
-	rows[2] = uint4( mat[2] );
-	rows[3] = uint4( mat[3] );
+	rows[0] = uint4( mat.rows[0] );
+	rows[1] = uint4( mat.rows[1] );
+	rows[2] = uint4( mat.rows[2] );
+	rows[3] = uint4( mat.rows[3] );
 }
 
 uint4x4::uint4x4( const int4x4 &mat )
 {
-	rows[0] = uint4( mat[0] );
-	rows[1] = uint4( mat[1] );
-	rows[2] = uint4( mat[2] );
-	rows[3] = uint4( mat[3] );
+	rows[0] = uint4( mat.rows[0] );
+	rows[1] = uint4( mat.rows[1] );
+	rows[2] = uint4( mat.rows[2] );
+	rows[3] = uint4( mat.rows[3] );
 }
 
 uint4x4::uint4x4( const float4x4 &mat )
 {
-	rows[0] = uint4( mat[0] );
-	rows[1] = uint4( mat[1] );
-	rows[2] = uint4( mat[2] );
-	rows[3] = uint4( mat[3] );
+	rows[0] = uint4( mat.rows[0] );
+	rows[1] = uint4( mat.rows[1] );
+	rows[2] = uint4( mat.rows[2] );
+	rows[3] = uint4( mat.rows[3] );
 }
 
 uint4x4::uint4x4( const double4x4 &mat )
 {
-	rows[0] = uint4( mat[0] );
-	rows[1] = uint4( mat[1] );
-	rows[2] = uint4( mat[2] );
-	rows[3] = uint4( mat[3] );
+	rows[0] = uint4( mat.rows[0] );
+	rows[1] = uint4( mat.rows[1] );
+	rows[2] = uint4( mat.rows[2] );
+	rows[3] = uint4( mat.rows[3] );
 }
 
 uint4x4 uint4x4::operator=( const uint4x4 &other )
 {
-	rows[0] = other[0];
-	rows[1] = other[1];
-	rows[2] = other[2];
-	rows[3] = other[3];
+	rows[0] = other.rows[0];
+	rows[1] = other.rows[1];
+	rows[2] = other.rows[2];
+	rows[3] = other.rows[3];
 
 	return *this;
 }

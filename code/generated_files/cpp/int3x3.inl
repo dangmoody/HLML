@@ -13,16 +13,16 @@ namespace hlml
 
 int3x3::int3x3( const int32_t diagonal )
 {
-	rows[0][0] = diagonal;
-	rows[1][1] = diagonal;
-	rows[2][2] = diagonal;
+	rows[0].x = diagonal;
+	rows[1].y = diagonal;
+	rows[2].z = diagonal;
 }
 
 int3x3::int3x3( const int3 &diagonal )
 {
-	rows[0][0] = diagonal[0];
-	rows[1][1] = diagonal[1];
-	rows[2][2] = diagonal[2];
+	rows[0].x = diagonal.x;
+	rows[1].y = diagonal.y;
+	rows[2].z = diagonal.z;
 }
 
 // Sets each row of the matrix to the corresponding vector.
@@ -45,44 +45,44 @@ int3x3::int3x3( const int32_t m00, const int32_t m01, const int32_t m02,
 
 int3x3::int3x3( const int3x3 &mat )
 {
-	rows[0] = mat[0];
-	rows[1] = mat[1];
-	rows[2] = mat[2];
+	rows[0] = mat.rows[0];
+	rows[1] = mat.rows[1];
+	rows[2] = mat.rows[2];
 }
 
 int3x3::int3x3( const bool3x3 &mat )
 {
-	rows[0] = int3( mat[0] );
-	rows[1] = int3( mat[1] );
-	rows[2] = int3( mat[2] );
+	rows[0] = int3( mat.rows[0] );
+	rows[1] = int3( mat.rows[1] );
+	rows[2] = int3( mat.rows[2] );
 }
 
 int3x3::int3x3( const uint3x3 &mat )
 {
-	rows[0] = int3( mat[0] );
-	rows[1] = int3( mat[1] );
-	rows[2] = int3( mat[2] );
+	rows[0] = int3( mat.rows[0] );
+	rows[1] = int3( mat.rows[1] );
+	rows[2] = int3( mat.rows[2] );
 }
 
 int3x3::int3x3( const float3x3 &mat )
 {
-	rows[0] = int3( mat[0] );
-	rows[1] = int3( mat[1] );
-	rows[2] = int3( mat[2] );
+	rows[0] = int3( mat.rows[0] );
+	rows[1] = int3( mat.rows[1] );
+	rows[2] = int3( mat.rows[2] );
 }
 
 int3x3::int3x3( const double3x3 &mat )
 {
-	rows[0] = int3( mat[0] );
-	rows[1] = int3( mat[1] );
-	rows[2] = int3( mat[2] );
+	rows[0] = int3( mat.rows[0] );
+	rows[1] = int3( mat.rows[1] );
+	rows[2] = int3( mat.rows[2] );
 }
 
 int3x3 int3x3::operator=( const int3x3 &other )
 {
-	rows[0] = other[0];
-	rows[1] = other[1];
-	rows[2] = other[2];
+	rows[0] = other.rows[0];
+	rows[1] = other.rows[1];
+	rows[2] = other.rows[2];
 
 	return *this;
 }

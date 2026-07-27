@@ -13,16 +13,16 @@ namespace hlml
 
 float3x3::float3x3( const float diagonal )
 {
-	rows[0][0] = diagonal;
-	rows[1][1] = diagonal;
-	rows[2][2] = diagonal;
+	rows[0].x = diagonal;
+	rows[1].y = diagonal;
+	rows[2].z = diagonal;
 }
 
 float3x3::float3x3( const float3 &diagonal )
 {
-	rows[0][0] = diagonal[0];
-	rows[1][1] = diagonal[1];
-	rows[2][2] = diagonal[2];
+	rows[0].x = diagonal.x;
+	rows[1].y = diagonal.y;
+	rows[2].z = diagonal.z;
 }
 
 // Sets each row of the matrix to the corresponding vector.
@@ -45,44 +45,44 @@ float3x3::float3x3( const float m00, const float m01, const float m02,
 
 float3x3::float3x3( const float3x3 &mat )
 {
-	rows[0] = mat[0];
-	rows[1] = mat[1];
-	rows[2] = mat[2];
+	rows[0] = mat.rows[0];
+	rows[1] = mat.rows[1];
+	rows[2] = mat.rows[2];
 }
 
 float3x3::float3x3( const bool3x3 &mat )
 {
-	rows[0] = float3( mat[0] );
-	rows[1] = float3( mat[1] );
-	rows[2] = float3( mat[2] );
+	rows[0] = float3( mat.rows[0] );
+	rows[1] = float3( mat.rows[1] );
+	rows[2] = float3( mat.rows[2] );
 }
 
 float3x3::float3x3( const int3x3 &mat )
 {
-	rows[0] = float3( mat[0] );
-	rows[1] = float3( mat[1] );
-	rows[2] = float3( mat[2] );
+	rows[0] = float3( mat.rows[0] );
+	rows[1] = float3( mat.rows[1] );
+	rows[2] = float3( mat.rows[2] );
 }
 
 float3x3::float3x3( const uint3x3 &mat )
 {
-	rows[0] = float3( mat[0] );
-	rows[1] = float3( mat[1] );
-	rows[2] = float3( mat[2] );
+	rows[0] = float3( mat.rows[0] );
+	rows[1] = float3( mat.rows[1] );
+	rows[2] = float3( mat.rows[2] );
 }
 
 float3x3::float3x3( const double3x3 &mat )
 {
-	rows[0] = float3( mat[0] );
-	rows[1] = float3( mat[1] );
-	rows[2] = float3( mat[2] );
+	rows[0] = float3( mat.rows[0] );
+	rows[1] = float3( mat.rows[1] );
+	rows[2] = float3( mat.rows[2] );
 }
 
 float3x3 float3x3::operator=( const float3x3 &other )
 {
-	rows[0] = other[0];
-	rows[1] = other[1];
-	rows[2] = other[2];
+	rows[0] = other.rows[0];
+	rows[1] = other.rows[1];
+	rows[2] = other.rows[2];
 
 	return *this;
 }

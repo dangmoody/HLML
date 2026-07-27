@@ -835,7 +835,7 @@ static void GenerateFunction_Equals( allocatorLinear_t *tempStorage, const typeI
 			}
 		} else {
 			for ( u32 i = 0; i < numIterations; i++ ) {
-				StringBuilder_Appendf( code, "\t\tlhs[%d] == rhs[%d]", i, i );
+				StringBuilder_Appendf( code, "\t\tlhs.rows[%d] == rhs.rows[%d]", i, i );
 
 				if ( i < numIterations - 1 ) {
 					StringBuilder_Append( code, " &&\n" );
@@ -978,7 +978,7 @@ static void GenerateComponentWiseOperator( stringBuilder_t *code, const typeInfo
 	} else {
 		if ( Gen_TypeIsScalar( rhsType ) ) {
 			for ( u32 i = 0; i < returnType->numRows; i++ ) {
-				StringBuilder_Appendf( code, "\t\tlhs[%d] %s rhs", i, opStr );
+				StringBuilder_Appendf( code, "\t\tlhs.rows[%d] %s rhs", i, opStr );
 
 				if ( i < returnType->numRows - 1 ) {
 					StringBuilder_Append( code, "," );
@@ -988,7 +988,7 @@ static void GenerateComponentWiseOperator( stringBuilder_t *code, const typeInfo
 			}
 		} else {
 			for ( u32 i = 0; i < returnType->numRows; i++ ) {
-				StringBuilder_Appendf( code, "\t\tlhs[%d] %s rhs[%d]", i, opStr, i );
+				StringBuilder_Appendf( code, "\t\tlhs.rows[%d] %s rhs.rows[%d]", i, opStr, i );
 
 				if ( i < returnType->numRows - 1 ) {
 					StringBuilder_Append( code, "," );
@@ -1066,7 +1066,7 @@ static void GenerateOperatorSingleParm( stringBuilder_t *code, const typeInfo_t 
 				}
 			} else {
 				for ( u32 i = 0; i < numIterations; i++ ) {
-					StringBuilder_Appendf( code, "\t\t%sx[%d]", opStr, i );
+					StringBuilder_Appendf( code, "\t\t%sx.rows[%d]", opStr, i );
 
 					if ( i != numIterations - 1 ) {
 						StringBuilder_Append( code, "," );
@@ -1091,7 +1091,7 @@ static void GenerateOperatorSingleParm( stringBuilder_t *code, const typeInfo_t 
 				}
 			} else {
 				for ( u32 i = 0; i < numIterations; i++ ) {
-					StringBuilder_Appendf( code, "\t%sx[%d];\n", opStr, i );
+					StringBuilder_Appendf( code, "\t%sx.rows[%d];\n", opStr, i );
 				}
 			}
 			StringBuilder_Append( code, "\treturn x;\n" );
@@ -1109,7 +1109,7 @@ static void GenerateOperatorSingleParm( stringBuilder_t *code, const typeInfo_t 
 			}
 		} else {
 			for ( u32 i = 0; i < numIterations; i++ ) {
-				StringBuilder_Appendf( code, "\tx[%d]%s;\n", i, opStr );
+				StringBuilder_Appendf( code, "\tx.rows[%d]%s;\n", i, opStr );
 			}
 		}
 		StringBuilder_Append( code, "\treturn x;\n" );
@@ -1279,7 +1279,6 @@ static void GenerateComponentWiseFunction( allocatorLinear_t *tempStorage, strin
 	assert( parmsCount );
 	assert( parms );
 
-	bool32 generateOperators = flags & GENERATOR_FLAG_GENERATE_OPERATORS;
 	bool32 generateConstructors = flags & GENERATOR_FLAG_GENERATE_CONSTRUCTORS;
 
 	const char *funcStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, funcName );
@@ -1340,11 +1339,7 @@ static void GenerateComponentWiseFunction( allocatorLinear_t *tempStorage, strin
 				if ( Gen_TypeIsVector( parm->typeInfo ) ) {
 					StringBuilder_Appendf( code, "%s%s%c", parm->name, strings->parmAccessOperatorStr, GEN_COMPONENT_NAMES_VECTOR[i] );
 				} else if ( Gen_TypeIsMatrix( parm->typeInfo ) ) {
-					if ( generateOperators ) {
-						StringBuilder_Appendf( code, "%s[%d]", parm->name, i );
-					} else {
-						StringBuilder_Appendf( code, "%s%s%srows[%d]", strings->parmReferenceStr, parm->name, strings->parmAccessOperatorStr, i );
-					}
+					StringBuilder_Appendf( code, "%s%s%srows[%d]", strings->parmReferenceStr, parm->name, strings->parmAccessOperatorStr, i );
 				}
 			}
 

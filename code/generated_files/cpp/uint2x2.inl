@@ -13,14 +13,14 @@ namespace hlml
 
 uint2x2::uint2x2( const uint32_t diagonal )
 {
-	rows[0][0] = diagonal;
-	rows[1][1] = diagonal;
+	rows[0].x = diagonal;
+	rows[1].y = diagonal;
 }
 
 uint2x2::uint2x2( const uint2 &diagonal )
 {
-	rows[0][0] = diagonal[0];
-	rows[1][1] = diagonal[1];
+	rows[0].x = diagonal.x;
+	rows[1].y = diagonal.y;
 }
 
 // Sets each row of the matrix to the corresponding vector.
@@ -40,38 +40,38 @@ uint2x2::uint2x2( const uint32_t m00, const uint32_t m01,
 
 uint2x2::uint2x2( const uint2x2 &mat )
 {
-	rows[0] = mat[0];
-	rows[1] = mat[1];
+	rows[0] = mat.rows[0];
+	rows[1] = mat.rows[1];
 }
 
 uint2x2::uint2x2( const bool2x2 &mat )
 {
-	rows[0] = uint2( mat[0] );
-	rows[1] = uint2( mat[1] );
+	rows[0] = uint2( mat.rows[0] );
+	rows[1] = uint2( mat.rows[1] );
 }
 
 uint2x2::uint2x2( const int2x2 &mat )
 {
-	rows[0] = uint2( mat[0] );
-	rows[1] = uint2( mat[1] );
+	rows[0] = uint2( mat.rows[0] );
+	rows[1] = uint2( mat.rows[1] );
 }
 
 uint2x2::uint2x2( const float2x2 &mat )
 {
-	rows[0] = uint2( mat[0] );
-	rows[1] = uint2( mat[1] );
+	rows[0] = uint2( mat.rows[0] );
+	rows[1] = uint2( mat.rows[1] );
 }
 
 uint2x2::uint2x2( const double2x2 &mat )
 {
-	rows[0] = uint2( mat[0] );
-	rows[1] = uint2( mat[1] );
+	rows[0] = uint2( mat.rows[0] );
+	rows[1] = uint2( mat.rows[1] );
 }
 
 uint2x2 uint2x2::operator=( const uint2x2 &other )
 {
-	rows[0] = other[0];
-	rows[1] = other[1];
+	rows[0] = other.rows[0];
+	rows[1] = other.rows[1];
 
 	return *this;
 }

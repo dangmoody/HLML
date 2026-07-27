@@ -1007,16 +1007,18 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 					}
 				}
 
-				const char *returnTypeName = Gen_GetMemberTypeString( GEN_TYPE_INT );
+				if ( vectorUnions ) {
+					const char *returnTypeName = Gen_GetMemberTypeString( GEN_TYPE_INT );
 
-				// array operators
-				StringBuilder_Append(  codeHeader, "\t// Returns the vector component at the given index.\n" );
-				StringBuilder_Appendf( codeHeader, "\t// Index CANNOT be lower than 0 or greater than %d.\n", typeInfo->numCols - 1 );
-				StringBuilder_Appendf( codeHeader, "\tHLML_INLINE %s%soperator[]( const %s index );\n\n", memberTypeString, strings->refDeclStr, returnTypeName );
+					// array operators
+					StringBuilder_Append(  codeHeader, "\t// Returns the vector component at the given index.\n" );
+					StringBuilder_Appendf( codeHeader, "\t// Index CANNOT be lower than 0 or greater than %d.\n", typeInfo->numCols - 1 );
+					StringBuilder_Appendf( codeHeader, "\tHLML_INLINE %s%soperator[]( const %s index );\n\n", memberTypeString, strings->refDeclStr, returnTypeName );
 
-				StringBuilder_Append(  codeHeader, "\t// Returns the vector component at the given index.\n" );
-				StringBuilder_Appendf( codeHeader, "\t// Index CANNOT be lower than 0 or greater than %d.\n", typeInfo->numCols - 1 );
-				StringBuilder_Appendf( codeHeader, "\tHLML_INLINE const %s%soperator[]( const %s index ) const;\n", memberTypeString, strings->refDeclStr, returnTypeName );
+					StringBuilder_Append(  codeHeader, "\t// Returns the vector component at the given index.\n" );
+					StringBuilder_Appendf( codeHeader, "\t// Index CANNOT be lower than 0 or greater than %d.\n", typeInfo->numCols - 1 );
+					StringBuilder_Appendf( codeHeader, "\tHLML_INLINE const %s%soperator[]( const %s index ) const;\n", memberTypeString, strings->refDeclStr, returnTypeName );
+				}
 			}
 
 			// struct end
@@ -1327,18 +1329,20 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 					}
 				}
 
-				// array operators
-				StringBuilder_Appendf( codeInl, "%s%s%s::operator[]( const %s index )\n", memberTypeString, strings->refDeclStr, typeInfo->fullTypeName, Gen_GetMemberTypeString( GEN_TYPE_INT ) );
-				Gen_AppendOpenBrace( codeInl, flags, "" );
-				StringBuilder_Appendf( codeInl, "\tHLML_ASSERT( index >= 0 && index < %d );\n", typeInfo->numCols );
-				StringBuilder_Append(  codeInl, "\treturn v[index];\n" );
-				StringBuilder_Append(  codeInl, "}\n\n" );
+				if ( vectorUnions ) {
+					// array operators
+					StringBuilder_Appendf( codeInl, "%s%s%s::operator[]( const %s index )\n", memberTypeString, strings->refDeclStr, typeInfo->fullTypeName, Gen_GetMemberTypeString( GEN_TYPE_INT ) );
+					Gen_AppendOpenBrace( codeInl, flags, "" );
+					StringBuilder_Appendf( codeInl, "\tHLML_ASSERT( index >= 0 && index < %d );\n", typeInfo->numCols );
+					StringBuilder_Append(  codeInl, "\treturn v[index];\n" );
+					StringBuilder_Append(  codeInl, "}\n\n" );
 
-				StringBuilder_Appendf( codeInl, "const %s%s%s::operator[]( const %s index ) const\n", memberTypeString, strings->refDeclStr, typeInfo->fullTypeName, Gen_GetMemberTypeString( GEN_TYPE_INT ) );
-				Gen_AppendOpenBrace( codeInl, flags, "" );
-				StringBuilder_Appendf( codeInl, "\tHLML_ASSERT( index >= 0 && index < %d );\n", typeInfo->numCols );
-				StringBuilder_Append(  codeInl, "\treturn v[index];\n" );
-				StringBuilder_Append(  codeInl, "}\n" );
+					StringBuilder_Appendf( codeInl, "const %s%s%s::operator[]( const %s index ) const\n", memberTypeString, strings->refDeclStr, typeInfo->fullTypeName, Gen_GetMemberTypeString( GEN_TYPE_INT ) );
+					Gen_AppendOpenBrace( codeInl, flags, "" );
+					StringBuilder_Appendf( codeInl, "\tHLML_ASSERT( index >= 0 && index < %d );\n", typeInfo->numCols );
+					StringBuilder_Append(  codeInl, "\treturn v[index];\n" );
+					StringBuilder_Append(  codeInl, "}\n" );
+				}
 			}
 
 			if ( allowNamespace ) {

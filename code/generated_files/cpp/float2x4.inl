@@ -13,14 +13,14 @@ namespace hlml
 
 float2x4::float2x4( const float diagonal )
 {
-	rows[0][0] = diagonal;
-	rows[1][1] = diagonal;
+	rows[0].x = diagonal;
+	rows[1].y = diagonal;
 }
 
 float2x4::float2x4( const float4 &diagonal )
 {
-	rows[0][0] = diagonal[0];
-	rows[1][1] = diagonal[1];
+	rows[0].x = diagonal.x;
+	rows[1].y = diagonal.y;
 }
 
 // Sets each row of the matrix to the corresponding vector.
@@ -40,38 +40,38 @@ float2x4::float2x4( const float m00, const float m01, const float m02, const flo
 
 float2x4::float2x4( const float2x4 &mat )
 {
-	rows[0] = mat[0];
-	rows[1] = mat[1];
+	rows[0] = mat.rows[0];
+	rows[1] = mat.rows[1];
 }
 
 float2x4::float2x4( const bool2x4 &mat )
 {
-	rows[0] = float4( mat[0] );
-	rows[1] = float4( mat[1] );
+	rows[0] = float4( mat.rows[0] );
+	rows[1] = float4( mat.rows[1] );
 }
 
 float2x4::float2x4( const int2x4 &mat )
 {
-	rows[0] = float4( mat[0] );
-	rows[1] = float4( mat[1] );
+	rows[0] = float4( mat.rows[0] );
+	rows[1] = float4( mat.rows[1] );
 }
 
 float2x4::float2x4( const uint2x4 &mat )
 {
-	rows[0] = float4( mat[0] );
-	rows[1] = float4( mat[1] );
+	rows[0] = float4( mat.rows[0] );
+	rows[1] = float4( mat.rows[1] );
 }
 
 float2x4::float2x4( const double2x4 &mat )
 {
-	rows[0] = float4( mat[0] );
-	rows[1] = float4( mat[1] );
+	rows[0] = float4( mat.rows[0] );
+	rows[1] = float4( mat.rows[1] );
 }
 
 float2x4 float2x4::operator=( const float2x4 &other )
 {
-	rows[0] = other[0];
-	rows[1] = other[1];
+	rows[0] = other.rows[0];
+	rows[1] = other.rows[1];
 
 	return *this;
 }

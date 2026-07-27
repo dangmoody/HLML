@@ -13,18 +13,14 @@ namespace hlml
 
 bool4x2::bool4x2( const bool32_t diagonal )
 {
-	rows[0][0] = diagonal;
-	rows[1][1] = diagonal;
-	rows[2][2] = diagonal;
-	rows[3][3] = diagonal;
+	rows[0].x = diagonal;
+	rows[1].y = diagonal;
 }
 
 bool4x2::bool4x2( const bool2 &diagonal )
 {
-	rows[0][0] = diagonal[0];
-	rows[1][1] = diagonal[1];
-	rows[2][2] = diagonal[2];
-	rows[3][3] = diagonal[3];
+	rows[0].x = diagonal.x;
+	rows[1].y = diagonal.y;
 }
 
 // Sets each row of the matrix to the corresponding vector.
@@ -50,50 +46,50 @@ bool4x2::bool4x2( const bool32_t m00, const bool32_t m01,
 
 bool4x2::bool4x2( const bool4x2 &mat )
 {
-	rows[0] = mat[0];
-	rows[1] = mat[1];
-	rows[2] = mat[2];
-	rows[3] = mat[3];
+	rows[0] = mat.rows[0];
+	rows[1] = mat.rows[1];
+	rows[2] = mat.rows[2];
+	rows[3] = mat.rows[3];
 }
 
 bool4x2::bool4x2( const int4x2 &mat )
 {
-	rows[0] = bool2( mat[0] );
-	rows[1] = bool2( mat[1] );
-	rows[2] = bool2( mat[2] );
-	rows[3] = bool2( mat[3] );
+	rows[0] = bool2( mat.rows[0] );
+	rows[1] = bool2( mat.rows[1] );
+	rows[2] = bool2( mat.rows[2] );
+	rows[3] = bool2( mat.rows[3] );
 }
 
 bool4x2::bool4x2( const uint4x2 &mat )
 {
-	rows[0] = bool2( mat[0] );
-	rows[1] = bool2( mat[1] );
-	rows[2] = bool2( mat[2] );
-	rows[3] = bool2( mat[3] );
+	rows[0] = bool2( mat.rows[0] );
+	rows[1] = bool2( mat.rows[1] );
+	rows[2] = bool2( mat.rows[2] );
+	rows[3] = bool2( mat.rows[3] );
 }
 
 bool4x2::bool4x2( const float4x2 &mat )
 {
-	rows[0] = bool2( mat[0] );
-	rows[1] = bool2( mat[1] );
-	rows[2] = bool2( mat[2] );
-	rows[3] = bool2( mat[3] );
+	rows[0] = bool2( mat.rows[0] );
+	rows[1] = bool2( mat.rows[1] );
+	rows[2] = bool2( mat.rows[2] );
+	rows[3] = bool2( mat.rows[3] );
 }
 
 bool4x2::bool4x2( const double4x2 &mat )
 {
-	rows[0] = bool2( mat[0] );
-	rows[1] = bool2( mat[1] );
-	rows[2] = bool2( mat[2] );
-	rows[3] = bool2( mat[3] );
+	rows[0] = bool2( mat.rows[0] );
+	rows[1] = bool2( mat.rows[1] );
+	rows[2] = bool2( mat.rows[2] );
+	rows[3] = bool2( mat.rows[3] );
 }
 
 bool4x2 bool4x2::operator=( const bool4x2 &other )
 {
-	rows[0] = other[0];
-	rows[1] = other[1];
-	rows[2] = other[2];
-	rows[3] = other[3];
+	rows[0] = other.rows[0];
+	rows[1] = other.rows[1];
+	rows[2] = other.rows[2];
+	rows[3] = other.rows[3];
 
 	return *this;
 }

@@ -61,8 +61,8 @@ namespace hlml
 HLML_INLINE bool operator==( const bool2x2 &lhs, const bool2x2 &rhs )
 {
 	return
-		lhs[0] == rhs[0] &&
-		lhs[1] == rhs[1];
+		lhs.rows[0] == rhs.rows[0] &&
+		lhs.rows[1] == rhs.rows[1];
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
@@ -75,8 +75,8 @@ HLML_INLINE bool operator!=( const bool2x2 &lhs, const bool2x2 &rhs )
 HLML_INLINE bool2x2 operator<( const bool2x2 &lhs, const bool2x2 &rhs )
 {
 	return bool2x2(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1]
+		lhs.rows[0] < rhs.rows[0],
+		lhs.rows[1] < rhs.rows[1]
 	);
 }
 
@@ -84,8 +84,8 @@ HLML_INLINE bool2x2 operator<( const bool2x2 &lhs, const bool2x2 &rhs )
 HLML_INLINE bool2x2 operator<=( const bool2x2 &lhs, const bool2x2 &rhs )
 {
 	return bool2x2(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1]
+		lhs.rows[0] <= rhs.rows[0],
+		lhs.rows[1] <= rhs.rows[1]
 	);
 }
 
@@ -93,8 +93,8 @@ HLML_INLINE bool2x2 operator<=( const bool2x2 &lhs, const bool2x2 &rhs )
 HLML_INLINE bool2x2 operator>( const bool2x2 &lhs, const bool2x2 &rhs )
 {
 	return bool2x2(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1]
+		lhs.rows[0] > rhs.rows[0],
+		lhs.rows[1] > rhs.rows[1]
 	);
 }
 
@@ -102,8 +102,8 @@ HLML_INLINE bool2x2 operator>( const bool2x2 &lhs, const bool2x2 &rhs )
 HLML_INLINE bool2x2 operator>=( const bool2x2 &lhs, const bool2x2 &rhs )
 {
 	return bool2x2(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1]
+		lhs.rows[0] >= rhs.rows[0],
+		lhs.rows[1] >= rhs.rows[1]
 	);
 }
 
@@ -111,8 +111,8 @@ HLML_INLINE bool2x2 operator>=( const bool2x2 &lhs, const bool2x2 &rhs )
 HLML_INLINE bool2x2 operator+( const bool2x2 &lhs, const bool32_t rhs )
 {
 	return bool2x2(
-		lhs[0] + rhs,
-		lhs[1] + rhs
+		lhs.rows[0] + rhs,
+		lhs.rows[1] + rhs
 	);
 }
 
@@ -126,8 +126,8 @@ HLML_INLINE bool2x2 operator+=( bool2x2 &lhs, const bool32_t rhs )
 HLML_INLINE bool2x2 operator+( const bool2x2 &lhs, const bool2x2 &rhs )
 {
 	return bool2x2(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1]
+		lhs.rows[0] + rhs.rows[0],
+		lhs.rows[1] + rhs.rows[1]
 	);
 }
 
@@ -141,8 +141,8 @@ HLML_INLINE bool2x2 operator+=( bool2x2 &lhs, const bool2x2 &rhs )
 HLML_INLINE bool2x2 operator-( const bool2x2 &lhs, const bool32_t rhs )
 {
 	return bool2x2(
-		lhs[0] - rhs,
-		lhs[1] - rhs
+		lhs.rows[0] - rhs,
+		lhs.rows[1] - rhs
 	);
 }
 
@@ -156,8 +156,8 @@ HLML_INLINE bool2x2 operator-=( bool2x2 &lhs, const bool32_t rhs )
 HLML_INLINE bool2x2 operator-( const bool2x2 &lhs, const bool2x2 &rhs )
 {
 	return bool2x2(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1]
+		lhs.rows[0] - rhs.rows[0],
+		lhs.rows[1] - rhs.rows[1]
 	);
 }
 
@@ -171,8 +171,8 @@ HLML_INLINE bool2x2 operator-=( bool2x2 &lhs, const bool2x2 &rhs )
 HLML_INLINE bool2x2 operator*( const bool2x2 &lhs, const bool32_t rhs )
 {
 	return bool2x2(
-		lhs[0] * rhs,
-		lhs[1] * rhs
+		lhs.rows[0] * rhs,
+		lhs.rows[1] * rhs
 	);
 }
 
@@ -186,8 +186,8 @@ HLML_INLINE bool2x2 operator*=( bool2x2 &lhs, const bool32_t rhs )
 HLML_INLINE bool2x2 operator*( const bool2x2 &lhs, const bool2x2 &rhs )
 {
 	return bool2x2(
-		lhs[0] * rhs[0],
-		lhs[1] * rhs[1]
+		lhs.rows[0] * rhs.rows[0],
+		lhs.rows[1] * rhs.rows[1]
 	);
 }
 
@@ -201,8 +201,8 @@ HLML_INLINE bool2x2 operator*=( bool2x2 &lhs, const bool2x2 &rhs )
 HLML_INLINE bool2x2 operator/( const bool2x2 &lhs, const bool32_t rhs )
 {
 	return bool2x2(
-		lhs[0] / rhs,
-		lhs[1] / rhs
+		lhs.rows[0] / rhs,
+		lhs.rows[1] / rhs
 	);
 }
 
@@ -216,8 +216,8 @@ HLML_INLINE bool2x2 operator/=( bool2x2 &lhs, const bool32_t rhs )
 HLML_INLINE bool2x2 operator/( const bool2x2 &lhs, const bool2x2 &rhs )
 {
 	return bool2x2(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1]
+		lhs.rows[0] / rhs.rows[0],
+		lhs.rows[1] / rhs.rows[1]
 	);
 }
 
@@ -230,8 +230,8 @@ HLML_INLINE bool2x2 operator/=( bool2x2 &lhs, const bool2x2 &rhs )
 // ++s each component of the matrix and returns the result.
 HLML_INLINE bool2x2 operator++( bool2x2 &x )
 {
-	++x[0];
-	++x[1];
+	++x.rows[0];
+	++x.rows[1];
 	return x;
 }
 
@@ -239,16 +239,16 @@ HLML_INLINE bool2x2 operator++( bool2x2 &x )
 // post-fix
 HLML_INLINE bool2x2 operator++( bool2x2 &x, const int32_t )
 {
-	x[0]++;
-	x[1]++;
+	x.rows[0]++;
+	x.rows[1]++;
 	return x;
 }
 
 // --s each component of the matrix and returns the result.
 HLML_INLINE bool2x2 operator--( bool2x2 &x )
 {
-	--x[0];
-	--x[1];
+	--x.rows[0];
+	--x.rows[1];
 	return x;
 }
 
@@ -256,8 +256,8 @@ HLML_INLINE bool2x2 operator--( bool2x2 &x )
 // post-fix
 HLML_INLINE bool2x2 operator--( bool2x2 &x, const int32_t )
 {
-	x[0]--;
-	x[1]--;
+	x.rows[0]--;
+	x.rows[1]--;
 	return x;
 }
 
@@ -299,8 +299,8 @@ HLML_INLINE bool2x2 transpose( const bool2x2 &mat )
 HLML_INLINE bool operator==( const bool2x3 &lhs, const bool2x3 &rhs )
 {
 	return
-		lhs[0] == rhs[0] &&
-		lhs[1] == rhs[1];
+		lhs.rows[0] == rhs.rows[0] &&
+		lhs.rows[1] == rhs.rows[1];
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
@@ -313,8 +313,8 @@ HLML_INLINE bool operator!=( const bool2x3 &lhs, const bool2x3 &rhs )
 HLML_INLINE bool2x3 operator<( const bool2x3 &lhs, const bool2x3 &rhs )
 {
 	return bool2x3(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1]
+		lhs.rows[0] < rhs.rows[0],
+		lhs.rows[1] < rhs.rows[1]
 	);
 }
 
@@ -322,8 +322,8 @@ HLML_INLINE bool2x3 operator<( const bool2x3 &lhs, const bool2x3 &rhs )
 HLML_INLINE bool2x3 operator<=( const bool2x3 &lhs, const bool2x3 &rhs )
 {
 	return bool2x3(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1]
+		lhs.rows[0] <= rhs.rows[0],
+		lhs.rows[1] <= rhs.rows[1]
 	);
 }
 
@@ -331,8 +331,8 @@ HLML_INLINE bool2x3 operator<=( const bool2x3 &lhs, const bool2x3 &rhs )
 HLML_INLINE bool2x3 operator>( const bool2x3 &lhs, const bool2x3 &rhs )
 {
 	return bool2x3(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1]
+		lhs.rows[0] > rhs.rows[0],
+		lhs.rows[1] > rhs.rows[1]
 	);
 }
 
@@ -340,8 +340,8 @@ HLML_INLINE bool2x3 operator>( const bool2x3 &lhs, const bool2x3 &rhs )
 HLML_INLINE bool2x3 operator>=( const bool2x3 &lhs, const bool2x3 &rhs )
 {
 	return bool2x3(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1]
+		lhs.rows[0] >= rhs.rows[0],
+		lhs.rows[1] >= rhs.rows[1]
 	);
 }
 
@@ -349,8 +349,8 @@ HLML_INLINE bool2x3 operator>=( const bool2x3 &lhs, const bool2x3 &rhs )
 HLML_INLINE bool2x3 operator+( const bool2x3 &lhs, const bool32_t rhs )
 {
 	return bool2x3(
-		lhs[0] + rhs,
-		lhs[1] + rhs
+		lhs.rows[0] + rhs,
+		lhs.rows[1] + rhs
 	);
 }
 
@@ -364,8 +364,8 @@ HLML_INLINE bool2x3 operator+=( bool2x3 &lhs, const bool32_t rhs )
 HLML_INLINE bool2x3 operator+( const bool2x3 &lhs, const bool2x3 &rhs )
 {
 	return bool2x3(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1]
+		lhs.rows[0] + rhs.rows[0],
+		lhs.rows[1] + rhs.rows[1]
 	);
 }
 
@@ -379,8 +379,8 @@ HLML_INLINE bool2x3 operator+=( bool2x3 &lhs, const bool2x3 &rhs )
 HLML_INLINE bool2x3 operator-( const bool2x3 &lhs, const bool32_t rhs )
 {
 	return bool2x3(
-		lhs[0] - rhs,
-		lhs[1] - rhs
+		lhs.rows[0] - rhs,
+		lhs.rows[1] - rhs
 	);
 }
 
@@ -394,8 +394,8 @@ HLML_INLINE bool2x3 operator-=( bool2x3 &lhs, const bool32_t rhs )
 HLML_INLINE bool2x3 operator-( const bool2x3 &lhs, const bool2x3 &rhs )
 {
 	return bool2x3(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1]
+		lhs.rows[0] - rhs.rows[0],
+		lhs.rows[1] - rhs.rows[1]
 	);
 }
 
@@ -409,8 +409,8 @@ HLML_INLINE bool2x3 operator-=( bool2x3 &lhs, const bool2x3 &rhs )
 HLML_INLINE bool2x3 operator*( const bool2x3 &lhs, const bool32_t rhs )
 {
 	return bool2x3(
-		lhs[0] * rhs,
-		lhs[1] * rhs
+		lhs.rows[0] * rhs,
+		lhs.rows[1] * rhs
 	);
 }
 
@@ -424,8 +424,8 @@ HLML_INLINE bool2x3 operator*=( bool2x3 &lhs, const bool32_t rhs )
 HLML_INLINE bool2x3 operator*( const bool2x3 &lhs, const bool2x3 &rhs )
 {
 	return bool2x3(
-		lhs[0] * rhs[0],
-		lhs[1] * rhs[1]
+		lhs.rows[0] * rhs.rows[0],
+		lhs.rows[1] * rhs.rows[1]
 	);
 }
 
@@ -439,8 +439,8 @@ HLML_INLINE bool2x3 operator*=( bool2x3 &lhs, const bool2x3 &rhs )
 HLML_INLINE bool2x3 operator/( const bool2x3 &lhs, const bool32_t rhs )
 {
 	return bool2x3(
-		lhs[0] / rhs,
-		lhs[1] / rhs
+		lhs.rows[0] / rhs,
+		lhs.rows[1] / rhs
 	);
 }
 
@@ -454,8 +454,8 @@ HLML_INLINE bool2x3 operator/=( bool2x3 &lhs, const bool32_t rhs )
 HLML_INLINE bool2x3 operator/( const bool2x3 &lhs, const bool2x3 &rhs )
 {
 	return bool2x3(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1]
+		lhs.rows[0] / rhs.rows[0],
+		lhs.rows[1] / rhs.rows[1]
 	);
 }
 
@@ -468,8 +468,8 @@ HLML_INLINE bool2x3 operator/=( bool2x3 &lhs, const bool2x3 &rhs )
 // ++s each component of the matrix and returns the result.
 HLML_INLINE bool2x3 operator++( bool2x3 &x )
 {
-	++x[0];
-	++x[1];
+	++x.rows[0];
+	++x.rows[1];
 	return x;
 }
 
@@ -477,16 +477,16 @@ HLML_INLINE bool2x3 operator++( bool2x3 &x )
 // post-fix
 HLML_INLINE bool2x3 operator++( bool2x3 &x, const int32_t )
 {
-	x[0]++;
-	x[1]++;
+	x.rows[0]++;
+	x.rows[1]++;
 	return x;
 }
 
 // --s each component of the matrix and returns the result.
 HLML_INLINE bool2x3 operator--( bool2x3 &x )
 {
-	--x[0];
-	--x[1];
+	--x.rows[0];
+	--x.rows[1];
 	return x;
 }
 
@@ -494,8 +494,8 @@ HLML_INLINE bool2x3 operator--( bool2x3 &x )
 // post-fix
 HLML_INLINE bool2x3 operator--( bool2x3 &x, const int32_t )
 {
-	x[0]--;
-	x[1]--;
+	x.rows[0]--;
+	x.rows[1]--;
 	return x;
 }
 
@@ -538,8 +538,8 @@ HLML_INLINE bool3x2 transpose( const bool2x3 &mat )
 HLML_INLINE bool operator==( const bool2x4 &lhs, const bool2x4 &rhs )
 {
 	return
-		lhs[0] == rhs[0] &&
-		lhs[1] == rhs[1];
+		lhs.rows[0] == rhs.rows[0] &&
+		lhs.rows[1] == rhs.rows[1];
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
@@ -552,8 +552,8 @@ HLML_INLINE bool operator!=( const bool2x4 &lhs, const bool2x4 &rhs )
 HLML_INLINE bool2x4 operator<( const bool2x4 &lhs, const bool2x4 &rhs )
 {
 	return bool2x4(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1]
+		lhs.rows[0] < rhs.rows[0],
+		lhs.rows[1] < rhs.rows[1]
 	);
 }
 
@@ -561,8 +561,8 @@ HLML_INLINE bool2x4 operator<( const bool2x4 &lhs, const bool2x4 &rhs )
 HLML_INLINE bool2x4 operator<=( const bool2x4 &lhs, const bool2x4 &rhs )
 {
 	return bool2x4(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1]
+		lhs.rows[0] <= rhs.rows[0],
+		lhs.rows[1] <= rhs.rows[1]
 	);
 }
 
@@ -570,8 +570,8 @@ HLML_INLINE bool2x4 operator<=( const bool2x4 &lhs, const bool2x4 &rhs )
 HLML_INLINE bool2x4 operator>( const bool2x4 &lhs, const bool2x4 &rhs )
 {
 	return bool2x4(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1]
+		lhs.rows[0] > rhs.rows[0],
+		lhs.rows[1] > rhs.rows[1]
 	);
 }
 
@@ -579,8 +579,8 @@ HLML_INLINE bool2x4 operator>( const bool2x4 &lhs, const bool2x4 &rhs )
 HLML_INLINE bool2x4 operator>=( const bool2x4 &lhs, const bool2x4 &rhs )
 {
 	return bool2x4(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1]
+		lhs.rows[0] >= rhs.rows[0],
+		lhs.rows[1] >= rhs.rows[1]
 	);
 }
 
@@ -588,8 +588,8 @@ HLML_INLINE bool2x4 operator>=( const bool2x4 &lhs, const bool2x4 &rhs )
 HLML_INLINE bool2x4 operator+( const bool2x4 &lhs, const bool32_t rhs )
 {
 	return bool2x4(
-		lhs[0] + rhs,
-		lhs[1] + rhs
+		lhs.rows[0] + rhs,
+		lhs.rows[1] + rhs
 	);
 }
 
@@ -603,8 +603,8 @@ HLML_INLINE bool2x4 operator+=( bool2x4 &lhs, const bool32_t rhs )
 HLML_INLINE bool2x4 operator+( const bool2x4 &lhs, const bool2x4 &rhs )
 {
 	return bool2x4(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1]
+		lhs.rows[0] + rhs.rows[0],
+		lhs.rows[1] + rhs.rows[1]
 	);
 }
 
@@ -618,8 +618,8 @@ HLML_INLINE bool2x4 operator+=( bool2x4 &lhs, const bool2x4 &rhs )
 HLML_INLINE bool2x4 operator-( const bool2x4 &lhs, const bool32_t rhs )
 {
 	return bool2x4(
-		lhs[0] - rhs,
-		lhs[1] - rhs
+		lhs.rows[0] - rhs,
+		lhs.rows[1] - rhs
 	);
 }
 
@@ -633,8 +633,8 @@ HLML_INLINE bool2x4 operator-=( bool2x4 &lhs, const bool32_t rhs )
 HLML_INLINE bool2x4 operator-( const bool2x4 &lhs, const bool2x4 &rhs )
 {
 	return bool2x4(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1]
+		lhs.rows[0] - rhs.rows[0],
+		lhs.rows[1] - rhs.rows[1]
 	);
 }
 
@@ -648,8 +648,8 @@ HLML_INLINE bool2x4 operator-=( bool2x4 &lhs, const bool2x4 &rhs )
 HLML_INLINE bool2x4 operator*( const bool2x4 &lhs, const bool32_t rhs )
 {
 	return bool2x4(
-		lhs[0] * rhs,
-		lhs[1] * rhs
+		lhs.rows[0] * rhs,
+		lhs.rows[1] * rhs
 	);
 }
 
@@ -663,8 +663,8 @@ HLML_INLINE bool2x4 operator*=( bool2x4 &lhs, const bool32_t rhs )
 HLML_INLINE bool2x4 operator*( const bool2x4 &lhs, const bool2x4 &rhs )
 {
 	return bool2x4(
-		lhs[0] * rhs[0],
-		lhs[1] * rhs[1]
+		lhs.rows[0] * rhs.rows[0],
+		lhs.rows[1] * rhs.rows[1]
 	);
 }
 
@@ -678,8 +678,8 @@ HLML_INLINE bool2x4 operator*=( bool2x4 &lhs, const bool2x4 &rhs )
 HLML_INLINE bool2x4 operator/( const bool2x4 &lhs, const bool32_t rhs )
 {
 	return bool2x4(
-		lhs[0] / rhs,
-		lhs[1] / rhs
+		lhs.rows[0] / rhs,
+		lhs.rows[1] / rhs
 	);
 }
 
@@ -693,8 +693,8 @@ HLML_INLINE bool2x4 operator/=( bool2x4 &lhs, const bool32_t rhs )
 HLML_INLINE bool2x4 operator/( const bool2x4 &lhs, const bool2x4 &rhs )
 {
 	return bool2x4(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1]
+		lhs.rows[0] / rhs.rows[0],
+		lhs.rows[1] / rhs.rows[1]
 	);
 }
 
@@ -707,8 +707,8 @@ HLML_INLINE bool2x4 operator/=( bool2x4 &lhs, const bool2x4 &rhs )
 // ++s each component of the matrix and returns the result.
 HLML_INLINE bool2x4 operator++( bool2x4 &x )
 {
-	++x[0];
-	++x[1];
+	++x.rows[0];
+	++x.rows[1];
 	return x;
 }
 
@@ -716,16 +716,16 @@ HLML_INLINE bool2x4 operator++( bool2x4 &x )
 // post-fix
 HLML_INLINE bool2x4 operator++( bool2x4 &x, const int32_t )
 {
-	x[0]++;
-	x[1]++;
+	x.rows[0]++;
+	x.rows[1]++;
 	return x;
 }
 
 // --s each component of the matrix and returns the result.
 HLML_INLINE bool2x4 operator--( bool2x4 &x )
 {
-	--x[0];
-	--x[1];
+	--x.rows[0];
+	--x.rows[1];
 	return x;
 }
 
@@ -733,8 +733,8 @@ HLML_INLINE bool2x4 operator--( bool2x4 &x )
 // post-fix
 HLML_INLINE bool2x4 operator--( bool2x4 &x, const int32_t )
 {
-	x[0]--;
-	x[1]--;
+	x.rows[0]--;
+	x.rows[1]--;
 	return x;
 }
 
@@ -778,9 +778,9 @@ HLML_INLINE bool4x2 transpose( const bool2x4 &mat )
 HLML_INLINE bool operator==( const bool3x2 &lhs, const bool3x2 &rhs )
 {
 	return
-		lhs[0] == rhs[0] &&
-		lhs[1] == rhs[1] &&
-		lhs[2] == rhs[2];
+		lhs.rows[0] == rhs.rows[0] &&
+		lhs.rows[1] == rhs.rows[1] &&
+		lhs.rows[2] == rhs.rows[2];
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
@@ -793,9 +793,9 @@ HLML_INLINE bool operator!=( const bool3x2 &lhs, const bool3x2 &rhs )
 HLML_INLINE bool3x2 operator<( const bool3x2 &lhs, const bool3x2 &rhs )
 {
 	return bool3x2(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2]
+		lhs.rows[0] < rhs.rows[0],
+		lhs.rows[1] < rhs.rows[1],
+		lhs.rows[2] < rhs.rows[2]
 	);
 }
 
@@ -803,9 +803,9 @@ HLML_INLINE bool3x2 operator<( const bool3x2 &lhs, const bool3x2 &rhs )
 HLML_INLINE bool3x2 operator<=( const bool3x2 &lhs, const bool3x2 &rhs )
 {
 	return bool3x2(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2]
+		lhs.rows[0] <= rhs.rows[0],
+		lhs.rows[1] <= rhs.rows[1],
+		lhs.rows[2] <= rhs.rows[2]
 	);
 }
 
@@ -813,9 +813,9 @@ HLML_INLINE bool3x2 operator<=( const bool3x2 &lhs, const bool3x2 &rhs )
 HLML_INLINE bool3x2 operator>( const bool3x2 &lhs, const bool3x2 &rhs )
 {
 	return bool3x2(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2]
+		lhs.rows[0] > rhs.rows[0],
+		lhs.rows[1] > rhs.rows[1],
+		lhs.rows[2] > rhs.rows[2]
 	);
 }
 
@@ -823,9 +823,9 @@ HLML_INLINE bool3x2 operator>( const bool3x2 &lhs, const bool3x2 &rhs )
 HLML_INLINE bool3x2 operator>=( const bool3x2 &lhs, const bool3x2 &rhs )
 {
 	return bool3x2(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2]
+		lhs.rows[0] >= rhs.rows[0],
+		lhs.rows[1] >= rhs.rows[1],
+		lhs.rows[2] >= rhs.rows[2]
 	);
 }
 
@@ -833,9 +833,9 @@ HLML_INLINE bool3x2 operator>=( const bool3x2 &lhs, const bool3x2 &rhs )
 HLML_INLINE bool3x2 operator+( const bool3x2 &lhs, const bool32_t rhs )
 {
 	return bool3x2(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs
+		lhs.rows[0] + rhs,
+		lhs.rows[1] + rhs,
+		lhs.rows[2] + rhs
 	);
 }
 
@@ -849,9 +849,9 @@ HLML_INLINE bool3x2 operator+=( bool3x2 &lhs, const bool32_t rhs )
 HLML_INLINE bool3x2 operator+( const bool3x2 &lhs, const bool3x2 &rhs )
 {
 	return bool3x2(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2]
+		lhs.rows[0] + rhs.rows[0],
+		lhs.rows[1] + rhs.rows[1],
+		lhs.rows[2] + rhs.rows[2]
 	);
 }
 
@@ -865,9 +865,9 @@ HLML_INLINE bool3x2 operator+=( bool3x2 &lhs, const bool3x2 &rhs )
 HLML_INLINE bool3x2 operator-( const bool3x2 &lhs, const bool32_t rhs )
 {
 	return bool3x2(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs
+		lhs.rows[0] - rhs,
+		lhs.rows[1] - rhs,
+		lhs.rows[2] - rhs
 	);
 }
 
@@ -881,9 +881,9 @@ HLML_INLINE bool3x2 operator-=( bool3x2 &lhs, const bool32_t rhs )
 HLML_INLINE bool3x2 operator-( const bool3x2 &lhs, const bool3x2 &rhs )
 {
 	return bool3x2(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2]
+		lhs.rows[0] - rhs.rows[0],
+		lhs.rows[1] - rhs.rows[1],
+		lhs.rows[2] - rhs.rows[2]
 	);
 }
 
@@ -897,9 +897,9 @@ HLML_INLINE bool3x2 operator-=( bool3x2 &lhs, const bool3x2 &rhs )
 HLML_INLINE bool3x2 operator*( const bool3x2 &lhs, const bool32_t rhs )
 {
 	return bool3x2(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs
+		lhs.rows[0] * rhs,
+		lhs.rows[1] * rhs,
+		lhs.rows[2] * rhs
 	);
 }
 
@@ -913,9 +913,9 @@ HLML_INLINE bool3x2 operator*=( bool3x2 &lhs, const bool32_t rhs )
 HLML_INLINE bool3x2 operator*( const bool3x2 &lhs, const bool3x2 &rhs )
 {
 	return bool3x2(
-		lhs[0] * rhs[0],
-		lhs[1] * rhs[1],
-		lhs[2] * rhs[2]
+		lhs.rows[0] * rhs.rows[0],
+		lhs.rows[1] * rhs.rows[1],
+		lhs.rows[2] * rhs.rows[2]
 	);
 }
 
@@ -929,9 +929,9 @@ HLML_INLINE bool3x2 operator*=( bool3x2 &lhs, const bool3x2 &rhs )
 HLML_INLINE bool3x2 operator/( const bool3x2 &lhs, const bool32_t rhs )
 {
 	return bool3x2(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs
+		lhs.rows[0] / rhs,
+		lhs.rows[1] / rhs,
+		lhs.rows[2] / rhs
 	);
 }
 
@@ -945,9 +945,9 @@ HLML_INLINE bool3x2 operator/=( bool3x2 &lhs, const bool32_t rhs )
 HLML_INLINE bool3x2 operator/( const bool3x2 &lhs, const bool3x2 &rhs )
 {
 	return bool3x2(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1],
-		lhs[2] / rhs[2]
+		lhs.rows[0] / rhs.rows[0],
+		lhs.rows[1] / rhs.rows[1],
+		lhs.rows[2] / rhs.rows[2]
 	);
 }
 
@@ -960,9 +960,9 @@ HLML_INLINE bool3x2 operator/=( bool3x2 &lhs, const bool3x2 &rhs )
 // ++s each component of the matrix and returns the result.
 HLML_INLINE bool3x2 operator++( bool3x2 &x )
 {
-	++x[0];
-	++x[1];
-	++x[2];
+	++x.rows[0];
+	++x.rows[1];
+	++x.rows[2];
 	return x;
 }
 
@@ -970,18 +970,18 @@ HLML_INLINE bool3x2 operator++( bool3x2 &x )
 // post-fix
 HLML_INLINE bool3x2 operator++( bool3x2 &x, const int32_t )
 {
-	x[0]++;
-	x[1]++;
-	x[2]++;
+	x.rows[0]++;
+	x.rows[1]++;
+	x.rows[2]++;
 	return x;
 }
 
 // --s each component of the matrix and returns the result.
 HLML_INLINE bool3x2 operator--( bool3x2 &x )
 {
-	--x[0];
-	--x[1];
-	--x[2];
+	--x.rows[0];
+	--x.rows[1];
+	--x.rows[2];
 	return x;
 }
 
@@ -989,9 +989,9 @@ HLML_INLINE bool3x2 operator--( bool3x2 &x )
 // post-fix
 HLML_INLINE bool3x2 operator--( bool3x2 &x, const int32_t )
 {
-	x[0]--;
-	x[1]--;
-	x[2]--;
+	x.rows[0]--;
+	x.rows[1]--;
+	x.rows[2]--;
 	return x;
 }
 
@@ -1036,9 +1036,9 @@ HLML_INLINE bool2x3 transpose( const bool3x2 &mat )
 HLML_INLINE bool operator==( const bool3x3 &lhs, const bool3x3 &rhs )
 {
 	return
-		lhs[0] == rhs[0] &&
-		lhs[1] == rhs[1] &&
-		lhs[2] == rhs[2];
+		lhs.rows[0] == rhs.rows[0] &&
+		lhs.rows[1] == rhs.rows[1] &&
+		lhs.rows[2] == rhs.rows[2];
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
@@ -1051,9 +1051,9 @@ HLML_INLINE bool operator!=( const bool3x3 &lhs, const bool3x3 &rhs )
 HLML_INLINE bool3x3 operator<( const bool3x3 &lhs, const bool3x3 &rhs )
 {
 	return bool3x3(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2]
+		lhs.rows[0] < rhs.rows[0],
+		lhs.rows[1] < rhs.rows[1],
+		lhs.rows[2] < rhs.rows[2]
 	);
 }
 
@@ -1061,9 +1061,9 @@ HLML_INLINE bool3x3 operator<( const bool3x3 &lhs, const bool3x3 &rhs )
 HLML_INLINE bool3x3 operator<=( const bool3x3 &lhs, const bool3x3 &rhs )
 {
 	return bool3x3(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2]
+		lhs.rows[0] <= rhs.rows[0],
+		lhs.rows[1] <= rhs.rows[1],
+		lhs.rows[2] <= rhs.rows[2]
 	);
 }
 
@@ -1071,9 +1071,9 @@ HLML_INLINE bool3x3 operator<=( const bool3x3 &lhs, const bool3x3 &rhs )
 HLML_INLINE bool3x3 operator>( const bool3x3 &lhs, const bool3x3 &rhs )
 {
 	return bool3x3(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2]
+		lhs.rows[0] > rhs.rows[0],
+		lhs.rows[1] > rhs.rows[1],
+		lhs.rows[2] > rhs.rows[2]
 	);
 }
 
@@ -1081,9 +1081,9 @@ HLML_INLINE bool3x3 operator>( const bool3x3 &lhs, const bool3x3 &rhs )
 HLML_INLINE bool3x3 operator>=( const bool3x3 &lhs, const bool3x3 &rhs )
 {
 	return bool3x3(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2]
+		lhs.rows[0] >= rhs.rows[0],
+		lhs.rows[1] >= rhs.rows[1],
+		lhs.rows[2] >= rhs.rows[2]
 	);
 }
 
@@ -1091,9 +1091,9 @@ HLML_INLINE bool3x3 operator>=( const bool3x3 &lhs, const bool3x3 &rhs )
 HLML_INLINE bool3x3 operator+( const bool3x3 &lhs, const bool32_t rhs )
 {
 	return bool3x3(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs
+		lhs.rows[0] + rhs,
+		lhs.rows[1] + rhs,
+		lhs.rows[2] + rhs
 	);
 }
 
@@ -1107,9 +1107,9 @@ HLML_INLINE bool3x3 operator+=( bool3x3 &lhs, const bool32_t rhs )
 HLML_INLINE bool3x3 operator+( const bool3x3 &lhs, const bool3x3 &rhs )
 {
 	return bool3x3(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2]
+		lhs.rows[0] + rhs.rows[0],
+		lhs.rows[1] + rhs.rows[1],
+		lhs.rows[2] + rhs.rows[2]
 	);
 }
 
@@ -1123,9 +1123,9 @@ HLML_INLINE bool3x3 operator+=( bool3x3 &lhs, const bool3x3 &rhs )
 HLML_INLINE bool3x3 operator-( const bool3x3 &lhs, const bool32_t rhs )
 {
 	return bool3x3(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs
+		lhs.rows[0] - rhs,
+		lhs.rows[1] - rhs,
+		lhs.rows[2] - rhs
 	);
 }
 
@@ -1139,9 +1139,9 @@ HLML_INLINE bool3x3 operator-=( bool3x3 &lhs, const bool32_t rhs )
 HLML_INLINE bool3x3 operator-( const bool3x3 &lhs, const bool3x3 &rhs )
 {
 	return bool3x3(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2]
+		lhs.rows[0] - rhs.rows[0],
+		lhs.rows[1] - rhs.rows[1],
+		lhs.rows[2] - rhs.rows[2]
 	);
 }
 
@@ -1155,9 +1155,9 @@ HLML_INLINE bool3x3 operator-=( bool3x3 &lhs, const bool3x3 &rhs )
 HLML_INLINE bool3x3 operator*( const bool3x3 &lhs, const bool32_t rhs )
 {
 	return bool3x3(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs
+		lhs.rows[0] * rhs,
+		lhs.rows[1] * rhs,
+		lhs.rows[2] * rhs
 	);
 }
 
@@ -1171,9 +1171,9 @@ HLML_INLINE bool3x3 operator*=( bool3x3 &lhs, const bool32_t rhs )
 HLML_INLINE bool3x3 operator*( const bool3x3 &lhs, const bool3x3 &rhs )
 {
 	return bool3x3(
-		lhs[0] * rhs[0],
-		lhs[1] * rhs[1],
-		lhs[2] * rhs[2]
+		lhs.rows[0] * rhs.rows[0],
+		lhs.rows[1] * rhs.rows[1],
+		lhs.rows[2] * rhs.rows[2]
 	);
 }
 
@@ -1187,9 +1187,9 @@ HLML_INLINE bool3x3 operator*=( bool3x3 &lhs, const bool3x3 &rhs )
 HLML_INLINE bool3x3 operator/( const bool3x3 &lhs, const bool32_t rhs )
 {
 	return bool3x3(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs
+		lhs.rows[0] / rhs,
+		lhs.rows[1] / rhs,
+		lhs.rows[2] / rhs
 	);
 }
 
@@ -1203,9 +1203,9 @@ HLML_INLINE bool3x3 operator/=( bool3x3 &lhs, const bool32_t rhs )
 HLML_INLINE bool3x3 operator/( const bool3x3 &lhs, const bool3x3 &rhs )
 {
 	return bool3x3(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1],
-		lhs[2] / rhs[2]
+		lhs.rows[0] / rhs.rows[0],
+		lhs.rows[1] / rhs.rows[1],
+		lhs.rows[2] / rhs.rows[2]
 	);
 }
 
@@ -1218,9 +1218,9 @@ HLML_INLINE bool3x3 operator/=( bool3x3 &lhs, const bool3x3 &rhs )
 // ++s each component of the matrix and returns the result.
 HLML_INLINE bool3x3 operator++( bool3x3 &x )
 {
-	++x[0];
-	++x[1];
-	++x[2];
+	++x.rows[0];
+	++x.rows[1];
+	++x.rows[2];
 	return x;
 }
 
@@ -1228,18 +1228,18 @@ HLML_INLINE bool3x3 operator++( bool3x3 &x )
 // post-fix
 HLML_INLINE bool3x3 operator++( bool3x3 &x, const int32_t )
 {
-	x[0]++;
-	x[1]++;
-	x[2]++;
+	x.rows[0]++;
+	x.rows[1]++;
+	x.rows[2]++;
 	return x;
 }
 
 // --s each component of the matrix and returns the result.
 HLML_INLINE bool3x3 operator--( bool3x3 &x )
 {
-	--x[0];
-	--x[1];
-	--x[2];
+	--x.rows[0];
+	--x.rows[1];
+	--x.rows[2];
 	return x;
 }
 
@@ -1247,9 +1247,9 @@ HLML_INLINE bool3x3 operator--( bool3x3 &x )
 // post-fix
 HLML_INLINE bool3x3 operator--( bool3x3 &x, const int32_t )
 {
-	x[0]--;
-	x[1]--;
-	x[2]--;
+	x.rows[0]--;
+	x.rows[1]--;
+	x.rows[2]--;
 	return x;
 }
 
@@ -1295,9 +1295,9 @@ HLML_INLINE bool3x3 transpose( const bool3x3 &mat )
 HLML_INLINE bool operator==( const bool3x4 &lhs, const bool3x4 &rhs )
 {
 	return
-		lhs[0] == rhs[0] &&
-		lhs[1] == rhs[1] &&
-		lhs[2] == rhs[2];
+		lhs.rows[0] == rhs.rows[0] &&
+		lhs.rows[1] == rhs.rows[1] &&
+		lhs.rows[2] == rhs.rows[2];
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
@@ -1310,9 +1310,9 @@ HLML_INLINE bool operator!=( const bool3x4 &lhs, const bool3x4 &rhs )
 HLML_INLINE bool3x4 operator<( const bool3x4 &lhs, const bool3x4 &rhs )
 {
 	return bool3x4(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2]
+		lhs.rows[0] < rhs.rows[0],
+		lhs.rows[1] < rhs.rows[1],
+		lhs.rows[2] < rhs.rows[2]
 	);
 }
 
@@ -1320,9 +1320,9 @@ HLML_INLINE bool3x4 operator<( const bool3x4 &lhs, const bool3x4 &rhs )
 HLML_INLINE bool3x4 operator<=( const bool3x4 &lhs, const bool3x4 &rhs )
 {
 	return bool3x4(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2]
+		lhs.rows[0] <= rhs.rows[0],
+		lhs.rows[1] <= rhs.rows[1],
+		lhs.rows[2] <= rhs.rows[2]
 	);
 }
 
@@ -1330,9 +1330,9 @@ HLML_INLINE bool3x4 operator<=( const bool3x4 &lhs, const bool3x4 &rhs )
 HLML_INLINE bool3x4 operator>( const bool3x4 &lhs, const bool3x4 &rhs )
 {
 	return bool3x4(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2]
+		lhs.rows[0] > rhs.rows[0],
+		lhs.rows[1] > rhs.rows[1],
+		lhs.rows[2] > rhs.rows[2]
 	);
 }
 
@@ -1340,9 +1340,9 @@ HLML_INLINE bool3x4 operator>( const bool3x4 &lhs, const bool3x4 &rhs )
 HLML_INLINE bool3x4 operator>=( const bool3x4 &lhs, const bool3x4 &rhs )
 {
 	return bool3x4(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2]
+		lhs.rows[0] >= rhs.rows[0],
+		lhs.rows[1] >= rhs.rows[1],
+		lhs.rows[2] >= rhs.rows[2]
 	);
 }
 
@@ -1350,9 +1350,9 @@ HLML_INLINE bool3x4 operator>=( const bool3x4 &lhs, const bool3x4 &rhs )
 HLML_INLINE bool3x4 operator+( const bool3x4 &lhs, const bool32_t rhs )
 {
 	return bool3x4(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs
+		lhs.rows[0] + rhs,
+		lhs.rows[1] + rhs,
+		lhs.rows[2] + rhs
 	);
 }
 
@@ -1366,9 +1366,9 @@ HLML_INLINE bool3x4 operator+=( bool3x4 &lhs, const bool32_t rhs )
 HLML_INLINE bool3x4 operator+( const bool3x4 &lhs, const bool3x4 &rhs )
 {
 	return bool3x4(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2]
+		lhs.rows[0] + rhs.rows[0],
+		lhs.rows[1] + rhs.rows[1],
+		lhs.rows[2] + rhs.rows[2]
 	);
 }
 
@@ -1382,9 +1382,9 @@ HLML_INLINE bool3x4 operator+=( bool3x4 &lhs, const bool3x4 &rhs )
 HLML_INLINE bool3x4 operator-( const bool3x4 &lhs, const bool32_t rhs )
 {
 	return bool3x4(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs
+		lhs.rows[0] - rhs,
+		lhs.rows[1] - rhs,
+		lhs.rows[2] - rhs
 	);
 }
 
@@ -1398,9 +1398,9 @@ HLML_INLINE bool3x4 operator-=( bool3x4 &lhs, const bool32_t rhs )
 HLML_INLINE bool3x4 operator-( const bool3x4 &lhs, const bool3x4 &rhs )
 {
 	return bool3x4(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2]
+		lhs.rows[0] - rhs.rows[0],
+		lhs.rows[1] - rhs.rows[1],
+		lhs.rows[2] - rhs.rows[2]
 	);
 }
 
@@ -1414,9 +1414,9 @@ HLML_INLINE bool3x4 operator-=( bool3x4 &lhs, const bool3x4 &rhs )
 HLML_INLINE bool3x4 operator*( const bool3x4 &lhs, const bool32_t rhs )
 {
 	return bool3x4(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs
+		lhs.rows[0] * rhs,
+		lhs.rows[1] * rhs,
+		lhs.rows[2] * rhs
 	);
 }
 
@@ -1430,9 +1430,9 @@ HLML_INLINE bool3x4 operator*=( bool3x4 &lhs, const bool32_t rhs )
 HLML_INLINE bool3x4 operator*( const bool3x4 &lhs, const bool3x4 &rhs )
 {
 	return bool3x4(
-		lhs[0] * rhs[0],
-		lhs[1] * rhs[1],
-		lhs[2] * rhs[2]
+		lhs.rows[0] * rhs.rows[0],
+		lhs.rows[1] * rhs.rows[1],
+		lhs.rows[2] * rhs.rows[2]
 	);
 }
 
@@ -1446,9 +1446,9 @@ HLML_INLINE bool3x4 operator*=( bool3x4 &lhs, const bool3x4 &rhs )
 HLML_INLINE bool3x4 operator/( const bool3x4 &lhs, const bool32_t rhs )
 {
 	return bool3x4(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs
+		lhs.rows[0] / rhs,
+		lhs.rows[1] / rhs,
+		lhs.rows[2] / rhs
 	);
 }
 
@@ -1462,9 +1462,9 @@ HLML_INLINE bool3x4 operator/=( bool3x4 &lhs, const bool32_t rhs )
 HLML_INLINE bool3x4 operator/( const bool3x4 &lhs, const bool3x4 &rhs )
 {
 	return bool3x4(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1],
-		lhs[2] / rhs[2]
+		lhs.rows[0] / rhs.rows[0],
+		lhs.rows[1] / rhs.rows[1],
+		lhs.rows[2] / rhs.rows[2]
 	);
 }
 
@@ -1477,9 +1477,9 @@ HLML_INLINE bool3x4 operator/=( bool3x4 &lhs, const bool3x4 &rhs )
 // ++s each component of the matrix and returns the result.
 HLML_INLINE bool3x4 operator++( bool3x4 &x )
 {
-	++x[0];
-	++x[1];
-	++x[2];
+	++x.rows[0];
+	++x.rows[1];
+	++x.rows[2];
 	return x;
 }
 
@@ -1487,18 +1487,18 @@ HLML_INLINE bool3x4 operator++( bool3x4 &x )
 // post-fix
 HLML_INLINE bool3x4 operator++( bool3x4 &x, const int32_t )
 {
-	x[0]++;
-	x[1]++;
-	x[2]++;
+	x.rows[0]++;
+	x.rows[1]++;
+	x.rows[2]++;
 	return x;
 }
 
 // --s each component of the matrix and returns the result.
 HLML_INLINE bool3x4 operator--( bool3x4 &x )
 {
-	--x[0];
-	--x[1];
-	--x[2];
+	--x.rows[0];
+	--x.rows[1];
+	--x.rows[2];
 	return x;
 }
 
@@ -1506,9 +1506,9 @@ HLML_INLINE bool3x4 operator--( bool3x4 &x )
 // post-fix
 HLML_INLINE bool3x4 operator--( bool3x4 &x, const int32_t )
 {
-	x[0]--;
-	x[1]--;
-	x[2]--;
+	x.rows[0]--;
+	x.rows[1]--;
+	x.rows[2]--;
 	return x;
 }
 
@@ -1555,10 +1555,10 @@ HLML_INLINE bool4x3 transpose( const bool3x4 &mat )
 HLML_INLINE bool operator==( const bool4x2 &lhs, const bool4x2 &rhs )
 {
 	return
-		lhs[0] == rhs[0] &&
-		lhs[1] == rhs[1] &&
-		lhs[2] == rhs[2] &&
-		lhs[3] == rhs[3];
+		lhs.rows[0] == rhs.rows[0] &&
+		lhs.rows[1] == rhs.rows[1] &&
+		lhs.rows[2] == rhs.rows[2] &&
+		lhs.rows[3] == rhs.rows[3];
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
@@ -1571,10 +1571,10 @@ HLML_INLINE bool operator!=( const bool4x2 &lhs, const bool4x2 &rhs )
 HLML_INLINE bool4x2 operator<( const bool4x2 &lhs, const bool4x2 &rhs )
 {
 	return bool4x2(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2],
-		lhs[3] < rhs[3]
+		lhs.rows[0] < rhs.rows[0],
+		lhs.rows[1] < rhs.rows[1],
+		lhs.rows[2] < rhs.rows[2],
+		lhs.rows[3] < rhs.rows[3]
 	);
 }
 
@@ -1582,10 +1582,10 @@ HLML_INLINE bool4x2 operator<( const bool4x2 &lhs, const bool4x2 &rhs )
 HLML_INLINE bool4x2 operator<=( const bool4x2 &lhs, const bool4x2 &rhs )
 {
 	return bool4x2(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2],
-		lhs[3] <= rhs[3]
+		lhs.rows[0] <= rhs.rows[0],
+		lhs.rows[1] <= rhs.rows[1],
+		lhs.rows[2] <= rhs.rows[2],
+		lhs.rows[3] <= rhs.rows[3]
 	);
 }
 
@@ -1593,10 +1593,10 @@ HLML_INLINE bool4x2 operator<=( const bool4x2 &lhs, const bool4x2 &rhs )
 HLML_INLINE bool4x2 operator>( const bool4x2 &lhs, const bool4x2 &rhs )
 {
 	return bool4x2(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2],
-		lhs[3] > rhs[3]
+		lhs.rows[0] > rhs.rows[0],
+		lhs.rows[1] > rhs.rows[1],
+		lhs.rows[2] > rhs.rows[2],
+		lhs.rows[3] > rhs.rows[3]
 	);
 }
 
@@ -1604,10 +1604,10 @@ HLML_INLINE bool4x2 operator>( const bool4x2 &lhs, const bool4x2 &rhs )
 HLML_INLINE bool4x2 operator>=( const bool4x2 &lhs, const bool4x2 &rhs )
 {
 	return bool4x2(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2],
-		lhs[3] >= rhs[3]
+		lhs.rows[0] >= rhs.rows[0],
+		lhs.rows[1] >= rhs.rows[1],
+		lhs.rows[2] >= rhs.rows[2],
+		lhs.rows[3] >= rhs.rows[3]
 	);
 }
 
@@ -1615,10 +1615,10 @@ HLML_INLINE bool4x2 operator>=( const bool4x2 &lhs, const bool4x2 &rhs )
 HLML_INLINE bool4x2 operator+( const bool4x2 &lhs, const bool32_t rhs )
 {
 	return bool4x2(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs,
-		lhs[3] + rhs
+		lhs.rows[0] + rhs,
+		lhs.rows[1] + rhs,
+		lhs.rows[2] + rhs,
+		lhs.rows[3] + rhs
 	);
 }
 
@@ -1632,10 +1632,10 @@ HLML_INLINE bool4x2 operator+=( bool4x2 &lhs, const bool32_t rhs )
 HLML_INLINE bool4x2 operator+( const bool4x2 &lhs, const bool4x2 &rhs )
 {
 	return bool4x2(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2],
-		lhs[3] + rhs[3]
+		lhs.rows[0] + rhs.rows[0],
+		lhs.rows[1] + rhs.rows[1],
+		lhs.rows[2] + rhs.rows[2],
+		lhs.rows[3] + rhs.rows[3]
 	);
 }
 
@@ -1649,10 +1649,10 @@ HLML_INLINE bool4x2 operator+=( bool4x2 &lhs, const bool4x2 &rhs )
 HLML_INLINE bool4x2 operator-( const bool4x2 &lhs, const bool32_t rhs )
 {
 	return bool4x2(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs,
-		lhs[3] - rhs
+		lhs.rows[0] - rhs,
+		lhs.rows[1] - rhs,
+		lhs.rows[2] - rhs,
+		lhs.rows[3] - rhs
 	);
 }
 
@@ -1666,10 +1666,10 @@ HLML_INLINE bool4x2 operator-=( bool4x2 &lhs, const bool32_t rhs )
 HLML_INLINE bool4x2 operator-( const bool4x2 &lhs, const bool4x2 &rhs )
 {
 	return bool4x2(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2],
-		lhs[3] - rhs[3]
+		lhs.rows[0] - rhs.rows[0],
+		lhs.rows[1] - rhs.rows[1],
+		lhs.rows[2] - rhs.rows[2],
+		lhs.rows[3] - rhs.rows[3]
 	);
 }
 
@@ -1683,10 +1683,10 @@ HLML_INLINE bool4x2 operator-=( bool4x2 &lhs, const bool4x2 &rhs )
 HLML_INLINE bool4x2 operator*( const bool4x2 &lhs, const bool32_t rhs )
 {
 	return bool4x2(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs,
-		lhs[3] * rhs
+		lhs.rows[0] * rhs,
+		lhs.rows[1] * rhs,
+		lhs.rows[2] * rhs,
+		lhs.rows[3] * rhs
 	);
 }
 
@@ -1700,10 +1700,10 @@ HLML_INLINE bool4x2 operator*=( bool4x2 &lhs, const bool32_t rhs )
 HLML_INLINE bool4x2 operator*( const bool4x2 &lhs, const bool4x2 &rhs )
 {
 	return bool4x2(
-		lhs[0] * rhs[0],
-		lhs[1] * rhs[1],
-		lhs[2] * rhs[2],
-		lhs[3] * rhs[3]
+		lhs.rows[0] * rhs.rows[0],
+		lhs.rows[1] * rhs.rows[1],
+		lhs.rows[2] * rhs.rows[2],
+		lhs.rows[3] * rhs.rows[3]
 	);
 }
 
@@ -1717,10 +1717,10 @@ HLML_INLINE bool4x2 operator*=( bool4x2 &lhs, const bool4x2 &rhs )
 HLML_INLINE bool4x2 operator/( const bool4x2 &lhs, const bool32_t rhs )
 {
 	return bool4x2(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs,
-		lhs[3] / rhs
+		lhs.rows[0] / rhs,
+		lhs.rows[1] / rhs,
+		lhs.rows[2] / rhs,
+		lhs.rows[3] / rhs
 	);
 }
 
@@ -1734,10 +1734,10 @@ HLML_INLINE bool4x2 operator/=( bool4x2 &lhs, const bool32_t rhs )
 HLML_INLINE bool4x2 operator/( const bool4x2 &lhs, const bool4x2 &rhs )
 {
 	return bool4x2(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1],
-		lhs[2] / rhs[2],
-		lhs[3] / rhs[3]
+		lhs.rows[0] / rhs.rows[0],
+		lhs.rows[1] / rhs.rows[1],
+		lhs.rows[2] / rhs.rows[2],
+		lhs.rows[3] / rhs.rows[3]
 	);
 }
 
@@ -1750,10 +1750,10 @@ HLML_INLINE bool4x2 operator/=( bool4x2 &lhs, const bool4x2 &rhs )
 // ++s each component of the matrix and returns the result.
 HLML_INLINE bool4x2 operator++( bool4x2 &x )
 {
-	++x[0];
-	++x[1];
-	++x[2];
-	++x[3];
+	++x.rows[0];
+	++x.rows[1];
+	++x.rows[2];
+	++x.rows[3];
 	return x;
 }
 
@@ -1761,20 +1761,20 @@ HLML_INLINE bool4x2 operator++( bool4x2 &x )
 // post-fix
 HLML_INLINE bool4x2 operator++( bool4x2 &x, const int32_t )
 {
-	x[0]++;
-	x[1]++;
-	x[2]++;
-	x[3]++;
+	x.rows[0]++;
+	x.rows[1]++;
+	x.rows[2]++;
+	x.rows[3]++;
 	return x;
 }
 
 // --s each component of the matrix and returns the result.
 HLML_INLINE bool4x2 operator--( bool4x2 &x )
 {
-	--x[0];
-	--x[1];
-	--x[2];
-	--x[3];
+	--x.rows[0];
+	--x.rows[1];
+	--x.rows[2];
+	--x.rows[3];
 	return x;
 }
 
@@ -1782,10 +1782,10 @@ HLML_INLINE bool4x2 operator--( bool4x2 &x )
 // post-fix
 HLML_INLINE bool4x2 operator--( bool4x2 &x, const int32_t )
 {
-	x[0]--;
-	x[1]--;
-	x[2]--;
-	x[3]--;
+	x.rows[0]--;
+	x.rows[1]--;
+	x.rows[2]--;
+	x.rows[3]--;
 	return x;
 }
 
@@ -1833,10 +1833,10 @@ HLML_INLINE bool2x4 transpose( const bool4x2 &mat )
 HLML_INLINE bool operator==( const bool4x3 &lhs, const bool4x3 &rhs )
 {
 	return
-		lhs[0] == rhs[0] &&
-		lhs[1] == rhs[1] &&
-		lhs[2] == rhs[2] &&
-		lhs[3] == rhs[3];
+		lhs.rows[0] == rhs.rows[0] &&
+		lhs.rows[1] == rhs.rows[1] &&
+		lhs.rows[2] == rhs.rows[2] &&
+		lhs.rows[3] == rhs.rows[3];
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
@@ -1849,10 +1849,10 @@ HLML_INLINE bool operator!=( const bool4x3 &lhs, const bool4x3 &rhs )
 HLML_INLINE bool4x3 operator<( const bool4x3 &lhs, const bool4x3 &rhs )
 {
 	return bool4x3(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2],
-		lhs[3] < rhs[3]
+		lhs.rows[0] < rhs.rows[0],
+		lhs.rows[1] < rhs.rows[1],
+		lhs.rows[2] < rhs.rows[2],
+		lhs.rows[3] < rhs.rows[3]
 	);
 }
 
@@ -1860,10 +1860,10 @@ HLML_INLINE bool4x3 operator<( const bool4x3 &lhs, const bool4x3 &rhs )
 HLML_INLINE bool4x3 operator<=( const bool4x3 &lhs, const bool4x3 &rhs )
 {
 	return bool4x3(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2],
-		lhs[3] <= rhs[3]
+		lhs.rows[0] <= rhs.rows[0],
+		lhs.rows[1] <= rhs.rows[1],
+		lhs.rows[2] <= rhs.rows[2],
+		lhs.rows[3] <= rhs.rows[3]
 	);
 }
 
@@ -1871,10 +1871,10 @@ HLML_INLINE bool4x3 operator<=( const bool4x3 &lhs, const bool4x3 &rhs )
 HLML_INLINE bool4x3 operator>( const bool4x3 &lhs, const bool4x3 &rhs )
 {
 	return bool4x3(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2],
-		lhs[3] > rhs[3]
+		lhs.rows[0] > rhs.rows[0],
+		lhs.rows[1] > rhs.rows[1],
+		lhs.rows[2] > rhs.rows[2],
+		lhs.rows[3] > rhs.rows[3]
 	);
 }
 
@@ -1882,10 +1882,10 @@ HLML_INLINE bool4x3 operator>( const bool4x3 &lhs, const bool4x3 &rhs )
 HLML_INLINE bool4x3 operator>=( const bool4x3 &lhs, const bool4x3 &rhs )
 {
 	return bool4x3(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2],
-		lhs[3] >= rhs[3]
+		lhs.rows[0] >= rhs.rows[0],
+		lhs.rows[1] >= rhs.rows[1],
+		lhs.rows[2] >= rhs.rows[2],
+		lhs.rows[3] >= rhs.rows[3]
 	);
 }
 
@@ -1893,10 +1893,10 @@ HLML_INLINE bool4x3 operator>=( const bool4x3 &lhs, const bool4x3 &rhs )
 HLML_INLINE bool4x3 operator+( const bool4x3 &lhs, const bool32_t rhs )
 {
 	return bool4x3(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs,
-		lhs[3] + rhs
+		lhs.rows[0] + rhs,
+		lhs.rows[1] + rhs,
+		lhs.rows[2] + rhs,
+		lhs.rows[3] + rhs
 	);
 }
 
@@ -1910,10 +1910,10 @@ HLML_INLINE bool4x3 operator+=( bool4x3 &lhs, const bool32_t rhs )
 HLML_INLINE bool4x3 operator+( const bool4x3 &lhs, const bool4x3 &rhs )
 {
 	return bool4x3(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2],
-		lhs[3] + rhs[3]
+		lhs.rows[0] + rhs.rows[0],
+		lhs.rows[1] + rhs.rows[1],
+		lhs.rows[2] + rhs.rows[2],
+		lhs.rows[3] + rhs.rows[3]
 	);
 }
 
@@ -1927,10 +1927,10 @@ HLML_INLINE bool4x3 operator+=( bool4x3 &lhs, const bool4x3 &rhs )
 HLML_INLINE bool4x3 operator-( const bool4x3 &lhs, const bool32_t rhs )
 {
 	return bool4x3(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs,
-		lhs[3] - rhs
+		lhs.rows[0] - rhs,
+		lhs.rows[1] - rhs,
+		lhs.rows[2] - rhs,
+		lhs.rows[3] - rhs
 	);
 }
 
@@ -1944,10 +1944,10 @@ HLML_INLINE bool4x3 operator-=( bool4x3 &lhs, const bool32_t rhs )
 HLML_INLINE bool4x3 operator-( const bool4x3 &lhs, const bool4x3 &rhs )
 {
 	return bool4x3(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2],
-		lhs[3] - rhs[3]
+		lhs.rows[0] - rhs.rows[0],
+		lhs.rows[1] - rhs.rows[1],
+		lhs.rows[2] - rhs.rows[2],
+		lhs.rows[3] - rhs.rows[3]
 	);
 }
 
@@ -1961,10 +1961,10 @@ HLML_INLINE bool4x3 operator-=( bool4x3 &lhs, const bool4x3 &rhs )
 HLML_INLINE bool4x3 operator*( const bool4x3 &lhs, const bool32_t rhs )
 {
 	return bool4x3(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs,
-		lhs[3] * rhs
+		lhs.rows[0] * rhs,
+		lhs.rows[1] * rhs,
+		lhs.rows[2] * rhs,
+		lhs.rows[3] * rhs
 	);
 }
 
@@ -1978,10 +1978,10 @@ HLML_INLINE bool4x3 operator*=( bool4x3 &lhs, const bool32_t rhs )
 HLML_INLINE bool4x3 operator*( const bool4x3 &lhs, const bool4x3 &rhs )
 {
 	return bool4x3(
-		lhs[0] * rhs[0],
-		lhs[1] * rhs[1],
-		lhs[2] * rhs[2],
-		lhs[3] * rhs[3]
+		lhs.rows[0] * rhs.rows[0],
+		lhs.rows[1] * rhs.rows[1],
+		lhs.rows[2] * rhs.rows[2],
+		lhs.rows[3] * rhs.rows[3]
 	);
 }
 
@@ -1995,10 +1995,10 @@ HLML_INLINE bool4x3 operator*=( bool4x3 &lhs, const bool4x3 &rhs )
 HLML_INLINE bool4x3 operator/( const bool4x3 &lhs, const bool32_t rhs )
 {
 	return bool4x3(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs,
-		lhs[3] / rhs
+		lhs.rows[0] / rhs,
+		lhs.rows[1] / rhs,
+		lhs.rows[2] / rhs,
+		lhs.rows[3] / rhs
 	);
 }
 
@@ -2012,10 +2012,10 @@ HLML_INLINE bool4x3 operator/=( bool4x3 &lhs, const bool32_t rhs )
 HLML_INLINE bool4x3 operator/( const bool4x3 &lhs, const bool4x3 &rhs )
 {
 	return bool4x3(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1],
-		lhs[2] / rhs[2],
-		lhs[3] / rhs[3]
+		lhs.rows[0] / rhs.rows[0],
+		lhs.rows[1] / rhs.rows[1],
+		lhs.rows[2] / rhs.rows[2],
+		lhs.rows[3] / rhs.rows[3]
 	);
 }
 
@@ -2028,10 +2028,10 @@ HLML_INLINE bool4x3 operator/=( bool4x3 &lhs, const bool4x3 &rhs )
 // ++s each component of the matrix and returns the result.
 HLML_INLINE bool4x3 operator++( bool4x3 &x )
 {
-	++x[0];
-	++x[1];
-	++x[2];
-	++x[3];
+	++x.rows[0];
+	++x.rows[1];
+	++x.rows[2];
+	++x.rows[3];
 	return x;
 }
 
@@ -2039,20 +2039,20 @@ HLML_INLINE bool4x3 operator++( bool4x3 &x )
 // post-fix
 HLML_INLINE bool4x3 operator++( bool4x3 &x, const int32_t )
 {
-	x[0]++;
-	x[1]++;
-	x[2]++;
-	x[3]++;
+	x.rows[0]++;
+	x.rows[1]++;
+	x.rows[2]++;
+	x.rows[3]++;
 	return x;
 }
 
 // --s each component of the matrix and returns the result.
 HLML_INLINE bool4x3 operator--( bool4x3 &x )
 {
-	--x[0];
-	--x[1];
-	--x[2];
-	--x[3];
+	--x.rows[0];
+	--x.rows[1];
+	--x.rows[2];
+	--x.rows[3];
 	return x;
 }
 
@@ -2060,10 +2060,10 @@ HLML_INLINE bool4x3 operator--( bool4x3 &x )
 // post-fix
 HLML_INLINE bool4x3 operator--( bool4x3 &x, const int32_t )
 {
-	x[0]--;
-	x[1]--;
-	x[2]--;
-	x[3]--;
+	x.rows[0]--;
+	x.rows[1]--;
+	x.rows[2]--;
+	x.rows[3]--;
 	return x;
 }
 
@@ -2112,10 +2112,10 @@ HLML_INLINE bool3x4 transpose( const bool4x3 &mat )
 HLML_INLINE bool operator==( const bool4x4 &lhs, const bool4x4 &rhs )
 {
 	return
-		lhs[0] == rhs[0] &&
-		lhs[1] == rhs[1] &&
-		lhs[2] == rhs[2] &&
-		lhs[3] == rhs[3];
+		lhs.rows[0] == rhs.rows[0] &&
+		lhs.rows[1] == rhs.rows[1] &&
+		lhs.rows[2] == rhs.rows[2] &&
+		lhs.rows[3] == rhs.rows[3];
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
@@ -2128,10 +2128,10 @@ HLML_INLINE bool operator!=( const bool4x4 &lhs, const bool4x4 &rhs )
 HLML_INLINE bool4x4 operator<( const bool4x4 &lhs, const bool4x4 &rhs )
 {
 	return bool4x4(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2],
-		lhs[3] < rhs[3]
+		lhs.rows[0] < rhs.rows[0],
+		lhs.rows[1] < rhs.rows[1],
+		lhs.rows[2] < rhs.rows[2],
+		lhs.rows[3] < rhs.rows[3]
 	);
 }
 
@@ -2139,10 +2139,10 @@ HLML_INLINE bool4x4 operator<( const bool4x4 &lhs, const bool4x4 &rhs )
 HLML_INLINE bool4x4 operator<=( const bool4x4 &lhs, const bool4x4 &rhs )
 {
 	return bool4x4(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2],
-		lhs[3] <= rhs[3]
+		lhs.rows[0] <= rhs.rows[0],
+		lhs.rows[1] <= rhs.rows[1],
+		lhs.rows[2] <= rhs.rows[2],
+		lhs.rows[3] <= rhs.rows[3]
 	);
 }
 
@@ -2150,10 +2150,10 @@ HLML_INLINE bool4x4 operator<=( const bool4x4 &lhs, const bool4x4 &rhs )
 HLML_INLINE bool4x4 operator>( const bool4x4 &lhs, const bool4x4 &rhs )
 {
 	return bool4x4(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2],
-		lhs[3] > rhs[3]
+		lhs.rows[0] > rhs.rows[0],
+		lhs.rows[1] > rhs.rows[1],
+		lhs.rows[2] > rhs.rows[2],
+		lhs.rows[3] > rhs.rows[3]
 	);
 }
 
@@ -2161,10 +2161,10 @@ HLML_INLINE bool4x4 operator>( const bool4x4 &lhs, const bool4x4 &rhs )
 HLML_INLINE bool4x4 operator>=( const bool4x4 &lhs, const bool4x4 &rhs )
 {
 	return bool4x4(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2],
-		lhs[3] >= rhs[3]
+		lhs.rows[0] >= rhs.rows[0],
+		lhs.rows[1] >= rhs.rows[1],
+		lhs.rows[2] >= rhs.rows[2],
+		lhs.rows[3] >= rhs.rows[3]
 	);
 }
 
@@ -2172,10 +2172,10 @@ HLML_INLINE bool4x4 operator>=( const bool4x4 &lhs, const bool4x4 &rhs )
 HLML_INLINE bool4x4 operator+( const bool4x4 &lhs, const bool32_t rhs )
 {
 	return bool4x4(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs,
-		lhs[3] + rhs
+		lhs.rows[0] + rhs,
+		lhs.rows[1] + rhs,
+		lhs.rows[2] + rhs,
+		lhs.rows[3] + rhs
 	);
 }
 
@@ -2189,10 +2189,10 @@ HLML_INLINE bool4x4 operator+=( bool4x4 &lhs, const bool32_t rhs )
 HLML_INLINE bool4x4 operator+( const bool4x4 &lhs, const bool4x4 &rhs )
 {
 	return bool4x4(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2],
-		lhs[3] + rhs[3]
+		lhs.rows[0] + rhs.rows[0],
+		lhs.rows[1] + rhs.rows[1],
+		lhs.rows[2] + rhs.rows[2],
+		lhs.rows[3] + rhs.rows[3]
 	);
 }
 
@@ -2206,10 +2206,10 @@ HLML_INLINE bool4x4 operator+=( bool4x4 &lhs, const bool4x4 &rhs )
 HLML_INLINE bool4x4 operator-( const bool4x4 &lhs, const bool32_t rhs )
 {
 	return bool4x4(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs,
-		lhs[3] - rhs
+		lhs.rows[0] - rhs,
+		lhs.rows[1] - rhs,
+		lhs.rows[2] - rhs,
+		lhs.rows[3] - rhs
 	);
 }
 
@@ -2223,10 +2223,10 @@ HLML_INLINE bool4x4 operator-=( bool4x4 &lhs, const bool32_t rhs )
 HLML_INLINE bool4x4 operator-( const bool4x4 &lhs, const bool4x4 &rhs )
 {
 	return bool4x4(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2],
-		lhs[3] - rhs[3]
+		lhs.rows[0] - rhs.rows[0],
+		lhs.rows[1] - rhs.rows[1],
+		lhs.rows[2] - rhs.rows[2],
+		lhs.rows[3] - rhs.rows[3]
 	);
 }
 
@@ -2240,10 +2240,10 @@ HLML_INLINE bool4x4 operator-=( bool4x4 &lhs, const bool4x4 &rhs )
 HLML_INLINE bool4x4 operator*( const bool4x4 &lhs, const bool32_t rhs )
 {
 	return bool4x4(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs,
-		lhs[3] * rhs
+		lhs.rows[0] * rhs,
+		lhs.rows[1] * rhs,
+		lhs.rows[2] * rhs,
+		lhs.rows[3] * rhs
 	);
 }
 
@@ -2257,10 +2257,10 @@ HLML_INLINE bool4x4 operator*=( bool4x4 &lhs, const bool32_t rhs )
 HLML_INLINE bool4x4 operator*( const bool4x4 &lhs, const bool4x4 &rhs )
 {
 	return bool4x4(
-		lhs[0] * rhs[0],
-		lhs[1] * rhs[1],
-		lhs[2] * rhs[2],
-		lhs[3] * rhs[3]
+		lhs.rows[0] * rhs.rows[0],
+		lhs.rows[1] * rhs.rows[1],
+		lhs.rows[2] * rhs.rows[2],
+		lhs.rows[3] * rhs.rows[3]
 	);
 }
 
@@ -2274,10 +2274,10 @@ HLML_INLINE bool4x4 operator*=( bool4x4 &lhs, const bool4x4 &rhs )
 HLML_INLINE bool4x4 operator/( const bool4x4 &lhs, const bool32_t rhs )
 {
 	return bool4x4(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs,
-		lhs[3] / rhs
+		lhs.rows[0] / rhs,
+		lhs.rows[1] / rhs,
+		lhs.rows[2] / rhs,
+		lhs.rows[3] / rhs
 	);
 }
 
@@ -2291,10 +2291,10 @@ HLML_INLINE bool4x4 operator/=( bool4x4 &lhs, const bool32_t rhs )
 HLML_INLINE bool4x4 operator/( const bool4x4 &lhs, const bool4x4 &rhs )
 {
 	return bool4x4(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1],
-		lhs[2] / rhs[2],
-		lhs[3] / rhs[3]
+		lhs.rows[0] / rhs.rows[0],
+		lhs.rows[1] / rhs.rows[1],
+		lhs.rows[2] / rhs.rows[2],
+		lhs.rows[3] / rhs.rows[3]
 	);
 }
 
@@ -2307,10 +2307,10 @@ HLML_INLINE bool4x4 operator/=( bool4x4 &lhs, const bool4x4 &rhs )
 // ++s each component of the matrix and returns the result.
 HLML_INLINE bool4x4 operator++( bool4x4 &x )
 {
-	++x[0];
-	++x[1];
-	++x[2];
-	++x[3];
+	++x.rows[0];
+	++x.rows[1];
+	++x.rows[2];
+	++x.rows[3];
 	return x;
 }
 
@@ -2318,20 +2318,20 @@ HLML_INLINE bool4x4 operator++( bool4x4 &x )
 // post-fix
 HLML_INLINE bool4x4 operator++( bool4x4 &x, const int32_t )
 {
-	x[0]++;
-	x[1]++;
-	x[2]++;
-	x[3]++;
+	x.rows[0]++;
+	x.rows[1]++;
+	x.rows[2]++;
+	x.rows[3]++;
 	return x;
 }
 
 // --s each component of the matrix and returns the result.
 HLML_INLINE bool4x4 operator--( bool4x4 &x )
 {
-	--x[0];
-	--x[1];
-	--x[2];
-	--x[3];
+	--x.rows[0];
+	--x.rows[1];
+	--x.rows[2];
+	--x.rows[3];
 	return x;
 }
 
@@ -2339,10 +2339,10 @@ HLML_INLINE bool4x4 operator--( bool4x4 &x )
 // post-fix
 HLML_INLINE bool4x4 operator--( bool4x4 &x, const int32_t )
 {
-	x[0]--;
-	x[1]--;
-	x[2]--;
-	x[3]--;
+	x.rows[0]--;
+	x.rows[1]--;
+	x.rows[2]--;
+	x.rows[3]--;
 	return x;
 }
 
@@ -2392,8 +2392,8 @@ HLML_INLINE bool4x4 transpose( const bool4x4 &mat )
 HLML_INLINE int2x2 sign( const int2x2 &x )
 {
 	return int2x2(
-		sign( x[0] ),
-		sign( x[1] )
+		sign( x.rows[0] ),
+		sign( x.rows[1] )
 	);
 }
 
@@ -2401,8 +2401,8 @@ HLML_INLINE int2x2 sign( const int2x2 &x )
 HLML_INLINE int2x2 min( const int2x2 &x, const int2x2 &y )
 {
 	return int2x2(
-		min( x[0], y[0] ),
-		min( x[1], y[1] )
+		min( x.rows[0], y.rows[0] ),
+		min( x.rows[1], y.rows[1] )
 	);
 }
 
@@ -2410,8 +2410,8 @@ HLML_INLINE int2x2 min( const int2x2 &x, const int2x2 &y )
 HLML_INLINE int2x2 max( const int2x2 &x, const int2x2 &y )
 {
 	return int2x2(
-		max( x[0], y[0] ),
-		max( x[1], y[1] )
+		max( x.rows[0], y.rows[0] ),
+		max( x.rows[1], y.rows[1] )
 	);
 }
 
@@ -2419,8 +2419,8 @@ HLML_INLINE int2x2 max( const int2x2 &x, const int2x2 &y )
 HLML_INLINE int2x2 clamp( const int2x2 &x, const int2x2 &low, const int2x2 &high )
 {
 	return int2x2(
-		clamp( x[0], low[0], high[0] ),
-		clamp( x[1], low[1], high[1] )
+		clamp( x.rows[0], low.rows[0], high.rows[0] ),
+		clamp( x.rows[1], low.rows[1], high.rows[1] )
 	);
 }
 
@@ -2428,8 +2428,8 @@ HLML_INLINE int2x2 clamp( const int2x2 &x, const int2x2 &low, const int2x2 &high
 HLML_INLINE int2x2 saturate( const int2x2 &x )
 {
 	return int2x2(
-		saturate( x[0] ),
-		saturate( x[1] )
+		saturate( x.rows[0] ),
+		saturate( x.rows[1] )
 	);
 }
 
@@ -2437,8 +2437,8 @@ HLML_INLINE int2x2 saturate( const int2x2 &x )
 HLML_INLINE bool operator==( const int2x2 &lhs, const int2x2 &rhs )
 {
 	return
-		lhs[0] == rhs[0] &&
-		lhs[1] == rhs[1];
+		lhs.rows[0] == rhs.rows[0] &&
+		lhs.rows[1] == rhs.rows[1];
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
@@ -2451,8 +2451,8 @@ HLML_INLINE bool operator!=( const int2x2 &lhs, const int2x2 &rhs )
 HLML_INLINE bool2x2 operator<( const int2x2 &lhs, const int2x2 &rhs )
 {
 	return bool2x2(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1]
+		lhs.rows[0] < rhs.rows[0],
+		lhs.rows[1] < rhs.rows[1]
 	);
 }
 
@@ -2460,8 +2460,8 @@ HLML_INLINE bool2x2 operator<( const int2x2 &lhs, const int2x2 &rhs )
 HLML_INLINE bool2x2 operator<=( const int2x2 &lhs, const int2x2 &rhs )
 {
 	return bool2x2(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1]
+		lhs.rows[0] <= rhs.rows[0],
+		lhs.rows[1] <= rhs.rows[1]
 	);
 }
 
@@ -2469,8 +2469,8 @@ HLML_INLINE bool2x2 operator<=( const int2x2 &lhs, const int2x2 &rhs )
 HLML_INLINE bool2x2 operator>( const int2x2 &lhs, const int2x2 &rhs )
 {
 	return bool2x2(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1]
+		lhs.rows[0] > rhs.rows[0],
+		lhs.rows[1] > rhs.rows[1]
 	);
 }
 
@@ -2478,8 +2478,8 @@ HLML_INLINE bool2x2 operator>( const int2x2 &lhs, const int2x2 &rhs )
 HLML_INLINE bool2x2 operator>=( const int2x2 &lhs, const int2x2 &rhs )
 {
 	return bool2x2(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1]
+		lhs.rows[0] >= rhs.rows[0],
+		lhs.rows[1] >= rhs.rows[1]
 	);
 }
 
@@ -2487,8 +2487,8 @@ HLML_INLINE bool2x2 operator>=( const int2x2 &lhs, const int2x2 &rhs )
 HLML_INLINE int2x2 operator+( const int2x2 &lhs, const int32_t rhs )
 {
 	return int2x2(
-		lhs[0] + rhs,
-		lhs[1] + rhs
+		lhs.rows[0] + rhs,
+		lhs.rows[1] + rhs
 	);
 }
 
@@ -2502,8 +2502,8 @@ HLML_INLINE int2x2 operator+=( int2x2 &lhs, const int32_t rhs )
 HLML_INLINE int2x2 operator+( const int2x2 &lhs, const int2x2 &rhs )
 {
 	return int2x2(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1]
+		lhs.rows[0] + rhs.rows[0],
+		lhs.rows[1] + rhs.rows[1]
 	);
 }
 
@@ -2517,8 +2517,8 @@ HLML_INLINE int2x2 operator+=( int2x2 &lhs, const int2x2 &rhs )
 HLML_INLINE int2x2 operator-( const int2x2 &lhs, const int32_t rhs )
 {
 	return int2x2(
-		lhs[0] - rhs,
-		lhs[1] - rhs
+		lhs.rows[0] - rhs,
+		lhs.rows[1] - rhs
 	);
 }
 
@@ -2532,8 +2532,8 @@ HLML_INLINE int2x2 operator-=( int2x2 &lhs, const int32_t rhs )
 HLML_INLINE int2x2 operator-( const int2x2 &lhs, const int2x2 &rhs )
 {
 	return int2x2(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1]
+		lhs.rows[0] - rhs.rows[0],
+		lhs.rows[1] - rhs.rows[1]
 	);
 }
 
@@ -2547,8 +2547,8 @@ HLML_INLINE int2x2 operator-=( int2x2 &lhs, const int2x2 &rhs )
 HLML_INLINE int2x2 operator*( const int2x2 &lhs, const int32_t rhs )
 {
 	return int2x2(
-		lhs[0] * rhs,
-		lhs[1] * rhs
+		lhs.rows[0] * rhs,
+		lhs.rows[1] * rhs
 	);
 }
 
@@ -2562,8 +2562,8 @@ HLML_INLINE int2x2 operator*=( int2x2 &lhs, const int32_t rhs )
 HLML_INLINE int2x2 operator*( const int2x2 &lhs, const int2x2 &rhs )
 {
 	return int2x2(
-		lhs[0] * rhs[0],
-		lhs[1] * rhs[1]
+		lhs.rows[0] * rhs.rows[0],
+		lhs.rows[1] * rhs.rows[1]
 	);
 }
 
@@ -2577,8 +2577,8 @@ HLML_INLINE int2x2 operator*=( int2x2 &lhs, const int2x2 &rhs )
 HLML_INLINE int2x2 operator/( const int2x2 &lhs, const int32_t rhs )
 {
 	return int2x2(
-		lhs[0] / rhs,
-		lhs[1] / rhs
+		lhs.rows[0] / rhs,
+		lhs.rows[1] / rhs
 	);
 }
 
@@ -2592,8 +2592,8 @@ HLML_INLINE int2x2 operator/=( int2x2 &lhs, const int32_t rhs )
 HLML_INLINE int2x2 operator/( const int2x2 &lhs, const int2x2 &rhs )
 {
 	return int2x2(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1]
+		lhs.rows[0] / rhs.rows[0],
+		lhs.rows[1] / rhs.rows[1]
 	);
 }
 
@@ -2606,8 +2606,8 @@ HLML_INLINE int2x2 operator/=( int2x2 &lhs, const int2x2 &rhs )
 // ++s each component of the matrix and returns the result.
 HLML_INLINE int2x2 operator++( int2x2 &x )
 {
-	++x[0];
-	++x[1];
+	++x.rows[0];
+	++x.rows[1];
 	return x;
 }
 
@@ -2615,16 +2615,16 @@ HLML_INLINE int2x2 operator++( int2x2 &x )
 // post-fix
 HLML_INLINE int2x2 operator++( int2x2 &x, const int32_t )
 {
-	x[0]++;
-	x[1]++;
+	x.rows[0]++;
+	x.rows[1]++;
 	return x;
 }
 
 // --s each component of the matrix and returns the result.
 HLML_INLINE int2x2 operator--( int2x2 &x )
 {
-	--x[0];
-	--x[1];
+	--x.rows[0];
+	--x.rows[1];
 	return x;
 }
 
@@ -2632,8 +2632,8 @@ HLML_INLINE int2x2 operator--( int2x2 &x )
 // post-fix
 HLML_INLINE int2x2 operator--( int2x2 &x, const int32_t )
 {
-	x[0]--;
-	x[1]--;
+	x.rows[0]--;
+	x.rows[1]--;
 	return x;
 }
 
@@ -2642,8 +2642,8 @@ HLML_INLINE int2x2 operator--( int2x2 &x, const int32_t )
 HLML_INLINE int2x2 operator-( const int2x2 &x )
 {
 	return int2x2(
-		-x[0],
-		-x[1]
+		-x.rows[0],
+		-x.rows[1]
 	);
 }
 
@@ -2652,8 +2652,8 @@ HLML_INLINE int2x2 operator-( const int2x2 &x )
 HLML_INLINE int2x2 operator~( const int2x2 &x )
 {
 	return int2x2(
-		~x[0],
-		~x[1]
+		~x.rows[0],
+		~x.rows[1]
 	);
 }
 
@@ -2661,8 +2661,8 @@ HLML_INLINE int2x2 operator~( const int2x2 &x )
 HLML_INLINE int2x2 operator&( const int2x2 &lhs, const int32_t rhs )
 {
 	return int2x2(
-		lhs[0] & rhs,
-		lhs[1] & rhs
+		lhs.rows[0] & rhs,
+		lhs.rows[1] & rhs
 	);
 }
 
@@ -2676,8 +2676,8 @@ HLML_INLINE int2x2 operator&=( int2x2 &lhs, const int32_t rhs )
 HLML_INLINE int2x2 operator&( const int2x2 &lhs, const int2x2 &rhs )
 {
 	return int2x2(
-		lhs[0] & rhs[0],
-		lhs[1] & rhs[1]
+		lhs.rows[0] & rhs.rows[0],
+		lhs.rows[1] & rhs.rows[1]
 	);
 }
 
@@ -2691,8 +2691,8 @@ HLML_INLINE int2x2 operator&=( int2x2 &lhs, const int2x2 &rhs )
 HLML_INLINE int2x2 operator|( const int2x2 &lhs, const int32_t rhs )
 {
 	return int2x2(
-		lhs[0] | rhs,
-		lhs[1] | rhs
+		lhs.rows[0] | rhs,
+		lhs.rows[1] | rhs
 	);
 }
 
@@ -2706,8 +2706,8 @@ HLML_INLINE int2x2 operator|=( int2x2 &lhs, const int32_t rhs )
 HLML_INLINE int2x2 operator|( const int2x2 &lhs, const int2x2 &rhs )
 {
 	return int2x2(
-		lhs[0] | rhs[0],
-		lhs[1] | rhs[1]
+		lhs.rows[0] | rhs.rows[0],
+		lhs.rows[1] | rhs.rows[1]
 	);
 }
 
@@ -2721,8 +2721,8 @@ HLML_INLINE int2x2 operator|=( int2x2 &lhs, const int2x2 &rhs )
 HLML_INLINE int2x2 operator^( const int2x2 &lhs, const int32_t rhs )
 {
 	return int2x2(
-		lhs[0] ^ rhs,
-		lhs[1] ^ rhs
+		lhs.rows[0] ^ rhs,
+		lhs.rows[1] ^ rhs
 	);
 }
 
@@ -2736,8 +2736,8 @@ HLML_INLINE int2x2 operator^=( int2x2 &lhs, const int32_t rhs )
 HLML_INLINE int2x2 operator^( const int2x2 &lhs, const int2x2 &rhs )
 {
 	return int2x2(
-		lhs[0] ^ rhs[0],
-		lhs[1] ^ rhs[1]
+		lhs.rows[0] ^ rhs.rows[0],
+		lhs.rows[1] ^ rhs.rows[1]
 	);
 }
 
@@ -2751,8 +2751,8 @@ HLML_INLINE int2x2 operator^=( int2x2 &lhs, const int2x2 &rhs )
 HLML_INLINE int2x2 operator<<( const int2x2 &lhs, const int32_t rhs )
 {
 	return int2x2(
-		lhs[0] << rhs,
-		lhs[1] << rhs
+		lhs.rows[0] << rhs,
+		lhs.rows[1] << rhs
 	);
 }
 
@@ -2766,8 +2766,8 @@ HLML_INLINE int2x2 operator<<=( int2x2 &lhs, const int32_t rhs )
 HLML_INLINE int2x2 operator<<( const int2x2 &lhs, const int2x2 &rhs )
 {
 	return int2x2(
-		lhs[0] << rhs[0],
-		lhs[1] << rhs[1]
+		lhs.rows[0] << rhs.rows[0],
+		lhs.rows[1] << rhs.rows[1]
 	);
 }
 
@@ -2781,8 +2781,8 @@ HLML_INLINE int2x2 operator<<=( int2x2 &lhs, const int2x2 &rhs )
 HLML_INLINE int2x2 operator>>( const int2x2 &lhs, const int32_t rhs )
 {
 	return int2x2(
-		lhs[0] >> rhs,
-		lhs[1] >> rhs
+		lhs.rows[0] >> rhs,
+		lhs.rows[1] >> rhs
 	);
 }
 
@@ -2796,8 +2796,8 @@ HLML_INLINE int2x2 operator>>=( int2x2 &lhs, const int32_t rhs )
 HLML_INLINE int2x2 operator>>( const int2x2 &lhs, const int2x2 &rhs )
 {
 	return int2x2(
-		lhs[0] >> rhs[0],
-		lhs[1] >> rhs[1]
+		lhs.rows[0] >> rhs.rows[0],
+		lhs.rows[1] >> rhs.rows[1]
 	);
 }
 
@@ -2864,8 +2864,8 @@ HLML_INLINE int2 mul( const int2 &lhs, const int2x2 &rhs )
 HLML_INLINE int2x3 sign( const int2x3 &x )
 {
 	return int2x3(
-		sign( x[0] ),
-		sign( x[1] )
+		sign( x.rows[0] ),
+		sign( x.rows[1] )
 	);
 }
 
@@ -2873,8 +2873,8 @@ HLML_INLINE int2x3 sign( const int2x3 &x )
 HLML_INLINE int2x3 min( const int2x3 &x, const int2x3 &y )
 {
 	return int2x3(
-		min( x[0], y[0] ),
-		min( x[1], y[1] )
+		min( x.rows[0], y.rows[0] ),
+		min( x.rows[1], y.rows[1] )
 	);
 }
 
@@ -2882,8 +2882,8 @@ HLML_INLINE int2x3 min( const int2x3 &x, const int2x3 &y )
 HLML_INLINE int2x3 max( const int2x3 &x, const int2x3 &y )
 {
 	return int2x3(
-		max( x[0], y[0] ),
-		max( x[1], y[1] )
+		max( x.rows[0], y.rows[0] ),
+		max( x.rows[1], y.rows[1] )
 	);
 }
 
@@ -2891,8 +2891,8 @@ HLML_INLINE int2x3 max( const int2x3 &x, const int2x3 &y )
 HLML_INLINE int2x3 clamp( const int2x3 &x, const int2x3 &low, const int2x3 &high )
 {
 	return int2x3(
-		clamp( x[0], low[0], high[0] ),
-		clamp( x[1], low[1], high[1] )
+		clamp( x.rows[0], low.rows[0], high.rows[0] ),
+		clamp( x.rows[1], low.rows[1], high.rows[1] )
 	);
 }
 
@@ -2900,8 +2900,8 @@ HLML_INLINE int2x3 clamp( const int2x3 &x, const int2x3 &low, const int2x3 &high
 HLML_INLINE int2x3 saturate( const int2x3 &x )
 {
 	return int2x3(
-		saturate( x[0] ),
-		saturate( x[1] )
+		saturate( x.rows[0] ),
+		saturate( x.rows[1] )
 	);
 }
 
@@ -2909,8 +2909,8 @@ HLML_INLINE int2x3 saturate( const int2x3 &x )
 HLML_INLINE bool operator==( const int2x3 &lhs, const int2x3 &rhs )
 {
 	return
-		lhs[0] == rhs[0] &&
-		lhs[1] == rhs[1];
+		lhs.rows[0] == rhs.rows[0] &&
+		lhs.rows[1] == rhs.rows[1];
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
@@ -2923,8 +2923,8 @@ HLML_INLINE bool operator!=( const int2x3 &lhs, const int2x3 &rhs )
 HLML_INLINE bool2x3 operator<( const int2x3 &lhs, const int2x3 &rhs )
 {
 	return bool2x3(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1]
+		lhs.rows[0] < rhs.rows[0],
+		lhs.rows[1] < rhs.rows[1]
 	);
 }
 
@@ -2932,8 +2932,8 @@ HLML_INLINE bool2x3 operator<( const int2x3 &lhs, const int2x3 &rhs )
 HLML_INLINE bool2x3 operator<=( const int2x3 &lhs, const int2x3 &rhs )
 {
 	return bool2x3(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1]
+		lhs.rows[0] <= rhs.rows[0],
+		lhs.rows[1] <= rhs.rows[1]
 	);
 }
 
@@ -2941,8 +2941,8 @@ HLML_INLINE bool2x3 operator<=( const int2x3 &lhs, const int2x3 &rhs )
 HLML_INLINE bool2x3 operator>( const int2x3 &lhs, const int2x3 &rhs )
 {
 	return bool2x3(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1]
+		lhs.rows[0] > rhs.rows[0],
+		lhs.rows[1] > rhs.rows[1]
 	);
 }
 
@@ -2950,8 +2950,8 @@ HLML_INLINE bool2x3 operator>( const int2x3 &lhs, const int2x3 &rhs )
 HLML_INLINE bool2x3 operator>=( const int2x3 &lhs, const int2x3 &rhs )
 {
 	return bool2x3(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1]
+		lhs.rows[0] >= rhs.rows[0],
+		lhs.rows[1] >= rhs.rows[1]
 	);
 }
 
@@ -2959,8 +2959,8 @@ HLML_INLINE bool2x3 operator>=( const int2x3 &lhs, const int2x3 &rhs )
 HLML_INLINE int2x3 operator+( const int2x3 &lhs, const int32_t rhs )
 {
 	return int2x3(
-		lhs[0] + rhs,
-		lhs[1] + rhs
+		lhs.rows[0] + rhs,
+		lhs.rows[1] + rhs
 	);
 }
 
@@ -2974,8 +2974,8 @@ HLML_INLINE int2x3 operator+=( int2x3 &lhs, const int32_t rhs )
 HLML_INLINE int2x3 operator+( const int2x3 &lhs, const int2x3 &rhs )
 {
 	return int2x3(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1]
+		lhs.rows[0] + rhs.rows[0],
+		lhs.rows[1] + rhs.rows[1]
 	);
 }
 
@@ -2989,8 +2989,8 @@ HLML_INLINE int2x3 operator+=( int2x3 &lhs, const int2x3 &rhs )
 HLML_INLINE int2x3 operator-( const int2x3 &lhs, const int32_t rhs )
 {
 	return int2x3(
-		lhs[0] - rhs,
-		lhs[1] - rhs
+		lhs.rows[0] - rhs,
+		lhs.rows[1] - rhs
 	);
 }
 
@@ -3004,8 +3004,8 @@ HLML_INLINE int2x3 operator-=( int2x3 &lhs, const int32_t rhs )
 HLML_INLINE int2x3 operator-( const int2x3 &lhs, const int2x3 &rhs )
 {
 	return int2x3(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1]
+		lhs.rows[0] - rhs.rows[0],
+		lhs.rows[1] - rhs.rows[1]
 	);
 }
 
@@ -3019,8 +3019,8 @@ HLML_INLINE int2x3 operator-=( int2x3 &lhs, const int2x3 &rhs )
 HLML_INLINE int2x3 operator*( const int2x3 &lhs, const int32_t rhs )
 {
 	return int2x3(
-		lhs[0] * rhs,
-		lhs[1] * rhs
+		lhs.rows[0] * rhs,
+		lhs.rows[1] * rhs
 	);
 }
 
@@ -3034,8 +3034,8 @@ HLML_INLINE int2x3 operator*=( int2x3 &lhs, const int32_t rhs )
 HLML_INLINE int2x3 operator*( const int2x3 &lhs, const int2x3 &rhs )
 {
 	return int2x3(
-		lhs[0] * rhs[0],
-		lhs[1] * rhs[1]
+		lhs.rows[0] * rhs.rows[0],
+		lhs.rows[1] * rhs.rows[1]
 	);
 }
 
@@ -3049,8 +3049,8 @@ HLML_INLINE int2x3 operator*=( int2x3 &lhs, const int2x3 &rhs )
 HLML_INLINE int2x3 operator/( const int2x3 &lhs, const int32_t rhs )
 {
 	return int2x3(
-		lhs[0] / rhs,
-		lhs[1] / rhs
+		lhs.rows[0] / rhs,
+		lhs.rows[1] / rhs
 	);
 }
 
@@ -3064,8 +3064,8 @@ HLML_INLINE int2x3 operator/=( int2x3 &lhs, const int32_t rhs )
 HLML_INLINE int2x3 operator/( const int2x3 &lhs, const int2x3 &rhs )
 {
 	return int2x3(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1]
+		lhs.rows[0] / rhs.rows[0],
+		lhs.rows[1] / rhs.rows[1]
 	);
 }
 
@@ -3078,8 +3078,8 @@ HLML_INLINE int2x3 operator/=( int2x3 &lhs, const int2x3 &rhs )
 // ++s each component of the matrix and returns the result.
 HLML_INLINE int2x3 operator++( int2x3 &x )
 {
-	++x[0];
-	++x[1];
+	++x.rows[0];
+	++x.rows[1];
 	return x;
 }
 
@@ -3087,16 +3087,16 @@ HLML_INLINE int2x3 operator++( int2x3 &x )
 // post-fix
 HLML_INLINE int2x3 operator++( int2x3 &x, const int32_t )
 {
-	x[0]++;
-	x[1]++;
+	x.rows[0]++;
+	x.rows[1]++;
 	return x;
 }
 
 // --s each component of the matrix and returns the result.
 HLML_INLINE int2x3 operator--( int2x3 &x )
 {
-	--x[0];
-	--x[1];
+	--x.rows[0];
+	--x.rows[1];
 	return x;
 }
 
@@ -3104,8 +3104,8 @@ HLML_INLINE int2x3 operator--( int2x3 &x )
 // post-fix
 HLML_INLINE int2x3 operator--( int2x3 &x, const int32_t )
 {
-	x[0]--;
-	x[1]--;
+	x.rows[0]--;
+	x.rows[1]--;
 	return x;
 }
 
@@ -3114,8 +3114,8 @@ HLML_INLINE int2x3 operator--( int2x3 &x, const int32_t )
 HLML_INLINE int2x3 operator-( const int2x3 &x )
 {
 	return int2x3(
-		-x[0],
-		-x[1]
+		-x.rows[0],
+		-x.rows[1]
 	);
 }
 
@@ -3124,8 +3124,8 @@ HLML_INLINE int2x3 operator-( const int2x3 &x )
 HLML_INLINE int2x3 operator~( const int2x3 &x )
 {
 	return int2x3(
-		~x[0],
-		~x[1]
+		~x.rows[0],
+		~x.rows[1]
 	);
 }
 
@@ -3133,8 +3133,8 @@ HLML_INLINE int2x3 operator~( const int2x3 &x )
 HLML_INLINE int2x3 operator&( const int2x3 &lhs, const int32_t rhs )
 {
 	return int2x3(
-		lhs[0] & rhs,
-		lhs[1] & rhs
+		lhs.rows[0] & rhs,
+		lhs.rows[1] & rhs
 	);
 }
 
@@ -3148,8 +3148,8 @@ HLML_INLINE int2x3 operator&=( int2x3 &lhs, const int32_t rhs )
 HLML_INLINE int2x3 operator&( const int2x3 &lhs, const int2x3 &rhs )
 {
 	return int2x3(
-		lhs[0] & rhs[0],
-		lhs[1] & rhs[1]
+		lhs.rows[0] & rhs.rows[0],
+		lhs.rows[1] & rhs.rows[1]
 	);
 }
 
@@ -3163,8 +3163,8 @@ HLML_INLINE int2x3 operator&=( int2x3 &lhs, const int2x3 &rhs )
 HLML_INLINE int2x3 operator|( const int2x3 &lhs, const int32_t rhs )
 {
 	return int2x3(
-		lhs[0] | rhs,
-		lhs[1] | rhs
+		lhs.rows[0] | rhs,
+		lhs.rows[1] | rhs
 	);
 }
 
@@ -3178,8 +3178,8 @@ HLML_INLINE int2x3 operator|=( int2x3 &lhs, const int32_t rhs )
 HLML_INLINE int2x3 operator|( const int2x3 &lhs, const int2x3 &rhs )
 {
 	return int2x3(
-		lhs[0] | rhs[0],
-		lhs[1] | rhs[1]
+		lhs.rows[0] | rhs.rows[0],
+		lhs.rows[1] | rhs.rows[1]
 	);
 }
 
@@ -3193,8 +3193,8 @@ HLML_INLINE int2x3 operator|=( int2x3 &lhs, const int2x3 &rhs )
 HLML_INLINE int2x3 operator^( const int2x3 &lhs, const int32_t rhs )
 {
 	return int2x3(
-		lhs[0] ^ rhs,
-		lhs[1] ^ rhs
+		lhs.rows[0] ^ rhs,
+		lhs.rows[1] ^ rhs
 	);
 }
 
@@ -3208,8 +3208,8 @@ HLML_INLINE int2x3 operator^=( int2x3 &lhs, const int32_t rhs )
 HLML_INLINE int2x3 operator^( const int2x3 &lhs, const int2x3 &rhs )
 {
 	return int2x3(
-		lhs[0] ^ rhs[0],
-		lhs[1] ^ rhs[1]
+		lhs.rows[0] ^ rhs.rows[0],
+		lhs.rows[1] ^ rhs.rows[1]
 	);
 }
 
@@ -3223,8 +3223,8 @@ HLML_INLINE int2x3 operator^=( int2x3 &lhs, const int2x3 &rhs )
 HLML_INLINE int2x3 operator<<( const int2x3 &lhs, const int32_t rhs )
 {
 	return int2x3(
-		lhs[0] << rhs,
-		lhs[1] << rhs
+		lhs.rows[0] << rhs,
+		lhs.rows[1] << rhs
 	);
 }
 
@@ -3238,8 +3238,8 @@ HLML_INLINE int2x3 operator<<=( int2x3 &lhs, const int32_t rhs )
 HLML_INLINE int2x3 operator<<( const int2x3 &lhs, const int2x3 &rhs )
 {
 	return int2x3(
-		lhs[0] << rhs[0],
-		lhs[1] << rhs[1]
+		lhs.rows[0] << rhs.rows[0],
+		lhs.rows[1] << rhs.rows[1]
 	);
 }
 
@@ -3253,8 +3253,8 @@ HLML_INLINE int2x3 operator<<=( int2x3 &lhs, const int2x3 &rhs )
 HLML_INLINE int2x3 operator>>( const int2x3 &lhs, const int32_t rhs )
 {
 	return int2x3(
-		lhs[0] >> rhs,
-		lhs[1] >> rhs
+		lhs.rows[0] >> rhs,
+		lhs.rows[1] >> rhs
 	);
 }
 
@@ -3268,8 +3268,8 @@ HLML_INLINE int2x3 operator>>=( int2x3 &lhs, const int32_t rhs )
 HLML_INLINE int2x3 operator>>( const int2x3 &lhs, const int2x3 &rhs )
 {
 	return int2x3(
-		lhs[0] >> rhs[0],
-		lhs[1] >> rhs[1]
+		lhs.rows[0] >> rhs.rows[0],
+		lhs.rows[1] >> rhs.rows[1]
 	);
 }
 
@@ -3321,8 +3321,8 @@ HLML_INLINE int2x2 mul( const int2x3 &lhs, const int3x2 &rhs )
 HLML_INLINE int2x4 sign( const int2x4 &x )
 {
 	return int2x4(
-		sign( x[0] ),
-		sign( x[1] )
+		sign( x.rows[0] ),
+		sign( x.rows[1] )
 	);
 }
 
@@ -3330,8 +3330,8 @@ HLML_INLINE int2x4 sign( const int2x4 &x )
 HLML_INLINE int2x4 min( const int2x4 &x, const int2x4 &y )
 {
 	return int2x4(
-		min( x[0], y[0] ),
-		min( x[1], y[1] )
+		min( x.rows[0], y.rows[0] ),
+		min( x.rows[1], y.rows[1] )
 	);
 }
 
@@ -3339,8 +3339,8 @@ HLML_INLINE int2x4 min( const int2x4 &x, const int2x4 &y )
 HLML_INLINE int2x4 max( const int2x4 &x, const int2x4 &y )
 {
 	return int2x4(
-		max( x[0], y[0] ),
-		max( x[1], y[1] )
+		max( x.rows[0], y.rows[0] ),
+		max( x.rows[1], y.rows[1] )
 	);
 }
 
@@ -3348,8 +3348,8 @@ HLML_INLINE int2x4 max( const int2x4 &x, const int2x4 &y )
 HLML_INLINE int2x4 clamp( const int2x4 &x, const int2x4 &low, const int2x4 &high )
 {
 	return int2x4(
-		clamp( x[0], low[0], high[0] ),
-		clamp( x[1], low[1], high[1] )
+		clamp( x.rows[0], low.rows[0], high.rows[0] ),
+		clamp( x.rows[1], low.rows[1], high.rows[1] )
 	);
 }
 
@@ -3357,8 +3357,8 @@ HLML_INLINE int2x4 clamp( const int2x4 &x, const int2x4 &low, const int2x4 &high
 HLML_INLINE int2x4 saturate( const int2x4 &x )
 {
 	return int2x4(
-		saturate( x[0] ),
-		saturate( x[1] )
+		saturate( x.rows[0] ),
+		saturate( x.rows[1] )
 	);
 }
 
@@ -3366,8 +3366,8 @@ HLML_INLINE int2x4 saturate( const int2x4 &x )
 HLML_INLINE bool operator==( const int2x4 &lhs, const int2x4 &rhs )
 {
 	return
-		lhs[0] == rhs[0] &&
-		lhs[1] == rhs[1];
+		lhs.rows[0] == rhs.rows[0] &&
+		lhs.rows[1] == rhs.rows[1];
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
@@ -3380,8 +3380,8 @@ HLML_INLINE bool operator!=( const int2x4 &lhs, const int2x4 &rhs )
 HLML_INLINE bool2x4 operator<( const int2x4 &lhs, const int2x4 &rhs )
 {
 	return bool2x4(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1]
+		lhs.rows[0] < rhs.rows[0],
+		lhs.rows[1] < rhs.rows[1]
 	);
 }
 
@@ -3389,8 +3389,8 @@ HLML_INLINE bool2x4 operator<( const int2x4 &lhs, const int2x4 &rhs )
 HLML_INLINE bool2x4 operator<=( const int2x4 &lhs, const int2x4 &rhs )
 {
 	return bool2x4(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1]
+		lhs.rows[0] <= rhs.rows[0],
+		lhs.rows[1] <= rhs.rows[1]
 	);
 }
 
@@ -3398,8 +3398,8 @@ HLML_INLINE bool2x4 operator<=( const int2x4 &lhs, const int2x4 &rhs )
 HLML_INLINE bool2x4 operator>( const int2x4 &lhs, const int2x4 &rhs )
 {
 	return bool2x4(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1]
+		lhs.rows[0] > rhs.rows[0],
+		lhs.rows[1] > rhs.rows[1]
 	);
 }
 
@@ -3407,8 +3407,8 @@ HLML_INLINE bool2x4 operator>( const int2x4 &lhs, const int2x4 &rhs )
 HLML_INLINE bool2x4 operator>=( const int2x4 &lhs, const int2x4 &rhs )
 {
 	return bool2x4(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1]
+		lhs.rows[0] >= rhs.rows[0],
+		lhs.rows[1] >= rhs.rows[1]
 	);
 }
 
@@ -3416,8 +3416,8 @@ HLML_INLINE bool2x4 operator>=( const int2x4 &lhs, const int2x4 &rhs )
 HLML_INLINE int2x4 operator+( const int2x4 &lhs, const int32_t rhs )
 {
 	return int2x4(
-		lhs[0] + rhs,
-		lhs[1] + rhs
+		lhs.rows[0] + rhs,
+		lhs.rows[1] + rhs
 	);
 }
 
@@ -3431,8 +3431,8 @@ HLML_INLINE int2x4 operator+=( int2x4 &lhs, const int32_t rhs )
 HLML_INLINE int2x4 operator+( const int2x4 &lhs, const int2x4 &rhs )
 {
 	return int2x4(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1]
+		lhs.rows[0] + rhs.rows[0],
+		lhs.rows[1] + rhs.rows[1]
 	);
 }
 
@@ -3446,8 +3446,8 @@ HLML_INLINE int2x4 operator+=( int2x4 &lhs, const int2x4 &rhs )
 HLML_INLINE int2x4 operator-( const int2x4 &lhs, const int32_t rhs )
 {
 	return int2x4(
-		lhs[0] - rhs,
-		lhs[1] - rhs
+		lhs.rows[0] - rhs,
+		lhs.rows[1] - rhs
 	);
 }
 
@@ -3461,8 +3461,8 @@ HLML_INLINE int2x4 operator-=( int2x4 &lhs, const int32_t rhs )
 HLML_INLINE int2x4 operator-( const int2x4 &lhs, const int2x4 &rhs )
 {
 	return int2x4(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1]
+		lhs.rows[0] - rhs.rows[0],
+		lhs.rows[1] - rhs.rows[1]
 	);
 }
 
@@ -3476,8 +3476,8 @@ HLML_INLINE int2x4 operator-=( int2x4 &lhs, const int2x4 &rhs )
 HLML_INLINE int2x4 operator*( const int2x4 &lhs, const int32_t rhs )
 {
 	return int2x4(
-		lhs[0] * rhs,
-		lhs[1] * rhs
+		lhs.rows[0] * rhs,
+		lhs.rows[1] * rhs
 	);
 }
 
@@ -3491,8 +3491,8 @@ HLML_INLINE int2x4 operator*=( int2x4 &lhs, const int32_t rhs )
 HLML_INLINE int2x4 operator*( const int2x4 &lhs, const int2x4 &rhs )
 {
 	return int2x4(
-		lhs[0] * rhs[0],
-		lhs[1] * rhs[1]
+		lhs.rows[0] * rhs.rows[0],
+		lhs.rows[1] * rhs.rows[1]
 	);
 }
 
@@ -3506,8 +3506,8 @@ HLML_INLINE int2x4 operator*=( int2x4 &lhs, const int2x4 &rhs )
 HLML_INLINE int2x4 operator/( const int2x4 &lhs, const int32_t rhs )
 {
 	return int2x4(
-		lhs[0] / rhs,
-		lhs[1] / rhs
+		lhs.rows[0] / rhs,
+		lhs.rows[1] / rhs
 	);
 }
 
@@ -3521,8 +3521,8 @@ HLML_INLINE int2x4 operator/=( int2x4 &lhs, const int32_t rhs )
 HLML_INLINE int2x4 operator/( const int2x4 &lhs, const int2x4 &rhs )
 {
 	return int2x4(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1]
+		lhs.rows[0] / rhs.rows[0],
+		lhs.rows[1] / rhs.rows[1]
 	);
 }
 
@@ -3535,8 +3535,8 @@ HLML_INLINE int2x4 operator/=( int2x4 &lhs, const int2x4 &rhs )
 // ++s each component of the matrix and returns the result.
 HLML_INLINE int2x4 operator++( int2x4 &x )
 {
-	++x[0];
-	++x[1];
+	++x.rows[0];
+	++x.rows[1];
 	return x;
 }
 
@@ -3544,16 +3544,16 @@ HLML_INLINE int2x4 operator++( int2x4 &x )
 // post-fix
 HLML_INLINE int2x4 operator++( int2x4 &x, const int32_t )
 {
-	x[0]++;
-	x[1]++;
+	x.rows[0]++;
+	x.rows[1]++;
 	return x;
 }
 
 // --s each component of the matrix and returns the result.
 HLML_INLINE int2x4 operator--( int2x4 &x )
 {
-	--x[0];
-	--x[1];
+	--x.rows[0];
+	--x.rows[1];
 	return x;
 }
 
@@ -3561,8 +3561,8 @@ HLML_INLINE int2x4 operator--( int2x4 &x )
 // post-fix
 HLML_INLINE int2x4 operator--( int2x4 &x, const int32_t )
 {
-	x[0]--;
-	x[1]--;
+	x.rows[0]--;
+	x.rows[1]--;
 	return x;
 }
 
@@ -3571,8 +3571,8 @@ HLML_INLINE int2x4 operator--( int2x4 &x, const int32_t )
 HLML_INLINE int2x4 operator-( const int2x4 &x )
 {
 	return int2x4(
-		-x[0],
-		-x[1]
+		-x.rows[0],
+		-x.rows[1]
 	);
 }
 
@@ -3581,8 +3581,8 @@ HLML_INLINE int2x4 operator-( const int2x4 &x )
 HLML_INLINE int2x4 operator~( const int2x4 &x )
 {
 	return int2x4(
-		~x[0],
-		~x[1]
+		~x.rows[0],
+		~x.rows[1]
 	);
 }
 
@@ -3590,8 +3590,8 @@ HLML_INLINE int2x4 operator~( const int2x4 &x )
 HLML_INLINE int2x4 operator&( const int2x4 &lhs, const int32_t rhs )
 {
 	return int2x4(
-		lhs[0] & rhs,
-		lhs[1] & rhs
+		lhs.rows[0] & rhs,
+		lhs.rows[1] & rhs
 	);
 }
 
@@ -3605,8 +3605,8 @@ HLML_INLINE int2x4 operator&=( int2x4 &lhs, const int32_t rhs )
 HLML_INLINE int2x4 operator&( const int2x4 &lhs, const int2x4 &rhs )
 {
 	return int2x4(
-		lhs[0] & rhs[0],
-		lhs[1] & rhs[1]
+		lhs.rows[0] & rhs.rows[0],
+		lhs.rows[1] & rhs.rows[1]
 	);
 }
 
@@ -3620,8 +3620,8 @@ HLML_INLINE int2x4 operator&=( int2x4 &lhs, const int2x4 &rhs )
 HLML_INLINE int2x4 operator|( const int2x4 &lhs, const int32_t rhs )
 {
 	return int2x4(
-		lhs[0] | rhs,
-		lhs[1] | rhs
+		lhs.rows[0] | rhs,
+		lhs.rows[1] | rhs
 	);
 }
 
@@ -3635,8 +3635,8 @@ HLML_INLINE int2x4 operator|=( int2x4 &lhs, const int32_t rhs )
 HLML_INLINE int2x4 operator|( const int2x4 &lhs, const int2x4 &rhs )
 {
 	return int2x4(
-		lhs[0] | rhs[0],
-		lhs[1] | rhs[1]
+		lhs.rows[0] | rhs.rows[0],
+		lhs.rows[1] | rhs.rows[1]
 	);
 }
 
@@ -3650,8 +3650,8 @@ HLML_INLINE int2x4 operator|=( int2x4 &lhs, const int2x4 &rhs )
 HLML_INLINE int2x4 operator^( const int2x4 &lhs, const int32_t rhs )
 {
 	return int2x4(
-		lhs[0] ^ rhs,
-		lhs[1] ^ rhs
+		lhs.rows[0] ^ rhs,
+		lhs.rows[1] ^ rhs
 	);
 }
 
@@ -3665,8 +3665,8 @@ HLML_INLINE int2x4 operator^=( int2x4 &lhs, const int32_t rhs )
 HLML_INLINE int2x4 operator^( const int2x4 &lhs, const int2x4 &rhs )
 {
 	return int2x4(
-		lhs[0] ^ rhs[0],
-		lhs[1] ^ rhs[1]
+		lhs.rows[0] ^ rhs.rows[0],
+		lhs.rows[1] ^ rhs.rows[1]
 	);
 }
 
@@ -3680,8 +3680,8 @@ HLML_INLINE int2x4 operator^=( int2x4 &lhs, const int2x4 &rhs )
 HLML_INLINE int2x4 operator<<( const int2x4 &lhs, const int32_t rhs )
 {
 	return int2x4(
-		lhs[0] << rhs,
-		lhs[1] << rhs
+		lhs.rows[0] << rhs,
+		lhs.rows[1] << rhs
 	);
 }
 
@@ -3695,8 +3695,8 @@ HLML_INLINE int2x4 operator<<=( int2x4 &lhs, const int32_t rhs )
 HLML_INLINE int2x4 operator<<( const int2x4 &lhs, const int2x4 &rhs )
 {
 	return int2x4(
-		lhs[0] << rhs[0],
-		lhs[1] << rhs[1]
+		lhs.rows[0] << rhs.rows[0],
+		lhs.rows[1] << rhs.rows[1]
 	);
 }
 
@@ -3710,8 +3710,8 @@ HLML_INLINE int2x4 operator<<=( int2x4 &lhs, const int2x4 &rhs )
 HLML_INLINE int2x4 operator>>( const int2x4 &lhs, const int32_t rhs )
 {
 	return int2x4(
-		lhs[0] >> rhs,
-		lhs[1] >> rhs
+		lhs.rows[0] >> rhs,
+		lhs.rows[1] >> rhs
 	);
 }
 
@@ -3725,8 +3725,8 @@ HLML_INLINE int2x4 operator>>=( int2x4 &lhs, const int32_t rhs )
 HLML_INLINE int2x4 operator>>( const int2x4 &lhs, const int2x4 &rhs )
 {
 	return int2x4(
-		lhs[0] >> rhs[0],
-		lhs[1] >> rhs[1]
+		lhs.rows[0] >> rhs.rows[0],
+		lhs.rows[1] >> rhs.rows[1]
 	);
 }
 
@@ -3779,9 +3779,9 @@ HLML_INLINE int2x2 mul( const int2x4 &lhs, const int4x2 &rhs )
 HLML_INLINE int3x2 sign( const int3x2 &x )
 {
 	return int3x2(
-		sign( x[0] ),
-		sign( x[1] ),
-		sign( x[2] )
+		sign( x.rows[0] ),
+		sign( x.rows[1] ),
+		sign( x.rows[2] )
 	);
 }
 
@@ -3789,9 +3789,9 @@ HLML_INLINE int3x2 sign( const int3x2 &x )
 HLML_INLINE int3x2 min( const int3x2 &x, const int3x2 &y )
 {
 	return int3x2(
-		min( x[0], y[0] ),
-		min( x[1], y[1] ),
-		min( x[2], y[2] )
+		min( x.rows[0], y.rows[0] ),
+		min( x.rows[1], y.rows[1] ),
+		min( x.rows[2], y.rows[2] )
 	);
 }
 
@@ -3799,9 +3799,9 @@ HLML_INLINE int3x2 min( const int3x2 &x, const int3x2 &y )
 HLML_INLINE int3x2 max( const int3x2 &x, const int3x2 &y )
 {
 	return int3x2(
-		max( x[0], y[0] ),
-		max( x[1], y[1] ),
-		max( x[2], y[2] )
+		max( x.rows[0], y.rows[0] ),
+		max( x.rows[1], y.rows[1] ),
+		max( x.rows[2], y.rows[2] )
 	);
 }
 
@@ -3809,9 +3809,9 @@ HLML_INLINE int3x2 max( const int3x2 &x, const int3x2 &y )
 HLML_INLINE int3x2 clamp( const int3x2 &x, const int3x2 &low, const int3x2 &high )
 {
 	return int3x2(
-		clamp( x[0], low[0], high[0] ),
-		clamp( x[1], low[1], high[1] ),
-		clamp( x[2], low[2], high[2] )
+		clamp( x.rows[0], low.rows[0], high.rows[0] ),
+		clamp( x.rows[1], low.rows[1], high.rows[1] ),
+		clamp( x.rows[2], low.rows[2], high.rows[2] )
 	);
 }
 
@@ -3819,9 +3819,9 @@ HLML_INLINE int3x2 clamp( const int3x2 &x, const int3x2 &low, const int3x2 &high
 HLML_INLINE int3x2 saturate( const int3x2 &x )
 {
 	return int3x2(
-		saturate( x[0] ),
-		saturate( x[1] ),
-		saturate( x[2] )
+		saturate( x.rows[0] ),
+		saturate( x.rows[1] ),
+		saturate( x.rows[2] )
 	);
 }
 
@@ -3829,9 +3829,9 @@ HLML_INLINE int3x2 saturate( const int3x2 &x )
 HLML_INLINE bool operator==( const int3x2 &lhs, const int3x2 &rhs )
 {
 	return
-		lhs[0] == rhs[0] &&
-		lhs[1] == rhs[1] &&
-		lhs[2] == rhs[2];
+		lhs.rows[0] == rhs.rows[0] &&
+		lhs.rows[1] == rhs.rows[1] &&
+		lhs.rows[2] == rhs.rows[2];
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
@@ -3844,9 +3844,9 @@ HLML_INLINE bool operator!=( const int3x2 &lhs, const int3x2 &rhs )
 HLML_INLINE bool3x2 operator<( const int3x2 &lhs, const int3x2 &rhs )
 {
 	return bool3x2(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2]
+		lhs.rows[0] < rhs.rows[0],
+		lhs.rows[1] < rhs.rows[1],
+		lhs.rows[2] < rhs.rows[2]
 	);
 }
 
@@ -3854,9 +3854,9 @@ HLML_INLINE bool3x2 operator<( const int3x2 &lhs, const int3x2 &rhs )
 HLML_INLINE bool3x2 operator<=( const int3x2 &lhs, const int3x2 &rhs )
 {
 	return bool3x2(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2]
+		lhs.rows[0] <= rhs.rows[0],
+		lhs.rows[1] <= rhs.rows[1],
+		lhs.rows[2] <= rhs.rows[2]
 	);
 }
 
@@ -3864,9 +3864,9 @@ HLML_INLINE bool3x2 operator<=( const int3x2 &lhs, const int3x2 &rhs )
 HLML_INLINE bool3x2 operator>( const int3x2 &lhs, const int3x2 &rhs )
 {
 	return bool3x2(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2]
+		lhs.rows[0] > rhs.rows[0],
+		lhs.rows[1] > rhs.rows[1],
+		lhs.rows[2] > rhs.rows[2]
 	);
 }
 
@@ -3874,9 +3874,9 @@ HLML_INLINE bool3x2 operator>( const int3x2 &lhs, const int3x2 &rhs )
 HLML_INLINE bool3x2 operator>=( const int3x2 &lhs, const int3x2 &rhs )
 {
 	return bool3x2(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2]
+		lhs.rows[0] >= rhs.rows[0],
+		lhs.rows[1] >= rhs.rows[1],
+		lhs.rows[2] >= rhs.rows[2]
 	);
 }
 
@@ -3884,9 +3884,9 @@ HLML_INLINE bool3x2 operator>=( const int3x2 &lhs, const int3x2 &rhs )
 HLML_INLINE int3x2 operator+( const int3x2 &lhs, const int32_t rhs )
 {
 	return int3x2(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs
+		lhs.rows[0] + rhs,
+		lhs.rows[1] + rhs,
+		lhs.rows[2] + rhs
 	);
 }
 
@@ -3900,9 +3900,9 @@ HLML_INLINE int3x2 operator+=( int3x2 &lhs, const int32_t rhs )
 HLML_INLINE int3x2 operator+( const int3x2 &lhs, const int3x2 &rhs )
 {
 	return int3x2(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2]
+		lhs.rows[0] + rhs.rows[0],
+		lhs.rows[1] + rhs.rows[1],
+		lhs.rows[2] + rhs.rows[2]
 	);
 }
 
@@ -3916,9 +3916,9 @@ HLML_INLINE int3x2 operator+=( int3x2 &lhs, const int3x2 &rhs )
 HLML_INLINE int3x2 operator-( const int3x2 &lhs, const int32_t rhs )
 {
 	return int3x2(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs
+		lhs.rows[0] - rhs,
+		lhs.rows[1] - rhs,
+		lhs.rows[2] - rhs
 	);
 }
 
@@ -3932,9 +3932,9 @@ HLML_INLINE int3x2 operator-=( int3x2 &lhs, const int32_t rhs )
 HLML_INLINE int3x2 operator-( const int3x2 &lhs, const int3x2 &rhs )
 {
 	return int3x2(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2]
+		lhs.rows[0] - rhs.rows[0],
+		lhs.rows[1] - rhs.rows[1],
+		lhs.rows[2] - rhs.rows[2]
 	);
 }
 
@@ -3948,9 +3948,9 @@ HLML_INLINE int3x2 operator-=( int3x2 &lhs, const int3x2 &rhs )
 HLML_INLINE int3x2 operator*( const int3x2 &lhs, const int32_t rhs )
 {
 	return int3x2(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs
+		lhs.rows[0] * rhs,
+		lhs.rows[1] * rhs,
+		lhs.rows[2] * rhs
 	);
 }
 
@@ -3964,9 +3964,9 @@ HLML_INLINE int3x2 operator*=( int3x2 &lhs, const int32_t rhs )
 HLML_INLINE int3x2 operator*( const int3x2 &lhs, const int3x2 &rhs )
 {
 	return int3x2(
-		lhs[0] * rhs[0],
-		lhs[1] * rhs[1],
-		lhs[2] * rhs[2]
+		lhs.rows[0] * rhs.rows[0],
+		lhs.rows[1] * rhs.rows[1],
+		lhs.rows[2] * rhs.rows[2]
 	);
 }
 
@@ -3980,9 +3980,9 @@ HLML_INLINE int3x2 operator*=( int3x2 &lhs, const int3x2 &rhs )
 HLML_INLINE int3x2 operator/( const int3x2 &lhs, const int32_t rhs )
 {
 	return int3x2(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs
+		lhs.rows[0] / rhs,
+		lhs.rows[1] / rhs,
+		lhs.rows[2] / rhs
 	);
 }
 
@@ -3996,9 +3996,9 @@ HLML_INLINE int3x2 operator/=( int3x2 &lhs, const int32_t rhs )
 HLML_INLINE int3x2 operator/( const int3x2 &lhs, const int3x2 &rhs )
 {
 	return int3x2(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1],
-		lhs[2] / rhs[2]
+		lhs.rows[0] / rhs.rows[0],
+		lhs.rows[1] / rhs.rows[1],
+		lhs.rows[2] / rhs.rows[2]
 	);
 }
 
@@ -4011,9 +4011,9 @@ HLML_INLINE int3x2 operator/=( int3x2 &lhs, const int3x2 &rhs )
 // ++s each component of the matrix and returns the result.
 HLML_INLINE int3x2 operator++( int3x2 &x )
 {
-	++x[0];
-	++x[1];
-	++x[2];
+	++x.rows[0];
+	++x.rows[1];
+	++x.rows[2];
 	return x;
 }
 
@@ -4021,18 +4021,18 @@ HLML_INLINE int3x2 operator++( int3x2 &x )
 // post-fix
 HLML_INLINE int3x2 operator++( int3x2 &x, const int32_t )
 {
-	x[0]++;
-	x[1]++;
-	x[2]++;
+	x.rows[0]++;
+	x.rows[1]++;
+	x.rows[2]++;
 	return x;
 }
 
 // --s each component of the matrix and returns the result.
 HLML_INLINE int3x2 operator--( int3x2 &x )
 {
-	--x[0];
-	--x[1];
-	--x[2];
+	--x.rows[0];
+	--x.rows[1];
+	--x.rows[2];
 	return x;
 }
 
@@ -4040,9 +4040,9 @@ HLML_INLINE int3x2 operator--( int3x2 &x )
 // post-fix
 HLML_INLINE int3x2 operator--( int3x2 &x, const int32_t )
 {
-	x[0]--;
-	x[1]--;
-	x[2]--;
+	x.rows[0]--;
+	x.rows[1]--;
+	x.rows[2]--;
 	return x;
 }
 
@@ -4051,9 +4051,9 @@ HLML_INLINE int3x2 operator--( int3x2 &x, const int32_t )
 HLML_INLINE int3x2 operator-( const int3x2 &x )
 {
 	return int3x2(
-		-x[0],
-		-x[1],
-		-x[2]
+		-x.rows[0],
+		-x.rows[1],
+		-x.rows[2]
 	);
 }
 
@@ -4062,9 +4062,9 @@ HLML_INLINE int3x2 operator-( const int3x2 &x )
 HLML_INLINE int3x2 operator~( const int3x2 &x )
 {
 	return int3x2(
-		~x[0],
-		~x[1],
-		~x[2]
+		~x.rows[0],
+		~x.rows[1],
+		~x.rows[2]
 	);
 }
 
@@ -4072,9 +4072,9 @@ HLML_INLINE int3x2 operator~( const int3x2 &x )
 HLML_INLINE int3x2 operator&( const int3x2 &lhs, const int32_t rhs )
 {
 	return int3x2(
-		lhs[0] & rhs,
-		lhs[1] & rhs,
-		lhs[2] & rhs
+		lhs.rows[0] & rhs,
+		lhs.rows[1] & rhs,
+		lhs.rows[2] & rhs
 	);
 }
 
@@ -4088,9 +4088,9 @@ HLML_INLINE int3x2 operator&=( int3x2 &lhs, const int32_t rhs )
 HLML_INLINE int3x2 operator&( const int3x2 &lhs, const int3x2 &rhs )
 {
 	return int3x2(
-		lhs[0] & rhs[0],
-		lhs[1] & rhs[1],
-		lhs[2] & rhs[2]
+		lhs.rows[0] & rhs.rows[0],
+		lhs.rows[1] & rhs.rows[1],
+		lhs.rows[2] & rhs.rows[2]
 	);
 }
 
@@ -4104,9 +4104,9 @@ HLML_INLINE int3x2 operator&=( int3x2 &lhs, const int3x2 &rhs )
 HLML_INLINE int3x2 operator|( const int3x2 &lhs, const int32_t rhs )
 {
 	return int3x2(
-		lhs[0] | rhs,
-		lhs[1] | rhs,
-		lhs[2] | rhs
+		lhs.rows[0] | rhs,
+		lhs.rows[1] | rhs,
+		lhs.rows[2] | rhs
 	);
 }
 
@@ -4120,9 +4120,9 @@ HLML_INLINE int3x2 operator|=( int3x2 &lhs, const int32_t rhs )
 HLML_INLINE int3x2 operator|( const int3x2 &lhs, const int3x2 &rhs )
 {
 	return int3x2(
-		lhs[0] | rhs[0],
-		lhs[1] | rhs[1],
-		lhs[2] | rhs[2]
+		lhs.rows[0] | rhs.rows[0],
+		lhs.rows[1] | rhs.rows[1],
+		lhs.rows[2] | rhs.rows[2]
 	);
 }
 
@@ -4136,9 +4136,9 @@ HLML_INLINE int3x2 operator|=( int3x2 &lhs, const int3x2 &rhs )
 HLML_INLINE int3x2 operator^( const int3x2 &lhs, const int32_t rhs )
 {
 	return int3x2(
-		lhs[0] ^ rhs,
-		lhs[1] ^ rhs,
-		lhs[2] ^ rhs
+		lhs.rows[0] ^ rhs,
+		lhs.rows[1] ^ rhs,
+		lhs.rows[2] ^ rhs
 	);
 }
 
@@ -4152,9 +4152,9 @@ HLML_INLINE int3x2 operator^=( int3x2 &lhs, const int32_t rhs )
 HLML_INLINE int3x2 operator^( const int3x2 &lhs, const int3x2 &rhs )
 {
 	return int3x2(
-		lhs[0] ^ rhs[0],
-		lhs[1] ^ rhs[1],
-		lhs[2] ^ rhs[2]
+		lhs.rows[0] ^ rhs.rows[0],
+		lhs.rows[1] ^ rhs.rows[1],
+		lhs.rows[2] ^ rhs.rows[2]
 	);
 }
 
@@ -4168,9 +4168,9 @@ HLML_INLINE int3x2 operator^=( int3x2 &lhs, const int3x2 &rhs )
 HLML_INLINE int3x2 operator<<( const int3x2 &lhs, const int32_t rhs )
 {
 	return int3x2(
-		lhs[0] << rhs,
-		lhs[1] << rhs,
-		lhs[2] << rhs
+		lhs.rows[0] << rhs,
+		lhs.rows[1] << rhs,
+		lhs.rows[2] << rhs
 	);
 }
 
@@ -4184,9 +4184,9 @@ HLML_INLINE int3x2 operator<<=( int3x2 &lhs, const int32_t rhs )
 HLML_INLINE int3x2 operator<<( const int3x2 &lhs, const int3x2 &rhs )
 {
 	return int3x2(
-		lhs[0] << rhs[0],
-		lhs[1] << rhs[1],
-		lhs[2] << rhs[2]
+		lhs.rows[0] << rhs.rows[0],
+		lhs.rows[1] << rhs.rows[1],
+		lhs.rows[2] << rhs.rows[2]
 	);
 }
 
@@ -4200,9 +4200,9 @@ HLML_INLINE int3x2 operator<<=( int3x2 &lhs, const int3x2 &rhs )
 HLML_INLINE int3x2 operator>>( const int3x2 &lhs, const int32_t rhs )
 {
 	return int3x2(
-		lhs[0] >> rhs,
-		lhs[1] >> rhs,
-		lhs[2] >> rhs
+		lhs.rows[0] >> rhs,
+		lhs.rows[1] >> rhs,
+		lhs.rows[2] >> rhs
 	);
 }
 
@@ -4216,9 +4216,9 @@ HLML_INLINE int3x2 operator>>=( int3x2 &lhs, const int32_t rhs )
 HLML_INLINE int3x2 operator>>( const int3x2 &lhs, const int3x2 &rhs )
 {
 	return int3x2(
-		lhs[0] >> rhs[0],
-		lhs[1] >> rhs[1],
-		lhs[2] >> rhs[2]
+		lhs.rows[0] >> rhs.rows[0],
+		lhs.rows[1] >> rhs.rows[1],
+		lhs.rows[2] >> rhs.rows[2]
 	);
 }
 
@@ -4278,9 +4278,9 @@ HLML_INLINE int3x3 mul( const int3x2 &lhs, const int2x3 &rhs )
 HLML_INLINE int3x3 sign( const int3x3 &x )
 {
 	return int3x3(
-		sign( x[0] ),
-		sign( x[1] ),
-		sign( x[2] )
+		sign( x.rows[0] ),
+		sign( x.rows[1] ),
+		sign( x.rows[2] )
 	);
 }
 
@@ -4288,9 +4288,9 @@ HLML_INLINE int3x3 sign( const int3x3 &x )
 HLML_INLINE int3x3 min( const int3x3 &x, const int3x3 &y )
 {
 	return int3x3(
-		min( x[0], y[0] ),
-		min( x[1], y[1] ),
-		min( x[2], y[2] )
+		min( x.rows[0], y.rows[0] ),
+		min( x.rows[1], y.rows[1] ),
+		min( x.rows[2], y.rows[2] )
 	);
 }
 
@@ -4298,9 +4298,9 @@ HLML_INLINE int3x3 min( const int3x3 &x, const int3x3 &y )
 HLML_INLINE int3x3 max( const int3x3 &x, const int3x3 &y )
 {
 	return int3x3(
-		max( x[0], y[0] ),
-		max( x[1], y[1] ),
-		max( x[2], y[2] )
+		max( x.rows[0], y.rows[0] ),
+		max( x.rows[1], y.rows[1] ),
+		max( x.rows[2], y.rows[2] )
 	);
 }
 
@@ -4308,9 +4308,9 @@ HLML_INLINE int3x3 max( const int3x3 &x, const int3x3 &y )
 HLML_INLINE int3x3 clamp( const int3x3 &x, const int3x3 &low, const int3x3 &high )
 {
 	return int3x3(
-		clamp( x[0], low[0], high[0] ),
-		clamp( x[1], low[1], high[1] ),
-		clamp( x[2], low[2], high[2] )
+		clamp( x.rows[0], low.rows[0], high.rows[0] ),
+		clamp( x.rows[1], low.rows[1], high.rows[1] ),
+		clamp( x.rows[2], low.rows[2], high.rows[2] )
 	);
 }
 
@@ -4318,9 +4318,9 @@ HLML_INLINE int3x3 clamp( const int3x3 &x, const int3x3 &low, const int3x3 &high
 HLML_INLINE int3x3 saturate( const int3x3 &x )
 {
 	return int3x3(
-		saturate( x[0] ),
-		saturate( x[1] ),
-		saturate( x[2] )
+		saturate( x.rows[0] ),
+		saturate( x.rows[1] ),
+		saturate( x.rows[2] )
 	);
 }
 
@@ -4328,9 +4328,9 @@ HLML_INLINE int3x3 saturate( const int3x3 &x )
 HLML_INLINE bool operator==( const int3x3 &lhs, const int3x3 &rhs )
 {
 	return
-		lhs[0] == rhs[0] &&
-		lhs[1] == rhs[1] &&
-		lhs[2] == rhs[2];
+		lhs.rows[0] == rhs.rows[0] &&
+		lhs.rows[1] == rhs.rows[1] &&
+		lhs.rows[2] == rhs.rows[2];
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
@@ -4343,9 +4343,9 @@ HLML_INLINE bool operator!=( const int3x3 &lhs, const int3x3 &rhs )
 HLML_INLINE bool3x3 operator<( const int3x3 &lhs, const int3x3 &rhs )
 {
 	return bool3x3(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2]
+		lhs.rows[0] < rhs.rows[0],
+		lhs.rows[1] < rhs.rows[1],
+		lhs.rows[2] < rhs.rows[2]
 	);
 }
 
@@ -4353,9 +4353,9 @@ HLML_INLINE bool3x3 operator<( const int3x3 &lhs, const int3x3 &rhs )
 HLML_INLINE bool3x3 operator<=( const int3x3 &lhs, const int3x3 &rhs )
 {
 	return bool3x3(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2]
+		lhs.rows[0] <= rhs.rows[0],
+		lhs.rows[1] <= rhs.rows[1],
+		lhs.rows[2] <= rhs.rows[2]
 	);
 }
 
@@ -4363,9 +4363,9 @@ HLML_INLINE bool3x3 operator<=( const int3x3 &lhs, const int3x3 &rhs )
 HLML_INLINE bool3x3 operator>( const int3x3 &lhs, const int3x3 &rhs )
 {
 	return bool3x3(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2]
+		lhs.rows[0] > rhs.rows[0],
+		lhs.rows[1] > rhs.rows[1],
+		lhs.rows[2] > rhs.rows[2]
 	);
 }
 
@@ -4373,9 +4373,9 @@ HLML_INLINE bool3x3 operator>( const int3x3 &lhs, const int3x3 &rhs )
 HLML_INLINE bool3x3 operator>=( const int3x3 &lhs, const int3x3 &rhs )
 {
 	return bool3x3(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2]
+		lhs.rows[0] >= rhs.rows[0],
+		lhs.rows[1] >= rhs.rows[1],
+		lhs.rows[2] >= rhs.rows[2]
 	);
 }
 
@@ -4383,9 +4383,9 @@ HLML_INLINE bool3x3 operator>=( const int3x3 &lhs, const int3x3 &rhs )
 HLML_INLINE int3x3 operator+( const int3x3 &lhs, const int32_t rhs )
 {
 	return int3x3(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs
+		lhs.rows[0] + rhs,
+		lhs.rows[1] + rhs,
+		lhs.rows[2] + rhs
 	);
 }
 
@@ -4399,9 +4399,9 @@ HLML_INLINE int3x3 operator+=( int3x3 &lhs, const int32_t rhs )
 HLML_INLINE int3x3 operator+( const int3x3 &lhs, const int3x3 &rhs )
 {
 	return int3x3(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2]
+		lhs.rows[0] + rhs.rows[0],
+		lhs.rows[1] + rhs.rows[1],
+		lhs.rows[2] + rhs.rows[2]
 	);
 }
 
@@ -4415,9 +4415,9 @@ HLML_INLINE int3x3 operator+=( int3x3 &lhs, const int3x3 &rhs )
 HLML_INLINE int3x3 operator-( const int3x3 &lhs, const int32_t rhs )
 {
 	return int3x3(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs
+		lhs.rows[0] - rhs,
+		lhs.rows[1] - rhs,
+		lhs.rows[2] - rhs
 	);
 }
 
@@ -4431,9 +4431,9 @@ HLML_INLINE int3x3 operator-=( int3x3 &lhs, const int32_t rhs )
 HLML_INLINE int3x3 operator-( const int3x3 &lhs, const int3x3 &rhs )
 {
 	return int3x3(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2]
+		lhs.rows[0] - rhs.rows[0],
+		lhs.rows[1] - rhs.rows[1],
+		lhs.rows[2] - rhs.rows[2]
 	);
 }
 
@@ -4447,9 +4447,9 @@ HLML_INLINE int3x3 operator-=( int3x3 &lhs, const int3x3 &rhs )
 HLML_INLINE int3x3 operator*( const int3x3 &lhs, const int32_t rhs )
 {
 	return int3x3(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs
+		lhs.rows[0] * rhs,
+		lhs.rows[1] * rhs,
+		lhs.rows[2] * rhs
 	);
 }
 
@@ -4463,9 +4463,9 @@ HLML_INLINE int3x3 operator*=( int3x3 &lhs, const int32_t rhs )
 HLML_INLINE int3x3 operator*( const int3x3 &lhs, const int3x3 &rhs )
 {
 	return int3x3(
-		lhs[0] * rhs[0],
-		lhs[1] * rhs[1],
-		lhs[2] * rhs[2]
+		lhs.rows[0] * rhs.rows[0],
+		lhs.rows[1] * rhs.rows[1],
+		lhs.rows[2] * rhs.rows[2]
 	);
 }
 
@@ -4479,9 +4479,9 @@ HLML_INLINE int3x3 operator*=( int3x3 &lhs, const int3x3 &rhs )
 HLML_INLINE int3x3 operator/( const int3x3 &lhs, const int32_t rhs )
 {
 	return int3x3(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs
+		lhs.rows[0] / rhs,
+		lhs.rows[1] / rhs,
+		lhs.rows[2] / rhs
 	);
 }
 
@@ -4495,9 +4495,9 @@ HLML_INLINE int3x3 operator/=( int3x3 &lhs, const int32_t rhs )
 HLML_INLINE int3x3 operator/( const int3x3 &lhs, const int3x3 &rhs )
 {
 	return int3x3(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1],
-		lhs[2] / rhs[2]
+		lhs.rows[0] / rhs.rows[0],
+		lhs.rows[1] / rhs.rows[1],
+		lhs.rows[2] / rhs.rows[2]
 	);
 }
 
@@ -4510,9 +4510,9 @@ HLML_INLINE int3x3 operator/=( int3x3 &lhs, const int3x3 &rhs )
 // ++s each component of the matrix and returns the result.
 HLML_INLINE int3x3 operator++( int3x3 &x )
 {
-	++x[0];
-	++x[1];
-	++x[2];
+	++x.rows[0];
+	++x.rows[1];
+	++x.rows[2];
 	return x;
 }
 
@@ -4520,18 +4520,18 @@ HLML_INLINE int3x3 operator++( int3x3 &x )
 // post-fix
 HLML_INLINE int3x3 operator++( int3x3 &x, const int32_t )
 {
-	x[0]++;
-	x[1]++;
-	x[2]++;
+	x.rows[0]++;
+	x.rows[1]++;
+	x.rows[2]++;
 	return x;
 }
 
 // --s each component of the matrix and returns the result.
 HLML_INLINE int3x3 operator--( int3x3 &x )
 {
-	--x[0];
-	--x[1];
-	--x[2];
+	--x.rows[0];
+	--x.rows[1];
+	--x.rows[2];
 	return x;
 }
 
@@ -4539,9 +4539,9 @@ HLML_INLINE int3x3 operator--( int3x3 &x )
 // post-fix
 HLML_INLINE int3x3 operator--( int3x3 &x, const int32_t )
 {
-	x[0]--;
-	x[1]--;
-	x[2]--;
+	x.rows[0]--;
+	x.rows[1]--;
+	x.rows[2]--;
 	return x;
 }
 
@@ -4550,9 +4550,9 @@ HLML_INLINE int3x3 operator--( int3x3 &x, const int32_t )
 HLML_INLINE int3x3 operator-( const int3x3 &x )
 {
 	return int3x3(
-		-x[0],
-		-x[1],
-		-x[2]
+		-x.rows[0],
+		-x.rows[1],
+		-x.rows[2]
 	);
 }
 
@@ -4561,9 +4561,9 @@ HLML_INLINE int3x3 operator-( const int3x3 &x )
 HLML_INLINE int3x3 operator~( const int3x3 &x )
 {
 	return int3x3(
-		~x[0],
-		~x[1],
-		~x[2]
+		~x.rows[0],
+		~x.rows[1],
+		~x.rows[2]
 	);
 }
 
@@ -4571,9 +4571,9 @@ HLML_INLINE int3x3 operator~( const int3x3 &x )
 HLML_INLINE int3x3 operator&( const int3x3 &lhs, const int32_t rhs )
 {
 	return int3x3(
-		lhs[0] & rhs,
-		lhs[1] & rhs,
-		lhs[2] & rhs
+		lhs.rows[0] & rhs,
+		lhs.rows[1] & rhs,
+		lhs.rows[2] & rhs
 	);
 }
 
@@ -4587,9 +4587,9 @@ HLML_INLINE int3x3 operator&=( int3x3 &lhs, const int32_t rhs )
 HLML_INLINE int3x3 operator&( const int3x3 &lhs, const int3x3 &rhs )
 {
 	return int3x3(
-		lhs[0] & rhs[0],
-		lhs[1] & rhs[1],
-		lhs[2] & rhs[2]
+		lhs.rows[0] & rhs.rows[0],
+		lhs.rows[1] & rhs.rows[1],
+		lhs.rows[2] & rhs.rows[2]
 	);
 }
 
@@ -4603,9 +4603,9 @@ HLML_INLINE int3x3 operator&=( int3x3 &lhs, const int3x3 &rhs )
 HLML_INLINE int3x3 operator|( const int3x3 &lhs, const int32_t rhs )
 {
 	return int3x3(
-		lhs[0] | rhs,
-		lhs[1] | rhs,
-		lhs[2] | rhs
+		lhs.rows[0] | rhs,
+		lhs.rows[1] | rhs,
+		lhs.rows[2] | rhs
 	);
 }
 
@@ -4619,9 +4619,9 @@ HLML_INLINE int3x3 operator|=( int3x3 &lhs, const int32_t rhs )
 HLML_INLINE int3x3 operator|( const int3x3 &lhs, const int3x3 &rhs )
 {
 	return int3x3(
-		lhs[0] | rhs[0],
-		lhs[1] | rhs[1],
-		lhs[2] | rhs[2]
+		lhs.rows[0] | rhs.rows[0],
+		lhs.rows[1] | rhs.rows[1],
+		lhs.rows[2] | rhs.rows[2]
 	);
 }
 
@@ -4635,9 +4635,9 @@ HLML_INLINE int3x3 operator|=( int3x3 &lhs, const int3x3 &rhs )
 HLML_INLINE int3x3 operator^( const int3x3 &lhs, const int32_t rhs )
 {
 	return int3x3(
-		lhs[0] ^ rhs,
-		lhs[1] ^ rhs,
-		lhs[2] ^ rhs
+		lhs.rows[0] ^ rhs,
+		lhs.rows[1] ^ rhs,
+		lhs.rows[2] ^ rhs
 	);
 }
 
@@ -4651,9 +4651,9 @@ HLML_INLINE int3x3 operator^=( int3x3 &lhs, const int32_t rhs )
 HLML_INLINE int3x3 operator^( const int3x3 &lhs, const int3x3 &rhs )
 {
 	return int3x3(
-		lhs[0] ^ rhs[0],
-		lhs[1] ^ rhs[1],
-		lhs[2] ^ rhs[2]
+		lhs.rows[0] ^ rhs.rows[0],
+		lhs.rows[1] ^ rhs.rows[1],
+		lhs.rows[2] ^ rhs.rows[2]
 	);
 }
 
@@ -4667,9 +4667,9 @@ HLML_INLINE int3x3 operator^=( int3x3 &lhs, const int3x3 &rhs )
 HLML_INLINE int3x3 operator<<( const int3x3 &lhs, const int32_t rhs )
 {
 	return int3x3(
-		lhs[0] << rhs,
-		lhs[1] << rhs,
-		lhs[2] << rhs
+		lhs.rows[0] << rhs,
+		lhs.rows[1] << rhs,
+		lhs.rows[2] << rhs
 	);
 }
 
@@ -4683,9 +4683,9 @@ HLML_INLINE int3x3 operator<<=( int3x3 &lhs, const int32_t rhs )
 HLML_INLINE int3x3 operator<<( const int3x3 &lhs, const int3x3 &rhs )
 {
 	return int3x3(
-		lhs[0] << rhs[0],
-		lhs[1] << rhs[1],
-		lhs[2] << rhs[2]
+		lhs.rows[0] << rhs.rows[0],
+		lhs.rows[1] << rhs.rows[1],
+		lhs.rows[2] << rhs.rows[2]
 	);
 }
 
@@ -4699,9 +4699,9 @@ HLML_INLINE int3x3 operator<<=( int3x3 &lhs, const int3x3 &rhs )
 HLML_INLINE int3x3 operator>>( const int3x3 &lhs, const int32_t rhs )
 {
 	return int3x3(
-		lhs[0] >> rhs,
-		lhs[1] >> rhs,
-		lhs[2] >> rhs
+		lhs.rows[0] >> rhs,
+		lhs.rows[1] >> rhs,
+		lhs.rows[2] >> rhs
 	);
 }
 
@@ -4715,9 +4715,9 @@ HLML_INLINE int3x3 operator>>=( int3x3 &lhs, const int32_t rhs )
 HLML_INLINE int3x3 operator>>( const int3x3 &lhs, const int3x3 &rhs )
 {
 	return int3x3(
-		lhs[0] >> rhs[0],
-		lhs[1] >> rhs[1],
-		lhs[2] >> rhs[2]
+		lhs.rows[0] >> rhs.rows[0],
+		lhs.rows[1] >> rhs.rows[1],
+		lhs.rows[2] >> rhs.rows[2]
 	);
 }
 
@@ -4798,9 +4798,9 @@ HLML_INLINE int3 mul( const int3 &lhs, const int3x3 &rhs )
 HLML_INLINE int3x4 sign( const int3x4 &x )
 {
 	return int3x4(
-		sign( x[0] ),
-		sign( x[1] ),
-		sign( x[2] )
+		sign( x.rows[0] ),
+		sign( x.rows[1] ),
+		sign( x.rows[2] )
 	);
 }
 
@@ -4808,9 +4808,9 @@ HLML_INLINE int3x4 sign( const int3x4 &x )
 HLML_INLINE int3x4 min( const int3x4 &x, const int3x4 &y )
 {
 	return int3x4(
-		min( x[0], y[0] ),
-		min( x[1], y[1] ),
-		min( x[2], y[2] )
+		min( x.rows[0], y.rows[0] ),
+		min( x.rows[1], y.rows[1] ),
+		min( x.rows[2], y.rows[2] )
 	);
 }
 
@@ -4818,9 +4818,9 @@ HLML_INLINE int3x4 min( const int3x4 &x, const int3x4 &y )
 HLML_INLINE int3x4 max( const int3x4 &x, const int3x4 &y )
 {
 	return int3x4(
-		max( x[0], y[0] ),
-		max( x[1], y[1] ),
-		max( x[2], y[2] )
+		max( x.rows[0], y.rows[0] ),
+		max( x.rows[1], y.rows[1] ),
+		max( x.rows[2], y.rows[2] )
 	);
 }
 
@@ -4828,9 +4828,9 @@ HLML_INLINE int3x4 max( const int3x4 &x, const int3x4 &y )
 HLML_INLINE int3x4 clamp( const int3x4 &x, const int3x4 &low, const int3x4 &high )
 {
 	return int3x4(
-		clamp( x[0], low[0], high[0] ),
-		clamp( x[1], low[1], high[1] ),
-		clamp( x[2], low[2], high[2] )
+		clamp( x.rows[0], low.rows[0], high.rows[0] ),
+		clamp( x.rows[1], low.rows[1], high.rows[1] ),
+		clamp( x.rows[2], low.rows[2], high.rows[2] )
 	);
 }
 
@@ -4838,9 +4838,9 @@ HLML_INLINE int3x4 clamp( const int3x4 &x, const int3x4 &low, const int3x4 &high
 HLML_INLINE int3x4 saturate( const int3x4 &x )
 {
 	return int3x4(
-		saturate( x[0] ),
-		saturate( x[1] ),
-		saturate( x[2] )
+		saturate( x.rows[0] ),
+		saturate( x.rows[1] ),
+		saturate( x.rows[2] )
 	);
 }
 
@@ -4848,9 +4848,9 @@ HLML_INLINE int3x4 saturate( const int3x4 &x )
 HLML_INLINE bool operator==( const int3x4 &lhs, const int3x4 &rhs )
 {
 	return
-		lhs[0] == rhs[0] &&
-		lhs[1] == rhs[1] &&
-		lhs[2] == rhs[2];
+		lhs.rows[0] == rhs.rows[0] &&
+		lhs.rows[1] == rhs.rows[1] &&
+		lhs.rows[2] == rhs.rows[2];
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
@@ -4863,9 +4863,9 @@ HLML_INLINE bool operator!=( const int3x4 &lhs, const int3x4 &rhs )
 HLML_INLINE bool3x4 operator<( const int3x4 &lhs, const int3x4 &rhs )
 {
 	return bool3x4(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2]
+		lhs.rows[0] < rhs.rows[0],
+		lhs.rows[1] < rhs.rows[1],
+		lhs.rows[2] < rhs.rows[2]
 	);
 }
 
@@ -4873,9 +4873,9 @@ HLML_INLINE bool3x4 operator<( const int3x4 &lhs, const int3x4 &rhs )
 HLML_INLINE bool3x4 operator<=( const int3x4 &lhs, const int3x4 &rhs )
 {
 	return bool3x4(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2]
+		lhs.rows[0] <= rhs.rows[0],
+		lhs.rows[1] <= rhs.rows[1],
+		lhs.rows[2] <= rhs.rows[2]
 	);
 }
 
@@ -4883,9 +4883,9 @@ HLML_INLINE bool3x4 operator<=( const int3x4 &lhs, const int3x4 &rhs )
 HLML_INLINE bool3x4 operator>( const int3x4 &lhs, const int3x4 &rhs )
 {
 	return bool3x4(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2]
+		lhs.rows[0] > rhs.rows[0],
+		lhs.rows[1] > rhs.rows[1],
+		lhs.rows[2] > rhs.rows[2]
 	);
 }
 
@@ -4893,9 +4893,9 @@ HLML_INLINE bool3x4 operator>( const int3x4 &lhs, const int3x4 &rhs )
 HLML_INLINE bool3x4 operator>=( const int3x4 &lhs, const int3x4 &rhs )
 {
 	return bool3x4(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2]
+		lhs.rows[0] >= rhs.rows[0],
+		lhs.rows[1] >= rhs.rows[1],
+		lhs.rows[2] >= rhs.rows[2]
 	);
 }
 
@@ -4903,9 +4903,9 @@ HLML_INLINE bool3x4 operator>=( const int3x4 &lhs, const int3x4 &rhs )
 HLML_INLINE int3x4 operator+( const int3x4 &lhs, const int32_t rhs )
 {
 	return int3x4(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs
+		lhs.rows[0] + rhs,
+		lhs.rows[1] + rhs,
+		lhs.rows[2] + rhs
 	);
 }
 
@@ -4919,9 +4919,9 @@ HLML_INLINE int3x4 operator+=( int3x4 &lhs, const int32_t rhs )
 HLML_INLINE int3x4 operator+( const int3x4 &lhs, const int3x4 &rhs )
 {
 	return int3x4(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2]
+		lhs.rows[0] + rhs.rows[0],
+		lhs.rows[1] + rhs.rows[1],
+		lhs.rows[2] + rhs.rows[2]
 	);
 }
 
@@ -4935,9 +4935,9 @@ HLML_INLINE int3x4 operator+=( int3x4 &lhs, const int3x4 &rhs )
 HLML_INLINE int3x4 operator-( const int3x4 &lhs, const int32_t rhs )
 {
 	return int3x4(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs
+		lhs.rows[0] - rhs,
+		lhs.rows[1] - rhs,
+		lhs.rows[2] - rhs
 	);
 }
 
@@ -4951,9 +4951,9 @@ HLML_INLINE int3x4 operator-=( int3x4 &lhs, const int32_t rhs )
 HLML_INLINE int3x4 operator-( const int3x4 &lhs, const int3x4 &rhs )
 {
 	return int3x4(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2]
+		lhs.rows[0] - rhs.rows[0],
+		lhs.rows[1] - rhs.rows[1],
+		lhs.rows[2] - rhs.rows[2]
 	);
 }
 
@@ -4967,9 +4967,9 @@ HLML_INLINE int3x4 operator-=( int3x4 &lhs, const int3x4 &rhs )
 HLML_INLINE int3x4 operator*( const int3x4 &lhs, const int32_t rhs )
 {
 	return int3x4(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs
+		lhs.rows[0] * rhs,
+		lhs.rows[1] * rhs,
+		lhs.rows[2] * rhs
 	);
 }
 
@@ -4983,9 +4983,9 @@ HLML_INLINE int3x4 operator*=( int3x4 &lhs, const int32_t rhs )
 HLML_INLINE int3x4 operator*( const int3x4 &lhs, const int3x4 &rhs )
 {
 	return int3x4(
-		lhs[0] * rhs[0],
-		lhs[1] * rhs[1],
-		lhs[2] * rhs[2]
+		lhs.rows[0] * rhs.rows[0],
+		lhs.rows[1] * rhs.rows[1],
+		lhs.rows[2] * rhs.rows[2]
 	);
 }
 
@@ -4999,9 +4999,9 @@ HLML_INLINE int3x4 operator*=( int3x4 &lhs, const int3x4 &rhs )
 HLML_INLINE int3x4 operator/( const int3x4 &lhs, const int32_t rhs )
 {
 	return int3x4(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs
+		lhs.rows[0] / rhs,
+		lhs.rows[1] / rhs,
+		lhs.rows[2] / rhs
 	);
 }
 
@@ -5015,9 +5015,9 @@ HLML_INLINE int3x4 operator/=( int3x4 &lhs, const int32_t rhs )
 HLML_INLINE int3x4 operator/( const int3x4 &lhs, const int3x4 &rhs )
 {
 	return int3x4(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1],
-		lhs[2] / rhs[2]
+		lhs.rows[0] / rhs.rows[0],
+		lhs.rows[1] / rhs.rows[1],
+		lhs.rows[2] / rhs.rows[2]
 	);
 }
 
@@ -5030,9 +5030,9 @@ HLML_INLINE int3x4 operator/=( int3x4 &lhs, const int3x4 &rhs )
 // ++s each component of the matrix and returns the result.
 HLML_INLINE int3x4 operator++( int3x4 &x )
 {
-	++x[0];
-	++x[1];
-	++x[2];
+	++x.rows[0];
+	++x.rows[1];
+	++x.rows[2];
 	return x;
 }
 
@@ -5040,18 +5040,18 @@ HLML_INLINE int3x4 operator++( int3x4 &x )
 // post-fix
 HLML_INLINE int3x4 operator++( int3x4 &x, const int32_t )
 {
-	x[0]++;
-	x[1]++;
-	x[2]++;
+	x.rows[0]++;
+	x.rows[1]++;
+	x.rows[2]++;
 	return x;
 }
 
 // --s each component of the matrix and returns the result.
 HLML_INLINE int3x4 operator--( int3x4 &x )
 {
-	--x[0];
-	--x[1];
-	--x[2];
+	--x.rows[0];
+	--x.rows[1];
+	--x.rows[2];
 	return x;
 }
 
@@ -5059,9 +5059,9 @@ HLML_INLINE int3x4 operator--( int3x4 &x )
 // post-fix
 HLML_INLINE int3x4 operator--( int3x4 &x, const int32_t )
 {
-	x[0]--;
-	x[1]--;
-	x[2]--;
+	x.rows[0]--;
+	x.rows[1]--;
+	x.rows[2]--;
 	return x;
 }
 
@@ -5070,9 +5070,9 @@ HLML_INLINE int3x4 operator--( int3x4 &x, const int32_t )
 HLML_INLINE int3x4 operator-( const int3x4 &x )
 {
 	return int3x4(
-		-x[0],
-		-x[1],
-		-x[2]
+		-x.rows[0],
+		-x.rows[1],
+		-x.rows[2]
 	);
 }
 
@@ -5081,9 +5081,9 @@ HLML_INLINE int3x4 operator-( const int3x4 &x )
 HLML_INLINE int3x4 operator~( const int3x4 &x )
 {
 	return int3x4(
-		~x[0],
-		~x[1],
-		~x[2]
+		~x.rows[0],
+		~x.rows[1],
+		~x.rows[2]
 	);
 }
 
@@ -5091,9 +5091,9 @@ HLML_INLINE int3x4 operator~( const int3x4 &x )
 HLML_INLINE int3x4 operator&( const int3x4 &lhs, const int32_t rhs )
 {
 	return int3x4(
-		lhs[0] & rhs,
-		lhs[1] & rhs,
-		lhs[2] & rhs
+		lhs.rows[0] & rhs,
+		lhs.rows[1] & rhs,
+		lhs.rows[2] & rhs
 	);
 }
 
@@ -5107,9 +5107,9 @@ HLML_INLINE int3x4 operator&=( int3x4 &lhs, const int32_t rhs )
 HLML_INLINE int3x4 operator&( const int3x4 &lhs, const int3x4 &rhs )
 {
 	return int3x4(
-		lhs[0] & rhs[0],
-		lhs[1] & rhs[1],
-		lhs[2] & rhs[2]
+		lhs.rows[0] & rhs.rows[0],
+		lhs.rows[1] & rhs.rows[1],
+		lhs.rows[2] & rhs.rows[2]
 	);
 }
 
@@ -5123,9 +5123,9 @@ HLML_INLINE int3x4 operator&=( int3x4 &lhs, const int3x4 &rhs )
 HLML_INLINE int3x4 operator|( const int3x4 &lhs, const int32_t rhs )
 {
 	return int3x4(
-		lhs[0] | rhs,
-		lhs[1] | rhs,
-		lhs[2] | rhs
+		lhs.rows[0] | rhs,
+		lhs.rows[1] | rhs,
+		lhs.rows[2] | rhs
 	);
 }
 
@@ -5139,9 +5139,9 @@ HLML_INLINE int3x4 operator|=( int3x4 &lhs, const int32_t rhs )
 HLML_INLINE int3x4 operator|( const int3x4 &lhs, const int3x4 &rhs )
 {
 	return int3x4(
-		lhs[0] | rhs[0],
-		lhs[1] | rhs[1],
-		lhs[2] | rhs[2]
+		lhs.rows[0] | rhs.rows[0],
+		lhs.rows[1] | rhs.rows[1],
+		lhs.rows[2] | rhs.rows[2]
 	);
 }
 
@@ -5155,9 +5155,9 @@ HLML_INLINE int3x4 operator|=( int3x4 &lhs, const int3x4 &rhs )
 HLML_INLINE int3x4 operator^( const int3x4 &lhs, const int32_t rhs )
 {
 	return int3x4(
-		lhs[0] ^ rhs,
-		lhs[1] ^ rhs,
-		lhs[2] ^ rhs
+		lhs.rows[0] ^ rhs,
+		lhs.rows[1] ^ rhs,
+		lhs.rows[2] ^ rhs
 	);
 }
 
@@ -5171,9 +5171,9 @@ HLML_INLINE int3x4 operator^=( int3x4 &lhs, const int32_t rhs )
 HLML_INLINE int3x4 operator^( const int3x4 &lhs, const int3x4 &rhs )
 {
 	return int3x4(
-		lhs[0] ^ rhs[0],
-		lhs[1] ^ rhs[1],
-		lhs[2] ^ rhs[2]
+		lhs.rows[0] ^ rhs.rows[0],
+		lhs.rows[1] ^ rhs.rows[1],
+		lhs.rows[2] ^ rhs.rows[2]
 	);
 }
 
@@ -5187,9 +5187,9 @@ HLML_INLINE int3x4 operator^=( int3x4 &lhs, const int3x4 &rhs )
 HLML_INLINE int3x4 operator<<( const int3x4 &lhs, const int32_t rhs )
 {
 	return int3x4(
-		lhs[0] << rhs,
-		lhs[1] << rhs,
-		lhs[2] << rhs
+		lhs.rows[0] << rhs,
+		lhs.rows[1] << rhs,
+		lhs.rows[2] << rhs
 	);
 }
 
@@ -5203,9 +5203,9 @@ HLML_INLINE int3x4 operator<<=( int3x4 &lhs, const int32_t rhs )
 HLML_INLINE int3x4 operator<<( const int3x4 &lhs, const int3x4 &rhs )
 {
 	return int3x4(
-		lhs[0] << rhs[0],
-		lhs[1] << rhs[1],
-		lhs[2] << rhs[2]
+		lhs.rows[0] << rhs.rows[0],
+		lhs.rows[1] << rhs.rows[1],
+		lhs.rows[2] << rhs.rows[2]
 	);
 }
 
@@ -5219,9 +5219,9 @@ HLML_INLINE int3x4 operator<<=( int3x4 &lhs, const int3x4 &rhs )
 HLML_INLINE int3x4 operator>>( const int3x4 &lhs, const int32_t rhs )
 {
 	return int3x4(
-		lhs[0] >> rhs,
-		lhs[1] >> rhs,
-		lhs[2] >> rhs
+		lhs.rows[0] >> rhs,
+		lhs.rows[1] >> rhs,
+		lhs.rows[2] >> rhs
 	);
 }
 
@@ -5235,9 +5235,9 @@ HLML_INLINE int3x4 operator>>=( int3x4 &lhs, const int32_t rhs )
 HLML_INLINE int3x4 operator>>( const int3x4 &lhs, const int3x4 &rhs )
 {
 	return int3x4(
-		lhs[0] >> rhs[0],
-		lhs[1] >> rhs[1],
-		lhs[2] >> rhs[2]
+		lhs.rows[0] >> rhs.rows[0],
+		lhs.rows[1] >> rhs.rows[1],
+		lhs.rows[2] >> rhs.rows[2]
 	);
 }
 
@@ -5299,10 +5299,10 @@ HLML_INLINE int3x3 mul( const int3x4 &lhs, const int4x3 &rhs )
 HLML_INLINE int4x2 sign( const int4x2 &x )
 {
 	return int4x2(
-		sign( x[0] ),
-		sign( x[1] ),
-		sign( x[2] ),
-		sign( x[3] )
+		sign( x.rows[0] ),
+		sign( x.rows[1] ),
+		sign( x.rows[2] ),
+		sign( x.rows[3] )
 	);
 }
 
@@ -5310,10 +5310,10 @@ HLML_INLINE int4x2 sign( const int4x2 &x )
 HLML_INLINE int4x2 min( const int4x2 &x, const int4x2 &y )
 {
 	return int4x2(
-		min( x[0], y[0] ),
-		min( x[1], y[1] ),
-		min( x[2], y[2] ),
-		min( x[3], y[3] )
+		min( x.rows[0], y.rows[0] ),
+		min( x.rows[1], y.rows[1] ),
+		min( x.rows[2], y.rows[2] ),
+		min( x.rows[3], y.rows[3] )
 	);
 }
 
@@ -5321,10 +5321,10 @@ HLML_INLINE int4x2 min( const int4x2 &x, const int4x2 &y )
 HLML_INLINE int4x2 max( const int4x2 &x, const int4x2 &y )
 {
 	return int4x2(
-		max( x[0], y[0] ),
-		max( x[1], y[1] ),
-		max( x[2], y[2] ),
-		max( x[3], y[3] )
+		max( x.rows[0], y.rows[0] ),
+		max( x.rows[1], y.rows[1] ),
+		max( x.rows[2], y.rows[2] ),
+		max( x.rows[3], y.rows[3] )
 	);
 }
 
@@ -5332,10 +5332,10 @@ HLML_INLINE int4x2 max( const int4x2 &x, const int4x2 &y )
 HLML_INLINE int4x2 clamp( const int4x2 &x, const int4x2 &low, const int4x2 &high )
 {
 	return int4x2(
-		clamp( x[0], low[0], high[0] ),
-		clamp( x[1], low[1], high[1] ),
-		clamp( x[2], low[2], high[2] ),
-		clamp( x[3], low[3], high[3] )
+		clamp( x.rows[0], low.rows[0], high.rows[0] ),
+		clamp( x.rows[1], low.rows[1], high.rows[1] ),
+		clamp( x.rows[2], low.rows[2], high.rows[2] ),
+		clamp( x.rows[3], low.rows[3], high.rows[3] )
 	);
 }
 
@@ -5343,10 +5343,10 @@ HLML_INLINE int4x2 clamp( const int4x2 &x, const int4x2 &low, const int4x2 &high
 HLML_INLINE int4x2 saturate( const int4x2 &x )
 {
 	return int4x2(
-		saturate( x[0] ),
-		saturate( x[1] ),
-		saturate( x[2] ),
-		saturate( x[3] )
+		saturate( x.rows[0] ),
+		saturate( x.rows[1] ),
+		saturate( x.rows[2] ),
+		saturate( x.rows[3] )
 	);
 }
 
@@ -5354,10 +5354,10 @@ HLML_INLINE int4x2 saturate( const int4x2 &x )
 HLML_INLINE bool operator==( const int4x2 &lhs, const int4x2 &rhs )
 {
 	return
-		lhs[0] == rhs[0] &&
-		lhs[1] == rhs[1] &&
-		lhs[2] == rhs[2] &&
-		lhs[3] == rhs[3];
+		lhs.rows[0] == rhs.rows[0] &&
+		lhs.rows[1] == rhs.rows[1] &&
+		lhs.rows[2] == rhs.rows[2] &&
+		lhs.rows[3] == rhs.rows[3];
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
@@ -5370,10 +5370,10 @@ HLML_INLINE bool operator!=( const int4x2 &lhs, const int4x2 &rhs )
 HLML_INLINE bool4x2 operator<( const int4x2 &lhs, const int4x2 &rhs )
 {
 	return bool4x2(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2],
-		lhs[3] < rhs[3]
+		lhs.rows[0] < rhs.rows[0],
+		lhs.rows[1] < rhs.rows[1],
+		lhs.rows[2] < rhs.rows[2],
+		lhs.rows[3] < rhs.rows[3]
 	);
 }
 
@@ -5381,10 +5381,10 @@ HLML_INLINE bool4x2 operator<( const int4x2 &lhs, const int4x2 &rhs )
 HLML_INLINE bool4x2 operator<=( const int4x2 &lhs, const int4x2 &rhs )
 {
 	return bool4x2(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2],
-		lhs[3] <= rhs[3]
+		lhs.rows[0] <= rhs.rows[0],
+		lhs.rows[1] <= rhs.rows[1],
+		lhs.rows[2] <= rhs.rows[2],
+		lhs.rows[3] <= rhs.rows[3]
 	);
 }
 
@@ -5392,10 +5392,10 @@ HLML_INLINE bool4x2 operator<=( const int4x2 &lhs, const int4x2 &rhs )
 HLML_INLINE bool4x2 operator>( const int4x2 &lhs, const int4x2 &rhs )
 {
 	return bool4x2(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2],
-		lhs[3] > rhs[3]
+		lhs.rows[0] > rhs.rows[0],
+		lhs.rows[1] > rhs.rows[1],
+		lhs.rows[2] > rhs.rows[2],
+		lhs.rows[3] > rhs.rows[3]
 	);
 }
 
@@ -5403,10 +5403,10 @@ HLML_INLINE bool4x2 operator>( const int4x2 &lhs, const int4x2 &rhs )
 HLML_INLINE bool4x2 operator>=( const int4x2 &lhs, const int4x2 &rhs )
 {
 	return bool4x2(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2],
-		lhs[3] >= rhs[3]
+		lhs.rows[0] >= rhs.rows[0],
+		lhs.rows[1] >= rhs.rows[1],
+		lhs.rows[2] >= rhs.rows[2],
+		lhs.rows[3] >= rhs.rows[3]
 	);
 }
 
@@ -5414,10 +5414,10 @@ HLML_INLINE bool4x2 operator>=( const int4x2 &lhs, const int4x2 &rhs )
 HLML_INLINE int4x2 operator+( const int4x2 &lhs, const int32_t rhs )
 {
 	return int4x2(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs,
-		lhs[3] + rhs
+		lhs.rows[0] + rhs,
+		lhs.rows[1] + rhs,
+		lhs.rows[2] + rhs,
+		lhs.rows[3] + rhs
 	);
 }
 
@@ -5431,10 +5431,10 @@ HLML_INLINE int4x2 operator+=( int4x2 &lhs, const int32_t rhs )
 HLML_INLINE int4x2 operator+( const int4x2 &lhs, const int4x2 &rhs )
 {
 	return int4x2(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2],
-		lhs[3] + rhs[3]
+		lhs.rows[0] + rhs.rows[0],
+		lhs.rows[1] + rhs.rows[1],
+		lhs.rows[2] + rhs.rows[2],
+		lhs.rows[3] + rhs.rows[3]
 	);
 }
 
@@ -5448,10 +5448,10 @@ HLML_INLINE int4x2 operator+=( int4x2 &lhs, const int4x2 &rhs )
 HLML_INLINE int4x2 operator-( const int4x2 &lhs, const int32_t rhs )
 {
 	return int4x2(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs,
-		lhs[3] - rhs
+		lhs.rows[0] - rhs,
+		lhs.rows[1] - rhs,
+		lhs.rows[2] - rhs,
+		lhs.rows[3] - rhs
 	);
 }
 
@@ -5465,10 +5465,10 @@ HLML_INLINE int4x2 operator-=( int4x2 &lhs, const int32_t rhs )
 HLML_INLINE int4x2 operator-( const int4x2 &lhs, const int4x2 &rhs )
 {
 	return int4x2(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2],
-		lhs[3] - rhs[3]
+		lhs.rows[0] - rhs.rows[0],
+		lhs.rows[1] - rhs.rows[1],
+		lhs.rows[2] - rhs.rows[2],
+		lhs.rows[3] - rhs.rows[3]
 	);
 }
 
@@ -5482,10 +5482,10 @@ HLML_INLINE int4x2 operator-=( int4x2 &lhs, const int4x2 &rhs )
 HLML_INLINE int4x2 operator*( const int4x2 &lhs, const int32_t rhs )
 {
 	return int4x2(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs,
-		lhs[3] * rhs
+		lhs.rows[0] * rhs,
+		lhs.rows[1] * rhs,
+		lhs.rows[2] * rhs,
+		lhs.rows[3] * rhs
 	);
 }
 
@@ -5499,10 +5499,10 @@ HLML_INLINE int4x2 operator*=( int4x2 &lhs, const int32_t rhs )
 HLML_INLINE int4x2 operator*( const int4x2 &lhs, const int4x2 &rhs )
 {
 	return int4x2(
-		lhs[0] * rhs[0],
-		lhs[1] * rhs[1],
-		lhs[2] * rhs[2],
-		lhs[3] * rhs[3]
+		lhs.rows[0] * rhs.rows[0],
+		lhs.rows[1] * rhs.rows[1],
+		lhs.rows[2] * rhs.rows[2],
+		lhs.rows[3] * rhs.rows[3]
 	);
 }
 
@@ -5516,10 +5516,10 @@ HLML_INLINE int4x2 operator*=( int4x2 &lhs, const int4x2 &rhs )
 HLML_INLINE int4x2 operator/( const int4x2 &lhs, const int32_t rhs )
 {
 	return int4x2(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs,
-		lhs[3] / rhs
+		lhs.rows[0] / rhs,
+		lhs.rows[1] / rhs,
+		lhs.rows[2] / rhs,
+		lhs.rows[3] / rhs
 	);
 }
 
@@ -5533,10 +5533,10 @@ HLML_INLINE int4x2 operator/=( int4x2 &lhs, const int32_t rhs )
 HLML_INLINE int4x2 operator/( const int4x2 &lhs, const int4x2 &rhs )
 {
 	return int4x2(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1],
-		lhs[2] / rhs[2],
-		lhs[3] / rhs[3]
+		lhs.rows[0] / rhs.rows[0],
+		lhs.rows[1] / rhs.rows[1],
+		lhs.rows[2] / rhs.rows[2],
+		lhs.rows[3] / rhs.rows[3]
 	);
 }
 
@@ -5549,10 +5549,10 @@ HLML_INLINE int4x2 operator/=( int4x2 &lhs, const int4x2 &rhs )
 // ++s each component of the matrix and returns the result.
 HLML_INLINE int4x2 operator++( int4x2 &x )
 {
-	++x[0];
-	++x[1];
-	++x[2];
-	++x[3];
+	++x.rows[0];
+	++x.rows[1];
+	++x.rows[2];
+	++x.rows[3];
 	return x;
 }
 
@@ -5560,20 +5560,20 @@ HLML_INLINE int4x2 operator++( int4x2 &x )
 // post-fix
 HLML_INLINE int4x2 operator++( int4x2 &x, const int32_t )
 {
-	x[0]++;
-	x[1]++;
-	x[2]++;
-	x[3]++;
+	x.rows[0]++;
+	x.rows[1]++;
+	x.rows[2]++;
+	x.rows[3]++;
 	return x;
 }
 
 // --s each component of the matrix and returns the result.
 HLML_INLINE int4x2 operator--( int4x2 &x )
 {
-	--x[0];
-	--x[1];
-	--x[2];
-	--x[3];
+	--x.rows[0];
+	--x.rows[1];
+	--x.rows[2];
+	--x.rows[3];
 	return x;
 }
 
@@ -5581,10 +5581,10 @@ HLML_INLINE int4x2 operator--( int4x2 &x )
 // post-fix
 HLML_INLINE int4x2 operator--( int4x2 &x, const int32_t )
 {
-	x[0]--;
-	x[1]--;
-	x[2]--;
-	x[3]--;
+	x.rows[0]--;
+	x.rows[1]--;
+	x.rows[2]--;
+	x.rows[3]--;
 	return x;
 }
 
@@ -5593,10 +5593,10 @@ HLML_INLINE int4x2 operator--( int4x2 &x, const int32_t )
 HLML_INLINE int4x2 operator-( const int4x2 &x )
 {
 	return int4x2(
-		-x[0],
-		-x[1],
-		-x[2],
-		-x[3]
+		-x.rows[0],
+		-x.rows[1],
+		-x.rows[2],
+		-x.rows[3]
 	);
 }
 
@@ -5605,10 +5605,10 @@ HLML_INLINE int4x2 operator-( const int4x2 &x )
 HLML_INLINE int4x2 operator~( const int4x2 &x )
 {
 	return int4x2(
-		~x[0],
-		~x[1],
-		~x[2],
-		~x[3]
+		~x.rows[0],
+		~x.rows[1],
+		~x.rows[2],
+		~x.rows[3]
 	);
 }
 
@@ -5616,10 +5616,10 @@ HLML_INLINE int4x2 operator~( const int4x2 &x )
 HLML_INLINE int4x2 operator&( const int4x2 &lhs, const int32_t rhs )
 {
 	return int4x2(
-		lhs[0] & rhs,
-		lhs[1] & rhs,
-		lhs[2] & rhs,
-		lhs[3] & rhs
+		lhs.rows[0] & rhs,
+		lhs.rows[1] & rhs,
+		lhs.rows[2] & rhs,
+		lhs.rows[3] & rhs
 	);
 }
 
@@ -5633,10 +5633,10 @@ HLML_INLINE int4x2 operator&=( int4x2 &lhs, const int32_t rhs )
 HLML_INLINE int4x2 operator&( const int4x2 &lhs, const int4x2 &rhs )
 {
 	return int4x2(
-		lhs[0] & rhs[0],
-		lhs[1] & rhs[1],
-		lhs[2] & rhs[2],
-		lhs[3] & rhs[3]
+		lhs.rows[0] & rhs.rows[0],
+		lhs.rows[1] & rhs.rows[1],
+		lhs.rows[2] & rhs.rows[2],
+		lhs.rows[3] & rhs.rows[3]
 	);
 }
 
@@ -5650,10 +5650,10 @@ HLML_INLINE int4x2 operator&=( int4x2 &lhs, const int4x2 &rhs )
 HLML_INLINE int4x2 operator|( const int4x2 &lhs, const int32_t rhs )
 {
 	return int4x2(
-		lhs[0] | rhs,
-		lhs[1] | rhs,
-		lhs[2] | rhs,
-		lhs[3] | rhs
+		lhs.rows[0] | rhs,
+		lhs.rows[1] | rhs,
+		lhs.rows[2] | rhs,
+		lhs.rows[3] | rhs
 	);
 }
 
@@ -5667,10 +5667,10 @@ HLML_INLINE int4x2 operator|=( int4x2 &lhs, const int32_t rhs )
 HLML_INLINE int4x2 operator|( const int4x2 &lhs, const int4x2 &rhs )
 {
 	return int4x2(
-		lhs[0] | rhs[0],
-		lhs[1] | rhs[1],
-		lhs[2] | rhs[2],
-		lhs[3] | rhs[3]
+		lhs.rows[0] | rhs.rows[0],
+		lhs.rows[1] | rhs.rows[1],
+		lhs.rows[2] | rhs.rows[2],
+		lhs.rows[3] | rhs.rows[3]
 	);
 }
 
@@ -5684,10 +5684,10 @@ HLML_INLINE int4x2 operator|=( int4x2 &lhs, const int4x2 &rhs )
 HLML_INLINE int4x2 operator^( const int4x2 &lhs, const int32_t rhs )
 {
 	return int4x2(
-		lhs[0] ^ rhs,
-		lhs[1] ^ rhs,
-		lhs[2] ^ rhs,
-		lhs[3] ^ rhs
+		lhs.rows[0] ^ rhs,
+		lhs.rows[1] ^ rhs,
+		lhs.rows[2] ^ rhs,
+		lhs.rows[3] ^ rhs
 	);
 }
 
@@ -5701,10 +5701,10 @@ HLML_INLINE int4x2 operator^=( int4x2 &lhs, const int32_t rhs )
 HLML_INLINE int4x2 operator^( const int4x2 &lhs, const int4x2 &rhs )
 {
 	return int4x2(
-		lhs[0] ^ rhs[0],
-		lhs[1] ^ rhs[1],
-		lhs[2] ^ rhs[2],
-		lhs[3] ^ rhs[3]
+		lhs.rows[0] ^ rhs.rows[0],
+		lhs.rows[1] ^ rhs.rows[1],
+		lhs.rows[2] ^ rhs.rows[2],
+		lhs.rows[3] ^ rhs.rows[3]
 	);
 }
 
@@ -5718,10 +5718,10 @@ HLML_INLINE int4x2 operator^=( int4x2 &lhs, const int4x2 &rhs )
 HLML_INLINE int4x2 operator<<( const int4x2 &lhs, const int32_t rhs )
 {
 	return int4x2(
-		lhs[0] << rhs,
-		lhs[1] << rhs,
-		lhs[2] << rhs,
-		lhs[3] << rhs
+		lhs.rows[0] << rhs,
+		lhs.rows[1] << rhs,
+		lhs.rows[2] << rhs,
+		lhs.rows[3] << rhs
 	);
 }
 
@@ -5735,10 +5735,10 @@ HLML_INLINE int4x2 operator<<=( int4x2 &lhs, const int32_t rhs )
 HLML_INLINE int4x2 operator<<( const int4x2 &lhs, const int4x2 &rhs )
 {
 	return int4x2(
-		lhs[0] << rhs[0],
-		lhs[1] << rhs[1],
-		lhs[2] << rhs[2],
-		lhs[3] << rhs[3]
+		lhs.rows[0] << rhs.rows[0],
+		lhs.rows[1] << rhs.rows[1],
+		lhs.rows[2] << rhs.rows[2],
+		lhs.rows[3] << rhs.rows[3]
 	);
 }
 
@@ -5752,10 +5752,10 @@ HLML_INLINE int4x2 operator<<=( int4x2 &lhs, const int4x2 &rhs )
 HLML_INLINE int4x2 operator>>( const int4x2 &lhs, const int32_t rhs )
 {
 	return int4x2(
-		lhs[0] >> rhs,
-		lhs[1] >> rhs,
-		lhs[2] >> rhs,
-		lhs[3] >> rhs
+		lhs.rows[0] >> rhs,
+		lhs.rows[1] >> rhs,
+		lhs.rows[2] >> rhs,
+		lhs.rows[3] >> rhs
 	);
 }
 
@@ -5769,10 +5769,10 @@ HLML_INLINE int4x2 operator>>=( int4x2 &lhs, const int32_t rhs )
 HLML_INLINE int4x2 operator>>( const int4x2 &lhs, const int4x2 &rhs )
 {
 	return int4x2(
-		lhs[0] >> rhs[0],
-		lhs[1] >> rhs[1],
-		lhs[2] >> rhs[2],
-		lhs[3] >> rhs[3]
+		lhs.rows[0] >> rhs.rows[0],
+		lhs.rows[1] >> rhs.rows[1],
+		lhs.rows[2] >> rhs.rows[2],
+		lhs.rows[3] >> rhs.rows[3]
 	);
 }
 
@@ -5843,10 +5843,10 @@ HLML_INLINE int4x4 mul( const int4x2 &lhs, const int2x4 &rhs )
 HLML_INLINE int4x3 sign( const int4x3 &x )
 {
 	return int4x3(
-		sign( x[0] ),
-		sign( x[1] ),
-		sign( x[2] ),
-		sign( x[3] )
+		sign( x.rows[0] ),
+		sign( x.rows[1] ),
+		sign( x.rows[2] ),
+		sign( x.rows[3] )
 	);
 }
 
@@ -5854,10 +5854,10 @@ HLML_INLINE int4x3 sign( const int4x3 &x )
 HLML_INLINE int4x3 min( const int4x3 &x, const int4x3 &y )
 {
 	return int4x3(
-		min( x[0], y[0] ),
-		min( x[1], y[1] ),
-		min( x[2], y[2] ),
-		min( x[3], y[3] )
+		min( x.rows[0], y.rows[0] ),
+		min( x.rows[1], y.rows[1] ),
+		min( x.rows[2], y.rows[2] ),
+		min( x.rows[3], y.rows[3] )
 	);
 }
 
@@ -5865,10 +5865,10 @@ HLML_INLINE int4x3 min( const int4x3 &x, const int4x3 &y )
 HLML_INLINE int4x3 max( const int4x3 &x, const int4x3 &y )
 {
 	return int4x3(
-		max( x[0], y[0] ),
-		max( x[1], y[1] ),
-		max( x[2], y[2] ),
-		max( x[3], y[3] )
+		max( x.rows[0], y.rows[0] ),
+		max( x.rows[1], y.rows[1] ),
+		max( x.rows[2], y.rows[2] ),
+		max( x.rows[3], y.rows[3] )
 	);
 }
 
@@ -5876,10 +5876,10 @@ HLML_INLINE int4x3 max( const int4x3 &x, const int4x3 &y )
 HLML_INLINE int4x3 clamp( const int4x3 &x, const int4x3 &low, const int4x3 &high )
 {
 	return int4x3(
-		clamp( x[0], low[0], high[0] ),
-		clamp( x[1], low[1], high[1] ),
-		clamp( x[2], low[2], high[2] ),
-		clamp( x[3], low[3], high[3] )
+		clamp( x.rows[0], low.rows[0], high.rows[0] ),
+		clamp( x.rows[1], low.rows[1], high.rows[1] ),
+		clamp( x.rows[2], low.rows[2], high.rows[2] ),
+		clamp( x.rows[3], low.rows[3], high.rows[3] )
 	);
 }
 
@@ -5887,10 +5887,10 @@ HLML_INLINE int4x3 clamp( const int4x3 &x, const int4x3 &low, const int4x3 &high
 HLML_INLINE int4x3 saturate( const int4x3 &x )
 {
 	return int4x3(
-		saturate( x[0] ),
-		saturate( x[1] ),
-		saturate( x[2] ),
-		saturate( x[3] )
+		saturate( x.rows[0] ),
+		saturate( x.rows[1] ),
+		saturate( x.rows[2] ),
+		saturate( x.rows[3] )
 	);
 }
 
@@ -5898,10 +5898,10 @@ HLML_INLINE int4x3 saturate( const int4x3 &x )
 HLML_INLINE bool operator==( const int4x3 &lhs, const int4x3 &rhs )
 {
 	return
-		lhs[0] == rhs[0] &&
-		lhs[1] == rhs[1] &&
-		lhs[2] == rhs[2] &&
-		lhs[3] == rhs[3];
+		lhs.rows[0] == rhs.rows[0] &&
+		lhs.rows[1] == rhs.rows[1] &&
+		lhs.rows[2] == rhs.rows[2] &&
+		lhs.rows[3] == rhs.rows[3];
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
@@ -5914,10 +5914,10 @@ HLML_INLINE bool operator!=( const int4x3 &lhs, const int4x3 &rhs )
 HLML_INLINE bool4x3 operator<( const int4x3 &lhs, const int4x3 &rhs )
 {
 	return bool4x3(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2],
-		lhs[3] < rhs[3]
+		lhs.rows[0] < rhs.rows[0],
+		lhs.rows[1] < rhs.rows[1],
+		lhs.rows[2] < rhs.rows[2],
+		lhs.rows[3] < rhs.rows[3]
 	);
 }
 
@@ -5925,10 +5925,10 @@ HLML_INLINE bool4x3 operator<( const int4x3 &lhs, const int4x3 &rhs )
 HLML_INLINE bool4x3 operator<=( const int4x3 &lhs, const int4x3 &rhs )
 {
 	return bool4x3(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2],
-		lhs[3] <= rhs[3]
+		lhs.rows[0] <= rhs.rows[0],
+		lhs.rows[1] <= rhs.rows[1],
+		lhs.rows[2] <= rhs.rows[2],
+		lhs.rows[3] <= rhs.rows[3]
 	);
 }
 
@@ -5936,10 +5936,10 @@ HLML_INLINE bool4x3 operator<=( const int4x3 &lhs, const int4x3 &rhs )
 HLML_INLINE bool4x3 operator>( const int4x3 &lhs, const int4x3 &rhs )
 {
 	return bool4x3(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2],
-		lhs[3] > rhs[3]
+		lhs.rows[0] > rhs.rows[0],
+		lhs.rows[1] > rhs.rows[1],
+		lhs.rows[2] > rhs.rows[2],
+		lhs.rows[3] > rhs.rows[3]
 	);
 }
 
@@ -5947,10 +5947,10 @@ HLML_INLINE bool4x3 operator>( const int4x3 &lhs, const int4x3 &rhs )
 HLML_INLINE bool4x3 operator>=( const int4x3 &lhs, const int4x3 &rhs )
 {
 	return bool4x3(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2],
-		lhs[3] >= rhs[3]
+		lhs.rows[0] >= rhs.rows[0],
+		lhs.rows[1] >= rhs.rows[1],
+		lhs.rows[2] >= rhs.rows[2],
+		lhs.rows[3] >= rhs.rows[3]
 	);
 }
 
@@ -5958,10 +5958,10 @@ HLML_INLINE bool4x3 operator>=( const int4x3 &lhs, const int4x3 &rhs )
 HLML_INLINE int4x3 operator+( const int4x3 &lhs, const int32_t rhs )
 {
 	return int4x3(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs,
-		lhs[3] + rhs
+		lhs.rows[0] + rhs,
+		lhs.rows[1] + rhs,
+		lhs.rows[2] + rhs,
+		lhs.rows[3] + rhs
 	);
 }
 
@@ -5975,10 +5975,10 @@ HLML_INLINE int4x3 operator+=( int4x3 &lhs, const int32_t rhs )
 HLML_INLINE int4x3 operator+( const int4x3 &lhs, const int4x3 &rhs )
 {
 	return int4x3(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2],
-		lhs[3] + rhs[3]
+		lhs.rows[0] + rhs.rows[0],
+		lhs.rows[1] + rhs.rows[1],
+		lhs.rows[2] + rhs.rows[2],
+		lhs.rows[3] + rhs.rows[3]
 	);
 }
 
@@ -5992,10 +5992,10 @@ HLML_INLINE int4x3 operator+=( int4x3 &lhs, const int4x3 &rhs )
 HLML_INLINE int4x3 operator-( const int4x3 &lhs, const int32_t rhs )
 {
 	return int4x3(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs,
-		lhs[3] - rhs
+		lhs.rows[0] - rhs,
+		lhs.rows[1] - rhs,
+		lhs.rows[2] - rhs,
+		lhs.rows[3] - rhs
 	);
 }
 
@@ -6009,10 +6009,10 @@ HLML_INLINE int4x3 operator-=( int4x3 &lhs, const int32_t rhs )
 HLML_INLINE int4x3 operator-( const int4x3 &lhs, const int4x3 &rhs )
 {
 	return int4x3(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2],
-		lhs[3] - rhs[3]
+		lhs.rows[0] - rhs.rows[0],
+		lhs.rows[1] - rhs.rows[1],
+		lhs.rows[2] - rhs.rows[2],
+		lhs.rows[3] - rhs.rows[3]
 	);
 }
 
@@ -6026,10 +6026,10 @@ HLML_INLINE int4x3 operator-=( int4x3 &lhs, const int4x3 &rhs )
 HLML_INLINE int4x3 operator*( const int4x3 &lhs, const int32_t rhs )
 {
 	return int4x3(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs,
-		lhs[3] * rhs
+		lhs.rows[0] * rhs,
+		lhs.rows[1] * rhs,
+		lhs.rows[2] * rhs,
+		lhs.rows[3] * rhs
 	);
 }
 
@@ -6043,10 +6043,10 @@ HLML_INLINE int4x3 operator*=( int4x3 &lhs, const int32_t rhs )
 HLML_INLINE int4x3 operator*( const int4x3 &lhs, const int4x3 &rhs )
 {
 	return int4x3(
-		lhs[0] * rhs[0],
-		lhs[1] * rhs[1],
-		lhs[2] * rhs[2],
-		lhs[3] * rhs[3]
+		lhs.rows[0] * rhs.rows[0],
+		lhs.rows[1] * rhs.rows[1],
+		lhs.rows[2] * rhs.rows[2],
+		lhs.rows[3] * rhs.rows[3]
 	);
 }
 
@@ -6060,10 +6060,10 @@ HLML_INLINE int4x3 operator*=( int4x3 &lhs, const int4x3 &rhs )
 HLML_INLINE int4x3 operator/( const int4x3 &lhs, const int32_t rhs )
 {
 	return int4x3(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs,
-		lhs[3] / rhs
+		lhs.rows[0] / rhs,
+		lhs.rows[1] / rhs,
+		lhs.rows[2] / rhs,
+		lhs.rows[3] / rhs
 	);
 }
 
@@ -6077,10 +6077,10 @@ HLML_INLINE int4x3 operator/=( int4x3 &lhs, const int32_t rhs )
 HLML_INLINE int4x3 operator/( const int4x3 &lhs, const int4x3 &rhs )
 {
 	return int4x3(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1],
-		lhs[2] / rhs[2],
-		lhs[3] / rhs[3]
+		lhs.rows[0] / rhs.rows[0],
+		lhs.rows[1] / rhs.rows[1],
+		lhs.rows[2] / rhs.rows[2],
+		lhs.rows[3] / rhs.rows[3]
 	);
 }
 
@@ -6093,10 +6093,10 @@ HLML_INLINE int4x3 operator/=( int4x3 &lhs, const int4x3 &rhs )
 // ++s each component of the matrix and returns the result.
 HLML_INLINE int4x3 operator++( int4x3 &x )
 {
-	++x[0];
-	++x[1];
-	++x[2];
-	++x[3];
+	++x.rows[0];
+	++x.rows[1];
+	++x.rows[2];
+	++x.rows[3];
 	return x;
 }
 
@@ -6104,20 +6104,20 @@ HLML_INLINE int4x3 operator++( int4x3 &x )
 // post-fix
 HLML_INLINE int4x3 operator++( int4x3 &x, const int32_t )
 {
-	x[0]++;
-	x[1]++;
-	x[2]++;
-	x[3]++;
+	x.rows[0]++;
+	x.rows[1]++;
+	x.rows[2]++;
+	x.rows[3]++;
 	return x;
 }
 
 // --s each component of the matrix and returns the result.
 HLML_INLINE int4x3 operator--( int4x3 &x )
 {
-	--x[0];
-	--x[1];
-	--x[2];
-	--x[3];
+	--x.rows[0];
+	--x.rows[1];
+	--x.rows[2];
+	--x.rows[3];
 	return x;
 }
 
@@ -6125,10 +6125,10 @@ HLML_INLINE int4x3 operator--( int4x3 &x )
 // post-fix
 HLML_INLINE int4x3 operator--( int4x3 &x, const int32_t )
 {
-	x[0]--;
-	x[1]--;
-	x[2]--;
-	x[3]--;
+	x.rows[0]--;
+	x.rows[1]--;
+	x.rows[2]--;
+	x.rows[3]--;
 	return x;
 }
 
@@ -6137,10 +6137,10 @@ HLML_INLINE int4x3 operator--( int4x3 &x, const int32_t )
 HLML_INLINE int4x3 operator-( const int4x3 &x )
 {
 	return int4x3(
-		-x[0],
-		-x[1],
-		-x[2],
-		-x[3]
+		-x.rows[0],
+		-x.rows[1],
+		-x.rows[2],
+		-x.rows[3]
 	);
 }
 
@@ -6149,10 +6149,10 @@ HLML_INLINE int4x3 operator-( const int4x3 &x )
 HLML_INLINE int4x3 operator~( const int4x3 &x )
 {
 	return int4x3(
-		~x[0],
-		~x[1],
-		~x[2],
-		~x[3]
+		~x.rows[0],
+		~x.rows[1],
+		~x.rows[2],
+		~x.rows[3]
 	);
 }
 
@@ -6160,10 +6160,10 @@ HLML_INLINE int4x3 operator~( const int4x3 &x )
 HLML_INLINE int4x3 operator&( const int4x3 &lhs, const int32_t rhs )
 {
 	return int4x3(
-		lhs[0] & rhs,
-		lhs[1] & rhs,
-		lhs[2] & rhs,
-		lhs[3] & rhs
+		lhs.rows[0] & rhs,
+		lhs.rows[1] & rhs,
+		lhs.rows[2] & rhs,
+		lhs.rows[3] & rhs
 	);
 }
 
@@ -6177,10 +6177,10 @@ HLML_INLINE int4x3 operator&=( int4x3 &lhs, const int32_t rhs )
 HLML_INLINE int4x3 operator&( const int4x3 &lhs, const int4x3 &rhs )
 {
 	return int4x3(
-		lhs[0] & rhs[0],
-		lhs[1] & rhs[1],
-		lhs[2] & rhs[2],
-		lhs[3] & rhs[3]
+		lhs.rows[0] & rhs.rows[0],
+		lhs.rows[1] & rhs.rows[1],
+		lhs.rows[2] & rhs.rows[2],
+		lhs.rows[3] & rhs.rows[3]
 	);
 }
 
@@ -6194,10 +6194,10 @@ HLML_INLINE int4x3 operator&=( int4x3 &lhs, const int4x3 &rhs )
 HLML_INLINE int4x3 operator|( const int4x3 &lhs, const int32_t rhs )
 {
 	return int4x3(
-		lhs[0] | rhs,
-		lhs[1] | rhs,
-		lhs[2] | rhs,
-		lhs[3] | rhs
+		lhs.rows[0] | rhs,
+		lhs.rows[1] | rhs,
+		lhs.rows[2] | rhs,
+		lhs.rows[3] | rhs
 	);
 }
 
@@ -6211,10 +6211,10 @@ HLML_INLINE int4x3 operator|=( int4x3 &lhs, const int32_t rhs )
 HLML_INLINE int4x3 operator|( const int4x3 &lhs, const int4x3 &rhs )
 {
 	return int4x3(
-		lhs[0] | rhs[0],
-		lhs[1] | rhs[1],
-		lhs[2] | rhs[2],
-		lhs[3] | rhs[3]
+		lhs.rows[0] | rhs.rows[0],
+		lhs.rows[1] | rhs.rows[1],
+		lhs.rows[2] | rhs.rows[2],
+		lhs.rows[3] | rhs.rows[3]
 	);
 }
 
@@ -6228,10 +6228,10 @@ HLML_INLINE int4x3 operator|=( int4x3 &lhs, const int4x3 &rhs )
 HLML_INLINE int4x3 operator^( const int4x3 &lhs, const int32_t rhs )
 {
 	return int4x3(
-		lhs[0] ^ rhs,
-		lhs[1] ^ rhs,
-		lhs[2] ^ rhs,
-		lhs[3] ^ rhs
+		lhs.rows[0] ^ rhs,
+		lhs.rows[1] ^ rhs,
+		lhs.rows[2] ^ rhs,
+		lhs.rows[3] ^ rhs
 	);
 }
 
@@ -6245,10 +6245,10 @@ HLML_INLINE int4x3 operator^=( int4x3 &lhs, const int32_t rhs )
 HLML_INLINE int4x3 operator^( const int4x3 &lhs, const int4x3 &rhs )
 {
 	return int4x3(
-		lhs[0] ^ rhs[0],
-		lhs[1] ^ rhs[1],
-		lhs[2] ^ rhs[2],
-		lhs[3] ^ rhs[3]
+		lhs.rows[0] ^ rhs.rows[0],
+		lhs.rows[1] ^ rhs.rows[1],
+		lhs.rows[2] ^ rhs.rows[2],
+		lhs.rows[3] ^ rhs.rows[3]
 	);
 }
 
@@ -6262,10 +6262,10 @@ HLML_INLINE int4x3 operator^=( int4x3 &lhs, const int4x3 &rhs )
 HLML_INLINE int4x3 operator<<( const int4x3 &lhs, const int32_t rhs )
 {
 	return int4x3(
-		lhs[0] << rhs,
-		lhs[1] << rhs,
-		lhs[2] << rhs,
-		lhs[3] << rhs
+		lhs.rows[0] << rhs,
+		lhs.rows[1] << rhs,
+		lhs.rows[2] << rhs,
+		lhs.rows[3] << rhs
 	);
 }
 
@@ -6279,10 +6279,10 @@ HLML_INLINE int4x3 operator<<=( int4x3 &lhs, const int32_t rhs )
 HLML_INLINE int4x3 operator<<( const int4x3 &lhs, const int4x3 &rhs )
 {
 	return int4x3(
-		lhs[0] << rhs[0],
-		lhs[1] << rhs[1],
-		lhs[2] << rhs[2],
-		lhs[3] << rhs[3]
+		lhs.rows[0] << rhs.rows[0],
+		lhs.rows[1] << rhs.rows[1],
+		lhs.rows[2] << rhs.rows[2],
+		lhs.rows[3] << rhs.rows[3]
 	);
 }
 
@@ -6296,10 +6296,10 @@ HLML_INLINE int4x3 operator<<=( int4x3 &lhs, const int4x3 &rhs )
 HLML_INLINE int4x3 operator>>( const int4x3 &lhs, const int32_t rhs )
 {
 	return int4x3(
-		lhs[0] >> rhs,
-		lhs[1] >> rhs,
-		lhs[2] >> rhs,
-		lhs[3] >> rhs
+		lhs.rows[0] >> rhs,
+		lhs.rows[1] >> rhs,
+		lhs.rows[2] >> rhs,
+		lhs.rows[3] >> rhs
 	);
 }
 
@@ -6313,10 +6313,10 @@ HLML_INLINE int4x3 operator>>=( int4x3 &lhs, const int32_t rhs )
 HLML_INLINE int4x3 operator>>( const int4x3 &lhs, const int4x3 &rhs )
 {
 	return int4x3(
-		lhs[0] >> rhs[0],
-		lhs[1] >> rhs[1],
-		lhs[2] >> rhs[2],
-		lhs[3] >> rhs[3]
+		lhs.rows[0] >> rhs.rows[0],
+		lhs.rows[1] >> rhs.rows[1],
+		lhs.rows[2] >> rhs.rows[2],
+		lhs.rows[3] >> rhs.rows[3]
 	);
 }
 
@@ -6388,10 +6388,10 @@ HLML_INLINE int4x4 mul( const int4x3 &lhs, const int3x4 &rhs )
 HLML_INLINE int4x4 sign( const int4x4 &x )
 {
 	return int4x4(
-		sign( x[0] ),
-		sign( x[1] ),
-		sign( x[2] ),
-		sign( x[3] )
+		sign( x.rows[0] ),
+		sign( x.rows[1] ),
+		sign( x.rows[2] ),
+		sign( x.rows[3] )
 	);
 }
 
@@ -6399,10 +6399,10 @@ HLML_INLINE int4x4 sign( const int4x4 &x )
 HLML_INLINE int4x4 min( const int4x4 &x, const int4x4 &y )
 {
 	return int4x4(
-		min( x[0], y[0] ),
-		min( x[1], y[1] ),
-		min( x[2], y[2] ),
-		min( x[3], y[3] )
+		min( x.rows[0], y.rows[0] ),
+		min( x.rows[1], y.rows[1] ),
+		min( x.rows[2], y.rows[2] ),
+		min( x.rows[3], y.rows[3] )
 	);
 }
 
@@ -6410,10 +6410,10 @@ HLML_INLINE int4x4 min( const int4x4 &x, const int4x4 &y )
 HLML_INLINE int4x4 max( const int4x4 &x, const int4x4 &y )
 {
 	return int4x4(
-		max( x[0], y[0] ),
-		max( x[1], y[1] ),
-		max( x[2], y[2] ),
-		max( x[3], y[3] )
+		max( x.rows[0], y.rows[0] ),
+		max( x.rows[1], y.rows[1] ),
+		max( x.rows[2], y.rows[2] ),
+		max( x.rows[3], y.rows[3] )
 	);
 }
 
@@ -6421,10 +6421,10 @@ HLML_INLINE int4x4 max( const int4x4 &x, const int4x4 &y )
 HLML_INLINE int4x4 clamp( const int4x4 &x, const int4x4 &low, const int4x4 &high )
 {
 	return int4x4(
-		clamp( x[0], low[0], high[0] ),
-		clamp( x[1], low[1], high[1] ),
-		clamp( x[2], low[2], high[2] ),
-		clamp( x[3], low[3], high[3] )
+		clamp( x.rows[0], low.rows[0], high.rows[0] ),
+		clamp( x.rows[1], low.rows[1], high.rows[1] ),
+		clamp( x.rows[2], low.rows[2], high.rows[2] ),
+		clamp( x.rows[3], low.rows[3], high.rows[3] )
 	);
 }
 
@@ -6432,10 +6432,10 @@ HLML_INLINE int4x4 clamp( const int4x4 &x, const int4x4 &low, const int4x4 &high
 HLML_INLINE int4x4 saturate( const int4x4 &x )
 {
 	return int4x4(
-		saturate( x[0] ),
-		saturate( x[1] ),
-		saturate( x[2] ),
-		saturate( x[3] )
+		saturate( x.rows[0] ),
+		saturate( x.rows[1] ),
+		saturate( x.rows[2] ),
+		saturate( x.rows[3] )
 	);
 }
 
@@ -6443,10 +6443,10 @@ HLML_INLINE int4x4 saturate( const int4x4 &x )
 HLML_INLINE bool operator==( const int4x4 &lhs, const int4x4 &rhs )
 {
 	return
-		lhs[0] == rhs[0] &&
-		lhs[1] == rhs[1] &&
-		lhs[2] == rhs[2] &&
-		lhs[3] == rhs[3];
+		lhs.rows[0] == rhs.rows[0] &&
+		lhs.rows[1] == rhs.rows[1] &&
+		lhs.rows[2] == rhs.rows[2] &&
+		lhs.rows[3] == rhs.rows[3];
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
@@ -6459,10 +6459,10 @@ HLML_INLINE bool operator!=( const int4x4 &lhs, const int4x4 &rhs )
 HLML_INLINE bool4x4 operator<( const int4x4 &lhs, const int4x4 &rhs )
 {
 	return bool4x4(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2],
-		lhs[3] < rhs[3]
+		lhs.rows[0] < rhs.rows[0],
+		lhs.rows[1] < rhs.rows[1],
+		lhs.rows[2] < rhs.rows[2],
+		lhs.rows[3] < rhs.rows[3]
 	);
 }
 
@@ -6470,10 +6470,10 @@ HLML_INLINE bool4x4 operator<( const int4x4 &lhs, const int4x4 &rhs )
 HLML_INLINE bool4x4 operator<=( const int4x4 &lhs, const int4x4 &rhs )
 {
 	return bool4x4(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2],
-		lhs[3] <= rhs[3]
+		lhs.rows[0] <= rhs.rows[0],
+		lhs.rows[1] <= rhs.rows[1],
+		lhs.rows[2] <= rhs.rows[2],
+		lhs.rows[3] <= rhs.rows[3]
 	);
 }
 
@@ -6481,10 +6481,10 @@ HLML_INLINE bool4x4 operator<=( const int4x4 &lhs, const int4x4 &rhs )
 HLML_INLINE bool4x4 operator>( const int4x4 &lhs, const int4x4 &rhs )
 {
 	return bool4x4(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2],
-		lhs[3] > rhs[3]
+		lhs.rows[0] > rhs.rows[0],
+		lhs.rows[1] > rhs.rows[1],
+		lhs.rows[2] > rhs.rows[2],
+		lhs.rows[3] > rhs.rows[3]
 	);
 }
 
@@ -6492,10 +6492,10 @@ HLML_INLINE bool4x4 operator>( const int4x4 &lhs, const int4x4 &rhs )
 HLML_INLINE bool4x4 operator>=( const int4x4 &lhs, const int4x4 &rhs )
 {
 	return bool4x4(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2],
-		lhs[3] >= rhs[3]
+		lhs.rows[0] >= rhs.rows[0],
+		lhs.rows[1] >= rhs.rows[1],
+		lhs.rows[2] >= rhs.rows[2],
+		lhs.rows[3] >= rhs.rows[3]
 	);
 }
 
@@ -6503,10 +6503,10 @@ HLML_INLINE bool4x4 operator>=( const int4x4 &lhs, const int4x4 &rhs )
 HLML_INLINE int4x4 operator+( const int4x4 &lhs, const int32_t rhs )
 {
 	return int4x4(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs,
-		lhs[3] + rhs
+		lhs.rows[0] + rhs,
+		lhs.rows[1] + rhs,
+		lhs.rows[2] + rhs,
+		lhs.rows[3] + rhs
 	);
 }
 
@@ -6520,10 +6520,10 @@ HLML_INLINE int4x4 operator+=( int4x4 &lhs, const int32_t rhs )
 HLML_INLINE int4x4 operator+( const int4x4 &lhs, const int4x4 &rhs )
 {
 	return int4x4(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2],
-		lhs[3] + rhs[3]
+		lhs.rows[0] + rhs.rows[0],
+		lhs.rows[1] + rhs.rows[1],
+		lhs.rows[2] + rhs.rows[2],
+		lhs.rows[3] + rhs.rows[3]
 	);
 }
 
@@ -6537,10 +6537,10 @@ HLML_INLINE int4x4 operator+=( int4x4 &lhs, const int4x4 &rhs )
 HLML_INLINE int4x4 operator-( const int4x4 &lhs, const int32_t rhs )
 {
 	return int4x4(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs,
-		lhs[3] - rhs
+		lhs.rows[0] - rhs,
+		lhs.rows[1] - rhs,
+		lhs.rows[2] - rhs,
+		lhs.rows[3] - rhs
 	);
 }
 
@@ -6554,10 +6554,10 @@ HLML_INLINE int4x4 operator-=( int4x4 &lhs, const int32_t rhs )
 HLML_INLINE int4x4 operator-( const int4x4 &lhs, const int4x4 &rhs )
 {
 	return int4x4(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2],
-		lhs[3] - rhs[3]
+		lhs.rows[0] - rhs.rows[0],
+		lhs.rows[1] - rhs.rows[1],
+		lhs.rows[2] - rhs.rows[2],
+		lhs.rows[3] - rhs.rows[3]
 	);
 }
 
@@ -6571,10 +6571,10 @@ HLML_INLINE int4x4 operator-=( int4x4 &lhs, const int4x4 &rhs )
 HLML_INLINE int4x4 operator*( const int4x4 &lhs, const int32_t rhs )
 {
 	return int4x4(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs,
-		lhs[3] * rhs
+		lhs.rows[0] * rhs,
+		lhs.rows[1] * rhs,
+		lhs.rows[2] * rhs,
+		lhs.rows[3] * rhs
 	);
 }
 
@@ -6588,10 +6588,10 @@ HLML_INLINE int4x4 operator*=( int4x4 &lhs, const int32_t rhs )
 HLML_INLINE int4x4 operator*( const int4x4 &lhs, const int4x4 &rhs )
 {
 	return int4x4(
-		lhs[0] * rhs[0],
-		lhs[1] * rhs[1],
-		lhs[2] * rhs[2],
-		lhs[3] * rhs[3]
+		lhs.rows[0] * rhs.rows[0],
+		lhs.rows[1] * rhs.rows[1],
+		lhs.rows[2] * rhs.rows[2],
+		lhs.rows[3] * rhs.rows[3]
 	);
 }
 
@@ -6605,10 +6605,10 @@ HLML_INLINE int4x4 operator*=( int4x4 &lhs, const int4x4 &rhs )
 HLML_INLINE int4x4 operator/( const int4x4 &lhs, const int32_t rhs )
 {
 	return int4x4(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs,
-		lhs[3] / rhs
+		lhs.rows[0] / rhs,
+		lhs.rows[1] / rhs,
+		lhs.rows[2] / rhs,
+		lhs.rows[3] / rhs
 	);
 }
 
@@ -6622,10 +6622,10 @@ HLML_INLINE int4x4 operator/=( int4x4 &lhs, const int32_t rhs )
 HLML_INLINE int4x4 operator/( const int4x4 &lhs, const int4x4 &rhs )
 {
 	return int4x4(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1],
-		lhs[2] / rhs[2],
-		lhs[3] / rhs[3]
+		lhs.rows[0] / rhs.rows[0],
+		lhs.rows[1] / rhs.rows[1],
+		lhs.rows[2] / rhs.rows[2],
+		lhs.rows[3] / rhs.rows[3]
 	);
 }
 
@@ -6638,10 +6638,10 @@ HLML_INLINE int4x4 operator/=( int4x4 &lhs, const int4x4 &rhs )
 // ++s each component of the matrix and returns the result.
 HLML_INLINE int4x4 operator++( int4x4 &x )
 {
-	++x[0];
-	++x[1];
-	++x[2];
-	++x[3];
+	++x.rows[0];
+	++x.rows[1];
+	++x.rows[2];
+	++x.rows[3];
 	return x;
 }
 
@@ -6649,20 +6649,20 @@ HLML_INLINE int4x4 operator++( int4x4 &x )
 // post-fix
 HLML_INLINE int4x4 operator++( int4x4 &x, const int32_t )
 {
-	x[0]++;
-	x[1]++;
-	x[2]++;
-	x[3]++;
+	x.rows[0]++;
+	x.rows[1]++;
+	x.rows[2]++;
+	x.rows[3]++;
 	return x;
 }
 
 // --s each component of the matrix and returns the result.
 HLML_INLINE int4x4 operator--( int4x4 &x )
 {
-	--x[0];
-	--x[1];
-	--x[2];
-	--x[3];
+	--x.rows[0];
+	--x.rows[1];
+	--x.rows[2];
+	--x.rows[3];
 	return x;
 }
 
@@ -6670,10 +6670,10 @@ HLML_INLINE int4x4 operator--( int4x4 &x )
 // post-fix
 HLML_INLINE int4x4 operator--( int4x4 &x, const int32_t )
 {
-	x[0]--;
-	x[1]--;
-	x[2]--;
-	x[3]--;
+	x.rows[0]--;
+	x.rows[1]--;
+	x.rows[2]--;
+	x.rows[3]--;
 	return x;
 }
 
@@ -6682,10 +6682,10 @@ HLML_INLINE int4x4 operator--( int4x4 &x, const int32_t )
 HLML_INLINE int4x4 operator-( const int4x4 &x )
 {
 	return int4x4(
-		-x[0],
-		-x[1],
-		-x[2],
-		-x[3]
+		-x.rows[0],
+		-x.rows[1],
+		-x.rows[2],
+		-x.rows[3]
 	);
 }
 
@@ -6694,10 +6694,10 @@ HLML_INLINE int4x4 operator-( const int4x4 &x )
 HLML_INLINE int4x4 operator~( const int4x4 &x )
 {
 	return int4x4(
-		~x[0],
-		~x[1],
-		~x[2],
-		~x[3]
+		~x.rows[0],
+		~x.rows[1],
+		~x.rows[2],
+		~x.rows[3]
 	);
 }
 
@@ -6705,10 +6705,10 @@ HLML_INLINE int4x4 operator~( const int4x4 &x )
 HLML_INLINE int4x4 operator&( const int4x4 &lhs, const int32_t rhs )
 {
 	return int4x4(
-		lhs[0] & rhs,
-		lhs[1] & rhs,
-		lhs[2] & rhs,
-		lhs[3] & rhs
+		lhs.rows[0] & rhs,
+		lhs.rows[1] & rhs,
+		lhs.rows[2] & rhs,
+		lhs.rows[3] & rhs
 	);
 }
 
@@ -6722,10 +6722,10 @@ HLML_INLINE int4x4 operator&=( int4x4 &lhs, const int32_t rhs )
 HLML_INLINE int4x4 operator&( const int4x4 &lhs, const int4x4 &rhs )
 {
 	return int4x4(
-		lhs[0] & rhs[0],
-		lhs[1] & rhs[1],
-		lhs[2] & rhs[2],
-		lhs[3] & rhs[3]
+		lhs.rows[0] & rhs.rows[0],
+		lhs.rows[1] & rhs.rows[1],
+		lhs.rows[2] & rhs.rows[2],
+		lhs.rows[3] & rhs.rows[3]
 	);
 }
 
@@ -6739,10 +6739,10 @@ HLML_INLINE int4x4 operator&=( int4x4 &lhs, const int4x4 &rhs )
 HLML_INLINE int4x4 operator|( const int4x4 &lhs, const int32_t rhs )
 {
 	return int4x4(
-		lhs[0] | rhs,
-		lhs[1] | rhs,
-		lhs[2] | rhs,
-		lhs[3] | rhs
+		lhs.rows[0] | rhs,
+		lhs.rows[1] | rhs,
+		lhs.rows[2] | rhs,
+		lhs.rows[3] | rhs
 	);
 }
 
@@ -6756,10 +6756,10 @@ HLML_INLINE int4x4 operator|=( int4x4 &lhs, const int32_t rhs )
 HLML_INLINE int4x4 operator|( const int4x4 &lhs, const int4x4 &rhs )
 {
 	return int4x4(
-		lhs[0] | rhs[0],
-		lhs[1] | rhs[1],
-		lhs[2] | rhs[2],
-		lhs[3] | rhs[3]
+		lhs.rows[0] | rhs.rows[0],
+		lhs.rows[1] | rhs.rows[1],
+		lhs.rows[2] | rhs.rows[2],
+		lhs.rows[3] | rhs.rows[3]
 	);
 }
 
@@ -6773,10 +6773,10 @@ HLML_INLINE int4x4 operator|=( int4x4 &lhs, const int4x4 &rhs )
 HLML_INLINE int4x4 operator^( const int4x4 &lhs, const int32_t rhs )
 {
 	return int4x4(
-		lhs[0] ^ rhs,
-		lhs[1] ^ rhs,
-		lhs[2] ^ rhs,
-		lhs[3] ^ rhs
+		lhs.rows[0] ^ rhs,
+		lhs.rows[1] ^ rhs,
+		lhs.rows[2] ^ rhs,
+		lhs.rows[3] ^ rhs
 	);
 }
 
@@ -6790,10 +6790,10 @@ HLML_INLINE int4x4 operator^=( int4x4 &lhs, const int32_t rhs )
 HLML_INLINE int4x4 operator^( const int4x4 &lhs, const int4x4 &rhs )
 {
 	return int4x4(
-		lhs[0] ^ rhs[0],
-		lhs[1] ^ rhs[1],
-		lhs[2] ^ rhs[2],
-		lhs[3] ^ rhs[3]
+		lhs.rows[0] ^ rhs.rows[0],
+		lhs.rows[1] ^ rhs.rows[1],
+		lhs.rows[2] ^ rhs.rows[2],
+		lhs.rows[3] ^ rhs.rows[3]
 	);
 }
 
@@ -6807,10 +6807,10 @@ HLML_INLINE int4x4 operator^=( int4x4 &lhs, const int4x4 &rhs )
 HLML_INLINE int4x4 operator<<( const int4x4 &lhs, const int32_t rhs )
 {
 	return int4x4(
-		lhs[0] << rhs,
-		lhs[1] << rhs,
-		lhs[2] << rhs,
-		lhs[3] << rhs
+		lhs.rows[0] << rhs,
+		lhs.rows[1] << rhs,
+		lhs.rows[2] << rhs,
+		lhs.rows[3] << rhs
 	);
 }
 
@@ -6824,10 +6824,10 @@ HLML_INLINE int4x4 operator<<=( int4x4 &lhs, const int32_t rhs )
 HLML_INLINE int4x4 operator<<( const int4x4 &lhs, const int4x4 &rhs )
 {
 	return int4x4(
-		lhs[0] << rhs[0],
-		lhs[1] << rhs[1],
-		lhs[2] << rhs[2],
-		lhs[3] << rhs[3]
+		lhs.rows[0] << rhs.rows[0],
+		lhs.rows[1] << rhs.rows[1],
+		lhs.rows[2] << rhs.rows[2],
+		lhs.rows[3] << rhs.rows[3]
 	);
 }
 
@@ -6841,10 +6841,10 @@ HLML_INLINE int4x4 operator<<=( int4x4 &lhs, const int4x4 &rhs )
 HLML_INLINE int4x4 operator>>( const int4x4 &lhs, const int32_t rhs )
 {
 	return int4x4(
-		lhs[0] >> rhs,
-		lhs[1] >> rhs,
-		lhs[2] >> rhs,
-		lhs[3] >> rhs
+		lhs.rows[0] >> rhs,
+		lhs.rows[1] >> rhs,
+		lhs.rows[2] >> rhs,
+		lhs.rows[3] >> rhs
 	);
 }
 
@@ -6858,10 +6858,10 @@ HLML_INLINE int4x4 operator>>=( int4x4 &lhs, const int32_t rhs )
 HLML_INLINE int4x4 operator>>( const int4x4 &lhs, const int4x4 &rhs )
 {
 	return int4x4(
-		lhs[0] >> rhs[0],
-		lhs[1] >> rhs[1],
-		lhs[2] >> rhs[2],
-		lhs[3] >> rhs[3]
+		lhs.rows[0] >> rhs.rows[0],
+		lhs.rows[1] >> rhs.rows[1],
+		lhs.rows[2] >> rhs.rows[2],
+		lhs.rows[3] >> rhs.rows[3]
 	);
 }
 
@@ -7009,8 +7009,8 @@ HLML_INLINE int4x4 scale( const int4x4 &mat, const int3 &scale )
 HLML_INLINE uint2x2 min( const uint2x2 &x, const uint2x2 &y )
 {
 	return uint2x2(
-		min( x[0], y[0] ),
-		min( x[1], y[1] )
+		min( x.rows[0], y.rows[0] ),
+		min( x.rows[1], y.rows[1] )
 	);
 }
 
@@ -7018,8 +7018,8 @@ HLML_INLINE uint2x2 min( const uint2x2 &x, const uint2x2 &y )
 HLML_INLINE uint2x2 max( const uint2x2 &x, const uint2x2 &y )
 {
 	return uint2x2(
-		max( x[0], y[0] ),
-		max( x[1], y[1] )
+		max( x.rows[0], y.rows[0] ),
+		max( x.rows[1], y.rows[1] )
 	);
 }
 
@@ -7027,8 +7027,8 @@ HLML_INLINE uint2x2 max( const uint2x2 &x, const uint2x2 &y )
 HLML_INLINE uint2x2 clamp( const uint2x2 &x, const uint2x2 &low, const uint2x2 &high )
 {
 	return uint2x2(
-		clamp( x[0], low[0], high[0] ),
-		clamp( x[1], low[1], high[1] )
+		clamp( x.rows[0], low.rows[0], high.rows[0] ),
+		clamp( x.rows[1], low.rows[1], high.rows[1] )
 	);
 }
 
@@ -7036,8 +7036,8 @@ HLML_INLINE uint2x2 clamp( const uint2x2 &x, const uint2x2 &low, const uint2x2 &
 HLML_INLINE uint2x2 saturate( const uint2x2 &x )
 {
 	return uint2x2(
-		saturate( x[0] ),
-		saturate( x[1] )
+		saturate( x.rows[0] ),
+		saturate( x.rows[1] )
 	);
 }
 
@@ -7045,8 +7045,8 @@ HLML_INLINE uint2x2 saturate( const uint2x2 &x )
 HLML_INLINE bool operator==( const uint2x2 &lhs, const uint2x2 &rhs )
 {
 	return
-		lhs[0] == rhs[0] &&
-		lhs[1] == rhs[1];
+		lhs.rows[0] == rhs.rows[0] &&
+		lhs.rows[1] == rhs.rows[1];
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
@@ -7059,8 +7059,8 @@ HLML_INLINE bool operator!=( const uint2x2 &lhs, const uint2x2 &rhs )
 HLML_INLINE bool2x2 operator<( const uint2x2 &lhs, const uint2x2 &rhs )
 {
 	return bool2x2(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1]
+		lhs.rows[0] < rhs.rows[0],
+		lhs.rows[1] < rhs.rows[1]
 	);
 }
 
@@ -7068,8 +7068,8 @@ HLML_INLINE bool2x2 operator<( const uint2x2 &lhs, const uint2x2 &rhs )
 HLML_INLINE bool2x2 operator<=( const uint2x2 &lhs, const uint2x2 &rhs )
 {
 	return bool2x2(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1]
+		lhs.rows[0] <= rhs.rows[0],
+		lhs.rows[1] <= rhs.rows[1]
 	);
 }
 
@@ -7077,8 +7077,8 @@ HLML_INLINE bool2x2 operator<=( const uint2x2 &lhs, const uint2x2 &rhs )
 HLML_INLINE bool2x2 operator>( const uint2x2 &lhs, const uint2x2 &rhs )
 {
 	return bool2x2(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1]
+		lhs.rows[0] > rhs.rows[0],
+		lhs.rows[1] > rhs.rows[1]
 	);
 }
 
@@ -7086,8 +7086,8 @@ HLML_INLINE bool2x2 operator>( const uint2x2 &lhs, const uint2x2 &rhs )
 HLML_INLINE bool2x2 operator>=( const uint2x2 &lhs, const uint2x2 &rhs )
 {
 	return bool2x2(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1]
+		lhs.rows[0] >= rhs.rows[0],
+		lhs.rows[1] >= rhs.rows[1]
 	);
 }
 
@@ -7095,8 +7095,8 @@ HLML_INLINE bool2x2 operator>=( const uint2x2 &lhs, const uint2x2 &rhs )
 HLML_INLINE uint2x2 operator+( const uint2x2 &lhs, const uint32_t rhs )
 {
 	return uint2x2(
-		lhs[0] + rhs,
-		lhs[1] + rhs
+		lhs.rows[0] + rhs,
+		lhs.rows[1] + rhs
 	);
 }
 
@@ -7110,8 +7110,8 @@ HLML_INLINE uint2x2 operator+=( uint2x2 &lhs, const uint32_t rhs )
 HLML_INLINE uint2x2 operator+( const uint2x2 &lhs, const uint2x2 &rhs )
 {
 	return uint2x2(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1]
+		lhs.rows[0] + rhs.rows[0],
+		lhs.rows[1] + rhs.rows[1]
 	);
 }
 
@@ -7125,8 +7125,8 @@ HLML_INLINE uint2x2 operator+=( uint2x2 &lhs, const uint2x2 &rhs )
 HLML_INLINE uint2x2 operator-( const uint2x2 &lhs, const uint32_t rhs )
 {
 	return uint2x2(
-		lhs[0] - rhs,
-		lhs[1] - rhs
+		lhs.rows[0] - rhs,
+		lhs.rows[1] - rhs
 	);
 }
 
@@ -7140,8 +7140,8 @@ HLML_INLINE uint2x2 operator-=( uint2x2 &lhs, const uint32_t rhs )
 HLML_INLINE uint2x2 operator-( const uint2x2 &lhs, const uint2x2 &rhs )
 {
 	return uint2x2(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1]
+		lhs.rows[0] - rhs.rows[0],
+		lhs.rows[1] - rhs.rows[1]
 	);
 }
 
@@ -7155,8 +7155,8 @@ HLML_INLINE uint2x2 operator-=( uint2x2 &lhs, const uint2x2 &rhs )
 HLML_INLINE uint2x2 operator*( const uint2x2 &lhs, const uint32_t rhs )
 {
 	return uint2x2(
-		lhs[0] * rhs,
-		lhs[1] * rhs
+		lhs.rows[0] * rhs,
+		lhs.rows[1] * rhs
 	);
 }
 
@@ -7170,8 +7170,8 @@ HLML_INLINE uint2x2 operator*=( uint2x2 &lhs, const uint32_t rhs )
 HLML_INLINE uint2x2 operator*( const uint2x2 &lhs, const uint2x2 &rhs )
 {
 	return uint2x2(
-		lhs[0] * rhs[0],
-		lhs[1] * rhs[1]
+		lhs.rows[0] * rhs.rows[0],
+		lhs.rows[1] * rhs.rows[1]
 	);
 }
 
@@ -7185,8 +7185,8 @@ HLML_INLINE uint2x2 operator*=( uint2x2 &lhs, const uint2x2 &rhs )
 HLML_INLINE uint2x2 operator/( const uint2x2 &lhs, const uint32_t rhs )
 {
 	return uint2x2(
-		lhs[0] / rhs,
-		lhs[1] / rhs
+		lhs.rows[0] / rhs,
+		lhs.rows[1] / rhs
 	);
 }
 
@@ -7200,8 +7200,8 @@ HLML_INLINE uint2x2 operator/=( uint2x2 &lhs, const uint32_t rhs )
 HLML_INLINE uint2x2 operator/( const uint2x2 &lhs, const uint2x2 &rhs )
 {
 	return uint2x2(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1]
+		lhs.rows[0] / rhs.rows[0],
+		lhs.rows[1] / rhs.rows[1]
 	);
 }
 
@@ -7214,8 +7214,8 @@ HLML_INLINE uint2x2 operator/=( uint2x2 &lhs, const uint2x2 &rhs )
 // ++s each component of the matrix and returns the result.
 HLML_INLINE uint2x2 operator++( uint2x2 &x )
 {
-	++x[0];
-	++x[1];
+	++x.rows[0];
+	++x.rows[1];
 	return x;
 }
 
@@ -7223,16 +7223,16 @@ HLML_INLINE uint2x2 operator++( uint2x2 &x )
 // post-fix
 HLML_INLINE uint2x2 operator++( uint2x2 &x, const int32_t )
 {
-	x[0]++;
-	x[1]++;
+	x.rows[0]++;
+	x.rows[1]++;
 	return x;
 }
 
 // --s each component of the matrix and returns the result.
 HLML_INLINE uint2x2 operator--( uint2x2 &x )
 {
-	--x[0];
-	--x[1];
+	--x.rows[0];
+	--x.rows[1];
 	return x;
 }
 
@@ -7240,8 +7240,8 @@ HLML_INLINE uint2x2 operator--( uint2x2 &x )
 // post-fix
 HLML_INLINE uint2x2 operator--( uint2x2 &x, const int32_t )
 {
-	x[0]--;
-	x[1]--;
+	x.rows[0]--;
+	x.rows[1]--;
 	return x;
 }
 
@@ -7254,8 +7254,8 @@ HLML_INLINE uint2x2 operator--( uint2x2 &x, const int32_t )
 HLML_INLINE uint2x2 operator-( const uint2x2 &x )
 {
 	return uint2x2(
-		-x[0],
-		-x[1]
+		-x.rows[0],
+		-x.rows[1]
 	);
 }
 
@@ -7267,8 +7267,8 @@ HLML_INLINE uint2x2 operator-( const uint2x2 &x )
 HLML_INLINE uint2x2 operator~( const uint2x2 &x )
 {
 	return uint2x2(
-		~x[0],
-		~x[1]
+		~x.rows[0],
+		~x.rows[1]
 	);
 }
 
@@ -7276,8 +7276,8 @@ HLML_INLINE uint2x2 operator~( const uint2x2 &x )
 HLML_INLINE uint2x2 operator&( const uint2x2 &lhs, const uint32_t rhs )
 {
 	return uint2x2(
-		lhs[0] & rhs,
-		lhs[1] & rhs
+		lhs.rows[0] & rhs,
+		lhs.rows[1] & rhs
 	);
 }
 
@@ -7291,8 +7291,8 @@ HLML_INLINE uint2x2 operator&=( uint2x2 &lhs, const uint32_t rhs )
 HLML_INLINE uint2x2 operator&( const uint2x2 &lhs, const uint2x2 &rhs )
 {
 	return uint2x2(
-		lhs[0] & rhs[0],
-		lhs[1] & rhs[1]
+		lhs.rows[0] & rhs.rows[0],
+		lhs.rows[1] & rhs.rows[1]
 	);
 }
 
@@ -7306,8 +7306,8 @@ HLML_INLINE uint2x2 operator&=( uint2x2 &lhs, const uint2x2 &rhs )
 HLML_INLINE uint2x2 operator|( const uint2x2 &lhs, const uint32_t rhs )
 {
 	return uint2x2(
-		lhs[0] | rhs,
-		lhs[1] | rhs
+		lhs.rows[0] | rhs,
+		lhs.rows[1] | rhs
 	);
 }
 
@@ -7321,8 +7321,8 @@ HLML_INLINE uint2x2 operator|=( uint2x2 &lhs, const uint32_t rhs )
 HLML_INLINE uint2x2 operator|( const uint2x2 &lhs, const uint2x2 &rhs )
 {
 	return uint2x2(
-		lhs[0] | rhs[0],
-		lhs[1] | rhs[1]
+		lhs.rows[0] | rhs.rows[0],
+		lhs.rows[1] | rhs.rows[1]
 	);
 }
 
@@ -7336,8 +7336,8 @@ HLML_INLINE uint2x2 operator|=( uint2x2 &lhs, const uint2x2 &rhs )
 HLML_INLINE uint2x2 operator^( const uint2x2 &lhs, const uint32_t rhs )
 {
 	return uint2x2(
-		lhs[0] ^ rhs,
-		lhs[1] ^ rhs
+		lhs.rows[0] ^ rhs,
+		lhs.rows[1] ^ rhs
 	);
 }
 
@@ -7351,8 +7351,8 @@ HLML_INLINE uint2x2 operator^=( uint2x2 &lhs, const uint32_t rhs )
 HLML_INLINE uint2x2 operator^( const uint2x2 &lhs, const uint2x2 &rhs )
 {
 	return uint2x2(
-		lhs[0] ^ rhs[0],
-		lhs[1] ^ rhs[1]
+		lhs.rows[0] ^ rhs.rows[0],
+		lhs.rows[1] ^ rhs.rows[1]
 	);
 }
 
@@ -7366,8 +7366,8 @@ HLML_INLINE uint2x2 operator^=( uint2x2 &lhs, const uint2x2 &rhs )
 HLML_INLINE uint2x2 operator<<( const uint2x2 &lhs, const uint32_t rhs )
 {
 	return uint2x2(
-		lhs[0] << rhs,
-		lhs[1] << rhs
+		lhs.rows[0] << rhs,
+		lhs.rows[1] << rhs
 	);
 }
 
@@ -7381,8 +7381,8 @@ HLML_INLINE uint2x2 operator<<=( uint2x2 &lhs, const uint32_t rhs )
 HLML_INLINE uint2x2 operator<<( const uint2x2 &lhs, const uint2x2 &rhs )
 {
 	return uint2x2(
-		lhs[0] << rhs[0],
-		lhs[1] << rhs[1]
+		lhs.rows[0] << rhs.rows[0],
+		lhs.rows[1] << rhs.rows[1]
 	);
 }
 
@@ -7396,8 +7396,8 @@ HLML_INLINE uint2x2 operator<<=( uint2x2 &lhs, const uint2x2 &rhs )
 HLML_INLINE uint2x2 operator>>( const uint2x2 &lhs, const uint32_t rhs )
 {
 	return uint2x2(
-		lhs[0] >> rhs,
-		lhs[1] >> rhs
+		lhs.rows[0] >> rhs,
+		lhs.rows[1] >> rhs
 	);
 }
 
@@ -7411,8 +7411,8 @@ HLML_INLINE uint2x2 operator>>=( uint2x2 &lhs, const uint32_t rhs )
 HLML_INLINE uint2x2 operator>>( const uint2x2 &lhs, const uint2x2 &rhs )
 {
 	return uint2x2(
-		lhs[0] >> rhs[0],
-		lhs[1] >> rhs[1]
+		lhs.rows[0] >> rhs.rows[0],
+		lhs.rows[1] >> rhs.rows[1]
 	);
 }
 
@@ -7473,8 +7473,8 @@ HLML_INLINE uint2 mul( const uint2 &lhs, const uint2x2 &rhs )
 HLML_INLINE uint2x3 min( const uint2x3 &x, const uint2x3 &y )
 {
 	return uint2x3(
-		min( x[0], y[0] ),
-		min( x[1], y[1] )
+		min( x.rows[0], y.rows[0] ),
+		min( x.rows[1], y.rows[1] )
 	);
 }
 
@@ -7482,8 +7482,8 @@ HLML_INLINE uint2x3 min( const uint2x3 &x, const uint2x3 &y )
 HLML_INLINE uint2x3 max( const uint2x3 &x, const uint2x3 &y )
 {
 	return uint2x3(
-		max( x[0], y[0] ),
-		max( x[1], y[1] )
+		max( x.rows[0], y.rows[0] ),
+		max( x.rows[1], y.rows[1] )
 	);
 }
 
@@ -7491,8 +7491,8 @@ HLML_INLINE uint2x3 max( const uint2x3 &x, const uint2x3 &y )
 HLML_INLINE uint2x3 clamp( const uint2x3 &x, const uint2x3 &low, const uint2x3 &high )
 {
 	return uint2x3(
-		clamp( x[0], low[0], high[0] ),
-		clamp( x[1], low[1], high[1] )
+		clamp( x.rows[0], low.rows[0], high.rows[0] ),
+		clamp( x.rows[1], low.rows[1], high.rows[1] )
 	);
 }
 
@@ -7500,8 +7500,8 @@ HLML_INLINE uint2x3 clamp( const uint2x3 &x, const uint2x3 &low, const uint2x3 &
 HLML_INLINE uint2x3 saturate( const uint2x3 &x )
 {
 	return uint2x3(
-		saturate( x[0] ),
-		saturate( x[1] )
+		saturate( x.rows[0] ),
+		saturate( x.rows[1] )
 	);
 }
 
@@ -7509,8 +7509,8 @@ HLML_INLINE uint2x3 saturate( const uint2x3 &x )
 HLML_INLINE bool operator==( const uint2x3 &lhs, const uint2x3 &rhs )
 {
 	return
-		lhs[0] == rhs[0] &&
-		lhs[1] == rhs[1];
+		lhs.rows[0] == rhs.rows[0] &&
+		lhs.rows[1] == rhs.rows[1];
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
@@ -7523,8 +7523,8 @@ HLML_INLINE bool operator!=( const uint2x3 &lhs, const uint2x3 &rhs )
 HLML_INLINE bool2x3 operator<( const uint2x3 &lhs, const uint2x3 &rhs )
 {
 	return bool2x3(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1]
+		lhs.rows[0] < rhs.rows[0],
+		lhs.rows[1] < rhs.rows[1]
 	);
 }
 
@@ -7532,8 +7532,8 @@ HLML_INLINE bool2x3 operator<( const uint2x3 &lhs, const uint2x3 &rhs )
 HLML_INLINE bool2x3 operator<=( const uint2x3 &lhs, const uint2x3 &rhs )
 {
 	return bool2x3(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1]
+		lhs.rows[0] <= rhs.rows[0],
+		lhs.rows[1] <= rhs.rows[1]
 	);
 }
 
@@ -7541,8 +7541,8 @@ HLML_INLINE bool2x3 operator<=( const uint2x3 &lhs, const uint2x3 &rhs )
 HLML_INLINE bool2x3 operator>( const uint2x3 &lhs, const uint2x3 &rhs )
 {
 	return bool2x3(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1]
+		lhs.rows[0] > rhs.rows[0],
+		lhs.rows[1] > rhs.rows[1]
 	);
 }
 
@@ -7550,8 +7550,8 @@ HLML_INLINE bool2x3 operator>( const uint2x3 &lhs, const uint2x3 &rhs )
 HLML_INLINE bool2x3 operator>=( const uint2x3 &lhs, const uint2x3 &rhs )
 {
 	return bool2x3(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1]
+		lhs.rows[0] >= rhs.rows[0],
+		lhs.rows[1] >= rhs.rows[1]
 	);
 }
 
@@ -7559,8 +7559,8 @@ HLML_INLINE bool2x3 operator>=( const uint2x3 &lhs, const uint2x3 &rhs )
 HLML_INLINE uint2x3 operator+( const uint2x3 &lhs, const uint32_t rhs )
 {
 	return uint2x3(
-		lhs[0] + rhs,
-		lhs[1] + rhs
+		lhs.rows[0] + rhs,
+		lhs.rows[1] + rhs
 	);
 }
 
@@ -7574,8 +7574,8 @@ HLML_INLINE uint2x3 operator+=( uint2x3 &lhs, const uint32_t rhs )
 HLML_INLINE uint2x3 operator+( const uint2x3 &lhs, const uint2x3 &rhs )
 {
 	return uint2x3(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1]
+		lhs.rows[0] + rhs.rows[0],
+		lhs.rows[1] + rhs.rows[1]
 	);
 }
 
@@ -7589,8 +7589,8 @@ HLML_INLINE uint2x3 operator+=( uint2x3 &lhs, const uint2x3 &rhs )
 HLML_INLINE uint2x3 operator-( const uint2x3 &lhs, const uint32_t rhs )
 {
 	return uint2x3(
-		lhs[0] - rhs,
-		lhs[1] - rhs
+		lhs.rows[0] - rhs,
+		lhs.rows[1] - rhs
 	);
 }
 
@@ -7604,8 +7604,8 @@ HLML_INLINE uint2x3 operator-=( uint2x3 &lhs, const uint32_t rhs )
 HLML_INLINE uint2x3 operator-( const uint2x3 &lhs, const uint2x3 &rhs )
 {
 	return uint2x3(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1]
+		lhs.rows[0] - rhs.rows[0],
+		lhs.rows[1] - rhs.rows[1]
 	);
 }
 
@@ -7619,8 +7619,8 @@ HLML_INLINE uint2x3 operator-=( uint2x3 &lhs, const uint2x3 &rhs )
 HLML_INLINE uint2x3 operator*( const uint2x3 &lhs, const uint32_t rhs )
 {
 	return uint2x3(
-		lhs[0] * rhs,
-		lhs[1] * rhs
+		lhs.rows[0] * rhs,
+		lhs.rows[1] * rhs
 	);
 }
 
@@ -7634,8 +7634,8 @@ HLML_INLINE uint2x3 operator*=( uint2x3 &lhs, const uint32_t rhs )
 HLML_INLINE uint2x3 operator*( const uint2x3 &lhs, const uint2x3 &rhs )
 {
 	return uint2x3(
-		lhs[0] * rhs[0],
-		lhs[1] * rhs[1]
+		lhs.rows[0] * rhs.rows[0],
+		lhs.rows[1] * rhs.rows[1]
 	);
 }
 
@@ -7649,8 +7649,8 @@ HLML_INLINE uint2x3 operator*=( uint2x3 &lhs, const uint2x3 &rhs )
 HLML_INLINE uint2x3 operator/( const uint2x3 &lhs, const uint32_t rhs )
 {
 	return uint2x3(
-		lhs[0] / rhs,
-		lhs[1] / rhs
+		lhs.rows[0] / rhs,
+		lhs.rows[1] / rhs
 	);
 }
 
@@ -7664,8 +7664,8 @@ HLML_INLINE uint2x3 operator/=( uint2x3 &lhs, const uint32_t rhs )
 HLML_INLINE uint2x3 operator/( const uint2x3 &lhs, const uint2x3 &rhs )
 {
 	return uint2x3(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1]
+		lhs.rows[0] / rhs.rows[0],
+		lhs.rows[1] / rhs.rows[1]
 	);
 }
 
@@ -7678,8 +7678,8 @@ HLML_INLINE uint2x3 operator/=( uint2x3 &lhs, const uint2x3 &rhs )
 // ++s each component of the matrix and returns the result.
 HLML_INLINE uint2x3 operator++( uint2x3 &x )
 {
-	++x[0];
-	++x[1];
+	++x.rows[0];
+	++x.rows[1];
 	return x;
 }
 
@@ -7687,16 +7687,16 @@ HLML_INLINE uint2x3 operator++( uint2x3 &x )
 // post-fix
 HLML_INLINE uint2x3 operator++( uint2x3 &x, const int32_t )
 {
-	x[0]++;
-	x[1]++;
+	x.rows[0]++;
+	x.rows[1]++;
 	return x;
 }
 
 // --s each component of the matrix and returns the result.
 HLML_INLINE uint2x3 operator--( uint2x3 &x )
 {
-	--x[0];
-	--x[1];
+	--x.rows[0];
+	--x.rows[1];
 	return x;
 }
 
@@ -7704,8 +7704,8 @@ HLML_INLINE uint2x3 operator--( uint2x3 &x )
 // post-fix
 HLML_INLINE uint2x3 operator--( uint2x3 &x, const int32_t )
 {
-	x[0]--;
-	x[1]--;
+	x.rows[0]--;
+	x.rows[1]--;
 	return x;
 }
 
@@ -7718,8 +7718,8 @@ HLML_INLINE uint2x3 operator--( uint2x3 &x, const int32_t )
 HLML_INLINE uint2x3 operator-( const uint2x3 &x )
 {
 	return uint2x3(
-		-x[0],
-		-x[1]
+		-x.rows[0],
+		-x.rows[1]
 	);
 }
 
@@ -7731,8 +7731,8 @@ HLML_INLINE uint2x3 operator-( const uint2x3 &x )
 HLML_INLINE uint2x3 operator~( const uint2x3 &x )
 {
 	return uint2x3(
-		~x[0],
-		~x[1]
+		~x.rows[0],
+		~x.rows[1]
 	);
 }
 
@@ -7740,8 +7740,8 @@ HLML_INLINE uint2x3 operator~( const uint2x3 &x )
 HLML_INLINE uint2x3 operator&( const uint2x3 &lhs, const uint32_t rhs )
 {
 	return uint2x3(
-		lhs[0] & rhs,
-		lhs[1] & rhs
+		lhs.rows[0] & rhs,
+		lhs.rows[1] & rhs
 	);
 }
 
@@ -7755,8 +7755,8 @@ HLML_INLINE uint2x3 operator&=( uint2x3 &lhs, const uint32_t rhs )
 HLML_INLINE uint2x3 operator&( const uint2x3 &lhs, const uint2x3 &rhs )
 {
 	return uint2x3(
-		lhs[0] & rhs[0],
-		lhs[1] & rhs[1]
+		lhs.rows[0] & rhs.rows[0],
+		lhs.rows[1] & rhs.rows[1]
 	);
 }
 
@@ -7770,8 +7770,8 @@ HLML_INLINE uint2x3 operator&=( uint2x3 &lhs, const uint2x3 &rhs )
 HLML_INLINE uint2x3 operator|( const uint2x3 &lhs, const uint32_t rhs )
 {
 	return uint2x3(
-		lhs[0] | rhs,
-		lhs[1] | rhs
+		lhs.rows[0] | rhs,
+		lhs.rows[1] | rhs
 	);
 }
 
@@ -7785,8 +7785,8 @@ HLML_INLINE uint2x3 operator|=( uint2x3 &lhs, const uint32_t rhs )
 HLML_INLINE uint2x3 operator|( const uint2x3 &lhs, const uint2x3 &rhs )
 {
 	return uint2x3(
-		lhs[0] | rhs[0],
-		lhs[1] | rhs[1]
+		lhs.rows[0] | rhs.rows[0],
+		lhs.rows[1] | rhs.rows[1]
 	);
 }
 
@@ -7800,8 +7800,8 @@ HLML_INLINE uint2x3 operator|=( uint2x3 &lhs, const uint2x3 &rhs )
 HLML_INLINE uint2x3 operator^( const uint2x3 &lhs, const uint32_t rhs )
 {
 	return uint2x3(
-		lhs[0] ^ rhs,
-		lhs[1] ^ rhs
+		lhs.rows[0] ^ rhs,
+		lhs.rows[1] ^ rhs
 	);
 }
 
@@ -7815,8 +7815,8 @@ HLML_INLINE uint2x3 operator^=( uint2x3 &lhs, const uint32_t rhs )
 HLML_INLINE uint2x3 operator^( const uint2x3 &lhs, const uint2x3 &rhs )
 {
 	return uint2x3(
-		lhs[0] ^ rhs[0],
-		lhs[1] ^ rhs[1]
+		lhs.rows[0] ^ rhs.rows[0],
+		lhs.rows[1] ^ rhs.rows[1]
 	);
 }
 
@@ -7830,8 +7830,8 @@ HLML_INLINE uint2x3 operator^=( uint2x3 &lhs, const uint2x3 &rhs )
 HLML_INLINE uint2x3 operator<<( const uint2x3 &lhs, const uint32_t rhs )
 {
 	return uint2x3(
-		lhs[0] << rhs,
-		lhs[1] << rhs
+		lhs.rows[0] << rhs,
+		lhs.rows[1] << rhs
 	);
 }
 
@@ -7845,8 +7845,8 @@ HLML_INLINE uint2x3 operator<<=( uint2x3 &lhs, const uint32_t rhs )
 HLML_INLINE uint2x3 operator<<( const uint2x3 &lhs, const uint2x3 &rhs )
 {
 	return uint2x3(
-		lhs[0] << rhs[0],
-		lhs[1] << rhs[1]
+		lhs.rows[0] << rhs.rows[0],
+		lhs.rows[1] << rhs.rows[1]
 	);
 }
 
@@ -7860,8 +7860,8 @@ HLML_INLINE uint2x3 operator<<=( uint2x3 &lhs, const uint2x3 &rhs )
 HLML_INLINE uint2x3 operator>>( const uint2x3 &lhs, const uint32_t rhs )
 {
 	return uint2x3(
-		lhs[0] >> rhs,
-		lhs[1] >> rhs
+		lhs.rows[0] >> rhs,
+		lhs.rows[1] >> rhs
 	);
 }
 
@@ -7875,8 +7875,8 @@ HLML_INLINE uint2x3 operator>>=( uint2x3 &lhs, const uint32_t rhs )
 HLML_INLINE uint2x3 operator>>( const uint2x3 &lhs, const uint2x3 &rhs )
 {
 	return uint2x3(
-		lhs[0] >> rhs[0],
-		lhs[1] >> rhs[1]
+		lhs.rows[0] >> rhs.rows[0],
+		lhs.rows[1] >> rhs.rows[1]
 	);
 }
 
@@ -7928,8 +7928,8 @@ HLML_INLINE uint2x2 mul( const uint2x3 &lhs, const uint3x2 &rhs )
 HLML_INLINE uint2x4 min( const uint2x4 &x, const uint2x4 &y )
 {
 	return uint2x4(
-		min( x[0], y[0] ),
-		min( x[1], y[1] )
+		min( x.rows[0], y.rows[0] ),
+		min( x.rows[1], y.rows[1] )
 	);
 }
 
@@ -7937,8 +7937,8 @@ HLML_INLINE uint2x4 min( const uint2x4 &x, const uint2x4 &y )
 HLML_INLINE uint2x4 max( const uint2x4 &x, const uint2x4 &y )
 {
 	return uint2x4(
-		max( x[0], y[0] ),
-		max( x[1], y[1] )
+		max( x.rows[0], y.rows[0] ),
+		max( x.rows[1], y.rows[1] )
 	);
 }
 
@@ -7946,8 +7946,8 @@ HLML_INLINE uint2x4 max( const uint2x4 &x, const uint2x4 &y )
 HLML_INLINE uint2x4 clamp( const uint2x4 &x, const uint2x4 &low, const uint2x4 &high )
 {
 	return uint2x4(
-		clamp( x[0], low[0], high[0] ),
-		clamp( x[1], low[1], high[1] )
+		clamp( x.rows[0], low.rows[0], high.rows[0] ),
+		clamp( x.rows[1], low.rows[1], high.rows[1] )
 	);
 }
 
@@ -7955,8 +7955,8 @@ HLML_INLINE uint2x4 clamp( const uint2x4 &x, const uint2x4 &low, const uint2x4 &
 HLML_INLINE uint2x4 saturate( const uint2x4 &x )
 {
 	return uint2x4(
-		saturate( x[0] ),
-		saturate( x[1] )
+		saturate( x.rows[0] ),
+		saturate( x.rows[1] )
 	);
 }
 
@@ -7964,8 +7964,8 @@ HLML_INLINE uint2x4 saturate( const uint2x4 &x )
 HLML_INLINE bool operator==( const uint2x4 &lhs, const uint2x4 &rhs )
 {
 	return
-		lhs[0] == rhs[0] &&
-		lhs[1] == rhs[1];
+		lhs.rows[0] == rhs.rows[0] &&
+		lhs.rows[1] == rhs.rows[1];
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
@@ -7978,8 +7978,8 @@ HLML_INLINE bool operator!=( const uint2x4 &lhs, const uint2x4 &rhs )
 HLML_INLINE bool2x4 operator<( const uint2x4 &lhs, const uint2x4 &rhs )
 {
 	return bool2x4(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1]
+		lhs.rows[0] < rhs.rows[0],
+		lhs.rows[1] < rhs.rows[1]
 	);
 }
 
@@ -7987,8 +7987,8 @@ HLML_INLINE bool2x4 operator<( const uint2x4 &lhs, const uint2x4 &rhs )
 HLML_INLINE bool2x4 operator<=( const uint2x4 &lhs, const uint2x4 &rhs )
 {
 	return bool2x4(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1]
+		lhs.rows[0] <= rhs.rows[0],
+		lhs.rows[1] <= rhs.rows[1]
 	);
 }
 
@@ -7996,8 +7996,8 @@ HLML_INLINE bool2x4 operator<=( const uint2x4 &lhs, const uint2x4 &rhs )
 HLML_INLINE bool2x4 operator>( const uint2x4 &lhs, const uint2x4 &rhs )
 {
 	return bool2x4(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1]
+		lhs.rows[0] > rhs.rows[0],
+		lhs.rows[1] > rhs.rows[1]
 	);
 }
 
@@ -8005,8 +8005,8 @@ HLML_INLINE bool2x4 operator>( const uint2x4 &lhs, const uint2x4 &rhs )
 HLML_INLINE bool2x4 operator>=( const uint2x4 &lhs, const uint2x4 &rhs )
 {
 	return bool2x4(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1]
+		lhs.rows[0] >= rhs.rows[0],
+		lhs.rows[1] >= rhs.rows[1]
 	);
 }
 
@@ -8014,8 +8014,8 @@ HLML_INLINE bool2x4 operator>=( const uint2x4 &lhs, const uint2x4 &rhs )
 HLML_INLINE uint2x4 operator+( const uint2x4 &lhs, const uint32_t rhs )
 {
 	return uint2x4(
-		lhs[0] + rhs,
-		lhs[1] + rhs
+		lhs.rows[0] + rhs,
+		lhs.rows[1] + rhs
 	);
 }
 
@@ -8029,8 +8029,8 @@ HLML_INLINE uint2x4 operator+=( uint2x4 &lhs, const uint32_t rhs )
 HLML_INLINE uint2x4 operator+( const uint2x4 &lhs, const uint2x4 &rhs )
 {
 	return uint2x4(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1]
+		lhs.rows[0] + rhs.rows[0],
+		lhs.rows[1] + rhs.rows[1]
 	);
 }
 
@@ -8044,8 +8044,8 @@ HLML_INLINE uint2x4 operator+=( uint2x4 &lhs, const uint2x4 &rhs )
 HLML_INLINE uint2x4 operator-( const uint2x4 &lhs, const uint32_t rhs )
 {
 	return uint2x4(
-		lhs[0] - rhs,
-		lhs[1] - rhs
+		lhs.rows[0] - rhs,
+		lhs.rows[1] - rhs
 	);
 }
 
@@ -8059,8 +8059,8 @@ HLML_INLINE uint2x4 operator-=( uint2x4 &lhs, const uint32_t rhs )
 HLML_INLINE uint2x4 operator-( const uint2x4 &lhs, const uint2x4 &rhs )
 {
 	return uint2x4(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1]
+		lhs.rows[0] - rhs.rows[0],
+		lhs.rows[1] - rhs.rows[1]
 	);
 }
 
@@ -8074,8 +8074,8 @@ HLML_INLINE uint2x4 operator-=( uint2x4 &lhs, const uint2x4 &rhs )
 HLML_INLINE uint2x4 operator*( const uint2x4 &lhs, const uint32_t rhs )
 {
 	return uint2x4(
-		lhs[0] * rhs,
-		lhs[1] * rhs
+		lhs.rows[0] * rhs,
+		lhs.rows[1] * rhs
 	);
 }
 
@@ -8089,8 +8089,8 @@ HLML_INLINE uint2x4 operator*=( uint2x4 &lhs, const uint32_t rhs )
 HLML_INLINE uint2x4 operator*( const uint2x4 &lhs, const uint2x4 &rhs )
 {
 	return uint2x4(
-		lhs[0] * rhs[0],
-		lhs[1] * rhs[1]
+		lhs.rows[0] * rhs.rows[0],
+		lhs.rows[1] * rhs.rows[1]
 	);
 }
 
@@ -8104,8 +8104,8 @@ HLML_INLINE uint2x4 operator*=( uint2x4 &lhs, const uint2x4 &rhs )
 HLML_INLINE uint2x4 operator/( const uint2x4 &lhs, const uint32_t rhs )
 {
 	return uint2x4(
-		lhs[0] / rhs,
-		lhs[1] / rhs
+		lhs.rows[0] / rhs,
+		lhs.rows[1] / rhs
 	);
 }
 
@@ -8119,8 +8119,8 @@ HLML_INLINE uint2x4 operator/=( uint2x4 &lhs, const uint32_t rhs )
 HLML_INLINE uint2x4 operator/( const uint2x4 &lhs, const uint2x4 &rhs )
 {
 	return uint2x4(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1]
+		lhs.rows[0] / rhs.rows[0],
+		lhs.rows[1] / rhs.rows[1]
 	);
 }
 
@@ -8133,8 +8133,8 @@ HLML_INLINE uint2x4 operator/=( uint2x4 &lhs, const uint2x4 &rhs )
 // ++s each component of the matrix and returns the result.
 HLML_INLINE uint2x4 operator++( uint2x4 &x )
 {
-	++x[0];
-	++x[1];
+	++x.rows[0];
+	++x.rows[1];
 	return x;
 }
 
@@ -8142,16 +8142,16 @@ HLML_INLINE uint2x4 operator++( uint2x4 &x )
 // post-fix
 HLML_INLINE uint2x4 operator++( uint2x4 &x, const int32_t )
 {
-	x[0]++;
-	x[1]++;
+	x.rows[0]++;
+	x.rows[1]++;
 	return x;
 }
 
 // --s each component of the matrix and returns the result.
 HLML_INLINE uint2x4 operator--( uint2x4 &x )
 {
-	--x[0];
-	--x[1];
+	--x.rows[0];
+	--x.rows[1];
 	return x;
 }
 
@@ -8159,8 +8159,8 @@ HLML_INLINE uint2x4 operator--( uint2x4 &x )
 // post-fix
 HLML_INLINE uint2x4 operator--( uint2x4 &x, const int32_t )
 {
-	x[0]--;
-	x[1]--;
+	x.rows[0]--;
+	x.rows[1]--;
 	return x;
 }
 
@@ -8173,8 +8173,8 @@ HLML_INLINE uint2x4 operator--( uint2x4 &x, const int32_t )
 HLML_INLINE uint2x4 operator-( const uint2x4 &x )
 {
 	return uint2x4(
-		-x[0],
-		-x[1]
+		-x.rows[0],
+		-x.rows[1]
 	);
 }
 
@@ -8186,8 +8186,8 @@ HLML_INLINE uint2x4 operator-( const uint2x4 &x )
 HLML_INLINE uint2x4 operator~( const uint2x4 &x )
 {
 	return uint2x4(
-		~x[0],
-		~x[1]
+		~x.rows[0],
+		~x.rows[1]
 	);
 }
 
@@ -8195,8 +8195,8 @@ HLML_INLINE uint2x4 operator~( const uint2x4 &x )
 HLML_INLINE uint2x4 operator&( const uint2x4 &lhs, const uint32_t rhs )
 {
 	return uint2x4(
-		lhs[0] & rhs,
-		lhs[1] & rhs
+		lhs.rows[0] & rhs,
+		lhs.rows[1] & rhs
 	);
 }
 
@@ -8210,8 +8210,8 @@ HLML_INLINE uint2x4 operator&=( uint2x4 &lhs, const uint32_t rhs )
 HLML_INLINE uint2x4 operator&( const uint2x4 &lhs, const uint2x4 &rhs )
 {
 	return uint2x4(
-		lhs[0] & rhs[0],
-		lhs[1] & rhs[1]
+		lhs.rows[0] & rhs.rows[0],
+		lhs.rows[1] & rhs.rows[1]
 	);
 }
 
@@ -8225,8 +8225,8 @@ HLML_INLINE uint2x4 operator&=( uint2x4 &lhs, const uint2x4 &rhs )
 HLML_INLINE uint2x4 operator|( const uint2x4 &lhs, const uint32_t rhs )
 {
 	return uint2x4(
-		lhs[0] | rhs,
-		lhs[1] | rhs
+		lhs.rows[0] | rhs,
+		lhs.rows[1] | rhs
 	);
 }
 
@@ -8240,8 +8240,8 @@ HLML_INLINE uint2x4 operator|=( uint2x4 &lhs, const uint32_t rhs )
 HLML_INLINE uint2x4 operator|( const uint2x4 &lhs, const uint2x4 &rhs )
 {
 	return uint2x4(
-		lhs[0] | rhs[0],
-		lhs[1] | rhs[1]
+		lhs.rows[0] | rhs.rows[0],
+		lhs.rows[1] | rhs.rows[1]
 	);
 }
 
@@ -8255,8 +8255,8 @@ HLML_INLINE uint2x4 operator|=( uint2x4 &lhs, const uint2x4 &rhs )
 HLML_INLINE uint2x4 operator^( const uint2x4 &lhs, const uint32_t rhs )
 {
 	return uint2x4(
-		lhs[0] ^ rhs,
-		lhs[1] ^ rhs
+		lhs.rows[0] ^ rhs,
+		lhs.rows[1] ^ rhs
 	);
 }
 
@@ -8270,8 +8270,8 @@ HLML_INLINE uint2x4 operator^=( uint2x4 &lhs, const uint32_t rhs )
 HLML_INLINE uint2x4 operator^( const uint2x4 &lhs, const uint2x4 &rhs )
 {
 	return uint2x4(
-		lhs[0] ^ rhs[0],
-		lhs[1] ^ rhs[1]
+		lhs.rows[0] ^ rhs.rows[0],
+		lhs.rows[1] ^ rhs.rows[1]
 	);
 }
 
@@ -8285,8 +8285,8 @@ HLML_INLINE uint2x4 operator^=( uint2x4 &lhs, const uint2x4 &rhs )
 HLML_INLINE uint2x4 operator<<( const uint2x4 &lhs, const uint32_t rhs )
 {
 	return uint2x4(
-		lhs[0] << rhs,
-		lhs[1] << rhs
+		lhs.rows[0] << rhs,
+		lhs.rows[1] << rhs
 	);
 }
 
@@ -8300,8 +8300,8 @@ HLML_INLINE uint2x4 operator<<=( uint2x4 &lhs, const uint32_t rhs )
 HLML_INLINE uint2x4 operator<<( const uint2x4 &lhs, const uint2x4 &rhs )
 {
 	return uint2x4(
-		lhs[0] << rhs[0],
-		lhs[1] << rhs[1]
+		lhs.rows[0] << rhs.rows[0],
+		lhs.rows[1] << rhs.rows[1]
 	);
 }
 
@@ -8315,8 +8315,8 @@ HLML_INLINE uint2x4 operator<<=( uint2x4 &lhs, const uint2x4 &rhs )
 HLML_INLINE uint2x4 operator>>( const uint2x4 &lhs, const uint32_t rhs )
 {
 	return uint2x4(
-		lhs[0] >> rhs,
-		lhs[1] >> rhs
+		lhs.rows[0] >> rhs,
+		lhs.rows[1] >> rhs
 	);
 }
 
@@ -8330,8 +8330,8 @@ HLML_INLINE uint2x4 operator>>=( uint2x4 &lhs, const uint32_t rhs )
 HLML_INLINE uint2x4 operator>>( const uint2x4 &lhs, const uint2x4 &rhs )
 {
 	return uint2x4(
-		lhs[0] >> rhs[0],
-		lhs[1] >> rhs[1]
+		lhs.rows[0] >> rhs.rows[0],
+		lhs.rows[1] >> rhs.rows[1]
 	);
 }
 
@@ -8384,9 +8384,9 @@ HLML_INLINE uint2x2 mul( const uint2x4 &lhs, const uint4x2 &rhs )
 HLML_INLINE uint3x2 min( const uint3x2 &x, const uint3x2 &y )
 {
 	return uint3x2(
-		min( x[0], y[0] ),
-		min( x[1], y[1] ),
-		min( x[2], y[2] )
+		min( x.rows[0], y.rows[0] ),
+		min( x.rows[1], y.rows[1] ),
+		min( x.rows[2], y.rows[2] )
 	);
 }
 
@@ -8394,9 +8394,9 @@ HLML_INLINE uint3x2 min( const uint3x2 &x, const uint3x2 &y )
 HLML_INLINE uint3x2 max( const uint3x2 &x, const uint3x2 &y )
 {
 	return uint3x2(
-		max( x[0], y[0] ),
-		max( x[1], y[1] ),
-		max( x[2], y[2] )
+		max( x.rows[0], y.rows[0] ),
+		max( x.rows[1], y.rows[1] ),
+		max( x.rows[2], y.rows[2] )
 	);
 }
 
@@ -8404,9 +8404,9 @@ HLML_INLINE uint3x2 max( const uint3x2 &x, const uint3x2 &y )
 HLML_INLINE uint3x2 clamp( const uint3x2 &x, const uint3x2 &low, const uint3x2 &high )
 {
 	return uint3x2(
-		clamp( x[0], low[0], high[0] ),
-		clamp( x[1], low[1], high[1] ),
-		clamp( x[2], low[2], high[2] )
+		clamp( x.rows[0], low.rows[0], high.rows[0] ),
+		clamp( x.rows[1], low.rows[1], high.rows[1] ),
+		clamp( x.rows[2], low.rows[2], high.rows[2] )
 	);
 }
 
@@ -8414,9 +8414,9 @@ HLML_INLINE uint3x2 clamp( const uint3x2 &x, const uint3x2 &low, const uint3x2 &
 HLML_INLINE uint3x2 saturate( const uint3x2 &x )
 {
 	return uint3x2(
-		saturate( x[0] ),
-		saturate( x[1] ),
-		saturate( x[2] )
+		saturate( x.rows[0] ),
+		saturate( x.rows[1] ),
+		saturate( x.rows[2] )
 	);
 }
 
@@ -8424,9 +8424,9 @@ HLML_INLINE uint3x2 saturate( const uint3x2 &x )
 HLML_INLINE bool operator==( const uint3x2 &lhs, const uint3x2 &rhs )
 {
 	return
-		lhs[0] == rhs[0] &&
-		lhs[1] == rhs[1] &&
-		lhs[2] == rhs[2];
+		lhs.rows[0] == rhs.rows[0] &&
+		lhs.rows[1] == rhs.rows[1] &&
+		lhs.rows[2] == rhs.rows[2];
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
@@ -8439,9 +8439,9 @@ HLML_INLINE bool operator!=( const uint3x2 &lhs, const uint3x2 &rhs )
 HLML_INLINE bool3x2 operator<( const uint3x2 &lhs, const uint3x2 &rhs )
 {
 	return bool3x2(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2]
+		lhs.rows[0] < rhs.rows[0],
+		lhs.rows[1] < rhs.rows[1],
+		lhs.rows[2] < rhs.rows[2]
 	);
 }
 
@@ -8449,9 +8449,9 @@ HLML_INLINE bool3x2 operator<( const uint3x2 &lhs, const uint3x2 &rhs )
 HLML_INLINE bool3x2 operator<=( const uint3x2 &lhs, const uint3x2 &rhs )
 {
 	return bool3x2(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2]
+		lhs.rows[0] <= rhs.rows[0],
+		lhs.rows[1] <= rhs.rows[1],
+		lhs.rows[2] <= rhs.rows[2]
 	);
 }
 
@@ -8459,9 +8459,9 @@ HLML_INLINE bool3x2 operator<=( const uint3x2 &lhs, const uint3x2 &rhs )
 HLML_INLINE bool3x2 operator>( const uint3x2 &lhs, const uint3x2 &rhs )
 {
 	return bool3x2(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2]
+		lhs.rows[0] > rhs.rows[0],
+		lhs.rows[1] > rhs.rows[1],
+		lhs.rows[2] > rhs.rows[2]
 	);
 }
 
@@ -8469,9 +8469,9 @@ HLML_INLINE bool3x2 operator>( const uint3x2 &lhs, const uint3x2 &rhs )
 HLML_INLINE bool3x2 operator>=( const uint3x2 &lhs, const uint3x2 &rhs )
 {
 	return bool3x2(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2]
+		lhs.rows[0] >= rhs.rows[0],
+		lhs.rows[1] >= rhs.rows[1],
+		lhs.rows[2] >= rhs.rows[2]
 	);
 }
 
@@ -8479,9 +8479,9 @@ HLML_INLINE bool3x2 operator>=( const uint3x2 &lhs, const uint3x2 &rhs )
 HLML_INLINE uint3x2 operator+( const uint3x2 &lhs, const uint32_t rhs )
 {
 	return uint3x2(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs
+		lhs.rows[0] + rhs,
+		lhs.rows[1] + rhs,
+		lhs.rows[2] + rhs
 	);
 }
 
@@ -8495,9 +8495,9 @@ HLML_INLINE uint3x2 operator+=( uint3x2 &lhs, const uint32_t rhs )
 HLML_INLINE uint3x2 operator+( const uint3x2 &lhs, const uint3x2 &rhs )
 {
 	return uint3x2(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2]
+		lhs.rows[0] + rhs.rows[0],
+		lhs.rows[1] + rhs.rows[1],
+		lhs.rows[2] + rhs.rows[2]
 	);
 }
 
@@ -8511,9 +8511,9 @@ HLML_INLINE uint3x2 operator+=( uint3x2 &lhs, const uint3x2 &rhs )
 HLML_INLINE uint3x2 operator-( const uint3x2 &lhs, const uint32_t rhs )
 {
 	return uint3x2(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs
+		lhs.rows[0] - rhs,
+		lhs.rows[1] - rhs,
+		lhs.rows[2] - rhs
 	);
 }
 
@@ -8527,9 +8527,9 @@ HLML_INLINE uint3x2 operator-=( uint3x2 &lhs, const uint32_t rhs )
 HLML_INLINE uint3x2 operator-( const uint3x2 &lhs, const uint3x2 &rhs )
 {
 	return uint3x2(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2]
+		lhs.rows[0] - rhs.rows[0],
+		lhs.rows[1] - rhs.rows[1],
+		lhs.rows[2] - rhs.rows[2]
 	);
 }
 
@@ -8543,9 +8543,9 @@ HLML_INLINE uint3x2 operator-=( uint3x2 &lhs, const uint3x2 &rhs )
 HLML_INLINE uint3x2 operator*( const uint3x2 &lhs, const uint32_t rhs )
 {
 	return uint3x2(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs
+		lhs.rows[0] * rhs,
+		lhs.rows[1] * rhs,
+		lhs.rows[2] * rhs
 	);
 }
 
@@ -8559,9 +8559,9 @@ HLML_INLINE uint3x2 operator*=( uint3x2 &lhs, const uint32_t rhs )
 HLML_INLINE uint3x2 operator*( const uint3x2 &lhs, const uint3x2 &rhs )
 {
 	return uint3x2(
-		lhs[0] * rhs[0],
-		lhs[1] * rhs[1],
-		lhs[2] * rhs[2]
+		lhs.rows[0] * rhs.rows[0],
+		lhs.rows[1] * rhs.rows[1],
+		lhs.rows[2] * rhs.rows[2]
 	);
 }
 
@@ -8575,9 +8575,9 @@ HLML_INLINE uint3x2 operator*=( uint3x2 &lhs, const uint3x2 &rhs )
 HLML_INLINE uint3x2 operator/( const uint3x2 &lhs, const uint32_t rhs )
 {
 	return uint3x2(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs
+		lhs.rows[0] / rhs,
+		lhs.rows[1] / rhs,
+		lhs.rows[2] / rhs
 	);
 }
 
@@ -8591,9 +8591,9 @@ HLML_INLINE uint3x2 operator/=( uint3x2 &lhs, const uint32_t rhs )
 HLML_INLINE uint3x2 operator/( const uint3x2 &lhs, const uint3x2 &rhs )
 {
 	return uint3x2(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1],
-		lhs[2] / rhs[2]
+		lhs.rows[0] / rhs.rows[0],
+		lhs.rows[1] / rhs.rows[1],
+		lhs.rows[2] / rhs.rows[2]
 	);
 }
 
@@ -8606,9 +8606,9 @@ HLML_INLINE uint3x2 operator/=( uint3x2 &lhs, const uint3x2 &rhs )
 // ++s each component of the matrix and returns the result.
 HLML_INLINE uint3x2 operator++( uint3x2 &x )
 {
-	++x[0];
-	++x[1];
-	++x[2];
+	++x.rows[0];
+	++x.rows[1];
+	++x.rows[2];
 	return x;
 }
 
@@ -8616,18 +8616,18 @@ HLML_INLINE uint3x2 operator++( uint3x2 &x )
 // post-fix
 HLML_INLINE uint3x2 operator++( uint3x2 &x, const int32_t )
 {
-	x[0]++;
-	x[1]++;
-	x[2]++;
+	x.rows[0]++;
+	x.rows[1]++;
+	x.rows[2]++;
 	return x;
 }
 
 // --s each component of the matrix and returns the result.
 HLML_INLINE uint3x2 operator--( uint3x2 &x )
 {
-	--x[0];
-	--x[1];
-	--x[2];
+	--x.rows[0];
+	--x.rows[1];
+	--x.rows[2];
 	return x;
 }
 
@@ -8635,9 +8635,9 @@ HLML_INLINE uint3x2 operator--( uint3x2 &x )
 // post-fix
 HLML_INLINE uint3x2 operator--( uint3x2 &x, const int32_t )
 {
-	x[0]--;
-	x[1]--;
-	x[2]--;
+	x.rows[0]--;
+	x.rows[1]--;
+	x.rows[2]--;
 	return x;
 }
 
@@ -8650,9 +8650,9 @@ HLML_INLINE uint3x2 operator--( uint3x2 &x, const int32_t )
 HLML_INLINE uint3x2 operator-( const uint3x2 &x )
 {
 	return uint3x2(
-		-x[0],
-		-x[1],
-		-x[2]
+		-x.rows[0],
+		-x.rows[1],
+		-x.rows[2]
 	);
 }
 
@@ -8664,9 +8664,9 @@ HLML_INLINE uint3x2 operator-( const uint3x2 &x )
 HLML_INLINE uint3x2 operator~( const uint3x2 &x )
 {
 	return uint3x2(
-		~x[0],
-		~x[1],
-		~x[2]
+		~x.rows[0],
+		~x.rows[1],
+		~x.rows[2]
 	);
 }
 
@@ -8674,9 +8674,9 @@ HLML_INLINE uint3x2 operator~( const uint3x2 &x )
 HLML_INLINE uint3x2 operator&( const uint3x2 &lhs, const uint32_t rhs )
 {
 	return uint3x2(
-		lhs[0] & rhs,
-		lhs[1] & rhs,
-		lhs[2] & rhs
+		lhs.rows[0] & rhs,
+		lhs.rows[1] & rhs,
+		lhs.rows[2] & rhs
 	);
 }
 
@@ -8690,9 +8690,9 @@ HLML_INLINE uint3x2 operator&=( uint3x2 &lhs, const uint32_t rhs )
 HLML_INLINE uint3x2 operator&( const uint3x2 &lhs, const uint3x2 &rhs )
 {
 	return uint3x2(
-		lhs[0] & rhs[0],
-		lhs[1] & rhs[1],
-		lhs[2] & rhs[2]
+		lhs.rows[0] & rhs.rows[0],
+		lhs.rows[1] & rhs.rows[1],
+		lhs.rows[2] & rhs.rows[2]
 	);
 }
 
@@ -8706,9 +8706,9 @@ HLML_INLINE uint3x2 operator&=( uint3x2 &lhs, const uint3x2 &rhs )
 HLML_INLINE uint3x2 operator|( const uint3x2 &lhs, const uint32_t rhs )
 {
 	return uint3x2(
-		lhs[0] | rhs,
-		lhs[1] | rhs,
-		lhs[2] | rhs
+		lhs.rows[0] | rhs,
+		lhs.rows[1] | rhs,
+		lhs.rows[2] | rhs
 	);
 }
 
@@ -8722,9 +8722,9 @@ HLML_INLINE uint3x2 operator|=( uint3x2 &lhs, const uint32_t rhs )
 HLML_INLINE uint3x2 operator|( const uint3x2 &lhs, const uint3x2 &rhs )
 {
 	return uint3x2(
-		lhs[0] | rhs[0],
-		lhs[1] | rhs[1],
-		lhs[2] | rhs[2]
+		lhs.rows[0] | rhs.rows[0],
+		lhs.rows[1] | rhs.rows[1],
+		lhs.rows[2] | rhs.rows[2]
 	);
 }
 
@@ -8738,9 +8738,9 @@ HLML_INLINE uint3x2 operator|=( uint3x2 &lhs, const uint3x2 &rhs )
 HLML_INLINE uint3x2 operator^( const uint3x2 &lhs, const uint32_t rhs )
 {
 	return uint3x2(
-		lhs[0] ^ rhs,
-		lhs[1] ^ rhs,
-		lhs[2] ^ rhs
+		lhs.rows[0] ^ rhs,
+		lhs.rows[1] ^ rhs,
+		lhs.rows[2] ^ rhs
 	);
 }
 
@@ -8754,9 +8754,9 @@ HLML_INLINE uint3x2 operator^=( uint3x2 &lhs, const uint32_t rhs )
 HLML_INLINE uint3x2 operator^( const uint3x2 &lhs, const uint3x2 &rhs )
 {
 	return uint3x2(
-		lhs[0] ^ rhs[0],
-		lhs[1] ^ rhs[1],
-		lhs[2] ^ rhs[2]
+		lhs.rows[0] ^ rhs.rows[0],
+		lhs.rows[1] ^ rhs.rows[1],
+		lhs.rows[2] ^ rhs.rows[2]
 	);
 }
 
@@ -8770,9 +8770,9 @@ HLML_INLINE uint3x2 operator^=( uint3x2 &lhs, const uint3x2 &rhs )
 HLML_INLINE uint3x2 operator<<( const uint3x2 &lhs, const uint32_t rhs )
 {
 	return uint3x2(
-		lhs[0] << rhs,
-		lhs[1] << rhs,
-		lhs[2] << rhs
+		lhs.rows[0] << rhs,
+		lhs.rows[1] << rhs,
+		lhs.rows[2] << rhs
 	);
 }
 
@@ -8786,9 +8786,9 @@ HLML_INLINE uint3x2 operator<<=( uint3x2 &lhs, const uint32_t rhs )
 HLML_INLINE uint3x2 operator<<( const uint3x2 &lhs, const uint3x2 &rhs )
 {
 	return uint3x2(
-		lhs[0] << rhs[0],
-		lhs[1] << rhs[1],
-		lhs[2] << rhs[2]
+		lhs.rows[0] << rhs.rows[0],
+		lhs.rows[1] << rhs.rows[1],
+		lhs.rows[2] << rhs.rows[2]
 	);
 }
 
@@ -8802,9 +8802,9 @@ HLML_INLINE uint3x2 operator<<=( uint3x2 &lhs, const uint3x2 &rhs )
 HLML_INLINE uint3x2 operator>>( const uint3x2 &lhs, const uint32_t rhs )
 {
 	return uint3x2(
-		lhs[0] >> rhs,
-		lhs[1] >> rhs,
-		lhs[2] >> rhs
+		lhs.rows[0] >> rhs,
+		lhs.rows[1] >> rhs,
+		lhs.rows[2] >> rhs
 	);
 }
 
@@ -8818,9 +8818,9 @@ HLML_INLINE uint3x2 operator>>=( uint3x2 &lhs, const uint32_t rhs )
 HLML_INLINE uint3x2 operator>>( const uint3x2 &lhs, const uint3x2 &rhs )
 {
 	return uint3x2(
-		lhs[0] >> rhs[0],
-		lhs[1] >> rhs[1],
-		lhs[2] >> rhs[2]
+		lhs.rows[0] >> rhs.rows[0],
+		lhs.rows[1] >> rhs.rows[1],
+		lhs.rows[2] >> rhs.rows[2]
 	);
 }
 
@@ -8880,9 +8880,9 @@ HLML_INLINE uint3x3 mul( const uint3x2 &lhs, const uint2x3 &rhs )
 HLML_INLINE uint3x3 min( const uint3x3 &x, const uint3x3 &y )
 {
 	return uint3x3(
-		min( x[0], y[0] ),
-		min( x[1], y[1] ),
-		min( x[2], y[2] )
+		min( x.rows[0], y.rows[0] ),
+		min( x.rows[1], y.rows[1] ),
+		min( x.rows[2], y.rows[2] )
 	);
 }
 
@@ -8890,9 +8890,9 @@ HLML_INLINE uint3x3 min( const uint3x3 &x, const uint3x3 &y )
 HLML_INLINE uint3x3 max( const uint3x3 &x, const uint3x3 &y )
 {
 	return uint3x3(
-		max( x[0], y[0] ),
-		max( x[1], y[1] ),
-		max( x[2], y[2] )
+		max( x.rows[0], y.rows[0] ),
+		max( x.rows[1], y.rows[1] ),
+		max( x.rows[2], y.rows[2] )
 	);
 }
 
@@ -8900,9 +8900,9 @@ HLML_INLINE uint3x3 max( const uint3x3 &x, const uint3x3 &y )
 HLML_INLINE uint3x3 clamp( const uint3x3 &x, const uint3x3 &low, const uint3x3 &high )
 {
 	return uint3x3(
-		clamp( x[0], low[0], high[0] ),
-		clamp( x[1], low[1], high[1] ),
-		clamp( x[2], low[2], high[2] )
+		clamp( x.rows[0], low.rows[0], high.rows[0] ),
+		clamp( x.rows[1], low.rows[1], high.rows[1] ),
+		clamp( x.rows[2], low.rows[2], high.rows[2] )
 	);
 }
 
@@ -8910,9 +8910,9 @@ HLML_INLINE uint3x3 clamp( const uint3x3 &x, const uint3x3 &low, const uint3x3 &
 HLML_INLINE uint3x3 saturate( const uint3x3 &x )
 {
 	return uint3x3(
-		saturate( x[0] ),
-		saturate( x[1] ),
-		saturate( x[2] )
+		saturate( x.rows[0] ),
+		saturate( x.rows[1] ),
+		saturate( x.rows[2] )
 	);
 }
 
@@ -8920,9 +8920,9 @@ HLML_INLINE uint3x3 saturate( const uint3x3 &x )
 HLML_INLINE bool operator==( const uint3x3 &lhs, const uint3x3 &rhs )
 {
 	return
-		lhs[0] == rhs[0] &&
-		lhs[1] == rhs[1] &&
-		lhs[2] == rhs[2];
+		lhs.rows[0] == rhs.rows[0] &&
+		lhs.rows[1] == rhs.rows[1] &&
+		lhs.rows[2] == rhs.rows[2];
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
@@ -8935,9 +8935,9 @@ HLML_INLINE bool operator!=( const uint3x3 &lhs, const uint3x3 &rhs )
 HLML_INLINE bool3x3 operator<( const uint3x3 &lhs, const uint3x3 &rhs )
 {
 	return bool3x3(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2]
+		lhs.rows[0] < rhs.rows[0],
+		lhs.rows[1] < rhs.rows[1],
+		lhs.rows[2] < rhs.rows[2]
 	);
 }
 
@@ -8945,9 +8945,9 @@ HLML_INLINE bool3x3 operator<( const uint3x3 &lhs, const uint3x3 &rhs )
 HLML_INLINE bool3x3 operator<=( const uint3x3 &lhs, const uint3x3 &rhs )
 {
 	return bool3x3(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2]
+		lhs.rows[0] <= rhs.rows[0],
+		lhs.rows[1] <= rhs.rows[1],
+		lhs.rows[2] <= rhs.rows[2]
 	);
 }
 
@@ -8955,9 +8955,9 @@ HLML_INLINE bool3x3 operator<=( const uint3x3 &lhs, const uint3x3 &rhs )
 HLML_INLINE bool3x3 operator>( const uint3x3 &lhs, const uint3x3 &rhs )
 {
 	return bool3x3(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2]
+		lhs.rows[0] > rhs.rows[0],
+		lhs.rows[1] > rhs.rows[1],
+		lhs.rows[2] > rhs.rows[2]
 	);
 }
 
@@ -8965,9 +8965,9 @@ HLML_INLINE bool3x3 operator>( const uint3x3 &lhs, const uint3x3 &rhs )
 HLML_INLINE bool3x3 operator>=( const uint3x3 &lhs, const uint3x3 &rhs )
 {
 	return bool3x3(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2]
+		lhs.rows[0] >= rhs.rows[0],
+		lhs.rows[1] >= rhs.rows[1],
+		lhs.rows[2] >= rhs.rows[2]
 	);
 }
 
@@ -8975,9 +8975,9 @@ HLML_INLINE bool3x3 operator>=( const uint3x3 &lhs, const uint3x3 &rhs )
 HLML_INLINE uint3x3 operator+( const uint3x3 &lhs, const uint32_t rhs )
 {
 	return uint3x3(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs
+		lhs.rows[0] + rhs,
+		lhs.rows[1] + rhs,
+		lhs.rows[2] + rhs
 	);
 }
 
@@ -8991,9 +8991,9 @@ HLML_INLINE uint3x3 operator+=( uint3x3 &lhs, const uint32_t rhs )
 HLML_INLINE uint3x3 operator+( const uint3x3 &lhs, const uint3x3 &rhs )
 {
 	return uint3x3(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2]
+		lhs.rows[0] + rhs.rows[0],
+		lhs.rows[1] + rhs.rows[1],
+		lhs.rows[2] + rhs.rows[2]
 	);
 }
 
@@ -9007,9 +9007,9 @@ HLML_INLINE uint3x3 operator+=( uint3x3 &lhs, const uint3x3 &rhs )
 HLML_INLINE uint3x3 operator-( const uint3x3 &lhs, const uint32_t rhs )
 {
 	return uint3x3(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs
+		lhs.rows[0] - rhs,
+		lhs.rows[1] - rhs,
+		lhs.rows[2] - rhs
 	);
 }
 
@@ -9023,9 +9023,9 @@ HLML_INLINE uint3x3 operator-=( uint3x3 &lhs, const uint32_t rhs )
 HLML_INLINE uint3x3 operator-( const uint3x3 &lhs, const uint3x3 &rhs )
 {
 	return uint3x3(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2]
+		lhs.rows[0] - rhs.rows[0],
+		lhs.rows[1] - rhs.rows[1],
+		lhs.rows[2] - rhs.rows[2]
 	);
 }
 
@@ -9039,9 +9039,9 @@ HLML_INLINE uint3x3 operator-=( uint3x3 &lhs, const uint3x3 &rhs )
 HLML_INLINE uint3x3 operator*( const uint3x3 &lhs, const uint32_t rhs )
 {
 	return uint3x3(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs
+		lhs.rows[0] * rhs,
+		lhs.rows[1] * rhs,
+		lhs.rows[2] * rhs
 	);
 }
 
@@ -9055,9 +9055,9 @@ HLML_INLINE uint3x3 operator*=( uint3x3 &lhs, const uint32_t rhs )
 HLML_INLINE uint3x3 operator*( const uint3x3 &lhs, const uint3x3 &rhs )
 {
 	return uint3x3(
-		lhs[0] * rhs[0],
-		lhs[1] * rhs[1],
-		lhs[2] * rhs[2]
+		lhs.rows[0] * rhs.rows[0],
+		lhs.rows[1] * rhs.rows[1],
+		lhs.rows[2] * rhs.rows[2]
 	);
 }
 
@@ -9071,9 +9071,9 @@ HLML_INLINE uint3x3 operator*=( uint3x3 &lhs, const uint3x3 &rhs )
 HLML_INLINE uint3x3 operator/( const uint3x3 &lhs, const uint32_t rhs )
 {
 	return uint3x3(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs
+		lhs.rows[0] / rhs,
+		lhs.rows[1] / rhs,
+		lhs.rows[2] / rhs
 	);
 }
 
@@ -9087,9 +9087,9 @@ HLML_INLINE uint3x3 operator/=( uint3x3 &lhs, const uint32_t rhs )
 HLML_INLINE uint3x3 operator/( const uint3x3 &lhs, const uint3x3 &rhs )
 {
 	return uint3x3(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1],
-		lhs[2] / rhs[2]
+		lhs.rows[0] / rhs.rows[0],
+		lhs.rows[1] / rhs.rows[1],
+		lhs.rows[2] / rhs.rows[2]
 	);
 }
 
@@ -9102,9 +9102,9 @@ HLML_INLINE uint3x3 operator/=( uint3x3 &lhs, const uint3x3 &rhs )
 // ++s each component of the matrix and returns the result.
 HLML_INLINE uint3x3 operator++( uint3x3 &x )
 {
-	++x[0];
-	++x[1];
-	++x[2];
+	++x.rows[0];
+	++x.rows[1];
+	++x.rows[2];
 	return x;
 }
 
@@ -9112,18 +9112,18 @@ HLML_INLINE uint3x3 operator++( uint3x3 &x )
 // post-fix
 HLML_INLINE uint3x3 operator++( uint3x3 &x, const int32_t )
 {
-	x[0]++;
-	x[1]++;
-	x[2]++;
+	x.rows[0]++;
+	x.rows[1]++;
+	x.rows[2]++;
 	return x;
 }
 
 // --s each component of the matrix and returns the result.
 HLML_INLINE uint3x3 operator--( uint3x3 &x )
 {
-	--x[0];
-	--x[1];
-	--x[2];
+	--x.rows[0];
+	--x.rows[1];
+	--x.rows[2];
 	return x;
 }
 
@@ -9131,9 +9131,9 @@ HLML_INLINE uint3x3 operator--( uint3x3 &x )
 // post-fix
 HLML_INLINE uint3x3 operator--( uint3x3 &x, const int32_t )
 {
-	x[0]--;
-	x[1]--;
-	x[2]--;
+	x.rows[0]--;
+	x.rows[1]--;
+	x.rows[2]--;
 	return x;
 }
 
@@ -9146,9 +9146,9 @@ HLML_INLINE uint3x3 operator--( uint3x3 &x, const int32_t )
 HLML_INLINE uint3x3 operator-( const uint3x3 &x )
 {
 	return uint3x3(
-		-x[0],
-		-x[1],
-		-x[2]
+		-x.rows[0],
+		-x.rows[1],
+		-x.rows[2]
 	);
 }
 
@@ -9160,9 +9160,9 @@ HLML_INLINE uint3x3 operator-( const uint3x3 &x )
 HLML_INLINE uint3x3 operator~( const uint3x3 &x )
 {
 	return uint3x3(
-		~x[0],
-		~x[1],
-		~x[2]
+		~x.rows[0],
+		~x.rows[1],
+		~x.rows[2]
 	);
 }
 
@@ -9170,9 +9170,9 @@ HLML_INLINE uint3x3 operator~( const uint3x3 &x )
 HLML_INLINE uint3x3 operator&( const uint3x3 &lhs, const uint32_t rhs )
 {
 	return uint3x3(
-		lhs[0] & rhs,
-		lhs[1] & rhs,
-		lhs[2] & rhs
+		lhs.rows[0] & rhs,
+		lhs.rows[1] & rhs,
+		lhs.rows[2] & rhs
 	);
 }
 
@@ -9186,9 +9186,9 @@ HLML_INLINE uint3x3 operator&=( uint3x3 &lhs, const uint32_t rhs )
 HLML_INLINE uint3x3 operator&( const uint3x3 &lhs, const uint3x3 &rhs )
 {
 	return uint3x3(
-		lhs[0] & rhs[0],
-		lhs[1] & rhs[1],
-		lhs[2] & rhs[2]
+		lhs.rows[0] & rhs.rows[0],
+		lhs.rows[1] & rhs.rows[1],
+		lhs.rows[2] & rhs.rows[2]
 	);
 }
 
@@ -9202,9 +9202,9 @@ HLML_INLINE uint3x3 operator&=( uint3x3 &lhs, const uint3x3 &rhs )
 HLML_INLINE uint3x3 operator|( const uint3x3 &lhs, const uint32_t rhs )
 {
 	return uint3x3(
-		lhs[0] | rhs,
-		lhs[1] | rhs,
-		lhs[2] | rhs
+		lhs.rows[0] | rhs,
+		lhs.rows[1] | rhs,
+		lhs.rows[2] | rhs
 	);
 }
 
@@ -9218,9 +9218,9 @@ HLML_INLINE uint3x3 operator|=( uint3x3 &lhs, const uint32_t rhs )
 HLML_INLINE uint3x3 operator|( const uint3x3 &lhs, const uint3x3 &rhs )
 {
 	return uint3x3(
-		lhs[0] | rhs[0],
-		lhs[1] | rhs[1],
-		lhs[2] | rhs[2]
+		lhs.rows[0] | rhs.rows[0],
+		lhs.rows[1] | rhs.rows[1],
+		lhs.rows[2] | rhs.rows[2]
 	);
 }
 
@@ -9234,9 +9234,9 @@ HLML_INLINE uint3x3 operator|=( uint3x3 &lhs, const uint3x3 &rhs )
 HLML_INLINE uint3x3 operator^( const uint3x3 &lhs, const uint32_t rhs )
 {
 	return uint3x3(
-		lhs[0] ^ rhs,
-		lhs[1] ^ rhs,
-		lhs[2] ^ rhs
+		lhs.rows[0] ^ rhs,
+		lhs.rows[1] ^ rhs,
+		lhs.rows[2] ^ rhs
 	);
 }
 
@@ -9250,9 +9250,9 @@ HLML_INLINE uint3x3 operator^=( uint3x3 &lhs, const uint32_t rhs )
 HLML_INLINE uint3x3 operator^( const uint3x3 &lhs, const uint3x3 &rhs )
 {
 	return uint3x3(
-		lhs[0] ^ rhs[0],
-		lhs[1] ^ rhs[1],
-		lhs[2] ^ rhs[2]
+		lhs.rows[0] ^ rhs.rows[0],
+		lhs.rows[1] ^ rhs.rows[1],
+		lhs.rows[2] ^ rhs.rows[2]
 	);
 }
 
@@ -9266,9 +9266,9 @@ HLML_INLINE uint3x3 operator^=( uint3x3 &lhs, const uint3x3 &rhs )
 HLML_INLINE uint3x3 operator<<( const uint3x3 &lhs, const uint32_t rhs )
 {
 	return uint3x3(
-		lhs[0] << rhs,
-		lhs[1] << rhs,
-		lhs[2] << rhs
+		lhs.rows[0] << rhs,
+		lhs.rows[1] << rhs,
+		lhs.rows[2] << rhs
 	);
 }
 
@@ -9282,9 +9282,9 @@ HLML_INLINE uint3x3 operator<<=( uint3x3 &lhs, const uint32_t rhs )
 HLML_INLINE uint3x3 operator<<( const uint3x3 &lhs, const uint3x3 &rhs )
 {
 	return uint3x3(
-		lhs[0] << rhs[0],
-		lhs[1] << rhs[1],
-		lhs[2] << rhs[2]
+		lhs.rows[0] << rhs.rows[0],
+		lhs.rows[1] << rhs.rows[1],
+		lhs.rows[2] << rhs.rows[2]
 	);
 }
 
@@ -9298,9 +9298,9 @@ HLML_INLINE uint3x3 operator<<=( uint3x3 &lhs, const uint3x3 &rhs )
 HLML_INLINE uint3x3 operator>>( const uint3x3 &lhs, const uint32_t rhs )
 {
 	return uint3x3(
-		lhs[0] >> rhs,
-		lhs[1] >> rhs,
-		lhs[2] >> rhs
+		lhs.rows[0] >> rhs,
+		lhs.rows[1] >> rhs,
+		lhs.rows[2] >> rhs
 	);
 }
 
@@ -9314,9 +9314,9 @@ HLML_INLINE uint3x3 operator>>=( uint3x3 &lhs, const uint32_t rhs )
 HLML_INLINE uint3x3 operator>>( const uint3x3 &lhs, const uint3x3 &rhs )
 {
 	return uint3x3(
-		lhs[0] >> rhs[0],
-		lhs[1] >> rhs[1],
-		lhs[2] >> rhs[2]
+		lhs.rows[0] >> rhs.rows[0],
+		lhs.rows[1] >> rhs.rows[1],
+		lhs.rows[2] >> rhs.rows[2]
 	);
 }
 
@@ -9388,9 +9388,9 @@ HLML_INLINE uint3 mul( const uint3 &lhs, const uint3x3 &rhs )
 HLML_INLINE uint3x4 min( const uint3x4 &x, const uint3x4 &y )
 {
 	return uint3x4(
-		min( x[0], y[0] ),
-		min( x[1], y[1] ),
-		min( x[2], y[2] )
+		min( x.rows[0], y.rows[0] ),
+		min( x.rows[1], y.rows[1] ),
+		min( x.rows[2], y.rows[2] )
 	);
 }
 
@@ -9398,9 +9398,9 @@ HLML_INLINE uint3x4 min( const uint3x4 &x, const uint3x4 &y )
 HLML_INLINE uint3x4 max( const uint3x4 &x, const uint3x4 &y )
 {
 	return uint3x4(
-		max( x[0], y[0] ),
-		max( x[1], y[1] ),
-		max( x[2], y[2] )
+		max( x.rows[0], y.rows[0] ),
+		max( x.rows[1], y.rows[1] ),
+		max( x.rows[2], y.rows[2] )
 	);
 }
 
@@ -9408,9 +9408,9 @@ HLML_INLINE uint3x4 max( const uint3x4 &x, const uint3x4 &y )
 HLML_INLINE uint3x4 clamp( const uint3x4 &x, const uint3x4 &low, const uint3x4 &high )
 {
 	return uint3x4(
-		clamp( x[0], low[0], high[0] ),
-		clamp( x[1], low[1], high[1] ),
-		clamp( x[2], low[2], high[2] )
+		clamp( x.rows[0], low.rows[0], high.rows[0] ),
+		clamp( x.rows[1], low.rows[1], high.rows[1] ),
+		clamp( x.rows[2], low.rows[2], high.rows[2] )
 	);
 }
 
@@ -9418,9 +9418,9 @@ HLML_INLINE uint3x4 clamp( const uint3x4 &x, const uint3x4 &low, const uint3x4 &
 HLML_INLINE uint3x4 saturate( const uint3x4 &x )
 {
 	return uint3x4(
-		saturate( x[0] ),
-		saturate( x[1] ),
-		saturate( x[2] )
+		saturate( x.rows[0] ),
+		saturate( x.rows[1] ),
+		saturate( x.rows[2] )
 	);
 }
 
@@ -9428,9 +9428,9 @@ HLML_INLINE uint3x4 saturate( const uint3x4 &x )
 HLML_INLINE bool operator==( const uint3x4 &lhs, const uint3x4 &rhs )
 {
 	return
-		lhs[0] == rhs[0] &&
-		lhs[1] == rhs[1] &&
-		lhs[2] == rhs[2];
+		lhs.rows[0] == rhs.rows[0] &&
+		lhs.rows[1] == rhs.rows[1] &&
+		lhs.rows[2] == rhs.rows[2];
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
@@ -9443,9 +9443,9 @@ HLML_INLINE bool operator!=( const uint3x4 &lhs, const uint3x4 &rhs )
 HLML_INLINE bool3x4 operator<( const uint3x4 &lhs, const uint3x4 &rhs )
 {
 	return bool3x4(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2]
+		lhs.rows[0] < rhs.rows[0],
+		lhs.rows[1] < rhs.rows[1],
+		lhs.rows[2] < rhs.rows[2]
 	);
 }
 
@@ -9453,9 +9453,9 @@ HLML_INLINE bool3x4 operator<( const uint3x4 &lhs, const uint3x4 &rhs )
 HLML_INLINE bool3x4 operator<=( const uint3x4 &lhs, const uint3x4 &rhs )
 {
 	return bool3x4(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2]
+		lhs.rows[0] <= rhs.rows[0],
+		lhs.rows[1] <= rhs.rows[1],
+		lhs.rows[2] <= rhs.rows[2]
 	);
 }
 
@@ -9463,9 +9463,9 @@ HLML_INLINE bool3x4 operator<=( const uint3x4 &lhs, const uint3x4 &rhs )
 HLML_INLINE bool3x4 operator>( const uint3x4 &lhs, const uint3x4 &rhs )
 {
 	return bool3x4(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2]
+		lhs.rows[0] > rhs.rows[0],
+		lhs.rows[1] > rhs.rows[1],
+		lhs.rows[2] > rhs.rows[2]
 	);
 }
 
@@ -9473,9 +9473,9 @@ HLML_INLINE bool3x4 operator>( const uint3x4 &lhs, const uint3x4 &rhs )
 HLML_INLINE bool3x4 operator>=( const uint3x4 &lhs, const uint3x4 &rhs )
 {
 	return bool3x4(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2]
+		lhs.rows[0] >= rhs.rows[0],
+		lhs.rows[1] >= rhs.rows[1],
+		lhs.rows[2] >= rhs.rows[2]
 	);
 }
 
@@ -9483,9 +9483,9 @@ HLML_INLINE bool3x4 operator>=( const uint3x4 &lhs, const uint3x4 &rhs )
 HLML_INLINE uint3x4 operator+( const uint3x4 &lhs, const uint32_t rhs )
 {
 	return uint3x4(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs
+		lhs.rows[0] + rhs,
+		lhs.rows[1] + rhs,
+		lhs.rows[2] + rhs
 	);
 }
 
@@ -9499,9 +9499,9 @@ HLML_INLINE uint3x4 operator+=( uint3x4 &lhs, const uint32_t rhs )
 HLML_INLINE uint3x4 operator+( const uint3x4 &lhs, const uint3x4 &rhs )
 {
 	return uint3x4(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2]
+		lhs.rows[0] + rhs.rows[0],
+		lhs.rows[1] + rhs.rows[1],
+		lhs.rows[2] + rhs.rows[2]
 	);
 }
 
@@ -9515,9 +9515,9 @@ HLML_INLINE uint3x4 operator+=( uint3x4 &lhs, const uint3x4 &rhs )
 HLML_INLINE uint3x4 operator-( const uint3x4 &lhs, const uint32_t rhs )
 {
 	return uint3x4(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs
+		lhs.rows[0] - rhs,
+		lhs.rows[1] - rhs,
+		lhs.rows[2] - rhs
 	);
 }
 
@@ -9531,9 +9531,9 @@ HLML_INLINE uint3x4 operator-=( uint3x4 &lhs, const uint32_t rhs )
 HLML_INLINE uint3x4 operator-( const uint3x4 &lhs, const uint3x4 &rhs )
 {
 	return uint3x4(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2]
+		lhs.rows[0] - rhs.rows[0],
+		lhs.rows[1] - rhs.rows[1],
+		lhs.rows[2] - rhs.rows[2]
 	);
 }
 
@@ -9547,9 +9547,9 @@ HLML_INLINE uint3x4 operator-=( uint3x4 &lhs, const uint3x4 &rhs )
 HLML_INLINE uint3x4 operator*( const uint3x4 &lhs, const uint32_t rhs )
 {
 	return uint3x4(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs
+		lhs.rows[0] * rhs,
+		lhs.rows[1] * rhs,
+		lhs.rows[2] * rhs
 	);
 }
 
@@ -9563,9 +9563,9 @@ HLML_INLINE uint3x4 operator*=( uint3x4 &lhs, const uint32_t rhs )
 HLML_INLINE uint3x4 operator*( const uint3x4 &lhs, const uint3x4 &rhs )
 {
 	return uint3x4(
-		lhs[0] * rhs[0],
-		lhs[1] * rhs[1],
-		lhs[2] * rhs[2]
+		lhs.rows[0] * rhs.rows[0],
+		lhs.rows[1] * rhs.rows[1],
+		lhs.rows[2] * rhs.rows[2]
 	);
 }
 
@@ -9579,9 +9579,9 @@ HLML_INLINE uint3x4 operator*=( uint3x4 &lhs, const uint3x4 &rhs )
 HLML_INLINE uint3x4 operator/( const uint3x4 &lhs, const uint32_t rhs )
 {
 	return uint3x4(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs
+		lhs.rows[0] / rhs,
+		lhs.rows[1] / rhs,
+		lhs.rows[2] / rhs
 	);
 }
 
@@ -9595,9 +9595,9 @@ HLML_INLINE uint3x4 operator/=( uint3x4 &lhs, const uint32_t rhs )
 HLML_INLINE uint3x4 operator/( const uint3x4 &lhs, const uint3x4 &rhs )
 {
 	return uint3x4(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1],
-		lhs[2] / rhs[2]
+		lhs.rows[0] / rhs.rows[0],
+		lhs.rows[1] / rhs.rows[1],
+		lhs.rows[2] / rhs.rows[2]
 	);
 }
 
@@ -9610,9 +9610,9 @@ HLML_INLINE uint3x4 operator/=( uint3x4 &lhs, const uint3x4 &rhs )
 // ++s each component of the matrix and returns the result.
 HLML_INLINE uint3x4 operator++( uint3x4 &x )
 {
-	++x[0];
-	++x[1];
-	++x[2];
+	++x.rows[0];
+	++x.rows[1];
+	++x.rows[2];
 	return x;
 }
 
@@ -9620,18 +9620,18 @@ HLML_INLINE uint3x4 operator++( uint3x4 &x )
 // post-fix
 HLML_INLINE uint3x4 operator++( uint3x4 &x, const int32_t )
 {
-	x[0]++;
-	x[1]++;
-	x[2]++;
+	x.rows[0]++;
+	x.rows[1]++;
+	x.rows[2]++;
 	return x;
 }
 
 // --s each component of the matrix and returns the result.
 HLML_INLINE uint3x4 operator--( uint3x4 &x )
 {
-	--x[0];
-	--x[1];
-	--x[2];
+	--x.rows[0];
+	--x.rows[1];
+	--x.rows[2];
 	return x;
 }
 
@@ -9639,9 +9639,9 @@ HLML_INLINE uint3x4 operator--( uint3x4 &x )
 // post-fix
 HLML_INLINE uint3x4 operator--( uint3x4 &x, const int32_t )
 {
-	x[0]--;
-	x[1]--;
-	x[2]--;
+	x.rows[0]--;
+	x.rows[1]--;
+	x.rows[2]--;
 	return x;
 }
 
@@ -9654,9 +9654,9 @@ HLML_INLINE uint3x4 operator--( uint3x4 &x, const int32_t )
 HLML_INLINE uint3x4 operator-( const uint3x4 &x )
 {
 	return uint3x4(
-		-x[0],
-		-x[1],
-		-x[2]
+		-x.rows[0],
+		-x.rows[1],
+		-x.rows[2]
 	);
 }
 
@@ -9668,9 +9668,9 @@ HLML_INLINE uint3x4 operator-( const uint3x4 &x )
 HLML_INLINE uint3x4 operator~( const uint3x4 &x )
 {
 	return uint3x4(
-		~x[0],
-		~x[1],
-		~x[2]
+		~x.rows[0],
+		~x.rows[1],
+		~x.rows[2]
 	);
 }
 
@@ -9678,9 +9678,9 @@ HLML_INLINE uint3x4 operator~( const uint3x4 &x )
 HLML_INLINE uint3x4 operator&( const uint3x4 &lhs, const uint32_t rhs )
 {
 	return uint3x4(
-		lhs[0] & rhs,
-		lhs[1] & rhs,
-		lhs[2] & rhs
+		lhs.rows[0] & rhs,
+		lhs.rows[1] & rhs,
+		lhs.rows[2] & rhs
 	);
 }
 
@@ -9694,9 +9694,9 @@ HLML_INLINE uint3x4 operator&=( uint3x4 &lhs, const uint32_t rhs )
 HLML_INLINE uint3x4 operator&( const uint3x4 &lhs, const uint3x4 &rhs )
 {
 	return uint3x4(
-		lhs[0] & rhs[0],
-		lhs[1] & rhs[1],
-		lhs[2] & rhs[2]
+		lhs.rows[0] & rhs.rows[0],
+		lhs.rows[1] & rhs.rows[1],
+		lhs.rows[2] & rhs.rows[2]
 	);
 }
 
@@ -9710,9 +9710,9 @@ HLML_INLINE uint3x4 operator&=( uint3x4 &lhs, const uint3x4 &rhs )
 HLML_INLINE uint3x4 operator|( const uint3x4 &lhs, const uint32_t rhs )
 {
 	return uint3x4(
-		lhs[0] | rhs,
-		lhs[1] | rhs,
-		lhs[2] | rhs
+		lhs.rows[0] | rhs,
+		lhs.rows[1] | rhs,
+		lhs.rows[2] | rhs
 	);
 }
 
@@ -9726,9 +9726,9 @@ HLML_INLINE uint3x4 operator|=( uint3x4 &lhs, const uint32_t rhs )
 HLML_INLINE uint3x4 operator|( const uint3x4 &lhs, const uint3x4 &rhs )
 {
 	return uint3x4(
-		lhs[0] | rhs[0],
-		lhs[1] | rhs[1],
-		lhs[2] | rhs[2]
+		lhs.rows[0] | rhs.rows[0],
+		lhs.rows[1] | rhs.rows[1],
+		lhs.rows[2] | rhs.rows[2]
 	);
 }
 
@@ -9742,9 +9742,9 @@ HLML_INLINE uint3x4 operator|=( uint3x4 &lhs, const uint3x4 &rhs )
 HLML_INLINE uint3x4 operator^( const uint3x4 &lhs, const uint32_t rhs )
 {
 	return uint3x4(
-		lhs[0] ^ rhs,
-		lhs[1] ^ rhs,
-		lhs[2] ^ rhs
+		lhs.rows[0] ^ rhs,
+		lhs.rows[1] ^ rhs,
+		lhs.rows[2] ^ rhs
 	);
 }
 
@@ -9758,9 +9758,9 @@ HLML_INLINE uint3x4 operator^=( uint3x4 &lhs, const uint32_t rhs )
 HLML_INLINE uint3x4 operator^( const uint3x4 &lhs, const uint3x4 &rhs )
 {
 	return uint3x4(
-		lhs[0] ^ rhs[0],
-		lhs[1] ^ rhs[1],
-		lhs[2] ^ rhs[2]
+		lhs.rows[0] ^ rhs.rows[0],
+		lhs.rows[1] ^ rhs.rows[1],
+		lhs.rows[2] ^ rhs.rows[2]
 	);
 }
 
@@ -9774,9 +9774,9 @@ HLML_INLINE uint3x4 operator^=( uint3x4 &lhs, const uint3x4 &rhs )
 HLML_INLINE uint3x4 operator<<( const uint3x4 &lhs, const uint32_t rhs )
 {
 	return uint3x4(
-		lhs[0] << rhs,
-		lhs[1] << rhs,
-		lhs[2] << rhs
+		lhs.rows[0] << rhs,
+		lhs.rows[1] << rhs,
+		lhs.rows[2] << rhs
 	);
 }
 
@@ -9790,9 +9790,9 @@ HLML_INLINE uint3x4 operator<<=( uint3x4 &lhs, const uint32_t rhs )
 HLML_INLINE uint3x4 operator<<( const uint3x4 &lhs, const uint3x4 &rhs )
 {
 	return uint3x4(
-		lhs[0] << rhs[0],
-		lhs[1] << rhs[1],
-		lhs[2] << rhs[2]
+		lhs.rows[0] << rhs.rows[0],
+		lhs.rows[1] << rhs.rows[1],
+		lhs.rows[2] << rhs.rows[2]
 	);
 }
 
@@ -9806,9 +9806,9 @@ HLML_INLINE uint3x4 operator<<=( uint3x4 &lhs, const uint3x4 &rhs )
 HLML_INLINE uint3x4 operator>>( const uint3x4 &lhs, const uint32_t rhs )
 {
 	return uint3x4(
-		lhs[0] >> rhs,
-		lhs[1] >> rhs,
-		lhs[2] >> rhs
+		lhs.rows[0] >> rhs,
+		lhs.rows[1] >> rhs,
+		lhs.rows[2] >> rhs
 	);
 }
 
@@ -9822,9 +9822,9 @@ HLML_INLINE uint3x4 operator>>=( uint3x4 &lhs, const uint32_t rhs )
 HLML_INLINE uint3x4 operator>>( const uint3x4 &lhs, const uint3x4 &rhs )
 {
 	return uint3x4(
-		lhs[0] >> rhs[0],
-		lhs[1] >> rhs[1],
-		lhs[2] >> rhs[2]
+		lhs.rows[0] >> rhs.rows[0],
+		lhs.rows[1] >> rhs.rows[1],
+		lhs.rows[2] >> rhs.rows[2]
 	);
 }
 
@@ -9886,10 +9886,10 @@ HLML_INLINE uint3x3 mul( const uint3x4 &lhs, const uint4x3 &rhs )
 HLML_INLINE uint4x2 min( const uint4x2 &x, const uint4x2 &y )
 {
 	return uint4x2(
-		min( x[0], y[0] ),
-		min( x[1], y[1] ),
-		min( x[2], y[2] ),
-		min( x[3], y[3] )
+		min( x.rows[0], y.rows[0] ),
+		min( x.rows[1], y.rows[1] ),
+		min( x.rows[2], y.rows[2] ),
+		min( x.rows[3], y.rows[3] )
 	);
 }
 
@@ -9897,10 +9897,10 @@ HLML_INLINE uint4x2 min( const uint4x2 &x, const uint4x2 &y )
 HLML_INLINE uint4x2 max( const uint4x2 &x, const uint4x2 &y )
 {
 	return uint4x2(
-		max( x[0], y[0] ),
-		max( x[1], y[1] ),
-		max( x[2], y[2] ),
-		max( x[3], y[3] )
+		max( x.rows[0], y.rows[0] ),
+		max( x.rows[1], y.rows[1] ),
+		max( x.rows[2], y.rows[2] ),
+		max( x.rows[3], y.rows[3] )
 	);
 }
 
@@ -9908,10 +9908,10 @@ HLML_INLINE uint4x2 max( const uint4x2 &x, const uint4x2 &y )
 HLML_INLINE uint4x2 clamp( const uint4x2 &x, const uint4x2 &low, const uint4x2 &high )
 {
 	return uint4x2(
-		clamp( x[0], low[0], high[0] ),
-		clamp( x[1], low[1], high[1] ),
-		clamp( x[2], low[2], high[2] ),
-		clamp( x[3], low[3], high[3] )
+		clamp( x.rows[0], low.rows[0], high.rows[0] ),
+		clamp( x.rows[1], low.rows[1], high.rows[1] ),
+		clamp( x.rows[2], low.rows[2], high.rows[2] ),
+		clamp( x.rows[3], low.rows[3], high.rows[3] )
 	);
 }
 
@@ -9919,10 +9919,10 @@ HLML_INLINE uint4x2 clamp( const uint4x2 &x, const uint4x2 &low, const uint4x2 &
 HLML_INLINE uint4x2 saturate( const uint4x2 &x )
 {
 	return uint4x2(
-		saturate( x[0] ),
-		saturate( x[1] ),
-		saturate( x[2] ),
-		saturate( x[3] )
+		saturate( x.rows[0] ),
+		saturate( x.rows[1] ),
+		saturate( x.rows[2] ),
+		saturate( x.rows[3] )
 	);
 }
 
@@ -9930,10 +9930,10 @@ HLML_INLINE uint4x2 saturate( const uint4x2 &x )
 HLML_INLINE bool operator==( const uint4x2 &lhs, const uint4x2 &rhs )
 {
 	return
-		lhs[0] == rhs[0] &&
-		lhs[1] == rhs[1] &&
-		lhs[2] == rhs[2] &&
-		lhs[3] == rhs[3];
+		lhs.rows[0] == rhs.rows[0] &&
+		lhs.rows[1] == rhs.rows[1] &&
+		lhs.rows[2] == rhs.rows[2] &&
+		lhs.rows[3] == rhs.rows[3];
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
@@ -9946,10 +9946,10 @@ HLML_INLINE bool operator!=( const uint4x2 &lhs, const uint4x2 &rhs )
 HLML_INLINE bool4x2 operator<( const uint4x2 &lhs, const uint4x2 &rhs )
 {
 	return bool4x2(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2],
-		lhs[3] < rhs[3]
+		lhs.rows[0] < rhs.rows[0],
+		lhs.rows[1] < rhs.rows[1],
+		lhs.rows[2] < rhs.rows[2],
+		lhs.rows[3] < rhs.rows[3]
 	);
 }
 
@@ -9957,10 +9957,10 @@ HLML_INLINE bool4x2 operator<( const uint4x2 &lhs, const uint4x2 &rhs )
 HLML_INLINE bool4x2 operator<=( const uint4x2 &lhs, const uint4x2 &rhs )
 {
 	return bool4x2(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2],
-		lhs[3] <= rhs[3]
+		lhs.rows[0] <= rhs.rows[0],
+		lhs.rows[1] <= rhs.rows[1],
+		lhs.rows[2] <= rhs.rows[2],
+		lhs.rows[3] <= rhs.rows[3]
 	);
 }
 
@@ -9968,10 +9968,10 @@ HLML_INLINE bool4x2 operator<=( const uint4x2 &lhs, const uint4x2 &rhs )
 HLML_INLINE bool4x2 operator>( const uint4x2 &lhs, const uint4x2 &rhs )
 {
 	return bool4x2(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2],
-		lhs[3] > rhs[3]
+		lhs.rows[0] > rhs.rows[0],
+		lhs.rows[1] > rhs.rows[1],
+		lhs.rows[2] > rhs.rows[2],
+		lhs.rows[3] > rhs.rows[3]
 	);
 }
 
@@ -9979,10 +9979,10 @@ HLML_INLINE bool4x2 operator>( const uint4x2 &lhs, const uint4x2 &rhs )
 HLML_INLINE bool4x2 operator>=( const uint4x2 &lhs, const uint4x2 &rhs )
 {
 	return bool4x2(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2],
-		lhs[3] >= rhs[3]
+		lhs.rows[0] >= rhs.rows[0],
+		lhs.rows[1] >= rhs.rows[1],
+		lhs.rows[2] >= rhs.rows[2],
+		lhs.rows[3] >= rhs.rows[3]
 	);
 }
 
@@ -9990,10 +9990,10 @@ HLML_INLINE bool4x2 operator>=( const uint4x2 &lhs, const uint4x2 &rhs )
 HLML_INLINE uint4x2 operator+( const uint4x2 &lhs, const uint32_t rhs )
 {
 	return uint4x2(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs,
-		lhs[3] + rhs
+		lhs.rows[0] + rhs,
+		lhs.rows[1] + rhs,
+		lhs.rows[2] + rhs,
+		lhs.rows[3] + rhs
 	);
 }
 
@@ -10007,10 +10007,10 @@ HLML_INLINE uint4x2 operator+=( uint4x2 &lhs, const uint32_t rhs )
 HLML_INLINE uint4x2 operator+( const uint4x2 &lhs, const uint4x2 &rhs )
 {
 	return uint4x2(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2],
-		lhs[3] + rhs[3]
+		lhs.rows[0] + rhs.rows[0],
+		lhs.rows[1] + rhs.rows[1],
+		lhs.rows[2] + rhs.rows[2],
+		lhs.rows[3] + rhs.rows[3]
 	);
 }
 
@@ -10024,10 +10024,10 @@ HLML_INLINE uint4x2 operator+=( uint4x2 &lhs, const uint4x2 &rhs )
 HLML_INLINE uint4x2 operator-( const uint4x2 &lhs, const uint32_t rhs )
 {
 	return uint4x2(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs,
-		lhs[3] - rhs
+		lhs.rows[0] - rhs,
+		lhs.rows[1] - rhs,
+		lhs.rows[2] - rhs,
+		lhs.rows[3] - rhs
 	);
 }
 
@@ -10041,10 +10041,10 @@ HLML_INLINE uint4x2 operator-=( uint4x2 &lhs, const uint32_t rhs )
 HLML_INLINE uint4x2 operator-( const uint4x2 &lhs, const uint4x2 &rhs )
 {
 	return uint4x2(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2],
-		lhs[3] - rhs[3]
+		lhs.rows[0] - rhs.rows[0],
+		lhs.rows[1] - rhs.rows[1],
+		lhs.rows[2] - rhs.rows[2],
+		lhs.rows[3] - rhs.rows[3]
 	);
 }
 
@@ -10058,10 +10058,10 @@ HLML_INLINE uint4x2 operator-=( uint4x2 &lhs, const uint4x2 &rhs )
 HLML_INLINE uint4x2 operator*( const uint4x2 &lhs, const uint32_t rhs )
 {
 	return uint4x2(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs,
-		lhs[3] * rhs
+		lhs.rows[0] * rhs,
+		lhs.rows[1] * rhs,
+		lhs.rows[2] * rhs,
+		lhs.rows[3] * rhs
 	);
 }
 
@@ -10075,10 +10075,10 @@ HLML_INLINE uint4x2 operator*=( uint4x2 &lhs, const uint32_t rhs )
 HLML_INLINE uint4x2 operator*( const uint4x2 &lhs, const uint4x2 &rhs )
 {
 	return uint4x2(
-		lhs[0] * rhs[0],
-		lhs[1] * rhs[1],
-		lhs[2] * rhs[2],
-		lhs[3] * rhs[3]
+		lhs.rows[0] * rhs.rows[0],
+		lhs.rows[1] * rhs.rows[1],
+		lhs.rows[2] * rhs.rows[2],
+		lhs.rows[3] * rhs.rows[3]
 	);
 }
 
@@ -10092,10 +10092,10 @@ HLML_INLINE uint4x2 operator*=( uint4x2 &lhs, const uint4x2 &rhs )
 HLML_INLINE uint4x2 operator/( const uint4x2 &lhs, const uint32_t rhs )
 {
 	return uint4x2(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs,
-		lhs[3] / rhs
+		lhs.rows[0] / rhs,
+		lhs.rows[1] / rhs,
+		lhs.rows[2] / rhs,
+		lhs.rows[3] / rhs
 	);
 }
 
@@ -10109,10 +10109,10 @@ HLML_INLINE uint4x2 operator/=( uint4x2 &lhs, const uint32_t rhs )
 HLML_INLINE uint4x2 operator/( const uint4x2 &lhs, const uint4x2 &rhs )
 {
 	return uint4x2(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1],
-		lhs[2] / rhs[2],
-		lhs[3] / rhs[3]
+		lhs.rows[0] / rhs.rows[0],
+		lhs.rows[1] / rhs.rows[1],
+		lhs.rows[2] / rhs.rows[2],
+		lhs.rows[3] / rhs.rows[3]
 	);
 }
 
@@ -10125,10 +10125,10 @@ HLML_INLINE uint4x2 operator/=( uint4x2 &lhs, const uint4x2 &rhs )
 // ++s each component of the matrix and returns the result.
 HLML_INLINE uint4x2 operator++( uint4x2 &x )
 {
-	++x[0];
-	++x[1];
-	++x[2];
-	++x[3];
+	++x.rows[0];
+	++x.rows[1];
+	++x.rows[2];
+	++x.rows[3];
 	return x;
 }
 
@@ -10136,20 +10136,20 @@ HLML_INLINE uint4x2 operator++( uint4x2 &x )
 // post-fix
 HLML_INLINE uint4x2 operator++( uint4x2 &x, const int32_t )
 {
-	x[0]++;
-	x[1]++;
-	x[2]++;
-	x[3]++;
+	x.rows[0]++;
+	x.rows[1]++;
+	x.rows[2]++;
+	x.rows[3]++;
 	return x;
 }
 
 // --s each component of the matrix and returns the result.
 HLML_INLINE uint4x2 operator--( uint4x2 &x )
 {
-	--x[0];
-	--x[1];
-	--x[2];
-	--x[3];
+	--x.rows[0];
+	--x.rows[1];
+	--x.rows[2];
+	--x.rows[3];
 	return x;
 }
 
@@ -10157,10 +10157,10 @@ HLML_INLINE uint4x2 operator--( uint4x2 &x )
 // post-fix
 HLML_INLINE uint4x2 operator--( uint4x2 &x, const int32_t )
 {
-	x[0]--;
-	x[1]--;
-	x[2]--;
-	x[3]--;
+	x.rows[0]--;
+	x.rows[1]--;
+	x.rows[2]--;
+	x.rows[3]--;
 	return x;
 }
 
@@ -10173,10 +10173,10 @@ HLML_INLINE uint4x2 operator--( uint4x2 &x, const int32_t )
 HLML_INLINE uint4x2 operator-( const uint4x2 &x )
 {
 	return uint4x2(
-		-x[0],
-		-x[1],
-		-x[2],
-		-x[3]
+		-x.rows[0],
+		-x.rows[1],
+		-x.rows[2],
+		-x.rows[3]
 	);
 }
 
@@ -10188,10 +10188,10 @@ HLML_INLINE uint4x2 operator-( const uint4x2 &x )
 HLML_INLINE uint4x2 operator~( const uint4x2 &x )
 {
 	return uint4x2(
-		~x[0],
-		~x[1],
-		~x[2],
-		~x[3]
+		~x.rows[0],
+		~x.rows[1],
+		~x.rows[2],
+		~x.rows[3]
 	);
 }
 
@@ -10199,10 +10199,10 @@ HLML_INLINE uint4x2 operator~( const uint4x2 &x )
 HLML_INLINE uint4x2 operator&( const uint4x2 &lhs, const uint32_t rhs )
 {
 	return uint4x2(
-		lhs[0] & rhs,
-		lhs[1] & rhs,
-		lhs[2] & rhs,
-		lhs[3] & rhs
+		lhs.rows[0] & rhs,
+		lhs.rows[1] & rhs,
+		lhs.rows[2] & rhs,
+		lhs.rows[3] & rhs
 	);
 }
 
@@ -10216,10 +10216,10 @@ HLML_INLINE uint4x2 operator&=( uint4x2 &lhs, const uint32_t rhs )
 HLML_INLINE uint4x2 operator&( const uint4x2 &lhs, const uint4x2 &rhs )
 {
 	return uint4x2(
-		lhs[0] & rhs[0],
-		lhs[1] & rhs[1],
-		lhs[2] & rhs[2],
-		lhs[3] & rhs[3]
+		lhs.rows[0] & rhs.rows[0],
+		lhs.rows[1] & rhs.rows[1],
+		lhs.rows[2] & rhs.rows[2],
+		lhs.rows[3] & rhs.rows[3]
 	);
 }
 
@@ -10233,10 +10233,10 @@ HLML_INLINE uint4x2 operator&=( uint4x2 &lhs, const uint4x2 &rhs )
 HLML_INLINE uint4x2 operator|( const uint4x2 &lhs, const uint32_t rhs )
 {
 	return uint4x2(
-		lhs[0] | rhs,
-		lhs[1] | rhs,
-		lhs[2] | rhs,
-		lhs[3] | rhs
+		lhs.rows[0] | rhs,
+		lhs.rows[1] | rhs,
+		lhs.rows[2] | rhs,
+		lhs.rows[3] | rhs
 	);
 }
 
@@ -10250,10 +10250,10 @@ HLML_INLINE uint4x2 operator|=( uint4x2 &lhs, const uint32_t rhs )
 HLML_INLINE uint4x2 operator|( const uint4x2 &lhs, const uint4x2 &rhs )
 {
 	return uint4x2(
-		lhs[0] | rhs[0],
-		lhs[1] | rhs[1],
-		lhs[2] | rhs[2],
-		lhs[3] | rhs[3]
+		lhs.rows[0] | rhs.rows[0],
+		lhs.rows[1] | rhs.rows[1],
+		lhs.rows[2] | rhs.rows[2],
+		lhs.rows[3] | rhs.rows[3]
 	);
 }
 
@@ -10267,10 +10267,10 @@ HLML_INLINE uint4x2 operator|=( uint4x2 &lhs, const uint4x2 &rhs )
 HLML_INLINE uint4x2 operator^( const uint4x2 &lhs, const uint32_t rhs )
 {
 	return uint4x2(
-		lhs[0] ^ rhs,
-		lhs[1] ^ rhs,
-		lhs[2] ^ rhs,
-		lhs[3] ^ rhs
+		lhs.rows[0] ^ rhs,
+		lhs.rows[1] ^ rhs,
+		lhs.rows[2] ^ rhs,
+		lhs.rows[3] ^ rhs
 	);
 }
 
@@ -10284,10 +10284,10 @@ HLML_INLINE uint4x2 operator^=( uint4x2 &lhs, const uint32_t rhs )
 HLML_INLINE uint4x2 operator^( const uint4x2 &lhs, const uint4x2 &rhs )
 {
 	return uint4x2(
-		lhs[0] ^ rhs[0],
-		lhs[1] ^ rhs[1],
-		lhs[2] ^ rhs[2],
-		lhs[3] ^ rhs[3]
+		lhs.rows[0] ^ rhs.rows[0],
+		lhs.rows[1] ^ rhs.rows[1],
+		lhs.rows[2] ^ rhs.rows[2],
+		lhs.rows[3] ^ rhs.rows[3]
 	);
 }
 
@@ -10301,10 +10301,10 @@ HLML_INLINE uint4x2 operator^=( uint4x2 &lhs, const uint4x2 &rhs )
 HLML_INLINE uint4x2 operator<<( const uint4x2 &lhs, const uint32_t rhs )
 {
 	return uint4x2(
-		lhs[0] << rhs,
-		lhs[1] << rhs,
-		lhs[2] << rhs,
-		lhs[3] << rhs
+		lhs.rows[0] << rhs,
+		lhs.rows[1] << rhs,
+		lhs.rows[2] << rhs,
+		lhs.rows[3] << rhs
 	);
 }
 
@@ -10318,10 +10318,10 @@ HLML_INLINE uint4x2 operator<<=( uint4x2 &lhs, const uint32_t rhs )
 HLML_INLINE uint4x2 operator<<( const uint4x2 &lhs, const uint4x2 &rhs )
 {
 	return uint4x2(
-		lhs[0] << rhs[0],
-		lhs[1] << rhs[1],
-		lhs[2] << rhs[2],
-		lhs[3] << rhs[3]
+		lhs.rows[0] << rhs.rows[0],
+		lhs.rows[1] << rhs.rows[1],
+		lhs.rows[2] << rhs.rows[2],
+		lhs.rows[3] << rhs.rows[3]
 	);
 }
 
@@ -10335,10 +10335,10 @@ HLML_INLINE uint4x2 operator<<=( uint4x2 &lhs, const uint4x2 &rhs )
 HLML_INLINE uint4x2 operator>>( const uint4x2 &lhs, const uint32_t rhs )
 {
 	return uint4x2(
-		lhs[0] >> rhs,
-		lhs[1] >> rhs,
-		lhs[2] >> rhs,
-		lhs[3] >> rhs
+		lhs.rows[0] >> rhs,
+		lhs.rows[1] >> rhs,
+		lhs.rows[2] >> rhs,
+		lhs.rows[3] >> rhs
 	);
 }
 
@@ -10352,10 +10352,10 @@ HLML_INLINE uint4x2 operator>>=( uint4x2 &lhs, const uint32_t rhs )
 HLML_INLINE uint4x2 operator>>( const uint4x2 &lhs, const uint4x2 &rhs )
 {
 	return uint4x2(
-		lhs[0] >> rhs[0],
-		lhs[1] >> rhs[1],
-		lhs[2] >> rhs[2],
-		lhs[3] >> rhs[3]
+		lhs.rows[0] >> rhs.rows[0],
+		lhs.rows[1] >> rhs.rows[1],
+		lhs.rows[2] >> rhs.rows[2],
+		lhs.rows[3] >> rhs.rows[3]
 	);
 }
 
@@ -10426,10 +10426,10 @@ HLML_INLINE uint4x4 mul( const uint4x2 &lhs, const uint2x4 &rhs )
 HLML_INLINE uint4x3 min( const uint4x3 &x, const uint4x3 &y )
 {
 	return uint4x3(
-		min( x[0], y[0] ),
-		min( x[1], y[1] ),
-		min( x[2], y[2] ),
-		min( x[3], y[3] )
+		min( x.rows[0], y.rows[0] ),
+		min( x.rows[1], y.rows[1] ),
+		min( x.rows[2], y.rows[2] ),
+		min( x.rows[3], y.rows[3] )
 	);
 }
 
@@ -10437,10 +10437,10 @@ HLML_INLINE uint4x3 min( const uint4x3 &x, const uint4x3 &y )
 HLML_INLINE uint4x3 max( const uint4x3 &x, const uint4x3 &y )
 {
 	return uint4x3(
-		max( x[0], y[0] ),
-		max( x[1], y[1] ),
-		max( x[2], y[2] ),
-		max( x[3], y[3] )
+		max( x.rows[0], y.rows[0] ),
+		max( x.rows[1], y.rows[1] ),
+		max( x.rows[2], y.rows[2] ),
+		max( x.rows[3], y.rows[3] )
 	);
 }
 
@@ -10448,10 +10448,10 @@ HLML_INLINE uint4x3 max( const uint4x3 &x, const uint4x3 &y )
 HLML_INLINE uint4x3 clamp( const uint4x3 &x, const uint4x3 &low, const uint4x3 &high )
 {
 	return uint4x3(
-		clamp( x[0], low[0], high[0] ),
-		clamp( x[1], low[1], high[1] ),
-		clamp( x[2], low[2], high[2] ),
-		clamp( x[3], low[3], high[3] )
+		clamp( x.rows[0], low.rows[0], high.rows[0] ),
+		clamp( x.rows[1], low.rows[1], high.rows[1] ),
+		clamp( x.rows[2], low.rows[2], high.rows[2] ),
+		clamp( x.rows[3], low.rows[3], high.rows[3] )
 	);
 }
 
@@ -10459,10 +10459,10 @@ HLML_INLINE uint4x3 clamp( const uint4x3 &x, const uint4x3 &low, const uint4x3 &
 HLML_INLINE uint4x3 saturate( const uint4x3 &x )
 {
 	return uint4x3(
-		saturate( x[0] ),
-		saturate( x[1] ),
-		saturate( x[2] ),
-		saturate( x[3] )
+		saturate( x.rows[0] ),
+		saturate( x.rows[1] ),
+		saturate( x.rows[2] ),
+		saturate( x.rows[3] )
 	);
 }
 
@@ -10470,10 +10470,10 @@ HLML_INLINE uint4x3 saturate( const uint4x3 &x )
 HLML_INLINE bool operator==( const uint4x3 &lhs, const uint4x3 &rhs )
 {
 	return
-		lhs[0] == rhs[0] &&
-		lhs[1] == rhs[1] &&
-		lhs[2] == rhs[2] &&
-		lhs[3] == rhs[3];
+		lhs.rows[0] == rhs.rows[0] &&
+		lhs.rows[1] == rhs.rows[1] &&
+		lhs.rows[2] == rhs.rows[2] &&
+		lhs.rows[3] == rhs.rows[3];
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
@@ -10486,10 +10486,10 @@ HLML_INLINE bool operator!=( const uint4x3 &lhs, const uint4x3 &rhs )
 HLML_INLINE bool4x3 operator<( const uint4x3 &lhs, const uint4x3 &rhs )
 {
 	return bool4x3(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2],
-		lhs[3] < rhs[3]
+		lhs.rows[0] < rhs.rows[0],
+		lhs.rows[1] < rhs.rows[1],
+		lhs.rows[2] < rhs.rows[2],
+		lhs.rows[3] < rhs.rows[3]
 	);
 }
 
@@ -10497,10 +10497,10 @@ HLML_INLINE bool4x3 operator<( const uint4x3 &lhs, const uint4x3 &rhs )
 HLML_INLINE bool4x3 operator<=( const uint4x3 &lhs, const uint4x3 &rhs )
 {
 	return bool4x3(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2],
-		lhs[3] <= rhs[3]
+		lhs.rows[0] <= rhs.rows[0],
+		lhs.rows[1] <= rhs.rows[1],
+		lhs.rows[2] <= rhs.rows[2],
+		lhs.rows[3] <= rhs.rows[3]
 	);
 }
 
@@ -10508,10 +10508,10 @@ HLML_INLINE bool4x3 operator<=( const uint4x3 &lhs, const uint4x3 &rhs )
 HLML_INLINE bool4x3 operator>( const uint4x3 &lhs, const uint4x3 &rhs )
 {
 	return bool4x3(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2],
-		lhs[3] > rhs[3]
+		lhs.rows[0] > rhs.rows[0],
+		lhs.rows[1] > rhs.rows[1],
+		lhs.rows[2] > rhs.rows[2],
+		lhs.rows[3] > rhs.rows[3]
 	);
 }
 
@@ -10519,10 +10519,10 @@ HLML_INLINE bool4x3 operator>( const uint4x3 &lhs, const uint4x3 &rhs )
 HLML_INLINE bool4x3 operator>=( const uint4x3 &lhs, const uint4x3 &rhs )
 {
 	return bool4x3(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2],
-		lhs[3] >= rhs[3]
+		lhs.rows[0] >= rhs.rows[0],
+		lhs.rows[1] >= rhs.rows[1],
+		lhs.rows[2] >= rhs.rows[2],
+		lhs.rows[3] >= rhs.rows[3]
 	);
 }
 
@@ -10530,10 +10530,10 @@ HLML_INLINE bool4x3 operator>=( const uint4x3 &lhs, const uint4x3 &rhs )
 HLML_INLINE uint4x3 operator+( const uint4x3 &lhs, const uint32_t rhs )
 {
 	return uint4x3(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs,
-		lhs[3] + rhs
+		lhs.rows[0] + rhs,
+		lhs.rows[1] + rhs,
+		lhs.rows[2] + rhs,
+		lhs.rows[3] + rhs
 	);
 }
 
@@ -10547,10 +10547,10 @@ HLML_INLINE uint4x3 operator+=( uint4x3 &lhs, const uint32_t rhs )
 HLML_INLINE uint4x3 operator+( const uint4x3 &lhs, const uint4x3 &rhs )
 {
 	return uint4x3(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2],
-		lhs[3] + rhs[3]
+		lhs.rows[0] + rhs.rows[0],
+		lhs.rows[1] + rhs.rows[1],
+		lhs.rows[2] + rhs.rows[2],
+		lhs.rows[3] + rhs.rows[3]
 	);
 }
 
@@ -10564,10 +10564,10 @@ HLML_INLINE uint4x3 operator+=( uint4x3 &lhs, const uint4x3 &rhs )
 HLML_INLINE uint4x3 operator-( const uint4x3 &lhs, const uint32_t rhs )
 {
 	return uint4x3(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs,
-		lhs[3] - rhs
+		lhs.rows[0] - rhs,
+		lhs.rows[1] - rhs,
+		lhs.rows[2] - rhs,
+		lhs.rows[3] - rhs
 	);
 }
 
@@ -10581,10 +10581,10 @@ HLML_INLINE uint4x3 operator-=( uint4x3 &lhs, const uint32_t rhs )
 HLML_INLINE uint4x3 operator-( const uint4x3 &lhs, const uint4x3 &rhs )
 {
 	return uint4x3(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2],
-		lhs[3] - rhs[3]
+		lhs.rows[0] - rhs.rows[0],
+		lhs.rows[1] - rhs.rows[1],
+		lhs.rows[2] - rhs.rows[2],
+		lhs.rows[3] - rhs.rows[3]
 	);
 }
 
@@ -10598,10 +10598,10 @@ HLML_INLINE uint4x3 operator-=( uint4x3 &lhs, const uint4x3 &rhs )
 HLML_INLINE uint4x3 operator*( const uint4x3 &lhs, const uint32_t rhs )
 {
 	return uint4x3(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs,
-		lhs[3] * rhs
+		lhs.rows[0] * rhs,
+		lhs.rows[1] * rhs,
+		lhs.rows[2] * rhs,
+		lhs.rows[3] * rhs
 	);
 }
 
@@ -10615,10 +10615,10 @@ HLML_INLINE uint4x3 operator*=( uint4x3 &lhs, const uint32_t rhs )
 HLML_INLINE uint4x3 operator*( const uint4x3 &lhs, const uint4x3 &rhs )
 {
 	return uint4x3(
-		lhs[0] * rhs[0],
-		lhs[1] * rhs[1],
-		lhs[2] * rhs[2],
-		lhs[3] * rhs[3]
+		lhs.rows[0] * rhs.rows[0],
+		lhs.rows[1] * rhs.rows[1],
+		lhs.rows[2] * rhs.rows[2],
+		lhs.rows[3] * rhs.rows[3]
 	);
 }
 
@@ -10632,10 +10632,10 @@ HLML_INLINE uint4x3 operator*=( uint4x3 &lhs, const uint4x3 &rhs )
 HLML_INLINE uint4x3 operator/( const uint4x3 &lhs, const uint32_t rhs )
 {
 	return uint4x3(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs,
-		lhs[3] / rhs
+		lhs.rows[0] / rhs,
+		lhs.rows[1] / rhs,
+		lhs.rows[2] / rhs,
+		lhs.rows[3] / rhs
 	);
 }
 
@@ -10649,10 +10649,10 @@ HLML_INLINE uint4x3 operator/=( uint4x3 &lhs, const uint32_t rhs )
 HLML_INLINE uint4x3 operator/( const uint4x3 &lhs, const uint4x3 &rhs )
 {
 	return uint4x3(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1],
-		lhs[2] / rhs[2],
-		lhs[3] / rhs[3]
+		lhs.rows[0] / rhs.rows[0],
+		lhs.rows[1] / rhs.rows[1],
+		lhs.rows[2] / rhs.rows[2],
+		lhs.rows[3] / rhs.rows[3]
 	);
 }
 
@@ -10665,10 +10665,10 @@ HLML_INLINE uint4x3 operator/=( uint4x3 &lhs, const uint4x3 &rhs )
 // ++s each component of the matrix and returns the result.
 HLML_INLINE uint4x3 operator++( uint4x3 &x )
 {
-	++x[0];
-	++x[1];
-	++x[2];
-	++x[3];
+	++x.rows[0];
+	++x.rows[1];
+	++x.rows[2];
+	++x.rows[3];
 	return x;
 }
 
@@ -10676,20 +10676,20 @@ HLML_INLINE uint4x3 operator++( uint4x3 &x )
 // post-fix
 HLML_INLINE uint4x3 operator++( uint4x3 &x, const int32_t )
 {
-	x[0]++;
-	x[1]++;
-	x[2]++;
-	x[3]++;
+	x.rows[0]++;
+	x.rows[1]++;
+	x.rows[2]++;
+	x.rows[3]++;
 	return x;
 }
 
 // --s each component of the matrix and returns the result.
 HLML_INLINE uint4x3 operator--( uint4x3 &x )
 {
-	--x[0];
-	--x[1];
-	--x[2];
-	--x[3];
+	--x.rows[0];
+	--x.rows[1];
+	--x.rows[2];
+	--x.rows[3];
 	return x;
 }
 
@@ -10697,10 +10697,10 @@ HLML_INLINE uint4x3 operator--( uint4x3 &x )
 // post-fix
 HLML_INLINE uint4x3 operator--( uint4x3 &x, const int32_t )
 {
-	x[0]--;
-	x[1]--;
-	x[2]--;
-	x[3]--;
+	x.rows[0]--;
+	x.rows[1]--;
+	x.rows[2]--;
+	x.rows[3]--;
 	return x;
 }
 
@@ -10713,10 +10713,10 @@ HLML_INLINE uint4x3 operator--( uint4x3 &x, const int32_t )
 HLML_INLINE uint4x3 operator-( const uint4x3 &x )
 {
 	return uint4x3(
-		-x[0],
-		-x[1],
-		-x[2],
-		-x[3]
+		-x.rows[0],
+		-x.rows[1],
+		-x.rows[2],
+		-x.rows[3]
 	);
 }
 
@@ -10728,10 +10728,10 @@ HLML_INLINE uint4x3 operator-( const uint4x3 &x )
 HLML_INLINE uint4x3 operator~( const uint4x3 &x )
 {
 	return uint4x3(
-		~x[0],
-		~x[1],
-		~x[2],
-		~x[3]
+		~x.rows[0],
+		~x.rows[1],
+		~x.rows[2],
+		~x.rows[3]
 	);
 }
 
@@ -10739,10 +10739,10 @@ HLML_INLINE uint4x3 operator~( const uint4x3 &x )
 HLML_INLINE uint4x3 operator&( const uint4x3 &lhs, const uint32_t rhs )
 {
 	return uint4x3(
-		lhs[0] & rhs,
-		lhs[1] & rhs,
-		lhs[2] & rhs,
-		lhs[3] & rhs
+		lhs.rows[0] & rhs,
+		lhs.rows[1] & rhs,
+		lhs.rows[2] & rhs,
+		lhs.rows[3] & rhs
 	);
 }
 
@@ -10756,10 +10756,10 @@ HLML_INLINE uint4x3 operator&=( uint4x3 &lhs, const uint32_t rhs )
 HLML_INLINE uint4x3 operator&( const uint4x3 &lhs, const uint4x3 &rhs )
 {
 	return uint4x3(
-		lhs[0] & rhs[0],
-		lhs[1] & rhs[1],
-		lhs[2] & rhs[2],
-		lhs[3] & rhs[3]
+		lhs.rows[0] & rhs.rows[0],
+		lhs.rows[1] & rhs.rows[1],
+		lhs.rows[2] & rhs.rows[2],
+		lhs.rows[3] & rhs.rows[3]
 	);
 }
 
@@ -10773,10 +10773,10 @@ HLML_INLINE uint4x3 operator&=( uint4x3 &lhs, const uint4x3 &rhs )
 HLML_INLINE uint4x3 operator|( const uint4x3 &lhs, const uint32_t rhs )
 {
 	return uint4x3(
-		lhs[0] | rhs,
-		lhs[1] | rhs,
-		lhs[2] | rhs,
-		lhs[3] | rhs
+		lhs.rows[0] | rhs,
+		lhs.rows[1] | rhs,
+		lhs.rows[2] | rhs,
+		lhs.rows[3] | rhs
 	);
 }
 
@@ -10790,10 +10790,10 @@ HLML_INLINE uint4x3 operator|=( uint4x3 &lhs, const uint32_t rhs )
 HLML_INLINE uint4x3 operator|( const uint4x3 &lhs, const uint4x3 &rhs )
 {
 	return uint4x3(
-		lhs[0] | rhs[0],
-		lhs[1] | rhs[1],
-		lhs[2] | rhs[2],
-		lhs[3] | rhs[3]
+		lhs.rows[0] | rhs.rows[0],
+		lhs.rows[1] | rhs.rows[1],
+		lhs.rows[2] | rhs.rows[2],
+		lhs.rows[3] | rhs.rows[3]
 	);
 }
 
@@ -10807,10 +10807,10 @@ HLML_INLINE uint4x3 operator|=( uint4x3 &lhs, const uint4x3 &rhs )
 HLML_INLINE uint4x3 operator^( const uint4x3 &lhs, const uint32_t rhs )
 {
 	return uint4x3(
-		lhs[0] ^ rhs,
-		lhs[1] ^ rhs,
-		lhs[2] ^ rhs,
-		lhs[3] ^ rhs
+		lhs.rows[0] ^ rhs,
+		lhs.rows[1] ^ rhs,
+		lhs.rows[2] ^ rhs,
+		lhs.rows[3] ^ rhs
 	);
 }
 
@@ -10824,10 +10824,10 @@ HLML_INLINE uint4x3 operator^=( uint4x3 &lhs, const uint32_t rhs )
 HLML_INLINE uint4x3 operator^( const uint4x3 &lhs, const uint4x3 &rhs )
 {
 	return uint4x3(
-		lhs[0] ^ rhs[0],
-		lhs[1] ^ rhs[1],
-		lhs[2] ^ rhs[2],
-		lhs[3] ^ rhs[3]
+		lhs.rows[0] ^ rhs.rows[0],
+		lhs.rows[1] ^ rhs.rows[1],
+		lhs.rows[2] ^ rhs.rows[2],
+		lhs.rows[3] ^ rhs.rows[3]
 	);
 }
 
@@ -10841,10 +10841,10 @@ HLML_INLINE uint4x3 operator^=( uint4x3 &lhs, const uint4x3 &rhs )
 HLML_INLINE uint4x3 operator<<( const uint4x3 &lhs, const uint32_t rhs )
 {
 	return uint4x3(
-		lhs[0] << rhs,
-		lhs[1] << rhs,
-		lhs[2] << rhs,
-		lhs[3] << rhs
+		lhs.rows[0] << rhs,
+		lhs.rows[1] << rhs,
+		lhs.rows[2] << rhs,
+		lhs.rows[3] << rhs
 	);
 }
 
@@ -10858,10 +10858,10 @@ HLML_INLINE uint4x3 operator<<=( uint4x3 &lhs, const uint32_t rhs )
 HLML_INLINE uint4x3 operator<<( const uint4x3 &lhs, const uint4x3 &rhs )
 {
 	return uint4x3(
-		lhs[0] << rhs[0],
-		lhs[1] << rhs[1],
-		lhs[2] << rhs[2],
-		lhs[3] << rhs[3]
+		lhs.rows[0] << rhs.rows[0],
+		lhs.rows[1] << rhs.rows[1],
+		lhs.rows[2] << rhs.rows[2],
+		lhs.rows[3] << rhs.rows[3]
 	);
 }
 
@@ -10875,10 +10875,10 @@ HLML_INLINE uint4x3 operator<<=( uint4x3 &lhs, const uint4x3 &rhs )
 HLML_INLINE uint4x3 operator>>( const uint4x3 &lhs, const uint32_t rhs )
 {
 	return uint4x3(
-		lhs[0] >> rhs,
-		lhs[1] >> rhs,
-		lhs[2] >> rhs,
-		lhs[3] >> rhs
+		lhs.rows[0] >> rhs,
+		lhs.rows[1] >> rhs,
+		lhs.rows[2] >> rhs,
+		lhs.rows[3] >> rhs
 	);
 }
 
@@ -10892,10 +10892,10 @@ HLML_INLINE uint4x3 operator>>=( uint4x3 &lhs, const uint32_t rhs )
 HLML_INLINE uint4x3 operator>>( const uint4x3 &lhs, const uint4x3 &rhs )
 {
 	return uint4x3(
-		lhs[0] >> rhs[0],
-		lhs[1] >> rhs[1],
-		lhs[2] >> rhs[2],
-		lhs[3] >> rhs[3]
+		lhs.rows[0] >> rhs.rows[0],
+		lhs.rows[1] >> rhs.rows[1],
+		lhs.rows[2] >> rhs.rows[2],
+		lhs.rows[3] >> rhs.rows[3]
 	);
 }
 
@@ -10967,10 +10967,10 @@ HLML_INLINE uint4x4 mul( const uint4x3 &lhs, const uint3x4 &rhs )
 HLML_INLINE uint4x4 min( const uint4x4 &x, const uint4x4 &y )
 {
 	return uint4x4(
-		min( x[0], y[0] ),
-		min( x[1], y[1] ),
-		min( x[2], y[2] ),
-		min( x[3], y[3] )
+		min( x.rows[0], y.rows[0] ),
+		min( x.rows[1], y.rows[1] ),
+		min( x.rows[2], y.rows[2] ),
+		min( x.rows[3], y.rows[3] )
 	);
 }
 
@@ -10978,10 +10978,10 @@ HLML_INLINE uint4x4 min( const uint4x4 &x, const uint4x4 &y )
 HLML_INLINE uint4x4 max( const uint4x4 &x, const uint4x4 &y )
 {
 	return uint4x4(
-		max( x[0], y[0] ),
-		max( x[1], y[1] ),
-		max( x[2], y[2] ),
-		max( x[3], y[3] )
+		max( x.rows[0], y.rows[0] ),
+		max( x.rows[1], y.rows[1] ),
+		max( x.rows[2], y.rows[2] ),
+		max( x.rows[3], y.rows[3] )
 	);
 }
 
@@ -10989,10 +10989,10 @@ HLML_INLINE uint4x4 max( const uint4x4 &x, const uint4x4 &y )
 HLML_INLINE uint4x4 clamp( const uint4x4 &x, const uint4x4 &low, const uint4x4 &high )
 {
 	return uint4x4(
-		clamp( x[0], low[0], high[0] ),
-		clamp( x[1], low[1], high[1] ),
-		clamp( x[2], low[2], high[2] ),
-		clamp( x[3], low[3], high[3] )
+		clamp( x.rows[0], low.rows[0], high.rows[0] ),
+		clamp( x.rows[1], low.rows[1], high.rows[1] ),
+		clamp( x.rows[2], low.rows[2], high.rows[2] ),
+		clamp( x.rows[3], low.rows[3], high.rows[3] )
 	);
 }
 
@@ -11000,10 +11000,10 @@ HLML_INLINE uint4x4 clamp( const uint4x4 &x, const uint4x4 &low, const uint4x4 &
 HLML_INLINE uint4x4 saturate( const uint4x4 &x )
 {
 	return uint4x4(
-		saturate( x[0] ),
-		saturate( x[1] ),
-		saturate( x[2] ),
-		saturate( x[3] )
+		saturate( x.rows[0] ),
+		saturate( x.rows[1] ),
+		saturate( x.rows[2] ),
+		saturate( x.rows[3] )
 	);
 }
 
@@ -11011,10 +11011,10 @@ HLML_INLINE uint4x4 saturate( const uint4x4 &x )
 HLML_INLINE bool operator==( const uint4x4 &lhs, const uint4x4 &rhs )
 {
 	return
-		lhs[0] == rhs[0] &&
-		lhs[1] == rhs[1] &&
-		lhs[2] == rhs[2] &&
-		lhs[3] == rhs[3];
+		lhs.rows[0] == rhs.rows[0] &&
+		lhs.rows[1] == rhs.rows[1] &&
+		lhs.rows[2] == rhs.rows[2] &&
+		lhs.rows[3] == rhs.rows[3];
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
@@ -11027,10 +11027,10 @@ HLML_INLINE bool operator!=( const uint4x4 &lhs, const uint4x4 &rhs )
 HLML_INLINE bool4x4 operator<( const uint4x4 &lhs, const uint4x4 &rhs )
 {
 	return bool4x4(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2],
-		lhs[3] < rhs[3]
+		lhs.rows[0] < rhs.rows[0],
+		lhs.rows[1] < rhs.rows[1],
+		lhs.rows[2] < rhs.rows[2],
+		lhs.rows[3] < rhs.rows[3]
 	);
 }
 
@@ -11038,10 +11038,10 @@ HLML_INLINE bool4x4 operator<( const uint4x4 &lhs, const uint4x4 &rhs )
 HLML_INLINE bool4x4 operator<=( const uint4x4 &lhs, const uint4x4 &rhs )
 {
 	return bool4x4(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2],
-		lhs[3] <= rhs[3]
+		lhs.rows[0] <= rhs.rows[0],
+		lhs.rows[1] <= rhs.rows[1],
+		lhs.rows[2] <= rhs.rows[2],
+		lhs.rows[3] <= rhs.rows[3]
 	);
 }
 
@@ -11049,10 +11049,10 @@ HLML_INLINE bool4x4 operator<=( const uint4x4 &lhs, const uint4x4 &rhs )
 HLML_INLINE bool4x4 operator>( const uint4x4 &lhs, const uint4x4 &rhs )
 {
 	return bool4x4(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2],
-		lhs[3] > rhs[3]
+		lhs.rows[0] > rhs.rows[0],
+		lhs.rows[1] > rhs.rows[1],
+		lhs.rows[2] > rhs.rows[2],
+		lhs.rows[3] > rhs.rows[3]
 	);
 }
 
@@ -11060,10 +11060,10 @@ HLML_INLINE bool4x4 operator>( const uint4x4 &lhs, const uint4x4 &rhs )
 HLML_INLINE bool4x4 operator>=( const uint4x4 &lhs, const uint4x4 &rhs )
 {
 	return bool4x4(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2],
-		lhs[3] >= rhs[3]
+		lhs.rows[0] >= rhs.rows[0],
+		lhs.rows[1] >= rhs.rows[1],
+		lhs.rows[2] >= rhs.rows[2],
+		lhs.rows[3] >= rhs.rows[3]
 	);
 }
 
@@ -11071,10 +11071,10 @@ HLML_INLINE bool4x4 operator>=( const uint4x4 &lhs, const uint4x4 &rhs )
 HLML_INLINE uint4x4 operator+( const uint4x4 &lhs, const uint32_t rhs )
 {
 	return uint4x4(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs,
-		lhs[3] + rhs
+		lhs.rows[0] + rhs,
+		lhs.rows[1] + rhs,
+		lhs.rows[2] + rhs,
+		lhs.rows[3] + rhs
 	);
 }
 
@@ -11088,10 +11088,10 @@ HLML_INLINE uint4x4 operator+=( uint4x4 &lhs, const uint32_t rhs )
 HLML_INLINE uint4x4 operator+( const uint4x4 &lhs, const uint4x4 &rhs )
 {
 	return uint4x4(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2],
-		lhs[3] + rhs[3]
+		lhs.rows[0] + rhs.rows[0],
+		lhs.rows[1] + rhs.rows[1],
+		lhs.rows[2] + rhs.rows[2],
+		lhs.rows[3] + rhs.rows[3]
 	);
 }
 
@@ -11105,10 +11105,10 @@ HLML_INLINE uint4x4 operator+=( uint4x4 &lhs, const uint4x4 &rhs )
 HLML_INLINE uint4x4 operator-( const uint4x4 &lhs, const uint32_t rhs )
 {
 	return uint4x4(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs,
-		lhs[3] - rhs
+		lhs.rows[0] - rhs,
+		lhs.rows[1] - rhs,
+		lhs.rows[2] - rhs,
+		lhs.rows[3] - rhs
 	);
 }
 
@@ -11122,10 +11122,10 @@ HLML_INLINE uint4x4 operator-=( uint4x4 &lhs, const uint32_t rhs )
 HLML_INLINE uint4x4 operator-( const uint4x4 &lhs, const uint4x4 &rhs )
 {
 	return uint4x4(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2],
-		lhs[3] - rhs[3]
+		lhs.rows[0] - rhs.rows[0],
+		lhs.rows[1] - rhs.rows[1],
+		lhs.rows[2] - rhs.rows[2],
+		lhs.rows[3] - rhs.rows[3]
 	);
 }
 
@@ -11139,10 +11139,10 @@ HLML_INLINE uint4x4 operator-=( uint4x4 &lhs, const uint4x4 &rhs )
 HLML_INLINE uint4x4 operator*( const uint4x4 &lhs, const uint32_t rhs )
 {
 	return uint4x4(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs,
-		lhs[3] * rhs
+		lhs.rows[0] * rhs,
+		lhs.rows[1] * rhs,
+		lhs.rows[2] * rhs,
+		lhs.rows[3] * rhs
 	);
 }
 
@@ -11156,10 +11156,10 @@ HLML_INLINE uint4x4 operator*=( uint4x4 &lhs, const uint32_t rhs )
 HLML_INLINE uint4x4 operator*( const uint4x4 &lhs, const uint4x4 &rhs )
 {
 	return uint4x4(
-		lhs[0] * rhs[0],
-		lhs[1] * rhs[1],
-		lhs[2] * rhs[2],
-		lhs[3] * rhs[3]
+		lhs.rows[0] * rhs.rows[0],
+		lhs.rows[1] * rhs.rows[1],
+		lhs.rows[2] * rhs.rows[2],
+		lhs.rows[3] * rhs.rows[3]
 	);
 }
 
@@ -11173,10 +11173,10 @@ HLML_INLINE uint4x4 operator*=( uint4x4 &lhs, const uint4x4 &rhs )
 HLML_INLINE uint4x4 operator/( const uint4x4 &lhs, const uint32_t rhs )
 {
 	return uint4x4(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs,
-		lhs[3] / rhs
+		lhs.rows[0] / rhs,
+		lhs.rows[1] / rhs,
+		lhs.rows[2] / rhs,
+		lhs.rows[3] / rhs
 	);
 }
 
@@ -11190,10 +11190,10 @@ HLML_INLINE uint4x4 operator/=( uint4x4 &lhs, const uint32_t rhs )
 HLML_INLINE uint4x4 operator/( const uint4x4 &lhs, const uint4x4 &rhs )
 {
 	return uint4x4(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1],
-		lhs[2] / rhs[2],
-		lhs[3] / rhs[3]
+		lhs.rows[0] / rhs.rows[0],
+		lhs.rows[1] / rhs.rows[1],
+		lhs.rows[2] / rhs.rows[2],
+		lhs.rows[3] / rhs.rows[3]
 	);
 }
 
@@ -11206,10 +11206,10 @@ HLML_INLINE uint4x4 operator/=( uint4x4 &lhs, const uint4x4 &rhs )
 // ++s each component of the matrix and returns the result.
 HLML_INLINE uint4x4 operator++( uint4x4 &x )
 {
-	++x[0];
-	++x[1];
-	++x[2];
-	++x[3];
+	++x.rows[0];
+	++x.rows[1];
+	++x.rows[2];
+	++x.rows[3];
 	return x;
 }
 
@@ -11217,20 +11217,20 @@ HLML_INLINE uint4x4 operator++( uint4x4 &x )
 // post-fix
 HLML_INLINE uint4x4 operator++( uint4x4 &x, const int32_t )
 {
-	x[0]++;
-	x[1]++;
-	x[2]++;
-	x[3]++;
+	x.rows[0]++;
+	x.rows[1]++;
+	x.rows[2]++;
+	x.rows[3]++;
 	return x;
 }
 
 // --s each component of the matrix and returns the result.
 HLML_INLINE uint4x4 operator--( uint4x4 &x )
 {
-	--x[0];
-	--x[1];
-	--x[2];
-	--x[3];
+	--x.rows[0];
+	--x.rows[1];
+	--x.rows[2];
+	--x.rows[3];
 	return x;
 }
 
@@ -11238,10 +11238,10 @@ HLML_INLINE uint4x4 operator--( uint4x4 &x )
 // post-fix
 HLML_INLINE uint4x4 operator--( uint4x4 &x, const int32_t )
 {
-	x[0]--;
-	x[1]--;
-	x[2]--;
-	x[3]--;
+	x.rows[0]--;
+	x.rows[1]--;
+	x.rows[2]--;
+	x.rows[3]--;
 	return x;
 }
 
@@ -11254,10 +11254,10 @@ HLML_INLINE uint4x4 operator--( uint4x4 &x, const int32_t )
 HLML_INLINE uint4x4 operator-( const uint4x4 &x )
 {
 	return uint4x4(
-		-x[0],
-		-x[1],
-		-x[2],
-		-x[3]
+		-x.rows[0],
+		-x.rows[1],
+		-x.rows[2],
+		-x.rows[3]
 	);
 }
 
@@ -11269,10 +11269,10 @@ HLML_INLINE uint4x4 operator-( const uint4x4 &x )
 HLML_INLINE uint4x4 operator~( const uint4x4 &x )
 {
 	return uint4x4(
-		~x[0],
-		~x[1],
-		~x[2],
-		~x[3]
+		~x.rows[0],
+		~x.rows[1],
+		~x.rows[2],
+		~x.rows[3]
 	);
 }
 
@@ -11280,10 +11280,10 @@ HLML_INLINE uint4x4 operator~( const uint4x4 &x )
 HLML_INLINE uint4x4 operator&( const uint4x4 &lhs, const uint32_t rhs )
 {
 	return uint4x4(
-		lhs[0] & rhs,
-		lhs[1] & rhs,
-		lhs[2] & rhs,
-		lhs[3] & rhs
+		lhs.rows[0] & rhs,
+		lhs.rows[1] & rhs,
+		lhs.rows[2] & rhs,
+		lhs.rows[3] & rhs
 	);
 }
 
@@ -11297,10 +11297,10 @@ HLML_INLINE uint4x4 operator&=( uint4x4 &lhs, const uint32_t rhs )
 HLML_INLINE uint4x4 operator&( const uint4x4 &lhs, const uint4x4 &rhs )
 {
 	return uint4x4(
-		lhs[0] & rhs[0],
-		lhs[1] & rhs[1],
-		lhs[2] & rhs[2],
-		lhs[3] & rhs[3]
+		lhs.rows[0] & rhs.rows[0],
+		lhs.rows[1] & rhs.rows[1],
+		lhs.rows[2] & rhs.rows[2],
+		lhs.rows[3] & rhs.rows[3]
 	);
 }
 
@@ -11314,10 +11314,10 @@ HLML_INLINE uint4x4 operator&=( uint4x4 &lhs, const uint4x4 &rhs )
 HLML_INLINE uint4x4 operator|( const uint4x4 &lhs, const uint32_t rhs )
 {
 	return uint4x4(
-		lhs[0] | rhs,
-		lhs[1] | rhs,
-		lhs[2] | rhs,
-		lhs[3] | rhs
+		lhs.rows[0] | rhs,
+		lhs.rows[1] | rhs,
+		lhs.rows[2] | rhs,
+		lhs.rows[3] | rhs
 	);
 }
 
@@ -11331,10 +11331,10 @@ HLML_INLINE uint4x4 operator|=( uint4x4 &lhs, const uint32_t rhs )
 HLML_INLINE uint4x4 operator|( const uint4x4 &lhs, const uint4x4 &rhs )
 {
 	return uint4x4(
-		lhs[0] | rhs[0],
-		lhs[1] | rhs[1],
-		lhs[2] | rhs[2],
-		lhs[3] | rhs[3]
+		lhs.rows[0] | rhs.rows[0],
+		lhs.rows[1] | rhs.rows[1],
+		lhs.rows[2] | rhs.rows[2],
+		lhs.rows[3] | rhs.rows[3]
 	);
 }
 
@@ -11348,10 +11348,10 @@ HLML_INLINE uint4x4 operator|=( uint4x4 &lhs, const uint4x4 &rhs )
 HLML_INLINE uint4x4 operator^( const uint4x4 &lhs, const uint32_t rhs )
 {
 	return uint4x4(
-		lhs[0] ^ rhs,
-		lhs[1] ^ rhs,
-		lhs[2] ^ rhs,
-		lhs[3] ^ rhs
+		lhs.rows[0] ^ rhs,
+		lhs.rows[1] ^ rhs,
+		lhs.rows[2] ^ rhs,
+		lhs.rows[3] ^ rhs
 	);
 }
 
@@ -11365,10 +11365,10 @@ HLML_INLINE uint4x4 operator^=( uint4x4 &lhs, const uint32_t rhs )
 HLML_INLINE uint4x4 operator^( const uint4x4 &lhs, const uint4x4 &rhs )
 {
 	return uint4x4(
-		lhs[0] ^ rhs[0],
-		lhs[1] ^ rhs[1],
-		lhs[2] ^ rhs[2],
-		lhs[3] ^ rhs[3]
+		lhs.rows[0] ^ rhs.rows[0],
+		lhs.rows[1] ^ rhs.rows[1],
+		lhs.rows[2] ^ rhs.rows[2],
+		lhs.rows[3] ^ rhs.rows[3]
 	);
 }
 
@@ -11382,10 +11382,10 @@ HLML_INLINE uint4x4 operator^=( uint4x4 &lhs, const uint4x4 &rhs )
 HLML_INLINE uint4x4 operator<<( const uint4x4 &lhs, const uint32_t rhs )
 {
 	return uint4x4(
-		lhs[0] << rhs,
-		lhs[1] << rhs,
-		lhs[2] << rhs,
-		lhs[3] << rhs
+		lhs.rows[0] << rhs,
+		lhs.rows[1] << rhs,
+		lhs.rows[2] << rhs,
+		lhs.rows[3] << rhs
 	);
 }
 
@@ -11399,10 +11399,10 @@ HLML_INLINE uint4x4 operator<<=( uint4x4 &lhs, const uint32_t rhs )
 HLML_INLINE uint4x4 operator<<( const uint4x4 &lhs, const uint4x4 &rhs )
 {
 	return uint4x4(
-		lhs[0] << rhs[0],
-		lhs[1] << rhs[1],
-		lhs[2] << rhs[2],
-		lhs[3] << rhs[3]
+		lhs.rows[0] << rhs.rows[0],
+		lhs.rows[1] << rhs.rows[1],
+		lhs.rows[2] << rhs.rows[2],
+		lhs.rows[3] << rhs.rows[3]
 	);
 }
 
@@ -11416,10 +11416,10 @@ HLML_INLINE uint4x4 operator<<=( uint4x4 &lhs, const uint4x4 &rhs )
 HLML_INLINE uint4x4 operator>>( const uint4x4 &lhs, const uint32_t rhs )
 {
 	return uint4x4(
-		lhs[0] >> rhs,
-		lhs[1] >> rhs,
-		lhs[2] >> rhs,
-		lhs[3] >> rhs
+		lhs.rows[0] >> rhs,
+		lhs.rows[1] >> rhs,
+		lhs.rows[2] >> rhs,
+		lhs.rows[3] >> rhs
 	);
 }
 
@@ -11433,10 +11433,10 @@ HLML_INLINE uint4x4 operator>>=( uint4x4 &lhs, const uint32_t rhs )
 HLML_INLINE uint4x4 operator>>( const uint4x4 &lhs, const uint4x4 &rhs )
 {
 	return uint4x4(
-		lhs[0] >> rhs[0],
-		lhs[1] >> rhs[1],
-		lhs[2] >> rhs[2],
-		lhs[3] >> rhs[3]
+		lhs.rows[0] >> rhs.rows[0],
+		lhs.rows[1] >> rhs.rows[1],
+		lhs.rows[2] >> rhs.rows[2],
+		lhs.rows[3] >> rhs.rows[3]
 	);
 }
 
@@ -11560,8 +11560,8 @@ HLML_INLINE uint4x4 scale( const uint4x4 &mat, const uint3 &scale )
 HLML_INLINE int2x2 sign( const float2x2 &x )
 {
 	return int2x2(
-		sign( x[0] ),
-		sign( x[1] )
+		sign( x.rows[0] ),
+		sign( x.rows[1] )
 	);
 }
 
@@ -11569,8 +11569,8 @@ HLML_INLINE int2x2 sign( const float2x2 &x )
 HLML_INLINE float2x2 min( const float2x2 &x, const float2x2 &y )
 {
 	return float2x2(
-		min( x[0], y[0] ),
-		min( x[1], y[1] )
+		min( x.rows[0], y.rows[0] ),
+		min( x.rows[1], y.rows[1] )
 	);
 }
 
@@ -11578,8 +11578,8 @@ HLML_INLINE float2x2 min( const float2x2 &x, const float2x2 &y )
 HLML_INLINE float2x2 max( const float2x2 &x, const float2x2 &y )
 {
 	return float2x2(
-		max( x[0], y[0] ),
-		max( x[1], y[1] )
+		max( x.rows[0], y.rows[0] ),
+		max( x.rows[1], y.rows[1] )
 	);
 }
 
@@ -11587,8 +11587,8 @@ HLML_INLINE float2x2 max( const float2x2 &x, const float2x2 &y )
 HLML_INLINE float2x2 clamp( const float2x2 &x, const float2x2 &low, const float2x2 &high )
 {
 	return float2x2(
-		clamp( x[0], low[0], high[0] ),
-		clamp( x[1], low[1], high[1] )
+		clamp( x.rows[0], low.rows[0], high.rows[0] ),
+		clamp( x.rows[1], low.rows[1], high.rows[1] )
 	);
 }
 
@@ -11596,8 +11596,8 @@ HLML_INLINE float2x2 clamp( const float2x2 &x, const float2x2 &low, const float2
 HLML_INLINE float2x2 saturate( const float2x2 &x )
 {
 	return float2x2(
-		saturate( x[0] ),
-		saturate( x[1] )
+		saturate( x.rows[0] ),
+		saturate( x.rows[1] )
 	);
 }
 
@@ -11605,8 +11605,8 @@ HLML_INLINE float2x2 saturate( const float2x2 &x )
 HLML_INLINE float2x2 lerp( const float2x2 &lhs, const float2x2 &rhs, const float t )
 {
 	return float2x2(
-		lerp( lhs[0], rhs[0], t ),
-		lerp( lhs[1], rhs[1], t )
+		lerp( lhs.rows[0], rhs.rows[0], t ),
+		lerp( lhs.rows[1], rhs.rows[1], t )
 	);
 }
 
@@ -11614,8 +11614,8 @@ HLML_INLINE float2x2 lerp( const float2x2 &lhs, const float2x2 &rhs, const float
 HLML_INLINE bool operator==( const float2x2 &lhs, const float2x2 &rhs )
 {
 	return
-		lhs[0] == rhs[0] &&
-		lhs[1] == rhs[1];
+		lhs.rows[0] == rhs.rows[0] &&
+		lhs.rows[1] == rhs.rows[1];
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
@@ -11628,8 +11628,8 @@ HLML_INLINE bool operator!=( const float2x2 &lhs, const float2x2 &rhs )
 HLML_INLINE bool2x2 operator<( const float2x2 &lhs, const float2x2 &rhs )
 {
 	return bool2x2(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1]
+		lhs.rows[0] < rhs.rows[0],
+		lhs.rows[1] < rhs.rows[1]
 	);
 }
 
@@ -11637,8 +11637,8 @@ HLML_INLINE bool2x2 operator<( const float2x2 &lhs, const float2x2 &rhs )
 HLML_INLINE bool2x2 operator<=( const float2x2 &lhs, const float2x2 &rhs )
 {
 	return bool2x2(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1]
+		lhs.rows[0] <= rhs.rows[0],
+		lhs.rows[1] <= rhs.rows[1]
 	);
 }
 
@@ -11646,8 +11646,8 @@ HLML_INLINE bool2x2 operator<=( const float2x2 &lhs, const float2x2 &rhs )
 HLML_INLINE bool2x2 operator>( const float2x2 &lhs, const float2x2 &rhs )
 {
 	return bool2x2(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1]
+		lhs.rows[0] > rhs.rows[0],
+		lhs.rows[1] > rhs.rows[1]
 	);
 }
 
@@ -11655,8 +11655,8 @@ HLML_INLINE bool2x2 operator>( const float2x2 &lhs, const float2x2 &rhs )
 HLML_INLINE bool2x2 operator>=( const float2x2 &lhs, const float2x2 &rhs )
 {
 	return bool2x2(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1]
+		lhs.rows[0] >= rhs.rows[0],
+		lhs.rows[1] >= rhs.rows[1]
 	);
 }
 
@@ -11664,8 +11664,8 @@ HLML_INLINE bool2x2 operator>=( const float2x2 &lhs, const float2x2 &rhs )
 HLML_INLINE float2x2 operator+( const float2x2 &lhs, const float rhs )
 {
 	return float2x2(
-		lhs[0] + rhs,
-		lhs[1] + rhs
+		lhs.rows[0] + rhs,
+		lhs.rows[1] + rhs
 	);
 }
 
@@ -11679,8 +11679,8 @@ HLML_INLINE float2x2 operator+=( float2x2 &lhs, const float rhs )
 HLML_INLINE float2x2 operator+( const float2x2 &lhs, const float2x2 &rhs )
 {
 	return float2x2(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1]
+		lhs.rows[0] + rhs.rows[0],
+		lhs.rows[1] + rhs.rows[1]
 	);
 }
 
@@ -11694,8 +11694,8 @@ HLML_INLINE float2x2 operator+=( float2x2 &lhs, const float2x2 &rhs )
 HLML_INLINE float2x2 operator-( const float2x2 &lhs, const float rhs )
 {
 	return float2x2(
-		lhs[0] - rhs,
-		lhs[1] - rhs
+		lhs.rows[0] - rhs,
+		lhs.rows[1] - rhs
 	);
 }
 
@@ -11709,8 +11709,8 @@ HLML_INLINE float2x2 operator-=( float2x2 &lhs, const float rhs )
 HLML_INLINE float2x2 operator-( const float2x2 &lhs, const float2x2 &rhs )
 {
 	return float2x2(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1]
+		lhs.rows[0] - rhs.rows[0],
+		lhs.rows[1] - rhs.rows[1]
 	);
 }
 
@@ -11724,8 +11724,8 @@ HLML_INLINE float2x2 operator-=( float2x2 &lhs, const float2x2 &rhs )
 HLML_INLINE float2x2 operator*( const float2x2 &lhs, const float rhs )
 {
 	return float2x2(
-		lhs[0] * rhs,
-		lhs[1] * rhs
+		lhs.rows[0] * rhs,
+		lhs.rows[1] * rhs
 	);
 }
 
@@ -11739,8 +11739,8 @@ HLML_INLINE float2x2 operator*=( float2x2 &lhs, const float rhs )
 HLML_INLINE float2x2 operator*( const float2x2 &lhs, const float2x2 &rhs )
 {
 	return float2x2(
-		lhs[0] * rhs[0],
-		lhs[1] * rhs[1]
+		lhs.rows[0] * rhs.rows[0],
+		lhs.rows[1] * rhs.rows[1]
 	);
 }
 
@@ -11754,8 +11754,8 @@ HLML_INLINE float2x2 operator*=( float2x2 &lhs, const float2x2 &rhs )
 HLML_INLINE float2x2 operator/( const float2x2 &lhs, const float rhs )
 {
 	return float2x2(
-		lhs[0] / rhs,
-		lhs[1] / rhs
+		lhs.rows[0] / rhs,
+		lhs.rows[1] / rhs
 	);
 }
 
@@ -11769,8 +11769,8 @@ HLML_INLINE float2x2 operator/=( float2x2 &lhs, const float rhs )
 HLML_INLINE float2x2 operator/( const float2x2 &lhs, const float2x2 &rhs )
 {
 	return float2x2(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1]
+		lhs.rows[0] / rhs.rows[0],
+		lhs.rows[1] / rhs.rows[1]
 	);
 }
 
@@ -11783,8 +11783,8 @@ HLML_INLINE float2x2 operator/=( float2x2 &lhs, const float2x2 &rhs )
 // ++s each component of the matrix and returns the result.
 HLML_INLINE float2x2 operator++( float2x2 &x )
 {
-	++x[0];
-	++x[1];
+	++x.rows[0];
+	++x.rows[1];
 	return x;
 }
 
@@ -11792,16 +11792,16 @@ HLML_INLINE float2x2 operator++( float2x2 &x )
 // post-fix
 HLML_INLINE float2x2 operator++( float2x2 &x, const int32_t )
 {
-	x[0]++;
-	x[1]++;
+	x.rows[0]++;
+	x.rows[1]++;
 	return x;
 }
 
 // --s each component of the matrix and returns the result.
 HLML_INLINE float2x2 operator--( float2x2 &x )
 {
-	--x[0];
-	--x[1];
+	--x.rows[0];
+	--x.rows[1];
 	return x;
 }
 
@@ -11809,8 +11809,8 @@ HLML_INLINE float2x2 operator--( float2x2 &x )
 // post-fix
 HLML_INLINE float2x2 operator--( float2x2 &x, const int32_t )
 {
-	x[0]--;
-	x[1]--;
+	x.rows[0]--;
+	x.rows[1]--;
 	return x;
 }
 
@@ -11819,8 +11819,8 @@ HLML_INLINE float2x2 operator--( float2x2 &x, const int32_t )
 HLML_INLINE float2x2 operator-( const float2x2 &x )
 {
 	return float2x2(
-		-x[0],
-		-x[1]
+		-x.rows[0],
+		-x.rows[1]
 	);
 }
 
@@ -11893,8 +11893,8 @@ HLML_INLINE float2 mul( const float2 &lhs, const float2x2 &rhs )
 HLML_INLINE int2x3 sign( const float2x3 &x )
 {
 	return int2x3(
-		sign( x[0] ),
-		sign( x[1] )
+		sign( x.rows[0] ),
+		sign( x.rows[1] )
 	);
 }
 
@@ -11902,8 +11902,8 @@ HLML_INLINE int2x3 sign( const float2x3 &x )
 HLML_INLINE float2x3 min( const float2x3 &x, const float2x3 &y )
 {
 	return float2x3(
-		min( x[0], y[0] ),
-		min( x[1], y[1] )
+		min( x.rows[0], y.rows[0] ),
+		min( x.rows[1], y.rows[1] )
 	);
 }
 
@@ -11911,8 +11911,8 @@ HLML_INLINE float2x3 min( const float2x3 &x, const float2x3 &y )
 HLML_INLINE float2x3 max( const float2x3 &x, const float2x3 &y )
 {
 	return float2x3(
-		max( x[0], y[0] ),
-		max( x[1], y[1] )
+		max( x.rows[0], y.rows[0] ),
+		max( x.rows[1], y.rows[1] )
 	);
 }
 
@@ -11920,8 +11920,8 @@ HLML_INLINE float2x3 max( const float2x3 &x, const float2x3 &y )
 HLML_INLINE float2x3 clamp( const float2x3 &x, const float2x3 &low, const float2x3 &high )
 {
 	return float2x3(
-		clamp( x[0], low[0], high[0] ),
-		clamp( x[1], low[1], high[1] )
+		clamp( x.rows[0], low.rows[0], high.rows[0] ),
+		clamp( x.rows[1], low.rows[1], high.rows[1] )
 	);
 }
 
@@ -11929,8 +11929,8 @@ HLML_INLINE float2x3 clamp( const float2x3 &x, const float2x3 &low, const float2
 HLML_INLINE float2x3 saturate( const float2x3 &x )
 {
 	return float2x3(
-		saturate( x[0] ),
-		saturate( x[1] )
+		saturate( x.rows[0] ),
+		saturate( x.rows[1] )
 	);
 }
 
@@ -11938,8 +11938,8 @@ HLML_INLINE float2x3 saturate( const float2x3 &x )
 HLML_INLINE float2x3 lerp( const float2x3 &lhs, const float2x3 &rhs, const float t )
 {
 	return float2x3(
-		lerp( lhs[0], rhs[0], t ),
-		lerp( lhs[1], rhs[1], t )
+		lerp( lhs.rows[0], rhs.rows[0], t ),
+		lerp( lhs.rows[1], rhs.rows[1], t )
 	);
 }
 
@@ -11947,8 +11947,8 @@ HLML_INLINE float2x3 lerp( const float2x3 &lhs, const float2x3 &rhs, const float
 HLML_INLINE bool operator==( const float2x3 &lhs, const float2x3 &rhs )
 {
 	return
-		lhs[0] == rhs[0] &&
-		lhs[1] == rhs[1];
+		lhs.rows[0] == rhs.rows[0] &&
+		lhs.rows[1] == rhs.rows[1];
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
@@ -11961,8 +11961,8 @@ HLML_INLINE bool operator!=( const float2x3 &lhs, const float2x3 &rhs )
 HLML_INLINE bool2x3 operator<( const float2x3 &lhs, const float2x3 &rhs )
 {
 	return bool2x3(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1]
+		lhs.rows[0] < rhs.rows[0],
+		lhs.rows[1] < rhs.rows[1]
 	);
 }
 
@@ -11970,8 +11970,8 @@ HLML_INLINE bool2x3 operator<( const float2x3 &lhs, const float2x3 &rhs )
 HLML_INLINE bool2x3 operator<=( const float2x3 &lhs, const float2x3 &rhs )
 {
 	return bool2x3(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1]
+		lhs.rows[0] <= rhs.rows[0],
+		lhs.rows[1] <= rhs.rows[1]
 	);
 }
 
@@ -11979,8 +11979,8 @@ HLML_INLINE bool2x3 operator<=( const float2x3 &lhs, const float2x3 &rhs )
 HLML_INLINE bool2x3 operator>( const float2x3 &lhs, const float2x3 &rhs )
 {
 	return bool2x3(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1]
+		lhs.rows[0] > rhs.rows[0],
+		lhs.rows[1] > rhs.rows[1]
 	);
 }
 
@@ -11988,8 +11988,8 @@ HLML_INLINE bool2x3 operator>( const float2x3 &lhs, const float2x3 &rhs )
 HLML_INLINE bool2x3 operator>=( const float2x3 &lhs, const float2x3 &rhs )
 {
 	return bool2x3(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1]
+		lhs.rows[0] >= rhs.rows[0],
+		lhs.rows[1] >= rhs.rows[1]
 	);
 }
 
@@ -11997,8 +11997,8 @@ HLML_INLINE bool2x3 operator>=( const float2x3 &lhs, const float2x3 &rhs )
 HLML_INLINE float2x3 operator+( const float2x3 &lhs, const float rhs )
 {
 	return float2x3(
-		lhs[0] + rhs,
-		lhs[1] + rhs
+		lhs.rows[0] + rhs,
+		lhs.rows[1] + rhs
 	);
 }
 
@@ -12012,8 +12012,8 @@ HLML_INLINE float2x3 operator+=( float2x3 &lhs, const float rhs )
 HLML_INLINE float2x3 operator+( const float2x3 &lhs, const float2x3 &rhs )
 {
 	return float2x3(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1]
+		lhs.rows[0] + rhs.rows[0],
+		lhs.rows[1] + rhs.rows[1]
 	);
 }
 
@@ -12027,8 +12027,8 @@ HLML_INLINE float2x3 operator+=( float2x3 &lhs, const float2x3 &rhs )
 HLML_INLINE float2x3 operator-( const float2x3 &lhs, const float rhs )
 {
 	return float2x3(
-		lhs[0] - rhs,
-		lhs[1] - rhs
+		lhs.rows[0] - rhs,
+		lhs.rows[1] - rhs
 	);
 }
 
@@ -12042,8 +12042,8 @@ HLML_INLINE float2x3 operator-=( float2x3 &lhs, const float rhs )
 HLML_INLINE float2x3 operator-( const float2x3 &lhs, const float2x3 &rhs )
 {
 	return float2x3(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1]
+		lhs.rows[0] - rhs.rows[0],
+		lhs.rows[1] - rhs.rows[1]
 	);
 }
 
@@ -12057,8 +12057,8 @@ HLML_INLINE float2x3 operator-=( float2x3 &lhs, const float2x3 &rhs )
 HLML_INLINE float2x3 operator*( const float2x3 &lhs, const float rhs )
 {
 	return float2x3(
-		lhs[0] * rhs,
-		lhs[1] * rhs
+		lhs.rows[0] * rhs,
+		lhs.rows[1] * rhs
 	);
 }
 
@@ -12072,8 +12072,8 @@ HLML_INLINE float2x3 operator*=( float2x3 &lhs, const float rhs )
 HLML_INLINE float2x3 operator*( const float2x3 &lhs, const float2x3 &rhs )
 {
 	return float2x3(
-		lhs[0] * rhs[0],
-		lhs[1] * rhs[1]
+		lhs.rows[0] * rhs.rows[0],
+		lhs.rows[1] * rhs.rows[1]
 	);
 }
 
@@ -12087,8 +12087,8 @@ HLML_INLINE float2x3 operator*=( float2x3 &lhs, const float2x3 &rhs )
 HLML_INLINE float2x3 operator/( const float2x3 &lhs, const float rhs )
 {
 	return float2x3(
-		lhs[0] / rhs,
-		lhs[1] / rhs
+		lhs.rows[0] / rhs,
+		lhs.rows[1] / rhs
 	);
 }
 
@@ -12102,8 +12102,8 @@ HLML_INLINE float2x3 operator/=( float2x3 &lhs, const float rhs )
 HLML_INLINE float2x3 operator/( const float2x3 &lhs, const float2x3 &rhs )
 {
 	return float2x3(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1]
+		lhs.rows[0] / rhs.rows[0],
+		lhs.rows[1] / rhs.rows[1]
 	);
 }
 
@@ -12116,8 +12116,8 @@ HLML_INLINE float2x3 operator/=( float2x3 &lhs, const float2x3 &rhs )
 // ++s each component of the matrix and returns the result.
 HLML_INLINE float2x3 operator++( float2x3 &x )
 {
-	++x[0];
-	++x[1];
+	++x.rows[0];
+	++x.rows[1];
 	return x;
 }
 
@@ -12125,16 +12125,16 @@ HLML_INLINE float2x3 operator++( float2x3 &x )
 // post-fix
 HLML_INLINE float2x3 operator++( float2x3 &x, const int32_t )
 {
-	x[0]++;
-	x[1]++;
+	x.rows[0]++;
+	x.rows[1]++;
 	return x;
 }
 
 // --s each component of the matrix and returns the result.
 HLML_INLINE float2x3 operator--( float2x3 &x )
 {
-	--x[0];
-	--x[1];
+	--x.rows[0];
+	--x.rows[1];
 	return x;
 }
 
@@ -12142,8 +12142,8 @@ HLML_INLINE float2x3 operator--( float2x3 &x )
 // post-fix
 HLML_INLINE float2x3 operator--( float2x3 &x, const int32_t )
 {
-	x[0]--;
-	x[1]--;
+	x.rows[0]--;
+	x.rows[1]--;
 	return x;
 }
 
@@ -12152,8 +12152,8 @@ HLML_INLINE float2x3 operator--( float2x3 &x, const int32_t )
 HLML_INLINE float2x3 operator-( const float2x3 &x )
 {
 	return float2x3(
-		-x[0],
-		-x[1]
+		-x.rows[0],
+		-x.rows[1]
 	);
 }
 
@@ -12199,8 +12199,8 @@ HLML_INLINE float2x2 mul( const float2x3 &lhs, const float3x2 &rhs )
 HLML_INLINE int2x4 sign( const float2x4 &x )
 {
 	return int2x4(
-		sign( x[0] ),
-		sign( x[1] )
+		sign( x.rows[0] ),
+		sign( x.rows[1] )
 	);
 }
 
@@ -12208,8 +12208,8 @@ HLML_INLINE int2x4 sign( const float2x4 &x )
 HLML_INLINE float2x4 min( const float2x4 &x, const float2x4 &y )
 {
 	return float2x4(
-		min( x[0], y[0] ),
-		min( x[1], y[1] )
+		min( x.rows[0], y.rows[0] ),
+		min( x.rows[1], y.rows[1] )
 	);
 }
 
@@ -12217,8 +12217,8 @@ HLML_INLINE float2x4 min( const float2x4 &x, const float2x4 &y )
 HLML_INLINE float2x4 max( const float2x4 &x, const float2x4 &y )
 {
 	return float2x4(
-		max( x[0], y[0] ),
-		max( x[1], y[1] )
+		max( x.rows[0], y.rows[0] ),
+		max( x.rows[1], y.rows[1] )
 	);
 }
 
@@ -12226,8 +12226,8 @@ HLML_INLINE float2x4 max( const float2x4 &x, const float2x4 &y )
 HLML_INLINE float2x4 clamp( const float2x4 &x, const float2x4 &low, const float2x4 &high )
 {
 	return float2x4(
-		clamp( x[0], low[0], high[0] ),
-		clamp( x[1], low[1], high[1] )
+		clamp( x.rows[0], low.rows[0], high.rows[0] ),
+		clamp( x.rows[1], low.rows[1], high.rows[1] )
 	);
 }
 
@@ -12235,8 +12235,8 @@ HLML_INLINE float2x4 clamp( const float2x4 &x, const float2x4 &low, const float2
 HLML_INLINE float2x4 saturate( const float2x4 &x )
 {
 	return float2x4(
-		saturate( x[0] ),
-		saturate( x[1] )
+		saturate( x.rows[0] ),
+		saturate( x.rows[1] )
 	);
 }
 
@@ -12244,8 +12244,8 @@ HLML_INLINE float2x4 saturate( const float2x4 &x )
 HLML_INLINE float2x4 lerp( const float2x4 &lhs, const float2x4 &rhs, const float t )
 {
 	return float2x4(
-		lerp( lhs[0], rhs[0], t ),
-		lerp( lhs[1], rhs[1], t )
+		lerp( lhs.rows[0], rhs.rows[0], t ),
+		lerp( lhs.rows[1], rhs.rows[1], t )
 	);
 }
 
@@ -12253,8 +12253,8 @@ HLML_INLINE float2x4 lerp( const float2x4 &lhs, const float2x4 &rhs, const float
 HLML_INLINE bool operator==( const float2x4 &lhs, const float2x4 &rhs )
 {
 	return
-		lhs[0] == rhs[0] &&
-		lhs[1] == rhs[1];
+		lhs.rows[0] == rhs.rows[0] &&
+		lhs.rows[1] == rhs.rows[1];
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
@@ -12267,8 +12267,8 @@ HLML_INLINE bool operator!=( const float2x4 &lhs, const float2x4 &rhs )
 HLML_INLINE bool2x4 operator<( const float2x4 &lhs, const float2x4 &rhs )
 {
 	return bool2x4(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1]
+		lhs.rows[0] < rhs.rows[0],
+		lhs.rows[1] < rhs.rows[1]
 	);
 }
 
@@ -12276,8 +12276,8 @@ HLML_INLINE bool2x4 operator<( const float2x4 &lhs, const float2x4 &rhs )
 HLML_INLINE bool2x4 operator<=( const float2x4 &lhs, const float2x4 &rhs )
 {
 	return bool2x4(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1]
+		lhs.rows[0] <= rhs.rows[0],
+		lhs.rows[1] <= rhs.rows[1]
 	);
 }
 
@@ -12285,8 +12285,8 @@ HLML_INLINE bool2x4 operator<=( const float2x4 &lhs, const float2x4 &rhs )
 HLML_INLINE bool2x4 operator>( const float2x4 &lhs, const float2x4 &rhs )
 {
 	return bool2x4(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1]
+		lhs.rows[0] > rhs.rows[0],
+		lhs.rows[1] > rhs.rows[1]
 	);
 }
 
@@ -12294,8 +12294,8 @@ HLML_INLINE bool2x4 operator>( const float2x4 &lhs, const float2x4 &rhs )
 HLML_INLINE bool2x4 operator>=( const float2x4 &lhs, const float2x4 &rhs )
 {
 	return bool2x4(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1]
+		lhs.rows[0] >= rhs.rows[0],
+		lhs.rows[1] >= rhs.rows[1]
 	);
 }
 
@@ -12303,8 +12303,8 @@ HLML_INLINE bool2x4 operator>=( const float2x4 &lhs, const float2x4 &rhs )
 HLML_INLINE float2x4 operator+( const float2x4 &lhs, const float rhs )
 {
 	return float2x4(
-		lhs[0] + rhs,
-		lhs[1] + rhs
+		lhs.rows[0] + rhs,
+		lhs.rows[1] + rhs
 	);
 }
 
@@ -12318,8 +12318,8 @@ HLML_INLINE float2x4 operator+=( float2x4 &lhs, const float rhs )
 HLML_INLINE float2x4 operator+( const float2x4 &lhs, const float2x4 &rhs )
 {
 	return float2x4(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1]
+		lhs.rows[0] + rhs.rows[0],
+		lhs.rows[1] + rhs.rows[1]
 	);
 }
 
@@ -12333,8 +12333,8 @@ HLML_INLINE float2x4 operator+=( float2x4 &lhs, const float2x4 &rhs )
 HLML_INLINE float2x4 operator-( const float2x4 &lhs, const float rhs )
 {
 	return float2x4(
-		lhs[0] - rhs,
-		lhs[1] - rhs
+		lhs.rows[0] - rhs,
+		lhs.rows[1] - rhs
 	);
 }
 
@@ -12348,8 +12348,8 @@ HLML_INLINE float2x4 operator-=( float2x4 &lhs, const float rhs )
 HLML_INLINE float2x4 operator-( const float2x4 &lhs, const float2x4 &rhs )
 {
 	return float2x4(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1]
+		lhs.rows[0] - rhs.rows[0],
+		lhs.rows[1] - rhs.rows[1]
 	);
 }
 
@@ -12363,8 +12363,8 @@ HLML_INLINE float2x4 operator-=( float2x4 &lhs, const float2x4 &rhs )
 HLML_INLINE float2x4 operator*( const float2x4 &lhs, const float rhs )
 {
 	return float2x4(
-		lhs[0] * rhs,
-		lhs[1] * rhs
+		lhs.rows[0] * rhs,
+		lhs.rows[1] * rhs
 	);
 }
 
@@ -12378,8 +12378,8 @@ HLML_INLINE float2x4 operator*=( float2x4 &lhs, const float rhs )
 HLML_INLINE float2x4 operator*( const float2x4 &lhs, const float2x4 &rhs )
 {
 	return float2x4(
-		lhs[0] * rhs[0],
-		lhs[1] * rhs[1]
+		lhs.rows[0] * rhs.rows[0],
+		lhs.rows[1] * rhs.rows[1]
 	);
 }
 
@@ -12393,8 +12393,8 @@ HLML_INLINE float2x4 operator*=( float2x4 &lhs, const float2x4 &rhs )
 HLML_INLINE float2x4 operator/( const float2x4 &lhs, const float rhs )
 {
 	return float2x4(
-		lhs[0] / rhs,
-		lhs[1] / rhs
+		lhs.rows[0] / rhs,
+		lhs.rows[1] / rhs
 	);
 }
 
@@ -12408,8 +12408,8 @@ HLML_INLINE float2x4 operator/=( float2x4 &lhs, const float rhs )
 HLML_INLINE float2x4 operator/( const float2x4 &lhs, const float2x4 &rhs )
 {
 	return float2x4(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1]
+		lhs.rows[0] / rhs.rows[0],
+		lhs.rows[1] / rhs.rows[1]
 	);
 }
 
@@ -12422,8 +12422,8 @@ HLML_INLINE float2x4 operator/=( float2x4 &lhs, const float2x4 &rhs )
 // ++s each component of the matrix and returns the result.
 HLML_INLINE float2x4 operator++( float2x4 &x )
 {
-	++x[0];
-	++x[1];
+	++x.rows[0];
+	++x.rows[1];
 	return x;
 }
 
@@ -12431,16 +12431,16 @@ HLML_INLINE float2x4 operator++( float2x4 &x )
 // post-fix
 HLML_INLINE float2x4 operator++( float2x4 &x, const int32_t )
 {
-	x[0]++;
-	x[1]++;
+	x.rows[0]++;
+	x.rows[1]++;
 	return x;
 }
 
 // --s each component of the matrix and returns the result.
 HLML_INLINE float2x4 operator--( float2x4 &x )
 {
-	--x[0];
-	--x[1];
+	--x.rows[0];
+	--x.rows[1];
 	return x;
 }
 
@@ -12448,8 +12448,8 @@ HLML_INLINE float2x4 operator--( float2x4 &x )
 // post-fix
 HLML_INLINE float2x4 operator--( float2x4 &x, const int32_t )
 {
-	x[0]--;
-	x[1]--;
+	x.rows[0]--;
+	x.rows[1]--;
 	return x;
 }
 
@@ -12458,8 +12458,8 @@ HLML_INLINE float2x4 operator--( float2x4 &x, const int32_t )
 HLML_INLINE float2x4 operator-( const float2x4 &x )
 {
 	return float2x4(
-		-x[0],
-		-x[1]
+		-x.rows[0],
+		-x.rows[1]
 	);
 }
 
@@ -12506,9 +12506,9 @@ HLML_INLINE float2x2 mul( const float2x4 &lhs, const float4x2 &rhs )
 HLML_INLINE int3x2 sign( const float3x2 &x )
 {
 	return int3x2(
-		sign( x[0] ),
-		sign( x[1] ),
-		sign( x[2] )
+		sign( x.rows[0] ),
+		sign( x.rows[1] ),
+		sign( x.rows[2] )
 	);
 }
 
@@ -12516,9 +12516,9 @@ HLML_INLINE int3x2 sign( const float3x2 &x )
 HLML_INLINE float3x2 min( const float3x2 &x, const float3x2 &y )
 {
 	return float3x2(
-		min( x[0], y[0] ),
-		min( x[1], y[1] ),
-		min( x[2], y[2] )
+		min( x.rows[0], y.rows[0] ),
+		min( x.rows[1], y.rows[1] ),
+		min( x.rows[2], y.rows[2] )
 	);
 }
 
@@ -12526,9 +12526,9 @@ HLML_INLINE float3x2 min( const float3x2 &x, const float3x2 &y )
 HLML_INLINE float3x2 max( const float3x2 &x, const float3x2 &y )
 {
 	return float3x2(
-		max( x[0], y[0] ),
-		max( x[1], y[1] ),
-		max( x[2], y[2] )
+		max( x.rows[0], y.rows[0] ),
+		max( x.rows[1], y.rows[1] ),
+		max( x.rows[2], y.rows[2] )
 	);
 }
 
@@ -12536,9 +12536,9 @@ HLML_INLINE float3x2 max( const float3x2 &x, const float3x2 &y )
 HLML_INLINE float3x2 clamp( const float3x2 &x, const float3x2 &low, const float3x2 &high )
 {
 	return float3x2(
-		clamp( x[0], low[0], high[0] ),
-		clamp( x[1], low[1], high[1] ),
-		clamp( x[2], low[2], high[2] )
+		clamp( x.rows[0], low.rows[0], high.rows[0] ),
+		clamp( x.rows[1], low.rows[1], high.rows[1] ),
+		clamp( x.rows[2], low.rows[2], high.rows[2] )
 	);
 }
 
@@ -12546,9 +12546,9 @@ HLML_INLINE float3x2 clamp( const float3x2 &x, const float3x2 &low, const float3
 HLML_INLINE float3x2 saturate( const float3x2 &x )
 {
 	return float3x2(
-		saturate( x[0] ),
-		saturate( x[1] ),
-		saturate( x[2] )
+		saturate( x.rows[0] ),
+		saturate( x.rows[1] ),
+		saturate( x.rows[2] )
 	);
 }
 
@@ -12556,9 +12556,9 @@ HLML_INLINE float3x2 saturate( const float3x2 &x )
 HLML_INLINE float3x2 lerp( const float3x2 &lhs, const float3x2 &rhs, const float t )
 {
 	return float3x2(
-		lerp( lhs[0], rhs[0], t ),
-		lerp( lhs[1], rhs[1], t ),
-		lerp( lhs[2], rhs[2], t )
+		lerp( lhs.rows[0], rhs.rows[0], t ),
+		lerp( lhs.rows[1], rhs.rows[1], t ),
+		lerp( lhs.rows[2], rhs.rows[2], t )
 	);
 }
 
@@ -12566,9 +12566,9 @@ HLML_INLINE float3x2 lerp( const float3x2 &lhs, const float3x2 &rhs, const float
 HLML_INLINE bool operator==( const float3x2 &lhs, const float3x2 &rhs )
 {
 	return
-		lhs[0] == rhs[0] &&
-		lhs[1] == rhs[1] &&
-		lhs[2] == rhs[2];
+		lhs.rows[0] == rhs.rows[0] &&
+		lhs.rows[1] == rhs.rows[1] &&
+		lhs.rows[2] == rhs.rows[2];
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
@@ -12581,9 +12581,9 @@ HLML_INLINE bool operator!=( const float3x2 &lhs, const float3x2 &rhs )
 HLML_INLINE bool3x2 operator<( const float3x2 &lhs, const float3x2 &rhs )
 {
 	return bool3x2(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2]
+		lhs.rows[0] < rhs.rows[0],
+		lhs.rows[1] < rhs.rows[1],
+		lhs.rows[2] < rhs.rows[2]
 	);
 }
 
@@ -12591,9 +12591,9 @@ HLML_INLINE bool3x2 operator<( const float3x2 &lhs, const float3x2 &rhs )
 HLML_INLINE bool3x2 operator<=( const float3x2 &lhs, const float3x2 &rhs )
 {
 	return bool3x2(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2]
+		lhs.rows[0] <= rhs.rows[0],
+		lhs.rows[1] <= rhs.rows[1],
+		lhs.rows[2] <= rhs.rows[2]
 	);
 }
 
@@ -12601,9 +12601,9 @@ HLML_INLINE bool3x2 operator<=( const float3x2 &lhs, const float3x2 &rhs )
 HLML_INLINE bool3x2 operator>( const float3x2 &lhs, const float3x2 &rhs )
 {
 	return bool3x2(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2]
+		lhs.rows[0] > rhs.rows[0],
+		lhs.rows[1] > rhs.rows[1],
+		lhs.rows[2] > rhs.rows[2]
 	);
 }
 
@@ -12611,9 +12611,9 @@ HLML_INLINE bool3x2 operator>( const float3x2 &lhs, const float3x2 &rhs )
 HLML_INLINE bool3x2 operator>=( const float3x2 &lhs, const float3x2 &rhs )
 {
 	return bool3x2(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2]
+		lhs.rows[0] >= rhs.rows[0],
+		lhs.rows[1] >= rhs.rows[1],
+		lhs.rows[2] >= rhs.rows[2]
 	);
 }
 
@@ -12621,9 +12621,9 @@ HLML_INLINE bool3x2 operator>=( const float3x2 &lhs, const float3x2 &rhs )
 HLML_INLINE float3x2 operator+( const float3x2 &lhs, const float rhs )
 {
 	return float3x2(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs
+		lhs.rows[0] + rhs,
+		lhs.rows[1] + rhs,
+		lhs.rows[2] + rhs
 	);
 }
 
@@ -12637,9 +12637,9 @@ HLML_INLINE float3x2 operator+=( float3x2 &lhs, const float rhs )
 HLML_INLINE float3x2 operator+( const float3x2 &lhs, const float3x2 &rhs )
 {
 	return float3x2(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2]
+		lhs.rows[0] + rhs.rows[0],
+		lhs.rows[1] + rhs.rows[1],
+		lhs.rows[2] + rhs.rows[2]
 	);
 }
 
@@ -12653,9 +12653,9 @@ HLML_INLINE float3x2 operator+=( float3x2 &lhs, const float3x2 &rhs )
 HLML_INLINE float3x2 operator-( const float3x2 &lhs, const float rhs )
 {
 	return float3x2(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs
+		lhs.rows[0] - rhs,
+		lhs.rows[1] - rhs,
+		lhs.rows[2] - rhs
 	);
 }
 
@@ -12669,9 +12669,9 @@ HLML_INLINE float3x2 operator-=( float3x2 &lhs, const float rhs )
 HLML_INLINE float3x2 operator-( const float3x2 &lhs, const float3x2 &rhs )
 {
 	return float3x2(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2]
+		lhs.rows[0] - rhs.rows[0],
+		lhs.rows[1] - rhs.rows[1],
+		lhs.rows[2] - rhs.rows[2]
 	);
 }
 
@@ -12685,9 +12685,9 @@ HLML_INLINE float3x2 operator-=( float3x2 &lhs, const float3x2 &rhs )
 HLML_INLINE float3x2 operator*( const float3x2 &lhs, const float rhs )
 {
 	return float3x2(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs
+		lhs.rows[0] * rhs,
+		lhs.rows[1] * rhs,
+		lhs.rows[2] * rhs
 	);
 }
 
@@ -12701,9 +12701,9 @@ HLML_INLINE float3x2 operator*=( float3x2 &lhs, const float rhs )
 HLML_INLINE float3x2 operator*( const float3x2 &lhs, const float3x2 &rhs )
 {
 	return float3x2(
-		lhs[0] * rhs[0],
-		lhs[1] * rhs[1],
-		lhs[2] * rhs[2]
+		lhs.rows[0] * rhs.rows[0],
+		lhs.rows[1] * rhs.rows[1],
+		lhs.rows[2] * rhs.rows[2]
 	);
 }
 
@@ -12717,9 +12717,9 @@ HLML_INLINE float3x2 operator*=( float3x2 &lhs, const float3x2 &rhs )
 HLML_INLINE float3x2 operator/( const float3x2 &lhs, const float rhs )
 {
 	return float3x2(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs
+		lhs.rows[0] / rhs,
+		lhs.rows[1] / rhs,
+		lhs.rows[2] / rhs
 	);
 }
 
@@ -12733,9 +12733,9 @@ HLML_INLINE float3x2 operator/=( float3x2 &lhs, const float rhs )
 HLML_INLINE float3x2 operator/( const float3x2 &lhs, const float3x2 &rhs )
 {
 	return float3x2(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1],
-		lhs[2] / rhs[2]
+		lhs.rows[0] / rhs.rows[0],
+		lhs.rows[1] / rhs.rows[1],
+		lhs.rows[2] / rhs.rows[2]
 	);
 }
 
@@ -12748,9 +12748,9 @@ HLML_INLINE float3x2 operator/=( float3x2 &lhs, const float3x2 &rhs )
 // ++s each component of the matrix and returns the result.
 HLML_INLINE float3x2 operator++( float3x2 &x )
 {
-	++x[0];
-	++x[1];
-	++x[2];
+	++x.rows[0];
+	++x.rows[1];
+	++x.rows[2];
 	return x;
 }
 
@@ -12758,18 +12758,18 @@ HLML_INLINE float3x2 operator++( float3x2 &x )
 // post-fix
 HLML_INLINE float3x2 operator++( float3x2 &x, const int32_t )
 {
-	x[0]++;
-	x[1]++;
-	x[2]++;
+	x.rows[0]++;
+	x.rows[1]++;
+	x.rows[2]++;
 	return x;
 }
 
 // --s each component of the matrix and returns the result.
 HLML_INLINE float3x2 operator--( float3x2 &x )
 {
-	--x[0];
-	--x[1];
-	--x[2];
+	--x.rows[0];
+	--x.rows[1];
+	--x.rows[2];
 	return x;
 }
 
@@ -12777,9 +12777,9 @@ HLML_INLINE float3x2 operator--( float3x2 &x )
 // post-fix
 HLML_INLINE float3x2 operator--( float3x2 &x, const int32_t )
 {
-	x[0]--;
-	x[1]--;
-	x[2]--;
+	x.rows[0]--;
+	x.rows[1]--;
+	x.rows[2]--;
 	return x;
 }
 
@@ -12788,9 +12788,9 @@ HLML_INLINE float3x2 operator--( float3x2 &x, const int32_t )
 HLML_INLINE float3x2 operator-( const float3x2 &x )
 {
 	return float3x2(
-		-x[0],
-		-x[1],
-		-x[2]
+		-x.rows[0],
+		-x.rows[1],
+		-x.rows[2]
 	);
 }
 
@@ -12844,9 +12844,9 @@ HLML_INLINE float3x3 mul( const float3x2 &lhs, const float2x3 &rhs )
 HLML_INLINE int3x3 sign( const float3x3 &x )
 {
 	return int3x3(
-		sign( x[0] ),
-		sign( x[1] ),
-		sign( x[2] )
+		sign( x.rows[0] ),
+		sign( x.rows[1] ),
+		sign( x.rows[2] )
 	);
 }
 
@@ -12854,9 +12854,9 @@ HLML_INLINE int3x3 sign( const float3x3 &x )
 HLML_INLINE float3x3 min( const float3x3 &x, const float3x3 &y )
 {
 	return float3x3(
-		min( x[0], y[0] ),
-		min( x[1], y[1] ),
-		min( x[2], y[2] )
+		min( x.rows[0], y.rows[0] ),
+		min( x.rows[1], y.rows[1] ),
+		min( x.rows[2], y.rows[2] )
 	);
 }
 
@@ -12864,9 +12864,9 @@ HLML_INLINE float3x3 min( const float3x3 &x, const float3x3 &y )
 HLML_INLINE float3x3 max( const float3x3 &x, const float3x3 &y )
 {
 	return float3x3(
-		max( x[0], y[0] ),
-		max( x[1], y[1] ),
-		max( x[2], y[2] )
+		max( x.rows[0], y.rows[0] ),
+		max( x.rows[1], y.rows[1] ),
+		max( x.rows[2], y.rows[2] )
 	);
 }
 
@@ -12874,9 +12874,9 @@ HLML_INLINE float3x3 max( const float3x3 &x, const float3x3 &y )
 HLML_INLINE float3x3 clamp( const float3x3 &x, const float3x3 &low, const float3x3 &high )
 {
 	return float3x3(
-		clamp( x[0], low[0], high[0] ),
-		clamp( x[1], low[1], high[1] ),
-		clamp( x[2], low[2], high[2] )
+		clamp( x.rows[0], low.rows[0], high.rows[0] ),
+		clamp( x.rows[1], low.rows[1], high.rows[1] ),
+		clamp( x.rows[2], low.rows[2], high.rows[2] )
 	);
 }
 
@@ -12884,9 +12884,9 @@ HLML_INLINE float3x3 clamp( const float3x3 &x, const float3x3 &low, const float3
 HLML_INLINE float3x3 saturate( const float3x3 &x )
 {
 	return float3x3(
-		saturate( x[0] ),
-		saturate( x[1] ),
-		saturate( x[2] )
+		saturate( x.rows[0] ),
+		saturate( x.rows[1] ),
+		saturate( x.rows[2] )
 	);
 }
 
@@ -12894,9 +12894,9 @@ HLML_INLINE float3x3 saturate( const float3x3 &x )
 HLML_INLINE float3x3 lerp( const float3x3 &lhs, const float3x3 &rhs, const float t )
 {
 	return float3x3(
-		lerp( lhs[0], rhs[0], t ),
-		lerp( lhs[1], rhs[1], t ),
-		lerp( lhs[2], rhs[2], t )
+		lerp( lhs.rows[0], rhs.rows[0], t ),
+		lerp( lhs.rows[1], rhs.rows[1], t ),
+		lerp( lhs.rows[2], rhs.rows[2], t )
 	);
 }
 
@@ -12904,9 +12904,9 @@ HLML_INLINE float3x3 lerp( const float3x3 &lhs, const float3x3 &rhs, const float
 HLML_INLINE bool operator==( const float3x3 &lhs, const float3x3 &rhs )
 {
 	return
-		lhs[0] == rhs[0] &&
-		lhs[1] == rhs[1] &&
-		lhs[2] == rhs[2];
+		lhs.rows[0] == rhs.rows[0] &&
+		lhs.rows[1] == rhs.rows[1] &&
+		lhs.rows[2] == rhs.rows[2];
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
@@ -12919,9 +12919,9 @@ HLML_INLINE bool operator!=( const float3x3 &lhs, const float3x3 &rhs )
 HLML_INLINE bool3x3 operator<( const float3x3 &lhs, const float3x3 &rhs )
 {
 	return bool3x3(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2]
+		lhs.rows[0] < rhs.rows[0],
+		lhs.rows[1] < rhs.rows[1],
+		lhs.rows[2] < rhs.rows[2]
 	);
 }
 
@@ -12929,9 +12929,9 @@ HLML_INLINE bool3x3 operator<( const float3x3 &lhs, const float3x3 &rhs )
 HLML_INLINE bool3x3 operator<=( const float3x3 &lhs, const float3x3 &rhs )
 {
 	return bool3x3(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2]
+		lhs.rows[0] <= rhs.rows[0],
+		lhs.rows[1] <= rhs.rows[1],
+		lhs.rows[2] <= rhs.rows[2]
 	);
 }
 
@@ -12939,9 +12939,9 @@ HLML_INLINE bool3x3 operator<=( const float3x3 &lhs, const float3x3 &rhs )
 HLML_INLINE bool3x3 operator>( const float3x3 &lhs, const float3x3 &rhs )
 {
 	return bool3x3(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2]
+		lhs.rows[0] > rhs.rows[0],
+		lhs.rows[1] > rhs.rows[1],
+		lhs.rows[2] > rhs.rows[2]
 	);
 }
 
@@ -12949,9 +12949,9 @@ HLML_INLINE bool3x3 operator>( const float3x3 &lhs, const float3x3 &rhs )
 HLML_INLINE bool3x3 operator>=( const float3x3 &lhs, const float3x3 &rhs )
 {
 	return bool3x3(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2]
+		lhs.rows[0] >= rhs.rows[0],
+		lhs.rows[1] >= rhs.rows[1],
+		lhs.rows[2] >= rhs.rows[2]
 	);
 }
 
@@ -12959,9 +12959,9 @@ HLML_INLINE bool3x3 operator>=( const float3x3 &lhs, const float3x3 &rhs )
 HLML_INLINE float3x3 operator+( const float3x3 &lhs, const float rhs )
 {
 	return float3x3(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs
+		lhs.rows[0] + rhs,
+		lhs.rows[1] + rhs,
+		lhs.rows[2] + rhs
 	);
 }
 
@@ -12975,9 +12975,9 @@ HLML_INLINE float3x3 operator+=( float3x3 &lhs, const float rhs )
 HLML_INLINE float3x3 operator+( const float3x3 &lhs, const float3x3 &rhs )
 {
 	return float3x3(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2]
+		lhs.rows[0] + rhs.rows[0],
+		lhs.rows[1] + rhs.rows[1],
+		lhs.rows[2] + rhs.rows[2]
 	);
 }
 
@@ -12991,9 +12991,9 @@ HLML_INLINE float3x3 operator+=( float3x3 &lhs, const float3x3 &rhs )
 HLML_INLINE float3x3 operator-( const float3x3 &lhs, const float rhs )
 {
 	return float3x3(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs
+		lhs.rows[0] - rhs,
+		lhs.rows[1] - rhs,
+		lhs.rows[2] - rhs
 	);
 }
 
@@ -13007,9 +13007,9 @@ HLML_INLINE float3x3 operator-=( float3x3 &lhs, const float rhs )
 HLML_INLINE float3x3 operator-( const float3x3 &lhs, const float3x3 &rhs )
 {
 	return float3x3(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2]
+		lhs.rows[0] - rhs.rows[0],
+		lhs.rows[1] - rhs.rows[1],
+		lhs.rows[2] - rhs.rows[2]
 	);
 }
 
@@ -13023,9 +13023,9 @@ HLML_INLINE float3x3 operator-=( float3x3 &lhs, const float3x3 &rhs )
 HLML_INLINE float3x3 operator*( const float3x3 &lhs, const float rhs )
 {
 	return float3x3(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs
+		lhs.rows[0] * rhs,
+		lhs.rows[1] * rhs,
+		lhs.rows[2] * rhs
 	);
 }
 
@@ -13039,9 +13039,9 @@ HLML_INLINE float3x3 operator*=( float3x3 &lhs, const float rhs )
 HLML_INLINE float3x3 operator*( const float3x3 &lhs, const float3x3 &rhs )
 {
 	return float3x3(
-		lhs[0] * rhs[0],
-		lhs[1] * rhs[1],
-		lhs[2] * rhs[2]
+		lhs.rows[0] * rhs.rows[0],
+		lhs.rows[1] * rhs.rows[1],
+		lhs.rows[2] * rhs.rows[2]
 	);
 }
 
@@ -13055,9 +13055,9 @@ HLML_INLINE float3x3 operator*=( float3x3 &lhs, const float3x3 &rhs )
 HLML_INLINE float3x3 operator/( const float3x3 &lhs, const float rhs )
 {
 	return float3x3(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs
+		lhs.rows[0] / rhs,
+		lhs.rows[1] / rhs,
+		lhs.rows[2] / rhs
 	);
 }
 
@@ -13071,9 +13071,9 @@ HLML_INLINE float3x3 operator/=( float3x3 &lhs, const float rhs )
 HLML_INLINE float3x3 operator/( const float3x3 &lhs, const float3x3 &rhs )
 {
 	return float3x3(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1],
-		lhs[2] / rhs[2]
+		lhs.rows[0] / rhs.rows[0],
+		lhs.rows[1] / rhs.rows[1],
+		lhs.rows[2] / rhs.rows[2]
 	);
 }
 
@@ -13086,9 +13086,9 @@ HLML_INLINE float3x3 operator/=( float3x3 &lhs, const float3x3 &rhs )
 // ++s each component of the matrix and returns the result.
 HLML_INLINE float3x3 operator++( float3x3 &x )
 {
-	++x[0];
-	++x[1];
-	++x[2];
+	++x.rows[0];
+	++x.rows[1];
+	++x.rows[2];
 	return x;
 }
 
@@ -13096,18 +13096,18 @@ HLML_INLINE float3x3 operator++( float3x3 &x )
 // post-fix
 HLML_INLINE float3x3 operator++( float3x3 &x, const int32_t )
 {
-	x[0]++;
-	x[1]++;
-	x[2]++;
+	x.rows[0]++;
+	x.rows[1]++;
+	x.rows[2]++;
 	return x;
 }
 
 // --s each component of the matrix and returns the result.
 HLML_INLINE float3x3 operator--( float3x3 &x )
 {
-	--x[0];
-	--x[1];
-	--x[2];
+	--x.rows[0];
+	--x.rows[1];
+	--x.rows[2];
 	return x;
 }
 
@@ -13115,9 +13115,9 @@ HLML_INLINE float3x3 operator--( float3x3 &x )
 // post-fix
 HLML_INLINE float3x3 operator--( float3x3 &x, const int32_t )
 {
-	x[0]--;
-	x[1]--;
-	x[2]--;
+	x.rows[0]--;
+	x.rows[1]--;
+	x.rows[2]--;
 	return x;
 }
 
@@ -13126,9 +13126,9 @@ HLML_INLINE float3x3 operator--( float3x3 &x, const int32_t )
 HLML_INLINE float3x3 operator-( const float3x3 &x )
 {
 	return float3x3(
-		-x[0],
-		-x[1],
-		-x[2]
+		-x.rows[0],
+		-x.rows[1],
+		-x.rows[2]
 	);
 }
 
@@ -13224,9 +13224,9 @@ HLML_INLINE float3 mul( const float3 &lhs, const float3x3 &rhs )
 HLML_INLINE int3x4 sign( const float3x4 &x )
 {
 	return int3x4(
-		sign( x[0] ),
-		sign( x[1] ),
-		sign( x[2] )
+		sign( x.rows[0] ),
+		sign( x.rows[1] ),
+		sign( x.rows[2] )
 	);
 }
 
@@ -13234,9 +13234,9 @@ HLML_INLINE int3x4 sign( const float3x4 &x )
 HLML_INLINE float3x4 min( const float3x4 &x, const float3x4 &y )
 {
 	return float3x4(
-		min( x[0], y[0] ),
-		min( x[1], y[1] ),
-		min( x[2], y[2] )
+		min( x.rows[0], y.rows[0] ),
+		min( x.rows[1], y.rows[1] ),
+		min( x.rows[2], y.rows[2] )
 	);
 }
 
@@ -13244,9 +13244,9 @@ HLML_INLINE float3x4 min( const float3x4 &x, const float3x4 &y )
 HLML_INLINE float3x4 max( const float3x4 &x, const float3x4 &y )
 {
 	return float3x4(
-		max( x[0], y[0] ),
-		max( x[1], y[1] ),
-		max( x[2], y[2] )
+		max( x.rows[0], y.rows[0] ),
+		max( x.rows[1], y.rows[1] ),
+		max( x.rows[2], y.rows[2] )
 	);
 }
 
@@ -13254,9 +13254,9 @@ HLML_INLINE float3x4 max( const float3x4 &x, const float3x4 &y )
 HLML_INLINE float3x4 clamp( const float3x4 &x, const float3x4 &low, const float3x4 &high )
 {
 	return float3x4(
-		clamp( x[0], low[0], high[0] ),
-		clamp( x[1], low[1], high[1] ),
-		clamp( x[2], low[2], high[2] )
+		clamp( x.rows[0], low.rows[0], high.rows[0] ),
+		clamp( x.rows[1], low.rows[1], high.rows[1] ),
+		clamp( x.rows[2], low.rows[2], high.rows[2] )
 	);
 }
 
@@ -13264,9 +13264,9 @@ HLML_INLINE float3x4 clamp( const float3x4 &x, const float3x4 &low, const float3
 HLML_INLINE float3x4 saturate( const float3x4 &x )
 {
 	return float3x4(
-		saturate( x[0] ),
-		saturate( x[1] ),
-		saturate( x[2] )
+		saturate( x.rows[0] ),
+		saturate( x.rows[1] ),
+		saturate( x.rows[2] )
 	);
 }
 
@@ -13274,9 +13274,9 @@ HLML_INLINE float3x4 saturate( const float3x4 &x )
 HLML_INLINE float3x4 lerp( const float3x4 &lhs, const float3x4 &rhs, const float t )
 {
 	return float3x4(
-		lerp( lhs[0], rhs[0], t ),
-		lerp( lhs[1], rhs[1], t ),
-		lerp( lhs[2], rhs[2], t )
+		lerp( lhs.rows[0], rhs.rows[0], t ),
+		lerp( lhs.rows[1], rhs.rows[1], t ),
+		lerp( lhs.rows[2], rhs.rows[2], t )
 	);
 }
 
@@ -13284,9 +13284,9 @@ HLML_INLINE float3x4 lerp( const float3x4 &lhs, const float3x4 &rhs, const float
 HLML_INLINE bool operator==( const float3x4 &lhs, const float3x4 &rhs )
 {
 	return
-		lhs[0] == rhs[0] &&
-		lhs[1] == rhs[1] &&
-		lhs[2] == rhs[2];
+		lhs.rows[0] == rhs.rows[0] &&
+		lhs.rows[1] == rhs.rows[1] &&
+		lhs.rows[2] == rhs.rows[2];
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
@@ -13299,9 +13299,9 @@ HLML_INLINE bool operator!=( const float3x4 &lhs, const float3x4 &rhs )
 HLML_INLINE bool3x4 operator<( const float3x4 &lhs, const float3x4 &rhs )
 {
 	return bool3x4(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2]
+		lhs.rows[0] < rhs.rows[0],
+		lhs.rows[1] < rhs.rows[1],
+		lhs.rows[2] < rhs.rows[2]
 	);
 }
 
@@ -13309,9 +13309,9 @@ HLML_INLINE bool3x4 operator<( const float3x4 &lhs, const float3x4 &rhs )
 HLML_INLINE bool3x4 operator<=( const float3x4 &lhs, const float3x4 &rhs )
 {
 	return bool3x4(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2]
+		lhs.rows[0] <= rhs.rows[0],
+		lhs.rows[1] <= rhs.rows[1],
+		lhs.rows[2] <= rhs.rows[2]
 	);
 }
 
@@ -13319,9 +13319,9 @@ HLML_INLINE bool3x4 operator<=( const float3x4 &lhs, const float3x4 &rhs )
 HLML_INLINE bool3x4 operator>( const float3x4 &lhs, const float3x4 &rhs )
 {
 	return bool3x4(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2]
+		lhs.rows[0] > rhs.rows[0],
+		lhs.rows[1] > rhs.rows[1],
+		lhs.rows[2] > rhs.rows[2]
 	);
 }
 
@@ -13329,9 +13329,9 @@ HLML_INLINE bool3x4 operator>( const float3x4 &lhs, const float3x4 &rhs )
 HLML_INLINE bool3x4 operator>=( const float3x4 &lhs, const float3x4 &rhs )
 {
 	return bool3x4(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2]
+		lhs.rows[0] >= rhs.rows[0],
+		lhs.rows[1] >= rhs.rows[1],
+		lhs.rows[2] >= rhs.rows[2]
 	);
 }
 
@@ -13339,9 +13339,9 @@ HLML_INLINE bool3x4 operator>=( const float3x4 &lhs, const float3x4 &rhs )
 HLML_INLINE float3x4 operator+( const float3x4 &lhs, const float rhs )
 {
 	return float3x4(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs
+		lhs.rows[0] + rhs,
+		lhs.rows[1] + rhs,
+		lhs.rows[2] + rhs
 	);
 }
 
@@ -13355,9 +13355,9 @@ HLML_INLINE float3x4 operator+=( float3x4 &lhs, const float rhs )
 HLML_INLINE float3x4 operator+( const float3x4 &lhs, const float3x4 &rhs )
 {
 	return float3x4(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2]
+		lhs.rows[0] + rhs.rows[0],
+		lhs.rows[1] + rhs.rows[1],
+		lhs.rows[2] + rhs.rows[2]
 	);
 }
 
@@ -13371,9 +13371,9 @@ HLML_INLINE float3x4 operator+=( float3x4 &lhs, const float3x4 &rhs )
 HLML_INLINE float3x4 operator-( const float3x4 &lhs, const float rhs )
 {
 	return float3x4(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs
+		lhs.rows[0] - rhs,
+		lhs.rows[1] - rhs,
+		lhs.rows[2] - rhs
 	);
 }
 
@@ -13387,9 +13387,9 @@ HLML_INLINE float3x4 operator-=( float3x4 &lhs, const float rhs )
 HLML_INLINE float3x4 operator-( const float3x4 &lhs, const float3x4 &rhs )
 {
 	return float3x4(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2]
+		lhs.rows[0] - rhs.rows[0],
+		lhs.rows[1] - rhs.rows[1],
+		lhs.rows[2] - rhs.rows[2]
 	);
 }
 
@@ -13403,9 +13403,9 @@ HLML_INLINE float3x4 operator-=( float3x4 &lhs, const float3x4 &rhs )
 HLML_INLINE float3x4 operator*( const float3x4 &lhs, const float rhs )
 {
 	return float3x4(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs
+		lhs.rows[0] * rhs,
+		lhs.rows[1] * rhs,
+		lhs.rows[2] * rhs
 	);
 }
 
@@ -13419,9 +13419,9 @@ HLML_INLINE float3x4 operator*=( float3x4 &lhs, const float rhs )
 HLML_INLINE float3x4 operator*( const float3x4 &lhs, const float3x4 &rhs )
 {
 	return float3x4(
-		lhs[0] * rhs[0],
-		lhs[1] * rhs[1],
-		lhs[2] * rhs[2]
+		lhs.rows[0] * rhs.rows[0],
+		lhs.rows[1] * rhs.rows[1],
+		lhs.rows[2] * rhs.rows[2]
 	);
 }
 
@@ -13435,9 +13435,9 @@ HLML_INLINE float3x4 operator*=( float3x4 &lhs, const float3x4 &rhs )
 HLML_INLINE float3x4 operator/( const float3x4 &lhs, const float rhs )
 {
 	return float3x4(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs
+		lhs.rows[0] / rhs,
+		lhs.rows[1] / rhs,
+		lhs.rows[2] / rhs
 	);
 }
 
@@ -13451,9 +13451,9 @@ HLML_INLINE float3x4 operator/=( float3x4 &lhs, const float rhs )
 HLML_INLINE float3x4 operator/( const float3x4 &lhs, const float3x4 &rhs )
 {
 	return float3x4(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1],
-		lhs[2] / rhs[2]
+		lhs.rows[0] / rhs.rows[0],
+		lhs.rows[1] / rhs.rows[1],
+		lhs.rows[2] / rhs.rows[2]
 	);
 }
 
@@ -13466,9 +13466,9 @@ HLML_INLINE float3x4 operator/=( float3x4 &lhs, const float3x4 &rhs )
 // ++s each component of the matrix and returns the result.
 HLML_INLINE float3x4 operator++( float3x4 &x )
 {
-	++x[0];
-	++x[1];
-	++x[2];
+	++x.rows[0];
+	++x.rows[1];
+	++x.rows[2];
 	return x;
 }
 
@@ -13476,18 +13476,18 @@ HLML_INLINE float3x4 operator++( float3x4 &x )
 // post-fix
 HLML_INLINE float3x4 operator++( float3x4 &x, const int32_t )
 {
-	x[0]++;
-	x[1]++;
-	x[2]++;
+	x.rows[0]++;
+	x.rows[1]++;
+	x.rows[2]++;
 	return x;
 }
 
 // --s each component of the matrix and returns the result.
 HLML_INLINE float3x4 operator--( float3x4 &x )
 {
-	--x[0];
-	--x[1];
-	--x[2];
+	--x.rows[0];
+	--x.rows[1];
+	--x.rows[2];
 	return x;
 }
 
@@ -13495,9 +13495,9 @@ HLML_INLINE float3x4 operator--( float3x4 &x )
 // post-fix
 HLML_INLINE float3x4 operator--( float3x4 &x, const int32_t )
 {
-	x[0]--;
-	x[1]--;
-	x[2]--;
+	x.rows[0]--;
+	x.rows[1]--;
+	x.rows[2]--;
 	return x;
 }
 
@@ -13506,9 +13506,9 @@ HLML_INLINE float3x4 operator--( float3x4 &x, const int32_t )
 HLML_INLINE float3x4 operator-( const float3x4 &x )
 {
 	return float3x4(
-		-x[0],
-		-x[1],
-		-x[2]
+		-x.rows[0],
+		-x.rows[1],
+		-x.rows[2]
 	);
 }
 
@@ -13564,10 +13564,10 @@ HLML_INLINE float3x3 mul( const float3x4 &lhs, const float4x3 &rhs )
 HLML_INLINE int4x2 sign( const float4x2 &x )
 {
 	return int4x2(
-		sign( x[0] ),
-		sign( x[1] ),
-		sign( x[2] ),
-		sign( x[3] )
+		sign( x.rows[0] ),
+		sign( x.rows[1] ),
+		sign( x.rows[2] ),
+		sign( x.rows[3] )
 	);
 }
 
@@ -13575,10 +13575,10 @@ HLML_INLINE int4x2 sign( const float4x2 &x )
 HLML_INLINE float4x2 min( const float4x2 &x, const float4x2 &y )
 {
 	return float4x2(
-		min( x[0], y[0] ),
-		min( x[1], y[1] ),
-		min( x[2], y[2] ),
-		min( x[3], y[3] )
+		min( x.rows[0], y.rows[0] ),
+		min( x.rows[1], y.rows[1] ),
+		min( x.rows[2], y.rows[2] ),
+		min( x.rows[3], y.rows[3] )
 	);
 }
 
@@ -13586,10 +13586,10 @@ HLML_INLINE float4x2 min( const float4x2 &x, const float4x2 &y )
 HLML_INLINE float4x2 max( const float4x2 &x, const float4x2 &y )
 {
 	return float4x2(
-		max( x[0], y[0] ),
-		max( x[1], y[1] ),
-		max( x[2], y[2] ),
-		max( x[3], y[3] )
+		max( x.rows[0], y.rows[0] ),
+		max( x.rows[1], y.rows[1] ),
+		max( x.rows[2], y.rows[2] ),
+		max( x.rows[3], y.rows[3] )
 	);
 }
 
@@ -13597,10 +13597,10 @@ HLML_INLINE float4x2 max( const float4x2 &x, const float4x2 &y )
 HLML_INLINE float4x2 clamp( const float4x2 &x, const float4x2 &low, const float4x2 &high )
 {
 	return float4x2(
-		clamp( x[0], low[0], high[0] ),
-		clamp( x[1], low[1], high[1] ),
-		clamp( x[2], low[2], high[2] ),
-		clamp( x[3], low[3], high[3] )
+		clamp( x.rows[0], low.rows[0], high.rows[0] ),
+		clamp( x.rows[1], low.rows[1], high.rows[1] ),
+		clamp( x.rows[2], low.rows[2], high.rows[2] ),
+		clamp( x.rows[3], low.rows[3], high.rows[3] )
 	);
 }
 
@@ -13608,10 +13608,10 @@ HLML_INLINE float4x2 clamp( const float4x2 &x, const float4x2 &low, const float4
 HLML_INLINE float4x2 saturate( const float4x2 &x )
 {
 	return float4x2(
-		saturate( x[0] ),
-		saturate( x[1] ),
-		saturate( x[2] ),
-		saturate( x[3] )
+		saturate( x.rows[0] ),
+		saturate( x.rows[1] ),
+		saturate( x.rows[2] ),
+		saturate( x.rows[3] )
 	);
 }
 
@@ -13619,10 +13619,10 @@ HLML_INLINE float4x2 saturate( const float4x2 &x )
 HLML_INLINE float4x2 lerp( const float4x2 &lhs, const float4x2 &rhs, const float t )
 {
 	return float4x2(
-		lerp( lhs[0], rhs[0], t ),
-		lerp( lhs[1], rhs[1], t ),
-		lerp( lhs[2], rhs[2], t ),
-		lerp( lhs[3], rhs[3], t )
+		lerp( lhs.rows[0], rhs.rows[0], t ),
+		lerp( lhs.rows[1], rhs.rows[1], t ),
+		lerp( lhs.rows[2], rhs.rows[2], t ),
+		lerp( lhs.rows[3], rhs.rows[3], t )
 	);
 }
 
@@ -13630,10 +13630,10 @@ HLML_INLINE float4x2 lerp( const float4x2 &lhs, const float4x2 &rhs, const float
 HLML_INLINE bool operator==( const float4x2 &lhs, const float4x2 &rhs )
 {
 	return
-		lhs[0] == rhs[0] &&
-		lhs[1] == rhs[1] &&
-		lhs[2] == rhs[2] &&
-		lhs[3] == rhs[3];
+		lhs.rows[0] == rhs.rows[0] &&
+		lhs.rows[1] == rhs.rows[1] &&
+		lhs.rows[2] == rhs.rows[2] &&
+		lhs.rows[3] == rhs.rows[3];
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
@@ -13646,10 +13646,10 @@ HLML_INLINE bool operator!=( const float4x2 &lhs, const float4x2 &rhs )
 HLML_INLINE bool4x2 operator<( const float4x2 &lhs, const float4x2 &rhs )
 {
 	return bool4x2(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2],
-		lhs[3] < rhs[3]
+		lhs.rows[0] < rhs.rows[0],
+		lhs.rows[1] < rhs.rows[1],
+		lhs.rows[2] < rhs.rows[2],
+		lhs.rows[3] < rhs.rows[3]
 	);
 }
 
@@ -13657,10 +13657,10 @@ HLML_INLINE bool4x2 operator<( const float4x2 &lhs, const float4x2 &rhs )
 HLML_INLINE bool4x2 operator<=( const float4x2 &lhs, const float4x2 &rhs )
 {
 	return bool4x2(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2],
-		lhs[3] <= rhs[3]
+		lhs.rows[0] <= rhs.rows[0],
+		lhs.rows[1] <= rhs.rows[1],
+		lhs.rows[2] <= rhs.rows[2],
+		lhs.rows[3] <= rhs.rows[3]
 	);
 }
 
@@ -13668,10 +13668,10 @@ HLML_INLINE bool4x2 operator<=( const float4x2 &lhs, const float4x2 &rhs )
 HLML_INLINE bool4x2 operator>( const float4x2 &lhs, const float4x2 &rhs )
 {
 	return bool4x2(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2],
-		lhs[3] > rhs[3]
+		lhs.rows[0] > rhs.rows[0],
+		lhs.rows[1] > rhs.rows[1],
+		lhs.rows[2] > rhs.rows[2],
+		lhs.rows[3] > rhs.rows[3]
 	);
 }
 
@@ -13679,10 +13679,10 @@ HLML_INLINE bool4x2 operator>( const float4x2 &lhs, const float4x2 &rhs )
 HLML_INLINE bool4x2 operator>=( const float4x2 &lhs, const float4x2 &rhs )
 {
 	return bool4x2(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2],
-		lhs[3] >= rhs[3]
+		lhs.rows[0] >= rhs.rows[0],
+		lhs.rows[1] >= rhs.rows[1],
+		lhs.rows[2] >= rhs.rows[2],
+		lhs.rows[3] >= rhs.rows[3]
 	);
 }
 
@@ -13690,10 +13690,10 @@ HLML_INLINE bool4x2 operator>=( const float4x2 &lhs, const float4x2 &rhs )
 HLML_INLINE float4x2 operator+( const float4x2 &lhs, const float rhs )
 {
 	return float4x2(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs,
-		lhs[3] + rhs
+		lhs.rows[0] + rhs,
+		lhs.rows[1] + rhs,
+		lhs.rows[2] + rhs,
+		lhs.rows[3] + rhs
 	);
 }
 
@@ -13707,10 +13707,10 @@ HLML_INLINE float4x2 operator+=( float4x2 &lhs, const float rhs )
 HLML_INLINE float4x2 operator+( const float4x2 &lhs, const float4x2 &rhs )
 {
 	return float4x2(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2],
-		lhs[3] + rhs[3]
+		lhs.rows[0] + rhs.rows[0],
+		lhs.rows[1] + rhs.rows[1],
+		lhs.rows[2] + rhs.rows[2],
+		lhs.rows[3] + rhs.rows[3]
 	);
 }
 
@@ -13724,10 +13724,10 @@ HLML_INLINE float4x2 operator+=( float4x2 &lhs, const float4x2 &rhs )
 HLML_INLINE float4x2 operator-( const float4x2 &lhs, const float rhs )
 {
 	return float4x2(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs,
-		lhs[3] - rhs
+		lhs.rows[0] - rhs,
+		lhs.rows[1] - rhs,
+		lhs.rows[2] - rhs,
+		lhs.rows[3] - rhs
 	);
 }
 
@@ -13741,10 +13741,10 @@ HLML_INLINE float4x2 operator-=( float4x2 &lhs, const float rhs )
 HLML_INLINE float4x2 operator-( const float4x2 &lhs, const float4x2 &rhs )
 {
 	return float4x2(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2],
-		lhs[3] - rhs[3]
+		lhs.rows[0] - rhs.rows[0],
+		lhs.rows[1] - rhs.rows[1],
+		lhs.rows[2] - rhs.rows[2],
+		lhs.rows[3] - rhs.rows[3]
 	);
 }
 
@@ -13758,10 +13758,10 @@ HLML_INLINE float4x2 operator-=( float4x2 &lhs, const float4x2 &rhs )
 HLML_INLINE float4x2 operator*( const float4x2 &lhs, const float rhs )
 {
 	return float4x2(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs,
-		lhs[3] * rhs
+		lhs.rows[0] * rhs,
+		lhs.rows[1] * rhs,
+		lhs.rows[2] * rhs,
+		lhs.rows[3] * rhs
 	);
 }
 
@@ -13775,10 +13775,10 @@ HLML_INLINE float4x2 operator*=( float4x2 &lhs, const float rhs )
 HLML_INLINE float4x2 operator*( const float4x2 &lhs, const float4x2 &rhs )
 {
 	return float4x2(
-		lhs[0] * rhs[0],
-		lhs[1] * rhs[1],
-		lhs[2] * rhs[2],
-		lhs[3] * rhs[3]
+		lhs.rows[0] * rhs.rows[0],
+		lhs.rows[1] * rhs.rows[1],
+		lhs.rows[2] * rhs.rows[2],
+		lhs.rows[3] * rhs.rows[3]
 	);
 }
 
@@ -13792,10 +13792,10 @@ HLML_INLINE float4x2 operator*=( float4x2 &lhs, const float4x2 &rhs )
 HLML_INLINE float4x2 operator/( const float4x2 &lhs, const float rhs )
 {
 	return float4x2(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs,
-		lhs[3] / rhs
+		lhs.rows[0] / rhs,
+		lhs.rows[1] / rhs,
+		lhs.rows[2] / rhs,
+		lhs.rows[3] / rhs
 	);
 }
 
@@ -13809,10 +13809,10 @@ HLML_INLINE float4x2 operator/=( float4x2 &lhs, const float rhs )
 HLML_INLINE float4x2 operator/( const float4x2 &lhs, const float4x2 &rhs )
 {
 	return float4x2(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1],
-		lhs[2] / rhs[2],
-		lhs[3] / rhs[3]
+		lhs.rows[0] / rhs.rows[0],
+		lhs.rows[1] / rhs.rows[1],
+		lhs.rows[2] / rhs.rows[2],
+		lhs.rows[3] / rhs.rows[3]
 	);
 }
 
@@ -13825,10 +13825,10 @@ HLML_INLINE float4x2 operator/=( float4x2 &lhs, const float4x2 &rhs )
 // ++s each component of the matrix and returns the result.
 HLML_INLINE float4x2 operator++( float4x2 &x )
 {
-	++x[0];
-	++x[1];
-	++x[2];
-	++x[3];
+	++x.rows[0];
+	++x.rows[1];
+	++x.rows[2];
+	++x.rows[3];
 	return x;
 }
 
@@ -13836,20 +13836,20 @@ HLML_INLINE float4x2 operator++( float4x2 &x )
 // post-fix
 HLML_INLINE float4x2 operator++( float4x2 &x, const int32_t )
 {
-	x[0]++;
-	x[1]++;
-	x[2]++;
-	x[3]++;
+	x.rows[0]++;
+	x.rows[1]++;
+	x.rows[2]++;
+	x.rows[3]++;
 	return x;
 }
 
 // --s each component of the matrix and returns the result.
 HLML_INLINE float4x2 operator--( float4x2 &x )
 {
-	--x[0];
-	--x[1];
-	--x[2];
-	--x[3];
+	--x.rows[0];
+	--x.rows[1];
+	--x.rows[2];
+	--x.rows[3];
 	return x;
 }
 
@@ -13857,10 +13857,10 @@ HLML_INLINE float4x2 operator--( float4x2 &x )
 // post-fix
 HLML_INLINE float4x2 operator--( float4x2 &x, const int32_t )
 {
-	x[0]--;
-	x[1]--;
-	x[2]--;
-	x[3]--;
+	x.rows[0]--;
+	x.rows[1]--;
+	x.rows[2]--;
+	x.rows[3]--;
 	return x;
 }
 
@@ -13869,10 +13869,10 @@ HLML_INLINE float4x2 operator--( float4x2 &x, const int32_t )
 HLML_INLINE float4x2 operator-( const float4x2 &x )
 {
 	return float4x2(
-		-x[0],
-		-x[1],
-		-x[2],
-		-x[3]
+		-x.rows[0],
+		-x.rows[1],
+		-x.rows[2],
+		-x.rows[3]
 	);
 }
 
@@ -13937,10 +13937,10 @@ HLML_INLINE float4x4 mul( const float4x2 &lhs, const float2x4 &rhs )
 HLML_INLINE int4x3 sign( const float4x3 &x )
 {
 	return int4x3(
-		sign( x[0] ),
-		sign( x[1] ),
-		sign( x[2] ),
-		sign( x[3] )
+		sign( x.rows[0] ),
+		sign( x.rows[1] ),
+		sign( x.rows[2] ),
+		sign( x.rows[3] )
 	);
 }
 
@@ -13948,10 +13948,10 @@ HLML_INLINE int4x3 sign( const float4x3 &x )
 HLML_INLINE float4x3 min( const float4x3 &x, const float4x3 &y )
 {
 	return float4x3(
-		min( x[0], y[0] ),
-		min( x[1], y[1] ),
-		min( x[2], y[2] ),
-		min( x[3], y[3] )
+		min( x.rows[0], y.rows[0] ),
+		min( x.rows[1], y.rows[1] ),
+		min( x.rows[2], y.rows[2] ),
+		min( x.rows[3], y.rows[3] )
 	);
 }
 
@@ -13959,10 +13959,10 @@ HLML_INLINE float4x3 min( const float4x3 &x, const float4x3 &y )
 HLML_INLINE float4x3 max( const float4x3 &x, const float4x3 &y )
 {
 	return float4x3(
-		max( x[0], y[0] ),
-		max( x[1], y[1] ),
-		max( x[2], y[2] ),
-		max( x[3], y[3] )
+		max( x.rows[0], y.rows[0] ),
+		max( x.rows[1], y.rows[1] ),
+		max( x.rows[2], y.rows[2] ),
+		max( x.rows[3], y.rows[3] )
 	);
 }
 
@@ -13970,10 +13970,10 @@ HLML_INLINE float4x3 max( const float4x3 &x, const float4x3 &y )
 HLML_INLINE float4x3 clamp( const float4x3 &x, const float4x3 &low, const float4x3 &high )
 {
 	return float4x3(
-		clamp( x[0], low[0], high[0] ),
-		clamp( x[1], low[1], high[1] ),
-		clamp( x[2], low[2], high[2] ),
-		clamp( x[3], low[3], high[3] )
+		clamp( x.rows[0], low.rows[0], high.rows[0] ),
+		clamp( x.rows[1], low.rows[1], high.rows[1] ),
+		clamp( x.rows[2], low.rows[2], high.rows[2] ),
+		clamp( x.rows[3], low.rows[3], high.rows[3] )
 	);
 }
 
@@ -13981,10 +13981,10 @@ HLML_INLINE float4x3 clamp( const float4x3 &x, const float4x3 &low, const float4
 HLML_INLINE float4x3 saturate( const float4x3 &x )
 {
 	return float4x3(
-		saturate( x[0] ),
-		saturate( x[1] ),
-		saturate( x[2] ),
-		saturate( x[3] )
+		saturate( x.rows[0] ),
+		saturate( x.rows[1] ),
+		saturate( x.rows[2] ),
+		saturate( x.rows[3] )
 	);
 }
 
@@ -13992,10 +13992,10 @@ HLML_INLINE float4x3 saturate( const float4x3 &x )
 HLML_INLINE float4x3 lerp( const float4x3 &lhs, const float4x3 &rhs, const float t )
 {
 	return float4x3(
-		lerp( lhs[0], rhs[0], t ),
-		lerp( lhs[1], rhs[1], t ),
-		lerp( lhs[2], rhs[2], t ),
-		lerp( lhs[3], rhs[3], t )
+		lerp( lhs.rows[0], rhs.rows[0], t ),
+		lerp( lhs.rows[1], rhs.rows[1], t ),
+		lerp( lhs.rows[2], rhs.rows[2], t ),
+		lerp( lhs.rows[3], rhs.rows[3], t )
 	);
 }
 
@@ -14003,10 +14003,10 @@ HLML_INLINE float4x3 lerp( const float4x3 &lhs, const float4x3 &rhs, const float
 HLML_INLINE bool operator==( const float4x3 &lhs, const float4x3 &rhs )
 {
 	return
-		lhs[0] == rhs[0] &&
-		lhs[1] == rhs[1] &&
-		lhs[2] == rhs[2] &&
-		lhs[3] == rhs[3];
+		lhs.rows[0] == rhs.rows[0] &&
+		lhs.rows[1] == rhs.rows[1] &&
+		lhs.rows[2] == rhs.rows[2] &&
+		lhs.rows[3] == rhs.rows[3];
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
@@ -14019,10 +14019,10 @@ HLML_INLINE bool operator!=( const float4x3 &lhs, const float4x3 &rhs )
 HLML_INLINE bool4x3 operator<( const float4x3 &lhs, const float4x3 &rhs )
 {
 	return bool4x3(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2],
-		lhs[3] < rhs[3]
+		lhs.rows[0] < rhs.rows[0],
+		lhs.rows[1] < rhs.rows[1],
+		lhs.rows[2] < rhs.rows[2],
+		lhs.rows[3] < rhs.rows[3]
 	);
 }
 
@@ -14030,10 +14030,10 @@ HLML_INLINE bool4x3 operator<( const float4x3 &lhs, const float4x3 &rhs )
 HLML_INLINE bool4x3 operator<=( const float4x3 &lhs, const float4x3 &rhs )
 {
 	return bool4x3(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2],
-		lhs[3] <= rhs[3]
+		lhs.rows[0] <= rhs.rows[0],
+		lhs.rows[1] <= rhs.rows[1],
+		lhs.rows[2] <= rhs.rows[2],
+		lhs.rows[3] <= rhs.rows[3]
 	);
 }
 
@@ -14041,10 +14041,10 @@ HLML_INLINE bool4x3 operator<=( const float4x3 &lhs, const float4x3 &rhs )
 HLML_INLINE bool4x3 operator>( const float4x3 &lhs, const float4x3 &rhs )
 {
 	return bool4x3(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2],
-		lhs[3] > rhs[3]
+		lhs.rows[0] > rhs.rows[0],
+		lhs.rows[1] > rhs.rows[1],
+		lhs.rows[2] > rhs.rows[2],
+		lhs.rows[3] > rhs.rows[3]
 	);
 }
 
@@ -14052,10 +14052,10 @@ HLML_INLINE bool4x3 operator>( const float4x3 &lhs, const float4x3 &rhs )
 HLML_INLINE bool4x3 operator>=( const float4x3 &lhs, const float4x3 &rhs )
 {
 	return bool4x3(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2],
-		lhs[3] >= rhs[3]
+		lhs.rows[0] >= rhs.rows[0],
+		lhs.rows[1] >= rhs.rows[1],
+		lhs.rows[2] >= rhs.rows[2],
+		lhs.rows[3] >= rhs.rows[3]
 	);
 }
 
@@ -14063,10 +14063,10 @@ HLML_INLINE bool4x3 operator>=( const float4x3 &lhs, const float4x3 &rhs )
 HLML_INLINE float4x3 operator+( const float4x3 &lhs, const float rhs )
 {
 	return float4x3(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs,
-		lhs[3] + rhs
+		lhs.rows[0] + rhs,
+		lhs.rows[1] + rhs,
+		lhs.rows[2] + rhs,
+		lhs.rows[3] + rhs
 	);
 }
 
@@ -14080,10 +14080,10 @@ HLML_INLINE float4x3 operator+=( float4x3 &lhs, const float rhs )
 HLML_INLINE float4x3 operator+( const float4x3 &lhs, const float4x3 &rhs )
 {
 	return float4x3(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2],
-		lhs[3] + rhs[3]
+		lhs.rows[0] + rhs.rows[0],
+		lhs.rows[1] + rhs.rows[1],
+		lhs.rows[2] + rhs.rows[2],
+		lhs.rows[3] + rhs.rows[3]
 	);
 }
 
@@ -14097,10 +14097,10 @@ HLML_INLINE float4x3 operator+=( float4x3 &lhs, const float4x3 &rhs )
 HLML_INLINE float4x3 operator-( const float4x3 &lhs, const float rhs )
 {
 	return float4x3(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs,
-		lhs[3] - rhs
+		lhs.rows[0] - rhs,
+		lhs.rows[1] - rhs,
+		lhs.rows[2] - rhs,
+		lhs.rows[3] - rhs
 	);
 }
 
@@ -14114,10 +14114,10 @@ HLML_INLINE float4x3 operator-=( float4x3 &lhs, const float rhs )
 HLML_INLINE float4x3 operator-( const float4x3 &lhs, const float4x3 &rhs )
 {
 	return float4x3(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2],
-		lhs[3] - rhs[3]
+		lhs.rows[0] - rhs.rows[0],
+		lhs.rows[1] - rhs.rows[1],
+		lhs.rows[2] - rhs.rows[2],
+		lhs.rows[3] - rhs.rows[3]
 	);
 }
 
@@ -14131,10 +14131,10 @@ HLML_INLINE float4x3 operator-=( float4x3 &lhs, const float4x3 &rhs )
 HLML_INLINE float4x3 operator*( const float4x3 &lhs, const float rhs )
 {
 	return float4x3(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs,
-		lhs[3] * rhs
+		lhs.rows[0] * rhs,
+		lhs.rows[1] * rhs,
+		lhs.rows[2] * rhs,
+		lhs.rows[3] * rhs
 	);
 }
 
@@ -14148,10 +14148,10 @@ HLML_INLINE float4x3 operator*=( float4x3 &lhs, const float rhs )
 HLML_INLINE float4x3 operator*( const float4x3 &lhs, const float4x3 &rhs )
 {
 	return float4x3(
-		lhs[0] * rhs[0],
-		lhs[1] * rhs[1],
-		lhs[2] * rhs[2],
-		lhs[3] * rhs[3]
+		lhs.rows[0] * rhs.rows[0],
+		lhs.rows[1] * rhs.rows[1],
+		lhs.rows[2] * rhs.rows[2],
+		lhs.rows[3] * rhs.rows[3]
 	);
 }
 
@@ -14165,10 +14165,10 @@ HLML_INLINE float4x3 operator*=( float4x3 &lhs, const float4x3 &rhs )
 HLML_INLINE float4x3 operator/( const float4x3 &lhs, const float rhs )
 {
 	return float4x3(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs,
-		lhs[3] / rhs
+		lhs.rows[0] / rhs,
+		lhs.rows[1] / rhs,
+		lhs.rows[2] / rhs,
+		lhs.rows[3] / rhs
 	);
 }
 
@@ -14182,10 +14182,10 @@ HLML_INLINE float4x3 operator/=( float4x3 &lhs, const float rhs )
 HLML_INLINE float4x3 operator/( const float4x3 &lhs, const float4x3 &rhs )
 {
 	return float4x3(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1],
-		lhs[2] / rhs[2],
-		lhs[3] / rhs[3]
+		lhs.rows[0] / rhs.rows[0],
+		lhs.rows[1] / rhs.rows[1],
+		lhs.rows[2] / rhs.rows[2],
+		lhs.rows[3] / rhs.rows[3]
 	);
 }
 
@@ -14198,10 +14198,10 @@ HLML_INLINE float4x3 operator/=( float4x3 &lhs, const float4x3 &rhs )
 // ++s each component of the matrix and returns the result.
 HLML_INLINE float4x3 operator++( float4x3 &x )
 {
-	++x[0];
-	++x[1];
-	++x[2];
-	++x[3];
+	++x.rows[0];
+	++x.rows[1];
+	++x.rows[2];
+	++x.rows[3];
 	return x;
 }
 
@@ -14209,20 +14209,20 @@ HLML_INLINE float4x3 operator++( float4x3 &x )
 // post-fix
 HLML_INLINE float4x3 operator++( float4x3 &x, const int32_t )
 {
-	x[0]++;
-	x[1]++;
-	x[2]++;
-	x[3]++;
+	x.rows[0]++;
+	x.rows[1]++;
+	x.rows[2]++;
+	x.rows[3]++;
 	return x;
 }
 
 // --s each component of the matrix and returns the result.
 HLML_INLINE float4x3 operator--( float4x3 &x )
 {
-	--x[0];
-	--x[1];
-	--x[2];
-	--x[3];
+	--x.rows[0];
+	--x.rows[1];
+	--x.rows[2];
+	--x.rows[3];
 	return x;
 }
 
@@ -14230,10 +14230,10 @@ HLML_INLINE float4x3 operator--( float4x3 &x )
 // post-fix
 HLML_INLINE float4x3 operator--( float4x3 &x, const int32_t )
 {
-	x[0]--;
-	x[1]--;
-	x[2]--;
-	x[3]--;
+	x.rows[0]--;
+	x.rows[1]--;
+	x.rows[2]--;
+	x.rows[3]--;
 	return x;
 }
 
@@ -14242,10 +14242,10 @@ HLML_INLINE float4x3 operator--( float4x3 &x, const int32_t )
 HLML_INLINE float4x3 operator-( const float4x3 &x )
 {
 	return float4x3(
-		-x[0],
-		-x[1],
-		-x[2],
-		-x[3]
+		-x.rows[0],
+		-x.rows[1],
+		-x.rows[2],
+		-x.rows[3]
 	);
 }
 
@@ -14311,10 +14311,10 @@ HLML_INLINE float4x4 mul( const float4x3 &lhs, const float3x4 &rhs )
 HLML_INLINE int4x4 sign( const float4x4 &x )
 {
 	return int4x4(
-		sign( x[0] ),
-		sign( x[1] ),
-		sign( x[2] ),
-		sign( x[3] )
+		sign( x.rows[0] ),
+		sign( x.rows[1] ),
+		sign( x.rows[2] ),
+		sign( x.rows[3] )
 	);
 }
 
@@ -14322,10 +14322,10 @@ HLML_INLINE int4x4 sign( const float4x4 &x )
 HLML_INLINE float4x4 min( const float4x4 &x, const float4x4 &y )
 {
 	return float4x4(
-		min( x[0], y[0] ),
-		min( x[1], y[1] ),
-		min( x[2], y[2] ),
-		min( x[3], y[3] )
+		min( x.rows[0], y.rows[0] ),
+		min( x.rows[1], y.rows[1] ),
+		min( x.rows[2], y.rows[2] ),
+		min( x.rows[3], y.rows[3] )
 	);
 }
 
@@ -14333,10 +14333,10 @@ HLML_INLINE float4x4 min( const float4x4 &x, const float4x4 &y )
 HLML_INLINE float4x4 max( const float4x4 &x, const float4x4 &y )
 {
 	return float4x4(
-		max( x[0], y[0] ),
-		max( x[1], y[1] ),
-		max( x[2], y[2] ),
-		max( x[3], y[3] )
+		max( x.rows[0], y.rows[0] ),
+		max( x.rows[1], y.rows[1] ),
+		max( x.rows[2], y.rows[2] ),
+		max( x.rows[3], y.rows[3] )
 	);
 }
 
@@ -14344,10 +14344,10 @@ HLML_INLINE float4x4 max( const float4x4 &x, const float4x4 &y )
 HLML_INLINE float4x4 clamp( const float4x4 &x, const float4x4 &low, const float4x4 &high )
 {
 	return float4x4(
-		clamp( x[0], low[0], high[0] ),
-		clamp( x[1], low[1], high[1] ),
-		clamp( x[2], low[2], high[2] ),
-		clamp( x[3], low[3], high[3] )
+		clamp( x.rows[0], low.rows[0], high.rows[0] ),
+		clamp( x.rows[1], low.rows[1], high.rows[1] ),
+		clamp( x.rows[2], low.rows[2], high.rows[2] ),
+		clamp( x.rows[3], low.rows[3], high.rows[3] )
 	);
 }
 
@@ -14355,10 +14355,10 @@ HLML_INLINE float4x4 clamp( const float4x4 &x, const float4x4 &low, const float4
 HLML_INLINE float4x4 saturate( const float4x4 &x )
 {
 	return float4x4(
-		saturate( x[0] ),
-		saturate( x[1] ),
-		saturate( x[2] ),
-		saturate( x[3] )
+		saturate( x.rows[0] ),
+		saturate( x.rows[1] ),
+		saturate( x.rows[2] ),
+		saturate( x.rows[3] )
 	);
 }
 
@@ -14366,10 +14366,10 @@ HLML_INLINE float4x4 saturate( const float4x4 &x )
 HLML_INLINE float4x4 lerp( const float4x4 &lhs, const float4x4 &rhs, const float t )
 {
 	return float4x4(
-		lerp( lhs[0], rhs[0], t ),
-		lerp( lhs[1], rhs[1], t ),
-		lerp( lhs[2], rhs[2], t ),
-		lerp( lhs[3], rhs[3], t )
+		lerp( lhs.rows[0], rhs.rows[0], t ),
+		lerp( lhs.rows[1], rhs.rows[1], t ),
+		lerp( lhs.rows[2], rhs.rows[2], t ),
+		lerp( lhs.rows[3], rhs.rows[3], t )
 	);
 }
 
@@ -14377,10 +14377,10 @@ HLML_INLINE float4x4 lerp( const float4x4 &lhs, const float4x4 &rhs, const float
 HLML_INLINE bool operator==( const float4x4 &lhs, const float4x4 &rhs )
 {
 	return
-		lhs[0] == rhs[0] &&
-		lhs[1] == rhs[1] &&
-		lhs[2] == rhs[2] &&
-		lhs[3] == rhs[3];
+		lhs.rows[0] == rhs.rows[0] &&
+		lhs.rows[1] == rhs.rows[1] &&
+		lhs.rows[2] == rhs.rows[2] &&
+		lhs.rows[3] == rhs.rows[3];
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
@@ -14393,10 +14393,10 @@ HLML_INLINE bool operator!=( const float4x4 &lhs, const float4x4 &rhs )
 HLML_INLINE bool4x4 operator<( const float4x4 &lhs, const float4x4 &rhs )
 {
 	return bool4x4(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2],
-		lhs[3] < rhs[3]
+		lhs.rows[0] < rhs.rows[0],
+		lhs.rows[1] < rhs.rows[1],
+		lhs.rows[2] < rhs.rows[2],
+		lhs.rows[3] < rhs.rows[3]
 	);
 }
 
@@ -14404,10 +14404,10 @@ HLML_INLINE bool4x4 operator<( const float4x4 &lhs, const float4x4 &rhs )
 HLML_INLINE bool4x4 operator<=( const float4x4 &lhs, const float4x4 &rhs )
 {
 	return bool4x4(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2],
-		lhs[3] <= rhs[3]
+		lhs.rows[0] <= rhs.rows[0],
+		lhs.rows[1] <= rhs.rows[1],
+		lhs.rows[2] <= rhs.rows[2],
+		lhs.rows[3] <= rhs.rows[3]
 	);
 }
 
@@ -14415,10 +14415,10 @@ HLML_INLINE bool4x4 operator<=( const float4x4 &lhs, const float4x4 &rhs )
 HLML_INLINE bool4x4 operator>( const float4x4 &lhs, const float4x4 &rhs )
 {
 	return bool4x4(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2],
-		lhs[3] > rhs[3]
+		lhs.rows[0] > rhs.rows[0],
+		lhs.rows[1] > rhs.rows[1],
+		lhs.rows[2] > rhs.rows[2],
+		lhs.rows[3] > rhs.rows[3]
 	);
 }
 
@@ -14426,10 +14426,10 @@ HLML_INLINE bool4x4 operator>( const float4x4 &lhs, const float4x4 &rhs )
 HLML_INLINE bool4x4 operator>=( const float4x4 &lhs, const float4x4 &rhs )
 {
 	return bool4x4(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2],
-		lhs[3] >= rhs[3]
+		lhs.rows[0] >= rhs.rows[0],
+		lhs.rows[1] >= rhs.rows[1],
+		lhs.rows[2] >= rhs.rows[2],
+		lhs.rows[3] >= rhs.rows[3]
 	);
 }
 
@@ -14437,10 +14437,10 @@ HLML_INLINE bool4x4 operator>=( const float4x4 &lhs, const float4x4 &rhs )
 HLML_INLINE float4x4 operator+( const float4x4 &lhs, const float rhs )
 {
 	return float4x4(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs,
-		lhs[3] + rhs
+		lhs.rows[0] + rhs,
+		lhs.rows[1] + rhs,
+		lhs.rows[2] + rhs,
+		lhs.rows[3] + rhs
 	);
 }
 
@@ -14454,10 +14454,10 @@ HLML_INLINE float4x4 operator+=( float4x4 &lhs, const float rhs )
 HLML_INLINE float4x4 operator+( const float4x4 &lhs, const float4x4 &rhs )
 {
 	return float4x4(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2],
-		lhs[3] + rhs[3]
+		lhs.rows[0] + rhs.rows[0],
+		lhs.rows[1] + rhs.rows[1],
+		lhs.rows[2] + rhs.rows[2],
+		lhs.rows[3] + rhs.rows[3]
 	);
 }
 
@@ -14471,10 +14471,10 @@ HLML_INLINE float4x4 operator+=( float4x4 &lhs, const float4x4 &rhs )
 HLML_INLINE float4x4 operator-( const float4x4 &lhs, const float rhs )
 {
 	return float4x4(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs,
-		lhs[3] - rhs
+		lhs.rows[0] - rhs,
+		lhs.rows[1] - rhs,
+		lhs.rows[2] - rhs,
+		lhs.rows[3] - rhs
 	);
 }
 
@@ -14488,10 +14488,10 @@ HLML_INLINE float4x4 operator-=( float4x4 &lhs, const float rhs )
 HLML_INLINE float4x4 operator-( const float4x4 &lhs, const float4x4 &rhs )
 {
 	return float4x4(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2],
-		lhs[3] - rhs[3]
+		lhs.rows[0] - rhs.rows[0],
+		lhs.rows[1] - rhs.rows[1],
+		lhs.rows[2] - rhs.rows[2],
+		lhs.rows[3] - rhs.rows[3]
 	);
 }
 
@@ -14505,10 +14505,10 @@ HLML_INLINE float4x4 operator-=( float4x4 &lhs, const float4x4 &rhs )
 HLML_INLINE float4x4 operator*( const float4x4 &lhs, const float rhs )
 {
 	return float4x4(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs,
-		lhs[3] * rhs
+		lhs.rows[0] * rhs,
+		lhs.rows[1] * rhs,
+		lhs.rows[2] * rhs,
+		lhs.rows[3] * rhs
 	);
 }
 
@@ -14522,10 +14522,10 @@ HLML_INLINE float4x4 operator*=( float4x4 &lhs, const float rhs )
 HLML_INLINE float4x4 operator*( const float4x4 &lhs, const float4x4 &rhs )
 {
 	return float4x4(
-		lhs[0] * rhs[0],
-		lhs[1] * rhs[1],
-		lhs[2] * rhs[2],
-		lhs[3] * rhs[3]
+		lhs.rows[0] * rhs.rows[0],
+		lhs.rows[1] * rhs.rows[1],
+		lhs.rows[2] * rhs.rows[2],
+		lhs.rows[3] * rhs.rows[3]
 	);
 }
 
@@ -14539,10 +14539,10 @@ HLML_INLINE float4x4 operator*=( float4x4 &lhs, const float4x4 &rhs )
 HLML_INLINE float4x4 operator/( const float4x4 &lhs, const float rhs )
 {
 	return float4x4(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs,
-		lhs[3] / rhs
+		lhs.rows[0] / rhs,
+		lhs.rows[1] / rhs,
+		lhs.rows[2] / rhs,
+		lhs.rows[3] / rhs
 	);
 }
 
@@ -14556,10 +14556,10 @@ HLML_INLINE float4x4 operator/=( float4x4 &lhs, const float rhs )
 HLML_INLINE float4x4 operator/( const float4x4 &lhs, const float4x4 &rhs )
 {
 	return float4x4(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1],
-		lhs[2] / rhs[2],
-		lhs[3] / rhs[3]
+		lhs.rows[0] / rhs.rows[0],
+		lhs.rows[1] / rhs.rows[1],
+		lhs.rows[2] / rhs.rows[2],
+		lhs.rows[3] / rhs.rows[3]
 	);
 }
 
@@ -14572,10 +14572,10 @@ HLML_INLINE float4x4 operator/=( float4x4 &lhs, const float4x4 &rhs )
 // ++s each component of the matrix and returns the result.
 HLML_INLINE float4x4 operator++( float4x4 &x )
 {
-	++x[0];
-	++x[1];
-	++x[2];
-	++x[3];
+	++x.rows[0];
+	++x.rows[1];
+	++x.rows[2];
+	++x.rows[3];
 	return x;
 }
 
@@ -14583,20 +14583,20 @@ HLML_INLINE float4x4 operator++( float4x4 &x )
 // post-fix
 HLML_INLINE float4x4 operator++( float4x4 &x, const int32_t )
 {
-	x[0]++;
-	x[1]++;
-	x[2]++;
-	x[3]++;
+	x.rows[0]++;
+	x.rows[1]++;
+	x.rows[2]++;
+	x.rows[3]++;
 	return x;
 }
 
 // --s each component of the matrix and returns the result.
 HLML_INLINE float4x4 operator--( float4x4 &x )
 {
-	--x[0];
-	--x[1];
-	--x[2];
-	--x[3];
+	--x.rows[0];
+	--x.rows[1];
+	--x.rows[2];
+	--x.rows[3];
 	return x;
 }
 
@@ -14604,10 +14604,10 @@ HLML_INLINE float4x4 operator--( float4x4 &x )
 // post-fix
 HLML_INLINE float4x4 operator--( float4x4 &x, const int32_t )
 {
-	x[0]--;
-	x[1]--;
-	x[2]--;
-	x[3]--;
+	x.rows[0]--;
+	x.rows[1]--;
+	x.rows[2]--;
+	x.rows[3]--;
 	return x;
 }
 
@@ -14616,10 +14616,10 @@ HLML_INLINE float4x4 operator--( float4x4 &x, const int32_t )
 HLML_INLINE float4x4 operator-( const float4x4 &x )
 {
 	return float4x4(
-		-x[0],
-		-x[1],
-		-x[2],
-		-x[3]
+		-x.rows[0],
+		-x.rows[1],
+		-x.rows[2],
+		-x.rows[3]
 	);
 }
 
@@ -14724,7 +14724,7 @@ HLML_INLINE float4x4 inverse( const float4x4 &mat )
 		inv3 * sign1
 	);
 
-	float4 row0 = float4( result.rows[0][0], result.rows[1][0], result.rows[2][0], result.rows[3][0] );
+	float4 row0 = float4( result.rows[0].x, result.rows[1].x, result.rows[2].x, result.rows[3].x );
 	float4 dot0 = mat.rows[0] * row0;
 
 	const float dot1 = ( dot0.x + dot0.y ) + ( dot0.z + dot0.w );
@@ -15031,8 +15031,8 @@ HLML_INLINE float4x4 look_at_rh( const float3 &eye, const float3 &target, const 
 HLML_INLINE int2x2 sign( const double2x2 &x )
 {
 	return int2x2(
-		sign( x[0] ),
-		sign( x[1] )
+		sign( x.rows[0] ),
+		sign( x.rows[1] )
 	);
 }
 
@@ -15040,8 +15040,8 @@ HLML_INLINE int2x2 sign( const double2x2 &x )
 HLML_INLINE double2x2 min( const double2x2 &x, const double2x2 &y )
 {
 	return double2x2(
-		min( x[0], y[0] ),
-		min( x[1], y[1] )
+		min( x.rows[0], y.rows[0] ),
+		min( x.rows[1], y.rows[1] )
 	);
 }
 
@@ -15049,8 +15049,8 @@ HLML_INLINE double2x2 min( const double2x2 &x, const double2x2 &y )
 HLML_INLINE double2x2 max( const double2x2 &x, const double2x2 &y )
 {
 	return double2x2(
-		max( x[0], y[0] ),
-		max( x[1], y[1] )
+		max( x.rows[0], y.rows[0] ),
+		max( x.rows[1], y.rows[1] )
 	);
 }
 
@@ -15058,8 +15058,8 @@ HLML_INLINE double2x2 max( const double2x2 &x, const double2x2 &y )
 HLML_INLINE double2x2 clamp( const double2x2 &x, const double2x2 &low, const double2x2 &high )
 {
 	return double2x2(
-		clamp( x[0], low[0], high[0] ),
-		clamp( x[1], low[1], high[1] )
+		clamp( x.rows[0], low.rows[0], high.rows[0] ),
+		clamp( x.rows[1], low.rows[1], high.rows[1] )
 	);
 }
 
@@ -15067,8 +15067,8 @@ HLML_INLINE double2x2 clamp( const double2x2 &x, const double2x2 &low, const dou
 HLML_INLINE double2x2 saturate( const double2x2 &x )
 {
 	return double2x2(
-		saturate( x[0] ),
-		saturate( x[1] )
+		saturate( x.rows[0] ),
+		saturate( x.rows[1] )
 	);
 }
 
@@ -15076,8 +15076,8 @@ HLML_INLINE double2x2 saturate( const double2x2 &x )
 HLML_INLINE double2x2 lerp( const double2x2 &lhs, const double2x2 &rhs, const double t )
 {
 	return double2x2(
-		lerp( lhs[0], rhs[0], t ),
-		lerp( lhs[1], rhs[1], t )
+		lerp( lhs.rows[0], rhs.rows[0], t ),
+		lerp( lhs.rows[1], rhs.rows[1], t )
 	);
 }
 
@@ -15085,8 +15085,8 @@ HLML_INLINE double2x2 lerp( const double2x2 &lhs, const double2x2 &rhs, const do
 HLML_INLINE bool operator==( const double2x2 &lhs, const double2x2 &rhs )
 {
 	return
-		lhs[0] == rhs[0] &&
-		lhs[1] == rhs[1];
+		lhs.rows[0] == rhs.rows[0] &&
+		lhs.rows[1] == rhs.rows[1];
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
@@ -15099,8 +15099,8 @@ HLML_INLINE bool operator!=( const double2x2 &lhs, const double2x2 &rhs )
 HLML_INLINE bool2x2 operator<( const double2x2 &lhs, const double2x2 &rhs )
 {
 	return bool2x2(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1]
+		lhs.rows[0] < rhs.rows[0],
+		lhs.rows[1] < rhs.rows[1]
 	);
 }
 
@@ -15108,8 +15108,8 @@ HLML_INLINE bool2x2 operator<( const double2x2 &lhs, const double2x2 &rhs )
 HLML_INLINE bool2x2 operator<=( const double2x2 &lhs, const double2x2 &rhs )
 {
 	return bool2x2(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1]
+		lhs.rows[0] <= rhs.rows[0],
+		lhs.rows[1] <= rhs.rows[1]
 	);
 }
 
@@ -15117,8 +15117,8 @@ HLML_INLINE bool2x2 operator<=( const double2x2 &lhs, const double2x2 &rhs )
 HLML_INLINE bool2x2 operator>( const double2x2 &lhs, const double2x2 &rhs )
 {
 	return bool2x2(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1]
+		lhs.rows[0] > rhs.rows[0],
+		lhs.rows[1] > rhs.rows[1]
 	);
 }
 
@@ -15126,8 +15126,8 @@ HLML_INLINE bool2x2 operator>( const double2x2 &lhs, const double2x2 &rhs )
 HLML_INLINE bool2x2 operator>=( const double2x2 &lhs, const double2x2 &rhs )
 {
 	return bool2x2(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1]
+		lhs.rows[0] >= rhs.rows[0],
+		lhs.rows[1] >= rhs.rows[1]
 	);
 }
 
@@ -15135,8 +15135,8 @@ HLML_INLINE bool2x2 operator>=( const double2x2 &lhs, const double2x2 &rhs )
 HLML_INLINE double2x2 operator+( const double2x2 &lhs, const double rhs )
 {
 	return double2x2(
-		lhs[0] + rhs,
-		lhs[1] + rhs
+		lhs.rows[0] + rhs,
+		lhs.rows[1] + rhs
 	);
 }
 
@@ -15150,8 +15150,8 @@ HLML_INLINE double2x2 operator+=( double2x2 &lhs, const double rhs )
 HLML_INLINE double2x2 operator+( const double2x2 &lhs, const double2x2 &rhs )
 {
 	return double2x2(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1]
+		lhs.rows[0] + rhs.rows[0],
+		lhs.rows[1] + rhs.rows[1]
 	);
 }
 
@@ -15165,8 +15165,8 @@ HLML_INLINE double2x2 operator+=( double2x2 &lhs, const double2x2 &rhs )
 HLML_INLINE double2x2 operator-( const double2x2 &lhs, const double rhs )
 {
 	return double2x2(
-		lhs[0] - rhs,
-		lhs[1] - rhs
+		lhs.rows[0] - rhs,
+		lhs.rows[1] - rhs
 	);
 }
 
@@ -15180,8 +15180,8 @@ HLML_INLINE double2x2 operator-=( double2x2 &lhs, const double rhs )
 HLML_INLINE double2x2 operator-( const double2x2 &lhs, const double2x2 &rhs )
 {
 	return double2x2(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1]
+		lhs.rows[0] - rhs.rows[0],
+		lhs.rows[1] - rhs.rows[1]
 	);
 }
 
@@ -15195,8 +15195,8 @@ HLML_INLINE double2x2 operator-=( double2x2 &lhs, const double2x2 &rhs )
 HLML_INLINE double2x2 operator*( const double2x2 &lhs, const double rhs )
 {
 	return double2x2(
-		lhs[0] * rhs,
-		lhs[1] * rhs
+		lhs.rows[0] * rhs,
+		lhs.rows[1] * rhs
 	);
 }
 
@@ -15210,8 +15210,8 @@ HLML_INLINE double2x2 operator*=( double2x2 &lhs, const double rhs )
 HLML_INLINE double2x2 operator*( const double2x2 &lhs, const double2x2 &rhs )
 {
 	return double2x2(
-		lhs[0] * rhs[0],
-		lhs[1] * rhs[1]
+		lhs.rows[0] * rhs.rows[0],
+		lhs.rows[1] * rhs.rows[1]
 	);
 }
 
@@ -15225,8 +15225,8 @@ HLML_INLINE double2x2 operator*=( double2x2 &lhs, const double2x2 &rhs )
 HLML_INLINE double2x2 operator/( const double2x2 &lhs, const double rhs )
 {
 	return double2x2(
-		lhs[0] / rhs,
-		lhs[1] / rhs
+		lhs.rows[0] / rhs,
+		lhs.rows[1] / rhs
 	);
 }
 
@@ -15240,8 +15240,8 @@ HLML_INLINE double2x2 operator/=( double2x2 &lhs, const double rhs )
 HLML_INLINE double2x2 operator/( const double2x2 &lhs, const double2x2 &rhs )
 {
 	return double2x2(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1]
+		lhs.rows[0] / rhs.rows[0],
+		lhs.rows[1] / rhs.rows[1]
 	);
 }
 
@@ -15254,8 +15254,8 @@ HLML_INLINE double2x2 operator/=( double2x2 &lhs, const double2x2 &rhs )
 // ++s each component of the matrix and returns the result.
 HLML_INLINE double2x2 operator++( double2x2 &x )
 {
-	++x[0];
-	++x[1];
+	++x.rows[0];
+	++x.rows[1];
 	return x;
 }
 
@@ -15263,16 +15263,16 @@ HLML_INLINE double2x2 operator++( double2x2 &x )
 // post-fix
 HLML_INLINE double2x2 operator++( double2x2 &x, const int32_t )
 {
-	x[0]++;
-	x[1]++;
+	x.rows[0]++;
+	x.rows[1]++;
 	return x;
 }
 
 // --s each component of the matrix and returns the result.
 HLML_INLINE double2x2 operator--( double2x2 &x )
 {
-	--x[0];
-	--x[1];
+	--x.rows[0];
+	--x.rows[1];
 	return x;
 }
 
@@ -15280,8 +15280,8 @@ HLML_INLINE double2x2 operator--( double2x2 &x )
 // post-fix
 HLML_INLINE double2x2 operator--( double2x2 &x, const int32_t )
 {
-	x[0]--;
-	x[1]--;
+	x.rows[0]--;
+	x.rows[1]--;
 	return x;
 }
 
@@ -15290,8 +15290,8 @@ HLML_INLINE double2x2 operator--( double2x2 &x, const int32_t )
 HLML_INLINE double2x2 operator-( const double2x2 &x )
 {
 	return double2x2(
-		-x[0],
-		-x[1]
+		-x.rows[0],
+		-x.rows[1]
 	);
 }
 
@@ -15364,8 +15364,8 @@ HLML_INLINE double2 mul( const double2 &lhs, const double2x2 &rhs )
 HLML_INLINE int2x3 sign( const double2x3 &x )
 {
 	return int2x3(
-		sign( x[0] ),
-		sign( x[1] )
+		sign( x.rows[0] ),
+		sign( x.rows[1] )
 	);
 }
 
@@ -15373,8 +15373,8 @@ HLML_INLINE int2x3 sign( const double2x3 &x )
 HLML_INLINE double2x3 min( const double2x3 &x, const double2x3 &y )
 {
 	return double2x3(
-		min( x[0], y[0] ),
-		min( x[1], y[1] )
+		min( x.rows[0], y.rows[0] ),
+		min( x.rows[1], y.rows[1] )
 	);
 }
 
@@ -15382,8 +15382,8 @@ HLML_INLINE double2x3 min( const double2x3 &x, const double2x3 &y )
 HLML_INLINE double2x3 max( const double2x3 &x, const double2x3 &y )
 {
 	return double2x3(
-		max( x[0], y[0] ),
-		max( x[1], y[1] )
+		max( x.rows[0], y.rows[0] ),
+		max( x.rows[1], y.rows[1] )
 	);
 }
 
@@ -15391,8 +15391,8 @@ HLML_INLINE double2x3 max( const double2x3 &x, const double2x3 &y )
 HLML_INLINE double2x3 clamp( const double2x3 &x, const double2x3 &low, const double2x3 &high )
 {
 	return double2x3(
-		clamp( x[0], low[0], high[0] ),
-		clamp( x[1], low[1], high[1] )
+		clamp( x.rows[0], low.rows[0], high.rows[0] ),
+		clamp( x.rows[1], low.rows[1], high.rows[1] )
 	);
 }
 
@@ -15400,8 +15400,8 @@ HLML_INLINE double2x3 clamp( const double2x3 &x, const double2x3 &low, const dou
 HLML_INLINE double2x3 saturate( const double2x3 &x )
 {
 	return double2x3(
-		saturate( x[0] ),
-		saturate( x[1] )
+		saturate( x.rows[0] ),
+		saturate( x.rows[1] )
 	);
 }
 
@@ -15409,8 +15409,8 @@ HLML_INLINE double2x3 saturate( const double2x3 &x )
 HLML_INLINE double2x3 lerp( const double2x3 &lhs, const double2x3 &rhs, const double t )
 {
 	return double2x3(
-		lerp( lhs[0], rhs[0], t ),
-		lerp( lhs[1], rhs[1], t )
+		lerp( lhs.rows[0], rhs.rows[0], t ),
+		lerp( lhs.rows[1], rhs.rows[1], t )
 	);
 }
 
@@ -15418,8 +15418,8 @@ HLML_INLINE double2x3 lerp( const double2x3 &lhs, const double2x3 &rhs, const do
 HLML_INLINE bool operator==( const double2x3 &lhs, const double2x3 &rhs )
 {
 	return
-		lhs[0] == rhs[0] &&
-		lhs[1] == rhs[1];
+		lhs.rows[0] == rhs.rows[0] &&
+		lhs.rows[1] == rhs.rows[1];
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
@@ -15432,8 +15432,8 @@ HLML_INLINE bool operator!=( const double2x3 &lhs, const double2x3 &rhs )
 HLML_INLINE bool2x3 operator<( const double2x3 &lhs, const double2x3 &rhs )
 {
 	return bool2x3(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1]
+		lhs.rows[0] < rhs.rows[0],
+		lhs.rows[1] < rhs.rows[1]
 	);
 }
 
@@ -15441,8 +15441,8 @@ HLML_INLINE bool2x3 operator<( const double2x3 &lhs, const double2x3 &rhs )
 HLML_INLINE bool2x3 operator<=( const double2x3 &lhs, const double2x3 &rhs )
 {
 	return bool2x3(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1]
+		lhs.rows[0] <= rhs.rows[0],
+		lhs.rows[1] <= rhs.rows[1]
 	);
 }
 
@@ -15450,8 +15450,8 @@ HLML_INLINE bool2x3 operator<=( const double2x3 &lhs, const double2x3 &rhs )
 HLML_INLINE bool2x3 operator>( const double2x3 &lhs, const double2x3 &rhs )
 {
 	return bool2x3(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1]
+		lhs.rows[0] > rhs.rows[0],
+		lhs.rows[1] > rhs.rows[1]
 	);
 }
 
@@ -15459,8 +15459,8 @@ HLML_INLINE bool2x3 operator>( const double2x3 &lhs, const double2x3 &rhs )
 HLML_INLINE bool2x3 operator>=( const double2x3 &lhs, const double2x3 &rhs )
 {
 	return bool2x3(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1]
+		lhs.rows[0] >= rhs.rows[0],
+		lhs.rows[1] >= rhs.rows[1]
 	);
 }
 
@@ -15468,8 +15468,8 @@ HLML_INLINE bool2x3 operator>=( const double2x3 &lhs, const double2x3 &rhs )
 HLML_INLINE double2x3 operator+( const double2x3 &lhs, const double rhs )
 {
 	return double2x3(
-		lhs[0] + rhs,
-		lhs[1] + rhs
+		lhs.rows[0] + rhs,
+		lhs.rows[1] + rhs
 	);
 }
 
@@ -15483,8 +15483,8 @@ HLML_INLINE double2x3 operator+=( double2x3 &lhs, const double rhs )
 HLML_INLINE double2x3 operator+( const double2x3 &lhs, const double2x3 &rhs )
 {
 	return double2x3(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1]
+		lhs.rows[0] + rhs.rows[0],
+		lhs.rows[1] + rhs.rows[1]
 	);
 }
 
@@ -15498,8 +15498,8 @@ HLML_INLINE double2x3 operator+=( double2x3 &lhs, const double2x3 &rhs )
 HLML_INLINE double2x3 operator-( const double2x3 &lhs, const double rhs )
 {
 	return double2x3(
-		lhs[0] - rhs,
-		lhs[1] - rhs
+		lhs.rows[0] - rhs,
+		lhs.rows[1] - rhs
 	);
 }
 
@@ -15513,8 +15513,8 @@ HLML_INLINE double2x3 operator-=( double2x3 &lhs, const double rhs )
 HLML_INLINE double2x3 operator-( const double2x3 &lhs, const double2x3 &rhs )
 {
 	return double2x3(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1]
+		lhs.rows[0] - rhs.rows[0],
+		lhs.rows[1] - rhs.rows[1]
 	);
 }
 
@@ -15528,8 +15528,8 @@ HLML_INLINE double2x3 operator-=( double2x3 &lhs, const double2x3 &rhs )
 HLML_INLINE double2x3 operator*( const double2x3 &lhs, const double rhs )
 {
 	return double2x3(
-		lhs[0] * rhs,
-		lhs[1] * rhs
+		lhs.rows[0] * rhs,
+		lhs.rows[1] * rhs
 	);
 }
 
@@ -15543,8 +15543,8 @@ HLML_INLINE double2x3 operator*=( double2x3 &lhs, const double rhs )
 HLML_INLINE double2x3 operator*( const double2x3 &lhs, const double2x3 &rhs )
 {
 	return double2x3(
-		lhs[0] * rhs[0],
-		lhs[1] * rhs[1]
+		lhs.rows[0] * rhs.rows[0],
+		lhs.rows[1] * rhs.rows[1]
 	);
 }
 
@@ -15558,8 +15558,8 @@ HLML_INLINE double2x3 operator*=( double2x3 &lhs, const double2x3 &rhs )
 HLML_INLINE double2x3 operator/( const double2x3 &lhs, const double rhs )
 {
 	return double2x3(
-		lhs[0] / rhs,
-		lhs[1] / rhs
+		lhs.rows[0] / rhs,
+		lhs.rows[1] / rhs
 	);
 }
 
@@ -15573,8 +15573,8 @@ HLML_INLINE double2x3 operator/=( double2x3 &lhs, const double rhs )
 HLML_INLINE double2x3 operator/( const double2x3 &lhs, const double2x3 &rhs )
 {
 	return double2x3(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1]
+		lhs.rows[0] / rhs.rows[0],
+		lhs.rows[1] / rhs.rows[1]
 	);
 }
 
@@ -15587,8 +15587,8 @@ HLML_INLINE double2x3 operator/=( double2x3 &lhs, const double2x3 &rhs )
 // ++s each component of the matrix and returns the result.
 HLML_INLINE double2x3 operator++( double2x3 &x )
 {
-	++x[0];
-	++x[1];
+	++x.rows[0];
+	++x.rows[1];
 	return x;
 }
 
@@ -15596,16 +15596,16 @@ HLML_INLINE double2x3 operator++( double2x3 &x )
 // post-fix
 HLML_INLINE double2x3 operator++( double2x3 &x, const int32_t )
 {
-	x[0]++;
-	x[1]++;
+	x.rows[0]++;
+	x.rows[1]++;
 	return x;
 }
 
 // --s each component of the matrix and returns the result.
 HLML_INLINE double2x3 operator--( double2x3 &x )
 {
-	--x[0];
-	--x[1];
+	--x.rows[0];
+	--x.rows[1];
 	return x;
 }
 
@@ -15613,8 +15613,8 @@ HLML_INLINE double2x3 operator--( double2x3 &x )
 // post-fix
 HLML_INLINE double2x3 operator--( double2x3 &x, const int32_t )
 {
-	x[0]--;
-	x[1]--;
+	x.rows[0]--;
+	x.rows[1]--;
 	return x;
 }
 
@@ -15623,8 +15623,8 @@ HLML_INLINE double2x3 operator--( double2x3 &x, const int32_t )
 HLML_INLINE double2x3 operator-( const double2x3 &x )
 {
 	return double2x3(
-		-x[0],
-		-x[1]
+		-x.rows[0],
+		-x.rows[1]
 	);
 }
 
@@ -15670,8 +15670,8 @@ HLML_INLINE double2x2 mul( const double2x3 &lhs, const double3x2 &rhs )
 HLML_INLINE int2x4 sign( const double2x4 &x )
 {
 	return int2x4(
-		sign( x[0] ),
-		sign( x[1] )
+		sign( x.rows[0] ),
+		sign( x.rows[1] )
 	);
 }
 
@@ -15679,8 +15679,8 @@ HLML_INLINE int2x4 sign( const double2x4 &x )
 HLML_INLINE double2x4 min( const double2x4 &x, const double2x4 &y )
 {
 	return double2x4(
-		min( x[0], y[0] ),
-		min( x[1], y[1] )
+		min( x.rows[0], y.rows[0] ),
+		min( x.rows[1], y.rows[1] )
 	);
 }
 
@@ -15688,8 +15688,8 @@ HLML_INLINE double2x4 min( const double2x4 &x, const double2x4 &y )
 HLML_INLINE double2x4 max( const double2x4 &x, const double2x4 &y )
 {
 	return double2x4(
-		max( x[0], y[0] ),
-		max( x[1], y[1] )
+		max( x.rows[0], y.rows[0] ),
+		max( x.rows[1], y.rows[1] )
 	);
 }
 
@@ -15697,8 +15697,8 @@ HLML_INLINE double2x4 max( const double2x4 &x, const double2x4 &y )
 HLML_INLINE double2x4 clamp( const double2x4 &x, const double2x4 &low, const double2x4 &high )
 {
 	return double2x4(
-		clamp( x[0], low[0], high[0] ),
-		clamp( x[1], low[1], high[1] )
+		clamp( x.rows[0], low.rows[0], high.rows[0] ),
+		clamp( x.rows[1], low.rows[1], high.rows[1] )
 	);
 }
 
@@ -15706,8 +15706,8 @@ HLML_INLINE double2x4 clamp( const double2x4 &x, const double2x4 &low, const dou
 HLML_INLINE double2x4 saturate( const double2x4 &x )
 {
 	return double2x4(
-		saturate( x[0] ),
-		saturate( x[1] )
+		saturate( x.rows[0] ),
+		saturate( x.rows[1] )
 	);
 }
 
@@ -15715,8 +15715,8 @@ HLML_INLINE double2x4 saturate( const double2x4 &x )
 HLML_INLINE double2x4 lerp( const double2x4 &lhs, const double2x4 &rhs, const double t )
 {
 	return double2x4(
-		lerp( lhs[0], rhs[0], t ),
-		lerp( lhs[1], rhs[1], t )
+		lerp( lhs.rows[0], rhs.rows[0], t ),
+		lerp( lhs.rows[1], rhs.rows[1], t )
 	);
 }
 
@@ -15724,8 +15724,8 @@ HLML_INLINE double2x4 lerp( const double2x4 &lhs, const double2x4 &rhs, const do
 HLML_INLINE bool operator==( const double2x4 &lhs, const double2x4 &rhs )
 {
 	return
-		lhs[0] == rhs[0] &&
-		lhs[1] == rhs[1];
+		lhs.rows[0] == rhs.rows[0] &&
+		lhs.rows[1] == rhs.rows[1];
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
@@ -15738,8 +15738,8 @@ HLML_INLINE bool operator!=( const double2x4 &lhs, const double2x4 &rhs )
 HLML_INLINE bool2x4 operator<( const double2x4 &lhs, const double2x4 &rhs )
 {
 	return bool2x4(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1]
+		lhs.rows[0] < rhs.rows[0],
+		lhs.rows[1] < rhs.rows[1]
 	);
 }
 
@@ -15747,8 +15747,8 @@ HLML_INLINE bool2x4 operator<( const double2x4 &lhs, const double2x4 &rhs )
 HLML_INLINE bool2x4 operator<=( const double2x4 &lhs, const double2x4 &rhs )
 {
 	return bool2x4(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1]
+		lhs.rows[0] <= rhs.rows[0],
+		lhs.rows[1] <= rhs.rows[1]
 	);
 }
 
@@ -15756,8 +15756,8 @@ HLML_INLINE bool2x4 operator<=( const double2x4 &lhs, const double2x4 &rhs )
 HLML_INLINE bool2x4 operator>( const double2x4 &lhs, const double2x4 &rhs )
 {
 	return bool2x4(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1]
+		lhs.rows[0] > rhs.rows[0],
+		lhs.rows[1] > rhs.rows[1]
 	);
 }
 
@@ -15765,8 +15765,8 @@ HLML_INLINE bool2x4 operator>( const double2x4 &lhs, const double2x4 &rhs )
 HLML_INLINE bool2x4 operator>=( const double2x4 &lhs, const double2x4 &rhs )
 {
 	return bool2x4(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1]
+		lhs.rows[0] >= rhs.rows[0],
+		lhs.rows[1] >= rhs.rows[1]
 	);
 }
 
@@ -15774,8 +15774,8 @@ HLML_INLINE bool2x4 operator>=( const double2x4 &lhs, const double2x4 &rhs )
 HLML_INLINE double2x4 operator+( const double2x4 &lhs, const double rhs )
 {
 	return double2x4(
-		lhs[0] + rhs,
-		lhs[1] + rhs
+		lhs.rows[0] + rhs,
+		lhs.rows[1] + rhs
 	);
 }
 
@@ -15789,8 +15789,8 @@ HLML_INLINE double2x4 operator+=( double2x4 &lhs, const double rhs )
 HLML_INLINE double2x4 operator+( const double2x4 &lhs, const double2x4 &rhs )
 {
 	return double2x4(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1]
+		lhs.rows[0] + rhs.rows[0],
+		lhs.rows[1] + rhs.rows[1]
 	);
 }
 
@@ -15804,8 +15804,8 @@ HLML_INLINE double2x4 operator+=( double2x4 &lhs, const double2x4 &rhs )
 HLML_INLINE double2x4 operator-( const double2x4 &lhs, const double rhs )
 {
 	return double2x4(
-		lhs[0] - rhs,
-		lhs[1] - rhs
+		lhs.rows[0] - rhs,
+		lhs.rows[1] - rhs
 	);
 }
 
@@ -15819,8 +15819,8 @@ HLML_INLINE double2x4 operator-=( double2x4 &lhs, const double rhs )
 HLML_INLINE double2x4 operator-( const double2x4 &lhs, const double2x4 &rhs )
 {
 	return double2x4(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1]
+		lhs.rows[0] - rhs.rows[0],
+		lhs.rows[1] - rhs.rows[1]
 	);
 }
 
@@ -15834,8 +15834,8 @@ HLML_INLINE double2x4 operator-=( double2x4 &lhs, const double2x4 &rhs )
 HLML_INLINE double2x4 operator*( const double2x4 &lhs, const double rhs )
 {
 	return double2x4(
-		lhs[0] * rhs,
-		lhs[1] * rhs
+		lhs.rows[0] * rhs,
+		lhs.rows[1] * rhs
 	);
 }
 
@@ -15849,8 +15849,8 @@ HLML_INLINE double2x4 operator*=( double2x4 &lhs, const double rhs )
 HLML_INLINE double2x4 operator*( const double2x4 &lhs, const double2x4 &rhs )
 {
 	return double2x4(
-		lhs[0] * rhs[0],
-		lhs[1] * rhs[1]
+		lhs.rows[0] * rhs.rows[0],
+		lhs.rows[1] * rhs.rows[1]
 	);
 }
 
@@ -15864,8 +15864,8 @@ HLML_INLINE double2x4 operator*=( double2x4 &lhs, const double2x4 &rhs )
 HLML_INLINE double2x4 operator/( const double2x4 &lhs, const double rhs )
 {
 	return double2x4(
-		lhs[0] / rhs,
-		lhs[1] / rhs
+		lhs.rows[0] / rhs,
+		lhs.rows[1] / rhs
 	);
 }
 
@@ -15879,8 +15879,8 @@ HLML_INLINE double2x4 operator/=( double2x4 &lhs, const double rhs )
 HLML_INLINE double2x4 operator/( const double2x4 &lhs, const double2x4 &rhs )
 {
 	return double2x4(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1]
+		lhs.rows[0] / rhs.rows[0],
+		lhs.rows[1] / rhs.rows[1]
 	);
 }
 
@@ -15893,8 +15893,8 @@ HLML_INLINE double2x4 operator/=( double2x4 &lhs, const double2x4 &rhs )
 // ++s each component of the matrix and returns the result.
 HLML_INLINE double2x4 operator++( double2x4 &x )
 {
-	++x[0];
-	++x[1];
+	++x.rows[0];
+	++x.rows[1];
 	return x;
 }
 
@@ -15902,16 +15902,16 @@ HLML_INLINE double2x4 operator++( double2x4 &x )
 // post-fix
 HLML_INLINE double2x4 operator++( double2x4 &x, const int32_t )
 {
-	x[0]++;
-	x[1]++;
+	x.rows[0]++;
+	x.rows[1]++;
 	return x;
 }
 
 // --s each component of the matrix and returns the result.
 HLML_INLINE double2x4 operator--( double2x4 &x )
 {
-	--x[0];
-	--x[1];
+	--x.rows[0];
+	--x.rows[1];
 	return x;
 }
 
@@ -15919,8 +15919,8 @@ HLML_INLINE double2x4 operator--( double2x4 &x )
 // post-fix
 HLML_INLINE double2x4 operator--( double2x4 &x, const int32_t )
 {
-	x[0]--;
-	x[1]--;
+	x.rows[0]--;
+	x.rows[1]--;
 	return x;
 }
 
@@ -15929,8 +15929,8 @@ HLML_INLINE double2x4 operator--( double2x4 &x, const int32_t )
 HLML_INLINE double2x4 operator-( const double2x4 &x )
 {
 	return double2x4(
-		-x[0],
-		-x[1]
+		-x.rows[0],
+		-x.rows[1]
 	);
 }
 
@@ -15977,9 +15977,9 @@ HLML_INLINE double2x2 mul( const double2x4 &lhs, const double4x2 &rhs )
 HLML_INLINE int3x2 sign( const double3x2 &x )
 {
 	return int3x2(
-		sign( x[0] ),
-		sign( x[1] ),
-		sign( x[2] )
+		sign( x.rows[0] ),
+		sign( x.rows[1] ),
+		sign( x.rows[2] )
 	);
 }
 
@@ -15987,9 +15987,9 @@ HLML_INLINE int3x2 sign( const double3x2 &x )
 HLML_INLINE double3x2 min( const double3x2 &x, const double3x2 &y )
 {
 	return double3x2(
-		min( x[0], y[0] ),
-		min( x[1], y[1] ),
-		min( x[2], y[2] )
+		min( x.rows[0], y.rows[0] ),
+		min( x.rows[1], y.rows[1] ),
+		min( x.rows[2], y.rows[2] )
 	);
 }
 
@@ -15997,9 +15997,9 @@ HLML_INLINE double3x2 min( const double3x2 &x, const double3x2 &y )
 HLML_INLINE double3x2 max( const double3x2 &x, const double3x2 &y )
 {
 	return double3x2(
-		max( x[0], y[0] ),
-		max( x[1], y[1] ),
-		max( x[2], y[2] )
+		max( x.rows[0], y.rows[0] ),
+		max( x.rows[1], y.rows[1] ),
+		max( x.rows[2], y.rows[2] )
 	);
 }
 
@@ -16007,9 +16007,9 @@ HLML_INLINE double3x2 max( const double3x2 &x, const double3x2 &y )
 HLML_INLINE double3x2 clamp( const double3x2 &x, const double3x2 &low, const double3x2 &high )
 {
 	return double3x2(
-		clamp( x[0], low[0], high[0] ),
-		clamp( x[1], low[1], high[1] ),
-		clamp( x[2], low[2], high[2] )
+		clamp( x.rows[0], low.rows[0], high.rows[0] ),
+		clamp( x.rows[1], low.rows[1], high.rows[1] ),
+		clamp( x.rows[2], low.rows[2], high.rows[2] )
 	);
 }
 
@@ -16017,9 +16017,9 @@ HLML_INLINE double3x2 clamp( const double3x2 &x, const double3x2 &low, const dou
 HLML_INLINE double3x2 saturate( const double3x2 &x )
 {
 	return double3x2(
-		saturate( x[0] ),
-		saturate( x[1] ),
-		saturate( x[2] )
+		saturate( x.rows[0] ),
+		saturate( x.rows[1] ),
+		saturate( x.rows[2] )
 	);
 }
 
@@ -16027,9 +16027,9 @@ HLML_INLINE double3x2 saturate( const double3x2 &x )
 HLML_INLINE double3x2 lerp( const double3x2 &lhs, const double3x2 &rhs, const double t )
 {
 	return double3x2(
-		lerp( lhs[0], rhs[0], t ),
-		lerp( lhs[1], rhs[1], t ),
-		lerp( lhs[2], rhs[2], t )
+		lerp( lhs.rows[0], rhs.rows[0], t ),
+		lerp( lhs.rows[1], rhs.rows[1], t ),
+		lerp( lhs.rows[2], rhs.rows[2], t )
 	);
 }
 
@@ -16037,9 +16037,9 @@ HLML_INLINE double3x2 lerp( const double3x2 &lhs, const double3x2 &rhs, const do
 HLML_INLINE bool operator==( const double3x2 &lhs, const double3x2 &rhs )
 {
 	return
-		lhs[0] == rhs[0] &&
-		lhs[1] == rhs[1] &&
-		lhs[2] == rhs[2];
+		lhs.rows[0] == rhs.rows[0] &&
+		lhs.rows[1] == rhs.rows[1] &&
+		lhs.rows[2] == rhs.rows[2];
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
@@ -16052,9 +16052,9 @@ HLML_INLINE bool operator!=( const double3x2 &lhs, const double3x2 &rhs )
 HLML_INLINE bool3x2 operator<( const double3x2 &lhs, const double3x2 &rhs )
 {
 	return bool3x2(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2]
+		lhs.rows[0] < rhs.rows[0],
+		lhs.rows[1] < rhs.rows[1],
+		lhs.rows[2] < rhs.rows[2]
 	);
 }
 
@@ -16062,9 +16062,9 @@ HLML_INLINE bool3x2 operator<( const double3x2 &lhs, const double3x2 &rhs )
 HLML_INLINE bool3x2 operator<=( const double3x2 &lhs, const double3x2 &rhs )
 {
 	return bool3x2(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2]
+		lhs.rows[0] <= rhs.rows[0],
+		lhs.rows[1] <= rhs.rows[1],
+		lhs.rows[2] <= rhs.rows[2]
 	);
 }
 
@@ -16072,9 +16072,9 @@ HLML_INLINE bool3x2 operator<=( const double3x2 &lhs, const double3x2 &rhs )
 HLML_INLINE bool3x2 operator>( const double3x2 &lhs, const double3x2 &rhs )
 {
 	return bool3x2(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2]
+		lhs.rows[0] > rhs.rows[0],
+		lhs.rows[1] > rhs.rows[1],
+		lhs.rows[2] > rhs.rows[2]
 	);
 }
 
@@ -16082,9 +16082,9 @@ HLML_INLINE bool3x2 operator>( const double3x2 &lhs, const double3x2 &rhs )
 HLML_INLINE bool3x2 operator>=( const double3x2 &lhs, const double3x2 &rhs )
 {
 	return bool3x2(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2]
+		lhs.rows[0] >= rhs.rows[0],
+		lhs.rows[1] >= rhs.rows[1],
+		lhs.rows[2] >= rhs.rows[2]
 	);
 }
 
@@ -16092,9 +16092,9 @@ HLML_INLINE bool3x2 operator>=( const double3x2 &lhs, const double3x2 &rhs )
 HLML_INLINE double3x2 operator+( const double3x2 &lhs, const double rhs )
 {
 	return double3x2(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs
+		lhs.rows[0] + rhs,
+		lhs.rows[1] + rhs,
+		lhs.rows[2] + rhs
 	);
 }
 
@@ -16108,9 +16108,9 @@ HLML_INLINE double3x2 operator+=( double3x2 &lhs, const double rhs )
 HLML_INLINE double3x2 operator+( const double3x2 &lhs, const double3x2 &rhs )
 {
 	return double3x2(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2]
+		lhs.rows[0] + rhs.rows[0],
+		lhs.rows[1] + rhs.rows[1],
+		lhs.rows[2] + rhs.rows[2]
 	);
 }
 
@@ -16124,9 +16124,9 @@ HLML_INLINE double3x2 operator+=( double3x2 &lhs, const double3x2 &rhs )
 HLML_INLINE double3x2 operator-( const double3x2 &lhs, const double rhs )
 {
 	return double3x2(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs
+		lhs.rows[0] - rhs,
+		lhs.rows[1] - rhs,
+		lhs.rows[2] - rhs
 	);
 }
 
@@ -16140,9 +16140,9 @@ HLML_INLINE double3x2 operator-=( double3x2 &lhs, const double rhs )
 HLML_INLINE double3x2 operator-( const double3x2 &lhs, const double3x2 &rhs )
 {
 	return double3x2(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2]
+		lhs.rows[0] - rhs.rows[0],
+		lhs.rows[1] - rhs.rows[1],
+		lhs.rows[2] - rhs.rows[2]
 	);
 }
 
@@ -16156,9 +16156,9 @@ HLML_INLINE double3x2 operator-=( double3x2 &lhs, const double3x2 &rhs )
 HLML_INLINE double3x2 operator*( const double3x2 &lhs, const double rhs )
 {
 	return double3x2(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs
+		lhs.rows[0] * rhs,
+		lhs.rows[1] * rhs,
+		lhs.rows[2] * rhs
 	);
 }
 
@@ -16172,9 +16172,9 @@ HLML_INLINE double3x2 operator*=( double3x2 &lhs, const double rhs )
 HLML_INLINE double3x2 operator*( const double3x2 &lhs, const double3x2 &rhs )
 {
 	return double3x2(
-		lhs[0] * rhs[0],
-		lhs[1] * rhs[1],
-		lhs[2] * rhs[2]
+		lhs.rows[0] * rhs.rows[0],
+		lhs.rows[1] * rhs.rows[1],
+		lhs.rows[2] * rhs.rows[2]
 	);
 }
 
@@ -16188,9 +16188,9 @@ HLML_INLINE double3x2 operator*=( double3x2 &lhs, const double3x2 &rhs )
 HLML_INLINE double3x2 operator/( const double3x2 &lhs, const double rhs )
 {
 	return double3x2(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs
+		lhs.rows[0] / rhs,
+		lhs.rows[1] / rhs,
+		lhs.rows[2] / rhs
 	);
 }
 
@@ -16204,9 +16204,9 @@ HLML_INLINE double3x2 operator/=( double3x2 &lhs, const double rhs )
 HLML_INLINE double3x2 operator/( const double3x2 &lhs, const double3x2 &rhs )
 {
 	return double3x2(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1],
-		lhs[2] / rhs[2]
+		lhs.rows[0] / rhs.rows[0],
+		lhs.rows[1] / rhs.rows[1],
+		lhs.rows[2] / rhs.rows[2]
 	);
 }
 
@@ -16219,9 +16219,9 @@ HLML_INLINE double3x2 operator/=( double3x2 &lhs, const double3x2 &rhs )
 // ++s each component of the matrix and returns the result.
 HLML_INLINE double3x2 operator++( double3x2 &x )
 {
-	++x[0];
-	++x[1];
-	++x[2];
+	++x.rows[0];
+	++x.rows[1];
+	++x.rows[2];
 	return x;
 }
 
@@ -16229,18 +16229,18 @@ HLML_INLINE double3x2 operator++( double3x2 &x )
 // post-fix
 HLML_INLINE double3x2 operator++( double3x2 &x, const int32_t )
 {
-	x[0]++;
-	x[1]++;
-	x[2]++;
+	x.rows[0]++;
+	x.rows[1]++;
+	x.rows[2]++;
 	return x;
 }
 
 // --s each component of the matrix and returns the result.
 HLML_INLINE double3x2 operator--( double3x2 &x )
 {
-	--x[0];
-	--x[1];
-	--x[2];
+	--x.rows[0];
+	--x.rows[1];
+	--x.rows[2];
 	return x;
 }
 
@@ -16248,9 +16248,9 @@ HLML_INLINE double3x2 operator--( double3x2 &x )
 // post-fix
 HLML_INLINE double3x2 operator--( double3x2 &x, const int32_t )
 {
-	x[0]--;
-	x[1]--;
-	x[2]--;
+	x.rows[0]--;
+	x.rows[1]--;
+	x.rows[2]--;
 	return x;
 }
 
@@ -16259,9 +16259,9 @@ HLML_INLINE double3x2 operator--( double3x2 &x, const int32_t )
 HLML_INLINE double3x2 operator-( const double3x2 &x )
 {
 	return double3x2(
-		-x[0],
-		-x[1],
-		-x[2]
+		-x.rows[0],
+		-x.rows[1],
+		-x.rows[2]
 	);
 }
 
@@ -16315,9 +16315,9 @@ HLML_INLINE double3x3 mul( const double3x2 &lhs, const double2x3 &rhs )
 HLML_INLINE int3x3 sign( const double3x3 &x )
 {
 	return int3x3(
-		sign( x[0] ),
-		sign( x[1] ),
-		sign( x[2] )
+		sign( x.rows[0] ),
+		sign( x.rows[1] ),
+		sign( x.rows[2] )
 	);
 }
 
@@ -16325,9 +16325,9 @@ HLML_INLINE int3x3 sign( const double3x3 &x )
 HLML_INLINE double3x3 min( const double3x3 &x, const double3x3 &y )
 {
 	return double3x3(
-		min( x[0], y[0] ),
-		min( x[1], y[1] ),
-		min( x[2], y[2] )
+		min( x.rows[0], y.rows[0] ),
+		min( x.rows[1], y.rows[1] ),
+		min( x.rows[2], y.rows[2] )
 	);
 }
 
@@ -16335,9 +16335,9 @@ HLML_INLINE double3x3 min( const double3x3 &x, const double3x3 &y )
 HLML_INLINE double3x3 max( const double3x3 &x, const double3x3 &y )
 {
 	return double3x3(
-		max( x[0], y[0] ),
-		max( x[1], y[1] ),
-		max( x[2], y[2] )
+		max( x.rows[0], y.rows[0] ),
+		max( x.rows[1], y.rows[1] ),
+		max( x.rows[2], y.rows[2] )
 	);
 }
 
@@ -16345,9 +16345,9 @@ HLML_INLINE double3x3 max( const double3x3 &x, const double3x3 &y )
 HLML_INLINE double3x3 clamp( const double3x3 &x, const double3x3 &low, const double3x3 &high )
 {
 	return double3x3(
-		clamp( x[0], low[0], high[0] ),
-		clamp( x[1], low[1], high[1] ),
-		clamp( x[2], low[2], high[2] )
+		clamp( x.rows[0], low.rows[0], high.rows[0] ),
+		clamp( x.rows[1], low.rows[1], high.rows[1] ),
+		clamp( x.rows[2], low.rows[2], high.rows[2] )
 	);
 }
 
@@ -16355,9 +16355,9 @@ HLML_INLINE double3x3 clamp( const double3x3 &x, const double3x3 &low, const dou
 HLML_INLINE double3x3 saturate( const double3x3 &x )
 {
 	return double3x3(
-		saturate( x[0] ),
-		saturate( x[1] ),
-		saturate( x[2] )
+		saturate( x.rows[0] ),
+		saturate( x.rows[1] ),
+		saturate( x.rows[2] )
 	);
 }
 
@@ -16365,9 +16365,9 @@ HLML_INLINE double3x3 saturate( const double3x3 &x )
 HLML_INLINE double3x3 lerp( const double3x3 &lhs, const double3x3 &rhs, const double t )
 {
 	return double3x3(
-		lerp( lhs[0], rhs[0], t ),
-		lerp( lhs[1], rhs[1], t ),
-		lerp( lhs[2], rhs[2], t )
+		lerp( lhs.rows[0], rhs.rows[0], t ),
+		lerp( lhs.rows[1], rhs.rows[1], t ),
+		lerp( lhs.rows[2], rhs.rows[2], t )
 	);
 }
 
@@ -16375,9 +16375,9 @@ HLML_INLINE double3x3 lerp( const double3x3 &lhs, const double3x3 &rhs, const do
 HLML_INLINE bool operator==( const double3x3 &lhs, const double3x3 &rhs )
 {
 	return
-		lhs[0] == rhs[0] &&
-		lhs[1] == rhs[1] &&
-		lhs[2] == rhs[2];
+		lhs.rows[0] == rhs.rows[0] &&
+		lhs.rows[1] == rhs.rows[1] &&
+		lhs.rows[2] == rhs.rows[2];
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
@@ -16390,9 +16390,9 @@ HLML_INLINE bool operator!=( const double3x3 &lhs, const double3x3 &rhs )
 HLML_INLINE bool3x3 operator<( const double3x3 &lhs, const double3x3 &rhs )
 {
 	return bool3x3(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2]
+		lhs.rows[0] < rhs.rows[0],
+		lhs.rows[1] < rhs.rows[1],
+		lhs.rows[2] < rhs.rows[2]
 	);
 }
 
@@ -16400,9 +16400,9 @@ HLML_INLINE bool3x3 operator<( const double3x3 &lhs, const double3x3 &rhs )
 HLML_INLINE bool3x3 operator<=( const double3x3 &lhs, const double3x3 &rhs )
 {
 	return bool3x3(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2]
+		lhs.rows[0] <= rhs.rows[0],
+		lhs.rows[1] <= rhs.rows[1],
+		lhs.rows[2] <= rhs.rows[2]
 	);
 }
 
@@ -16410,9 +16410,9 @@ HLML_INLINE bool3x3 operator<=( const double3x3 &lhs, const double3x3 &rhs )
 HLML_INLINE bool3x3 operator>( const double3x3 &lhs, const double3x3 &rhs )
 {
 	return bool3x3(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2]
+		lhs.rows[0] > rhs.rows[0],
+		lhs.rows[1] > rhs.rows[1],
+		lhs.rows[2] > rhs.rows[2]
 	);
 }
 
@@ -16420,9 +16420,9 @@ HLML_INLINE bool3x3 operator>( const double3x3 &lhs, const double3x3 &rhs )
 HLML_INLINE bool3x3 operator>=( const double3x3 &lhs, const double3x3 &rhs )
 {
 	return bool3x3(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2]
+		lhs.rows[0] >= rhs.rows[0],
+		lhs.rows[1] >= rhs.rows[1],
+		lhs.rows[2] >= rhs.rows[2]
 	);
 }
 
@@ -16430,9 +16430,9 @@ HLML_INLINE bool3x3 operator>=( const double3x3 &lhs, const double3x3 &rhs )
 HLML_INLINE double3x3 operator+( const double3x3 &lhs, const double rhs )
 {
 	return double3x3(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs
+		lhs.rows[0] + rhs,
+		lhs.rows[1] + rhs,
+		lhs.rows[2] + rhs
 	);
 }
 
@@ -16446,9 +16446,9 @@ HLML_INLINE double3x3 operator+=( double3x3 &lhs, const double rhs )
 HLML_INLINE double3x3 operator+( const double3x3 &lhs, const double3x3 &rhs )
 {
 	return double3x3(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2]
+		lhs.rows[0] + rhs.rows[0],
+		lhs.rows[1] + rhs.rows[1],
+		lhs.rows[2] + rhs.rows[2]
 	);
 }
 
@@ -16462,9 +16462,9 @@ HLML_INLINE double3x3 operator+=( double3x3 &lhs, const double3x3 &rhs )
 HLML_INLINE double3x3 operator-( const double3x3 &lhs, const double rhs )
 {
 	return double3x3(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs
+		lhs.rows[0] - rhs,
+		lhs.rows[1] - rhs,
+		lhs.rows[2] - rhs
 	);
 }
 
@@ -16478,9 +16478,9 @@ HLML_INLINE double3x3 operator-=( double3x3 &lhs, const double rhs )
 HLML_INLINE double3x3 operator-( const double3x3 &lhs, const double3x3 &rhs )
 {
 	return double3x3(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2]
+		lhs.rows[0] - rhs.rows[0],
+		lhs.rows[1] - rhs.rows[1],
+		lhs.rows[2] - rhs.rows[2]
 	);
 }
 
@@ -16494,9 +16494,9 @@ HLML_INLINE double3x3 operator-=( double3x3 &lhs, const double3x3 &rhs )
 HLML_INLINE double3x3 operator*( const double3x3 &lhs, const double rhs )
 {
 	return double3x3(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs
+		lhs.rows[0] * rhs,
+		lhs.rows[1] * rhs,
+		lhs.rows[2] * rhs
 	);
 }
 
@@ -16510,9 +16510,9 @@ HLML_INLINE double3x3 operator*=( double3x3 &lhs, const double rhs )
 HLML_INLINE double3x3 operator*( const double3x3 &lhs, const double3x3 &rhs )
 {
 	return double3x3(
-		lhs[0] * rhs[0],
-		lhs[1] * rhs[1],
-		lhs[2] * rhs[2]
+		lhs.rows[0] * rhs.rows[0],
+		lhs.rows[1] * rhs.rows[1],
+		lhs.rows[2] * rhs.rows[2]
 	);
 }
 
@@ -16526,9 +16526,9 @@ HLML_INLINE double3x3 operator*=( double3x3 &lhs, const double3x3 &rhs )
 HLML_INLINE double3x3 operator/( const double3x3 &lhs, const double rhs )
 {
 	return double3x3(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs
+		lhs.rows[0] / rhs,
+		lhs.rows[1] / rhs,
+		lhs.rows[2] / rhs
 	);
 }
 
@@ -16542,9 +16542,9 @@ HLML_INLINE double3x3 operator/=( double3x3 &lhs, const double rhs )
 HLML_INLINE double3x3 operator/( const double3x3 &lhs, const double3x3 &rhs )
 {
 	return double3x3(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1],
-		lhs[2] / rhs[2]
+		lhs.rows[0] / rhs.rows[0],
+		lhs.rows[1] / rhs.rows[1],
+		lhs.rows[2] / rhs.rows[2]
 	);
 }
 
@@ -16557,9 +16557,9 @@ HLML_INLINE double3x3 operator/=( double3x3 &lhs, const double3x3 &rhs )
 // ++s each component of the matrix and returns the result.
 HLML_INLINE double3x3 operator++( double3x3 &x )
 {
-	++x[0];
-	++x[1];
-	++x[2];
+	++x.rows[0];
+	++x.rows[1];
+	++x.rows[2];
 	return x;
 }
 
@@ -16567,18 +16567,18 @@ HLML_INLINE double3x3 operator++( double3x3 &x )
 // post-fix
 HLML_INLINE double3x3 operator++( double3x3 &x, const int32_t )
 {
-	x[0]++;
-	x[1]++;
-	x[2]++;
+	x.rows[0]++;
+	x.rows[1]++;
+	x.rows[2]++;
 	return x;
 }
 
 // --s each component of the matrix and returns the result.
 HLML_INLINE double3x3 operator--( double3x3 &x )
 {
-	--x[0];
-	--x[1];
-	--x[2];
+	--x.rows[0];
+	--x.rows[1];
+	--x.rows[2];
 	return x;
 }
 
@@ -16586,9 +16586,9 @@ HLML_INLINE double3x3 operator--( double3x3 &x )
 // post-fix
 HLML_INLINE double3x3 operator--( double3x3 &x, const int32_t )
 {
-	x[0]--;
-	x[1]--;
-	x[2]--;
+	x.rows[0]--;
+	x.rows[1]--;
+	x.rows[2]--;
 	return x;
 }
 
@@ -16597,9 +16597,9 @@ HLML_INLINE double3x3 operator--( double3x3 &x, const int32_t )
 HLML_INLINE double3x3 operator-( const double3x3 &x )
 {
 	return double3x3(
-		-x[0],
-		-x[1],
-		-x[2]
+		-x.rows[0],
+		-x.rows[1],
+		-x.rows[2]
 	);
 }
 
@@ -16695,9 +16695,9 @@ HLML_INLINE double3 mul( const double3 &lhs, const double3x3 &rhs )
 HLML_INLINE int3x4 sign( const double3x4 &x )
 {
 	return int3x4(
-		sign( x[0] ),
-		sign( x[1] ),
-		sign( x[2] )
+		sign( x.rows[0] ),
+		sign( x.rows[1] ),
+		sign( x.rows[2] )
 	);
 }
 
@@ -16705,9 +16705,9 @@ HLML_INLINE int3x4 sign( const double3x4 &x )
 HLML_INLINE double3x4 min( const double3x4 &x, const double3x4 &y )
 {
 	return double3x4(
-		min( x[0], y[0] ),
-		min( x[1], y[1] ),
-		min( x[2], y[2] )
+		min( x.rows[0], y.rows[0] ),
+		min( x.rows[1], y.rows[1] ),
+		min( x.rows[2], y.rows[2] )
 	);
 }
 
@@ -16715,9 +16715,9 @@ HLML_INLINE double3x4 min( const double3x4 &x, const double3x4 &y )
 HLML_INLINE double3x4 max( const double3x4 &x, const double3x4 &y )
 {
 	return double3x4(
-		max( x[0], y[0] ),
-		max( x[1], y[1] ),
-		max( x[2], y[2] )
+		max( x.rows[0], y.rows[0] ),
+		max( x.rows[1], y.rows[1] ),
+		max( x.rows[2], y.rows[2] )
 	);
 }
 
@@ -16725,9 +16725,9 @@ HLML_INLINE double3x4 max( const double3x4 &x, const double3x4 &y )
 HLML_INLINE double3x4 clamp( const double3x4 &x, const double3x4 &low, const double3x4 &high )
 {
 	return double3x4(
-		clamp( x[0], low[0], high[0] ),
-		clamp( x[1], low[1], high[1] ),
-		clamp( x[2], low[2], high[2] )
+		clamp( x.rows[0], low.rows[0], high.rows[0] ),
+		clamp( x.rows[1], low.rows[1], high.rows[1] ),
+		clamp( x.rows[2], low.rows[2], high.rows[2] )
 	);
 }
 
@@ -16735,9 +16735,9 @@ HLML_INLINE double3x4 clamp( const double3x4 &x, const double3x4 &low, const dou
 HLML_INLINE double3x4 saturate( const double3x4 &x )
 {
 	return double3x4(
-		saturate( x[0] ),
-		saturate( x[1] ),
-		saturate( x[2] )
+		saturate( x.rows[0] ),
+		saturate( x.rows[1] ),
+		saturate( x.rows[2] )
 	);
 }
 
@@ -16745,9 +16745,9 @@ HLML_INLINE double3x4 saturate( const double3x4 &x )
 HLML_INLINE double3x4 lerp( const double3x4 &lhs, const double3x4 &rhs, const double t )
 {
 	return double3x4(
-		lerp( lhs[0], rhs[0], t ),
-		lerp( lhs[1], rhs[1], t ),
-		lerp( lhs[2], rhs[2], t )
+		lerp( lhs.rows[0], rhs.rows[0], t ),
+		lerp( lhs.rows[1], rhs.rows[1], t ),
+		lerp( lhs.rows[2], rhs.rows[2], t )
 	);
 }
 
@@ -16755,9 +16755,9 @@ HLML_INLINE double3x4 lerp( const double3x4 &lhs, const double3x4 &rhs, const do
 HLML_INLINE bool operator==( const double3x4 &lhs, const double3x4 &rhs )
 {
 	return
-		lhs[0] == rhs[0] &&
-		lhs[1] == rhs[1] &&
-		lhs[2] == rhs[2];
+		lhs.rows[0] == rhs.rows[0] &&
+		lhs.rows[1] == rhs.rows[1] &&
+		lhs.rows[2] == rhs.rows[2];
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
@@ -16770,9 +16770,9 @@ HLML_INLINE bool operator!=( const double3x4 &lhs, const double3x4 &rhs )
 HLML_INLINE bool3x4 operator<( const double3x4 &lhs, const double3x4 &rhs )
 {
 	return bool3x4(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2]
+		lhs.rows[0] < rhs.rows[0],
+		lhs.rows[1] < rhs.rows[1],
+		lhs.rows[2] < rhs.rows[2]
 	);
 }
 
@@ -16780,9 +16780,9 @@ HLML_INLINE bool3x4 operator<( const double3x4 &lhs, const double3x4 &rhs )
 HLML_INLINE bool3x4 operator<=( const double3x4 &lhs, const double3x4 &rhs )
 {
 	return bool3x4(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2]
+		lhs.rows[0] <= rhs.rows[0],
+		lhs.rows[1] <= rhs.rows[1],
+		lhs.rows[2] <= rhs.rows[2]
 	);
 }
 
@@ -16790,9 +16790,9 @@ HLML_INLINE bool3x4 operator<=( const double3x4 &lhs, const double3x4 &rhs )
 HLML_INLINE bool3x4 operator>( const double3x4 &lhs, const double3x4 &rhs )
 {
 	return bool3x4(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2]
+		lhs.rows[0] > rhs.rows[0],
+		lhs.rows[1] > rhs.rows[1],
+		lhs.rows[2] > rhs.rows[2]
 	);
 }
 
@@ -16800,9 +16800,9 @@ HLML_INLINE bool3x4 operator>( const double3x4 &lhs, const double3x4 &rhs )
 HLML_INLINE bool3x4 operator>=( const double3x4 &lhs, const double3x4 &rhs )
 {
 	return bool3x4(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2]
+		lhs.rows[0] >= rhs.rows[0],
+		lhs.rows[1] >= rhs.rows[1],
+		lhs.rows[2] >= rhs.rows[2]
 	);
 }
 
@@ -16810,9 +16810,9 @@ HLML_INLINE bool3x4 operator>=( const double3x4 &lhs, const double3x4 &rhs )
 HLML_INLINE double3x4 operator+( const double3x4 &lhs, const double rhs )
 {
 	return double3x4(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs
+		lhs.rows[0] + rhs,
+		lhs.rows[1] + rhs,
+		lhs.rows[2] + rhs
 	);
 }
 
@@ -16826,9 +16826,9 @@ HLML_INLINE double3x4 operator+=( double3x4 &lhs, const double rhs )
 HLML_INLINE double3x4 operator+( const double3x4 &lhs, const double3x4 &rhs )
 {
 	return double3x4(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2]
+		lhs.rows[0] + rhs.rows[0],
+		lhs.rows[1] + rhs.rows[1],
+		lhs.rows[2] + rhs.rows[2]
 	);
 }
 
@@ -16842,9 +16842,9 @@ HLML_INLINE double3x4 operator+=( double3x4 &lhs, const double3x4 &rhs )
 HLML_INLINE double3x4 operator-( const double3x4 &lhs, const double rhs )
 {
 	return double3x4(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs
+		lhs.rows[0] - rhs,
+		lhs.rows[1] - rhs,
+		lhs.rows[2] - rhs
 	);
 }
 
@@ -16858,9 +16858,9 @@ HLML_INLINE double3x4 operator-=( double3x4 &lhs, const double rhs )
 HLML_INLINE double3x4 operator-( const double3x4 &lhs, const double3x4 &rhs )
 {
 	return double3x4(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2]
+		lhs.rows[0] - rhs.rows[0],
+		lhs.rows[1] - rhs.rows[1],
+		lhs.rows[2] - rhs.rows[2]
 	);
 }
 
@@ -16874,9 +16874,9 @@ HLML_INLINE double3x4 operator-=( double3x4 &lhs, const double3x4 &rhs )
 HLML_INLINE double3x4 operator*( const double3x4 &lhs, const double rhs )
 {
 	return double3x4(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs
+		lhs.rows[0] * rhs,
+		lhs.rows[1] * rhs,
+		lhs.rows[2] * rhs
 	);
 }
 
@@ -16890,9 +16890,9 @@ HLML_INLINE double3x4 operator*=( double3x4 &lhs, const double rhs )
 HLML_INLINE double3x4 operator*( const double3x4 &lhs, const double3x4 &rhs )
 {
 	return double3x4(
-		lhs[0] * rhs[0],
-		lhs[1] * rhs[1],
-		lhs[2] * rhs[2]
+		lhs.rows[0] * rhs.rows[0],
+		lhs.rows[1] * rhs.rows[1],
+		lhs.rows[2] * rhs.rows[2]
 	);
 }
 
@@ -16906,9 +16906,9 @@ HLML_INLINE double3x4 operator*=( double3x4 &lhs, const double3x4 &rhs )
 HLML_INLINE double3x4 operator/( const double3x4 &lhs, const double rhs )
 {
 	return double3x4(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs
+		lhs.rows[0] / rhs,
+		lhs.rows[1] / rhs,
+		lhs.rows[2] / rhs
 	);
 }
 
@@ -16922,9 +16922,9 @@ HLML_INLINE double3x4 operator/=( double3x4 &lhs, const double rhs )
 HLML_INLINE double3x4 operator/( const double3x4 &lhs, const double3x4 &rhs )
 {
 	return double3x4(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1],
-		lhs[2] / rhs[2]
+		lhs.rows[0] / rhs.rows[0],
+		lhs.rows[1] / rhs.rows[1],
+		lhs.rows[2] / rhs.rows[2]
 	);
 }
 
@@ -16937,9 +16937,9 @@ HLML_INLINE double3x4 operator/=( double3x4 &lhs, const double3x4 &rhs )
 // ++s each component of the matrix and returns the result.
 HLML_INLINE double3x4 operator++( double3x4 &x )
 {
-	++x[0];
-	++x[1];
-	++x[2];
+	++x.rows[0];
+	++x.rows[1];
+	++x.rows[2];
 	return x;
 }
 
@@ -16947,18 +16947,18 @@ HLML_INLINE double3x4 operator++( double3x4 &x )
 // post-fix
 HLML_INLINE double3x4 operator++( double3x4 &x, const int32_t )
 {
-	x[0]++;
-	x[1]++;
-	x[2]++;
+	x.rows[0]++;
+	x.rows[1]++;
+	x.rows[2]++;
 	return x;
 }
 
 // --s each component of the matrix and returns the result.
 HLML_INLINE double3x4 operator--( double3x4 &x )
 {
-	--x[0];
-	--x[1];
-	--x[2];
+	--x.rows[0];
+	--x.rows[1];
+	--x.rows[2];
 	return x;
 }
 
@@ -16966,9 +16966,9 @@ HLML_INLINE double3x4 operator--( double3x4 &x )
 // post-fix
 HLML_INLINE double3x4 operator--( double3x4 &x, const int32_t )
 {
-	x[0]--;
-	x[1]--;
-	x[2]--;
+	x.rows[0]--;
+	x.rows[1]--;
+	x.rows[2]--;
 	return x;
 }
 
@@ -16977,9 +16977,9 @@ HLML_INLINE double3x4 operator--( double3x4 &x, const int32_t )
 HLML_INLINE double3x4 operator-( const double3x4 &x )
 {
 	return double3x4(
-		-x[0],
-		-x[1],
-		-x[2]
+		-x.rows[0],
+		-x.rows[1],
+		-x.rows[2]
 	);
 }
 
@@ -17035,10 +17035,10 @@ HLML_INLINE double3x3 mul( const double3x4 &lhs, const double4x3 &rhs )
 HLML_INLINE int4x2 sign( const double4x2 &x )
 {
 	return int4x2(
-		sign( x[0] ),
-		sign( x[1] ),
-		sign( x[2] ),
-		sign( x[3] )
+		sign( x.rows[0] ),
+		sign( x.rows[1] ),
+		sign( x.rows[2] ),
+		sign( x.rows[3] )
 	);
 }
 
@@ -17046,10 +17046,10 @@ HLML_INLINE int4x2 sign( const double4x2 &x )
 HLML_INLINE double4x2 min( const double4x2 &x, const double4x2 &y )
 {
 	return double4x2(
-		min( x[0], y[0] ),
-		min( x[1], y[1] ),
-		min( x[2], y[2] ),
-		min( x[3], y[3] )
+		min( x.rows[0], y.rows[0] ),
+		min( x.rows[1], y.rows[1] ),
+		min( x.rows[2], y.rows[2] ),
+		min( x.rows[3], y.rows[3] )
 	);
 }
 
@@ -17057,10 +17057,10 @@ HLML_INLINE double4x2 min( const double4x2 &x, const double4x2 &y )
 HLML_INLINE double4x2 max( const double4x2 &x, const double4x2 &y )
 {
 	return double4x2(
-		max( x[0], y[0] ),
-		max( x[1], y[1] ),
-		max( x[2], y[2] ),
-		max( x[3], y[3] )
+		max( x.rows[0], y.rows[0] ),
+		max( x.rows[1], y.rows[1] ),
+		max( x.rows[2], y.rows[2] ),
+		max( x.rows[3], y.rows[3] )
 	);
 }
 
@@ -17068,10 +17068,10 @@ HLML_INLINE double4x2 max( const double4x2 &x, const double4x2 &y )
 HLML_INLINE double4x2 clamp( const double4x2 &x, const double4x2 &low, const double4x2 &high )
 {
 	return double4x2(
-		clamp( x[0], low[0], high[0] ),
-		clamp( x[1], low[1], high[1] ),
-		clamp( x[2], low[2], high[2] ),
-		clamp( x[3], low[3], high[3] )
+		clamp( x.rows[0], low.rows[0], high.rows[0] ),
+		clamp( x.rows[1], low.rows[1], high.rows[1] ),
+		clamp( x.rows[2], low.rows[2], high.rows[2] ),
+		clamp( x.rows[3], low.rows[3], high.rows[3] )
 	);
 }
 
@@ -17079,10 +17079,10 @@ HLML_INLINE double4x2 clamp( const double4x2 &x, const double4x2 &low, const dou
 HLML_INLINE double4x2 saturate( const double4x2 &x )
 {
 	return double4x2(
-		saturate( x[0] ),
-		saturate( x[1] ),
-		saturate( x[2] ),
-		saturate( x[3] )
+		saturate( x.rows[0] ),
+		saturate( x.rows[1] ),
+		saturate( x.rows[2] ),
+		saturate( x.rows[3] )
 	);
 }
 
@@ -17090,10 +17090,10 @@ HLML_INLINE double4x2 saturate( const double4x2 &x )
 HLML_INLINE double4x2 lerp( const double4x2 &lhs, const double4x2 &rhs, const double t )
 {
 	return double4x2(
-		lerp( lhs[0], rhs[0], t ),
-		lerp( lhs[1], rhs[1], t ),
-		lerp( lhs[2], rhs[2], t ),
-		lerp( lhs[3], rhs[3], t )
+		lerp( lhs.rows[0], rhs.rows[0], t ),
+		lerp( lhs.rows[1], rhs.rows[1], t ),
+		lerp( lhs.rows[2], rhs.rows[2], t ),
+		lerp( lhs.rows[3], rhs.rows[3], t )
 	);
 }
 
@@ -17101,10 +17101,10 @@ HLML_INLINE double4x2 lerp( const double4x2 &lhs, const double4x2 &rhs, const do
 HLML_INLINE bool operator==( const double4x2 &lhs, const double4x2 &rhs )
 {
 	return
-		lhs[0] == rhs[0] &&
-		lhs[1] == rhs[1] &&
-		lhs[2] == rhs[2] &&
-		lhs[3] == rhs[3];
+		lhs.rows[0] == rhs.rows[0] &&
+		lhs.rows[1] == rhs.rows[1] &&
+		lhs.rows[2] == rhs.rows[2] &&
+		lhs.rows[3] == rhs.rows[3];
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
@@ -17117,10 +17117,10 @@ HLML_INLINE bool operator!=( const double4x2 &lhs, const double4x2 &rhs )
 HLML_INLINE bool4x2 operator<( const double4x2 &lhs, const double4x2 &rhs )
 {
 	return bool4x2(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2],
-		lhs[3] < rhs[3]
+		lhs.rows[0] < rhs.rows[0],
+		lhs.rows[1] < rhs.rows[1],
+		lhs.rows[2] < rhs.rows[2],
+		lhs.rows[3] < rhs.rows[3]
 	);
 }
 
@@ -17128,10 +17128,10 @@ HLML_INLINE bool4x2 operator<( const double4x2 &lhs, const double4x2 &rhs )
 HLML_INLINE bool4x2 operator<=( const double4x2 &lhs, const double4x2 &rhs )
 {
 	return bool4x2(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2],
-		lhs[3] <= rhs[3]
+		lhs.rows[0] <= rhs.rows[0],
+		lhs.rows[1] <= rhs.rows[1],
+		lhs.rows[2] <= rhs.rows[2],
+		lhs.rows[3] <= rhs.rows[3]
 	);
 }
 
@@ -17139,10 +17139,10 @@ HLML_INLINE bool4x2 operator<=( const double4x2 &lhs, const double4x2 &rhs )
 HLML_INLINE bool4x2 operator>( const double4x2 &lhs, const double4x2 &rhs )
 {
 	return bool4x2(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2],
-		lhs[3] > rhs[3]
+		lhs.rows[0] > rhs.rows[0],
+		lhs.rows[1] > rhs.rows[1],
+		lhs.rows[2] > rhs.rows[2],
+		lhs.rows[3] > rhs.rows[3]
 	);
 }
 
@@ -17150,10 +17150,10 @@ HLML_INLINE bool4x2 operator>( const double4x2 &lhs, const double4x2 &rhs )
 HLML_INLINE bool4x2 operator>=( const double4x2 &lhs, const double4x2 &rhs )
 {
 	return bool4x2(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2],
-		lhs[3] >= rhs[3]
+		lhs.rows[0] >= rhs.rows[0],
+		lhs.rows[1] >= rhs.rows[1],
+		lhs.rows[2] >= rhs.rows[2],
+		lhs.rows[3] >= rhs.rows[3]
 	);
 }
 
@@ -17161,10 +17161,10 @@ HLML_INLINE bool4x2 operator>=( const double4x2 &lhs, const double4x2 &rhs )
 HLML_INLINE double4x2 operator+( const double4x2 &lhs, const double rhs )
 {
 	return double4x2(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs,
-		lhs[3] + rhs
+		lhs.rows[0] + rhs,
+		lhs.rows[1] + rhs,
+		lhs.rows[2] + rhs,
+		lhs.rows[3] + rhs
 	);
 }
 
@@ -17178,10 +17178,10 @@ HLML_INLINE double4x2 operator+=( double4x2 &lhs, const double rhs )
 HLML_INLINE double4x2 operator+( const double4x2 &lhs, const double4x2 &rhs )
 {
 	return double4x2(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2],
-		lhs[3] + rhs[3]
+		lhs.rows[0] + rhs.rows[0],
+		lhs.rows[1] + rhs.rows[1],
+		lhs.rows[2] + rhs.rows[2],
+		lhs.rows[3] + rhs.rows[3]
 	);
 }
 
@@ -17195,10 +17195,10 @@ HLML_INLINE double4x2 operator+=( double4x2 &lhs, const double4x2 &rhs )
 HLML_INLINE double4x2 operator-( const double4x2 &lhs, const double rhs )
 {
 	return double4x2(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs,
-		lhs[3] - rhs
+		lhs.rows[0] - rhs,
+		lhs.rows[1] - rhs,
+		lhs.rows[2] - rhs,
+		lhs.rows[3] - rhs
 	);
 }
 
@@ -17212,10 +17212,10 @@ HLML_INLINE double4x2 operator-=( double4x2 &lhs, const double rhs )
 HLML_INLINE double4x2 operator-( const double4x2 &lhs, const double4x2 &rhs )
 {
 	return double4x2(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2],
-		lhs[3] - rhs[3]
+		lhs.rows[0] - rhs.rows[0],
+		lhs.rows[1] - rhs.rows[1],
+		lhs.rows[2] - rhs.rows[2],
+		lhs.rows[3] - rhs.rows[3]
 	);
 }
 
@@ -17229,10 +17229,10 @@ HLML_INLINE double4x2 operator-=( double4x2 &lhs, const double4x2 &rhs )
 HLML_INLINE double4x2 operator*( const double4x2 &lhs, const double rhs )
 {
 	return double4x2(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs,
-		lhs[3] * rhs
+		lhs.rows[0] * rhs,
+		lhs.rows[1] * rhs,
+		lhs.rows[2] * rhs,
+		lhs.rows[3] * rhs
 	);
 }
 
@@ -17246,10 +17246,10 @@ HLML_INLINE double4x2 operator*=( double4x2 &lhs, const double rhs )
 HLML_INLINE double4x2 operator*( const double4x2 &lhs, const double4x2 &rhs )
 {
 	return double4x2(
-		lhs[0] * rhs[0],
-		lhs[1] * rhs[1],
-		lhs[2] * rhs[2],
-		lhs[3] * rhs[3]
+		lhs.rows[0] * rhs.rows[0],
+		lhs.rows[1] * rhs.rows[1],
+		lhs.rows[2] * rhs.rows[2],
+		lhs.rows[3] * rhs.rows[3]
 	);
 }
 
@@ -17263,10 +17263,10 @@ HLML_INLINE double4x2 operator*=( double4x2 &lhs, const double4x2 &rhs )
 HLML_INLINE double4x2 operator/( const double4x2 &lhs, const double rhs )
 {
 	return double4x2(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs,
-		lhs[3] / rhs
+		lhs.rows[0] / rhs,
+		lhs.rows[1] / rhs,
+		lhs.rows[2] / rhs,
+		lhs.rows[3] / rhs
 	);
 }
 
@@ -17280,10 +17280,10 @@ HLML_INLINE double4x2 operator/=( double4x2 &lhs, const double rhs )
 HLML_INLINE double4x2 operator/( const double4x2 &lhs, const double4x2 &rhs )
 {
 	return double4x2(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1],
-		lhs[2] / rhs[2],
-		lhs[3] / rhs[3]
+		lhs.rows[0] / rhs.rows[0],
+		lhs.rows[1] / rhs.rows[1],
+		lhs.rows[2] / rhs.rows[2],
+		lhs.rows[3] / rhs.rows[3]
 	);
 }
 
@@ -17296,10 +17296,10 @@ HLML_INLINE double4x2 operator/=( double4x2 &lhs, const double4x2 &rhs )
 // ++s each component of the matrix and returns the result.
 HLML_INLINE double4x2 operator++( double4x2 &x )
 {
-	++x[0];
-	++x[1];
-	++x[2];
-	++x[3];
+	++x.rows[0];
+	++x.rows[1];
+	++x.rows[2];
+	++x.rows[3];
 	return x;
 }
 
@@ -17307,20 +17307,20 @@ HLML_INLINE double4x2 operator++( double4x2 &x )
 // post-fix
 HLML_INLINE double4x2 operator++( double4x2 &x, const int32_t )
 {
-	x[0]++;
-	x[1]++;
-	x[2]++;
-	x[3]++;
+	x.rows[0]++;
+	x.rows[1]++;
+	x.rows[2]++;
+	x.rows[3]++;
 	return x;
 }
 
 // --s each component of the matrix and returns the result.
 HLML_INLINE double4x2 operator--( double4x2 &x )
 {
-	--x[0];
-	--x[1];
-	--x[2];
-	--x[3];
+	--x.rows[0];
+	--x.rows[1];
+	--x.rows[2];
+	--x.rows[3];
 	return x;
 }
 
@@ -17328,10 +17328,10 @@ HLML_INLINE double4x2 operator--( double4x2 &x )
 // post-fix
 HLML_INLINE double4x2 operator--( double4x2 &x, const int32_t )
 {
-	x[0]--;
-	x[1]--;
-	x[2]--;
-	x[3]--;
+	x.rows[0]--;
+	x.rows[1]--;
+	x.rows[2]--;
+	x.rows[3]--;
 	return x;
 }
 
@@ -17340,10 +17340,10 @@ HLML_INLINE double4x2 operator--( double4x2 &x, const int32_t )
 HLML_INLINE double4x2 operator-( const double4x2 &x )
 {
 	return double4x2(
-		-x[0],
-		-x[1],
-		-x[2],
-		-x[3]
+		-x.rows[0],
+		-x.rows[1],
+		-x.rows[2],
+		-x.rows[3]
 	);
 }
 
@@ -17408,10 +17408,10 @@ HLML_INLINE double4x4 mul( const double4x2 &lhs, const double2x4 &rhs )
 HLML_INLINE int4x3 sign( const double4x3 &x )
 {
 	return int4x3(
-		sign( x[0] ),
-		sign( x[1] ),
-		sign( x[2] ),
-		sign( x[3] )
+		sign( x.rows[0] ),
+		sign( x.rows[1] ),
+		sign( x.rows[2] ),
+		sign( x.rows[3] )
 	);
 }
 
@@ -17419,10 +17419,10 @@ HLML_INLINE int4x3 sign( const double4x3 &x )
 HLML_INLINE double4x3 min( const double4x3 &x, const double4x3 &y )
 {
 	return double4x3(
-		min( x[0], y[0] ),
-		min( x[1], y[1] ),
-		min( x[2], y[2] ),
-		min( x[3], y[3] )
+		min( x.rows[0], y.rows[0] ),
+		min( x.rows[1], y.rows[1] ),
+		min( x.rows[2], y.rows[2] ),
+		min( x.rows[3], y.rows[3] )
 	);
 }
 
@@ -17430,10 +17430,10 @@ HLML_INLINE double4x3 min( const double4x3 &x, const double4x3 &y )
 HLML_INLINE double4x3 max( const double4x3 &x, const double4x3 &y )
 {
 	return double4x3(
-		max( x[0], y[0] ),
-		max( x[1], y[1] ),
-		max( x[2], y[2] ),
-		max( x[3], y[3] )
+		max( x.rows[0], y.rows[0] ),
+		max( x.rows[1], y.rows[1] ),
+		max( x.rows[2], y.rows[2] ),
+		max( x.rows[3], y.rows[3] )
 	);
 }
 
@@ -17441,10 +17441,10 @@ HLML_INLINE double4x3 max( const double4x3 &x, const double4x3 &y )
 HLML_INLINE double4x3 clamp( const double4x3 &x, const double4x3 &low, const double4x3 &high )
 {
 	return double4x3(
-		clamp( x[0], low[0], high[0] ),
-		clamp( x[1], low[1], high[1] ),
-		clamp( x[2], low[2], high[2] ),
-		clamp( x[3], low[3], high[3] )
+		clamp( x.rows[0], low.rows[0], high.rows[0] ),
+		clamp( x.rows[1], low.rows[1], high.rows[1] ),
+		clamp( x.rows[2], low.rows[2], high.rows[2] ),
+		clamp( x.rows[3], low.rows[3], high.rows[3] )
 	);
 }
 
@@ -17452,10 +17452,10 @@ HLML_INLINE double4x3 clamp( const double4x3 &x, const double4x3 &low, const dou
 HLML_INLINE double4x3 saturate( const double4x3 &x )
 {
 	return double4x3(
-		saturate( x[0] ),
-		saturate( x[1] ),
-		saturate( x[2] ),
-		saturate( x[3] )
+		saturate( x.rows[0] ),
+		saturate( x.rows[1] ),
+		saturate( x.rows[2] ),
+		saturate( x.rows[3] )
 	);
 }
 
@@ -17463,10 +17463,10 @@ HLML_INLINE double4x3 saturate( const double4x3 &x )
 HLML_INLINE double4x3 lerp( const double4x3 &lhs, const double4x3 &rhs, const double t )
 {
 	return double4x3(
-		lerp( lhs[0], rhs[0], t ),
-		lerp( lhs[1], rhs[1], t ),
-		lerp( lhs[2], rhs[2], t ),
-		lerp( lhs[3], rhs[3], t )
+		lerp( lhs.rows[0], rhs.rows[0], t ),
+		lerp( lhs.rows[1], rhs.rows[1], t ),
+		lerp( lhs.rows[2], rhs.rows[2], t ),
+		lerp( lhs.rows[3], rhs.rows[3], t )
 	);
 }
 
@@ -17474,10 +17474,10 @@ HLML_INLINE double4x3 lerp( const double4x3 &lhs, const double4x3 &rhs, const do
 HLML_INLINE bool operator==( const double4x3 &lhs, const double4x3 &rhs )
 {
 	return
-		lhs[0] == rhs[0] &&
-		lhs[1] == rhs[1] &&
-		lhs[2] == rhs[2] &&
-		lhs[3] == rhs[3];
+		lhs.rows[0] == rhs.rows[0] &&
+		lhs.rows[1] == rhs.rows[1] &&
+		lhs.rows[2] == rhs.rows[2] &&
+		lhs.rows[3] == rhs.rows[3];
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
@@ -17490,10 +17490,10 @@ HLML_INLINE bool operator!=( const double4x3 &lhs, const double4x3 &rhs )
 HLML_INLINE bool4x3 operator<( const double4x3 &lhs, const double4x3 &rhs )
 {
 	return bool4x3(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2],
-		lhs[3] < rhs[3]
+		lhs.rows[0] < rhs.rows[0],
+		lhs.rows[1] < rhs.rows[1],
+		lhs.rows[2] < rhs.rows[2],
+		lhs.rows[3] < rhs.rows[3]
 	);
 }
 
@@ -17501,10 +17501,10 @@ HLML_INLINE bool4x3 operator<( const double4x3 &lhs, const double4x3 &rhs )
 HLML_INLINE bool4x3 operator<=( const double4x3 &lhs, const double4x3 &rhs )
 {
 	return bool4x3(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2],
-		lhs[3] <= rhs[3]
+		lhs.rows[0] <= rhs.rows[0],
+		lhs.rows[1] <= rhs.rows[1],
+		lhs.rows[2] <= rhs.rows[2],
+		lhs.rows[3] <= rhs.rows[3]
 	);
 }
 
@@ -17512,10 +17512,10 @@ HLML_INLINE bool4x3 operator<=( const double4x3 &lhs, const double4x3 &rhs )
 HLML_INLINE bool4x3 operator>( const double4x3 &lhs, const double4x3 &rhs )
 {
 	return bool4x3(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2],
-		lhs[3] > rhs[3]
+		lhs.rows[0] > rhs.rows[0],
+		lhs.rows[1] > rhs.rows[1],
+		lhs.rows[2] > rhs.rows[2],
+		lhs.rows[3] > rhs.rows[3]
 	);
 }
 
@@ -17523,10 +17523,10 @@ HLML_INLINE bool4x3 operator>( const double4x3 &lhs, const double4x3 &rhs )
 HLML_INLINE bool4x3 operator>=( const double4x3 &lhs, const double4x3 &rhs )
 {
 	return bool4x3(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2],
-		lhs[3] >= rhs[3]
+		lhs.rows[0] >= rhs.rows[0],
+		lhs.rows[1] >= rhs.rows[1],
+		lhs.rows[2] >= rhs.rows[2],
+		lhs.rows[3] >= rhs.rows[3]
 	);
 }
 
@@ -17534,10 +17534,10 @@ HLML_INLINE bool4x3 operator>=( const double4x3 &lhs, const double4x3 &rhs )
 HLML_INLINE double4x3 operator+( const double4x3 &lhs, const double rhs )
 {
 	return double4x3(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs,
-		lhs[3] + rhs
+		lhs.rows[0] + rhs,
+		lhs.rows[1] + rhs,
+		lhs.rows[2] + rhs,
+		lhs.rows[3] + rhs
 	);
 }
 
@@ -17551,10 +17551,10 @@ HLML_INLINE double4x3 operator+=( double4x3 &lhs, const double rhs )
 HLML_INLINE double4x3 operator+( const double4x3 &lhs, const double4x3 &rhs )
 {
 	return double4x3(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2],
-		lhs[3] + rhs[3]
+		lhs.rows[0] + rhs.rows[0],
+		lhs.rows[1] + rhs.rows[1],
+		lhs.rows[2] + rhs.rows[2],
+		lhs.rows[3] + rhs.rows[3]
 	);
 }
 
@@ -17568,10 +17568,10 @@ HLML_INLINE double4x3 operator+=( double4x3 &lhs, const double4x3 &rhs )
 HLML_INLINE double4x3 operator-( const double4x3 &lhs, const double rhs )
 {
 	return double4x3(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs,
-		lhs[3] - rhs
+		lhs.rows[0] - rhs,
+		lhs.rows[1] - rhs,
+		lhs.rows[2] - rhs,
+		lhs.rows[3] - rhs
 	);
 }
 
@@ -17585,10 +17585,10 @@ HLML_INLINE double4x3 operator-=( double4x3 &lhs, const double rhs )
 HLML_INLINE double4x3 operator-( const double4x3 &lhs, const double4x3 &rhs )
 {
 	return double4x3(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2],
-		lhs[3] - rhs[3]
+		lhs.rows[0] - rhs.rows[0],
+		lhs.rows[1] - rhs.rows[1],
+		lhs.rows[2] - rhs.rows[2],
+		lhs.rows[3] - rhs.rows[3]
 	);
 }
 
@@ -17602,10 +17602,10 @@ HLML_INLINE double4x3 operator-=( double4x3 &lhs, const double4x3 &rhs )
 HLML_INLINE double4x3 operator*( const double4x3 &lhs, const double rhs )
 {
 	return double4x3(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs,
-		lhs[3] * rhs
+		lhs.rows[0] * rhs,
+		lhs.rows[1] * rhs,
+		lhs.rows[2] * rhs,
+		lhs.rows[3] * rhs
 	);
 }
 
@@ -17619,10 +17619,10 @@ HLML_INLINE double4x3 operator*=( double4x3 &lhs, const double rhs )
 HLML_INLINE double4x3 operator*( const double4x3 &lhs, const double4x3 &rhs )
 {
 	return double4x3(
-		lhs[0] * rhs[0],
-		lhs[1] * rhs[1],
-		lhs[2] * rhs[2],
-		lhs[3] * rhs[3]
+		lhs.rows[0] * rhs.rows[0],
+		lhs.rows[1] * rhs.rows[1],
+		lhs.rows[2] * rhs.rows[2],
+		lhs.rows[3] * rhs.rows[3]
 	);
 }
 
@@ -17636,10 +17636,10 @@ HLML_INLINE double4x3 operator*=( double4x3 &lhs, const double4x3 &rhs )
 HLML_INLINE double4x3 operator/( const double4x3 &lhs, const double rhs )
 {
 	return double4x3(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs,
-		lhs[3] / rhs
+		lhs.rows[0] / rhs,
+		lhs.rows[1] / rhs,
+		lhs.rows[2] / rhs,
+		lhs.rows[3] / rhs
 	);
 }
 
@@ -17653,10 +17653,10 @@ HLML_INLINE double4x3 operator/=( double4x3 &lhs, const double rhs )
 HLML_INLINE double4x3 operator/( const double4x3 &lhs, const double4x3 &rhs )
 {
 	return double4x3(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1],
-		lhs[2] / rhs[2],
-		lhs[3] / rhs[3]
+		lhs.rows[0] / rhs.rows[0],
+		lhs.rows[1] / rhs.rows[1],
+		lhs.rows[2] / rhs.rows[2],
+		lhs.rows[3] / rhs.rows[3]
 	);
 }
 
@@ -17669,10 +17669,10 @@ HLML_INLINE double4x3 operator/=( double4x3 &lhs, const double4x3 &rhs )
 // ++s each component of the matrix and returns the result.
 HLML_INLINE double4x3 operator++( double4x3 &x )
 {
-	++x[0];
-	++x[1];
-	++x[2];
-	++x[3];
+	++x.rows[0];
+	++x.rows[1];
+	++x.rows[2];
+	++x.rows[3];
 	return x;
 }
 
@@ -17680,20 +17680,20 @@ HLML_INLINE double4x3 operator++( double4x3 &x )
 // post-fix
 HLML_INLINE double4x3 operator++( double4x3 &x, const int32_t )
 {
-	x[0]++;
-	x[1]++;
-	x[2]++;
-	x[3]++;
+	x.rows[0]++;
+	x.rows[1]++;
+	x.rows[2]++;
+	x.rows[3]++;
 	return x;
 }
 
 // --s each component of the matrix and returns the result.
 HLML_INLINE double4x3 operator--( double4x3 &x )
 {
-	--x[0];
-	--x[1];
-	--x[2];
-	--x[3];
+	--x.rows[0];
+	--x.rows[1];
+	--x.rows[2];
+	--x.rows[3];
 	return x;
 }
 
@@ -17701,10 +17701,10 @@ HLML_INLINE double4x3 operator--( double4x3 &x )
 // post-fix
 HLML_INLINE double4x3 operator--( double4x3 &x, const int32_t )
 {
-	x[0]--;
-	x[1]--;
-	x[2]--;
-	x[3]--;
+	x.rows[0]--;
+	x.rows[1]--;
+	x.rows[2]--;
+	x.rows[3]--;
 	return x;
 }
 
@@ -17713,10 +17713,10 @@ HLML_INLINE double4x3 operator--( double4x3 &x, const int32_t )
 HLML_INLINE double4x3 operator-( const double4x3 &x )
 {
 	return double4x3(
-		-x[0],
-		-x[1],
-		-x[2],
-		-x[3]
+		-x.rows[0],
+		-x.rows[1],
+		-x.rows[2],
+		-x.rows[3]
 	);
 }
 
@@ -17782,10 +17782,10 @@ HLML_INLINE double4x4 mul( const double4x3 &lhs, const double3x4 &rhs )
 HLML_INLINE int4x4 sign( const double4x4 &x )
 {
 	return int4x4(
-		sign( x[0] ),
-		sign( x[1] ),
-		sign( x[2] ),
-		sign( x[3] )
+		sign( x.rows[0] ),
+		sign( x.rows[1] ),
+		sign( x.rows[2] ),
+		sign( x.rows[3] )
 	);
 }
 
@@ -17793,10 +17793,10 @@ HLML_INLINE int4x4 sign( const double4x4 &x )
 HLML_INLINE double4x4 min( const double4x4 &x, const double4x4 &y )
 {
 	return double4x4(
-		min( x[0], y[0] ),
-		min( x[1], y[1] ),
-		min( x[2], y[2] ),
-		min( x[3], y[3] )
+		min( x.rows[0], y.rows[0] ),
+		min( x.rows[1], y.rows[1] ),
+		min( x.rows[2], y.rows[2] ),
+		min( x.rows[3], y.rows[3] )
 	);
 }
 
@@ -17804,10 +17804,10 @@ HLML_INLINE double4x4 min( const double4x4 &x, const double4x4 &y )
 HLML_INLINE double4x4 max( const double4x4 &x, const double4x4 &y )
 {
 	return double4x4(
-		max( x[0], y[0] ),
-		max( x[1], y[1] ),
-		max( x[2], y[2] ),
-		max( x[3], y[3] )
+		max( x.rows[0], y.rows[0] ),
+		max( x.rows[1], y.rows[1] ),
+		max( x.rows[2], y.rows[2] ),
+		max( x.rows[3], y.rows[3] )
 	);
 }
 
@@ -17815,10 +17815,10 @@ HLML_INLINE double4x4 max( const double4x4 &x, const double4x4 &y )
 HLML_INLINE double4x4 clamp( const double4x4 &x, const double4x4 &low, const double4x4 &high )
 {
 	return double4x4(
-		clamp( x[0], low[0], high[0] ),
-		clamp( x[1], low[1], high[1] ),
-		clamp( x[2], low[2], high[2] ),
-		clamp( x[3], low[3], high[3] )
+		clamp( x.rows[0], low.rows[0], high.rows[0] ),
+		clamp( x.rows[1], low.rows[1], high.rows[1] ),
+		clamp( x.rows[2], low.rows[2], high.rows[2] ),
+		clamp( x.rows[3], low.rows[3], high.rows[3] )
 	);
 }
 
@@ -17826,10 +17826,10 @@ HLML_INLINE double4x4 clamp( const double4x4 &x, const double4x4 &low, const dou
 HLML_INLINE double4x4 saturate( const double4x4 &x )
 {
 	return double4x4(
-		saturate( x[0] ),
-		saturate( x[1] ),
-		saturate( x[2] ),
-		saturate( x[3] )
+		saturate( x.rows[0] ),
+		saturate( x.rows[1] ),
+		saturate( x.rows[2] ),
+		saturate( x.rows[3] )
 	);
 }
 
@@ -17837,10 +17837,10 @@ HLML_INLINE double4x4 saturate( const double4x4 &x )
 HLML_INLINE double4x4 lerp( const double4x4 &lhs, const double4x4 &rhs, const double t )
 {
 	return double4x4(
-		lerp( lhs[0], rhs[0], t ),
-		lerp( lhs[1], rhs[1], t ),
-		lerp( lhs[2], rhs[2], t ),
-		lerp( lhs[3], rhs[3], t )
+		lerp( lhs.rows[0], rhs.rows[0], t ),
+		lerp( lhs.rows[1], rhs.rows[1], t ),
+		lerp( lhs.rows[2], rhs.rows[2], t ),
+		lerp( lhs.rows[3], rhs.rows[3], t )
 	);
 }
 
@@ -17848,10 +17848,10 @@ HLML_INLINE double4x4 lerp( const double4x4 &lhs, const double4x4 &rhs, const do
 HLML_INLINE bool operator==( const double4x4 &lhs, const double4x4 &rhs )
 {
 	return
-		lhs[0] == rhs[0] &&
-		lhs[1] == rhs[1] &&
-		lhs[2] == rhs[2] &&
-		lhs[3] == rhs[3];
+		lhs.rows[0] == rhs.rows[0] &&
+		lhs.rows[1] == rhs.rows[1] &&
+		lhs.rows[2] == rhs.rows[2] &&
+		lhs.rows[3] == rhs.rows[3];
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
@@ -17864,10 +17864,10 @@ HLML_INLINE bool operator!=( const double4x4 &lhs, const double4x4 &rhs )
 HLML_INLINE bool4x4 operator<( const double4x4 &lhs, const double4x4 &rhs )
 {
 	return bool4x4(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2],
-		lhs[3] < rhs[3]
+		lhs.rows[0] < rhs.rows[0],
+		lhs.rows[1] < rhs.rows[1],
+		lhs.rows[2] < rhs.rows[2],
+		lhs.rows[3] < rhs.rows[3]
 	);
 }
 
@@ -17875,10 +17875,10 @@ HLML_INLINE bool4x4 operator<( const double4x4 &lhs, const double4x4 &rhs )
 HLML_INLINE bool4x4 operator<=( const double4x4 &lhs, const double4x4 &rhs )
 {
 	return bool4x4(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2],
-		lhs[3] <= rhs[3]
+		lhs.rows[0] <= rhs.rows[0],
+		lhs.rows[1] <= rhs.rows[1],
+		lhs.rows[2] <= rhs.rows[2],
+		lhs.rows[3] <= rhs.rows[3]
 	);
 }
 
@@ -17886,10 +17886,10 @@ HLML_INLINE bool4x4 operator<=( const double4x4 &lhs, const double4x4 &rhs )
 HLML_INLINE bool4x4 operator>( const double4x4 &lhs, const double4x4 &rhs )
 {
 	return bool4x4(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2],
-		lhs[3] > rhs[3]
+		lhs.rows[0] > rhs.rows[0],
+		lhs.rows[1] > rhs.rows[1],
+		lhs.rows[2] > rhs.rows[2],
+		lhs.rows[3] > rhs.rows[3]
 	);
 }
 
@@ -17897,10 +17897,10 @@ HLML_INLINE bool4x4 operator>( const double4x4 &lhs, const double4x4 &rhs )
 HLML_INLINE bool4x4 operator>=( const double4x4 &lhs, const double4x4 &rhs )
 {
 	return bool4x4(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2],
-		lhs[3] >= rhs[3]
+		lhs.rows[0] >= rhs.rows[0],
+		lhs.rows[1] >= rhs.rows[1],
+		lhs.rows[2] >= rhs.rows[2],
+		lhs.rows[3] >= rhs.rows[3]
 	);
 }
 
@@ -17908,10 +17908,10 @@ HLML_INLINE bool4x4 operator>=( const double4x4 &lhs, const double4x4 &rhs )
 HLML_INLINE double4x4 operator+( const double4x4 &lhs, const double rhs )
 {
 	return double4x4(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs,
-		lhs[3] + rhs
+		lhs.rows[0] + rhs,
+		lhs.rows[1] + rhs,
+		lhs.rows[2] + rhs,
+		lhs.rows[3] + rhs
 	);
 }
 
@@ -17925,10 +17925,10 @@ HLML_INLINE double4x4 operator+=( double4x4 &lhs, const double rhs )
 HLML_INLINE double4x4 operator+( const double4x4 &lhs, const double4x4 &rhs )
 {
 	return double4x4(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2],
-		lhs[3] + rhs[3]
+		lhs.rows[0] + rhs.rows[0],
+		lhs.rows[1] + rhs.rows[1],
+		lhs.rows[2] + rhs.rows[2],
+		lhs.rows[3] + rhs.rows[3]
 	);
 }
 
@@ -17942,10 +17942,10 @@ HLML_INLINE double4x4 operator+=( double4x4 &lhs, const double4x4 &rhs )
 HLML_INLINE double4x4 operator-( const double4x4 &lhs, const double rhs )
 {
 	return double4x4(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs,
-		lhs[3] - rhs
+		lhs.rows[0] - rhs,
+		lhs.rows[1] - rhs,
+		lhs.rows[2] - rhs,
+		lhs.rows[3] - rhs
 	);
 }
 
@@ -17959,10 +17959,10 @@ HLML_INLINE double4x4 operator-=( double4x4 &lhs, const double rhs )
 HLML_INLINE double4x4 operator-( const double4x4 &lhs, const double4x4 &rhs )
 {
 	return double4x4(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2],
-		lhs[3] - rhs[3]
+		lhs.rows[0] - rhs.rows[0],
+		lhs.rows[1] - rhs.rows[1],
+		lhs.rows[2] - rhs.rows[2],
+		lhs.rows[3] - rhs.rows[3]
 	);
 }
 
@@ -17976,10 +17976,10 @@ HLML_INLINE double4x4 operator-=( double4x4 &lhs, const double4x4 &rhs )
 HLML_INLINE double4x4 operator*( const double4x4 &lhs, const double rhs )
 {
 	return double4x4(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs,
-		lhs[3] * rhs
+		lhs.rows[0] * rhs,
+		lhs.rows[1] * rhs,
+		lhs.rows[2] * rhs,
+		lhs.rows[3] * rhs
 	);
 }
 
@@ -17993,10 +17993,10 @@ HLML_INLINE double4x4 operator*=( double4x4 &lhs, const double rhs )
 HLML_INLINE double4x4 operator*( const double4x4 &lhs, const double4x4 &rhs )
 {
 	return double4x4(
-		lhs[0] * rhs[0],
-		lhs[1] * rhs[1],
-		lhs[2] * rhs[2],
-		lhs[3] * rhs[3]
+		lhs.rows[0] * rhs.rows[0],
+		lhs.rows[1] * rhs.rows[1],
+		lhs.rows[2] * rhs.rows[2],
+		lhs.rows[3] * rhs.rows[3]
 	);
 }
 
@@ -18010,10 +18010,10 @@ HLML_INLINE double4x4 operator*=( double4x4 &lhs, const double4x4 &rhs )
 HLML_INLINE double4x4 operator/( const double4x4 &lhs, const double rhs )
 {
 	return double4x4(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs,
-		lhs[3] / rhs
+		lhs.rows[0] / rhs,
+		lhs.rows[1] / rhs,
+		lhs.rows[2] / rhs,
+		lhs.rows[3] / rhs
 	);
 }
 
@@ -18027,10 +18027,10 @@ HLML_INLINE double4x4 operator/=( double4x4 &lhs, const double rhs )
 HLML_INLINE double4x4 operator/( const double4x4 &lhs, const double4x4 &rhs )
 {
 	return double4x4(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1],
-		lhs[2] / rhs[2],
-		lhs[3] / rhs[3]
+		lhs.rows[0] / rhs.rows[0],
+		lhs.rows[1] / rhs.rows[1],
+		lhs.rows[2] / rhs.rows[2],
+		lhs.rows[3] / rhs.rows[3]
 	);
 }
 
@@ -18043,10 +18043,10 @@ HLML_INLINE double4x4 operator/=( double4x4 &lhs, const double4x4 &rhs )
 // ++s each component of the matrix and returns the result.
 HLML_INLINE double4x4 operator++( double4x4 &x )
 {
-	++x[0];
-	++x[1];
-	++x[2];
-	++x[3];
+	++x.rows[0];
+	++x.rows[1];
+	++x.rows[2];
+	++x.rows[3];
 	return x;
 }
 
@@ -18054,20 +18054,20 @@ HLML_INLINE double4x4 operator++( double4x4 &x )
 // post-fix
 HLML_INLINE double4x4 operator++( double4x4 &x, const int32_t )
 {
-	x[0]++;
-	x[1]++;
-	x[2]++;
-	x[3]++;
+	x.rows[0]++;
+	x.rows[1]++;
+	x.rows[2]++;
+	x.rows[3]++;
 	return x;
 }
 
 // --s each component of the matrix and returns the result.
 HLML_INLINE double4x4 operator--( double4x4 &x )
 {
-	--x[0];
-	--x[1];
-	--x[2];
-	--x[3];
+	--x.rows[0];
+	--x.rows[1];
+	--x.rows[2];
+	--x.rows[3];
 	return x;
 }
 
@@ -18075,10 +18075,10 @@ HLML_INLINE double4x4 operator--( double4x4 &x )
 // post-fix
 HLML_INLINE double4x4 operator--( double4x4 &x, const int32_t )
 {
-	x[0]--;
-	x[1]--;
-	x[2]--;
-	x[3]--;
+	x.rows[0]--;
+	x.rows[1]--;
+	x.rows[2]--;
+	x.rows[3]--;
 	return x;
 }
 
@@ -18087,10 +18087,10 @@ HLML_INLINE double4x4 operator--( double4x4 &x, const int32_t )
 HLML_INLINE double4x4 operator-( const double4x4 &x )
 {
 	return double4x4(
-		-x[0],
-		-x[1],
-		-x[2],
-		-x[3]
+		-x.rows[0],
+		-x.rows[1],
+		-x.rows[2],
+		-x.rows[3]
 	);
 }
 
@@ -18195,7 +18195,7 @@ HLML_INLINE double4x4 inverse( const double4x4 &mat )
 		inv3 * sign1
 	);
 
-	double4 row0 = double4( result.rows[0][0], result.rows[1][0], result.rows[2][0], result.rows[3][0] );
+	double4 row0 = double4( result.rows[0].x, result.rows[1].x, result.rows[2].x, result.rows[3].x );
 	double4 dot0 = mat.rows[0] * row0;
 
 	const double dot1 = ( dot0.x + dot0.y ) + ( dot0.z + dot0.w );

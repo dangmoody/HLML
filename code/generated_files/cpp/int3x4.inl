@@ -13,16 +13,16 @@ namespace hlml
 
 int3x4::int3x4( const int32_t diagonal )
 {
-	rows[0][0] = diagonal;
-	rows[1][1] = diagonal;
-	rows[2][2] = diagonal;
+	rows[0].x = diagonal;
+	rows[1].y = diagonal;
+	rows[2].z = diagonal;
 }
 
 int3x4::int3x4( const int4 &diagonal )
 {
-	rows[0][0] = diagonal[0];
-	rows[1][1] = diagonal[1];
-	rows[2][2] = diagonal[2];
+	rows[0].x = diagonal.x;
+	rows[1].y = diagonal.y;
+	rows[2].z = diagonal.z;
 }
 
 // Sets each row of the matrix to the corresponding vector.
@@ -45,44 +45,44 @@ int3x4::int3x4( const int32_t m00, const int32_t m01, const int32_t m02, const i
 
 int3x4::int3x4( const int3x4 &mat )
 {
-	rows[0] = mat[0];
-	rows[1] = mat[1];
-	rows[2] = mat[2];
+	rows[0] = mat.rows[0];
+	rows[1] = mat.rows[1];
+	rows[2] = mat.rows[2];
 }
 
 int3x4::int3x4( const bool3x4 &mat )
 {
-	rows[0] = int4( mat[0] );
-	rows[1] = int4( mat[1] );
-	rows[2] = int4( mat[2] );
+	rows[0] = int4( mat.rows[0] );
+	rows[1] = int4( mat.rows[1] );
+	rows[2] = int4( mat.rows[2] );
 }
 
 int3x4::int3x4( const uint3x4 &mat )
 {
-	rows[0] = int4( mat[0] );
-	rows[1] = int4( mat[1] );
-	rows[2] = int4( mat[2] );
+	rows[0] = int4( mat.rows[0] );
+	rows[1] = int4( mat.rows[1] );
+	rows[2] = int4( mat.rows[2] );
 }
 
 int3x4::int3x4( const float3x4 &mat )
 {
-	rows[0] = int4( mat[0] );
-	rows[1] = int4( mat[1] );
-	rows[2] = int4( mat[2] );
+	rows[0] = int4( mat.rows[0] );
+	rows[1] = int4( mat.rows[1] );
+	rows[2] = int4( mat.rows[2] );
 }
 
 int3x4::int3x4( const double3x4 &mat )
 {
-	rows[0] = int4( mat[0] );
-	rows[1] = int4( mat[1] );
-	rows[2] = int4( mat[2] );
+	rows[0] = int4( mat.rows[0] );
+	rows[1] = int4( mat.rows[1] );
+	rows[2] = int4( mat.rows[2] );
 }
 
 int3x4 int3x4::operator=( const int3x4 &other )
 {
-	rows[0] = other[0];
-	rows[1] = other[1];
-	rows[2] = other[2];
+	rows[0] = other.rows[0];
+	rows[1] = other.rows[1];
+	rows[2] = other.rows[2];
 
 	return *this;
 }
