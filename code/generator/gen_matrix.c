@@ -1195,7 +1195,7 @@ void GenerateMatrixFiles( allocatorLinear_t *tempStorage, const char *generatedC
 		{
 			stringBuilder_t *codeHeader = StringBuilder_Create( tempStorage, KILOBYTES( 10 ) );
 
-			StringBuilder_Append( codeHeader, GEN_FILE_HEADER );
+			Gen_AppendGeneratedHeaderComment( codeHeader );
 
 			StringBuilder_Append( codeHeader,
 				"#pragma once\n"
@@ -1370,8 +1370,9 @@ void GenerateMatrixFiles( allocatorLinear_t *tempStorage, const char *generatedC
 		if ( generateInlFile ) {
 			stringBuilder_t *codeInl = StringBuilder_Create( tempStorage, KILOBYTES( 16 ) );
 
+			Gen_AppendGeneratedHeaderComment( codeInl );
+
 			StringBuilder_Appendf( codeInl,
-				GEN_FILE_HEADER
 				"#pragma once\n\n"
 			);
 
@@ -1536,8 +1537,9 @@ void GenerateMatrixFiles( allocatorLinear_t *tempStorage, const char *generatedC
 	{
 		stringBuilder_t *code = StringBuilder_Create( tempStorage, KILOBYTES( 512 ) );
 
+		Gen_AppendGeneratedHeaderComment( code );
+
 		StringBuilder_Append( code,
-			GEN_FILE_HEADER
 			"#pragma once\n"
 			"\n"
 		);

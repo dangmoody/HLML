@@ -84,10 +84,11 @@ int main( int argc, char **argv ) {
 	float64 start = Time_NowMS();
 
 	printf(
-		"HLML Generator.\n"
+		"HLML Generator v%d.%d.%d\n"
 		"\n"
 		"Generating...\n"
-		"\n"
+		"\n",
+		GEN_VERSION_MAJOR, GEN_VERSION_MINOR, GEN_VERSION_PATCH
 	);
 
 	allocatorLinear_t *allocator = Mem_CreateLinear( GIGABYTES( 6 ) );

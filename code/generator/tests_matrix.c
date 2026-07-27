@@ -1346,7 +1346,7 @@ void GenerateMatrixTests( allocatorLinear_t *tempStorage, const char *generatedT
 
 		stringBuilder_t *code = StringBuilder_Create( tempStorage, MEGABYTES( 4 ) );
 
-		StringBuilder_Append( code, GEN_FILE_HEADER );
+		Gen_AppendGeneratedHeaderComment( code );
 
 		Gen_AppendTestFileIncludes( tempStorage, code, flags );
 

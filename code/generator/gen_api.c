@@ -69,7 +69,7 @@ static void GenerateMainHeader(
 
 	stringBuilder_t *code = StringBuilder_Create( tempStorage, KILOBYTES( 4 ) );
 
-	StringBuilder_Append( code, GEN_FILE_HEADER );
+	Gen_AppendGeneratedHeaderComment( code );
 
 	StringBuilder_Append( code, "#pragma once\n\n" );
 
@@ -158,8 +158,9 @@ static void GenerateTypesHeader( allocatorLinear_t *tempStorage, const char *gen
 
 	stringBuilder_t *code = StringBuilder_Create( tempStorage, KILOBYTES( 2 ) );
 
+	Gen_AppendGeneratedHeaderComment( code );
+
 	StringBuilder_Append( code,
-		GEN_FILE_HEADER
 		"#pragma once\n"
 		"\n"
 	);
@@ -209,8 +210,9 @@ static void GenerateConstantsHeader( allocatorLinear_t *tempStorage, const char 
 
 	stringBuilder_t *code = StringBuilder_Create( tempStorage, KILOBYTES( 2 ) );
 
+	Gen_AppendGeneratedHeaderComment( code );
+
 	StringBuilder_Append( code,
-		GEN_FILE_HEADER
 		"#pragma once\n"
 		"\n"
 	);
@@ -264,8 +266,9 @@ static void GenerateDefinesHeader( allocatorLinear_t *tempStorage, const char *g
 
 	stringBuilder_t *code = StringBuilder_Create( tempStorage, KILOBYTES( 2 ) );
 
+	Gen_AppendGeneratedHeaderComment( code );
+
 	StringBuilder_Append( code,
-		GEN_FILE_HEADER
 		"#pragma once\n"
 		"\n"
 	);
@@ -332,8 +335,9 @@ static void GenerateSSEConstantsHeader( allocatorLinear_t *tempStorage, const ch
 
 	stringBuilder_t *code = StringBuilder_Create( tempStorage, KILOBYTES( 2 ) );
 
+	Gen_AppendGeneratedHeaderComment( code );
+
 	StringBuilder_Append( code,
-		GEN_FILE_HEADER
 		"#pragma once\n"
 		"\n"
 	);

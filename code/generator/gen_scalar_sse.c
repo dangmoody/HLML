@@ -100,8 +100,9 @@ void GenerateScalarFiles_SSE( allocatorLinear_t *tempStorage, const char *genera
 
 	stringBuilder_t *code = StringBuilder_Create( tempStorage, KILOBYTES( 12 ) );
 
+	Gen_AppendGeneratedHeaderComment( code );
+
 	StringBuilder_Append( code,
-		GEN_FILE_HEADER
 		"#pragma once\n"
 		"\n"
 	);
