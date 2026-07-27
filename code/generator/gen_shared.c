@@ -809,14 +809,28 @@ static void GenerateFunction_Equals( allocatorLinear_t *tempStorage, const typeI
 		Gen_AppendOpenBrace( code, flags, "" );
 		StringBuilder_Append(  code, "\treturn\n" );
 
-		if ( Gen_TypeIsVector( typeInfo ) && Gen_TypeIsFloatingPoint( typeInfo->type ) ) {
-			const char *floateqFuncStr = Gen_GetFuncName_Floateq( typeInfo->type );
+		if ( Gen_TypeIsVector( typeInfo ) ) {
+			if ( Gen_TypeIsFloatingPoint( typeInfo->type ) ) {
+				const char *floateqFuncStr = Gen_GetFuncName_Floateq( typeInfo->type );
 
-			for ( u32 i = 0; i < numIterations; i++ ) {
-				StringBuilder_Appendf( code, "\t\t%s( lhs[%d], rhs[%d] )", floateqFuncStr, i, i );
+				for ( u32 i = 0; i < numIterations; i++ ) {
+					const char componentName = GEN_COMPONENT_NAMES_VECTOR[i];
 
-				if ( i < numIterations - 1 ) {
-					StringBuilder_Append( code, " &&\n" );
+					StringBuilder_Appendf( code, "\t\t%s( lhs.%c, rhs.%c )", floateqFuncStr, componentName, componentName );
+
+					if ( i < numIterations - 1 ) {
+						StringBuilder_Append( code, " &&\n" );
+					}
+				}
+			} else {
+				for ( u32 i = 0; i < numIterations; i++ ) {
+					const char componentName = GEN_COMPONENT_NAMES_VECTOR[i];
+
+					StringBuilder_Appendf( code, "\t\tlhs.%c == rhs.%c", componentName, componentName );
+
+					if ( i < numIterations - 1 ) {
+						StringBuilder_Append( code, " &&\n" );
+					}
 				}
 			}
 		} else {
@@ -938,7 +952,9 @@ static void GenerateComponentWiseOperator( stringBuilder_t *code, const typeInfo
 	if ( Gen_TypeIsVector( lhsType ) ) {
 		if ( Gen_TypeIsScalar( rhsType ) ) {
 			for ( u32 i = 0; i < returnType->numCols; i++ ) {
-				StringBuilder_Appendf( code, "\t\tlhs[%d] %s rhs", i, opStr );
+				const char componentName = GEN_COMPONENT_NAMES_VECTOR[i];
+
+				StringBuilder_Appendf( code, "\t\tlhs.%c %s rhs", componentName, opStr );
 
 				if ( i < returnType->numCols - 1 ) {
 					StringBuilder_Append( code, "," );
@@ -948,7 +964,9 @@ static void GenerateComponentWiseOperator( stringBuilder_t *code, const typeInfo
 			}
 		} else {
 			for ( u32 i = 0; i < returnType->numCols; i++ ) {
-				StringBuilder_Appendf( code, "\t\tlhs[%d] %s rhs[%d]", i, opStr, i );
+				const char componentName = GEN_COMPONENT_NAMES_VECTOR[i];
+
+				StringBuilder_Appendf( code, "\t\tlhs.%c %s rhs.%c", componentName, opStr, componentName );
 
 				if ( i < returnType->numCols - 1 ) {
 					StringBuilder_Append( code, "," );
@@ -1036,14 +1054,26 @@ static void GenerateOperatorSingleParm( stringBuilder_t *code, const typeInfo_t 
 				Gen_AppendOpenBrace( code, flags, "\t" );
 			}
 
-			for ( u32 i = 0; i < numIterations; i++ ) {
-				StringBuilder_Appendf( code, "\t\t%sx[%d]", opStr, i );
+			if ( Gen_TypeIsVector( typeInfo ) ) {
+				for ( u32 i = 0; i < numIterations; i++ ) {
+					StringBuilder_Appendf( code, "\t\t%sx.%c", opStr, GEN_COMPONENT_NAMES_VECTOR[i] );
 
-				if ( i != numIterations - 1 ) {
-					StringBuilder_Append( code, "," );
+					if ( i != numIterations - 1 ) {
+						StringBuilder_Append( code, "," );
+					}
+
+					StringBuilder_Append( code, "\n" );
 				}
+			} else {
+				for ( u32 i = 0; i < numIterations; i++ ) {
+					StringBuilder_Appendf( code, "\t\t%sx[%d]", opStr, i );
 
-				StringBuilder_Append( code, "\n" );
+					if ( i != numIterations - 1 ) {
+						StringBuilder_Append( code, "," );
+					}
+
+					StringBuilder_Append( code, "\n" );
+				}
 			}
 
 			if ( generateConstructors ) {
@@ -1055,8 +1085,14 @@ static void GenerateOperatorSingleParm( stringBuilder_t *code, const typeInfo_t 
 		} else {
 			StringBuilder_Appendf( code, "HLML_INLINE %s operator%s( %s%sx )\n", typeInfo->fullTypeName, opStr, typeInfo->fullTypeName, strings->refDeclStr );
 			Gen_AppendOpenBrace( code, flags, "" );
-			for ( u32 i = 0; i < numIterations; i++ ) {
-				StringBuilder_Appendf( code, "\t%sx[%d];\n", opStr, i );
+			if ( Gen_TypeIsVector( typeInfo ) ) {
+				for ( u32 i = 0; i < numIterations; i++ ) {
+					StringBuilder_Appendf( code, "\t%sx.%c;\n", opStr, GEN_COMPONENT_NAMES_VECTOR[i] );
+				}
+			} else {
+				for ( u32 i = 0; i < numIterations; i++ ) {
+					StringBuilder_Appendf( code, "\t%sx[%d];\n", opStr, i );
+				}
 			}
 			StringBuilder_Append( code, "\treturn x;\n" );
 			StringBuilder_Append( code, "}\n\n" );
@@ -1067,8 +1103,14 @@ static void GenerateOperatorSingleParm( stringBuilder_t *code, const typeInfo_t 
 		StringBuilder_Append(  code, "// post-fix\n" );
 		StringBuilder_Appendf( code, "HLML_INLINE %s operator%s( %s%sx, const %s )\n", typeInfo->fullTypeName, opStr, typeInfo->fullTypeName, strings->refDeclStr, Gen_GetMemberTypeString( GEN_TYPE_INT ) );
 		Gen_AppendOpenBrace( code, flags, "" );
-		for ( u32 i = 0; i < numIterations; i++ ) {
-			StringBuilder_Appendf( code, "\tx[%d]%s;\n", i, opStr );
+		if ( Gen_TypeIsVector( typeInfo ) ) {
+			for ( u32 i = 0; i < numIterations; i++ ) {
+				StringBuilder_Appendf( code, "\tx.%c%s;\n", GEN_COMPONENT_NAMES_VECTOR[i], opStr );
+			}
+		} else {
+			for ( u32 i = 0; i < numIterations; i++ ) {
+				StringBuilder_Appendf( code, "\tx[%d]%s;\n", i, opStr );
+			}
 		}
 		StringBuilder_Append( code, "\treturn x;\n" );
 		StringBuilder_Append( code, "}\n\n" );
@@ -1296,11 +1338,7 @@ static void GenerateComponentWiseFunction( allocatorLinear_t *tempStorage, strin
 				StringBuilder_Appendf( code, "%s", parm->name );
 			} else {
 				if ( Gen_TypeIsVector( parm->typeInfo ) ) {
-					if ( generateOperators ) {
-						StringBuilder_Appendf( code, "%s[%d]", parm->name, i );
-					} else {
-						StringBuilder_Appendf( code, "%s%s%c", parm->name, strings->parmAccessOperatorStr, GEN_COMPONENT_NAMES_VECTOR[i] );
-					}
+					StringBuilder_Appendf( code, "%s%s%c", parm->name, strings->parmAccessOperatorStr, GEN_COMPONENT_NAMES_VECTOR[i] );
 				} else if ( Gen_TypeIsMatrix( parm->typeInfo ) ) {
 					if ( generateOperators ) {
 						StringBuilder_Appendf( code, "%s[%d]", parm->name, i );
