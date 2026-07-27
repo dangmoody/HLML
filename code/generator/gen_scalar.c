@@ -38,24 +38,25 @@ SOFTWARE.
 #include <stdio.h>
 #include <assert.h>
 
-static const char *Gen_GetConstantName( allocatorLinear_t *tempStorage, const genType_t type, const char *constantsPrefix, const char *constantName ) {
+static const char *Gen_GetConstantName( allocatorLinear_t *tempStorage, const genType_t type, const generatorStrings_t *strings, const char *constantName ) {
 	assert( tempStorage );
 	assert( type != GEN_TYPE_COUNT );
-	assert( constantsPrefix );
+	assert( strings );
+	assert( strings->constantsPrefix );
 	assert( constantName );
 
 	if ( type == GEN_TYPE_FLOAT ) {
-		return String_TPrintf( tempStorage, "(float)( %s%s )", constantsPrefix, constantName );
+		return String_TPrintf( tempStorage, "(float)( %s%s )", strings->constantsPrefix, constantName );
 	} else {
-		return String_TPrintf( tempStorage, "( %s%s )", constantsPrefix, constantName );
+		return String_TPrintf( tempStorage, "( %s%s )", strings->constantsPrefix, constantName );
 	}
 }
 
 // TODO(DM): rewrite to use Christer Ericson's method
-static void GenerateFunction_Floateq( allocatorLinear_t *tempStorage, const genType_t type, stringBuilder_t *code, const char *memberTypeString, const char *constantsPrefix, const generatorFlags_t flags ) {
+static void GenerateFunction_Floateq( allocatorLinear_t *tempStorage, const genType_t type, stringBuilder_t *code, const char *memberTypeString, const generatorStrings_t *strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( code );
-	assert( constantsPrefix );
+	assert( strings );
 
 	if ( !Gen_TypeIsFloatingPoint( type ) ) {
 		return;
@@ -64,7 +65,7 @@ static void GenerateFunction_Floateq( allocatorLinear_t *tempStorage, const genT
 	const char *floateqStr = Gen_GetFuncName_Floateq( type );
 	const char *floateqepsStr = Gen_GetFuncName_Floateq_eps( type );
 
-	const char *parmEpsilonStr = Gen_GetConstantName( tempStorage, type, constantsPrefix, GEN_CONSTANT_NAME_EPSILON );
+	const char *parmEpsilonStr = Gen_GetConstantName( tempStorage, type, strings, GEN_CONSTANT_NAME_EPSILON );
 
 	// floateq_eps
 	StringBuilder_Append(  code, "// Returns true if the two given floating-point numbers are close enough to each other within a user-specified margin of error to be considered equal.\n" );
@@ -103,10 +104,10 @@ static void GenerateFunction_Sign_Scalar( allocatorLinear_t *tempStorage, const 
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateFunction_Radians( allocatorLinear_t *tempStorage, const genType_t type, stringBuilder_t *code, const char *memberTypeString, const char *constantsPrefix, const generatorFlags_t flags ) {
+static void GenerateFunction_Radians( allocatorLinear_t *tempStorage, const genType_t type, stringBuilder_t *code, const char *memberTypeString, const generatorStrings_t *strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( code );
-	assert( constantsPrefix );
+	assert( strings );
 
 	if ( !Gen_TypeIsFloatingPoint( type ) ) {
 		return;
@@ -116,7 +117,7 @@ static void GenerateFunction_Radians( allocatorLinear_t *tempStorage, const genT
 
 	const char *oneHundredEightyStr = Gen_GetNumericLiteral( tempStorage, type, 180, 1 );
 
-	const char *piStr = Gen_GetConstantName( tempStorage, type, constantsPrefix, GEN_CONSTANT_NAME_PI );
+	const char *piStr = Gen_GetConstantName( tempStorage, type, strings, GEN_CONSTANT_NAME_PI );
 
 	StringBuilder_Append(  code, "// Returns the given degrees to radians.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s deg )\n", memberTypeString, radiansFuncStr, memberTypeString );
@@ -125,10 +126,10 @@ static void GenerateFunction_Radians( allocatorLinear_t *tempStorage, const genT
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateFunction_Degrees( allocatorLinear_t *tempStorage, const genType_t type, stringBuilder_t *code, const char *memberTypeString, const char *constantsPrefix, const generatorFlags_t flags ) {
+static void GenerateFunction_Degrees( allocatorLinear_t *tempStorage, const genType_t type, stringBuilder_t *code, const char *memberTypeString, const generatorStrings_t *strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( code );
-	assert( constantsPrefix );
+	assert( strings );
 
 	if ( !Gen_TypeIsFloatingPoint( type ) ) {
 		return;
@@ -138,7 +139,7 @@ static void GenerateFunction_Degrees( allocatorLinear_t *tempStorage, const genT
 
 	const char *oneHundredEightyStr = Gen_GetNumericLiteral( tempStorage, type, 180, 1 );
 
-	const char *piStr = Gen_GetConstantName( tempStorage, type, constantsPrefix, GEN_CONSTANT_NAME_PI );
+	const char *piStr = Gen_GetConstantName( tempStorage, type, strings, GEN_CONSTANT_NAME_PI );
 
 	StringBuilder_Append(  code, "// Returns the given radians to degrees.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s rad )\n", memberTypeString, degreesFuncStr, memberTypeString );
@@ -300,10 +301,10 @@ static void GenerateFunction_Smootherstep( allocatorLinear_t *tempStorage, const
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-void GenerateScalarFiles( allocatorLinear_t *tempStorage, const char *generatedCodePath, const char *constantsPrefix, const generatorFlags_t flags ) {
+void GenerateScalarFiles( allocatorLinear_t *tempStorage, const char *generatedCodePath, const generatorStrings_t *strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( generatedCodePath );
-	assert( constantsPrefix );
+	assert( strings );
 
 	bool32 cLinkage = flags & GENERATOR_FLAG_C_LINKAGE;
 	bool32 allowNamespace = flags & GENERATOR_FLAG_ALLOW_NAMESPACE;
@@ -366,9 +367,9 @@ void GenerateScalarFiles( allocatorLinear_t *tempStorage, const char *generatedC
 
 		StringBuilder_Appendf( code, "// %s\n", memberTypeString );
 
-		GenerateFunction_Floateq( tempStorage, type, code, memberTypeString, constantsPrefix, flags );
-		GenerateFunction_Radians( tempStorage, type, code, memberTypeString, constantsPrefix, flags );
-		GenerateFunction_Degrees( tempStorage, type, code, memberTypeString, constantsPrefix, flags );
+		GenerateFunction_Floateq( tempStorage, type, code, memberTypeString, strings, flags );
+		GenerateFunction_Radians( tempStorage, type, code, memberTypeString, strings, flags );
+		GenerateFunction_Degrees( tempStorage, type, code, memberTypeString, strings, flags );
 		GenerateFunction_Sign_Scalar( tempStorage, type, code, memberTypeString, flags );
 		GenerateFunction_MinMax_Scalar( tempStorage, type, code, memberTypeString, flags );
 		GenerateFunction_Clamp( tempStorage, type, code, memberTypeString, flags );

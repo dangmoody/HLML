@@ -165,6 +165,7 @@ typedef struct generatorStrings_t {
 	const char *refDeclStr;	// '&' declarator (C++ reference syntax) with spacing already applied per GENERATOR_FLAG_REFERENCE_OPERATOR_ATTACH_TO_VARIABLE - always '&', regardless of GENERATOR_FLAG_PARMS_ARE_POINTERS, since these are C++-only constructs (copy constructors, operator=, operator[], swizzle operators) that are never pointer-based
 	const char *ptrDeclStr;	// '*' declarator with spacing already applied per GENERATOR_FLAG_REFERENCE_OPERATOR_ATTACH_TO_VARIABLE - always '*', regardless of GENERATOR_FLAG_PARMS_ARE_POINTERS, for the handful of functions (equals/not-equals/all/any) that always take a pointer parameter regardless of language
 	const char *mainHeaderName;	// filename of the umbrella header that #includes every generated API file (hlml.h by default) - not derived from flags, just carried here from genConfig_t::mainHeaderName for convenience since strings is already threaded everywhere it's needed
+	const char *constantsPrefix;	// prefix applied to the constants generated in hlml_constants.h (HLML_PI, HLML_TAU, HLML_EPSILON, HLML_ROOT_2 by default) and to internal references to them (radians()/degrees()/floateq()) - not derived from flags, just carried here from genConfig_t::constantsPrefix for convenience since strings is already threaded everywhere it's needed
 } generatorStrings_t;
 
 typedef enum operatorSingleParmType_t {
