@@ -59,6 +59,15 @@ void Gen_AppendGeneratedHeaderComment( stringBuilder_t *sb, const generatorFlags
 	);
 }
 
+const char *Gen_GetPrefixedFilename( allocatorLinear_t *tempStorage, const generatorStrings_t *strings, const char *suffix ) {
+	assert( tempStorage );
+	assert( strings );
+	assert( strings->filePrefix );
+	assert( suffix );
+
+	return String_TPrintf( tempStorage, "%s%s", strings->filePrefix, suffix );
+}
+
 void Gen_AppendOpenBrace( stringBuilder_t *sb, const generatorFlags_t flags, const char *indent ) {
 	assert( sb );
 	assert( indent );

@@ -92,9 +92,10 @@ static void GenerateFunction_Lerp_SSE( allocatorLinear_t *tempStorage, stringBui
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-void GenerateScalarFiles_SSE( allocatorLinear_t *tempStorage, const char *generatedCodePath, const generatorFlags_t flags ) {
+void GenerateScalarFiles_SSE( allocatorLinear_t *tempStorage, const char *generatedCodePath, const generatorStrings_t *strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( generatedCodePath );
+	assert( strings );
 
 	bool32 cLinkage = flags & GENERATOR_FLAG_C_LINKAGE;
 
@@ -116,7 +117,7 @@ void GenerateScalarFiles_SSE( allocatorLinear_t *tempStorage, const char *genera
 		);
 	}
 
-	StringBuilder_Append( code, "#include \"" GEN_HEADER_CONSTANTS_SSE "\"\n\n" );
+	StringBuilder_Appendf( code, "#include \"%s\"\n\n", Gen_GetPrefixedFilename( tempStorage, strings, GEN_FILENAME_SUFFIX_CONSTANTS_SSE ) );
 
 	StringBuilder_Append( code, "#include <immintrin.h>\n" );
 
@@ -153,7 +154,7 @@ void GenerateScalarFiles_SSE( allocatorLinear_t *tempStorage, const char *genera
 		);
 	}
 
-	const char *fileNameHeader = String_TPrintf( tempStorage, "%s/%s.h", generatedCodePath, GEN_FILENAME_FUNCTIONS_SCALAR_SSE );
+	const char *fileNameHeader = String_TPrintf( tempStorage, "%s/%s.h", generatedCodePath, Gen_GetPrefixedFilename( tempStorage, strings, GEN_FILENAME_SUFFIX_FUNCTIONS_SCALAR_SSE ) );
 
 	FS_WriteEntireFile( fileNameHeader, code->str, code->length );
 

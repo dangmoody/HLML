@@ -740,13 +740,13 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 				// their member type - it isn't generated at all if "bool" was excluded from scalar_types (see
 				// Gen_GenerateAPIFiles in gen_api.c), so only reference it here if bool is actually enabled.
 				if ( scalarTypeEnabled[GEN_TYPE_BOOL] ) {
-					StringBuilder_Append( codeHeader, "#include \"" GEN_HEADER_TYPES "\"\n" );
+					StringBuilder_Appendf( codeHeader, "#include \"%s\"\n", Gen_GetPrefixedFilename( tempStorage, strings, GEN_FILENAME_SUFFIX_TYPES ) );
 				} else if ( Gen_TypeIsInteger( typeInfo->type ) ) {
 					// int32_t/uint32_t members normally get <stdint.h> transitively via hlml_types.h above -
 					// since that's skipped here, pull it in directly so this header still stands on its own.
 					StringBuilder_Append( codeHeader, "#include <stdint.h>\n" );
 				}
-				StringBuilder_Append( codeHeader, "#include \"" GEN_HEADER_DEFINES "\"\n" );
+				StringBuilder_Appendf( codeHeader, "#include \"%s\"\n", Gen_GetPrefixedFilename( tempStorage, strings, GEN_FILENAME_SUFFIX_DEFINES ) );
 
 				if ( generateSwizzles ) {
 #if GENERATE_TEMPLATES
@@ -1083,7 +1083,7 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 			}
 
 			StringBuilder_Appendf( codeInl, "#include \"%s.h\"\n\n", typeInfo->fullTypeName );
-			StringBuilder_Appendf( codeInl, "#include \"%s\"\n\n", GEN_HEADER_DEFINES );
+			StringBuilder_Appendf( codeInl, "#include \"%s\"\n\n", Gen_GetPrefixedFilename( tempStorage, strings, GEN_FILENAME_SUFFIX_DEFINES ) );
 
 			if ( generateConstructors ) {
 				// single scalar ctor
@@ -1573,10 +1573,7 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 			);
 		}
 
-		StringBuilder_Append( code,
-			"#include \"" GEN_HEADER_DEFINES "\"\n"
-			"\n"
-		);
+		StringBuilder_Appendf( code, "#include \"%s\"\n\n", Gen_GetPrefixedFilename( tempStorage, strings, GEN_FILENAME_SUFFIX_DEFINES ) );
 
 		if ( generateInlFile ) {
 			for ( u32 i = 0; i < typeInfosCount; i++ ) {
@@ -1590,7 +1587,7 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 
 		StringBuilder_Append( code, "\n" );
 
-		StringBuilder_Appendf( code, "#include \"" GEN_FILENAME_FUNCTIONS_SCALAR ".h\"\n\n" );
+		StringBuilder_Appendf( code, "#include \"%s.h\"\n\n", Gen_GetPrefixedFilename( tempStorage, strings, GEN_FILENAME_SUFFIX_FUNCTIONS_SCALAR ) );
 
 		if ( allowNamespace ) {
 			StringBuilder_Append( code, "#ifdef HLML_NAMESPACE\n" "namespace hlml\n" );
@@ -1654,7 +1651,7 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 			);
 		}
 
-		const char *fileNameHeader = String_TPrintf( tempStorage, "%s/%s.h", generatedCodePath, GEN_FILENAME_FUNCTIONS_VECTOR );
+		const char *fileNameHeader = String_TPrintf( tempStorage, "%s/%s.h", generatedCodePath, Gen_GetPrefixedFilename( tempStorage, strings, GEN_FILENAME_SUFFIX_FUNCTIONS_VECTOR ) );
 
 		FS_WriteEntireFile( fileNameHeader, code->str, code->length );
 

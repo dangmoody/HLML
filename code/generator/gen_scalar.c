@@ -327,9 +327,9 @@ void GenerateScalarFiles( allocatorLinear_t *tempStorage, const char *generatedC
 		);
 	}
 
+	StringBuilder_Appendf( code, "#include \"%s\"\n", Gen_GetPrefixedFilename( tempStorage, strings, GEN_FILENAME_SUFFIX_CONSTANTS ) );
+	StringBuilder_Appendf( code, "#include \"%s\"\n", Gen_GetPrefixedFilename( tempStorage, strings, GEN_FILENAME_SUFFIX_DEFINES ) );
 	StringBuilder_Append( code,
-		"#include \"" GEN_HEADER_CONSTANTS "\"\n"
-		"#include \"" GEN_HEADER_DEFINES "\"\n"
 		"\n"
 		"#include <math.h>\n"
 		"#include <stdint.h>\n"
@@ -398,7 +398,7 @@ void GenerateScalarFiles( allocatorLinear_t *tempStorage, const char *generatedC
 		);
 	}
 
-	const char *fileNameHeader = String_TPrintf( tempStorage, "%s/%s.h", generatedCodePath, GEN_FILENAME_FUNCTIONS_SCALAR );
+	const char *fileNameHeader = String_TPrintf( tempStorage, "%s/%s.h", generatedCodePath, Gen_GetPrefixedFilename( tempStorage, strings, GEN_FILENAME_SUFFIX_FUNCTIONS_SCALAR ) );
 
 	FS_WriteEntireFile( fileNameHeader, code->str, code->length );
 

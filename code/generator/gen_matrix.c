@@ -1569,7 +1569,7 @@ void GenerateMatrixFiles( allocatorLinear_t *tempStorage, const char *generatedC
 		}
 		StringBuilder_Append( code, "\n" );
 
-		StringBuilder_Appendf( code, "#include \"" GEN_FILENAME_FUNCTIONS_VECTOR ".h\"\n\n" );
+		StringBuilder_Appendf( code, "#include \"%s.h\"\n\n", Gen_GetPrefixedFilename( tempStorage, strings, GEN_FILENAME_SUFFIX_FUNCTIONS_VECTOR ) );
 
 		if ( allowNamespace ) {
 			StringBuilder_Append( code, "#ifdef HLML_NAMESPACE\n" "namespace hlml\n" );
@@ -1641,7 +1641,7 @@ void GenerateMatrixFiles( allocatorLinear_t *tempStorage, const char *generatedC
 			);
 		}
 
-		const char *fileNameHeader = String_TPrintf( tempStorage, "%s/%s.h", generatedCodePath, GEN_FILENAME_FUNCTIONS_MATRIX );
+		const char *fileNameHeader = String_TPrintf( tempStorage, "%s/%s.h", generatedCodePath, Gen_GetPrefixedFilename( tempStorage, strings, GEN_FILENAME_SUFFIX_FUNCTIONS_MATRIX ) );
 
 		FS_WriteEntireFile( fileNameHeader, code->str, code->length );
 

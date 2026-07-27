@@ -120,18 +120,18 @@ static void GenerateMainHeader(
 	}
 
 	// function file includes
-	StringBuilder_Appendf( code, "#include \"%s.h\"\n", GEN_FILENAME_FUNCTIONS_SCALAR );
+	StringBuilder_Appendf( code, "#include \"%s.h\"\n", Gen_GetPrefixedFilename( tempStorage, strings, GEN_FILENAME_SUFFIX_FUNCTIONS_SCALAR ) );
 	if ( generateSSE ) {
-		StringBuilder_Appendf( code, "#include \"%s.h\"\n", GEN_FILENAME_FUNCTIONS_SCALAR_SSE );
+		StringBuilder_Appendf( code, "#include \"%s.h\"\n", Gen_GetPrefixedFilename( tempStorage, strings, GEN_FILENAME_SUFFIX_FUNCTIONS_SCALAR_SSE ) );
 	}
-	StringBuilder_Appendf( code, "#include \"%s.h\"\n", GEN_FILENAME_FUNCTIONS_VECTOR );
+	StringBuilder_Appendf( code, "#include \"%s.h\"\n", Gen_GetPrefixedFilename( tempStorage, strings, GEN_FILENAME_SUFFIX_FUNCTIONS_VECTOR ) );
 	if ( generateSSE ) {
-		StringBuilder_Appendf( code, "#include \"%s.h\"\n", GEN_FILENAME_FUNCTIONS_VECTOR_SSE );
+		StringBuilder_Appendf( code, "#include \"%s.h\"\n", Gen_GetPrefixedFilename( tempStorage, strings, GEN_FILENAME_SUFFIX_FUNCTIONS_VECTOR_SSE ) );
 	}
 	if ( quaternionTypeInfosCount > 0 ) {
-		StringBuilder_Appendf( code, "#include \"%s.h\"\n", GEN_FILENAME_FUNCTIONS_QUATERNION );
+		StringBuilder_Appendf( code, "#include \"%s.h\"\n", Gen_GetPrefixedFilename( tempStorage, strings, GEN_FILENAME_SUFFIX_FUNCTIONS_QUATERNION ) );
 	}
-	StringBuilder_Appendf( code, "#include \"%s.h\"\n", GEN_FILENAME_FUNCTIONS_MATRIX );
+	StringBuilder_Appendf( code, "#include \"%s.h\"\n", Gen_GetPrefixedFilename( tempStorage, strings, GEN_FILENAME_SUFFIX_FUNCTIONS_MATRIX ) );
 	StringBuilder_Appendf( code, "\n" );
 
 	if ( cLinkage ) {
@@ -151,11 +151,14 @@ static void GenerateMainHeader(
 	printf( "OK.\n" );
 }
 
-static void GenerateTypesHeader( allocatorLinear_t *tempStorage, const char *generatedCodePath, const generatorFlags_t flags ) {
+static void GenerateTypesHeader( allocatorLinear_t *tempStorage, const char *generatedCodePath, const generatorStrings_t *strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( generatedCodePath );
+	assert( strings );
 
-	printf( "Generating \"%s/%s\"...", generatedCodePath, GEN_HEADER_TYPES );
+	const char *filename = Gen_GetPrefixedFilename( tempStorage, strings, GEN_FILENAME_SUFFIX_TYPES );
+
+	printf( "Generating \"%s/%s\"...", generatedCodePath, filename );
 
 	bool32 cLinkage = flags & GENERATOR_FLAG_C_LINKAGE;
 
@@ -194,7 +197,7 @@ static void GenerateTypesHeader( allocatorLinear_t *tempStorage, const char *gen
 		);
 	}
 
-	const char *filePathHeader = String_TPrintf( tempStorage, "%s/%s", generatedCodePath, GEN_HEADER_TYPES );
+	const char *filePathHeader = String_TPrintf( tempStorage, "%s/%s", generatedCodePath, filename );
 
 	FS_WriteEntireFile( filePathHeader, code->str, code->length );
 
@@ -209,7 +212,9 @@ static void GenerateConstantsHeader( allocatorLinear_t *tempStorage, const char 
 	assert( strings );
 	assert( strings->constantsPrefix );
 
-	printf( "Generating \"%s/%s\"...", generatedCodePath, GEN_HEADER_CONSTANTS );
+	const char *filename = Gen_GetPrefixedFilename( tempStorage, strings, GEN_FILENAME_SUFFIX_CONSTANTS );
+
+	printf( "Generating \"%s/%s\"...", generatedCodePath, filename );
 
 	bool32 cLinkage = flags & GENERATOR_FLAG_C_LINKAGE;
 
@@ -250,7 +255,7 @@ static void GenerateConstantsHeader( allocatorLinear_t *tempStorage, const char 
 		);
 	}
 
-	const char *filePathHeader = String_TPrintf( tempStorage, "%s/%s", generatedCodePath, GEN_HEADER_CONSTANTS );
+	const char *filePathHeader = String_TPrintf( tempStorage, "%s/%s", generatedCodePath, filename );
 
 	FS_WriteEntireFile( filePathHeader, code->str, code->length );
 
@@ -259,11 +264,14 @@ static void GenerateConstantsHeader( allocatorLinear_t *tempStorage, const char 
 	Mem_Reset( tempStorage );
 }
 
-static void GenerateDefinesHeader( allocatorLinear_t *tempStorage, const char *generatedCodePath, const generatorFlags_t flags ) {
+static void GenerateDefinesHeader( allocatorLinear_t *tempStorage, const char *generatedCodePath, const generatorStrings_t *strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( generatedCodePath );
+	assert( strings );
 
-	printf( "Generating \"%s/%s\"...", generatedCodePath, GEN_HEADER_DEFINES );
+	const char *filename = Gen_GetPrefixedFilename( tempStorage, strings, GEN_FILENAME_SUFFIX_DEFINES );
+
+	printf( "Generating \"%s/%s\"...", generatedCodePath, filename );
 
 	bool32 cLinkage = flags & GENERATOR_FLAG_C_LINKAGE;
 
@@ -319,7 +327,7 @@ static void GenerateDefinesHeader( allocatorLinear_t *tempStorage, const char *g
 		);
 	}
 
-	const char *filePathHeader = String_TPrintf( tempStorage, "%s/%s", generatedCodePath, GEN_HEADER_DEFINES );
+	const char *filePathHeader = String_TPrintf( tempStorage, "%s/%s", generatedCodePath, filename );
 
 	FS_WriteEntireFile( filePathHeader, code->str, code->length );
 
@@ -328,11 +336,14 @@ static void GenerateDefinesHeader( allocatorLinear_t *tempStorage, const char *g
 	Mem_Reset( tempStorage );
 }
 
-static void GenerateSSEConstantsHeader( allocatorLinear_t *tempStorage, const char *generatedCodePath, const generatorFlags_t flags ) {
+static void GenerateSSEConstantsHeader( allocatorLinear_t *tempStorage, const char *generatedCodePath, const generatorStrings_t *strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( generatedCodePath );
+	assert( strings );
 
-	printf( "Generating \"%s/%s\"...", generatedCodePath, GEN_HEADER_CONSTANTS_SSE );
+	const char *filename = Gen_GetPrefixedFilename( tempStorage, strings, GEN_FILENAME_SUFFIX_CONSTANTS_SSE );
+
+	printf( "Generating \"%s/%s\"...", generatedCodePath, filename );
 
 	bool cLinkage = flags & GENERATOR_FLAG_C_LINKAGE;
 
@@ -372,7 +383,7 @@ static void GenerateSSEConstantsHeader( allocatorLinear_t *tempStorage, const ch
 		);
 	}
 
-	const char *filePathHeader = String_TPrintf( tempStorage, "%s/%s", generatedCodePath, GEN_HEADER_CONSTANTS_SSE );
+	const char *filePathHeader = String_TPrintf( tempStorage, "%s/%s", generatedCodePath, filename );
 
 	FS_WriteEntireFile( filePathHeader, code->str, code->length );
 
@@ -418,17 +429,17 @@ void Gen_GenerateAPIFiles( allocatorLinear_t *tempStorage,
 
 	GenerateMainHeader( tempStorage, generatedCodePath, vectorTypeInfos, vectorTypeInfosCount, matrixTypeInfos, matrixTypeInfosCount, quaternionTypeInfosCount, strings, flags );
 	if ( generateBoolType ) {
-		GenerateTypesHeader( tempStorage, generatedCodePath, flags );
+		GenerateTypesHeader( tempStorage, generatedCodePath, strings, flags );
 	}
 	GenerateConstantsHeader( tempStorage, generatedCodePath, strings, flags );
-	GenerateDefinesHeader( tempStorage, generatedCodePath, flags );
+	GenerateDefinesHeader( tempStorage, generatedCodePath, strings, flags );
 
 	GenerateScalarFiles( tempStorage, generatedCodePath, strings, flags );
 	GenerateVectorFiles( tempStorage, generatedCodePath, vectorTypeInfos, vectorTypeInfosCount, strings, flags, componentCountMin, componentCountMax );
 
 	if ( flags & GENERATOR_FLAG_GENERATE_SSE ) {
-		GenerateSSEConstantsHeader( tempStorage, generatedCodePath, flags );
-		GenerateScalarFiles_SSE( tempStorage, generatedCodePath, flags );
+		GenerateSSEConstantsHeader( tempStorage, generatedCodePath, strings, flags );
+		GenerateScalarFiles_SSE( tempStorage, generatedCodePath, strings, flags );
 		GenerateVectorFiles_SSE( tempStorage, generatedCodePath, vectorTypeInfos, vectorTypeInfosCount, strings, flags );
 	}
 

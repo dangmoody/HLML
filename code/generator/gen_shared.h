@@ -33,19 +33,21 @@ SOFTWARE.
 typedef struct allocatorLinear_t allocatorLinear_t;
 typedef struct stringBuilder_t stringBuilder_t;
 
-#define GEN_HEADER_TYPES						"hlml_types.h"
-#define GEN_HEADER_CONSTANTS					"hlml_constants.h"
-#define GEN_HEADER_CONSTANTS_SSE				"hlml_constants_sse.h"
-#define GEN_HEADER_DEFINES						"hlml_defines.h"
+// suffixes only - the "file_prefix" config value (default "hlml_") is prepended at generation time,
+// see Gen_GetPrefixedFilename() in gen_shared.c
+#define GEN_FILENAME_SUFFIX_TYPES					"types.h"
+#define GEN_FILENAME_SUFFIX_CONSTANTS				"constants.h"
+#define GEN_FILENAME_SUFFIX_CONSTANTS_SSE			"constants_sse.h"
+#define GEN_FILENAME_SUFFIX_DEFINES				"defines.h"
 
-#define GEN_FILENAME_FUNCTIONS_SCALAR			"hlml_functions_scalar"
-#define GEN_FILENAME_FUNCTIONS_VECTOR			"hlml_functions_vector"
-#define GEN_FILENAME_FUNCTIONS_MATRIX			"hlml_functions_matrix"
-#define GEN_FILENAME_FUNCTIONS_QUATERNION		"hlml_functions_quaternion"
+#define GEN_FILENAME_SUFFIX_FUNCTIONS_SCALAR		"functions_scalar"
+#define GEN_FILENAME_SUFFIX_FUNCTIONS_VECTOR		"functions_vector"
+#define GEN_FILENAME_SUFFIX_FUNCTIONS_MATRIX		"functions_matrix"
+#define GEN_FILENAME_SUFFIX_FUNCTIONS_QUATERNION	"functions_quaternion"
 
-#define GEN_FILENAME_FUNCTIONS_SCALAR_SSE		"hlml_functions_scalar_sse"
-#define GEN_FILENAME_FUNCTIONS_VECTOR_SSE		"hlml_functions_vector_sse"
-//#define GEN_FILENAME_FUNCTIONS_MATRIX_SSE		"hlml_functions_matrix_sse"
+#define GEN_FILENAME_SUFFIX_FUNCTIONS_SCALAR_SSE	"functions_scalar_sse"
+#define GEN_FILENAME_SUFFIX_FUNCTIONS_VECTOR_SSE	"functions_vector_sse"
+//#define GEN_FILENAME_SUFFIX_FUNCTIONS_MATRIX_SSE	"functions_matrix_sse"
 
 // C specific maths functions
 #define GEN_BUILTIN_FUNCTION_NAME_SIN			"sin"
@@ -166,6 +168,7 @@ typedef struct generatorStrings_t {
 	const char *ptrDeclStr;	// '*' declarator with spacing already applied per GENERATOR_FLAG_REFERENCE_OPERATOR_ATTACH_TO_VARIABLE - always '*', regardless of GENERATOR_FLAG_PARMS_ARE_POINTERS, for the handful of functions (equals/not-equals/all/any) that always take a pointer parameter regardless of language
 	const char *mainHeaderName;	// filename of the umbrella header that #includes every generated API file (hlml.h by default) - not derived from flags, just carried here from genConfig_t::mainHeaderName for convenience since strings is already threaded everywhere it's needed
 	const char *constantsPrefix;	// prefix applied to the constants generated in hlml_constants.h (HLML_PI, HLML_TAU, HLML_EPSILON, HLML_ROOT_2 by default) and to internal references to them (radians()/degrees()/floateq()) - not derived from flags, just carried here from genConfig_t::constantsPrefix for convenience since strings is already threaded everywhere it's needed
+	const char *filePrefix;	// prefix applied to the generated filenames that aren't independently configurable (hlml_types.h, hlml_constants.h, hlml_constants_sse.h, hlml_defines.h, hlml_functions_*.h by default) - not derived from flags, just carried here from genConfig_t::filePrefix for convenience since strings is already threaded everywhere it's needed.  See Gen_GetPrefixedFilename().
 } generatorStrings_t;
 
 typedef enum operatorSingleParmType_t {
@@ -174,6 +177,10 @@ typedef enum operatorSingleParmType_t {
 } operatorSingleParmType_t;
 
 void				Gen_AppendGeneratedHeaderComment( stringBuilder_t *sb, const generatorFlags_t flags );
+
+// returns "<strings->filePrefix><suffix>", e.g. "hlml_functions_vector" for suffix "functions_vector" -
+// used to build the configurable filenames of hlml_types.h, hlml_constants.h, hlml_functions_*.h, etc.
+const char			*Gen_GetPrefixedFilename( allocatorLinear_t *tempStorage, const generatorStrings_t *strings, const char *suffix );
 
 genType_t			Gen_GetSupportedFloatingPointType( const genType_t type );
 

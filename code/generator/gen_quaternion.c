@@ -533,7 +533,7 @@ void GenerateQuaternionFiles( allocatorLinear_t *tempStorage, const char *genera
 		);
 	}
 
-	const char *fileNameHeader = String_TPrintf( tempStorage, "%s/%s.h", generatedCodePath, GEN_FILENAME_FUNCTIONS_QUATERNION );
+	const char *fileNameHeader = String_TPrintf( tempStorage, "%s/%s.h", generatedCodePath, Gen_GetPrefixedFilename( tempStorage, strings, GEN_FILENAME_SUFFIX_FUNCTIONS_QUATERNION ) );
 
 	FS_WriteEntireFile( fileNameHeader, code->str, code->length );
 

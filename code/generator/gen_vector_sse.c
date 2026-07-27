@@ -408,7 +408,7 @@ void GenerateVectorFiles_SSE( allocatorLinear_t *tempStorage, const char *genera
 		);
 	}
 
-	StringBuilder_Append( code, "#include \"" GEN_HEADER_CONSTANTS_SSE "\"\n" );
+	StringBuilder_Appendf( code, "#include \"%s\"\n", Gen_GetPrefixedFilename( tempStorage, strings, GEN_FILENAME_SUFFIX_CONSTANTS_SSE ) );
 
 	if ( cLinkage ) {
 		StringBuilder_Append( code,
@@ -451,7 +451,7 @@ void GenerateVectorFiles_SSE( allocatorLinear_t *tempStorage, const char *genera
 		);
 	}
 
-	const char *fileNameHeader = String_TPrintf( tempStorage, "%s/%s.h", generatedCodePath, GEN_FILENAME_FUNCTIONS_VECTOR_SSE );
+	const char *fileNameHeader = String_TPrintf( tempStorage, "%s/%s.h", generatedCodePath, Gen_GetPrefixedFilename( tempStorage, strings, GEN_FILENAME_SUFFIX_FUNCTIONS_VECTOR_SSE ) );
 
 	FS_WriteEntireFile( fileNameHeader, code->str, code->length );
 

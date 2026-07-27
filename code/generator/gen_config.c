@@ -124,6 +124,7 @@ void Gen_Config_SetDefaults( genConfig_t *outConfig ) {
 	outConfig->outputPath = GEN_CONFIG_OUTPUT_PATH_DEFAULT;
 	outConfig->constantsPrefix = GEN_CONFIG_CONSTANTS_PREFIX_DEFAULT;
 	outConfig->mainHeaderName = GEN_CONFIG_MAIN_HEADER_NAME_DEFAULT;
+	outConfig->filePrefix = GEN_CONFIG_FILE_PREFIX_DEFAULT;
 
 	// outConfig->flags (which includes generateQuaternions/generateNonSquareMatrices now that they're
 	// generatorFlagBits_t) is left at 0 - there's no language-agnostic default for it.  Gen_Config_LoadFromFile
@@ -307,6 +308,16 @@ bool32 Gen_Config_LoadFromFile( const char *filename, genConfig_t *outConfig ) {
 
 			// ownership of this heap string transfers to outConfig - it lives for the rest of the process
 			outConfig->mainHeaderName = mainHeaderNameDatum.u.s;
+		}
+	}
+
+	// file_prefix
+	{
+		toml_datum_t filePrefixDatum = toml_string_in( root, "file_prefix" );
+		if ( filePrefixDatum.ok ) {
+			// ownership of this heap string transfers to outConfig - it lives for the rest of the process.
+			// empty string is valid here (unlike main_header_name) - it just means no prefix at all.
+			outConfig->filePrefix = filePrefixDatum.u.s;
 		}
 	}
 

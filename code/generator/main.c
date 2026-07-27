@@ -133,6 +133,7 @@ int main( int argc, char **argv ) {
 	UpdateStringsFromFlags( allocator, config.flags, &generatorStrings );
 	generatorStrings.mainHeaderName = config.mainHeaderName;
 	generatorStrings.constantsPrefix = config.constantsPrefix;
+	generatorStrings.filePrefix = config.filePrefix;
 
 	Gen_GenerateAPIFiles( tempStorage, config.outputPath, languageName, vectorTypeInfos, vectorTypeInfosCount, quaternionTypeInfos, quaternionTypeInfosCount, matrixTypeInfos, matrixTypeInfosCount, &generatorStrings, config.flags, componentCountMin, componentCountMax );
 	Gen_GenerateTests( tempStorage, config.outputPath, languageName, vectorTypeInfos, vectorTypeInfosCount, quaternionTypeInfos, quaternionTypeInfosCount, matrixTypeInfos, matrixTypeInfosCount, &generatorStrings, config.flags, componentCountMin, componentCountMax );
