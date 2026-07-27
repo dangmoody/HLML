@@ -97,7 +97,7 @@ void Gen_GenerateTests( allocatorLinear_t *tempStorage,
 
 		Gen_AppendGeneratedHeaderComment( code, flags );
 
-		Gen_AppendTestFileIncludes( tempStorage, code, flags );
+		Gen_AppendTestFileIncludes( tempStorage, code, strings, flags );
 
 		// the "true" below (generateQuaternions) is never read for a scalar typeInfo: GenerateComponentWiseTests
 		// only checks it inside its quaternion test block, which is itself gated behind
@@ -148,7 +148,7 @@ void Gen_GenerateTests( allocatorLinear_t *tempStorage,
 		//}
 		// test_main lives one level below the API code root (see generatedTestsPath above), so this is
 		// always correct regardless of where the user points "output_path" at
-		StringBuilder_Appendf( sb, "#include \"../%s\"\n\n", GEN_HEADER_MAIN );
+		StringBuilder_Appendf( sb, "#include \"../%s\"\n\n", strings->mainHeaderName );
 
 		if ( flags & GENERATOR_FLAG_ALLOW_NAMESPACE ) {
 			StringBuilder_Append( sb,

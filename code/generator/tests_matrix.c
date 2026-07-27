@@ -1348,7 +1348,7 @@ void GenerateMatrixTests( allocatorLinear_t *tempStorage, const char *generatedT
 
 		Gen_AppendGeneratedHeaderComment( code, flags );
 
-		Gen_AppendTestFileIncludes( tempStorage, code, flags );
+		Gen_AppendTestFileIncludes( tempStorage, code, strings, flags );
 
 		// the "true" below (generateQuaternions) is never read for a matrix typeInfo: GenerateComponentWiseTests
 		// only checks it inside its quaternion test block, which is itself gated behind

@@ -49,6 +49,7 @@ static void GenerateMainHeader(
 	const typeInfo_t *vectorTypeInfos, const u32 vectorTypeInfosCount,
 	const typeInfo_t *matrixTypeInfos, const u32 matrixTypeInfosCount,
 	const u32 quaternionTypeInfosCount,
+	const generatorStrings_t *strings,
 	const generatorFlags_t flags )
 {
 	assert( tempStorage );
@@ -57,8 +58,10 @@ static void GenerateMainHeader(
 	assert( vectorTypeInfosCount );
 	assert( matrixTypeInfos );
 	assert( matrixTypeInfosCount );
+	assert( strings );
+	assert( strings->mainHeaderName );
 
-	printf( "Generating \"%s/%s\"...", generatedCodePath, GEN_HEADER_MAIN );
+	printf( "Generating \"%s/%s\"...", generatedCodePath, strings->mainHeaderName );
 
 	bool32 cLinkage = flags & GENERATOR_FLAG_C_LINKAGE;
 	bool32 generateConstructors = flags & GENERATOR_FLAG_GENERATE_CONSTRUCTORS;
@@ -139,7 +142,7 @@ static void GenerateMainHeader(
 		);
 	}
 
-	const char *filePathHeader = String_TPrintf( tempStorage, "%s/%s", generatedCodePath, GEN_HEADER_MAIN );
+	const char *filePathHeader = String_TPrintf( tempStorage, "%s/%s", generatedCodePath, strings->mainHeaderName );
 
 	FS_WriteEntireFile( filePathHeader, code->str, code->length );
 
@@ -414,7 +417,7 @@ void Gen_GenerateAPIFiles( allocatorLinear_t *tempStorage,
 		}
 	}
 
-	GenerateMainHeader( tempStorage, generatedCodePath, vectorTypeInfos, vectorTypeInfosCount, matrixTypeInfos, matrixTypeInfosCount, quaternionTypeInfosCount, flags );
+	GenerateMainHeader( tempStorage, generatedCodePath, vectorTypeInfos, vectorTypeInfosCount, matrixTypeInfos, matrixTypeInfosCount, quaternionTypeInfosCount, strings, flags );
 	if ( generateBoolType ) {
 		GenerateTypesHeader( tempStorage, generatedCodePath, flags );
 	}

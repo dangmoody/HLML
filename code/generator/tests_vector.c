@@ -1340,7 +1340,7 @@ void GenerateVectorTests( allocatorLinear_t *tempStorage, const char *generatedT
 
 		Gen_AppendGeneratedHeaderComment( code, flags );
 
-		Gen_AppendTestFileIncludes( tempStorage, code, flags );
+		Gen_AppendTestFileIncludes( tempStorage, code, strings, flags );
 
 		GenerateComponentWiseTests( tempStorage, code, typeInfo, &scalarType, strings, flags, generateQuaternions, scalarTypeEnabled );
 
@@ -1375,7 +1375,7 @@ void GenerateVectorTests( allocatorLinear_t *tempStorage, const char *generatedT
 
 			Gen_AppendGeneratedHeaderComment( code, flags );
 
-			Gen_AppendTestFileIncludes( tempStorage, code, flags );
+			Gen_AppendTestFileIncludes( tempStorage, code, strings, flags );
 
 			GenerateSwizzleFunctions( tempStorage, code, typeInfo, strings, flags, GEN_COMPONENT_NAMES_VECTOR, GenerateSwizzleFunc_Test, componentCountMin, componentCountMax );
 
@@ -1397,7 +1397,7 @@ void GenerateVectorTests( allocatorLinear_t *tempStorage, const char *generatedT
 
 				Gen_AppendGeneratedHeaderComment( code, flags );
 
-				Gen_AppendTestFileIncludes( tempStorage, code, flags );
+				Gen_AppendTestFileIncludes( tempStorage, code, strings, flags );
 
 				GenerateSwizzleFunctions( tempStorage, code, typeInfo, strings, flags, GEN_COMPONENT_NAMES_COLOR, GenerateSwizzleFunc_Test, componentCountMin, componentCountMax );
 
@@ -1434,7 +1434,7 @@ void GenerateQuaternionTests( allocatorLinear_t *tempStorage, const char *genera
 
 		Gen_AppendGeneratedHeaderComment( code, flags );
 
-		Gen_AppendTestFileIncludes( tempStorage, code, flags );
+		Gen_AppendTestFileIncludes( tempStorage, code, strings, flags );
 
 		Gen_GenerateTests_QuatMulScalar( tempStorage, code, typeInfo, &scalarType, strings, flags );
 		Gen_GenerateTests_QuatMulQuat( tempStorage, code, typeInfo, strings, flags );

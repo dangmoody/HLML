@@ -33,7 +33,6 @@ SOFTWARE.
 typedef struct allocatorLinear_t allocatorLinear_t;
 typedef struct stringBuilder_t stringBuilder_t;
 
-#define GEN_HEADER_MAIN							"hlml.h"
 #define GEN_HEADER_TYPES						"hlml_types.h"
 #define GEN_HEADER_CONSTANTS					"hlml_constants.h"
 #define GEN_HEADER_CONSTANTS_SSE				"hlml_constants_sse.h"
@@ -165,6 +164,7 @@ typedef struct generatorStrings_t {
 	const char *parmDereferenceStr;
 	const char *refDeclStr;	// '&' declarator (C++ reference syntax) with spacing already applied per GENERATOR_FLAG_REFERENCE_OPERATOR_ATTACH_TO_VARIABLE - always '&', regardless of GENERATOR_FLAG_PARMS_ARE_POINTERS, since these are C++-only constructs (copy constructors, operator=, operator[], swizzle operators) that are never pointer-based
 	const char *ptrDeclStr;	// '*' declarator with spacing already applied per GENERATOR_FLAG_REFERENCE_OPERATOR_ATTACH_TO_VARIABLE - always '*', regardless of GENERATOR_FLAG_PARMS_ARE_POINTERS, for the handful of functions (equals/not-equals/all/any) that always take a pointer parameter regardless of language
+	const char *mainHeaderName;	// filename of the umbrella header that #includes every generated API file (hlml.h by default) - not derived from flags, just carried here from genConfig_t::mainHeaderName for convenience since strings is already threaded everywhere it's needed
 } generatorStrings_t;
 
 typedef enum operatorSingleParmType_t {

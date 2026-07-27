@@ -22,6 +22,10 @@ output_path = "code/generated_files/cpp"
 # string is valid - it means no prefix at all (e.g. "PI" instead of "HLML_PI").
 constants_prefix = "HLML_"
 
+# Filename of the umbrella header that #includes every generated API file. Test files also #include
+# this to pull in the whole API. Cannot be empty.
+main_header_name = "hlml.h"
+
 # Which scalar kinds participate in vector/matrix generation.
 # NOTE: "bool" can only be excluded here if "generate_relational_operators" (below) is also disabled -
 # relational operators (<, <=, >, >=) on every other type return a bool vector/matrix, so bool is
