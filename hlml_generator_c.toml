@@ -17,6 +17,11 @@ language = "c"
 # subfolder (as the checked-in output does), put it in this path yourself, as below.
 output_path = "code/generated_files/c"
 
+# Prefix applied to the constants generated in hlml_constants.h (HLML_PI, HLML_TAU, HLML_EPSILON,
+# HLML_ROOT_2 by default) and to internal references to them (radians()/degrees()/floateq()). Empty
+# string is valid - it means no prefix at all (e.g. "PI" instead of "HLML_PI").
+constants_prefix = "HLML_"
+
 # Which scalar kinds participate in vector/matrix generation.
 # NOTE: "bool" can only be excluded here if "generate_relational_operators" (below) is also disabled -
 # relational operators (<, <=, >, >=) on every other type return a bool vector/matrix, so bool is

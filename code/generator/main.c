@@ -132,7 +132,7 @@ int main( int argc, char **argv ) {
 	generatorStrings_t generatorStrings = { 0 };
 	UpdateStringsFromFlags( allocator, config.flags, &generatorStrings );
 
-	Gen_GenerateAPIFiles( tempStorage, config.outputPath, languageName, vectorTypeInfos, vectorTypeInfosCount, quaternionTypeInfos, quaternionTypeInfosCount, matrixTypeInfos, matrixTypeInfosCount, &generatorStrings, config.flags, componentCountMin, componentCountMax );
+	Gen_GenerateAPIFiles( tempStorage, config.outputPath, languageName, vectorTypeInfos, vectorTypeInfosCount, quaternionTypeInfos, quaternionTypeInfosCount, matrixTypeInfos, matrixTypeInfosCount, &generatorStrings, config.constantsPrefix, config.flags, componentCountMin, componentCountMax );
 	Gen_GenerateTests( tempStorage, config.outputPath, languageName, vectorTypeInfos, vectorTypeInfosCount, quaternionTypeInfos, quaternionTypeInfosCount, matrixTypeInfos, matrixTypeInfosCount, &generatorStrings, config.flags, componentCountMin, componentCountMax );
 
 	float64 end = Time_NowMS();

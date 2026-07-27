@@ -39,6 +39,8 @@ typedef struct allocatorLinear_t allocatorLinear_t;
 
 #define GEN_CONFIG_OUTPUT_PATH_DEFAULT		"code/generated_files"
 
+#define GEN_CONFIG_CONSTANTS_PREFIX_DEFAULT	"HLML_"
+
 // a config file generates exactly one language per run - to generate both C and C++ output, run the
 // generator twice, once per language, each with its own config file
 typedef enum genLanguage_t {
@@ -56,6 +58,7 @@ typedef struct genConfig_t {
 	u32					componentCountMax;					// inclusive
 	generatorFlags_t	flags;
 	char				*outputPath;	// folder the API code is written into, with tests written to <outputPath>/tests/ beneath it; never has a trailing slash; language is NOT auto-appended - see Gen_GenerateAPIFiles/Gen_GenerateTests.  Either GEN_CONFIG_OUTPUT_PATH_DEFAULT (static storage) or an owned heap string from Gen_Config_LoadFromFile - never freed, config lives for the whole process
+	char				*constantsPrefix;	// prefix applied to the constants generated in hlml_constants.h (HLML_PI, HLML_TAU, HLML_EPSILON, HLML_ROOT_2 by default) and to internal references to them (radians()/degrees()/floateq()).  Empty string is valid - it means no prefix at all.  Either GEN_CONFIG_CONSTANTS_PREFIX_DEFAULT (static storage) or an owned heap string from Gen_Config_LoadFromFile - never freed, config lives for the whole process
 } genConfig_t;
 
 // fills in outConfig with sensible defaults.  outConfig->language is left as GEN_LANGUAGE_NONE and

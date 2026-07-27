@@ -122,6 +122,7 @@ void Gen_Config_SetDefaults( genConfig_t *outConfig ) {
 	outConfig->componentCountMax = GEN_CONFIG_COMPONENT_COUNT_MAX;
 
 	outConfig->outputPath = GEN_CONFIG_OUTPUT_PATH_DEFAULT;
+	outConfig->constantsPrefix = GEN_CONFIG_CONSTANTS_PREFIX_DEFAULT;
 
 	// outConfig->flags (which includes generateQuaternions/generateNonSquareMatrices now that they're
 	// generatorFlagBits_t) is left at 0 - there's no language-agnostic default for it.  Gen_Config_LoadFromFile
@@ -275,6 +276,16 @@ bool32 Gen_Config_LoadFromFile( const char *filename, genConfig_t *outConfig ) {
 
 			// ownership of this heap string transfers to outConfig - it lives for the rest of the process
 			outConfig->outputPath = outputPathDatum.u.s;
+		}
+	}
+
+	// constants_prefix
+	{
+		toml_datum_t constantsPrefixDatum = toml_string_in( root, "constants_prefix" );
+		if ( constantsPrefixDatum.ok ) {
+			// ownership of this heap string transfers to outConfig - it lives for the rest of the process.
+			// empty string is valid here (unlike output_path) - it just means no prefix at all.
+			outConfig->constantsPrefix = constantsPrefixDatum.u.s;
 		}
 	}
 

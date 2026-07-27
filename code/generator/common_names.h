@@ -40,8 +40,10 @@ Generators for some languages also might not use some of these for same/similar 
 (E.G: HLML generated C++ doesn't have "equals" and "not_equals" because we have the operators for that instead).
 */
 
-#define GEN_CONSTANT_NAME_PI						"HLML_PI"
-#define GEN_CONSTANT_NAME_EPSILON					"HLML_EPSILON"
+// suffixes only - the "constants_prefix" config value (default "HLML_") is prepended at generation time,
+// see Gen_GetConstantName() in gen_scalar.c
+#define GEN_CONSTANT_NAME_PI						"PI"
+#define GEN_CONSTANT_NAME_EPSILON					"EPSILON"
 
 #define GEN_FUNCTION_NAME_RADIANS					"radians"
 #define GEN_FUNCTION_NAME_DEGREES					"degrees"
