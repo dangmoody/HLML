@@ -53,7 +53,7 @@ static const char *Gen_GetConstantName( allocatorLinear_t *tempStorage, const ge
 }
 
 // TODO(DM): rewrite to use Christer Ericson's method
-static void GenerateFunction_Floateq( allocatorLinear_t *tempStorage, const genType_t type, stringBuilder_t *code, const char *memberTypeString, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+static void GenerateFunction_Floateq( allocatorLinear_t *tempStorage, const genType_t type, stringBuilder_t *code, const char *memberTypeString, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle ) {
 	assert( tempStorage );
 	assert( code );
 	assert( strings );
@@ -62,8 +62,8 @@ static void GenerateFunction_Floateq( allocatorLinear_t *tempStorage, const genT
 		return;
 	}
 
-	const char *floateqStr = Gen_GetFuncName_Floateq( type );
-	const char *floateqepsStr = Gen_GetFuncName_Floateq_eps( type );
+	const char *floateqStr = Gen_GetFuncName_Floateq( tempStorage, caseStyle, type );
+	const char *floateqepsStr = Gen_GetFuncName_Floateq_eps( tempStorage, caseStyle, type );
 
 	const char *parmEpsilonStr = Gen_GetConstantName( tempStorage, type, strings, GEN_CONSTANT_NAME_EPSILON );
 
@@ -367,7 +367,7 @@ void GenerateScalarFiles( allocatorLinear_t *tempStorage, const char *generatedC
 
 		StringBuilder_Appendf( code, "// %s\n", memberTypeString );
 
-		GenerateFunction_Floateq( tempStorage, type, code, memberTypeString, strings, flags );
+		GenerateFunction_Floateq( tempStorage, type, code, memberTypeString, strings, flags, caseStyle );
 		GenerateFunction_Radians( tempStorage, type, code, memberTypeString, strings, flags, caseStyle );
 		GenerateFunction_Degrees( tempStorage, type, code, memberTypeString, strings, flags, caseStyle );
 		GenerateFunction_Sign_Scalar( tempStorage, type, code, memberTypeString, flags, caseStyle );

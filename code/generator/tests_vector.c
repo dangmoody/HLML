@@ -597,7 +597,7 @@ static void Gen_GenerateTests_Normalize( allocatorLinear_t *tempStorage, stringB
 
 	const char *equalsFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_EQUALS );
 
-	const char *floateqStr = Gen_GetFuncName_Floateq( typeInfo->type );
+	const char *floateqStr = Gen_GetFuncName_Floateq( tempStorage, caseStyle, typeInfo->type );
 	const char *lengthFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, caseStyle, GEN_FUNCTION_NAME_LENGTH );
 
 	const genType_t floatingPointType = Gen_GetSupportedFloatingPointType( typeInfo->type );
@@ -776,7 +776,7 @@ static void Gen_GenerateTests_Pack( allocatorLinear_t *tempStorage, stringBuilde
 	}
 }
 
-static void GenerateSwizzleFunc_Test( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, const u32 numSwizzleComponents, const char *swizzleStr ) {
+static void GenerateSwizzleFunc_Test( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle, const u32 numSwizzleComponents, const char *swizzleStr ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -824,7 +824,7 @@ static void GenerateSwizzleFunc_Test( allocatorLinear_t *tempStorage, stringBuil
 		StringBuilder_Appendf( code, "\t\tvecCopy.%s = vecCopy.%s;\n", swizzleStr, reverseSwizzle );
 		StringBuilder_Appendf( code, "\n" );
 		if ( Gen_TypeIsFloatingPoint( typeInfo->type ) ) {
-			const char *floateqStr = Gen_GetFuncName_Floateq( typeInfo->type );
+			const char *floateqStr = Gen_GetFuncName_Floateq( tempStorage, caseStyle, typeInfo->type );
 
 			for ( u32 i = 0; i < numSwizzleComponents; i++ ) {
 				const char componentName = swizzleStr[i];
@@ -1344,7 +1344,7 @@ void GenerateVectorTests( allocatorLinear_t *tempStorage, const char *generatedT
 
 		GenerateComponentWiseTests( tempStorage, code, typeInfo, &scalarType, strings, flags, caseStyle, generateQuaternions, scalarTypeEnabled );
 
-		GenerateTests_CtorConversion( tempStorage, code, typeInfo, strings, flags, componentCountMin, scalarTypeEnabled );
+		GenerateTests_CtorConversion( tempStorage, code, typeInfo, strings, flags, caseStyle, componentCountMin, scalarTypeEnabled );
 
 		Gen_GenerateTests_Lengthsq( tempStorage, code, typeInfo, strings, flags, caseStyle );
 		Gen_GenerateTests_Length( tempStorage, code, typeInfo, strings, flags, caseStyle );
@@ -1377,7 +1377,7 @@ void GenerateVectorTests( allocatorLinear_t *tempStorage, const char *generatedT
 
 			Gen_AppendTestFileIncludes( tempStorage, code, strings, flags );
 
-			GenerateSwizzleFunctions( tempStorage, code, typeInfo, strings, flags, GEN_COMPONENT_NAMES_VECTOR, GenerateSwizzleFunc_Test, componentCountMin, componentCountMax );
+			GenerateSwizzleFunctions( tempStorage, code, typeInfo, strings, flags, caseStyle, GEN_COMPONENT_NAMES_VECTOR, GenerateSwizzleFunc_Test, componentCountMin, componentCountMax );
 
 			const char *fileNameHeader = String_TPrintf( tempStorage, "%s/test_%s_swizzle_%s.%s", generatedTestsPath, typeInfo->fullTypeName, GEN_COMPONENT_NAMES_VECTOR, languageName );
 			FS_WriteEntireFile( fileNameHeader, code->str, code->length );
@@ -1399,7 +1399,7 @@ void GenerateVectorTests( allocatorLinear_t *tempStorage, const char *generatedT
 
 				Gen_AppendTestFileIncludes( tempStorage, code, strings, flags );
 
-				GenerateSwizzleFunctions( tempStorage, code, typeInfo, strings, flags, GEN_COMPONENT_NAMES_COLOR, GenerateSwizzleFunc_Test, componentCountMin, componentCountMax );
+				GenerateSwizzleFunctions( tempStorage, code, typeInfo, strings, flags, caseStyle, GEN_COMPONENT_NAMES_COLOR, GenerateSwizzleFunc_Test, componentCountMin, componentCountMax );
 
 				const char *fileNameHeader = String_TPrintf( tempStorage, "%s/test_%s_swizzle_%s.%s", generatedTestsPath, typeInfo->fullTypeName, GEN_COMPONENT_NAMES_COLOR, languageName );
 				FS_WriteEntireFile( fileNameHeader, code->str, code->length );

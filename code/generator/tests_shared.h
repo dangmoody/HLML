@@ -109,6 +109,7 @@ void		GenerateTests_CtorConversion( allocatorLinear_t *tempStorage,
 										  const typeInfo_t *typeInfo,
 										  const generatorStrings_t *strings,
 										  const generatorFlags_t flags,
+										  const genFunctionNameCase_t caseStyle,
 										  const u32 componentCountMin,
 										  const bool32 *scalarTypeEnabled );
 

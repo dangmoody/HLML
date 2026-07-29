@@ -497,7 +497,7 @@ bool32 SwizzleTypeIsWritable( const char *swizzleStr, const u32 numSwizzleCompon
 }
 
 #if !GENERATE_TEMPLATES
-static void GenerateSwizzleFunc_Type( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, const u32 numSwizzleComponents, const char *swizzleStr ) {
+static void GenerateSwizzleFunc_Type( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle, const u32 numSwizzleComponents, const char *swizzleStr ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -533,7 +533,7 @@ static void GenerateSwizzleFunc_Type( allocatorLinear_t *tempStorage, stringBuil
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-parameter"
-static void GenerateSwizzleFunc_Members( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, const u32 numSwizzleComponents, const char *swizzleStr ) {
+static void GenerateSwizzleFunc_Members( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle, const u32 numSwizzleComponents, const char *swizzleStr ) {
 #pragma clang diagnostic pop
 	assert( tempStorage );
 	assert( code );
@@ -571,7 +571,7 @@ static void GenerateSwizzleFunc_Members( allocatorLinear_t *tempStorage, stringB
 }
 
 #if !GENERATE_TEMPLATES
-static void GenerateSwizzleFunc_OperatorDefinitions( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, const u32 numSwizzleComponents, const char *swizzleStr ) {
+static void GenerateSwizzleFunc_OperatorDefinitions( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle, const u32 numSwizzleComponents, const char *swizzleStr ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -627,7 +627,7 @@ static void GenerateSwizzleFunc_OperatorDefinitions( allocatorLinear_t *tempStor
 // for vec2, for example, you can count all the 2-component swizzles by counting in base 2 from 0 through to 2^2
 // this can then be repeated for generating the 3-component swizzles for vec2 types by counting in base 2 from 0 through to 2^3 and so on
 // the same logic applies for vec3 and vec4
-void GenerateSwizzleFunctions( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, const char *componentNames, generateSwizzleFunc_t generateSwizzleFunc, const u32 componentCountMin, const u32 componentCountMax ) {
+void GenerateSwizzleFunctions( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle, const char *componentNames, generateSwizzleFunc_t generateSwizzleFunc, const u32 componentCountMin, const u32 componentCountMax ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -675,7 +675,7 @@ void GenerateSwizzleFunctions( allocatorLinear_t *tempStorage, stringBuilder_t *
 
 			swizzleStr[swizzleComponentIndex] = 0;
 
-			generateSwizzleFunc( tempStorage, code, typeInfo, strings, flags, swizzleComponentIndex, swizzleStr );
+			generateSwizzleFunc( tempStorage, code, typeInfo, strings, flags, caseStyle, swizzleComponentIndex, swizzleStr );
 		}
 	}
 }
@@ -851,12 +851,12 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 				if ( generateSwizzles ) {
 					StringBuilder_Appendf( codeHeader, "\n\t\t// swizzles\n" );
 
-					GenerateSwizzleFunctions( tempStorage, codeHeader, typeInfo, strings, flags, GEN_COMPONENT_NAMES_VECTOR, GenerateSwizzleFunc_Members, componentCountMin, componentCountMax );
+					GenerateSwizzleFunctions( tempStorage, codeHeader, typeInfo, strings, flags, caseStyle, GEN_COMPONENT_NAMES_VECTOR, GenerateSwizzleFunc_Members, componentCountMin, componentCountMax );
 
 					StringBuilder_Append( codeHeader, "\n" );
 
 					if ( generateRgba ) {
-						GenerateSwizzleFunctions( tempStorage, codeHeader, typeInfo, strings, flags, GEN_COMPONENT_NAMES_COLOR, GenerateSwizzleFunc_Members, componentCountMin, componentCountMax );
+						GenerateSwizzleFunctions( tempStorage, codeHeader, typeInfo, strings, flags, caseStyle, GEN_COMPONENT_NAMES_COLOR, GenerateSwizzleFunc_Members, componentCountMin, componentCountMax );
 					}
 				}
 
@@ -1391,8 +1391,8 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 				}
 				StringBuilder_Append( codeHeader, "\n" );
 
-				GenerateSwizzleFunctions( tempStorage, codeHeader, typeInfo, strings, flags, GEN_COMPONENT_NAMES_VECTOR, GenerateSwizzleFunc_Type, componentCountMin, componentCountMax );
-				GenerateSwizzleFunctions( tempStorage, codeHeader, typeInfo, strings, flags, GEN_COMPONENT_NAMES_COLOR, GenerateSwizzleFunc_Type, componentCountMin, componentCountMax );
+				GenerateSwizzleFunctions( tempStorage, codeHeader, typeInfo, strings, flags, caseStyle, GEN_COMPONENT_NAMES_VECTOR, GenerateSwizzleFunc_Type, componentCountMin, componentCountMax );
+				GenerateSwizzleFunctions( tempStorage, codeHeader, typeInfo, strings, flags, caseStyle, GEN_COMPONENT_NAMES_COLOR, GenerateSwizzleFunc_Type, componentCountMin, componentCountMax );
 
 				if ( allowNamespace ) {
 					StringBuilder_Append( codeInl,
@@ -1429,11 +1429,11 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 				StringBuilder_Appendf( codeInl, "#include \"%s_swizzle_types.h\"\n\n", typeInfo->fullTypeName );
 
 				StringBuilder_Append( codeInl, "// xyzw swizzles\n" );
-				GenerateSwizzleFunctions( tempStorage, codeInl, typeInfo, strings, flags, GEN_COMPONENT_NAMES_VECTOR, GenerateSwizzleFunc_OperatorDefinitions, componentCountMin, componentCountMax );
+				GenerateSwizzleFunctions( tempStorage, codeInl, typeInfo, strings, flags, caseStyle, GEN_COMPONENT_NAMES_VECTOR, GenerateSwizzleFunc_OperatorDefinitions, componentCountMin, componentCountMax );
 				StringBuilder_Append( codeInl, "\n" );
 
 				StringBuilder_Append( codeInl, "// rgba swizzles\n" );
-				GenerateSwizzleFunctions( tempStorage, codeInl, typeInfo, strings, flags, GEN_COMPONENT_NAMES_COLOR, GenerateSwizzleFunc_OperatorDefinitions, componentCountMin, componentCountMax );
+				GenerateSwizzleFunctions( tempStorage, codeInl, typeInfo, strings, flags, caseStyle, GEN_COMPONENT_NAMES_COLOR, GenerateSwizzleFunc_OperatorDefinitions, componentCountMin, componentCountMax );
 
 				if ( allowNamespace ) {
 					StringBuilder_Append( codeInl,

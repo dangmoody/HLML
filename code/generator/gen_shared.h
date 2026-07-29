@@ -235,8 +235,8 @@ bool32				Gen_TypeIsMatrix( const typeInfo_t *typeInfo );
 
 typeInfo_t			Gen_GetScalarType( const typeInfo_t *typeInfo );
 
-const char			*Gen_GetFuncName_Floateq( const genType_t type );
-const char			*Gen_GetFuncName_Floateq_eps( const genType_t type );
+const char			*Gen_GetFuncName_Floateq( allocatorLinear_t *tempStorage, const genFunctionNameCase_t caseStyle, const genType_t type );
+const char			*Gen_GetFuncName_Floateq_eps( allocatorLinear_t *tempStorage, const genFunctionNameCase_t caseStyle, const genType_t type );
 
 const char			*Gen_GetFuncName_Scalar( allocatorLinear_t *tempStorage, const genType_t type, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle, const char *functionName );
 const char			*Gen_GetFuncName_Vector( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle, const char *functionName );

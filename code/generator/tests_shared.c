@@ -161,7 +161,7 @@ void Gen_GenerateParametricTestDefinition_Generic_SSE( allocatorLinear_t *tempSt
 	const char *funcToCall = Gen_GetFuncName_Vector_SSE( tempStorage, typeInfo, flags, caseStyle, def->funcName );
 	const char *testName = def->testNameOverride ? def->testNameOverride : Gen_GetTestName_SSE( tempStorage, typeInfo, def->funcName );
 
-	const char *floateqFuncStr = Gen_GetFuncName_Floateq( def->returnType->type );
+	const char *floateqFuncStr = Gen_GetFuncName_Floateq( tempStorage, caseStyle, def->returnType->type );
 	const char *equalsFuncStr = NULL;
 	const char *returnPassByStr = NULL;
 	const char *referenceStr = NULL;
@@ -312,7 +312,7 @@ void Gen_GenerateParametricTestDefinition_Generic( allocatorLinear_t *tempStorag
 	// Scalar return the name unchanged when mangling is on), but under PascalCase/camelCase the mangled
 	// name must still be re-cased, so the producer functions have to run in both mangling states.
 	const char *funcToCall = def->funcName;
-	if ( !def->funcNameIsResolved && !String_Equals( def->funcName, Gen_GetFuncName_Floateq( typeInfo->type ) ) ) {
+	if ( !def->funcNameIsResolved && !String_Equals( def->funcName, Gen_GetFuncName_Floateq( tempStorage, caseStyle, typeInfo->type ) ) ) {
 		if ( Gen_TypeIsScalar( typeInfo ) ) {
 			funcToCall = Gen_GetFuncName_Scalar( tempStorage, typeInfo->type, flags, caseStyle, def->funcName );
 		} else {
@@ -322,7 +322,7 @@ void Gen_GenerateParametricTestDefinition_Generic( allocatorLinear_t *tempStorag
 
 	const char *testName = def->testNameOverride ? def->testNameOverride : Gen_GetTestName( tempStorage, typeInfo, def->funcName );
 
-	const char *floateqFuncStr = Gen_GetFuncName_Floateq( def->returnType->type );
+	const char *floateqFuncStr = Gen_GetFuncName_Floateq( tempStorage, caseStyle, def->returnType->type );
 	const char *equalsFuncStr = NULL;
 	const char *passByStr = NULL;
 	const char *referenceStr = NULL;
@@ -415,7 +415,7 @@ static void Gen_GenerateParametricTestDefinition_ComponentWise_SSE( allocatorLin
 	{
 		// HACK(DM): floateq doesnt follow the same naming convention as the other scalar functions
 		// so we have to check for that specifically
-		if ( !String_Equals( def->funcName, Gen_GetFuncName_Floateq( typeInfo->type ) ) ) {
+		if ( !String_Equals( def->funcName, Gen_GetFuncName_Floateq( tempStorage, caseStyle, typeInfo->type ) ) ) {
 			if ( Gen_TypeIsScalar( typeInfo ) ) {
 				funcToCall = Gen_GetFuncName_Scalar_SSE( tempStorage, typeInfo->type, flags, caseStyle, def->funcName );
 			} else {
@@ -434,7 +434,7 @@ static void Gen_GenerateParametricTestDefinition_ComponentWise_SSE( allocatorLin
 	bool32 returnScalarFloatingPoint = returnScalar && Gen_TypeIsFloatingPoint( def->returnType->type );
 
 	if ( returnScalar ) {
-		equalsFuncStr = Gen_GetFuncName_Floateq( def->returnType->type );
+		equalsFuncStr = Gen_GetFuncName_Floateq( tempStorage, caseStyle, def->returnType->type );
 		passByStr = " ";
 		// referenceStr = "";
 	} else {
@@ -1547,7 +1547,7 @@ void GenerateComponentWiseTests( allocatorLinear_t *tempStorage, stringBuilder_t
 	if ( Gen_TypeIsFloatingPoint( typeInfo->type ) ) {
 		if ( Gen_TypeIsScalar( typeInfo ) ) {
 			// floateq
-			Gen_GenerateParametricTestsCode_ComponentWise( tempStorage, code, typeInfo, Gen_GetFuncName_Floateq( typeInfo->type ), strings, flags, caseStyle, &(componentWiseTestsData_t) {
+			Gen_GenerateParametricTestsCode_ComponentWise( tempStorage, code, typeInfo, Gen_GetFuncName_Floateq( tempStorage, caseStyle, typeInfo->type ), strings, flags, caseStyle, &(componentWiseTestsData_t) {
 				.parmDefsCount = 2,
 				.parmDefs = (parametricTestDefinitionParm_t[]) {
 					{ typeInfo, "lhs" },
@@ -1724,7 +1724,7 @@ void GenerateComponentWiseTests( allocatorLinear_t *tempStorage, stringBuilder_t
 	}
 }
 
-void GenerateTests_CtorConversion( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, const u32 componentCountMin, const bool32 *scalarTypeEnabled ) {
+void GenerateTests_CtorConversion( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle, const u32 componentCountMin, const bool32 *scalarTypeEnabled ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -1814,7 +1814,7 @@ void GenerateTests_CtorConversion( allocatorLinear_t *tempStorage, stringBuilder
 			otherTypeInfo.fullTypeName = Gen_GetMemberTypeString( otherTypeInfo.type );
 		}
 
-		const char *floateqStr = Gen_GetFuncName_Floateq( typeInfo->type );
+		const char *floateqStr = Gen_GetFuncName_Floateq( tempStorage, caseStyle, typeInfo->type );
 
 		// this test cant use any of the main test generation functions because we only a certain number of components get assigned based on the type being converting from
 		StringBuilder_Appendf( code, "TEMPER_TEST_PARAMETRIC( Test_%s_%s, TEMPER_FLAG_SHOULD_RUN, const %s%sconvertFrom, const %s%sexpectedAnswer )\n", typeInfo->fullTypeName, otherTypeInfo.fullTypeName, otherTypeInfo.fullTypeName, strings->refDeclStr, typeInfo->fullTypeName, strings->refDeclStr );
@@ -1881,7 +1881,7 @@ void GenerateTests_CtorConversion( allocatorLinear_t *tempStorage, stringBuilder
 		const char *funcName = NULL;
 		const char *testName = NULL;
 
-		const char *floateqStr = Gen_GetFuncName_Floateq( typeInfo->type );
+		const char *floateqStr = Gen_GetFuncName_Floateq( tempStorage, caseStyle, typeInfo->type );
 
 		typeInfo_t subVecType = { 0 };
 

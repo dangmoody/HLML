@@ -1358,7 +1358,7 @@ void GenerateMatrixTests( allocatorLinear_t *tempStorage, const char *generatedT
 		// the "2" below (componentCountMin) is never read for a matrix typeInfo: GenerateTests_CtorConversion
 		// only checks it inside its composite-ctor test block, which is itself gated behind
 		// Gen_TypeIsVector( typeInfo ) and so never runs here - see tests_shared.c
-		GenerateTests_CtorConversion( tempStorage, code, typeInfo, strings, flags, 2, scalarTypeEnabled );
+		GenerateTests_CtorConversion( tempStorage, code, typeInfo, strings, flags, caseStyle, 2, scalarTypeEnabled );
 
 		Gen_GenerateTests_Identity( tempStorage, code, typeInfo, strings, flags, caseStyle );
 		Gen_GenerateTests_Transpose( tempStorage, code, typeInfo, strings, flags, caseStyle );

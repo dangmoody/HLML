@@ -382,12 +382,14 @@ typeInfo_t Gen_GetScalarType( const typeInfo_t *typeInfo ) {
 
 //================================================================
 
-const char *Gen_GetFuncName_Floateq( const genType_t type ) {
-	return ( type == GEN_TYPE_DOUBLE ) ? "doubleeq" : "floateq";
+const char *Gen_GetFuncName_Floateq( allocatorLinear_t *tempStorage, const genFunctionNameCase_t caseStyle, const genType_t type ) {
+	const char *name = ( type == GEN_TYPE_DOUBLE ) ? "doubleeq" : "floateq";
+	return Gen_ApplyFunctionNameCase( tempStorage, caseStyle, true, name );
 }
 
-const char *Gen_GetFuncName_Floateq_eps( const genType_t type ) {
-	return ( type == GEN_TYPE_DOUBLE ) ? "doubleeq_eps" : "floateq_eps";
+const char *Gen_GetFuncName_Floateq_eps( allocatorLinear_t *tempStorage, const genFunctionNameCase_t caseStyle, const genType_t type ) {
+	const char *name = ( type == GEN_TYPE_DOUBLE ) ? "doubleeq_eps" : "floateq_eps";
+	return Gen_ApplyFunctionNameCase( tempStorage, caseStyle, true, name );
 }
 
 const char *Gen_GetFuncName_Scalar( allocatorLinear_t *tempStorage, const genType_t type, const generatorFlags_t flags, const genFunctionNameCase_t caseStyle, const char *functionName ) {
@@ -925,7 +927,7 @@ static void GenerateFunction_Equals( allocatorLinear_t *tempStorage, const typeI
 
 		if ( Gen_TypeIsVector( typeInfo ) ) {
 			if ( Gen_TypeIsFloatingPoint( typeInfo->type ) ) {
-				const char *floateqFuncStr = Gen_GetFuncName_Floateq( typeInfo->type );
+				const char *floateqFuncStr = Gen_GetFuncName_Floateq( tempStorage, caseStyle, typeInfo->type );
 
 				for ( u32 i = 0; i < numIterations; i++ ) {
 					const char componentName = GEN_COMPONENT_NAMES_VECTOR[i];
@@ -968,7 +970,7 @@ static void GenerateFunction_Equals( allocatorLinear_t *tempStorage, const typeI
 
 		if ( Gen_TypeIsVector( typeInfo ) ) {
 			if ( Gen_TypeIsFloatingPoint( typeInfo->type ) ) {
-				const char *floateqFuncStr = Gen_GetFuncName_Floateq( typeInfo->type );
+				const char *floateqFuncStr = Gen_GetFuncName_Floateq( tempStorage, caseStyle, typeInfo->type );
 
 				for ( u32 i = 0; i < typeInfo->numCols; i++ ) {
 					const char componentName = GEN_COMPONENT_NAMES_VECTOR[i];
