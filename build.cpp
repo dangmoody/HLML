@@ -127,6 +127,7 @@ BUILDER_CALLBACK void SetBuilderOptions( BuilderOptions *options, CommandLineArg
 
 	if ( HasCommandLineArg( args, "--release" ) ) {
 		generator.binaryFolder += "/release";
+		generator.optimizationLevel = OPTIMIZATION_LEVEL_O3;
 	} else {
 		generator.binaryFolder += "/debug";
 	}
