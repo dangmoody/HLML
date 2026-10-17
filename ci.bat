@@ -6,32 +6,32 @@
 pushd %~dp0
 
 :: generator
-builder build.cpp --config=generator
+build.exe --config=generator
 
 .\bin\debug\hlml-generator.exe
 
 :: clang C
-builder build.cpp --config=tests-c
+build.exe --config=tests-c
 .\bin\debug\hlml-tests-clang-c.exe
 
 :: clang CPP
-builder build.cpp --config=tests-cpp
+build.exe --config=tests-cpp
 .\bin\debug\hlml-tests-clang-cpp.exe
 
 :: GCC C
-builder build.cpp --gcc --config=tests-c
+build.exe --gcc --config=tests-c
 .\bin\debug\hlml-tests-gcc-c.exe
 
 :: GCC CPP
-builder build.cpp --gcc --config=tests-cpp
+build.exe --gcc --config=tests-cpp
 .\bin\debug\hlml-tests-gcc-cpp.exe
 
 :: MSVC C
-builder build.cpp --msvc --config=tests-c
+build.exe --msvc --config=tests-c
 .\bin\debug\hlml-tests-msvc-c.exe
 
 :: MSVC CPP
-builder build.cpp --msvc --config=tests-cpp
+build.exe --msvc --config=tests-cpp
 .\bin\debug\hlml-tests-msvc-cpp.exe
 
 popd

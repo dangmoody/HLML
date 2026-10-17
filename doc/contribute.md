@@ -24,14 +24,16 @@ All platforms:
 
 ### Windows
 
-If you want to use Visual Studio, run `builder generate_solution.cpp`.
+If you want to use Visual Studio, run `build.exe --sln`.
 
 
 ### All platforms
 
+The build executable (`build` on Linux, `build.exe` on Windows) lives in the project root and rebuilds itself whenever `build.c` changes.
+
 Run the following commands:
-* `builder build.cpp --config=generator` to build the generator.
-* `builder build.cpp --config=tests-c` to build the C tests.
-* `builder build.cpp --config=tests-cpp` to build the C++ tests.
+* `build --config=generator` to build the generator.
+* `build --config=tests-c` to build the C tests.
+* `build --config=tests-cpp` to build the C++ tests.
 
 By default the compiler is Clang.  Pass `--gcc` or `--msvc` to use GCC or MSVC instead.
