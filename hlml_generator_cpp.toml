@@ -6,123 +6,104 @@
 #   bin/debug/hlml-generator hlml_generator_cpp.toml
 #
 # A config file is required and always generates exactly one language, chosen by "language" below.
-# To generate both C and C++ output, run the generator twice - once with this file, once with
-# hlml_generator_c.toml. The values shown here reproduce the checked-in code/generated_files/cpp/
+# To generate both C and C++ output, run the generator twice - once with this file, once with hlml_generator_c.toml.
+# The values shown here reproduce the checked-in code/generated_files/cpp/
 # and code/generated_files/cpp/tests/ output exactly.
 
 language = "cpp"
 
-# Folder the API code is written into; tests are written to <output_path>/tests/ beneath it. No
-# trailing slash. Unlike before, the language is NOT auto-appended - if you want a per-language
-# subfolder (as the checked-in output does), put it in this path yourself, as below.
+# Folder that API code is written to, with no trailing slash.
+# Tests go in <output_path>/tests/.
+# The language is not auto-appended.
 output_path = "code/generated_files/cpp"
 
-# Prefix applied to the constants generated in hlml_constants.h (HLML_PI, HLML_TAU, HLML_EPSILON,
-# HLML_ROOT_2 by default) and to internal references to them (radians()/degrees()/floateq()). Empty
-# string is valid - it means no prefix at all (e.g. "PI" instead of "HLML_PI").
+# Prefix for the constants in hlml_constants.h (HLML_PI, HLML_TAU, etc.).
+# Empty means no prefix.
 constants_prefix = "HLML_"
 
-# Filename of the umbrella header that #includes every generated API file. Test files also #include
-# this to pull in the whole API. Cannot be empty.
+# Filename of the umbrella header that includes every generated API file.
+# Cannot be empty.
 main_header_name = "hlml.h"
 
-# Prefix applied to the generated filenames that aren't independently configurable (hlml_types.h,
-# hlml_constants.h, hlml_constants_sse.h, hlml_defines.h, hlml_functions_*.h by default). Empty
-# string is valid - it means no prefix at all (e.g. "types.h" instead of "hlml_types.h").
+# Prefix for generated filenames (hlml_types.h, hlml_constants.h, hlml_functions_*.h, etc.).
+# Empty means no prefix.
 file_prefix = "hlml_"
 
-# Which scalar kinds participate in vector/matrix generation.
-# NOTE: "bool" can only be excluded here if "generate_relational_operators" (below) is also disabled -
-# relational operators (<, <=, >, >=) on every other type return a bool vector/matrix, so bool is
-# forced back on regardless of this list while they're enabled. Equality (==, !=) is unaffected either
-# way, since it always returns a plain scalar bool.
+# Scalar types to generate vectors/matrices for.
+# Bool is forced on while generate_relational_operators is enabled.
 scalar_types = [ "bool", "int", "uint", "float", "double" ]
 
-# Inclusive component-count range, applied to both vector component counts and matrix rows/cols.
+# Inclusive component count range for vectors and matrix rows/cols.
 # Must be within [2, 4].
 component_count_min = 2
 component_count_max = 4
 
-# Whether quaternion types/functions (float4 and double4 treated as quaternions) are generated.
-# Automatically disabled if float/double or 4-component types are excluded above.
+# Treat float4/double4 as quaternions.
+# Automatically disabled if float/double or 4-component types are excluded.
 generate_quaternions = true
 
-# Whether non-square matrices (e.g. float2x3, float4x2) are generated, in addition to square ones.
+# Generate non-square matrices (e.g. float2x3).
 generate_non_square_matrices = true
 
-# Whether the SSE API (hlml_functions_scalar_sse.h/hlml_functions_vector_sse.h and their #includes in
-# hlml.h) is generated, for the types that support it (currently just float).
+# Generate the SSE API (float only).
 generate_sse = true
 
-# Whether function parameters are passed by pointer, C style (`*`/`->`), or by reference, C++ style
-# (`&`/`.`).
+# Pass parameters by pointer instead of by reference.
 parms_are_pointers = false
 
-# Whether the API is wrapped in extern "C" guards. Cannot be combined with allow_namespace, since
-# namespaces are a C++-only concept.
+# Wrap the API in extern "C" guards.
+# Cannot be combined with allow_namespace.
 c_linkage = false
 
-# Whether overloaded operators (+, -, ==, etc.) are generated. C++ only.
+# Generate overloaded operators.
+# C++ only.
 generate_operators = true
 
-# Whether vector/matrix types generate operator=. Only meaningful when generate_operators is also
-# enabled. C++ only.
+# Generate operator=.
+# Requires generate_operators.
+# C++ only.
 generate_assignment_operator = true
 
-# Whether generated function names rely on C++ overload resolution (e.g. "add") instead of being
-# suffixed per type (e.g. "float3_add").
+# Rely on C++ overloading for function names (e.g. "add" instead of "float3_add").
 name_mangling = true
 
-# Case style for generated function names (dot, cross, normalize, lerp, transpose, look_at_lh, mul, add,
-# less_than, ...). "snake_case" (the default) reproduces today's exact naming unchanged. "PascalCase"/
-# "camelCase" recase each underscore-separated word and drop the underscores (e.g. "look_at_lh" ->
-# "LookAtLh"/"lookAtLh"). For the unmangled, type-prefixed form used when name_mangling is off (e.g.
-# "float3_look_at_lh"), PascalCase also capitalizes the type prefix's leading letter and drops the
-# joining underscore ("Float3LookAtLh"); camelCase leaves the type prefix exactly as-is and does the same
-# ("float3LookAtLh"). Structural single-letter markers (the scalar type suffix in e.g. "lerpf", and the
-# component-wise "c"/"s"/"v"/"m" markers in e.g. "cadds") always stay lowercase regardless of style.
+# Case style for function names: "snake_case", "PascalCase" or "camelCase".
+# E.g. "float3_look_at_lh" becomes "Float3LookAtLh" or "float3LookAtLh".
+# Structural single-letter markers (the scalar type suffix in e.g. "lerpf", and the component-wise "c"/"s"/"v"/"m" markers in e.g. "cadds") always stay lowercase regardless of style.
 function_name_case = "snake_case"
 
-# Whether vector types wrap their members in an anonymous union that also exposes a v[] array and (if
-# vector_swizzles/generate_rgba are on) swizzle/rgba members, all aliasing the same memory. If off,
-# vectors only have plain x/y/z/w members.
+# Wrap vector members in an anonymous union with a v[] array, swizzles and rgba members.
 vector_unions = true
 
-# Whether vector types' anonymous struct/union members are wrapped in a push/pop of Clang/GCC's
-# -Wpedantic and MSVC's C4201, since anonymous structs/unions are a nonstandard extension. Only
-# meaningful when vector_unions is also enabled.
+# Suppress pedantic/C4201 warnings around anonymous structs/unions.
+# Requires vector_unions.
 suppress_anonymous_struct_warnings = true
 
-# Whether rgba-named vector members (and, if vector_swizzles is on, rgba-named swizzles) are generated
-# alongside xyzw, inside the same union. Requires vector_unions to be enabled - the generator errors out
-# otherwise, since rgba members have nowhere to live without that union.
+# Generate rgba members/swizzles alongside xyzw.
+# Requires vector_unions.
 generate_rgba = true
 
-# Whether constructors (and destructors) are generated for vector/matrix types. C++ only.
+# Generate constructors/destructors.
+# C++ only.
 generate_constructors = true
 
-# Whether HLSL-style vector swizzles (e.g. ".xyz") are generated. C++ only.
+# Generate HLSL-style swizzles (e.g. ".xyz").
+# C++ only.
 vector_swizzles = true
 
-# Whether generated code can optionally be wrapped in a "hlml" namespace, behind the HLML_NAMESPACE
-# #define. Cannot be combined with c_linkage.
+# Allow wrapping in a "hlml" namespace via HLML_NAMESPACE.
+# Cannot be combined with c_linkage.
 allow_namespace = true
 
-# Whether <, <=, >, >= are generated for every type. Equality (==, !=) is unaffected by this - it's
-# always generated, since the generated tests rely on it to check their results.
+# Generate <, <=, >, >= for every type.
+# == and != are always generated.
 generate_relational_operators = true
 
-# Whether opening scope braces (functions, structs, namespace blocks, control-flow) are put on the same
-# line as the preceding statement (K&R style) instead of on their own line (Allman style, the default
-# below). Does not affect aggregate-initializer braces (e.g. HLML_CONSTRUCT( type ) { ... }).
+# Put opening braces on the same line (K&R) instead of on their own line (Allman).
 braces_same_line = false
 
-# Whether declarator '*'/'&' (function parameters, reference return types, constructors, operator=,
-# operator[], swizzle operators) attach to the variable/function name (e.g. "float3 *vec", "float3 &vec",
-# the default below) instead of the type (e.g. "float3* vec", "float3& vec"). Never affects
-# expression-level '*'/'&' (dereference/address-of), which have no attachment to move.
+# Attach '*'/'&' to the name (e.g. "float3 *vec") instead of the type (e.g. "float3* vec").
 reference_operator_attach_to_variable = true
 
-# Whether the "This file was automatically generated by HLML vX.Y.Z. Editing this file may cause side
-# effects." comment is prepended to every generated file.
+# Prepend the "automatically generated" comment to every generated file.
 generate_header_comment = true
